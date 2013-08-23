@@ -1,0 +1,604 @@
+<?xml version="1.0"?>
+<Reports>
+  <!--Report *** SOInvoice_Attachement ***-->
+  <Report version="2.5.20043.144">
+    <Name>SOInvoice_Attachement</Name>
+    <DataSource>
+      <ConnectionString>Provider=SQLOLEDB.1;Password=sa;Persist Security Info=True;User ID=sa;Initial Catalog=Map;Data Source=ngaht</ConnectionString>
+      <RecordSource>SELECT  DISTINCT 	
+	ITM_Product.Revision as PartModel,
+	ITM_Category.Name as CategoryCode,
+	SO_CustomerItemRefDetail.CustomerItemCode as PartNo,
+	ITM_Product.Description as PartName,
+	
+	ITM_Product.QuantitySet,
+	
+	(SELECT SUM(detail.InvoiceQty)
+	 FROM SO_ConfirmShipDetail detail
+	 WHERE detail.SaleOrderDetailID = SO_SaleOrderDetail.SaleOrderDetailID
+	       AND detail.ConfirmShipMasterID = SO_ConfirmShipMaster.ConfirmShipMasterID
+	       AND detail.ConfirmShipDetailID = SO_ConfirmShipDetail.ConfirmShipDetailID 	
+	) as ShippingQuantity,
+		
+	(
+	 (SELECT SUM( detail.Price * detail.InvoiceQty)
+	  FROM SO_ConfirmShipDetail detail
+	  WHERE detail.ConfirmShipMasterID = SO_ConfirmShipMaster.ConfirmShipMasterID
+	  AND detail.ProductID = ITM_Product.ProductID
+	  )	
+	  /
+	 (
+	 Case
+	  When(
+	     SELECT SUM(detail.InvoiceQty)
+	     FROM SO_ConfirmShipDetail detail
+	     WHERE detail.ConfirmShipMasterID = SO_ConfirmShipMaster.ConfirmShipMasterID
+	     AND detail.ProductID = ITM_Product.ProductID
+	   ) = 0 
+	   then 1
+	   else   
+  	     (
+	      SELECT SUM(detail.InvoiceQty)
+	      FROM SO_ConfirmShipDetail detail
+	      WHERE detail.ConfirmShipMasterID = SO_ConfirmShipMaster.ConfirmShipMasterID
+	      AND detail.ProductID = ITM_Product.ProductID
+	      )
+	    end      
+	 )
+	)
+	as UnitPrice,
+
+	(SELECT SUM(detail.InvoiceQty)
+	 FROM SO_ConfirmShipDetail detail
+	 WHERE detail.SaleOrderDetailID = SO_SaleOrderDetail.SaleOrderDetailID
+	       AND detail.ConfirmShipMasterID = SO_ConfirmShipMaster.ConfirmShipMasterID
+	) * SO_ConfirmShipDetail.Price AS NetAmount,
+
+	SO_ConfirmShipMaster.InvoiceNo as ConfirmShipNo,
+	SO_ConfirmShipMaster.ReferenceNo as CustomerPurchaseOrderNo
+	
+FROM    SO_ConfirmShipDetail 
+	INNER JOIN SO_ConfirmShipMaster ON SO_ConfirmShipDetail.ConfirmShipMasterID = SO_ConfirmShipMaster.ConfirmShipMasterID 
+	INNER JOIN SO_SaleOrderMaster ON SO_ConfirmShipMaster.SaleOrderMasterID = SO_SaleOrderMaster.SaleOrderMasterID 
+	INNER JOIN SO_SaleOrderDetail ON SO_ConfirmShipDetail.SaleOrderDetailID = SO_SaleOrderDetail.SaleOrderDetailID 
+	INNER JOIN ITM_Product ON ITM_Product.ProductID = SO_SaleOrderDetail.ProductID
+	INNER JOIN MST_Party ON SO_SaleOrderMaster.PartyID = MST_Party.PartyID
+	LEFT JOIN ITM_Category ON ITM_Category.CategoryID = ITM_Product.CategoryID
+	LEFT JOIN SO_CustomerItemRefMaster ON SO_CustomerItemRefMaster.PartyID = MST_Party.PartyID
+	LEFT JOIN SO_CustomerItemRefDetail ON SO_CustomerItemRefMaster.CustomerItemRefMasterID = SO_CustomerItemRefDetail.CustomerItemRefMasterID
+		AND SO_CustomerItemRefDetail.ProductID = ITM_Product.ProductID
+
+
+WHERE SO_ConfirmShipMaster.ConfirmShipMasterID = 155
+
+ORDER BY ITM_Product.Revision,
+	ITM_Product.Description</RecordSource>
+    </DataSource>
+    <Layout>
+      <Width>15765</Width>
+      <MarginLeft>576</MarginLeft>
+      <MarginTop>432</MarginTop>
+      <MarginRight>576</MarginRight>
+      <MarginBottom>432</MarginBottom>
+      <Orientation>2</Orientation>
+      <PaperSize>9</PaperSize>
+    </Layout>
+    <Font>
+      <Name>Arial Narrow</Name>
+      <Size>8</Size>
+    </Font>
+    <Groups>
+      <Group>
+        <Name>PartNoPartNamePartModel</Name>
+        <GroupBy>PartNo+PartName+PartModel</GroupBy>
+      </Group>
+    </Groups>
+    <Sections>
+      <Section>
+        <Name>Detail</Name>
+        <Type>0</Type>
+        <CanShrink>-1</CanShrink>
+      </Section>
+      <Section>
+        <Name>Header</Name>
+        <Type>1</Type>
+      </Section>
+      <Section>
+        <Name>Footer</Name>
+        <Type>2</Type>
+        <Visible>0</Visible>
+      </Section>
+      <Section>
+        <Name>PageHeader</Name>
+        <Type>3</Type>
+        <Height>2475</Height>
+      </Section>
+      <Section>
+        <Name>PageFooter</Name>
+        <Type>4</Type>
+        <Height>300</Height>
+        <CanShrink>-1</CanShrink>
+      </Section>
+      <Section>
+        <Name>PartNoPartNamePartModel Header</Name>
+        <Type>5</Type>
+        <Height>330</Height>
+      </Section>
+      <Section>
+        <Name>PartNoPartNamePartModel Footer</Name>
+        <Type>6</Type>
+        <Visible>0</Visible>
+      </Section>
+    </Sections>
+    <Fields>
+      <Field>
+        <Name>fldTitle</Name>
+        <Section>3</Section>
+        <Text>ATTACHED SHEET</Text>
+        <Left>990</Left>
+        <Top>480</Top>
+        <Width>8910</Width>
+        <Height>435</Height>
+        <Align>7</Align>
+        <ForeColor>-2147483630</ForeColor>
+        <Font>
+          <Bold>-1</Bold>
+          <Name>Arial</Name>
+          <Size>18</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>fldFax1</Name>
+        <Section>3</Section>
+        <Text>INVOICE NO.:</Text>
+        <Left>105</Left>
+        <Top>1215</Top>
+        <Width>1185</Width>
+        <Height>300</Height>
+        <Align>6</Align>
+        <MarginLeft>50</MarginLeft>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>fldFax2</Name>
+        <Section>3</Section>
+        <Text>PO NO.:</Text>
+        <Left>105</Left>
+        <Top>1530</Top>
+        <Width>720</Width>
+        <Height>300</Height>
+        <Align>6</Align>
+        <MarginLeft>50</MarginLeft>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>fldInvoiceNo</Name>
+        <Section>3</Section>
+        <Text>ConfirmShipNo</Text>
+        <Calculated>-1</Calculated>
+        <Left>1260</Left>
+        <Top>1230</Top>
+        <Width>2520</Width>
+        <Height>300</Height>
+        <Align>6</Align>
+        <MarginLeft>50</MarginLeft>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>fldFax4</Name>
+        <Section>3</Section>
+        <Text>CustomerPurchaseOrderNo</Text>
+        <Calculated>-1</Calculated>
+        <Left>855</Left>
+        <Top>1530</Top>
+        <Width>2895</Width>
+        <Height>300</Height>
+        <Align>6</Align>
+        <MarginLeft>50</MarginLeft>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field1</Name>
+        <Section>3</Section>
+        <Left>90</Left>
+        <Top>1935</Top>
+        <Width>15420</Width>
+        <Height>525</Height>
+        <BorderStyle>1</BorderStyle>
+      </Field>
+      <Field>
+        <Name>Field2</Name>
+        <Section>3</Section>
+        <Left>630</Left>
+        <Top>1935</Top>
+        <Height>540</Height>
+        <BorderStyle>1</BorderStyle>
+        <LineSlant>1</LineSlant>
+      </Field>
+      <Field>
+        <Name>Field</Name>
+        <Section>3</Section>
+        <Left>9675</Left>
+        <Top>1935</Top>
+        <Height>540</Height>
+        <BorderStyle>1</BorderStyle>
+        <LineSlant>1</LineSlant>
+      </Field>
+      <Field>
+        <Name>Field3</Name>
+        <Section>3</Section>
+        <Left>13680</Left>
+        <Top>1935</Top>
+        <Height>540</Height>
+        <BorderStyle>1</BorderStyle>
+        <LineSlant>1</LineSlant>
+      </Field>
+      <Field>
+        <Name>Field4</Name>
+        <Section>3</Section>
+        <Left>11970</Left>
+        <Top>1935</Top>
+        <Height>540</Height>
+        <BorderStyle>1</BorderStyle>
+        <LineSlant>1</LineSlant>
+      </Field>
+      <Field>
+        <Name>Field5</Name>
+        <Section>3</Section>
+        <Left>10605</Left>
+        <Top>1935</Top>
+        <Height>540</Height>
+        <BorderStyle>1</BorderStyle>
+        <LineSlant>1</LineSlant>
+      </Field>
+      <Field>
+        <Name>fldNo</Name>
+        <Section>3</Section>
+        <Text>NO.</Text>
+        <Left>120</Left>
+        <Top>1980</Top>
+        <Width>495</Width>
+        <Height>450</Height>
+        <Align>7</Align>
+        <MarginLeft>50</MarginLeft>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>fldFax5</Name>
+        <Section>3</Section>
+        <Text>PART NAME</Text>
+        <Left>5700</Left>
+        <Top>1980</Top>
+        <Width>3870</Width>
+        <Height>450</Height>
+        <Align>7</Align>
+        <MarginLeft>50</MarginLeft>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>fldFax6</Name>
+        <Section>3</Section>
+        <Text>Q.TY/SET</Text>
+        <Left>9705</Left>
+        <Top>1980</Top>
+        <Width>870</Width>
+        <Height>450</Height>
+        <Align>7</Align>
+        <MarginLeft>50</MarginLeft>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>fldFax7</Name>
+        <Section>3</Section>
+        <Text>TOTAL Q.TY         (PCS)</Text>
+        <Left>10665</Left>
+        <Top>1980</Top>
+        <Width>1245</Width>
+        <Height>450</Height>
+        <Align>7</Align>
+        <MarginLeft>50</MarginLeft>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>fldFax8</Name>
+        <Section>3</Section>
+        <Text>UNIT/PRICE</Text>
+        <Left>12015</Left>
+        <Top>1980</Top>
+        <Width>1620</Width>
+        <Height>450</Height>
+        <Align>7</Align>
+        <MarginLeft>50</MarginLeft>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>fldFax9</Name>
+        <Section>3</Section>
+        <Text>TOTAL           CIF</Text>
+        <Left>14175</Left>
+        <Top>1980</Top>
+        <Width>870</Width>
+        <Height>450</Height>
+        <Align>7</Align>
+        <MarginLeft>50</MarginLeft>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>fldFax12</Name>
+        <Section>4</Section>
+        <Text>QuantitySet</Text>
+        <Calculated>-1</Calculated>
+        <Format>#,##0.00</Format>
+        <Left>9720</Left>
+        <Width>795</Width>
+        <Height>300</Height>
+        <Align>8</Align>
+        <MarginLeft>50</MarginLeft>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Tag>FORMAT_QUANTITY</Tag>
+      </Field>
+      <Field>
+        <Name>fldFax3</Name>
+        <Section>3</Section>
+        <Text>MODEL</Text>
+        <Left>660</Left>
+        <Top>1980</Top>
+        <Width>1920</Width>
+        <Height>450</Height>
+        <Align>7</Align>
+        <MarginLeft>50</MarginLeft>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>fldFax16</Name>
+        <Section>3</Section>
+        <Text>CATEGORY</Text>
+        <Left>2805</Left>
+        <Top>1980</Top>
+        <Width>2745</Width>
+        <Height>450</Height>
+        <Align>7</Align>
+        <MarginLeft>50</MarginLeft>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field12</Name>
+        <Section>3</Section>
+        <Left>2670</Left>
+        <Top>1935</Top>
+        <Height>540</Height>
+        <BorderStyle>1</BorderStyle>
+        <LineSlant>1</LineSlant>
+      </Field>
+      <Field>
+        <Name>Field13</Name>
+        <Section>3</Section>
+        <Left>5625</Left>
+        <Top>1935</Top>
+        <Height>540</Height>
+        <BorderStyle>1</BorderStyle>
+        <LineSlant>1</LineSlant>
+      </Field>
+      <Field>
+        <Name>Field6</Name>
+        <Section>5</Section>
+        <Left>90</Left>
+        <Width>15420</Width>
+        <Height>320</Height>
+        <BorderStyle>1</BorderStyle>
+      </Field>
+      <Field>
+        <Name>Field7</Name>
+        <Section>5</Section>
+        <Left>630</Left>
+        <Height>330</Height>
+        <BorderStyle>1</BorderStyle>
+        <LineSlant>1</LineSlant>
+      </Field>
+      <Field>
+        <Name>Field8</Name>
+        <Section>5</Section>
+        <Left>9675</Left>
+        <Height>330</Height>
+        <BorderStyle>1</BorderStyle>
+        <LineSlant>1</LineSlant>
+      </Field>
+      <Field>
+        <Name>Field9</Name>
+        <Section>5</Section>
+        <Left>13680</Left>
+        <Height>330</Height>
+        <BorderStyle>1</BorderStyle>
+        <LineSlant>1</LineSlant>
+      </Field>
+      <Field>
+        <Name>Field10</Name>
+        <Section>5</Section>
+        <Left>11970</Left>
+        <Height>330</Height>
+        <BorderStyle>1</BorderStyle>
+        <LineSlant>1</LineSlant>
+      </Field>
+      <Field>
+        <Name>Field11</Name>
+        <Section>5</Section>
+        <Left>10605</Left>
+        <Height>330</Height>
+        <BorderStyle>1</BorderStyle>
+        <LineSlant>1</LineSlant>
+      </Field>
+      <Field>
+        <Name>fldFaxXX</Name>
+        <Section>5</Section>
+        <Text>1</Text>
+        <Calculated>-1</Calculated>
+        <Left>120</Left>
+        <Top>15</Top>
+        <Width>495</Width>
+        <Height>300</Height>
+        <Align>7</Align>
+        <MarginLeft>50</MarginLeft>
+        <RunningSum>1</RunningSum>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>fldFax10</Name>
+        <Section>5</Section>
+        <Text>PartName</Text>
+        <Calculated>-1</Calculated>
+        <Left>5670</Left>
+        <Top>15</Top>
+        <Width>3970</Width>
+        <Height>300</Height>
+        <Align>6</Align>
+        <MarginLeft>50</MarginLeft>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>fldFax11</Name>
+        <Section>5</Section>
+        <Text>SUM(ShippingQuantity)</Text>
+        <Calculated>-1</Calculated>
+        <Format>#,##0.00</Format>
+        <Left>10620</Left>
+        <Top>15</Top>
+        <Width>1300</Width>
+        <Height>300</Height>
+        <Align>8</Align>
+        <MarginLeft>50</MarginLeft>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Tag>FORMAT_QUANTITY</Tag>
+      </Field>
+      <Field>
+        <Name>fldFax13</Name>
+        <Section>5</Section>
+        <Text>UnitPrice</Text>
+        <Calculated>-1</Calculated>
+        <Format>#,##0.0000</Format>
+        <Left>12000</Left>
+        <Top>15</Top>
+        <Width>1620</Width>
+        <Height>300</Height>
+        <Align>8</Align>
+        <MarginLeft>50</MarginLeft>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>fldFax14</Name>
+        <Section>5</Section>
+        <Text>SUM(ShippingQuantity) * UnitPrice</Text>
+        <Calculated>-1</Calculated>
+        <Format>#,##0.00</Format>
+        <Left>13710</Left>
+        <Top>15</Top>
+        <Width>1770</Width>
+        <Height>300</Height>
+        <Align>8</Align>
+        <MarginLeft>50</MarginLeft>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>fldFax15</Name>
+        <Section>5</Section>
+        <Text>PartModel</Text>
+        <Calculated>-1</Calculated>
+        <Left>675</Left>
+        <Top>15</Top>
+        <Width>1950</Width>
+        <Height>300</Height>
+        <Align>6</Align>
+        <MarginLeft>50</MarginLeft>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>fldFax17</Name>
+        <Section>5</Section>
+        <Text>CategoryCode</Text>
+        <Calculated>-1</Calculated>
+        <Left>2730</Left>
+        <Top>15</Top>
+        <Width>2850</Width>
+        <Height>300</Height>
+        <Align>6</Align>
+        <MarginLeft>50</MarginLeft>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field14</Name>
+        <Section>5</Section>
+        <Left>2670</Left>
+        <Height>330</Height>
+        <BorderStyle>1</BorderStyle>
+        <LineSlant>1</LineSlant>
+      </Field>
+      <Field>
+        <Name>Field15</Name>
+        <Section>5</Section>
+        <Left>5625</Left>
+        <Height>330</Height>
+        <BorderStyle>1</BorderStyle>
+        <LineSlant>1</LineSlant>
+      </Field>
+    </Fields>
+  </Report>
+</Reports>

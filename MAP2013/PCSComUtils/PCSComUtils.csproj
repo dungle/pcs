@@ -1,0 +1,774 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{A146CF5E-F135-44DE-B57F-CEE4C2B0D688}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>App.ico</ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>PCSComUtils</AssemblyName>
+    <AssemblyOriginatorKeyFile>PCSComUtils.snk</AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>PCSComUtils</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>..\%40Output\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Data.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App.ico" />
+    <Compile Include="..\AssemblyVersion.cs" />
+    <Compile Include="..\AssemblyAttributes.cs" />
+    <Compile Include="Admin\BO\CommonBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Admin\BO\GrantRoleUserBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Admin\BO\ManageControlBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Admin\BO\ManageMenuBO.cs" />
+    <Compile Include="Admin\BO\ManageRoleBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Admin\BO\ManageUserBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Admin\BO\RightAssignmentBO.cs" />
+    <Compile Include="Admin\BO\RightByRecordBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Admin\BO\VisibilityBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Admin\DS\Sys_ControlGroupDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Admin\DS\Sys_ControlGroupVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Admin\DS\Sys_HiddenControlsDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Admin\DS\Sys_HiddenControlsVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Admin\DS\Sys_HiddenControls_RoleDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Admin\DS\Sys_HiddenControls_RoleVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Admin\DS\Sys_Menu_EntryDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Admin\DS\Sys_Menu_EntryVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Admin\DS\sys_RecordSecurityParamDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Admin\DS\sys_RecordSecurityParamVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Admin\DS\Sys_Report_RoleDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Admin\DS\Sys_Report_RoleVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Admin\DS\Sys_RightDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Admin\DS\Sys_RightVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Admin\DS\Sys_RoleDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Admin\DS\sys_RolePartyDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Admin\DS\sys_RolePartyVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Admin\DS\sys_RoleProductDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Admin\DS\sys_RoleProductVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Admin\DS\Sys_RoleVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Admin\DS\sys_RoleWCDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Admin\DS\sys_RoleWCVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Admin\DS\Sys_Role_ControlGroupDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Admin\DS\Sys_Role_ControlGroupVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Admin\DS\Sys_UserDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Admin\DS\Sys_UserToRoleDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Admin\DS\Sys_UserToRoleVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Admin\DS\Sys_UserVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Admin\DS\Sys_VisibilityGroupDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Admin\DS\Sys_VisibilityGroupVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Admin\DS\Sys_VisibilityGroup_RoleDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Admin\DS\Sys_VisibilityGroup_RoleVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Admin\DS\Sys_VisibilityItemDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Admin\DS\Sys_VisibilityItemVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Admin\DS\Sys_VisibleControlDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Admin\DS\Sys_VisibleControlVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\BO\ManagePeriodBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\BO\Utilities.cs" />
+    <Compile Include="Common\BO\UtilsBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\CollectionHelper.cs" />
+    <Compile Include="Common\Constants.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\DS\ItemVO.cs" />
+    <Compile Include="Common\DS\Sys_ParamDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\DS\Sys_ParamVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\DS\Sys_PeriodDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\DS\Sys_PeriodVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\DS\Sys_PostdateConfigurationDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\DS\Sys_PostdateConfigurationVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\DS\UtilsDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\EnumDefinition.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\ErrorMessage.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\SystemProperty.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Common\v_ITMCostCenterRateTable.cs" />
+    <Compile Include="DataAccess\CryptoUtil.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataAccess\DynamicProperties.cs" />
+    <Compile Include="DataAccess\EnumerableDataReader.cs" />
+    <Compile Include="DataAccess\ListDataReader.cs" />
+    <Compile Include="DataAccess\ObjectDataReader.cs" />
+    <Compile Include="DataAccess\Utils.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DataContext\PCS.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PCS.dbml</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\PCSDataContext.cs" />
+    <Compile Include="ErrorMsg\BO\ErrorMessageBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ErrorMsg\DS\Sys_error_MsgDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ErrorMsg\DS\Sys_error_MsgVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Framework\ReportFrame\BO\C1PrintPreviewDialogBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Framework\ReportFrame\BO\DrillDownReportBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Framework\ReportFrame\BO\EditReportBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Framework\ReportFrame\BO\FieldPropertiesBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Framework\ReportFrame\BO\GroupProperties.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Framework\ReportFrame\BO\LastReportBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Framework\ReportFrame\BO\PageSetupBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Framework\ReportFrame\BO\ParameterBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Framework\ReportFrame\BO\PrintConfigurationBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Framework\ReportFrame\BO\ReportGroupBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Framework\ReportFrame\BO\ReportManagementBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Framework\ReportFrame\BO\ReportParameterBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Framework\ReportFrame\BO\ViewReportBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Framework\ReportFrame\DS\C1PrintPreviewDialogDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Framework\ReportFrame\DS\sys_FieldGroupDetailDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Framework\ReportFrame\DS\sys_FieldGroupDetailVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Framework\ReportFrame\DS\sys_FieldGroupDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Framework\ReportFrame\DS\sys_FieldGroupVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Framework\ReportFrame\DS\sys_PrintConfigurationDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Framework\ReportFrame\DS\sys_PrintConfigurationVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Framework\ReportFrame\DS\sys_ReportAndGroupDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Framework\ReportFrame\DS\sys_ReportAndGroupVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Framework\ReportFrame\DS\sys_ReportDrillDownDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Framework\ReportFrame\DS\sys_ReportDrillDownVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Framework\ReportFrame\DS\sys_ReportDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Framework\ReportFrame\DS\sys_ReportFieldsDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Framework\ReportFrame\DS\sys_ReportFieldsVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Framework\ReportFrame\DS\sys_ReportGroupDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Framework\ReportFrame\DS\sys_ReportGroupVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Framework\ReportFrame\DS\sys_ReportHistoryDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Framework\ReportFrame\DS\sys_ReportHistoryParaDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Framework\ReportFrame\DS\sys_ReportHistoryParaVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Framework\ReportFrame\DS\sys_ReportHistoryVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Framework\ReportFrame\DS\sys_ReportParaDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Framework\ReportFrame\DS\sys_ReportParaVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Framework\ReportFrame\DS\sys_ReportVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Framework\TableFrame\BO\SingleRecordBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Framework\TableFrame\BO\TableConfigBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Framework\TableFrame\BO\TableConfigDetailBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Framework\TableFrame\BO\TableGroupBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Framework\TableFrame\BO\TableManagementBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Framework\TableFrame\BO\TableNodes.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Framework\TableFrame\BO\ViewTableBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Framework\TableFrame\DS\sysGenerateTableFormDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Framework\TableFrame\DS\sys_TableAndGroupDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Framework\TableFrame\DS\sys_TableAndGroupVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Framework\TableFrame\DS\sys_TableDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Framework\TableFrame\DS\sys_TableFieldDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Framework\TableFrame\DS\sys_TableFieldVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Framework\TableFrame\DS\sys_TableGroupDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Framework\TableFrame\DS\sys_TableGroupVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Framework\TableFrame\DS\sys_TableVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainUtils\BO\EditorManager.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\BO\ContactBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\BO\LocationBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\BO\MasterContactBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\BO\MasterLocationManagementBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\BO\MST_SearchPartyBO.cs" />
+    <Compile Include="MasterSetup\BO\PartyBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\BO\PartyManagementBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_AddChargeDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_AddChargeVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_AGCDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_AGCVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_ApprovalLevelDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_ApprovalLevelVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_BINDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_BINVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_CarrierDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_CarrierVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_CCNDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_CCNVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_CityDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_CityVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_CountryDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_CountryVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_CurrencyDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_CurrencyVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_DeliveryTermDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_DeliveryTermVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_DepartmentDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_DepartmentVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_DiscountTermDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_DiscountTermVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_EmployeeApprovalLevelDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_EmployeeApprovalLevelVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_EmployeeDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_EmployeeVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_ExchangeRateDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_ExchangeRateVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_FunctionDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_FunctionVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_LocationDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_LocationVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_MasterLocationDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_MasterLocationVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_PartyContactDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_PartyContactVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_PartyDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_PartyLocationDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_PartyLocationVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_PartyVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_PauseDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_PauseVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_PaymentTermDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_PaymentTermVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_ReasonDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_ReasonVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_SearchPartyDS.cs" />
+    <Compile Include="MasterSetup\DS\MST_TransactionHistoryDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_TransactionHistoryVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_TranTypeDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_TranTypeVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_UMRateDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_UMRateVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_UnitOfMeasureDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_UnitOfMeasureVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_WorkCenterCapacityDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_WorkCenterCapacityVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_WorkCenterDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_WorkCenterVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_WorkingDayDetailDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_WorkingDayDetailVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_WorkingDayMasterDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\DS\MST_WorkingDayMasterVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PCSExc\PCSBOException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PCSExc\PCSDBException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PCSExc\PCSException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <None Include="DataContext\PCS.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>PCS.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="DataContext\PCS.dbml.layout">
+      <DependentUpon>PCS.dbml</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

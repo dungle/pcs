@@ -1,0 +1,1128 @@
+<?xml version="1.0"?>
+<Reports>
+  <!--Report *** WorkOrderComplement ***-->
+  <Report version="2.5.20043.144">
+    <Name>WorkOrderComplement</Name>
+    <DataSource>
+      <ConnectionString>Provider=SQLOLEDB;Data Source=.;User ID=sa;Password=sa;Initial Catalog=map</ConnectionString>
+      <RecordSource>Select DatePart(Year,W.PostDate)as Year,DatePart(Month,W.PostDate)as Month,
+DEP.Code as Department,LOC.Code as Location,BIN.Code as Bin, 'Work Order' as Purpose,
+CAT.Code as Category,
+I.Code as PartNo,I.Revision as Model,I.Description as PartName,UM.Code as UM,
+Sum(W.CompletedQuantity) as Qty,
+W.LocationID,W.BinID,W.PRODUCTID
+from PRO_WorkOrderCompletion AS W
+INNER JOIN MST_Location LOC ON LOC.LocationID=W.LocationID
+LEFT JOIN MST_Department DEP ON DEP.DepartmentID=LOC.DepartmentID
+INNER JOIN MST_Bin BIN ON BIN.BinID=W.BinID
+INNER JOIN ITM_Product I ON I.ProductID=W.ProductID
+INNER JOIN MST_UnitOfMeasure UM ON UM.UnitOfMeasureID=I.StockUMID
+LEFT JOIN ITM_Category CAT ON CAT.CategoryID=I.CategoryID
+Where DatePart(Year,W.PostDate)=2006 AND DatePart(Month,W.PostDate)=10 
+ --AND W.LocationID in (@location) and W.BinID in (@bin) and CAT.Code in (@category )and W.ProductID IN (@product)
+Group by DatePart(Year,W.PostDate),DatePart(Month,W.PostDate),LOC.DepartmentID,W.LocationID,W.BinID,W.ProductID,
+LOC.Code,DEP.Code,BIN.Code,I.Code,I.Revision,I.Description,UM.Code,CAT.Code
+UNION ALL
+Select DatePart(Year,M.PostDate)as Year,DatePart(Month,M.PostDate)as Month,
+DEP.Code as Department,LOC.Code as Location,BIN.Code as Bin, 'OutSide' as Purpose,
+CAT.Code as Category,
+I.Code as PartNo,I.Revision as Model,I.Description as PartName,UM.Code as UM,
+Sum(D.ReceiveQuantity)as Qty,
+D.LocationID,D.BinID,D.ProductID
+From PO_PurchaseOrderReceiptDetail D
+INNER JOIN PO_PurchaseOrderReceiptMaster M ON M.PurchaseOrderReceiptID=D.PurchaseOrderReceiptID
+INNER JOIN MST_Location LOC ON LOC.LocationID=D.LocationID
+LEFT JOIN MST_Department DEP ON DEP.DepartmentID=LOC.DepartmentID
+INNER JOIN MST_Bin BIN ON BIN.BinID=D.BinID
+INNER JOIN ITM_Product I ON I.ProductID=D.ProductID
+INNER JOIN MST_UnitOfMeasure UM ON UM.UnitOfMeasureID=I.StockUMID
+LEFT JOIN ITM_Category CAT ON CAT.CategoryID=I.CategoryID
+Where M.ReceiptType=4
+AND DatePart(Year,M.PostDate)=2006 AND DatePart(Month,M.PostDate)=08
+--AND D.LocationID in (@location) and D.BinID in (@bin) and CAT.Code in (@category )and D.ProductID IN (@product)
+Group by DatePart(Year,M.PostDate),DatePart(Month,M.PostDate),DEP.Code,D.LocationID,D.BinID,D.ProductID,
+LOC.Code,BIN.Code,CAT.Code,I.Code,
+I.Revision,I.Description,UM.Code
+
+</RecordSource>
+    </DataSource>
+    <Layout>
+      <Width>23895</Width>
+      <MarginLeft>720</MarginLeft>
+      <MarginTop>720</MarginTop>
+      <MarginRight>720</MarginRight>
+      <MarginBottom>720</MarginBottom>
+      <Orientation>2</Orientation>
+      <PaperSize>9</PaperSize>
+    </Layout>
+    <Font>
+      <Name>Times New Roman</Name>
+      <Size>9</Size>
+    </Font>
+    <Groups>
+      <Group>
+        <Name>Total</Name>
+      </Group>
+      <Group>
+        <Name>Deparment</Name>
+        <GroupBy>Department</GroupBy>
+        <Sort>1</Sort>
+      </Group>
+      <Group>
+        <Name>Location</Name>
+        <GroupBy>Location</GroupBy>
+        <Sort>1</Sort>
+      </Group>
+      <Group>
+        <Name>Bin</Name>
+        <GroupBy>Bin</GroupBy>
+        <Sort>1</Sort>
+      </Group>
+    </Groups>
+    <Sections>
+      <Section>
+        <Name>Detail</Name>
+        <Type>0</Type>
+        <Height>420</Height>
+      </Section>
+      <Section>
+        <Name>Header</Name>
+        <Type>1</Type>
+        <Height>200</Height>
+      </Section>
+      <Section>
+        <Name>Footer</Name>
+        <Type>2</Type>
+        <Height>690</Height>
+      </Section>
+      <Section>
+        <Name>PageHeader</Name>
+        <Type>3</Type>
+        <Height>2595</Height>
+      </Section>
+      <Section>
+        <Name>PageFooter</Name>
+        <Type>4</Type>
+        <Height>480</Height>
+      </Section>
+      <Section>
+        <Name>Total Header</Name>
+        <Type>5</Type>
+        <Visible>0</Visible>
+      </Section>
+      <Section>
+        <Name>Total Footer</Name>
+        <Type>6</Type>
+        <Height>380</Height>
+      </Section>
+      <Section>
+        <Name>Deparment Header</Name>
+        <Type>7</Type>
+        <Visible>0</Visible>
+      </Section>
+      <Section>
+        <Name>Deparment Footer</Name>
+        <Type>8</Type>
+        <Height>420</Height>
+      </Section>
+      <Section>
+        <Name>Location Header</Name>
+        <Type>9</Type>
+        <Visible>0</Visible>
+      </Section>
+      <Section>
+        <Name>Location Footer</Name>
+        <Type>10</Type>
+        <Height>420</Height>
+      </Section>
+      <Section>
+        <Name>Bin Header</Name>
+        <Type>11</Type>
+        <Visible>0</Visible>
+      </Section>
+      <Section>
+        <Name>Bin Footer</Name>
+        <Type>12</Type>
+        <Height>420</Height>
+      </Section>
+    </Sections>
+    <Fields>
+      <Field>
+        <Name>ftrRight</Name>
+        <Section>4</Section>
+        <Text>"Page " &amp; [Page] &amp; " of " &amp; [Pages]</Text>
+        <Calculated>-1</Calculated>
+        <Left>10455</Left>
+        <Top>180</Top>
+        <Width>4680</Width>
+        <Height>300</Height>
+        <Align>2</Align>
+        <Font>
+          <Name>Arial Narrow</Name>
+          <Size>8</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field</Name>
+        <Section>3</Section>
+        <Top>60</Top>
+        <Width>1110</Width>
+        <Height>540</Height>
+        <ZOrder>-84</ZOrder>
+        <Picture encoding="base64">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</Picture>
+        <PictureAlign>10</PictureAlign>
+      </Field>
+      <Field>
+        <Name>fldCompany</Name>
+        <Section>3</Section>
+        <Text>MACHINO AUTO-PARTS CO.,LTD.</Text>
+        <Left>1200</Left>
+        <Top>240</Top>
+        <Width>3975</Width>
+        <Height>330</Height>
+        <Align>6</Align>
+        <MarginLeft>50</MarginLeft>
+        <Font>
+          <Name>Arial Narrow</Name>
+          <Size>7</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field1</Name>
+        <Section>3</Section>
+        <Left>15</Left>
+        <Top>615</Top>
+        <Width>15240</Width>
+        <BorderStyle>1</BorderStyle>
+        <LineSlant>1</LineSlant>
+      </Field>
+      <Field>
+        <Name>lblCCN</Name>
+        <Section>3</Section>
+        <Text>Year</Text>
+        <Top>1350</Top>
+        <Width>990</Width>
+        <Height>270</Height>
+        <Align>6</Align>
+        <MarginLeft>50</MarginLeft>
+        <Font>
+          <Name>Microsoft Sans Serif</Name>
+          <Size>7</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field3</Name>
+        <Section>3</Section>
+        <Text>:</Text>
+        <Left>900</Left>
+        <Top>1350</Top>
+        <Width>90</Width>
+        <Height>270</Height>
+        <Align>7</Align>
+        <Font>
+          <Name>Microsoft Sans Serif</Name>
+          <Size>7</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>@Year</Name>
+        <Section>3</Section>
+        <Left>990</Left>
+        <Top>1350</Top>
+        <Width>7650</Width>
+        <Height>270</Height>
+        <Align>6</Align>
+        <MarginLeft>50</MarginLeft>
+        <Font>
+          <Name>Microsoft Sans Serif</Name>
+          <Size>7</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>lblMasterLocation</Name>
+        <Section>3</Section>
+        <Text>Month</Text>
+        <Top>1620</Top>
+        <Width>990</Width>
+        <Height>270</Height>
+        <Align>6</Align>
+        <MarginLeft>50</MarginLeft>
+        <Font>
+          <Name>Microsoft Sans Serif</Name>
+          <Size>7</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field4</Name>
+        <Section>3</Section>
+        <Text>:</Text>
+        <Left>900</Left>
+        <Top>1620</Top>
+        <Width>90</Width>
+        <Height>270</Height>
+        <Align>7</Align>
+        <Font>
+          <Name>Microsoft Sans Serif</Name>
+          <Size>7</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>@Month</Name>
+        <Section>3</Section>
+        <Left>990</Left>
+        <Top>1620</Top>
+        <Width>7650</Width>
+        <Height>270</Height>
+        <Align>6</Align>
+        <MarginLeft>50</MarginLeft>
+        <Font>
+          <Name>Microsoft Sans Serif</Name>
+          <Size>7</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>titleLbl</Name>
+        <Section>3</Section>
+        <Text>WORK ORDER COMPLEMENT</Text>
+        <Top>645</Top>
+        <Width>9360</Width>
+        <Height>510</Height>
+        <Align>6</Align>
+        <ForeColor>4194304</ForeColor>
+        <Font>
+          <Bold>-1</Bold>
+          <Name>Arial Narrow</Name>
+          <Size>12.75</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field8</Name>
+        <Section>3</Section>
+        <Text>Department</Text>
+        <Left>75</Left>
+        <Top>2220</Top>
+        <Width>900</Width>
+        <Height>345</Height>
+        <Align>7</Align>
+        <Font>
+          <Bold>-1</Bold>
+          <Name>Arial Narrow</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field9</Name>
+        <Section>3</Section>
+        <Text>Model</Text>
+        <Left>5820</Left>
+        <Top>2220</Top>
+        <Width>1410</Width>
+        <Height>350</Height>
+        <Align>7</Align>
+        <Font>
+          <Bold>-1</Bold>
+          <Name>Arial Narrow</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field10</Name>
+        <Section>3</Section>
+        <Text>Part No</Text>
+        <Left>7350</Left>
+        <Top>2220</Top>
+        <Width>2730</Width>
+        <Height>350</Height>
+        <Align>7</Align>
+        <Font>
+          <Bold>-1</Bold>
+          <Name>Arial Narrow</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field11</Name>
+        <Section>3</Section>
+        <Text>Part Name</Text>
+        <Left>10185</Left>
+        <Top>2220</Top>
+        <Width>3030</Width>
+        <Height>350</Height>
+        <Align>7</Align>
+        <Font>
+          <Bold>-1</Bold>
+          <Name>Arial Narrow</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field12</Name>
+        <Section>3</Section>
+        <Text>Purpose</Text>
+        <Left>3720</Left>
+        <Top>2220</Top>
+        <Width>1140</Width>
+        <Height>350</Height>
+        <Align>7</Align>
+        <Font>
+          <Bold>-1</Bold>
+          <Name>Arial Narrow</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field13</Name>
+        <Section>3</Section>
+        <Text>Category</Text>
+        <Left>4950</Left>
+        <Top>2220</Top>
+        <Width>765</Width>
+        <Height>350</Height>
+        <Align>7</Align>
+        <Font>
+          <Bold>-1</Bold>
+          <Name>Arial Narrow</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field14</Name>
+        <Section>3</Section>
+        <Text>UM</Text>
+        <Left>13350</Left>
+        <Top>2220</Top>
+        <Width>465</Width>
+        <Height>345</Height>
+        <Align>7</Align>
+        <Font>
+          <Bold>-1</Bold>
+          <Name>Arial Narrow</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field17</Name>
+        <Section>3</Section>
+        <Text>Quantity</Text>
+        <Left>13905</Left>
+        <Top>2220</Top>
+        <Width>1230</Width>
+        <Height>350</Height>
+        <Align>7</Align>
+        <Font>
+          <Bold>-1</Bold>
+          <Name>Arial Narrow</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field34</Name>
+        <Section>3</Section>
+        <Left>30</Left>
+        <Top>2175</Top>
+        <Width>15150</Width>
+        <BorderStyle>1</BorderStyle>
+        <LineSlant>1</LineSlant>
+      </Field>
+      <Field>
+        <Name>Field35</Name>
+        <Section>3</Section>
+        <Left>30</Left>
+        <Top>2595</Top>
+        <Width>15150</Width>
+        <BorderStyle>1</BorderStyle>
+        <LineSlant>1</LineSlant>
+        <Font>
+          <Name>Arial Narrow</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field37</Name>
+        <Section>0</Section>
+        <Left>3660</Left>
+        <Top>420</Top>
+        <Width>11520</Width>
+        <BorderStyle>1</BorderStyle>
+        <LineSlant>1</LineSlant>
+      </Field>
+      <Field>
+        <Name>Field38</Name>
+        <Section>3</Section>
+        <Left>30</Left>
+        <Top>2175</Top>
+        <Width>15</Width>
+        <Height>420</Height>
+        <BorderStyle>1</BorderStyle>
+        <LineSlant>1</LineSlant>
+        <Font>
+          <Name>Arial Narrow</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field40</Name>
+        <Section>3</Section>
+        <Left>1020</Left>
+        <Top>2175</Top>
+        <Width>15</Width>
+        <Height>420</Height>
+        <BorderStyle>1</BorderStyle>
+        <LineSlant>1</LineSlant>
+        <Font>
+          <Bold>-1</Bold>
+          <Name>Arial Narrow</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field41</Name>
+        <Section>3</Section>
+        <Left>7290</Left>
+        <Top>2175</Top>
+        <Height>420</Height>
+        <BorderStyle>1</BorderStyle>
+        <LineSlant>1</LineSlant>
+        <Font>
+          <Bold>-1</Bold>
+          <Name>Arial Narrow</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field42</Name>
+        <Section>3</Section>
+        <Left>10125</Left>
+        <Top>2175</Top>
+        <Width>15</Width>
+        <Height>420</Height>
+        <BorderStyle>1</BorderStyle>
+        <LineSlant>1</LineSlant>
+        <Font>
+          <Bold>-1</Bold>
+          <Name>Arial Narrow</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field43</Name>
+        <Section>3</Section>
+        <Left>13290</Left>
+        <Top>2175</Top>
+        <Width>15</Width>
+        <Height>420</Height>
+        <BorderStyle>1</BorderStyle>
+        <LineSlant>1</LineSlant>
+        <Font>
+          <Bold>-1</Bold>
+          <Name>Arial Narrow</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field45</Name>
+        <Section>3</Section>
+        <Left>13860</Left>
+        <Top>2175</Top>
+        <Width>15</Width>
+        <Height>420</Height>
+        <BorderStyle>1</BorderStyle>
+        <LineSlant>1</LineSlant>
+        <Font>
+          <Bold>-1</Bold>
+          <Name>Arial Narrow</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field49</Name>
+        <Section>3</Section>
+        <Left>15180</Left>
+        <Top>2175</Top>
+        <Width>15</Width>
+        <Height>420</Height>
+        <BorderStyle>1</BorderStyle>
+        <LineSlant>1</LineSlant>
+        <Font>
+          <Bold>-1</Bold>
+          <Name>Arial Narrow</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field39</Name>
+        <Section>0</Section>
+        <Left>30</Left>
+        <Width>15</Width>
+        <Height>420</Height>
+        <BorderStyle>1</BorderStyle>
+        <LineSlant>1</LineSlant>
+        <Font>
+          <Name>Arial Narrow</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field56</Name>
+        <Section>0</Section>
+        <Left>3660</Left>
+        <Height>420</Height>
+        <BorderStyle>1</BorderStyle>
+        <LineSlant>1</LineSlant>
+        <Font>
+          <Name>Arial Narrow</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field57</Name>
+        <Section>0</Section>
+        <Left>5760</Left>
+        <Height>420</Height>
+        <BorderStyle>1</BorderStyle>
+        <LineSlant>1</LineSlant>
+        <Font>
+          <Name>Arial Narrow</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field58</Name>
+        <Section>0</Section>
+        <Left>7290</Left>
+        <Height>420</Height>
+        <BorderStyle>1</BorderStyle>
+        <LineSlant>1</LineSlant>
+        <Font>
+          <Name>Arial Narrow</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field59</Name>
+        <Section>0</Section>
+        <Left>10125</Left>
+        <Height>420</Height>
+        <BorderStyle>1</BorderStyle>
+        <LineSlant>1</LineSlant>
+        <Font>
+          <Name>Arial Narrow</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field60</Name>
+        <Section>0</Section>
+        <Left>13290</Left>
+        <Height>420</Height>
+        <BorderStyle>1</BorderStyle>
+        <LineSlant>1</LineSlant>
+        <Font>
+          <Name>Arial Narrow</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field61</Name>
+        <Section>0</Section>
+        <Left>13860</Left>
+        <Height>420</Height>
+        <BorderStyle>1</BorderStyle>
+        <LineSlant>1</LineSlant>
+        <Font>
+          <Name>Arial Narrow</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field63</Name>
+        <Section>0</Section>
+        <Left>15180</Left>
+        <Height>420</Height>
+        <BorderStyle>1</BorderStyle>
+        <LineSlant>1</LineSlant>
+        <Font>
+          <Name>Arial Narrow</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>lblPrinted</Name>
+        <Section>4</Section>
+        <Text>titlelbl + "  printed on: " + Format(Now(),"dd-MM-yyyy") + "  " + Format(Now(),"Long Time")</Text>
+        <Calculated>-1</Calculated>
+        <Left>60</Left>
+        <Top>180</Top>
+        <Width>11610</Width>
+        <Height>300</Height>
+        <ZOrder>-250</ZOrder>
+        <Align>6</Align>
+        <Font>
+          <Name>Arial Narrow</Name>
+          <Size>8</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field2</Name>
+        <Section>3</Section>
+        <Text>Location</Text>
+        <Left>1080</Left>
+        <Top>2220</Top>
+        <Width>1095</Width>
+        <Height>350</Height>
+        <Align>7</Align>
+        <Font>
+          <Bold>-1</Bold>
+          <Name>Arial Narrow</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field15</Name>
+        <Section>3</Section>
+        <Text>Bin</Text>
+        <Left>2295</Left>
+        <Top>2220</Top>
+        <Width>1305</Width>
+        <Height>350</Height>
+        <Align>7</Align>
+        <Font>
+          <Bold>-1</Bold>
+          <Name>Arial Narrow</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field16</Name>
+        <Section>3</Section>
+        <Left>2235</Left>
+        <Top>2175</Top>
+        <Width>15</Width>
+        <Height>420</Height>
+        <BorderStyle>1</BorderStyle>
+        <LineSlant>1</LineSlant>
+        <Font>
+          <Bold>-1</Bold>
+          <Name>Arial Narrow</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field18</Name>
+        <Section>3</Section>
+        <Left>3660</Left>
+        <Top>2175</Top>
+        <Width>15</Width>
+        <Height>420</Height>
+        <BorderStyle>1</BorderStyle>
+        <LineSlant>1</LineSlant>
+        <Font>
+          <Bold>-1</Bold>
+          <Name>Arial Narrow</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field19</Name>
+        <Section>3</Section>
+        <Left>4905</Left>
+        <Top>2175</Top>
+        <Height>420</Height>
+        <BorderStyle>1</BorderStyle>
+        <LineSlant>1</LineSlant>
+        <Font>
+          <Bold>-1</Bold>
+          <Name>Arial Narrow</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field20</Name>
+        <Section>0</Section>
+        <Left>4905</Left>
+        <Height>420</Height>
+        <BorderStyle>1</BorderStyle>
+        <LineSlant>1</LineSlant>
+        <Font>
+          <Name>Arial Narrow</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field21</Name>
+        <Section>3</Section>
+        <Left>5760</Left>
+        <Top>2175</Top>
+        <Height>420</Height>
+        <BorderStyle>1</BorderStyle>
+        <LineSlant>1</LineSlant>
+        <Font>
+          <Bold>-1</Bold>
+          <Name>Arial Narrow</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field24</Name>
+        <Section>0</Section>
+        <Text>Category</Text>
+        <Calculated>-1</Calculated>
+        <Left>4950</Left>
+        <Top>30</Top>
+        <Width>765</Width>
+        <Height>350</Height>
+        <Align>6</Align>
+        <Font>
+          <Name>Arial Narrow</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field25</Name>
+        <Section>0</Section>
+        <Text>Model</Text>
+        <Calculated>-1</Calculated>
+        <Left>5820</Left>
+        <Top>30</Top>
+        <Width>1410</Width>
+        <Height>350</Height>
+        <Align>6</Align>
+        <CanGrow>-1</CanGrow>
+        <Font>
+          <Name>Arial Narrow</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field26</Name>
+        <Section>0</Section>
+        <Text>PartNo</Text>
+        <Calculated>-1</Calculated>
+        <Left>7350</Left>
+        <Top>30</Top>
+        <Width>2730</Width>
+        <Height>350</Height>
+        <Align>6</Align>
+        <CanGrow>-1</CanGrow>
+        <Font>
+          <Name>Arial Narrow</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field27</Name>
+        <Section>0</Section>
+        <Text>PartName</Text>
+        <Calculated>-1</Calculated>
+        <Left>10185</Left>
+        <Top>30</Top>
+        <Width>3030</Width>
+        <Height>350</Height>
+        <Align>6</Align>
+        <CanGrow>-1</CanGrow>
+        <Font>
+          <Name>Arial Narrow</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field28</Name>
+        <Section>0</Section>
+        <Text>UM</Text>
+        <Calculated>-1</Calculated>
+        <Left>13350</Left>
+        <Top>30</Top>
+        <Width>465</Width>
+        <Height>345</Height>
+        <Align>7</Align>
+        <Font>
+          <Name>Arial Narrow</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field29</Name>
+        <Section>0</Section>
+        <Text>Qty</Text>
+        <Calculated>-1</Calculated>
+        <Format>#,##0</Format>
+        <Left>13905</Left>
+        <Top>30</Top>
+        <Width>1230</Width>
+        <Height>350</Height>
+        <Align>8</Align>
+        <Font>
+          <Name>Arial Narrow</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field6</Name>
+        <Section>12</Section>
+        <Left>2235</Left>
+        <Height>420</Height>
+        <BorderStyle>1</BorderStyle>
+        <LineSlant>1</LineSlant>
+        <Font>
+          <Name>Arial Narrow</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field7</Name>
+        <Section>12</Section>
+        <Text>Bin</Text>
+        <Calculated>-1</Calculated>
+        <Left>2295</Left>
+        <Top>30</Top>
+        <Width>1305</Width>
+        <Height>350</Height>
+        <Align>6</Align>
+        <Font>
+          <Name>Arial Narrow</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field22</Name>
+        <Section>10</Section>
+        <Text>Location</Text>
+        <Calculated>-1</Calculated>
+        <Left>1080</Left>
+        <Top>30</Top>
+        <Width>1095</Width>
+        <Height>350</Height>
+        <Align>6</Align>
+        <Font>
+          <Name>Arial Narrow</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field23</Name>
+        <Section>10</Section>
+        <Left>1020</Left>
+        <Width>15</Width>
+        <Height>420</Height>
+        <BorderStyle>1</BorderStyle>
+        <LineSlant>1</LineSlant>
+        <Font>
+          <Name>Arial Narrow</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field30</Name>
+        <Section>8</Section>
+        <Text>Department</Text>
+        <Calculated>-1</Calculated>
+        <Left>75</Left>
+        <Top>30</Top>
+        <Width>900</Width>
+        <Height>345</Height>
+        <Align>6</Align>
+        <Font>
+          <Name>Arial Narrow</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field31</Name>
+        <Section>8</Section>
+        <Left>30</Left>
+        <Width>15</Width>
+        <Height>420</Height>
+        <BorderStyle>1</BorderStyle>
+        <LineSlant>1</LineSlant>
+        <Font>
+          <Name>Arial Narrow</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field5</Name>
+        <Section>0</Section>
+        <Left>2235</Left>
+        <Height>420</Height>
+        <BorderStyle>1</BorderStyle>
+        <LineSlant>1</LineSlant>
+        <Font>
+          <Name>Arial Narrow</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field33</Name>
+        <Section>12</Section>
+        <Left>2235</Left>
+        <Top>420</Top>
+        <Width>12945</Width>
+        <BorderStyle>1</BorderStyle>
+        <LineSlant>1</LineSlant>
+      </Field>
+      <Field>
+        <Name>Field36</Name>
+        <Section>12</Section>
+        <Left>15180</Left>
+        <Height>420</Height>
+        <BorderStyle>1</BorderStyle>
+        <LineSlant>1</LineSlant>
+        <Font>
+          <Name>Arial Narrow</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field46</Name>
+        <Section>10</Section>
+        <Left>1020</Left>
+        <Top>420</Top>
+        <Width>14160</Width>
+        <BorderStyle>1</BorderStyle>
+        <LineSlant>1</LineSlant>
+      </Field>
+      <Field>
+        <Name>Field47</Name>
+        <Section>10</Section>
+        <Left>15180</Left>
+        <Height>420</Height>
+        <BorderStyle>1</BorderStyle>
+        <LineSlant>1</LineSlant>
+        <Font>
+          <Name>Arial Narrow</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field48</Name>
+        <Section>12</Section>
+        <Left>30</Left>
+        <Width>15</Width>
+        <Height>420</Height>
+        <BorderStyle>1</BorderStyle>
+        <LineSlant>1</LineSlant>
+        <Font>
+          <Name>Arial Narrow</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field50</Name>
+        <Section>10</Section>
+        <Left>30</Left>
+        <Width>15</Width>
+        <Height>420</Height>
+        <BorderStyle>1</BorderStyle>
+        <LineSlant>1</LineSlant>
+        <Font>
+          <Name>Arial Narrow</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field52</Name>
+        <Section>8</Section>
+        <Left>30</Left>
+        <Top>420</Top>
+        <Width>15150</Width>
+        <BorderStyle>1</BorderStyle>
+        <LineSlant>1</LineSlant>
+      </Field>
+      <Field>
+        <Name>Field53</Name>
+        <Section>8</Section>
+        <Left>15180</Left>
+        <Height>420</Height>
+        <BorderStyle>1</BorderStyle>
+        <LineSlant>1</LineSlant>
+        <Font>
+          <Name>Arial Narrow</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field54</Name>
+        <Section>12</Section>
+        <Left>1020</Left>
+        <Width>15</Width>
+        <Height>420</Height>
+        <BorderStyle>1</BorderStyle>
+        <LineSlant>1</LineSlant>
+        <Font>
+          <Name>Arial Narrow</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field55</Name>
+        <Section>0</Section>
+        <Left>1020</Left>
+        <Width>15</Width>
+        <Height>420</Height>
+        <BorderStyle>1</BorderStyle>
+        <LineSlant>1</LineSlant>
+        <Font>
+          <Name>Arial Narrow</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field62</Name>
+        <Section>4</Section>
+        <Left>30</Left>
+        <Top>135</Top>
+        <Width>15150</Width>
+        <BorderStyle>1</BorderStyle>
+        <LineSlant>1</LineSlant>
+      </Field>
+      <Field>
+        <Name>Field32</Name>
+        <Section>0</Section>
+        <Text>Purpose</Text>
+        <Calculated>-1</Calculated>
+        <Left>3720</Left>
+        <Top>30</Top>
+        <Width>1140</Width>
+        <Height>350</Height>
+        <Align>6</Align>
+        <Font>
+          <Name>Arial Narrow</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field44</Name>
+        <Section>6</Section>
+        <Text>=Sum(Qty)</Text>
+        <Calculated>-1</Calculated>
+        <Format>#,##0</Format>
+        <Left>13905</Left>
+        <Top>30</Top>
+        <Width>1230</Width>
+        <Height>350</Height>
+        <Align>8</Align>
+        <Font>
+          <Bold>-1</Bold>
+          <Name>Arial Narrow</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field51</Name>
+        <Section>6</Section>
+        <Text>Total Qty</Text>
+        <Calculated>-1</Calculated>
+        <Left>75</Left>
+        <Top>30</Top>
+        <Width>900</Width>
+        <Height>345</Height>
+        <Align>6</Align>
+        <Font>
+          <Bold>-1</Bold>
+          <Name>Arial Narrow</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+    </Fields>
+  </Report>
+</Reports>

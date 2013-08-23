@@ -1,0 +1,428 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{02A4CA22-E178-4778-AE47-78FFE4FA716C}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>App.ico</ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>PCSProduction</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>PCSProduction</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>..\%40Output\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="C1.C1Report.4, Version=4.6.20131.54624, Culture=neutral, PublicKeyToken=594a0605db190bb9, processorArchitecture=MSIL" />
+    <Reference Include="C1.Win.C1FlexGrid.4, Version=4.6.20131.765, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL" />
+    <Reference Include="C1.Win.C1Input.4, Version=4.0.20131.33296, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a, processorArchitecture=MSIL" />
+    <Reference Include="C1.Win.C1List.4, Version=4.1.20131.226, Culture=neutral, PublicKeyToken=6b24f8f981dbd7bc, processorArchitecture=MSIL" />
+    <Reference Include="C1.Win.C1Report.4, Version=4.6.20131.54624, Culture=neutral, PublicKeyToken=41780e2fc605e636, processorArchitecture=MSIL" />
+    <Reference Include="C1.Win.C1TrueDBGrid.4, Version=4.0.20131.61298, Culture=neutral, PublicKeyToken=75ae3fb0e2b1e0da, processorArchitecture=MSIL" />
+    <Reference Include="log4net">
+      <HintPath>..\References\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="ReachFramework" />
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Design">
+      <Name>System.Design</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <ProjectReference Include="..\PCSComMaterials\PCSComMaterials.csproj">
+      <Project>{F2AC6437-5358-4C9E-8FC5-C3133A827924}</Project>
+      <Name>PCSComMaterials</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PCSComProduction\PCSComProduction.csproj">
+      <Project>{C7CB663C-278C-4D47-8412-9ACF68163945}</Project>
+      <Name>PCSComProduction</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PCSComProduct\PCSComProduct.csproj">
+      <Name>PCSComProduct</Name>
+      <Project>{0F848537-F9CD-47FD-9843-B47981FC0F33}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\PCSComUtils\PCSComUtils.csproj">
+      <Name>PCSComUtils</Name>
+      <Project>{A146CF5E-F135-44DE-B57F-CEE4C2B0D688}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\PCSReport\PCSReport.csproj">
+      <Name>PCSReport</Name>
+      <Project>{F5D85900-F7FF-4E22-9A3F-8BF957D794EA}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\PCSUtils\PCSUtils.csproj">
+      <Project>{E5081AA4-75EC-4BE6-AFE8-B06468731975}</Project>
+      <Name>PCSUtils</Name>
+    </ProjectReference>
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App.ico" />
+    <Compile Include="..\AssemblyVersion.cs" />
+    <Compile Include="..\AssemblyAttributes.cs" />
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DCP\ChangeCategory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DCP\ChangeCategoryMatrix.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DCP\CheckPoint.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DCP\DCOptions.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DCP\DCPAdjustment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DCP\DCPEstimate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DCP\DCPReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DCP\DCRegenerate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DCP\IgnoreProductionLine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DCP\ImportPlanData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DCP\InvalidCPO.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DCP\ManualProductionPlanning.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DCP\NotConfiguredWC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DCP\OutOfCapacityWC.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DCP\ProductionGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DCP\ProductionLine.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DCP\ProductProductionOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DCP\RoughCutCapacity.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DCP\ShiftPattern.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DCP\WorkCenterCapacity.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DCP\_DCRegenerateBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ScrapRecording\ComponentScrap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WorkOrder\ManufacturingClose.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WorkOrder\ManufacturingClose.Designer.cs">
+      <DependentUpon>ManufacturingClose.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WorkOrder\MultiCompletion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WorkOrder\MultiCompletion.Designer.cs">
+      <DependentUpon>MultiCompletion.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WorkOrder\MultiWOIssueMaterial.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WorkOrder\ReleaseWorkOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WorkOrder\SelectWorkOrders.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WorkOrder\WorkOrder.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WorkOrder\WorkOrderCompletion.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <EmbeddedResource Include="DCP\ChangeCategory.resx">
+      <DependentUpon>ChangeCategory.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DCP\ChangeCategoryMatrix.resx">
+      <DependentUpon>ChangeCategoryMatrix.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DCP\CheckPoint.resx">
+      <DependentUpon>CheckPoint.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DCP\DCOptions.resx">
+      <DependentUpon>DCOptions.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DCP\DCPAdjustment.resx">
+      <DependentUpon>DCPAdjustment.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DCP\DCPEstimate.resx">
+      <DependentUpon>DCPEstimate.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DCP\DCPReport.resx">
+      <DependentUpon>DCPReport.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DCP\DCRegenerate.resx">
+      <DependentUpon>DCRegenerate.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DCP\IgnoreProductionLine.resx">
+      <DependentUpon>IgnoreProductionLine.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DCP\ImportPlanData.resx">
+      <DependentUpon>ImportPlanData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DCP\InvalidCPO.resx">
+      <DependentUpon>InvalidCPO.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DCP\ManualProductionPlanning.resx">
+      <DependentUpon>ManualProductionPlanning.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DCP\NotConfiguredWC.resx">
+      <DependentUpon>NotConfiguredWC.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DCP\OutOfCapacityWC.resx">
+      <DependentUpon>OutOfCapacityWC.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DCP\ProductionGroup.resx">
+      <DependentUpon>ProductionGroup.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DCP\ProductionLine.resx">
+      <DependentUpon>ProductionLine.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DCP\ProductProductionOrder.resx">
+      <DependentUpon>ProductProductionOrder.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DCP\RoughCutCapacity.resx">
+      <DependentUpon>RoughCutCapacity.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DCP\ShiftPattern.resx">
+      <DependentUpon>ShiftPattern.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DCP\WorkCenterCapacity.resx">
+      <DependentUpon>WorkCenterCapacity.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="ScrapRecording\ComponentScrap.resx">
+      <DependentUpon>ComponentScrap.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WorkOrder\ManufacturingClose.resx">
+      <DependentUpon>ManufacturingClose.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WorkOrder\MultiCompletion.resx">
+      <DependentUpon>MultiCompletion.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WorkOrder\MultiWOIssueMaterial.resx">
+      <DependentUpon>MultiWOIssueMaterial.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WorkOrder\ReleaseWorkOrder.resx">
+      <DependentUpon>ReleaseWorkOrder.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WorkOrder\SelectWorkOrders.resx">
+      <DependentUpon>SelectWorkOrders.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WorkOrder\WorkOrder.resx">
+      <DependentUpon>WorkOrder.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WorkOrder\WorkOrderCompletion.resx">
+      <DependentUpon>WorkOrderCompletion.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

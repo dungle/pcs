@@ -1,0 +1,318 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{24C8BA34-C5E1-4797-9461-EABAFD7E4C21}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>App.ico</ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>PCSComSale</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>PCSComSale</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>..\%40Output\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Data.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <ProjectReference Include="..\PCSComMaterials\PCSComMaterials.csproj">
+      <Name>PCSComMaterials</Name>
+      <Project>{F2AC6437-5358-4C9E-8FC5-C3133A827924}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\PCSComProduct\PCSComProduct.csproj">
+      <Name>PCSComProduct</Name>
+      <Project>{0F848537-F9CD-47FD-9843-B47981FC0F33}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\PCSComUtils\PCSComUtils.csproj">
+      <Name>PCSComUtils</Name>
+      <Project>{A146CF5E-F135-44DE-B57F-CEE4C2B0D688}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App.ico" />
+    <Compile Include="..\AssemblyVersion.cs" />
+    <Compile Include="..\AssemblyAttributes.cs" />
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Order\BO\AvoidDupleSODeliveryBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Order\BO\CustomerAndItemReferenceBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Order\BO\SaleOrderBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Order\BO\SOCancelCommitmentBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Order\BO\SOCancelSaleOrderCommitmentBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Order\BO\SOConfirmShipManagementBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Order\BO\SODeliveryScheduleBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Order\BO\SOReleaseOrderBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Order\BO\SOReturnGoodsReceiveBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Order\DS\SaleOrderInformationVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Order\DS\SO_CancelReasonDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Order\DS\SO_CancelReasonVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Order\DS\SO_CommitInventoryDetailDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Order\DS\SO_CommitInventoryDetailVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Order\DS\SO_CommitInventoryMasterDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Order\DS\SO_CommitInventoryMasterVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Order\DS\SO_ConfirmShipDetailDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Order\DS\SO_ConfirmShipDetailVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Order\DS\SO_ConfirmShipMasterDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Order\DS\SO_ConfirmShipMasterVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Order\DS\SO_CustomerItemRefDetailDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Order\DS\SO_CustomerItemRefDetailVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Order\DS\SO_CustomerItemRefMasterDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Order\DS\SO_CustomerItemRefMasterVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Order\DS\SO_DeliveryScheduleDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Order\DS\SO_DeliveryScheduleVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Order\DS\SO_GateDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Order\DS\SO_InvoiceDetailDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Order\DS\SO_InvoiceDetailVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Order\DS\SO_InvoiceMasterDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Order\DS\SO_InvoiceMasterVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Order\DS\SO_PaymentMethodDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Order\DS\SO_PaymentMethodVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Order\DS\SO_ReturnedGoodsDetailDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Order\DS\SO_ReturnedGoodsDetailVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Order\DS\SO_ReturnedGoodsMasterDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Order\DS\SO_ReturnedGoodsMasterVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Order\DS\SO_SaleOrderDetailDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Order\DS\SO_SaleOrderDetailVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Order\DS\SO_SaleOrderMasterDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Order\DS\SO_SaleOrderMasterVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Order\DS\SO_SaleStatusDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Order\DS\SO_SaleStatusVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Order\DS\SO_SaleTypeDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Order\DS\SO_SaleTypeVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,612 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E5081AA4-75EC-4BE6-AFE8-B06468731975}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>App.ico</ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>PCSUtils</AssemblyName>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>PCSUtils</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>..\%40Output\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="C1.C1Report.4, Version=4.6.20131.54624, Culture=neutral, PublicKeyToken=594a0605db190bb9, processorArchitecture=MSIL" />
+    <Reference Include="C1.C1Report.CustomFields.4, Version=4.6.20122.54513, Culture=neutral, PublicKeyToken=594a0605db190bb9, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\Program Files (x86)\ComponentOne\Studio for WinForms\bin\v4\C1.C1Report.CustomFields.4.dll</HintPath>
+    </Reference>
+    <Reference Include="C1.Win.C1Chart.4, Version=4.0.20131.23069, Culture=neutral, PublicKeyToken=a22e16972c085838, processorArchitecture=MSIL" />
+    <Reference Include="C1.Win.C1Command.4, Version=4.0.20131.19559, Culture=neutral, PublicKeyToken=e808566f358766d8, processorArchitecture=MSIL" />
+    <Reference Include="C1.Win.C1FlexGrid.4, Version=4.6.20131.765, Culture=neutral, PublicKeyToken=79882d576c6336da, processorArchitecture=MSIL" />
+    <Reference Include="C1.Win.C1Input.4, Version=4.0.20131.33296, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a, processorArchitecture=MSIL" />
+    <Reference Include="C1.Win.C1List.4, Version=4.1.20131.226, Culture=neutral, PublicKeyToken=6b24f8f981dbd7bc, processorArchitecture=MSIL" />
+    <Reference Include="C1.Win.C1Report.4, Version=4.6.20131.54624, Culture=neutral, PublicKeyToken=41780e2fc605e636, processorArchitecture=MSIL" />
+    <Reference Include="C1.Win.C1TrueDBGrid.4, Version=4.0.20131.61298, Culture=neutral, PublicKeyToken=75ae3fb0e2b1e0da, processorArchitecture=MSIL" />
+    <Reference Include="EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic">
+      <Name>Microsoft.VisualBasic</Name>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="ReachFramework" />
+    <Reference Include="Syncfusion.Core, Version=11.2045.0.25, Culture=neutral, PublicKeyToken=632609b4d040f6b4" />
+    <Reference Include="Syncfusion.Grid.Base, Version=11.2045.0.25, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
+    <Reference Include="Syncfusion.Grid.Windows, Version=11.2045.0.25, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
+    <Reference Include="Syncfusion.Shared.Base, Version=11.2045.0.25, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
+    <Reference Include="Syncfusion.Shared.Windows, Version=11.2045.0.25, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
+    <Reference Include="Syncfusion.Tools.Base, Version=11.2045.0.25, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
+    <Reference Include="Syncfusion.Tools.Windows, Version=11.2045.0.25, Culture=neutral, PublicKeyToken=3d67ed1f87d44c89" />
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.configuration" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Data.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.OracleClient" />
+    <Reference Include="System.Design">
+      <Name>System.Design</Name>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Drawing.Design" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <ProjectReference Include="..\PCSAssemblyLoader\PCSAssemblyLoader.csproj">
+      <Name>PCSAssemblyLoader</Name>
+      <Project>{283E85A2-BB0B-494B-BC8F-B8FBEAF90C40}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\PCSComUtils\PCSComUtils.csproj">
+      <Name>PCSComUtils</Name>
+      <Project>{A146CF5E-F135-44DE-B57F-CEE4C2B0D688}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App.ico" />
+    <Compile Include="..\AssemblyVersion.cs" />
+    <Compile Include="..\AssemblyAttributes.cs" />
+    <Compile Include="Admin\ConnectionMaintainance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\GrantRoleProtect.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\GrantRoleUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\GroupControls.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\Login.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\ManageMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\ManageRole.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\ManageUser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\RightAssignment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\RightAssignment.Designer.cs">
+      <DependentUpon>RightAssignment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Admin\RightByRecord.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\SelectIcon.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin\UpdatePassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="BaseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BaseForm.Designer.cs">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Framework\ReportFrame\C1PrintPreviewDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Framework\ReportFrame\DrillDownReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Framework\ReportFrame\EditReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Framework\ReportFrame\FieldProperties.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Framework\ReportFrame\GroupProperties.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Framework\ReportFrame\LastReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Framework\ReportFrame\PageSetup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Framework\ReportFrame\PreviewOnlyNoPrintDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Framework\ReportFrame\PrintConfiguration.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Framework\ReportFrame\ReportData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Framework\ReportFrame\ReportGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Framework\ReportFrame\ReportList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Framework\ReportFrame\ReportManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Framework\ReportFrame\ReportParameter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Framework\ReportFrame\UserCCNList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Framework\ReportFrame\ViewReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Framework\ReportFrame\ViewSingleRecord.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Framework\TableFrame\Record.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Framework\TableFrame\TableConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Framework\TableFrame\TableConfigDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Framework\TableFrame\TableGroup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Framework\TableFrame\TableManagement.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Framework\TableFrame\ViewSingleRecord.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Framework\TableFrame\ViewTable.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Log\Level.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Log\Logger.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\CCNTable\CCNSetup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\SystemTable\Contacts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\SystemTable\Location.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\SystemTable\ManagePeriod.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\SystemTable\MasterContacts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\SystemTable\Party.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\SystemTable\ViewData.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MasterSetup\SystemTable\ViewData.designer.cs">
+      <DependentUpon>ViewData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="SyncfusionLicenseForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SyncfusionLicenseForm.Designer.cs">
+      <DependentUpon>SyncfusionLicenseForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\ExcelReader.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Utils\ExcelReportBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Utils\ExecuteReport.cs" />
+    <Compile Include="Utils\Extensions.cs" />
+    <Compile Include="Utils\FormControlComponents.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Utils\Math.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Utils\MessageBoxFormForItems.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Utils\PCSInputBox.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Utils\PCSMessageBox.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Utils\ReportBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Utils\ReportMenuItem.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Utils\ReportWithSubReportBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Utils\Security.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <EmbeddedResource Include="Admin\ConnectionMaintainance.resx">
+      <DependentUpon>ConnectionMaintainance.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\GrantRoleProtect.resx">
+      <DependentUpon>GrantRoleProtect.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\GrantRoleUser.resx">
+      <DependentUpon>GrantRoleUser.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\GroupControls.resx">
+      <DependentUpon>GroupControls.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\Login.resx">
+      <DependentUpon>Login.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\ManageMenu.resx">
+      <DependentUpon>ManageMenu.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\ManageRole.resx">
+      <DependentUpon>ManageRole.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\ManageUser.resx">
+      <DependentUpon>ManageUser.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\RightAssignment.resx">
+      <DependentUpon>RightAssignment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\RightByRecord.resx">
+      <DependentUpon>RightByRecord.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\SelectIcon.resx">
+      <DependentUpon>SelectIcon.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Admin\UpdatePassword.resx">
+      <DependentUpon>UpdatePassword.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BaseForm.resx">
+      <DependentUpon>BaseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Framework\ReportFrame\C1PrintPreviewDialog.resx">
+      <DependentUpon>C1PrintPreviewDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Framework\ReportFrame\DrillDownReport.resx">
+      <DependentUpon>DrillDownReport.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Framework\ReportFrame\EditReport.resx">
+      <DependentUpon>EditReport.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Framework\ReportFrame\FieldProperties.resx">
+      <DependentUpon>FieldProperties.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Framework\ReportFrame\GroupProperties.resx">
+      <DependentUpon>GroupProperties.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Framework\ReportFrame\LastReport.resx">
+      <DependentUpon>LastReport.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Framework\ReportFrame\PageSetup.resx">
+      <DependentUpon>PageSetup.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Framework\ReportFrame\PreviewOnlyNoPrintDialog.resx">
+      <DependentUpon>PreviewOnlyNoPrintDialog.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Framework\ReportFrame\PrintConfiguration.resx">
+      <DependentUpon>PrintConfiguration.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Framework\ReportFrame\ReportData.resx">
+      <DependentUpon>ReportData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Framework\ReportFrame\ReportGroup.resx">
+      <DependentUpon>ReportGroup.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Framework\ReportFrame\ReportList.resx">
+      <DependentUpon>ReportList.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Framework\ReportFrame\ReportManagement.resx">
+      <DependentUpon>ReportManagement.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Framework\ReportFrame\ReportParameter.resx">
+      <DependentUpon>ReportParameter.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Framework\ReportFrame\UserCCNList.resx">
+      <DependentUpon>UserCCNList.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Framework\ReportFrame\ViewReport.resx">
+      <DependentUpon>ViewReport.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Framework\ReportFrame\ViewSingleRecord.resx">
+      <DependentUpon>ViewSingleRecord.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Framework\TableFrame\Record.resx">
+      <DependentUpon>Record.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Framework\TableFrame\TableConfig.resx">
+      <DependentUpon>TableConfig.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Framework\TableFrame\TableConfigDetail.resx">
+      <DependentUpon>TableConfigDetail.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Framework\TableFrame\TableGroup.resx">
+      <DependentUpon>TableGroup.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Framework\TableFrame\TableManagement.resx">
+      <DependentUpon>TableManagement.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Framework\TableFrame\ViewSingleRecord.resx">
+      <DependentUpon>ViewSingleRecord.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Framework\TableFrame\ViewTable.resx">
+      <DependentUpon>ViewTable.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterSetup\CCNTable\CCNSetup.resx">
+      <DependentUpon>CCNSetup.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterSetup\SystemTable\Contacts.resx">
+      <DependentUpon>Contacts.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterSetup\SystemTable\Location.resx">
+      <DependentUpon>Location.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterSetup\SystemTable\ManagePeriod.resx">
+      <DependentUpon>ManagePeriod.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterSetup\SystemTable\MasterContacts.resx">
+      <DependentUpon>MasterContacts.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterSetup\SystemTable\Party.resx">
+      <DependentUpon>Party.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MasterSetup\SystemTable\ViewData.resx">
+      <DependentUpon>ViewData.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="SyncfusionLicenseForm.resx">
+      <DependentUpon>SyncfusionLicenseForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utils\MessageBoxFormForItems.resx">
+      <DependentUpon>MessageBoxFormForItems.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Utils\ReportMenuItem.resx">
+      <DependentUpon>ReportMenuItem.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

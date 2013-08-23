@@ -1,0 +1,431 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <ProjectType>Local</ProjectType>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{C7CB663C-278C-4D47-8412-9ACF68163945}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ApplicationIcon>App.ico</ApplicationIcon>
+    <AssemblyKeyContainerName>
+    </AssemblyKeyContainerName>
+    <AssemblyName>PCSComProduction</AssemblyName>
+    <AssemblyOriginatorKeyFile>PCSComProduction.snk</AssemblyOriginatorKeyFile>
+    <DefaultClientScript>JScript</DefaultClientScript>
+    <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+    <DefaultTargetSchema>IE50</DefaultTargetSchema>
+    <DelaySign>false</DelaySign>
+    <OutputType>Library</OutputType>
+    <RootNamespace>PCSComProduction</RootNamespace>
+    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <StartupObject>
+    </StartupObject>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <OutputPath>..\%40Output\Debug\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>true</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>false</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>full</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <OutputPath>bin\Release\</OutputPath>
+    <AllowUnsafeBlocks>false</AllowUnsafeBlocks>
+    <BaseAddress>285212672</BaseAddress>
+    <CheckForOverflowUnderflow>false</CheckForOverflowUnderflow>
+    <ConfigurationOverrideFile>
+    </ConfigurationOverrideFile>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>
+    </DocumentationFile>
+    <DebugSymbols>false</DebugSymbols>
+    <FileAlignment>4096</FileAlignment>
+    <NoStdLib>false</NoStdLib>
+    <NoWarn>
+    </NoWarn>
+    <Optimize>true</Optimize>
+    <RegisterForComInterop>false</RegisterForComInterop>
+    <RemoveIntegerChecks>false</RemoveIntegerChecks>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <WarningLevel>4</WarningLevel>
+    <DebugType>none</DebugType>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\References\log4net.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <Name>System</Name>
+    </Reference>
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data">
+      <Name>System.Data</Name>
+    </Reference>
+    <Reference Include="System.Data.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Name>System.Drawing</Name>
+    </Reference>
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Windows.Forms">
+      <Name>System.Windows.Forms</Name>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Name>System.XML</Name>
+    </Reference>
+    <ProjectReference Include="..\PCSComMaterials\PCSComMaterials.csproj">
+      <Project>{F2AC6437-5358-4C9E-8FC5-C3133A827924}</Project>
+      <Name>PCSComMaterials</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PCSComProduct\PCSComProduct.csproj">
+      <Name>PCSComProduct</Name>
+      <Project>{0F848537-F9CD-47FD-9843-B47981FC0F33}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+    <ProjectReference Include="..\PCSComUtils\PCSComUtils.csproj">
+      <Name>PCSComUtils</Name>
+      <Project>{A146CF5E-F135-44DE-B57F-CEE4C2B0D688}</Project>
+      <Package>{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</Package>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App.ico" />
+    <Compile Include="..\AssemblyVersion.cs" />
+    <Compile Include="..\AssemblyAttributes.cs" />
+    <Compile Include="AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DCP\BO\BaseInfo.cs" />
+    <Compile Include="DCP\BO\BOMData.cs" />
+    <Compile Include="DCP\BO\ChangeCategoryBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DCP\BO\ChangeCategoryMatrixBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DCP\BO\CheckPointBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DCP\BO\DCOptionsBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DCP\BO\DCPAdjustmentBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DCP\BO\DCPEstimateBO.cs" />
+    <Compile Include="DCP\BO\DCPReportBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DCP\BO\DeliveryScheduleData.cs" />
+    <Compile Include="DCP\BO\ImportPlanDataBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DCP\BO\PlanningOffsetInfo.cs" />
+    <Compile Include="DCP\BO\ProductionGroupInfo.cs" />
+    <Compile Include="DCP\BO\ProductInfo.cs" />
+    <Compile Include="DCP\BO\ProductionGroupBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DCP\BO\ProductionLineBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DCP\BO\RawResultData.cs" />
+    <Compile Include="DCP\BO\RoughCutCapacityBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DCP\BO\OrderInfo.cs" />
+    <Compile Include="DCP\BO\ShiftInfo.cs" />
+    <Compile Include="DCP\BO\ShiftPatternBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DCP\BO\WorkCenterCapacityBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DCP\BO\WorkCenterData.cs" />
+    <Compile Include="DCP\DS\DCPReportDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DCP\DS\DCPReportVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DCP\DS\ImportPlanDataDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DCP\DS\PRO_ChangeCategoryDetailDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DCP\DS\PRO_ChangeCategoryDetailVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DCP\DS\PRO_ChangeCategoryMasterDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DCP\DS\PRO_ChangeCategoryMasterVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DCP\DS\PRO_ChangeCategoryMatrixDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DCP\DS\PRO_ChangeCategoryMatrixVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DCP\DS\PRO_CheckPointDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DCP\DS\PRO_CheckPointVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DCP\DS\PRO_CostElementDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DCP\DS\PRO_CostElementVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DCP\DS\PRO_DCOptionDetailDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DCP\DS\PRO_DCOptionDetailVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DCP\DS\PRO_DCOptionMasterVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DCP\DS\PRO_DCPResultDetailDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DCP\DS\PRO_DCPResultDetailVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DCP\DS\PRO_DCPResultDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DCP\DS\PRO_DCPResultMasterDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DCP\DS\PRO_DCPResultMasterVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DCP\DS\PRO_DCPResultVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DCP\DS\PRO_PGProductDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DCP\DS\PRO_ProductionLineDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DCP\DS\PRO_ProductionLineVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DCP\DS\PRO_ShiftCapacityDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DCP\DS\PRO_ShiftCapacityVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DCP\DS\PRO_ShiftPatternDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DCP\DS\PRO_ShiftPatternVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DCP\DS\PRO_WCCapacityDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DCP\DS\PRO_WCCapacityVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DCP\DS\_PRO_DCOptionMasterDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ScrapRecording\BO\ComponentScrapBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ScrapRecording\DS\PRO_ComponentScrapDetailDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ScrapRecording\DS\PRO_ComponentScrapDetailVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ScrapRecording\DS\PRO_ComponentScrapMasterDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ScrapRecording\DS\PRO_ComponentScrapMasterVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ScrapRecording\DS\PRO_ScrapReasonDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ScrapRecording\DS\PRO_ScrapReasonVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WorkOrder\BO\DCOptionsBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WorkOrder\BO\DCRegenerateBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WorkOrder\BO\FinanceCloseBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WorkOrder\BO\IssueMaterialBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WorkOrder\BO\ManufacturingCloseBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WorkOrder\BO\MultiCompletionBO.cs" />
+    <Compile Include="WorkOrder\BO\MultiWOIssueMaterialBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WorkOrder\BO\ReleaseWorkOrderBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WorkOrder\BO\SelectWorkOrdersBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WorkOrder\BO\WorkOrderBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WorkOrder\BO\WorkOrderCompletionBO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WorkOrder\DS\PRO_DCPCOptionVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WorkOrder\DS\PRO_IssueMaterialDetailDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WorkOrder\DS\PRO_IssueMaterialDetailVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WorkOrder\DS\PRO_IssueMaterialMasterDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WorkOrder\DS\PRO_IssueMaterialMasterVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WorkOrder\DS\PRO_IssuePurposeDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WorkOrder\DS\PRO_IssuePurposeVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WorkOrder\DS\PRO_IssueStdCostDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WorkOrder\DS\PRO_IssueStdCostVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WorkOrder\DS\PRO_ShiftDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WorkOrder\DS\PRO_ShiftVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WorkOrder\DS\PRO_WorkOrderCompletionDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WorkOrder\DS\PRO_WorkOrderCompletionVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WorkOrder\DS\PRO_WorkOrderDetailDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WorkOrder\DS\PRO_WorkOrderDetailVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WorkOrder\DS\PRO_WorkOrderMasterDS.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="WorkOrder\DS\PRO_WorkOrderMasterVO.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PreBuildEvent>
+    </PreBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
+</Project>

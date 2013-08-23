@@ -1,0 +1,396 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.30729</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BD1226AC-4EB1-4787-A05C-81C7B2066C66}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>PCSTestReport</RootNamespace>
+    <AssemblyName>PCSTestReport</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="C1.C1Report.CustomFields.4, Version=4.6.20131.54624, Culture=neutral, PublicKeyToken=594a0605db190bb9, processorArchitecture=MSIL" />
+    <Reference Include="C1.Win.C1Chart.4, Version=4.0.20131.23069, Culture=neutral, PublicKeyToken=a22e16972c085838, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=11.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\MAP_2010\SourceCode\Map\PCS\PCSMain\bin\Debug\Microsoft.Office.Interop.Excel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Vbe.Interop, Version=11.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\MAP_2010\SourceCode\Map\PCS\PCSMain\bin\Debug\Microsoft.Vbe.Interop.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="ReportDefinition\BaoCaoTongHopSanXuat.cs" />
+    <Compile Include="ReportDefinition\CASReport.cs" />
+    <Compile Include="ReportDefinition\CostAllocationByElementReport.cs" />
+    <Compile Include="ReportDefinition\CostingDescription.cs" />
+    <Compile Include="ReportDefinition\CostingDescriptionBOD.cs" />
+    <Compile Include="ReportDefinition\DCPByShiftReport.cs" />
+    <Compile Include="ReportDefinition\DCPReport.cs" />
+    <Compile Include="ReportDefinition\DCPReportByHours.cs" />
+    <Compile Include="ReportDefinition\Delivery2CustomerByMonthReport.cs" />
+    <Compile Include="ReportDefinition\DeliveryAsItemReport.cs" />
+    <Compile Include="ReportDefinition\DeliveryAsMonth.cs" />
+    <Compile Include="ReportDefinition\DeliveryAsSupplier.cs" />
+    <Compile Include="ReportDefinition\DeliveryInMonth.cs" />
+    <Compile Include="ReportDefinition\DetailItemPriceByPOReceipt.cs" />
+    <Compile Include="ReportDefinition\ImportMaterialReport.cs" />
+    <Compile Include="ReportDefinition\InOutStockReport.cs" />
+    <Compile Include="ReportDefinition\InOutStockWithCostReport.cs" />
+    <Compile Include="ReportDefinition\InOutStockWithCostReportByCCN.cs" />
+    <Compile Include="ReportDefinition\InOutStockWithCostReportByItem.cs" />
+    <Compile Include="ReportDefinition\InventoryDetailByProductReport.cs" />
+    <Compile Include="ReportDefinition\InventoryDetailReport.cs" />
+    <Compile Include="ReportDefinition\InventoryStatusReport.cs" />
+    <Compile Include="ReportDefinition\InventoryStatusSummaryByMasterLocationReport.cs" />
+    <Compile Include="ReportDefinition\ItemListReport.cs" />
+    <Compile Include="ReportDefinition\ItemStandardCostReport.cs" />
+    <Compile Include="ReportDefinition\LocalReceivingMaterialReport.cs" />
+    <Compile Include="ReportDefinition\MaterialManagementReport.cs" />
+    <Compile Include="ReportDefinition\MonthlyReturnGoodsReceipt.cs" />
+    <Compile Include="ReportDefinition\MonthlySaleReport.cs" />
+    <Compile Include="ReportDefinition\NIGURI.cs" />
+    <Compile Include="ReportDefinition\NIGURI2.cs" />
+    <Compile Include="ReportDefinition\OrderBalanceForImportParts.cs" />
+    <Compile Include="ReportDefinition\OutsideProcessingManagementReport.cs" />
+    <Compile Include="ReportDefinition\PartOrderSheetMultiVendorReport.cs" />
+    <Compile Include="ReportDefinition\POFirmOrder.cs" />
+    <Compile Include="ReportDefinition\ProductionLineAssessment.cs" />
+    <Compile Include="ReportDefinition\ProductionLineCapacityAndManPowerManagementReport.cs" />
+    <Compile Include="ReportDefinition\ProductionLineCapacityManagementReport.cs" />
+    <Compile Include="ReportDefinition\ProductionLineDeliveryProgressReport.cs" />
+    <Compile Include="ReportDefinition\ProductionLineProductionProgressReport.cs" />
+    <Compile Include="ReportDefinition\ProductionLineProgressManagementReport.cs" />
+    <Compile Include="ReportDefinition\ProductRoutingReport.cs" />
+    <Compile Include="ReportDefinition\PurchaseOrderManagement.cs" />
+    <Compile Include="ReportDefinition\PurchaseReportImportPartAsItem.cs" />
+    <Compile Include="ReportDefinition\PurchaseReportImportPartByMaker.cs" />
+    <Compile Include="ReportDefinition\PurchaseReportImportPartByMonth.cs" />
+    <Compile Include="ReportDefinition\PurchasingPriceTrendInYear.cs" />
+    <Compile Include="ReportDefinition\ReceivingMaterialReport.cs" />
+    <Compile Include="ReportDefinition\SaleByCustomerBreakDown.cs" />
+    <Compile Include="ReportDefinition\SaleByCustomerReport.cs" />
+    <Compile Include="ReportDefinition\SaleByLicensor.cs" />
+    <Compile Include="ReportDefinition\SaleByLicensorBreakDown.cs" />
+    <Compile Include="ReportDefinition\SaleOrderManagementReport.cs" />
+    <Compile Include="ReportDefinition\SaleTransactionHistoryReport.cs" />
+    <Compile Include="ReportDefinition\StdActCostComparision.cs" />
+    <Compile Include="ReportDefinition\StdActCostComparisionBOD.cs" />
+    <Compile Include="ReportDefinition\StockCardReport.cs" />
+    <Compile Include="ReportDefinition\StockTakingReport.cs" />
+    <Compile Include="ReportDefinition\SuperviseReport.cs" />
+    <Compile Include="ReportDefinition\Tonghopvattuxuatchuyenkho.cs" />
+    <Compile Include="ReportDefinition\TransactionHistoryReport.cs" />
+    <Compile Include="ReportDefinition\VATReportClassifiedByProducts.cs" />
+    <Compile Include="ReportDefinition\VendorAssessment.cs" />
+    <Compile Include="ReportDefinition\VendorDeliveryAssessment.cs" />
+    <Compile Include="ReportDefinition\WorkCenterList.cs" />
+    <Compile Include="ReportDefinition\WorkCenterReport.cs" />
+    <Compile Include="ReportDefinition\WorkingSchemeReport.cs" />
+    <None Include="ReportDefinition\CASReport.xls" />
+    <None Include="ReportDefinition\In-Out-Stock Report-Summary by Transaction Type.xls" />
+    <None Include="ReportDefinition\ProductionLineAssessment.xls" />
+    <None Include="ReportDefinition\ProductionLineCapacityAndManPowerManagementReport.xls" />
+    <None Include="ReportDefinition\ProductionLineCapacityManagementReport.xls" />
+    <None Include="ReportDefinition\ProductionLineDeliveryProgressReport.xls" />
+    <None Include="ReportDefinition\ProductionLineProductionProgressReport.xls" />
+    <None Include="ReportDefinition\ProductionLineProgressManagementReport.xls" />
+    <None Include="ReportDefinition\VendorAssessment.xls" />
+    <None Include="ReportDefinition\VendorDeliveryAssessment.xls" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="ReportDefinition\ActualCostForMakeItem.xml" />
+    <Content Include="ReportDefinition\ActualCostForNonMakeItem.xml" />
+    <Content Include="ReportDefinition\AllocatedExpenseCosting.xml" />
+    <Content Include="ReportDefinition\AllocationByArticle.xml" />
+    <Content Include="ReportDefinition\BaoCaoGiaThanhSanXuatTrongKy.xml" />
+    <Content Include="ReportDefinition\BaoCaoTongHopSanXuat.xml" />
+    <Content Include="ReportDefinition\BOMShortageReport.xml" />
+    <Content Include="ReportDefinition\CASReport.xml" />
+    <Content Include="ReportDefinition\ChargeAllocatedIntoCGS.xml" />
+    <Content Include="ReportDefinition\ChargeAllocatedOfCategory%28NotInSales%29.xml" />
+    <Content Include="ReportDefinition\ChargeAllocatedOfCategory.xml" />
+    <Content Include="ReportDefinition\ComponentScrapAmount.xml" />
+    <Content Include="ReportDefinition\CostAllocationByElementReport.xml" />
+    <Content Include="ReportDefinition\CostingDescription.xml" />
+    <Content Include="ReportDefinition\CostingDescriptionBOD.xml" />
+    <Content Include="ReportDefinition\CPOReport.xml" />
+    <Content Include="ReportDefinition\CreditNoteReport.xml" />
+    <Content Include="ReportDefinition\CustomsList.xml" />
+    <Content Include="ReportDefinition\DCPByShift.xml" />
+    <Content Include="ReportDefinition\DCPReport.xml" />
+    <Content Include="ReportDefinition\DCPReportByHours.xml" />
+    <Content Include="ReportDefinition\DebitNoteReport.xml" />
+    <Content Include="ReportDefinition\DebitNoteWithItemInventoryObject.xml" />
+    <Content Include="ReportDefinition\Delivery2CustomerByMonthReport.xml" />
+    <Content Include="ReportDefinition\Delivery2CustomerReport.xml" />
+    <Content Include="ReportDefinition\Delivery2NextStageSlipReport.xml" />
+    <Content Include="ReportDefinition\Delivery2OutsourcingReport.xml" />
+    <Content Include="ReportDefinition\DeliveryAsItemReport.xml" />
+    <Content Include="ReportDefinition\DeliveryAsMonth.xml" />
+    <Content Include="ReportDefinition\DeliveryAsSupplier.xml" />
+    <Content Include="ReportDefinition\DeliveryInMonth.xml" />
+    <Content Include="ReportDefinition\DeliveryPlanByHourReport.xml" />
+    <Content Include="ReportDefinition\DeliverySlip.xml" />
+    <Content Include="ReportDefinition\DeliverySlipView.xml" />
+    <Content Include="ReportDefinition\DestroyAllocationRate.xml" />
+    <Content Include="ReportDefinition\DestroyMaterialReport.xml" />
+    <Content Include="ReportDefinition\DestroySlipReport.xml" />
+    <Content Include="ReportDefinition\DetailedItemCostByMonthReport.xml" />
+    <Content Include="ReportDefinition\DetailItemPriceByPOReceipt.xml" />
+    <Content Include="ReportDefinition\DSRate Allocation %28By Product In Sales%29.xml" />
+    <Content Include="ReportDefinition\FreightSlip.xml" />
+    <Content Include="ReportDefinition\GiaTrungBinhXuatKho.xml" />
+    <Content Include="ReportDefinition\ImportMaterialReport.xml" />
+    <Content Include="ReportDefinition\InOutReportWithCost.xml" />
+    <Content Include="ReportDefinition\InOutStockReport-SummaryByTransactionType.xml" />
+    <Content Include="ReportDefinition\InOutStockReport-SummaryByTransactionTypeForAccounting.xml" />
+    <Content Include="ReportDefinition\InOutStockReport.xml" />
+    <Content Include="ReportDefinition\InOutStockWithCostReport.xml" />
+    <Content Include="ReportDefinition\InOutStockWithCostReportByItem.xml" />
+    <Content Include="ReportDefinition\InventoryAdjustmentAmount.xml" />
+    <Content Include="ReportDefinition\InventoryAdjustmentDSAmount.xml" />
+    <Content Include="ReportDefinition\InventoryAdjustmentReport.xml" />
+    <Content Include="ReportDefinition\InventoryDetailByProductReport.xml" />
+    <Content Include="ReportDefinition\InventoryDetailReport.xml" />
+    <Content Include="ReportDefinition\InventoryStatusReport.xml" />
+    <Content Include="ReportDefinition\InventoryStatusSummaryByMasterLocationReport.xml" />
+    <Content Include="ReportDefinition\Invoice4SaleOrder.xml" />
+    <Content Include="ReportDefinition\Invoice4SaleOrderVN.xml" />
+    <Content Include="ReportDefinition\Invoice4SaleOrder_Appendix.xml" />
+    <Content Include="ReportDefinition\Invoice4SaleOrder_AppendixVN.xml" />
+    <Content Include="ReportDefinition\InvoiceReport.xml" />
+    <Content Include="ReportDefinition\IssuanceSlipReport.xml" />
+    <Content Include="ReportDefinition\IssueMaterialSlip.xml" />
+    <Content Include="ReportDefinition\IssueSlip.xml" />
+    <Content Include="ReportDefinition\ItemCostByMonthReport.xml" />
+    <Content Include="ReportDefinition\ItemCostDetailedByCostElementReport.xml" />
+    <Content Include="ReportDefinition\ItemCostDetailedByCostElementReport_ProLine.xml" />
+    <Content Include="ReportDefinition\ItemInformation.xml" />
+    <Content Include="ReportDefinition\ItemListReport.xml" />
+    <Content Include="ReportDefinition\ItemStandardCostReport.xml" />
+    <Content Include="ReportDefinition\KTXuat.xml" />
+    <Content Include="ReportDefinition\LocalReceivingMaterialReport.xml" />
+    <Content Include="ReportDefinition\MaterialManagementReport.xml" />
+    <Content Include="ReportDefinition\MiscellaneousRecycleAmount.xml" />
+    <Content Include="ReportDefinition\Miscellaneous_DS_Amount.xml" />
+    <Content Include="ReportDefinition\MonthlyReturnGoodsReceipt.xml" />
+    <Content Include="ReportDefinition\MonthlySaleReport.xml" />
+    <Content Include="ReportDefinition\MultiBomShortageReport.xml" />
+    <Content Include="ReportDefinition\NIGURI.xml" />
+    <Content Include="ReportDefinition\OrderBalanceForImportParts.xml" />
+    <Content Include="ReportDefinition\OrderSummaryReport.xml" />
+    <Content Include="ReportDefinition\OtherIssuanceSlipReport.xml" />
+    <Content Include="ReportDefinition\OutsideProcessingManagementReport.xml" />
+    <Content Include="ReportDefinition\PartOrderSheetMultiVendorReport.xml" />
+    <Content Include="ReportDefinition\PartOrderSheetReport.xml" />
+    <Content Include="ReportDefinition\POBOMShortageReport.xml" />
+    <Content Include="ReportDefinition\POFirmOrder.xml" />
+    <Content Include="ReportDefinition\POSummaryReport.xml" />
+    <Content Include="ReportDefinition\ProductionLineAssessment.xml" />
+    <Content Include="ReportDefinition\ProductionLineCapacityAndManPowerManagementReport.xml" />
+    <Content Include="ReportDefinition\ProductionLineCapacityManagementReport.xml" />
+    <Content Include="ReportDefinition\ProductionLineDeliveryProgressReport.xml" />
+    <Content Include="ReportDefinition\ProductionLineProductionProgressReport.xml" />
+    <Content Include="ReportDefinition\ProductionLineProgressManagementReport.xml" />
+    <Content Include="ReportDefinition\ProductionOrderReport.xml" />
+    <Content Include="ReportDefinition\ProductItemReport.xml" />
+    <Content Include="ReportDefinition\PurchaseOrderManagementReport.xml" />
+    <Content Include="ReportDefinition\PurchaseReportImportPartAsItem.xml" />
+    <Content Include="ReportDefinition\PurchaseReportImportPartByMaker.xml" />
+    <Content Include="ReportDefinition\PurchaseReportImportPartByMonth.xml" />
+    <Content Include="ReportDefinition\PurchasingPriceTrendInYear.xml" />
+    <Content Include="ReportDefinition\PurchasingReceiptSlip.xml" />
+    <Content Include="ReportDefinition\ReceiveFromPreProLine.xml" />
+    <Content Include="ReportDefinition\ReceivingMaterialReport.xml" />
+    <Content Include="ReportDefinition\ReceivingMaterialReport_Local.xml" />
+    <Content Include="ReportDefinition\RecycleComponentAmount.xml" />
+    <Content Include="ReportDefinition\RecycledSlip.xml" />
+    <Content Include="ReportDefinition\ReturnGoodsReceiptSlip.xml" />
+    <Content Include="ReportDefinition\ReturnToVendorSlip.xml" />
+    <Content Include="ReportDefinition\RoutingReport.xml" />
+    <Content Include="ReportDefinition\SaleByCustomer.xml" />
+    <Content Include="ReportDefinition\SaleByCustomerBreakDown.xml" />
+    <Content Include="ReportDefinition\SaleByLicensor.xml" />
+    <Content Include="ReportDefinition\SaleByLicensorBreakDown.xml" />
+    <Content Include="ReportDefinition\SaleOrderManagementReport.xml" />
+    <Content Include="ReportDefinition\SaleOrderReport.xml" />
+    <Content Include="ReportDefinition\SaleTransactionHistoryReport.xml" />
+    <Content Include="ReportDefinition\SalvagingMaterialReport.xml" />
+    <Content Include="ReportDefinition\ScheduleOfLocalPartsInMonthReport.xml" />
+    <Content Include="ReportDefinition\ShippingInMonthByCostElement.xml" />
+    <Content Include="ReportDefinition\ShippingInMonthByProduct.xml" />
+    <Content Include="ReportDefinition\SOInvoiceAttachement_Invoice.xml" />
+    <Content Include="ReportDefinition\SOInvoiceAttachement_PackingList.xml" />
+    <Content Include="ReportDefinition\SOInvoiceAttachement_SaleContract.xml" />
+    <Content Include="ReportDefinition\SOInvoice_Attachment.xml" />
+    <Content Include="ReportDefinition\SOInvoice_Invoice.xml" />
+    <Content Include="ReportDefinition\SOInvoice_PackingList.xml" />
+    <Content Include="ReportDefinition\SOInvoice_SaleContract.xml" />
+    <Content Include="ReportDefinition\StdActCostComparision.xml" />
+    <Content Include="ReportDefinition\StdActCostComparisionBOD.xml" />
+    <Content Include="ReportDefinition\StockCardReport.xml" />
+    <Content Include="ReportDefinition\StockTakingReport.xml" />
+    <Content Include="ReportDefinition\SuperviseReport.xml" />
+    <Content Include="ReportDefinition\TongHopSanPhamHoanThanhTheoNhomSanPham.xml" />
+    <Content Include="ReportDefinition\TongHopVatTuNhapCLAIM.xml" />
+    <Content Include="ReportDefinition\TongHopVatTuNhapTheoKH-Import-ByMaker.xml" />
+    <Content Include="ReportDefinition\TongHopVatTuNhapTheoKH-Import-ByVendor.xml" />
+    <Content Include="ReportDefinition\TongHopVatTuNhapTheoKH-Local.xml" />
+    <Content Include="ReportDefinition\TongHopVatTuNhapTheoNhaThau.xml" />
+    <Content Include="ReportDefinition\TongHopVatTuXuatBan.xml" />
+    <Content Include="ReportDefinition\TongHopVatTuXuatChuyenKho.xml" />
+    <Content Include="ReportDefinition\TongHopVatTuXuatCLAIM.xml" />
+    <Content Include="ReportDefinition\TongHopVatTuXuatGiaCong.xml" />
+    <Content Include="ReportDefinition\TongHopVatTuXuatGiaCongNgoai.xml" />
+    <Content Include="ReportDefinition\TongHopVatTuXuatHuy.xml" />
+    <Content Include="ReportDefinition\TongHopVatTuXuatLRThanhPham.xml" />
+    <Content Include="ReportDefinition\TongHopVatTuXuatSangCongDoanSau.xml" />
+    <Content Include="ReportDefinition\TongHopVatTuXuatTheoNhaThau.xml" />
+    <Content Include="ReportDefinition\TongHopXuatHangGiaCong-TheoThang.xml" />
+    <Content Include="ReportDefinition\TransactionHistoryReport.xml" />
+    <Content Include="ReportDefinition\VATReportClassifiedByProducts.xml" />
+    <Content Include="ReportDefinition\VendorAssessment.xml" />
+    <Content Include="ReportDefinition\VendorDeliveryAssessment.xml" />
+    <Content Include="ReportDefinition\WarningMaxMinStock.xml" />
+    <Content Include="ReportDefinition\WOCompletionSlipReport.xml" />
+    <Content Include="ReportDefinition\WOCompletionTransactionHistory.xml" />
+    <Content Include="ReportDefinition\WorkCenterByShiftReport.xml" />
+    <Content Include="ReportDefinition\WorkCenterReport.xml" />
+    <Content Include="ReportDefinition\WorkingSchemeReport.xml" />
+    <Content Include="ReportDefinition\WorkOrderComplement.xml" />
+    <Content Include="ReportDefinition\WorkOrderReport.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\PCSComUtils\PCSComUtils.csproj">
+      <Project>{A146CF5E-F135-44DE-B57F-CEE4C2B0D688}</Project>
+      <Name>PCSComUtils</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\PCSUtils\PCSUtils.csproj">
+      <Project>{E5081AA4-75EC-4BE6-AFE8-B06468731975}</Project>
+      <Name>PCSUtils</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
