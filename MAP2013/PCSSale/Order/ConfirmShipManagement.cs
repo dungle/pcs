@@ -33,12 +33,7 @@ namespace PCSSale.Order
     /// </summary>
     public partial class ConfirmShipManagement : Form
     {
-        private const string This = "PCSSale.Order.ConfirmShipManagement";
-        private const string ViewForInvoice = "v_SaleInvoice";
-        private const string CommittedqtyCol = "CommittedQuantity";
-        private const string OldInvoiceqtyCol = "OldInvoiceQty";
         private readonly SOConfirmShipManagementBO _boCsManagement = new SOConfirmShipManagementBO();
-
         private readonly SO_InvoiceMasterVO _voInvoiceMaster = new SO_InvoiceMasterVO();
         private readonly MST_MasterLocationVO _voMasLoc = new MST_MasterLocationVO();
         private readonly SO_ConfirmShipMasterVO _voMaster = new SO_ConfirmShipMasterVO();
@@ -494,7 +489,7 @@ namespace PCSSale.Order
                                                             ((DateTime) dtmShipmentDate.Value).Hour,
                                                             ((DateTime) dtmShipmentDate.Value).Minute, 0);
                         _voMaster.CurrencyID = int.Parse(txtCurrency.Tag.ToString());
-                        _voMaster.ExchangeRate = (Decimal) txtExchRate.Value;
+                        _voMaster.ExchangeRate = (decimal) txtExchRate.Value;
                         _voMaster.ShipCode = txtShippingCode.Text;
                         _voMaster.FromPort = txtFromPort.Text;
                         _voMaster.CNo = txtCNo.Text;
@@ -560,7 +555,7 @@ namespace PCSSale.Order
                                                                    ((DateTime) dtmShipmentDate.Value).Hour,
                                                                    ((DateTime) dtmShipmentDate.Value).Minute, 0);
                         _voInvoiceMaster.CurrencyID = int.Parse(txtCurrency.Tag.ToString());
-                        _voInvoiceMaster.ExchangeRate = (Decimal) txtExchRate.Value;
+                        _voInvoiceMaster.ExchangeRate = (decimal) txtExchRate.Value;
                         _voInvoiceMaster.ShipCode = txtShippingCode.Text;
                         _voInvoiceMaster.FromPort = txtFromPort.Text;
                         _voInvoiceMaster.CNo = txtCNo.Text;
@@ -623,6 +618,7 @@ namespace PCSSale.Order
                     dgrdData.Columns[SO_ConfirmShipDetailTable.VATAMOUNT_FLD].NumberFormat = Constants.DECIMAL_LONG_FORMAT;
                     dgrdData.Columns[SO_ConfirmShipDetailTable.PRICE_FLD].NumberFormat = Constants.DECIMAL_LONG_FORMAT;
                     dgrdData.Columns[SO_ConfirmShipDetailTable.NETAMOUNT_FLD].NumberFormat = Constants.DECIMAL_NUMBERFORMAT;
+                    dgrdData.Columns[NetAmoutRateCol].NumberFormat = Constants.DECIMAL_NUMBERFORMAT;
                     
                     _formAction = EnumAction.Default;
                     SwitchFormMode();
@@ -1017,6 +1013,7 @@ namespace PCSSale.Order
                     dgrdData.Columns[SO_ConfirmShipDetailTable.VATAMOUNT_FLD].NumberFormat = Constants.DECIMAL_LONG_FORMAT;
                     dgrdData.Columns[SO_ConfirmShipDetailTable.PRICE_FLD].NumberFormat = Constants.DECIMAL_LONG_FORMAT;
                     dgrdData.Columns[SO_ConfirmShipDetailTable.NETAMOUNT_FLD].NumberFormat = Constants.DECIMAL_NUMBERFORMAT;
+                    dgrdData.Columns[NetAmoutRateCol].NumberFormat = Constants.DECIMAL_NUMBERFORMAT;
                     dgrdData.Columns[SO_DeliveryScheduleTable.SCHEDULEDATE_FLD].NumberFormat = Constants.DATETIME_FORMAT_HOUR;
                     btnModify.Enabled = true;
                 }
@@ -1571,20 +1568,6 @@ namespace PCSSale.Order
 
         #region Print Processing (HACKED by TUAN TQ, 28 Oct, 2005)
 
-        private const string APPLICATION_PATH = @"PCSMain\bin\Debug";
-        private const string SO_INVOICE_STANDARD_REPORT = "Invoice4SaleOrder.xml";
-        private const string SO_INVOICE_APPENDIX_REPORT = "Invoice4SaleOrder_Appendix.xml";
-        private const string REPORT_NAME = "Sale Order Invoice";
-        private const string REPORTFLD_COMPANY = "fldCompany";
-        private const string REPORTFLD_ADDRESS = "fldAddress";
-        private const string REPORTFLD_TEL = "fldTel";
-        private const string REPORTFLD_FAX = "fldFax";
-        private const string REPORTFLD_AMOUNT_IN_WORD = "fldAmountInWord";
-        private const string REPORTFLD_AMOUNT_IN_WORD1 = "fldAmountInWord1";
-        private const string REPORTFLD_TOTAL_AMOUNT = "fldSumTotalNetAmount";
-
-        private readonly C1PrintPreviewDialog printPreview = new C1PrintPreviewDialog();
-        //variable indicates that appendix report is used
         private bool blnIsAppendix;
         private bool blnIsBuilt;
         private DataTable dtbResult;
@@ -1597,132 +1580,7 @@ namespace PCSSale.Order
                     arlItem.Add(drow[ITM_ProductTable.PRODUCTID_FLD]);
             return arlItem.Count;
         }
-
-        private void BuildAndPrintReportWithoutLayout()
-        {
-            const string methodName = This + ".BuildAndPrintReportWithoutLayout()";
-
-            try
-            {
-                //return if no ConfirmShip was selected
-                if (cboPurpose.SelectedIndex == (int) ShipViewType.Shipping && _voMaster.ConfirmShipMasterID <= 0)
-                    return;
-                if (cboPurpose.SelectedIndex == (int) ShipViewType.PrintInvoice && _voInvoiceMaster.InvoiceMasterID <= 0)
-                    return;
-
-                // return if no datasource
-                if (dtbResult == null)
-                {
-                    return;
-                }
-
-                //Print report without rebuilt
-                if (blnIsBuilt)
-                {
-                    printPreview.ReportViewer.PreviewPane.Print();
-                    return;
-                }
-
-                //Built report and print
-                Cursor = Cursors.WaitCursor;
-
-                var reportBuilderWithoutLayout = new ReportBuilder();
-
-                //Get actual application path
-                string strReportPath = Application.StartupPath;
-                int intIndex = strReportPath.IndexOf(APPLICATION_PATH);
-                if (intIndex > -1)
-                {
-                    strReportPath = strReportPath.Substring(0, intIndex);
-                }
-
-                if (strReportPath.Substring(strReportPath.Length - 1) == @"\")
-                {
-                    strReportPath += Constants.REPORT_DEFINITION_STORE_LOCATION;
-                }
-                else
-                {
-                    strReportPath += "\\" + Constants.REPORT_DEFINITION_STORE_LOCATION;
-                }
-
-                //Set datasource and lay-out path for reports
-                reportBuilderWithoutLayout.SourceDataTable = dtbResult;
-                reportBuilderWithoutLayout.ReportDefinitionFolder = strReportPath;
-
-                //Check rows to select valid report lay-out
-                reportBuilderWithoutLayout.ReportLayoutFile = blnIsAppendix ? SO_INVOICE_APPENDIX_REPORT : SO_INVOICE_STANDARD_REPORT;
-
-                //check if layout is valid
-                if (reportBuilderWithoutLayout.AnalyseLayoutFile())
-                {
-                    reportBuilderWithoutLayout.UseLayoutFile = true;
-                }
-                else
-                {
-                    PCSMessageBox.Show(ErrorCode.MESSAGE_REPORT_TEMPLATE_FILE_NOT_FOUND, MessageBoxIcon.Error);
-                    return;
-                }
-
-                reportBuilderWithoutLayout.MakeDataTableForRender();
-
-                // and show it in preview dialog
-                printPreview.FormTitle = REPORT_NAME;
-                reportBuilderWithoutLayout.ReportViewer = printPreview.ReportViewer;
-                reportBuilderWithoutLayout.RenderReport();
-
-                //Header information get from system params				
-                reportBuilderWithoutLayout.DrawPredefinedField(REPORTFLD_COMPANY,
-                                                               SystemProperty.SytemParams.Get(
-                                                                   SystemParam.COMPANY_FULL_NAME));
-                reportBuilderWithoutLayout.DrawPredefinedField(REPORTFLD_ADDRESS,
-                                                               SystemProperty.SytemParams.Get(SystemParam.ADDRESS));
-                reportBuilderWithoutLayout.DrawPredefinedField(REPORTFLD_TEL,
-                                                               SystemProperty.SytemParams.Get(SystemParam.TEL));
-                reportBuilderWithoutLayout.DrawPredefinedField(REPORTFLD_FAX,
-                                                               SystemProperty.SytemParams.Get(SystemParam.FAX));
-
-                string strTotalAmount =
-                    reportBuilderWithoutLayout.Report.Fields[REPORTFLD_TOTAL_AMOUNT].Value.ToString();
-                if (strTotalAmount != string.Empty)
-                {
-                    decimal decValue = decimal.Round(decimal.Parse(strTotalAmount), 0);
-
-                    string strTotalAmountInWord = ConvertNumberToWord.ChuyenSoThanhChu(decValue);
-                    reportBuilderWithoutLayout.DrawPredefinedField(REPORTFLD_AMOUNT_IN_WORD, strTotalAmountInWord);
-                    reportBuilderWithoutLayout.DrawPredefinedField(REPORTFLD_AMOUNT_IN_WORD1, strTotalAmountInWord);
-                }
-
-                //Hide layout of non-layout report
-                for (int i = 0; i < reportBuilderWithoutLayout.Report.Fields.Count; i++)
-                {
-                    reportBuilderWithoutLayout.Report.Fields[i].Visible = (reportBuilderWithoutLayout.Report.Fields[i].Tag != null);
-                }
-
-                reportBuilderWithoutLayout.RefreshReport();
-                //Turn on built status
-                blnIsBuilt = true;
-
-                //Print report
-                printPreview.ReportViewer.PreviewPane.Print();
-            }
-            catch (Exception ex)
-            {
-                PCSMessageBox.Show(ErrorCode.OTHER_ERROR, MessageBoxIcon.Error);
-                try
-                {
-                    Logger.LogMessage(ex, methodName, Level.ERROR);
-                }
-                catch
-                {
-                    PCSMessageBox.Show(ErrorCode.LOG_EXCEPTION, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            finally
-            {
-                Cursor = Cursors.Default;
-            }
-        }
-
+        
         private void ShowDomesticInvoiceReport()
         {
             const string methodName = This + ".ShowDomesticInvoiceReport()";
@@ -1788,7 +1646,7 @@ namespace PCSSale.Order
                         PCSMessageBox.Show(ErrorCode.MESSAGE_MUST_BE_UNIQUE, MessageBoxIcon.Exclamation, arrMessage);
                         return;
                     }
-                    decimal netAmount = Convert.ToDecimal(row["NetAmount"]);
+                    decimal netAmount = Convert.ToDecimal(row[SO_ConfirmShipDetailTable.NETAMOUNT_FLD]);
                     decimal vatPercent = Convert.ToDecimal(row[SO_SaleOrderDetailTable.VATPERCENT_FLD]);
                     totalAmount += netAmount + netAmount*vatPercent/100;
                 }
@@ -1900,101 +1758,11 @@ namespace PCSSale.Order
             }
         }
 
-        void ReportViewer_KeyDown(object sender, KeyEventArgs e)
-        {
-            const string methodName = This + ".ReportViewer_KeyDown";
-            try
-            {
-                
-            }
-            catch (Exception ex)
-            {
-                PCSMessageBox.Show(ErrorCode.OTHER_ERROR, MessageBoxIcon.Error);
-                try
-                {
-                    Logger.LogMessage(ex, methodName, Level.ERROR);
-                }
-                catch
-                {
-                    PCSMessageBox.Show(ErrorCode.LOG_EXCEPTION, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
-
-        void Print_Click(object sender, EventArgs e)
-        {
-            const string METHOD_NAME = This + ".Print_Click";
-
-            try
-            {
-                //Get sender object
-                var printButton = sender as ToolStripButton;
-            }
-            catch (Exception ex)
-            {
-                PCSMessageBox.Show(ErrorCode.OTHER_ERROR, MessageBoxIcon.Error);
-                try
-                {
-                    Logger.LogMessage(ex, METHOD_NAME, Level.ERROR);
-                }
-                catch
-                {
-                    PCSMessageBox.Show(ErrorCode.LOG_EXCEPTION, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
-
         #endregion Print Processing		
 
         #region Print Processing - Export Invoice (HACKED by TUAN TQ, 02 May, 2006) 
 
         private const int EXPORT_INVOICE_MAX_ROW = 10;
-
-        private void ShowPackingListReport(object sender, EventArgs e)
-        {
-            //return if no record was selected
-            if (_voMaster.ConfirmShipMasterID <= 0)
-            {
-                return;
-            }
-
-            if (txtSaleType.Text.Trim() == string.Empty || txtSaleType.Tag == null)
-            {
-                return;
-            }
-
-            if (int.Parse(txtSaleType.Tag.ToString()) == (int) SOType.Export)
-            {
-                ShowExportPackingListReport();
-            }
-            else
-            {
-                ShowDomesticPackingListReport();
-            }
-        }
-
-        private void ShowSaleContractReport(object sender, EventArgs e)
-        {
-            //return if no record was selected
-            if (_voMaster.ConfirmShipMasterID <= 0)
-            {
-                return;
-            }
-
-            if (txtSaleType.Text.Trim() == string.Empty || txtSaleType.Tag == null)
-            {
-                return;
-            }
-
-            if (int.Parse(txtSaleType.Tag.ToString()) == (int) SOType.Export)
-            {
-                ShowExportSaleContractReport();
-            }
-            else
-            {
-                ShowDomesticSaleContractReport();
-            }
-        }
 
         protected void ShowInvoiceReport(object sender, EventArgs e)
         {
@@ -2012,257 +1780,6 @@ namespace PCSSale.Order
             else
             {
                 ShowDomesticInvoiceReport();
-            }
-        }
-
-        private void ShowDomesticPackingListReport()
-        {
-        }
-
-        private void ShowExportPackingListReport()
-        {
-            const string methodName = This + ".ShowExportPackingListReport()";
-            try
-            {
-                const string TEMPLATE_FILE_NORMAL = "SOInvoice_PackingList.xml";
-                const string TEMPLATE_FILE_ATTACHEMENT = "SOInvoiceAttachement_PackingList.xml";
-
-                //Change cursor to wait status
-                Cursor = Cursors.WaitCursor;
-
-                var printPreview = new C1PrintPreviewDialog();
-                var boDataReport = new C1PrintPreviewDialogBO();
-
-                DataTable dtbResult;
-
-                dtbResult = boDataReport.GetSOShippingDetailData4ImportInvoice(_voMaster.ConfirmShipMasterID);
-
-                var reportBuilder = new ReportBuilder();
-
-                //Get actual application path
-
-                string strReportPath = Application.StartupPath;
-                int intIndex = strReportPath.IndexOf(APPLICATION_PATH);
-                if (intIndex > -1)
-                {
-                    strReportPath = strReportPath.Substring(0, intIndex);
-                }
-
-                if (strReportPath.Substring(strReportPath.Length - 1) == @"\")
-                {
-                    strReportPath += Constants.REPORT_DEFINITION_STORE_LOCATION;
-                }
-                else
-                {
-                    strReportPath += "\\" + Constants.REPORT_DEFINITION_STORE_LOCATION;
-                }
-
-                //Set datasource and lay-out path for reports
-                reportBuilder.SourceDataTable = dtbResult;
-
-                reportBuilder.ReportDefinitionFolder = strReportPath;
-                if (CountDistinctProduct(dtbResult) > EXPORT_INVOICE_MAX_ROW)
-                {
-                    reportBuilder.ReportLayoutFile = TEMPLATE_FILE_ATTACHEMENT;
-                }
-                else
-                {
-                    reportBuilder.ReportLayoutFile = TEMPLATE_FILE_NORMAL;
-                }
-
-                //check if layout is valid
-                if (reportBuilder.AnalyseLayoutFile())
-
-                {
-                    reportBuilder.UseLayoutFile = true;
-                }
-                else
-                {
-                    //Reset cursor
-                    Cursor = Cursors.Default;
-                    PCSMessageBox.Show(ErrorCode.MESSAGE_REPORT_TEMPLATE_FILE_NOT_FOUND, MessageBoxIcon.Error);
-                    return;
-                }
-
-                reportBuilder.MakeDataTableForRender();
-
-                // and show it in preview dialog 
-                reportBuilder.ReportViewer = printPreview.ReportViewer;
-                reportBuilder.RenderReport();
-
-                //Header information get from system params 
-                reportBuilder.DrawPredefinedField(REPORTFLD_COMPANY,
-                                                  SystemProperty.SytemParams.Get(SystemParam.COMPANY_FULL_NAME));
-                reportBuilder.DrawPredefinedField(REPORTFLD_ADDRESS, SystemProperty.SytemParams.Get(SystemParam.ADDRESS));
-                reportBuilder.DrawPredefinedField(REPORTFLD_TEL, SystemProperty.SytemParams.Get(SystemParam.TEL));
-                reportBuilder.DrawPredefinedField(REPORTFLD_FAX, SystemProperty.SytemParams.Get(SystemParam.FAX));
-
-                reportBuilder.RefreshReport();
-                printPreview.Show();
-            }
-            catch (PCSException ex)
-            {
-                // displays the error message.
-                PCSMessageBox.Show(ex.mCode, MessageBoxIcon.Error);
-
-                // log message.
-                try
-                {
-                    Logger.LogMessage(ex.CauseException, methodName, Level.ERROR);
-                }
-                catch
-                {
-                    PCSMessageBox.Show(ErrorCode.LOG_EXCEPTION, MessageBoxIcon.Error);
-                }
-            }
-            catch (Exception ex)
-            {
-                // displays the error message.
-                PCSMessageBox.Show(ErrorCode.OTHER_ERROR, MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                // log message.
-                try
-                {
-                    Logger.LogMessage(ex, methodName, Level.ERROR);
-                }
-                catch
-                {
-                    PCSMessageBox.Show(ErrorCode.LOG_EXCEPTION, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            finally
-            {
-                //reset cursor
-                Cursor = Cursors.Default;
-            }
-        }
-
-
-        private void ShowDomesticSaleContractReport()
-        {
-        }
-
-        private void ShowExportSaleContractReport()
-        {
-            const string methodName = This + ".ShowSaleContractReport()";
-
-            try
-            {
-                const string TEMPLATE_FILE_NORMAL = "SOInvoice_SaleContract.xml";
-                const string TEMPLATE_FILE_ATTACHEMENT = "SOInvoiceAttachement_SaleContract.xml";
-
-                //Change cursor to wait status
-                Cursor = Cursors.WaitCursor;
-
-                var printPreview = new C1PrintPreviewDialog();
-                var boDataReport = new C1PrintPreviewDialogBO();
-
-                DataTable dtbResult;
-                dtbResult = boDataReport.GetSOShippingDetailData4ImportInvoice(_voMaster.ConfirmShipMasterID);
-
-                var reportBuilder = new ReportBuilder();
-
-                //Get actual application path
-
-                string strReportPath = Application.StartupPath;
-                int intIndex = strReportPath.IndexOf(APPLICATION_PATH);
-
-                if (intIndex > -1)
-                {
-                    strReportPath = strReportPath.Substring(0, intIndex);
-                }
-
-                if (strReportPath.Substring(strReportPath.Length - 1) == @"\")
-                {
-                    strReportPath += Constants.REPORT_DEFINITION_STORE_LOCATION;
-                }
-                else
-                {
-                    strReportPath += "\\" + Constants.REPORT_DEFINITION_STORE_LOCATION;
-                }
-
-                //Set datasource and lay-out path for reports
-
-                reportBuilder.SourceDataTable = dtbResult;
-                reportBuilder.ReportDefinitionFolder = strReportPath;
-
-                if (CountDistinctProduct(dtbResult) > EXPORT_INVOICE_MAX_ROW)
-                {
-                    reportBuilder.ReportLayoutFile = TEMPLATE_FILE_ATTACHEMENT;
-                }
-                else
-                {
-                    reportBuilder.ReportLayoutFile = TEMPLATE_FILE_NORMAL;
-                }
-
-                //check if layout is valid
-                if (reportBuilder.AnalyseLayoutFile())
-                {
-                    reportBuilder.UseLayoutFile = true;
-                }
-                else
-                {
-                    //Reset cursor
-                    Cursor = Cursors.Default;
-                    PCSMessageBox.Show(ErrorCode.MESSAGE_REPORT_TEMPLATE_FILE_NOT_FOUND, MessageBoxIcon.Error);
-                    return;
-                }
-                reportBuilder.MakeDataTableForRender();
-
-                // and show it in preview dialog 
-                reportBuilder.ReportViewer = printPreview.ReportViewer;
-                reportBuilder.RenderReport();
-
-                //Header information get from system params 
-                reportBuilder.DrawPredefinedField(REPORTFLD_COMPANY,
-                                                  SystemProperty.SytemParams.Get(SystemParam.COMPANY_FULL_NAME));
-                reportBuilder.DrawPredefinedField(REPORTFLD_ADDRESS, SystemProperty.SytemParams.Get(SystemParam.ADDRESS));
-                reportBuilder.DrawPredefinedField(REPORTFLD_TEL, SystemProperty.SytemParams.Get(SystemParam.TEL));
-                reportBuilder.DrawPredefinedField(REPORTFLD_FAX, SystemProperty.SytemParams.Get(SystemParam.FAX));
-
-                //Bank information
-                //reportBuilder.DrawPredefinedField(REPORTFLD_BANKACCOUNT, SystemProperty.SytemParams.Get(SystemParam.ACCOUNT));					
-                //reportBuilder.DrawPredefinedField(REPORTFLD_BANKNAME, SystemProperty.SytemParams.Get(SystemParam.BANK_NAME));
-                //reportBuilder.DrawPredefinedField(RPT_BANK_ADDRESS, SystemProperty.SytemParams.Get(SystemParam.BANK_ADDR));
-
-                reportBuilder.RefreshReport();
-                printPreview.Show();
-            }
-            catch (PCSException ex)
-            {
-                // displays the error message.
-                PCSMessageBox.Show(ex.mCode, MessageBoxIcon.Error);
-
-                // log message.
-                try
-                {
-                    Logger.LogMessage(ex.CauseException, methodName, Level.ERROR);
-                }
-                catch
-                {
-                    PCSMessageBox.Show(ErrorCode.LOG_EXCEPTION, MessageBoxIcon.Error);
-                }
-            }
-            catch (Exception ex)
-            {
-                // displays the error message.
-                PCSMessageBox.Show(ErrorCode.OTHER_ERROR, MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-                // log message.
-                try
-                {
-                    Logger.LogMessage(ex, methodName, Level.ERROR);
-                }
-                catch
-
-                {
-                    PCSMessageBox.Show(ErrorCode.LOG_EXCEPTION, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            finally
-            {
-                //reset cursor
-                Cursor = Cursors.Default;
             }
         }
 
@@ -2519,13 +2036,7 @@ namespace PCSSale.Order
                     txtCurrency.Tag = drwResult[MST_CurrencyTable.CURRENCYID_FLD];
                     txtCurrency.Text = drwResult[MST_CurrencyTable.CODE_FLD].ToString();
                     txtExchRate.Tag = FillExchangeRate(int.Parse(drwResult[MST_CurrencyTable.CURRENCYID_FLD].ToString()));
-                    if (drwResult[MST_CurrencyTable.CURRENCYID_FLD].ToString() !=
-                        SystemProperty.HomeCurrencyID.ToString())
-                    {
-                        txtExchRate.Enabled = true;
-                    }
-                    else
-                        txtExchRate.Enabled = false;
+                    txtExchRate.Enabled = drwResult[MST_CurrencyTable.CURRENCYID_FLD].ToString() != SystemProperty.HomeCurrencyID.ToString();
                 }
             }
             catch (PCSException ex)
@@ -3071,7 +2582,8 @@ namespace PCSSale.Order
                 var binId = (int)txtBin.Tag;
                 var dtmFromDateParam = (DateTime)dtmFromDate.Value;
                 var dtmToDateParam = (DateTime)dtmToDate.Value;
-                dstData = _boCsManagement.GetCommitedDelSchLines(_voSOMaster.SaleOrderMasterID, _gateIds, dtmFromDateParam, dtmToDateParam, locationId, binId, cboPurpose.SelectedIndex);
+                var rate = (decimal)txtExchRate.Value;
+                dstData = _boCsManagement.GetCommitedDelSchLines(_voSOMaster.SaleOrderMasterID, _gateIds, dtmFromDateParam, dtmToDateParam, locationId, binId, cboPurpose.SelectedIndex, rate);
                 
                 //Bind data to grid
                 dgrdData.DataSource = dstData.Tables[0];
@@ -3079,7 +2591,9 @@ namespace PCSSale.Order
                 // restore grid layout
                 FormControlComponents.RestoreGridLayout(dgrdData, dtbGridDesign);
                 foreach (C1DisplayColumn dcolCol in dgrdData.Splits[0].DisplayColumns)
+                {
                     dcolCol.Locked = true;
+                }
                 dgrdData.Columns[CommittedqtyCol].NumberFormat = Constants.DECIMAL_NUMBERFORMAT;
                 dgrdData.Columns[SO_ConfirmShipDetailTable.INVOICEQTY_FLD].NumberFormat = Constants.DECIMAL_NUMBERFORMAT;
                 dgrdData.Columns[SO_ConfirmShipDetailTable.VATPERCENT_FLD].NumberFormat = Constants.DECIMAL_NUMBERFORMAT;
@@ -3090,12 +2604,13 @@ namespace PCSSale.Order
                 dgrdData.Splits[0].DisplayColumns[SO_ConfirmShipDetailTable.VATAMOUNT_FLD].Locked = false;
                 dgrdData.Splits[0].DisplayColumns[SO_ConfirmShipDetailTable.VATPERCENT_FLD].Locked = false;
                 dgrdData.Splits[0].DisplayColumns[SO_ConfirmShipDetailTable.NETAMOUNT_FLD].Locked = false;
-
+                
                 dgrdData.Columns[SO_ConfirmShipDetailTable.VATAMOUNT_FLD].NumberFormat = Constants.DECIMAL_LONG_FORMAT;
                 dgrdData.Columns[SO_ConfirmShipDetailTable.PRICE_FLD].NumberFormat = Constants.DECIMAL_LONG_FORMAT;
                 dgrdData.Columns[SO_ConfirmShipDetailTable.NETAMOUNT_FLD].NumberFormat = Constants.DECIMAL_NUMBERFORMAT;
+                dgrdData.Columns[NetAmoutRateCol].NumberFormat = Constants.DECIMAL_NUMBERFORMAT;
                 dgrdData.Columns[SO_DeliveryScheduleTable.SCHEDULEDATE_FLD].NumberFormat = Constants.DATETIME_FORMAT_HOUR;
-                dgrdData.Splits[0].DisplayColumns["InvoiceQty"].Locked = false;
+                dgrdData.Splits[0].DisplayColumns[SO_ConfirmShipDetailTable.INVOICEQTY_FLD].Locked = false;
             }
             catch (PCSException ex)
             {
@@ -3375,13 +2890,9 @@ namespace PCSSale.Order
                                               decimal.Parse(dgrdData.Columns[OldInvoiceqtyCol].Value.ToString());
                                 if (dgrdData.Columns[IV_AdjustmentTable.AVAILABLEQTY_FLD].Value != DBNull.Value)
                                 {
-                                    if (decDeltaQty >
-                                        decimal.Parse(
-                                            dgrdData.Columns[IV_AdjustmentTable.AVAILABLEQTY_FLD].Value.ToString()))
+                                    if (decDeltaQty > decimal.Parse(dgrdData.Columns[IV_AdjustmentTable.AVAILABLEQTY_FLD].Value.ToString()))
                                     {
-                                        PCSMessageBox.Show(
-                                            ErrorCode.MESSAGE_IV_ADJUSTMENT_ADJUSTQTY_MUST_BE_SMALLER_THAN_AVAILABLEQTY,
-                                            MessageBoxIcon.Warning);
+                                        PCSMessageBox.Show(ErrorCode.MESSAGE_IV_ADJUSTMENT_ADJUSTQTY_MUST_BE_SMALLER_THAN_AVAILABLEQTY,MessageBoxIcon.Warning);
                                         e.Cancel = true;
                                     }
                                 }
@@ -3441,35 +2952,16 @@ namespace PCSSale.Order
                     if (dgrdData[dgrdData.Row, SO_ConfirmShipDetailTable.PRICE_FLD].ToString() != string.Empty
                         && dgrdData[dgrdData.Row, SO_ConfirmShipDetailTable.INVOICEQTY_FLD].ToString() != string.Empty)
                     {
+                        var netAmount = decimal.Parse(dgrdData[dgrdData.Row, SO_ConfirmShipDetailTable.INVOICEQTY_FLD].ToString()) * decimal.Parse(dgrdData[dgrdData.Row, SO_ConfirmShipDetailTable.PRICE_FLD].ToString());
                         if (dgrdData[dgrdData.Row, SO_ConfirmShipDetailTable.VATPERCENT_FLD].ToString() != string.Empty)
                         {
-                            dgrdData[dgrdData.Row, SO_ConfirmShipDetailTable.VATAMOUNT_FLD] = decimal.Parse(
-                                dgrdData[dgrdData.Row, SO_ConfirmShipDetailTable.INVOICEQTY_FLD].ToString())
-                                                                                              *
-                                                                                              decimal.Parse(
-                                                                                                  dgrdData[
-                                                                                                      dgrdData.Row,
-                                                                                                      SO_ConfirmShipDetailTable
-                                                                                                          .PRICE_FLD].
-                                                                                                      ToString())*
-                                                                                              decimal.Parse(
-                                                                                                  dgrdData[
-                                                                                                      dgrdData.Row,
-                                                                                                      SO_ConfirmShipDetailTable
-                                                                                                          .
-                                                                                                          VATPERCENT_FLD
-                                                                                                      ].ToString())/100;
+                            var vatPercent = decimal.Parse(dgrdData[dgrdData.Row, SO_ConfirmShipDetailTable.VATPERCENT_FLD].ToString());
+                            dgrdData[dgrdData.Row, SO_ConfirmShipDetailTable.VATAMOUNT_FLD] = netAmount * vatPercent /100;
                         }
 
-                        dgrdData[dgrdData.Row, SO_ConfirmShipDetailTable.NETAMOUNT_FLD] = decimal.Parse(
-                            dgrdData[dgrdData.Row, SO_ConfirmShipDetailTable.INVOICEQTY_FLD].ToString())
-                                                                                          *
-                                                                                          decimal.Parse(
-                                                                                              dgrdData[
-                                                                                                  dgrdData.Row,
-                                                                                                  SO_ConfirmShipDetailTable
-                                                                                                      .PRICE_FLD].
-                                                                                                  ToString());
+                        dgrdData[dgrdData.Row, SO_ConfirmShipDetailTable.NETAMOUNT_FLD] = netAmount;
+                        var exchRate = (decimal) txtExchRate.Value;
+                        dgrdData[dgrdData.Row, NetAmoutRateCol] = netAmount * exchRate;
                     }
                 }
             }
@@ -3968,6 +3460,17 @@ namespace PCSSale.Order
         private void dgrdData_AfterDelete(object sender, EventArgs e)
         {
 
+        }
+
+        private void txtExchRate_Leave(object sender, EventArgs e)
+        {
+            // recalculate net amount rate in the grid
+            for (int i = 0; i < dgrdData.RowCount; i++)
+            {
+                var netAmount = (decimal) dgrdData[i, SO_ConfirmShipDetailTable.NETAMOUNT_FLD];
+                var exchRate = (decimal) txtExchRate.Value;
+                dgrdData[i, NetAmoutRateCol] = netAmount*exchRate;
+            }
         }
     }
 }

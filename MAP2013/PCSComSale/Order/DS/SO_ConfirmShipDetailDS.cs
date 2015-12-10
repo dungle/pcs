@@ -463,7 +463,7 @@ namespace PCSComSale.Order.DS
                     " C.SaleOrderDetailID, E.DeliveryScheduleID, G.ProductID, ISNULL(G.AllowNegativeQty,0) AllowNegativeQty," +
                     " E.ScheduleDate, GA.Code SO_GateCode, E.DeliveryQuantity AS CommittedQuantity," +
                     " A.InvoiceQty, A.InvoiceQty OldInvoiceQty, ISNULL(BC.OHQuantity,0) - ISNULL(BC.CommitQuantity,0) AvailableQty, " +
-                    " A.Price, A.NetAmount,A.VATPercent, A.VATAmount, A.ConfirmShipMasterID ," +
+                    " A.Price, A.NetAmount, A.NetAmount * ISNULL(B.ExchangeRate,1) AS NetAmoutRate, A.VATPercent, A.VATAmount, A.ConfirmShipMasterID ," +
                     " A.ConfirmShipDetailID, B.LocationID,B.BinID," +
                     " C.SellingUMID, C.SaleOrderMasterID,D.Code, C.SaleOrderLine, E.Line" +
                     " FROM 	SO_ConfirmShipDetail A INNER JOIN SO_ConfirmShipMaster B ON A.ConfirmShipMasterID = B.ConfirmShipMasterID" +

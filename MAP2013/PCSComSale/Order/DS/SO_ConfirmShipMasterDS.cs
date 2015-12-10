@@ -494,7 +494,7 @@ namespace PCSComSale.Order.DS
 			}
 		}
 
-        public DataSet GetCommitedDelSchLines(int pintSOMasterId, string strGateIDs, DateTime pdtmFromDate, DateTime pdtmToDate, int locationId, int binId, int type)
+        public DataSet GetCommitedDelSchLines(int pintSOMasterId, string strGateIDs, DateTime pdtmFromDate, DateTime pdtmToDate, int locationId, int binId, int type, decimal exchangeRate = 1)
 		{
 			const string METHOD_NAME = THIS + ".GetCommitedDelSchLines()";
 			DataSet dstPCS = new DataSet();
@@ -509,8 +509,8 @@ namespace PCSComSale.Order.DS
                                 + " A.ScheduleDate, G.Code SO_GateCode, DeliveryQuantity AS CommittedQuantity,"
 			                    + " DeliveryQuantity InvoiceQty, 0.0 OldInvoiceQty, ISNULL(D.AllowNegativeQty,0) AllowNegativeQty,"
 			                    + " ISNULL(BC.OHQuantity,0) AvailableQty, "
-			                    + " B.UnitPrice Price, DeliveryQuantity * B.UnitPrice NetAmount,"
-			                    + " B.VATPercent, DeliveryQuantity * ISNULL(B.VATPercent,0) * B.UnitPrice VATAmount,"
+			                    + " B.UnitPrice Price, DeliveryQuantity * B.UnitPrice NetAmount, DeliveryQuantity * B.UnitPrice * " + exchangeRate + " NetAmountRate, "
+                                + " B.VATPercent, DeliveryQuantity * ISNULL(B.VATPercent,0) * B.UnitPrice VATAmount,"
 			                    + locationId + "  LocationID, " + binId + " BINID , C.Code, B.SaleOrderLine, A.Line"
 			                    + " FROM SO_DeliverySchedule A INNER JOIN SO_SaleOrderDetail B ON A.SaleOrderDetailID = B.SaleOrderDetailID"
 			                    + " INNER JOIN SO_SaleOrderMaster C ON B.SaleOrderMasterID = C.SaleOrderMasterID"

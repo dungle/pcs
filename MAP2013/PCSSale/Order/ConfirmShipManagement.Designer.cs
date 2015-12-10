@@ -8,6 +8,23 @@ namespace PCSSale.Order
 {
     partial class ConfirmShipManagement
     {
+        private const string This = "PCSSale.Order.ConfirmShipManagement";
+        private const string ViewForInvoice = "v_SaleInvoice";
+        private const string CommittedqtyCol = "CommittedQuantity";
+        private const string NetAmoutRateCol = "NetAmountRate";
+        private const string OldInvoiceqtyCol = "OldInvoiceQty";
+        private const string APPLICATION_PATH = @"PCSMain\bin\Debug";
+        private const string SO_INVOICE_STANDARD_REPORT = "Invoice4SaleOrder.xml";
+        private const string SO_INVOICE_APPENDIX_REPORT = "Invoice4SaleOrder_Appendix.xml";
+        private const string REPORT_NAME = "Sale Order Invoice";
+        private const string REPORTFLD_COMPANY = "fldCompany";
+        private const string REPORTFLD_ADDRESS = "fldAddress";
+        private const string REPORTFLD_TEL = "fldTel";
+        private const string REPORTFLD_FAX = "fldFax";
+        private const string REPORTFLD_AMOUNT_IN_WORD = "fldAmountInWord";
+        private const string REPORTFLD_AMOUNT_IN_WORD1 = "fldAmountInWord1";
+        private const string REPORTFLD_TOTAL_AMOUNT = "fldSumTotalNetAmount";
+
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -194,10 +211,9 @@ namespace PCSSale.Order
             // 
             this.dgrdData.AccessibleDescription = "";
             this.dgrdData.AccessibleName = "";
-            this.dgrdData.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgrdData.GroupByCaption = "Drag a column header here to group by that column";
+            this.dgrdData.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgrdData.Images.Add(((System.Drawing.Image)(resources.GetObject("dgrdData.Images"))));
             this.dgrdData.Location = new System.Drawing.Point(7, 297);
             this.dgrdData.Name = "dgrdData";
@@ -294,19 +310,13 @@ namespace PCSSale.Order
             this.cboCCN.AddItemSeparator = ';';
             this.cboCCN.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.cboCCN.Caption = "";
-            this.cboCCN.CaptionHeight = 17;
             this.cboCCN.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
-            this.cboCCN.ColumnCaptionHeight = 17;
-            this.cboCCN.ColumnFooterHeight = 17;
             this.cboCCN.ComboStyle = C1.Win.C1List.ComboStyleEnum.DropdownList;
-            this.cboCCN.ContentHeight = 15;
             this.cboCCN.DeadAreaBackColor = System.Drawing.Color.Empty;
             this.cboCCN.EditorBackColor = System.Drawing.SystemColors.Window;
             this.cboCCN.EditorFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboCCN.EditorForeColor = System.Drawing.SystemColors.WindowText;
-            this.cboCCN.EditorHeight = 15;
             this.cboCCN.Images.Add(((System.Drawing.Image)(resources.GetObject("cboCCN.Images"))));
-            this.cboCCN.ItemHeight = 15;
             this.cboCCN.Location = new System.Drawing.Point(934, 5);
             this.cboCCN.MatchEntryTimeout = ((long)(2000));
             this.cboCCN.MaxDropDownItems = ((short)(5));
@@ -564,6 +574,7 @@ namespace PCSSale.Order
             0,
             0});
             this.txtExchRate.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None;
+            this.txtExchRate.Leave += new System.EventHandler(this.txtExchRate_Leave);
             // 
             // lblExchRate
             // 
@@ -660,8 +671,8 @@ namespace PCSSale.Order
             // 
             // grpMoreDetail
             // 
-            this.grpMoreDetail.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.grpMoreDetail.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.grpMoreDetail.Controls.Add(this.btnSearchBin);
             this.grpMoreDetail.Controls.Add(this.txtInvoiceNo);
             this.grpMoreDetail.Controls.Add(this.lblInvoiceNo);

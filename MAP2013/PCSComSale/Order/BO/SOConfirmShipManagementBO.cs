@@ -21,10 +21,10 @@ namespace PCSComSale.Order.BO
             return dsSOMaster.GetObjectVO(pintSOMasterId);
 		}
 
-        public DataSet GetCommitedDelSchLines(int pintSOMasterId, string strGateIDs, DateTime pdtmFromDate, DateTime pdtmToDate, int locationId, int binId, int type)
+        public DataSet GetCommitedDelSchLines(int pintSOMasterId, string strGateIDs, DateTime pdtmFromDate, DateTime pdtmToDate, int locationId, int binId, int type, decimal exchangeRate = 1)
 		{
 			var dsMaster = new SO_ConfirmShipMasterDS();
-			return dsMaster.GetCommitedDelSchLines(pintSOMasterId, strGateIDs, pdtmFromDate, pdtmToDate, locationId, binId, type);
+			return dsMaster.GetCommitedDelSchLines(pintSOMasterId, strGateIDs, pdtmFromDate, pdtmToDate, locationId, binId, type, exchangeRate);
 		}
 		public DataSet GetExistedForView(int pintMasterId, bool pblnIsInvoice)
 		{
