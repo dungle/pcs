@@ -618,7 +618,7 @@ namespace PCSSale.Order
                     dgrdData.Columns[SO_ConfirmShipDetailTable.VATAMOUNT_FLD].NumberFormat = Constants.DECIMAL_LONG_FORMAT;
                     dgrdData.Columns[SO_ConfirmShipDetailTable.PRICE_FLD].NumberFormat = Constants.DECIMAL_LONG_FORMAT;
                     dgrdData.Columns[SO_ConfirmShipDetailTable.NETAMOUNT_FLD].NumberFormat = Constants.DECIMAL_NUMBERFORMAT;
-                    dgrdData.Columns[NetAmoutRateCol].NumberFormat = Constants.DECIMAL_NUMBERFORMAT;
+                    dgrdData.Columns[NetAmountRateCol].NumberFormat = Constants.DECIMAL_NUMBERFORMAT;
                     
                     _formAction = EnumAction.Default;
                     SwitchFormMode();
@@ -1013,7 +1013,7 @@ namespace PCSSale.Order
                     dgrdData.Columns[SO_ConfirmShipDetailTable.VATAMOUNT_FLD].NumberFormat = Constants.DECIMAL_LONG_FORMAT;
                     dgrdData.Columns[SO_ConfirmShipDetailTable.PRICE_FLD].NumberFormat = Constants.DECIMAL_LONG_FORMAT;
                     dgrdData.Columns[SO_ConfirmShipDetailTable.NETAMOUNT_FLD].NumberFormat = Constants.DECIMAL_NUMBERFORMAT;
-                    dgrdData.Columns[NetAmoutRateCol].NumberFormat = Constants.DECIMAL_NUMBERFORMAT;
+                    dgrdData.Columns[NetAmountRateCol].NumberFormat = Constants.DECIMAL_NUMBERFORMAT;
                     dgrdData.Columns[SO_DeliveryScheduleTable.SCHEDULEDATE_FLD].NumberFormat = Constants.DATETIME_FORMAT_HOUR;
                     btnModify.Enabled = true;
                 }
@@ -2608,7 +2608,7 @@ namespace PCSSale.Order
                 dgrdData.Columns[SO_ConfirmShipDetailTable.VATAMOUNT_FLD].NumberFormat = Constants.DECIMAL_LONG_FORMAT;
                 dgrdData.Columns[SO_ConfirmShipDetailTable.PRICE_FLD].NumberFormat = Constants.DECIMAL_LONG_FORMAT;
                 dgrdData.Columns[SO_ConfirmShipDetailTable.NETAMOUNT_FLD].NumberFormat = Constants.DECIMAL_NUMBERFORMAT;
-                dgrdData.Columns[NetAmoutRateCol].NumberFormat = Constants.DECIMAL_NUMBERFORMAT;
+                dgrdData.Columns[NetAmountRateCol].NumberFormat = Constants.DECIMAL_NUMBERFORMAT;
                 dgrdData.Columns[SO_DeliveryScheduleTable.SCHEDULEDATE_FLD].NumberFormat = Constants.DATETIME_FORMAT_HOUR;
                 dgrdData.Splits[0].DisplayColumns[SO_ConfirmShipDetailTable.INVOICEQTY_FLD].Locked = false;
             }
@@ -2961,7 +2961,7 @@ namespace PCSSale.Order
 
                         dgrdData[dgrdData.Row, SO_ConfirmShipDetailTable.NETAMOUNT_FLD] = netAmount;
                         var exchRate = (decimal) txtExchRate.Value;
-                        dgrdData[dgrdData.Row, NetAmoutRateCol] = netAmount * exchRate;
+                        dgrdData[dgrdData.Row, NetAmountRateCol] = netAmount * exchRate;
                     }
                 }
             }
@@ -3457,19 +3457,14 @@ namespace PCSSale.Order
             }
         }
 
-        private void dgrdData_AfterDelete(object sender, EventArgs e)
+        private void txtExchRate_Validated(object sender, EventArgs e)
         {
-
-        }
-
-        private void txtExchRate_Leave(object sender, EventArgs e)
-        {
+            var exchRate = (decimal)((C1NumericEdit)sender).Value;
             // recalculate net amount rate in the grid
             for (int i = 0; i < dgrdData.RowCount; i++)
             {
-                var netAmount = (decimal) dgrdData[i, SO_ConfirmShipDetailTable.NETAMOUNT_FLD];
-                var exchRate = (decimal) txtExchRate.Value;
-                dgrdData[i, NetAmoutRateCol] = netAmount*exchRate;
+                var netAmount = (decimal)dgrdData[i, SO_ConfirmShipDetailTable.NETAMOUNT_FLD];
+                dgrdData[i, NetAmountRateCol] = netAmount * exchRate;
             }
         }
     }

@@ -1,1 +1,13 @@
 C:\GitHub\pcs\MAP2013\@Output\Debug\PCSMain.exe.config
+C:\github\pcs\MAP2013\@Output\Debug\AppIcon.ico
+C:\github\pcs\MAP2013\@Output\Debug\PCS.ico
+C:\github\pcs\MAP2013\@Output\Debug\App.ico
+C:\github\pcs\MAP2013\@Output\Debug\PCSMain.exe
+C:\github\pcs\MAP2013\@Output\Debug\PCSMain.pdb
+C:\github\pcs\MAP2013\PCSMain\obj\Debug\PCSMain.csprojResolveAssemblyReference.cache
+C:\github\pcs\MAP2013\PCSMain\obj\Debug\PCSMain.LicenseForm.resources
+C:\github\pcs\MAP2013\PCSMain\obj\Debug\PCSMain.MainForm.resources
+C:\github\pcs\MAP2013\PCSMain\obj\Debug\PCSMain.csproj.GenerateResource.Cache
+C:\github\pcs\MAP2013\PCSMain\obj\Debug\PCSMain.exe.licenses
+C:\github\pcs\MAP2013\PCSMain\obj\Debug\PCSMain.exe
+C:\github\pcs\MAP2013\PCSMain\obj\Debug\PCSMain.pdb
