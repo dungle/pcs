@@ -75,8 +75,7 @@ namespace PCSSale.Order
                 //pdrowData contains Confirm shipment row
                 if (cboPurpose.SelectedIndex == (int) ShipViewType.Shipping)
                 {
-                    _voMaster.ConfirmShipMasterID =
-                        Convert.ToInt32(pdrowData[SO_ConfirmShipMasterTable.CONFIRMSHIPMASTERID_FLD]);
+                    _voMaster.ConfirmShipMasterID = Convert.ToInt32(pdrowData[SO_ConfirmShipMasterTable.CONFIRMSHIPMASTERID_FLD]);
                     _voMaster.CCNID = intCCNID;
                     _voMaster.MasterLocationID = intMasterLocationID;
                     //get detail data
@@ -84,8 +83,7 @@ namespace PCSSale.Order
                 }
                 else
                 {
-                    _voInvoiceMaster.InvoiceMasterID =
-                        Convert.ToInt32(pdrowData[SO_InvoiceMasterTable.INVOICEMASTERID_FLD]);
+                    _voInvoiceMaster.InvoiceMasterID = Convert.ToInt32(pdrowData[SO_InvoiceMasterTable.INVOICEMASTERID_FLD]);
                     _voInvoiceMaster.CCNID = intCCNID;
                     _voInvoiceMaster.MasterLocationID = intMasterLocationID;
                     //get detail data
@@ -108,8 +106,7 @@ namespace PCSSale.Order
                     }
                 }
 
-                _voSOMaster.SaleOrderMasterID =
-                    int.Parse(pdrowData[SO_SaleOrderMasterTable.SALEORDERMASTERID_FLD].ToString());
+                _voSOMaster.SaleOrderMasterID = int.Parse(pdrowData[SO_SaleOrderMasterTable.SALEORDERMASTERID_FLD].ToString());
                 _voSOMaster.Code = pdrowData[SALEORDER_FLD].ToString();
                 txtSalesOrder.Text = _voSOMaster.Code;
                 txtConfirmShipNo.Text = pdrowData[SO_ConfirmShipMasterTable.CONFIRMSHIPNO_FLD].ToString();
@@ -120,8 +117,7 @@ namespace PCSSale.Order
                 txtExchRate.Value = pdrowData[SO_ConfirmShipMasterTable.EXCHANGERATE_FLD];
                 txtSaleType.Text = pdrowData[SO_TypeTable.TABLE_NAME + SO_TypeTable.CODE_FLD].ToString();
                 txtSaleType.Tag = pdrowData[SO_TypeTable.TYPEID_FLD];
-                txtPaymentTerm.Text =
-                    pdrowData[MST_PaymentTermTable.TABLE_NAME + MST_PaymentTermTable.CODE_FLD].ToString();
+                txtPaymentTerm.Text = pdrowData[MST_PaymentTermTable.TABLE_NAME + MST_PaymentTermTable.CODE_FLD].ToString();
                 txtMasLoc.Text = pdrowData[MASLOC_FLD].ToString();
                 txtMasLoc.Tag = pdrowData[MST_MasterLocationTable.MASTERLOCATIONID_FLD];
                 txtCustomerCode.Text = pdrowData[CUSTOMERCODE_FLD].ToString();
@@ -141,8 +137,8 @@ namespace PCSSale.Order
                 txtComment.Text = pdrowData[SO_ConfirmShipMasterTable.COMMENT_FLD].ToString();
                 txtReferenceNo.Text = pdrowData[SO_ConfirmShipMasterTable.REFERENCENO_FLD].ToString();
                 txtInvoiceNo.Text = pdrowData[SO_ConfirmShipMasterTable.INVOICENO_FLD].ToString();
-                // invoice date
                 dtmInvoiceDate.Value = (DateTime) pdrowData[SO_ConfirmShipMasterTable.INVOICEDATE_FLD];
+                txtPONo.Text = pdrowData[SO_ConfirmShipMasterTable.PONumber_FLD].ToString();
                 if (pdrowData[SO_ConfirmShipMasterTable.LCDATE_FLD] != DBNull.Value)
                     dtmLCDate.Value = (DateTime) pdrowData[SO_ConfirmShipMasterTable.LCDATE_FLD];
                 if (pdrowData[SO_ConfirmShipMasterTable.ONBOARDDATE_FLD] != DBNull.Value)
@@ -158,6 +154,7 @@ namespace PCSSale.Order
         {
             if (_formAction == EnumAction.Add)
             {
+                txtPONo.Enabled = true;
                 btnShipNo.Enabled = false;
                 btnSearchMasLoc.Enabled = true;
                 dtmShipmentDate.Enabled = true;
@@ -210,6 +207,7 @@ namespace PCSSale.Order
             }
             else if (_formAction == EnumAction.Default)
             {
+                txtPONo.Enabled = false;
                 btnSearchMasLoc.Enabled = false;
                 dtmShipmentDate.Enabled = false;
                 btnSO.Enabled = false;
@@ -292,316 +290,23 @@ namespace PCSSale.Order
                         return;
                     }
 
-                    #region Validating Data
-
-                    //Check madatory
-                    if (FormControlComponents.CheckMandatory(txtConfirmShipNo))
-                    {
-                        PCSMessageBox.Show(ErrorCode.MANDATORY_INVALID, MessageBoxIcon.Exclamation);
-                        txtConfirmShipNo.Focus();
-                        _hasError = true;
-                        return;
-                    }
-
-                    if (FormControlComponents.CheckMandatory(txtMasLoc))
-                    {
-                        PCSMessageBox.Show(ErrorCode.MANDATORY_INVALID, MessageBoxIcon.Exclamation);
-                        txtMasLoc.Focus();
-                        _hasError = true;
-                        return;
-                    }
-
-                    if (FormControlComponents.CheckMandatory(txtSalesOrder))
-                    {
-                        PCSMessageBox.Show(ErrorCode.MANDATORY_INVALID, MessageBoxIcon.Exclamation);
-                        txtSalesOrder.Focus();
-                        _hasError = true;
-                        return;
-                    }
-
-                    if (FormControlComponents.CheckMandatory(dtmShipmentDate))
-                    {
-                        PCSMessageBox.Show(ErrorCode.MANDATORY_INVALID, MessageBoxIcon.Exclamation);
-                        dtmShipmentDate.Focus();
-                        _hasError = true;
-                        return;
-                    }
-                    if (FormControlComponents.CheckMandatory(dtmInvoiceDate))
-                    {
-                        PCSMessageBox.Show(ErrorCode.MANDATORY_INVALID, MessageBoxIcon.Exclamation);
-                        dtmInvoiceDate.Focus();
-                        _hasError = true;
-                        return;
-                    }
-                    // HACK: Trada 12-04-2006
-                    if (FormControlComponents.CheckMandatory(txtCurrency))
-                    {
-                        PCSMessageBox.Show(ErrorCode.MANDATORY_INVALID, MessageBoxIcon.Exclamation);
-                        txtCurrency.Focus();
-                        _hasError = true;
-                        return;
-                    }
-                    if (chkHaveGate.Checked)
-                    {
-                        if (FormControlComponents.CheckMandatory(txtGate))
-                        {
-                            PCSMessageBox.Show(ErrorCode.MANDATORY_INVALID, MessageBoxIcon.Exclamation);
-                            txtGate.Focus();
-                            _hasError = true;
-                            return;
-                        }
-                    }
-                    if (FormControlComponents.CheckMandatory(txtLocation))
-                    {
-                        PCSMessageBox.Show(ErrorCode.MANDATORY_INVALID, MessageBoxIcon.Exclamation);
-                        txtLocation.Focus();
-                        _hasError = true;
-                        return;
-                    }
-                    if (FormControlComponents.CheckMandatory(txtBin))
-                    {
-                        PCSMessageBox.Show(ErrorCode.MANDATORY_INVALID, MessageBoxIcon.Exclamation);
-                        txtBin.Focus();
-                        _hasError = true;
-                        return;
-                    }
-                    //Check postdate in configuration
-                    if (_formAction == EnumAction.Add)
-                    {
-                        if (cboPurpose.SelectedIndex == (int) ShipViewType.Shipping)
-                        {
-                            var shipDate = (DateTime) dtmShipmentDate.Value;
-                            if (!shipDate.IsValidPostDate())
-                            {
-                                var period = Utilities.Instance.GetWorkingPeriod();
-                                var date = period.ToDate.AddDays(1).AddMilliseconds(-1);
-                                var param = new[] {date.ToString(Constants.DATETIME_FORMAT_HOUR)};
-                                PCSMessageBox.Show(ErrorCode.MESSAGE_CAN_NOT_EDIT_POSTDATE, MessageBoxIcon.Warning, param);
-                                return;
-                            }
-                        }
-                        if (FormControlComponents.CheckMandatory(txtExchRate))
-                        {
-                            PCSMessageBox.Show(ErrorCode.MANDATORY_INVALID, MessageBoxIcon.Exclamation);
-                            txtExchRate.Focus();
-                            _hasError = true;
-                            return;
-                        }
-                    }
-                    if (_formAction == EnumAction.Edit)
-                    {
-                        //Check data in the grid
-                        for (int i = 0; i < dgrdData.RowCount; i++)
-                        {
-                            if (dgrdData[i, SO_ConfirmShipDetailTable.INVOICEQTY_FLD].ToString() == string.Empty)
-                            {
-                                var strParam = new string[2];
-                                strParam[0] = "quantity";
-                                strParam[1] = "Invoice Quantity columns";
-                                PCSMessageBox.Show(ErrorCode.MESSAGE_RELATION_REQUIRE, MessageBoxIcon.Exclamation,
-                                                   strParam);
-                                dgrdData.Row = i;
-                                dgrdData.Col = dgrdData.Splits[0].DisplayColumns.IndexOf(dgrdData.Splits[0].DisplayColumns[SO_ConfirmShipDetailTable.INVOICEQTY_FLD]);
-                                dgrdData.Focus();
-                                _hasError = true;
-                                return;
-                            }
-                        }
-                    }
-                    
-                    //End hack
-
-                    if (dgrdData.RowCount <= 0)
-                    {
-                        // You have to input at least a record in grid sale order detail
-                        PCSMessageBox.Show(ErrorCode.MESSAGE_INPUT_AT_LEAST_RECORD_IN_GRID, MessageBoxIcon.Exclamation);
-                        dgrdData.Focus();
-                        return;
-                    }
-                    for (int i = 0; i < dgrdData.RowCount; i++)
-                    {
-                        if (dgrdData[i, SO_ConfirmShipDetailTable.PRICE_FLD].ToString() == String.Empty)
-                        {
-                            PCSMessageBox.Show(ErrorCode.MANDATORY_INVALID, MessageBoxIcon.Exclamation);
-                            dgrdData.Row = i;
-                            dgrdData.Col = dgrdData.Splits[0].DisplayColumns.IndexOf(dgrdData.Splits[0].DisplayColumns[SO_ConfirmShipDetailTable.PRICE_FLD]);
-                            dgrdData.Focus();
-                            _hasError = true;
-                            return;
-                        }
-                        if (decimal.Parse(dgrdData[i, SO_ConfirmShipDetailTable.PRICE_FLD].ToString()) <= 0)
-                        {
-                            var strParam = new string[2];
-                            strParam[0] = SO_ConfirmShipDetailTable.PRICE_FLD;
-                            strParam[1] = "0";
-                            PCSMessageBox.Show(ErrorCode.MESSAGE_GREATER_THAN, MessageBoxIcon.Warning, strParam);
-                            dgrdData.Row = i;
-                            dgrdData.Col = dgrdData.Splits[0].DisplayColumns.IndexOf(dgrdData.Splits[0].DisplayColumns[SO_ConfirmShipDetailTable.PRICE_FLD]);
-                            dgrdData.Focus();
-                            _hasError = true;
-                            return;
-                        }
-                        if (dgrdData[i, SO_ConfirmShipDetailTable.NETAMOUNT_FLD].ToString() == String.Empty)
-                        {
-                            PCSMessageBox.Show(ErrorCode.MANDATORY_INVALID, MessageBoxIcon.Exclamation);
-                            dgrdData.Row = i;
-                            dgrdData.Col = dgrdData.Splits[0].DisplayColumns.IndexOf(dgrdData.Splits[0].DisplayColumns[SO_ConfirmShipDetailTable.NETAMOUNT_FLD]);
-                            dgrdData.Focus();
-                            _hasError = true;
-                            return;
-                        }
-                        if (decimal.Parse(dgrdData[i, SO_ConfirmShipDetailTable.NETAMOUNT_FLD].ToString()) <= 0)
-                        {
-                            var strParam = new string[2];
-                            strParam[0] = SO_ConfirmShipDetailTable.NETAMOUNT_FLD;
-                            strParam[1] = "0";
-                            PCSMessageBox.Show(ErrorCode.MESSAGE_GREATER_THAN, MessageBoxIcon.Warning, strParam);
-                            dgrdData.Row = i;
-                            dgrdData.Col = dgrdData.Splits[0].DisplayColumns.IndexOf(dgrdData.Splits[0].DisplayColumns[SO_ConfirmShipDetailTable.NETAMOUNT_FLD]);
-                            dgrdData.Focus();
-                            _hasError = true;
-                            return;
-                        }
-                    }
-                    if (Security.IsDifferencePrefix(this, lblShipNo, txtConfirmShipNo))
+                    if (ValidateData())
                     {
                         return;
                     }
-                    // if purpose is Shipping, then check available quantity
-                    if (cboPurpose.SelectedIndex == (int) ShipViewType.Shipping && !CheckAvailableQuantity())
-                    {
-                        return;
-                    }
-
-                    #endregion
 
                     if (cboPurpose.SelectedIndex == (int) ShipViewType.Shipping)
                     {
-                        #region assign data & save to database
-
-                        _voMaster.ConfirmShipNo = txtConfirmShipNo.Text.Trim();
-                        _voMaster.CCNID = int.Parse(cboCCN.SelectedValue.ToString());
-                        _voMaster.MasterLocationID = _voMasLoc.MasterLocationID = int.Parse(txtMasLoc.Tag.ToString());
-                        _voMaster.SaleOrderMasterID = _voSOMaster.SaleOrderMasterID;
-                        _voMaster.ShippedDate = new DateTime(((DateTime) dtmShipmentDate.Value).Year,
-                                                            ((DateTime) dtmShipmentDate.Value).Month,
-                                                            ((DateTime) dtmShipmentDate.Value).Day,
-                                                            ((DateTime) dtmShipmentDate.Value).Hour,
-                                                            ((DateTime) dtmShipmentDate.Value).Minute, 0);
-                        _voMaster.CurrencyID = int.Parse(txtCurrency.Tag.ToString());
-                        _voMaster.ExchangeRate = (decimal) txtExchRate.Value;
-                        _voMaster.ShipCode = txtShippingCode.Text;
-                        _voMaster.FromPort = txtFromPort.Text;
-                        _voMaster.CNo = txtCNo.Text;
-
-                        _voMaster.Measurement = txtMeasurement.Text != string.Empty
-                                                   ? Convert.ToDecimal(txtMeasurement.Value)
-                                                   : 0;
-                        _voMaster.GrossWeight = txtGrossWeight.Text != string.Empty
-                                                   ? Convert.ToDecimal(txtGrossWeight.Value)
-                                                   : 0;
-                        _voMaster.NetWeight = txtNetWeight.Text != string.Empty
-                                                 ? Convert.ToDecimal(txtNetWeight.Value)
-                                                 : 0;
-                        _voMaster.IssuingBank = txtIssuingBank.Text;
-                        _voMaster.LCNo = txtLCNo.Text;
-                        _voMaster.VesselName = txtVessel.Text;
-                        _voMaster.Comment = txtComment.Text;
-                        _voMaster.ReferenceNo = txtReferenceNo.Text;
-                        _voMaster.InvoiceNo = txtInvoiceNo.Text;
-                        _voMaster.InvoiceDate = (DateTime) dtmInvoiceDate.Value;
-                        if (dtmLCDate.Value != DBNull.Value && dtmLCDate.Value != null)
-                        {
-                            _voMaster.LCDate = Convert.ToDateTime(dtmLCDate.Value);
-                        }
-                        else
-                        {
-                            _voMaster.LCDate = DateTime.MinValue;
-                        }
-                        if (dtmOnBoardDate.Value != DBNull.Value && dtmOnBoardDate.Value != null)
-                        {
-                            _voMaster.OnBoardDate = Convert.ToDateTime(dtmOnBoardDate.Value);
-                        }
-                        else
-                        {
-                            _voMaster.OnBoardDate = DateTime.MinValue;
-                        }
-                        _voMaster.LocationId = (int) txtLocation.Tag;
-                        _voMaster.BinId = (int) txtBin.Tag;
-                        if (_formAction == EnumAction.Add)
-                        {
-                            _voMaster.ConfirmShipMasterID = _boCsManagement.AddShipData(_voMaster, dstData);
-                            txtConfirmShipNo.Tag = _voMaster.ConfirmShipMasterID;
-                        }
-                        else if (_formAction == EnumAction.Edit)
-                        {
-                            _boCsManagement.ModifyShip(_voMaster, dstData, _removedId);
-                        }
-
-                        #endregion
+                        SaveShipping();
                     }
                     else
                     {
-                        #region assign data & save to database
-
-                        _voInvoiceMaster.ConfirmShipNo = txtConfirmShipNo.Text.Trim();
-                        _voInvoiceMaster.CCNID = int.Parse(cboCCN.SelectedValue.ToString());
-                        _voInvoiceMaster.MasterLocationID =
-                            _voMasLoc.MasterLocationID = int.Parse(txtMasLoc.Tag.ToString());
-                        _voInvoiceMaster.SaleOrderMasterID = _voSOMaster.SaleOrderMasterID;
-                        _voInvoiceMaster.ShippedDate = new DateTime(((DateTime) dtmShipmentDate.Value).Year,
-                                                                   ((DateTime) dtmShipmentDate.Value).Month,
-                                                                   ((DateTime) dtmShipmentDate.Value).Day,
-                                                                   ((DateTime) dtmShipmentDate.Value).Hour,
-                                                                   ((DateTime) dtmShipmentDate.Value).Minute, 0);
-                        _voInvoiceMaster.CurrencyID = int.Parse(txtCurrency.Tag.ToString());
-                        _voInvoiceMaster.ExchangeRate = (decimal) txtExchRate.Value;
-                        _voInvoiceMaster.ShipCode = txtShippingCode.Text;
-                        _voInvoiceMaster.FromPort = txtFromPort.Text;
-                        _voInvoiceMaster.CNo = txtCNo.Text;
-
-                        _voInvoiceMaster.Measurement = txtMeasurement.Text != string.Empty
-                                                          ? Convert.ToDecimal(txtMeasurement.Value)
-                                                          : 0;
-                        _voInvoiceMaster.GrossWeight = txtGrossWeight.Text != string.Empty
-                                                          ? Convert.ToDecimal(txtGrossWeight.Value)
-                                                          : 0;
-                        _voInvoiceMaster.NetWeight = txtNetWeight.Text != string.Empty
-                                                        ? Convert.ToDecimal(txtNetWeight.Value)
-                                                        : 0;
-                        _voInvoiceMaster.IssuingBank = txtIssuingBank.Text;
-                        _voInvoiceMaster.LCNo = txtLCNo.Text;
-                        _voInvoiceMaster.VesselName = txtVessel.Text;
-                        _voInvoiceMaster.Comment = txtComment.Text;
-                        _voInvoiceMaster.ReferenceNo = txtReferenceNo.Text;
-                        _voInvoiceMaster.InvoiceNo = txtInvoiceNo.Text;
-                        _voInvoiceMaster.InvoiceDate = (DateTime) dtmInvoiceDate.Value;
-                        if (dtmLCDate.Value != DBNull.Value && dtmLCDate.Value != null)
-                            _voInvoiceMaster.LCDate = Convert.ToDateTime(dtmLCDate.Value);
-                        else
-                            _voInvoiceMaster.LCDate = DateTime.MinValue;
-                        if (dtmOnBoardDate.Value != DBNull.Value && dtmOnBoardDate.Value != null)
-                            _voInvoiceMaster.OnBoardDate = Convert.ToDateTime(dtmOnBoardDate.Value);
-                        else
-                            _voInvoiceMaster.OnBoardDate = DateTime.MinValue;
-                        _voInvoiceMaster.BinID = Convert.ToInt32(txtBin.Tag);
-                        _voInvoiceMaster.LocationID = Convert.ToInt32(txtLocation.Tag);
-
-                        if (_formAction == EnumAction.Add)
-                        {
-                            _voInvoiceMaster.InvoiceMasterID = _boCsManagement.AddSOInvoiceMaster(_voInvoiceMaster, dstData);
-                            txtConfirmShipNo.Tag = _voInvoiceMaster.InvoiceMasterID;
-                        }
-                        else if (_formAction == EnumAction.Edit)
-                        {
-                            _boCsManagement.ModifyInvoice(_voInvoiceMaster, dstData, _removedId);
-                        }
-
-                        #endregion
+                        SaveInvoice();
                     }
                     //Get data to edit
                     var isInvoice = cboPurpose.SelectedIndex != (int) ShipViewType.Shipping;
-                    dstData = _boCsManagement.GetExistedForView(_voMaster.ConfirmShipMasterID, isInvoice);
+                    var id = isInvoice ? _voInvoiceMaster.InvoiceMasterID : _voMaster.ConfirmShipMasterID;
+                    dstData = _boCsManagement.GetExistedForView(id, isInvoice);
                     dgrdData.DataSource = dstData.Tables[0];
 
                     // restore grid layout
@@ -615,8 +320,8 @@ namespace PCSSale.Order
                     dgrdData.Columns[SO_ConfirmShipDetailTable.INVOICEQTY_FLD].NumberFormat = Constants.DECIMAL_NUMBERFORMAT;
                     dgrdData.Columns[SO_ConfirmShipDetailTable.VATPERCENT_FLD].NumberFormat = Constants.DECIMAL_NUMBERFORMAT;
                     dgrdData.Columns[IV_AdjustmentTable.AVAILABLEQTY_FLD].NumberFormat = Constants.DECIMAL_NUMBERFORMAT;
-                    dgrdData.Columns[SO_ConfirmShipDetailTable.VATAMOUNT_FLD].NumberFormat = Constants.DECIMAL_LONG_FORMAT;
-                    dgrdData.Columns[SO_ConfirmShipDetailTable.PRICE_FLD].NumberFormat = Constants.DECIMAL_LONG_FORMAT;
+                    dgrdData.Columns[SO_ConfirmShipDetailTable.VATAMOUNT_FLD].NumberFormat = Constants.DECIMAL_NUMBERFORMAT;
+                    dgrdData.Columns[SO_ConfirmShipDetailTable.PRICE_FLD].NumberFormat = Constants.DECIMAL_NUMBERFORMAT;
                     dgrdData.Columns[SO_ConfirmShipDetailTable.NETAMOUNT_FLD].NumberFormat = Constants.DECIMAL_NUMBERFORMAT;
                     dgrdData.Columns[NetAmountRateCol].NumberFormat = Constants.DECIMAL_NUMBERFORMAT;
                     
@@ -664,6 +369,318 @@ namespace PCSSale.Order
                 {
                     PCSMessageBox.Show(ErrorCode.LOG_EXCEPTION, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+            }
+        }
+
+        private bool ValidateData()
+        {
+            //Check madatory
+            if (FormControlComponents.CheckMandatory(txtConfirmShipNo))
+            {
+                PCSMessageBox.Show(ErrorCode.MANDATORY_INVALID, MessageBoxIcon.Exclamation);
+                txtConfirmShipNo.Focus();
+                _hasError = true;
+                return true;
+            }
+
+            if (FormControlComponents.CheckMandatory(txtMasLoc))
+            {
+                PCSMessageBox.Show(ErrorCode.MANDATORY_INVALID, MessageBoxIcon.Exclamation);
+                txtMasLoc.Focus();
+                _hasError = true;
+                return true;
+            }
+
+            if (FormControlComponents.CheckMandatory(txtSalesOrder))
+            {
+                PCSMessageBox.Show(ErrorCode.MANDATORY_INVALID, MessageBoxIcon.Exclamation);
+                txtSalesOrder.Focus();
+                _hasError = true;
+                return true;
+            }
+
+            if (FormControlComponents.CheckMandatory(dtmShipmentDate))
+            {
+                PCSMessageBox.Show(ErrorCode.MANDATORY_INVALID, MessageBoxIcon.Exclamation);
+                dtmShipmentDate.Focus();
+                _hasError = true;
+                return true;
+            }
+            if (FormControlComponents.CheckMandatory(dtmInvoiceDate))
+            {
+                PCSMessageBox.Show(ErrorCode.MANDATORY_INVALID, MessageBoxIcon.Exclamation);
+                dtmInvoiceDate.Focus();
+                _hasError = true;
+                return true;
+            }
+            // HACK: Trada 12-04-2006
+            if (FormControlComponents.CheckMandatory(txtCurrency))
+            {
+                PCSMessageBox.Show(ErrorCode.MANDATORY_INVALID, MessageBoxIcon.Exclamation);
+                txtCurrency.Focus();
+                _hasError = true;
+                return true;
+            }
+            if (chkHaveGate.Checked)
+            {
+                if (FormControlComponents.CheckMandatory(txtGate))
+                {
+                    PCSMessageBox.Show(ErrorCode.MANDATORY_INVALID, MessageBoxIcon.Exclamation);
+                    txtGate.Focus();
+                    _hasError = true;
+                    return true;
+                }
+            }
+            if (FormControlComponents.CheckMandatory(txtLocation))
+            {
+                PCSMessageBox.Show(ErrorCode.MANDATORY_INVALID, MessageBoxIcon.Exclamation);
+                txtLocation.Focus();
+                _hasError = true;
+                return true;
+            }
+            if (FormControlComponents.CheckMandatory(txtBin))
+            {
+                PCSMessageBox.Show(ErrorCode.MANDATORY_INVALID, MessageBoxIcon.Exclamation);
+                txtBin.Focus();
+                _hasError = true;
+                return true;
+            }
+            //Check postdate in configuration
+            if (_formAction == EnumAction.Add)
+            {
+                if (cboPurpose.SelectedIndex == (int) ShipViewType.Shipping)
+                {
+                    var shipDate = (DateTime) dtmShipmentDate.Value;
+                    if (!shipDate.IsValidPostDate())
+                    {
+                        var period = Utilities.Instance.GetWorkingPeriod();
+                        var date = period.ToDate.AddDays(1).AddMilliseconds(-1);
+                        var param = new[] {date.ToString(Constants.DATETIME_FORMAT_HOUR)};
+                        PCSMessageBox.Show(ErrorCode.MESSAGE_CAN_NOT_EDIT_POSTDATE, MessageBoxIcon.Warning, param);
+                        return true;
+                    }
+                }
+                if (FormControlComponents.CheckMandatory(txtExchRate))
+                {
+                    PCSMessageBox.Show(ErrorCode.MANDATORY_INVALID, MessageBoxIcon.Exclamation);
+                    txtExchRate.Focus();
+                    _hasError = true;
+                    return true;
+                }
+            }
+            if (_formAction == EnumAction.Edit)
+            {
+                //Check data in the grid
+                for (int i = 0; i < dgrdData.RowCount; i++)
+                {
+                    if (dgrdData[i, SO_ConfirmShipDetailTable.INVOICEQTY_FLD].ToString() == string.Empty)
+                    {
+                        var strParam = new string[2];
+                        strParam[0] = "quantity";
+                        strParam[1] = "Invoice Quantity columns";
+                        PCSMessageBox.Show(ErrorCode.MESSAGE_RELATION_REQUIRE, MessageBoxIcon.Exclamation,
+                            strParam);
+                        dgrdData.Row = i;
+                        dgrdData.Col =
+                            dgrdData.Splits[0].DisplayColumns.IndexOf(
+                                dgrdData.Splits[0].DisplayColumns[SO_ConfirmShipDetailTable.INVOICEQTY_FLD]);
+                        dgrdData.Focus();
+                        _hasError = true;
+                        return true;
+                    }
+                }
+            }
+
+            //End hack
+
+            if (dgrdData.RowCount <= 0)
+            {
+                // You have to input at least a record in grid sale order detail
+                PCSMessageBox.Show(ErrorCode.MESSAGE_INPUT_AT_LEAST_RECORD_IN_GRID, MessageBoxIcon.Exclamation);
+                dgrdData.Focus();
+                return true;
+            }
+            for (int i = 0; i < dgrdData.RowCount; i++)
+            {
+                if (dgrdData[i, SO_ConfirmShipDetailTable.PRICE_FLD].ToString() == String.Empty)
+                {
+                    PCSMessageBox.Show(ErrorCode.MANDATORY_INVALID, MessageBoxIcon.Exclamation);
+                    dgrdData.Row = i;
+                    dgrdData.Col =
+                        dgrdData.Splits[0].DisplayColumns.IndexOf(
+                            dgrdData.Splits[0].DisplayColumns[SO_ConfirmShipDetailTable.PRICE_FLD]);
+                    dgrdData.Focus();
+                    _hasError = true;
+                    return true;
+                }
+                if (decimal.Parse(dgrdData[i, SO_ConfirmShipDetailTable.PRICE_FLD].ToString()) <= 0)
+                {
+                    var strParam = new string[2];
+                    strParam[0] = SO_ConfirmShipDetailTable.PRICE_FLD;
+                    strParam[1] = "0";
+                    PCSMessageBox.Show(ErrorCode.MESSAGE_GREATER_THAN, MessageBoxIcon.Warning, strParam);
+                    dgrdData.Row = i;
+                    dgrdData.Col =
+                        dgrdData.Splits[0].DisplayColumns.IndexOf(
+                            dgrdData.Splits[0].DisplayColumns[SO_ConfirmShipDetailTable.PRICE_FLD]);
+                    dgrdData.Focus();
+                    _hasError = true;
+                    return true;
+                }
+                if (dgrdData[i, SO_ConfirmShipDetailTable.NETAMOUNT_FLD].ToString() == String.Empty)
+                {
+                    PCSMessageBox.Show(ErrorCode.MANDATORY_INVALID, MessageBoxIcon.Exclamation);
+                    dgrdData.Row = i;
+                    dgrdData.Col =
+                        dgrdData.Splits[0].DisplayColumns.IndexOf(
+                            dgrdData.Splits[0].DisplayColumns[SO_ConfirmShipDetailTable.NETAMOUNT_FLD]);
+                    dgrdData.Focus();
+                    _hasError = true;
+                    return true;
+                }
+                if (decimal.Parse(dgrdData[i, SO_ConfirmShipDetailTable.NETAMOUNT_FLD].ToString()) <= 0)
+                {
+                    var strParam = new string[2];
+                    strParam[0] = SO_ConfirmShipDetailTable.NETAMOUNT_FLD;
+                    strParam[1] = "0";
+                    PCSMessageBox.Show(ErrorCode.MESSAGE_GREATER_THAN, MessageBoxIcon.Warning, strParam);
+                    dgrdData.Row = i;
+                    dgrdData.Col =
+                        dgrdData.Splits[0].DisplayColumns.IndexOf(
+                            dgrdData.Splits[0].DisplayColumns[SO_ConfirmShipDetailTable.NETAMOUNT_FLD]);
+                    dgrdData.Focus();
+                    _hasError = true;
+                    return true;
+                }
+            }
+            if (Security.IsDifferencePrefix(this, lblShipNo, txtConfirmShipNo))
+            {
+                return true;
+            }
+            // if purpose is Shipping, then check available quantity
+            if (cboPurpose.SelectedIndex == (int) ShipViewType.Shipping && !CheckAvailableQuantity())
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private void SaveShipping()
+        {
+            _voMaster.PONumber = txtPONo.Text.Trim();
+            _voMaster.ConfirmShipNo = txtConfirmShipNo.Text.Trim();
+            _voMaster.CCNID = int.Parse(cboCCN.SelectedValue.ToString());
+            _voMaster.MasterLocationID = _voMasLoc.MasterLocationID = int.Parse(txtMasLoc.Tag.ToString());
+            _voMaster.SaleOrderMasterID = _voSOMaster.SaleOrderMasterID;
+            _voMaster.ShippedDate = new DateTime(((DateTime) dtmShipmentDate.Value).Year,
+                ((DateTime) dtmShipmentDate.Value).Month,
+                ((DateTime) dtmShipmentDate.Value).Day,
+                ((DateTime) dtmShipmentDate.Value).Hour,
+                ((DateTime) dtmShipmentDate.Value).Minute, 0);
+            _voMaster.CurrencyID = int.Parse(txtCurrency.Tag.ToString());
+            _voMaster.ExchangeRate = (decimal) txtExchRate.Value;
+            _voMaster.ShipCode = txtShippingCode.Text;
+            _voMaster.FromPort = txtFromPort.Text;
+            _voMaster.CNo = txtCNo.Text;
+
+            _voMaster.Measurement = txtMeasurement.Text != string.Empty
+                ? Convert.ToDecimal(txtMeasurement.Value)
+                : 0;
+            _voMaster.GrossWeight = txtGrossWeight.Text != string.Empty
+                ? Convert.ToDecimal(txtGrossWeight.Value)
+                : 0;
+            _voMaster.NetWeight = txtNetWeight.Text != string.Empty
+                ? Convert.ToDecimal(txtNetWeight.Value)
+                : 0;
+            _voMaster.IssuingBank = txtIssuingBank.Text;
+            _voMaster.LCNo = txtLCNo.Text;
+            _voMaster.VesselName = txtVessel.Text;
+            _voMaster.Comment = txtComment.Text;
+            _voMaster.ReferenceNo = txtReferenceNo.Text;
+            _voMaster.InvoiceNo = txtInvoiceNo.Text;
+            _voMaster.InvoiceDate = (DateTime) dtmInvoiceDate.Value;
+            if (dtmLCDate.Value != DBNull.Value && dtmLCDate.Value != null)
+            {
+                _voMaster.LCDate = Convert.ToDateTime(dtmLCDate.Value);
+            }
+            else
+            {
+                _voMaster.LCDate = DateTime.MinValue;
+            }
+            if (dtmOnBoardDate.Value != DBNull.Value && dtmOnBoardDate.Value != null)
+            {
+                _voMaster.OnBoardDate = Convert.ToDateTime(dtmOnBoardDate.Value);
+            }
+            else
+            {
+                _voMaster.OnBoardDate = DateTime.MinValue;
+            }
+            _voMaster.LocationId = (int) txtLocation.Tag;
+            _voMaster.BinId = (int) txtBin.Tag;
+            if (_formAction == EnumAction.Add)
+            {
+                _voMaster.ConfirmShipMasterID = _boCsManagement.AddShipData(_voMaster, dstData);
+                txtConfirmShipNo.Tag = _voMaster.ConfirmShipMasterID;
+            }
+            else if (_formAction == EnumAction.Edit)
+            {
+                _boCsManagement.ModifyShip(_voMaster, dstData, _removedId);
+            }
+        }
+
+        private void SaveInvoice()
+        {
+            _voInvoiceMaster.PONumber = txtPONo.Text.Trim();
+            _voInvoiceMaster.ConfirmShipNo = txtConfirmShipNo.Text.Trim();
+            _voInvoiceMaster.CCNID = int.Parse(cboCCN.SelectedValue.ToString());
+            _voInvoiceMaster.MasterLocationID = _voMasLoc.MasterLocationID = int.Parse(txtMasLoc.Tag.ToString());
+            _voInvoiceMaster.SaleOrderMasterID = _voSOMaster.SaleOrderMasterID;
+            _voInvoiceMaster.ShippedDate = new DateTime(((DateTime) dtmShipmentDate.Value).Year,
+                ((DateTime) dtmShipmentDate.Value).Month,
+                ((DateTime) dtmShipmentDate.Value).Day,
+                ((DateTime) dtmShipmentDate.Value).Hour,
+                ((DateTime) dtmShipmentDate.Value).Minute, 0);
+            _voInvoiceMaster.CurrencyID = int.Parse(txtCurrency.Tag.ToString());
+            _voInvoiceMaster.ExchangeRate = (decimal) txtExchRate.Value;
+            _voInvoiceMaster.ShipCode = txtShippingCode.Text;
+            _voInvoiceMaster.FromPort = txtFromPort.Text;
+            _voInvoiceMaster.CNo = txtCNo.Text;
+
+            _voInvoiceMaster.Measurement = txtMeasurement.Text != string.Empty
+                ? Convert.ToDecimal(txtMeasurement.Value)
+                : 0;
+            _voInvoiceMaster.GrossWeight = txtGrossWeight.Text != string.Empty
+                ? Convert.ToDecimal(txtGrossWeight.Value)
+                : 0;
+            _voInvoiceMaster.NetWeight = txtNetWeight.Text != string.Empty
+                ? Convert.ToDecimal(txtNetWeight.Value)
+                : 0;
+            _voInvoiceMaster.IssuingBank = txtIssuingBank.Text;
+            _voInvoiceMaster.LCNo = txtLCNo.Text;
+            _voInvoiceMaster.VesselName = txtVessel.Text;
+            _voInvoiceMaster.Comment = txtComment.Text;
+            _voInvoiceMaster.ReferenceNo = txtReferenceNo.Text;
+            _voInvoiceMaster.InvoiceNo = txtInvoiceNo.Text;
+            _voInvoiceMaster.InvoiceDate = (DateTime) dtmInvoiceDate.Value;
+            if (dtmLCDate.Value != DBNull.Value && dtmLCDate.Value != null)
+                _voInvoiceMaster.LCDate = Convert.ToDateTime(dtmLCDate.Value);
+            else
+                _voInvoiceMaster.LCDate = DateTime.MinValue;
+            if (dtmOnBoardDate.Value != DBNull.Value && dtmOnBoardDate.Value != null)
+                _voInvoiceMaster.OnBoardDate = Convert.ToDateTime(dtmOnBoardDate.Value);
+            else
+                _voInvoiceMaster.OnBoardDate = DateTime.MinValue;
+            _voInvoiceMaster.BinID = Convert.ToInt32(txtBin.Tag);
+            _voInvoiceMaster.LocationID = Convert.ToInt32(txtLocation.Tag);
+
+            if (_formAction == EnumAction.Add)
+            {
+                _voInvoiceMaster.InvoiceMasterID = _boCsManagement.AddSOInvoiceMaster(_voInvoiceMaster, dstData);
+                txtConfirmShipNo.Tag = _voInvoiceMaster.InvoiceMasterID;
+            }
+            else if (_formAction == EnumAction.Edit)
+            {
+                _boCsManagement.ModifyInvoice(_voInvoiceMaster, dstData, _removedId);
             }
         }
 
@@ -769,6 +786,9 @@ namespace PCSSale.Order
                                     : SO_InvoiceMasterTable.TABLE_NAME;
                 txtConfirmShipNo.Text = FormControlComponents.GetNoByMask("", tableName, "ConfirmShipNo", "", "yy.MM.###");
                 txtConfirmShipNo.Tag = null;
+                // auto fill po reference number for invoice printing
+                var poNumber = FormControlComponents.GetNoByMask("", tableName, "PONumber", "", "8.MM.###");
+                txtPONo.Text = poNumber;
                 //Fill Default Master Location 
                 FormControlComponents.SetDefaultMasterLocation(txtMasLoc);
                 _voMasLoc.MasterLocationID = SystemProperty.MasterLocationID;
@@ -968,7 +988,7 @@ namespace PCSSale.Order
             const string VIEW_NAME = "v_SOConfirmShipMaster";
             const string SO_INVOICE_VIEW = "v_SOInvoiceMaster";
             // find confirm ship
-            const string methodName = This + ".btnOrderNo_Click()";
+            const string methodName = This + ".btnShipNo_Click()";
             try
             {
                 DataRowView drwResult = null;
@@ -1010,8 +1030,8 @@ namespace PCSSale.Order
                     dgrdData.Columns[SO_ConfirmShipDetailTable.INVOICEQTY_FLD].NumberFormat = Constants.DECIMAL_NUMBERFORMAT;
                     dgrdData.Columns[SO_ConfirmShipDetailTable.VATPERCENT_FLD].NumberFormat = Constants.DECIMAL_NUMBERFORMAT;
                     dgrdData.Columns[IV_AdjustmentTable.AVAILABLEQTY_FLD].NumberFormat = Constants.DECIMAL_NUMBERFORMAT;
-                    dgrdData.Columns[SO_ConfirmShipDetailTable.VATAMOUNT_FLD].NumberFormat = Constants.DECIMAL_LONG_FORMAT;
-                    dgrdData.Columns[SO_ConfirmShipDetailTable.PRICE_FLD].NumberFormat = Constants.DECIMAL_LONG_FORMAT;
+                    dgrdData.Columns[SO_ConfirmShipDetailTable.VATAMOUNT_FLD].NumberFormat = Constants.DECIMAL_NUMBERFORMAT;
+                    dgrdData.Columns[SO_ConfirmShipDetailTable.PRICE_FLD].NumberFormat = Constants.DECIMAL_NUMBERFORMAT;
                     dgrdData.Columns[SO_ConfirmShipDetailTable.NETAMOUNT_FLD].NumberFormat = Constants.DECIMAL_NUMBERFORMAT;
                     dgrdData.Columns[NetAmountRateCol].NumberFormat = Constants.DECIMAL_NUMBERFORMAT;
                     dgrdData.Columns[SO_DeliveryScheduleTable.SCHEDULEDATE_FLD].NumberFormat = Constants.DATETIME_FORMAT_HOUR;
@@ -1313,7 +1333,7 @@ namespace PCSSale.Order
                     return;
                 }
                 if (btnConfirmShippment.Enabled) return;
-                DataRowView drwResult = null;
+                DataRowView drwResult;
                 if (cboPurpose.SelectedIndex == (int) ShipViewType.Shipping)
                     drwResult = FormControlComponents.OpenSearchForm(VIEW_NAME,
                                                                      SO_ConfirmShipMasterTable.CONFIRMSHIPNO_FLD,
@@ -1355,8 +1375,10 @@ namespace PCSSale.Order
                         dgrdData.Columns[SO_ConfirmShipDetailTable.VATPERCENT_FLD].NumberFormat = Constants.DECIMAL_NUMBERFORMAT;
                         dgrdData.Columns[IV_AdjustmentTable.AVAILABLEQTY_FLD].NumberFormat = Constants.DECIMAL_NUMBERFORMAT;
                         dgrdData.Columns[SO_DeliveryScheduleTable.SCHEDULEDATE_FLD].NumberFormat = Constants.DATETIME_FORMAT_HOUR;
-                        dgrdData.Columns[SO_ConfirmShipDetailTable.VATAMOUNT_FLD].NumberFormat = "##############,0.0000";
-                        dgrdData.Columns[SO_ConfirmShipDetailTable.PRICE_FLD].NumberFormat = "##############,0.0000";
+                        dgrdData.Columns[SO_ConfirmShipDetailTable.VATAMOUNT_FLD].NumberFormat = Constants.DECIMAL_NUMBERFORMAT;
+                        dgrdData.Columns[SO_ConfirmShipDetailTable.PRICE_FLD].NumberFormat = Constants.DECIMAL_NUMBERFORMAT;
+                        dgrdData.Columns[SO_ConfirmShipDetailTable.NETAMOUNT_FLD].NumberFormat = Constants.DECIMAL_NUMBERFORMAT;
+                        dgrdData.Columns[NetAmountRateCol].NumberFormat = Constants.DECIMAL_NUMBERFORMAT;
                         btnModify.Enabled = true;
                     }
                 }
@@ -2605,8 +2627,8 @@ namespace PCSSale.Order
                 dgrdData.Splits[0].DisplayColumns[SO_ConfirmShipDetailTable.VATPERCENT_FLD].Locked = false;
                 dgrdData.Splits[0].DisplayColumns[SO_ConfirmShipDetailTable.NETAMOUNT_FLD].Locked = false;
                 
-                dgrdData.Columns[SO_ConfirmShipDetailTable.VATAMOUNT_FLD].NumberFormat = Constants.DECIMAL_LONG_FORMAT;
-                dgrdData.Columns[SO_ConfirmShipDetailTable.PRICE_FLD].NumberFormat = Constants.DECIMAL_LONG_FORMAT;
+                dgrdData.Columns[SO_ConfirmShipDetailTable.VATAMOUNT_FLD].NumberFormat = Constants.DECIMAL_NUMBERFORMAT;
+                dgrdData.Columns[SO_ConfirmShipDetailTable.PRICE_FLD].NumberFormat = Constants.DECIMAL_NUMBERFORMAT;
                 dgrdData.Columns[SO_ConfirmShipDetailTable.NETAMOUNT_FLD].NumberFormat = Constants.DECIMAL_NUMBERFORMAT;
                 dgrdData.Columns[NetAmountRateCol].NumberFormat = Constants.DECIMAL_NUMBERFORMAT;
                 dgrdData.Columns[SO_DeliveryScheduleTable.SCHEDULEDATE_FLD].NumberFormat = Constants.DATETIME_FORMAT_HOUR;
@@ -2956,7 +2978,7 @@ namespace PCSSale.Order
                         if (dgrdData[dgrdData.Row, SO_ConfirmShipDetailTable.VATPERCENT_FLD].ToString() != string.Empty)
                         {
                             var vatPercent = decimal.Parse(dgrdData[dgrdData.Row, SO_ConfirmShipDetailTable.VATPERCENT_FLD].ToString());
-                            dgrdData[dgrdData.Row, SO_ConfirmShipDetailTable.VATAMOUNT_FLD] = netAmount * vatPercent /100;
+                            dgrdData[dgrdData.Row, SO_ConfirmShipDetailTable.VATAMOUNT_FLD] = netAmount * (vatPercent /100);
                         }
 
                         dgrdData[dgrdData.Row, SO_ConfirmShipDetailTable.NETAMOUNT_FLD] = netAmount;

@@ -557,7 +557,7 @@ namespace PCSComUtils.Common.DS
 
         }
 
-		public string GetNoByMask(string pstrUsername, string pstrTableName,string pstrFieldName,string pstrPrefix, string pstrFormat)
+		public string GetNoByMask(string pstrUsername, string pstrTableName, string pstrFieldName, string pstrPrefix, string pstrFormat)
 		{
 			const string DATE_STRING_SHORT = "D";
 			const string DATE_STRING_FULL = "DD";
@@ -566,7 +566,7 @@ namespace PCSComUtils.Common.DS
 			const string YEAR_STRING_SHORT = "YY";
 			const string YEAR_STRING_FULL = "YYYY";
 
-		    pstrFormat = pstrFormat == String.Empty ? "YYYYMMDD####" : pstrFormat.ToUpper();
+		    pstrFormat = string.IsNullOrWhiteSpace(pstrFormat) ? "YYYYMMDD####" : pstrFormat.ToUpper();
 
 		    OleDbConnection oconPCS =null;
 			OleDbCommand ocmdPCS =null;

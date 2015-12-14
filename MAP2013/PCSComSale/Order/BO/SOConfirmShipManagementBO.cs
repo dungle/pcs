@@ -45,122 +45,126 @@ namespace PCSComSale.Order.BO
 		{
             const string methodName = This + ".AddSOInvoiceMaster()";
             var objMaster = new SO_InvoiceMaster();
-            try
-            {
-                var objVO=(SO_InvoiceMasterVO)pobjSOInvoice;
-                using (var trans = new TransactionScope())
-                {
-                    using (var db = new PCSDataContext(Utils.Instance.ConnectionString))
-                    {
-                        #region Insert Invoice Master
-                        objMaster.ConfirmShipNo=objVO.ConfirmShipNo;
-                        if (objVO.ShippedDate != DateTime.MinValue)
-                        {
-                            objMaster.ShippedDate = objVO.ShippedDate;
-                        }
-                        objMaster.SaleOrderMasterID=objVO.SaleOrderMasterID;
-                        objMaster.MasterLocationID=objVO.MasterLocationID;
-                        objMaster.CurrencyID=objVO.CurrencyID;
-                        objMaster.ExchangeRate=objVO.ExchangeRate;
-                        objMaster.ShipCode=objVO.ShipCode;
-                        objMaster.FromPort=objVO.FromPort;
-                        objMaster.UserName = SystemProperty.UserName;
-                        objMaster.CNo=objVO.CNo;
-                        objMaster.Measurement=objVO.Measurement;
-                        objMaster.GrossWeight=objVO.GrossWeight;
-                        objMaster.NetWeight=objVO.NetWeight;
-                        objMaster.IssuingBank=objVO.IssuingBank;
-                        objMaster.LCNo=objVO.LCNo;
-                        objMaster.VesselName=objVO.VesselName;
-                        objMaster.Comment=objVO.Comment;
-                        objMaster.ReferenceNo=objVO.ReferenceNo;
-                        objMaster.InvoiceNo=objVO.InvoiceNo;
-                        if (objVO.LCDate != DateTime.MinValue)
-                        {
-                            objMaster.LCDate = objVO.LCDate;
-                        }
-                        if (objVO.OnBoardDate != DateTime.MinValue)
-                        {
-                            objMaster.OnBoardDate = objVO.OnBoardDate;
-                        }
-                        if (objVO.InvoiceDate != DateTime.MinValue)
-                        {
-                            objMaster.InvoiceDate = objVO.InvoiceDate;
-                        }
-                        objMaster.CCNID=objVO.CCNID;
-                        objMaster.BinID = objVO.BinID;
-                        objMaster.LocationID = objVO.LocationID;
-                        db.SO_InvoiceMasters.InsertOnSubmit(objMaster);
-                        db.SubmitChanges();
-                        
-                        #endregion
-                        
-                        #region Insert Detail
-                        var listDetail = new List<SO_InvoiceDetail>();
+		    try
+		    {
+		        var objVO = (SO_InvoiceMasterVO) pobjSOInvoice;
+		        using (var trans = new TransactionScope(TransactionScopeOption.Required, TimeSpan.FromHours(1)))
+		        {
+		            using (var db = new PCSDataContext(Utils.Instance.ConnectionString))
+		            {
+		                #region Insert Invoice Master
 
-                        foreach (DataRow dr in pdstData.Tables[0].Rows)
-                        {
-                            if (dr.RowState == DataRowState.Deleted)
-                                continue;
-                            var objDetail = new SO_InvoiceDetail { InvoiceMasterID = objMaster.InvoiceMasterID };
-                            if (dr[SO_DeliveryScheduleTable.DELIVERYSCHEDULEID_FLD] != DBNull.Value)
-                            {
-                                objDetail.DeliveryScheduleID = Convert.ToInt32(dr[SO_DeliveryScheduleTable.DELIVERYSCHEDULEID_FLD]);
-                            }
-                            if (dr[ITM_ProductTable.PRODUCTID_FLD] != DBNull.Value)
-                            {
-                                objDetail.ProductID = Convert.ToInt32(dr[ITM_ProductTable.PRODUCTID_FLD]);
-                            }
-                            if (dr[SO_SaleOrderDetailTable.SALEORDERDETAILID_FLD] != DBNull.Value)
-                            {
-                                objDetail.SaleOrderDetailID = Convert.ToInt32(dr[SO_SaleOrderDetailTable.SALEORDERDETAILID_FLD]);
-                            }
-                            if (dr[SO_ConfirmShipDetailTable.PRICE_FLD] != DBNull.Value)
-                            {
-                                objDetail.Price = Convert.ToDecimal(dr[SO_ConfirmShipDetailTable.PRICE_FLD]);
-                            }
-                            if (dr[SO_ConfirmShipDetailTable.INVOICEQTY_FLD] != DBNull.Value)
-                            {
-                                objDetail.InvoiceQty = Convert.ToDecimal(dr[SO_ConfirmShipDetailTable.INVOICEQTY_FLD]);
-                            }
-                            if (dr[SO_ConfirmShipDetailTable.NETAMOUNT_FLD] != DBNull.Value)
-                            {
-                                objDetail.NetAmount = Convert.ToDecimal(dr[SO_ConfirmShipDetailTable.NETAMOUNT_FLD]);
-                            }
-                            if (dr[SO_ConfirmShipDetailTable.VATAMOUNT_FLD] != DBNull.Value)
-                            {
-                                objDetail.VATAmount = Convert.ToDecimal(dr[SO_ConfirmShipDetailTable.VATAMOUNT_FLD]);
-                            }
-                            if (dr[SO_ConfirmShipDetailTable.VATPERCENT_FLD] != DBNull.Value)
-                            {
-                                objDetail.VATPercent = Convert.ToDecimal(dr[SO_ConfirmShipDetailTable.VATPERCENT_FLD]);
-                            }
-                            listDetail.Add(objDetail);
-                        }
-                        db.SO_InvoiceDetails.InsertAllOnSubmit(listDetail);
+		                objMaster.ConfirmShipNo = objVO.ConfirmShipNo;
+		                if (objVO.ShippedDate != DateTime.MinValue)
+		                {
+		                    objMaster.ShippedDate = objVO.ShippedDate;
+		                }
+		                objMaster.SaleOrderMasterID = objVO.SaleOrderMasterID;
+		                objMaster.MasterLocationID = objVO.MasterLocationID;
+		                objMaster.CurrencyID = objVO.CurrencyID;
+		                objMaster.ExchangeRate = objVO.ExchangeRate;
+		                objMaster.ShipCode = objVO.ShipCode;
+		                objMaster.FromPort = objVO.FromPort;
+		                objMaster.UserName = SystemProperty.UserName;
+		                objMaster.CNo = objVO.CNo;
+		                objMaster.Measurement = objVO.Measurement;
+		                objMaster.GrossWeight = objVO.GrossWeight;
+		                objMaster.NetWeight = objVO.NetWeight;
+		                objMaster.IssuingBank = objVO.IssuingBank;
+		                objMaster.LCNo = objVO.LCNo;
+		                objMaster.VesselName = objVO.VesselName;
+		                objMaster.Comment = objVO.Comment;
+		                objMaster.ReferenceNo = objVO.ReferenceNo;
+		                objMaster.InvoiceNo = objVO.InvoiceNo;
+		                objMaster.PONumber = objVO.PONumber;
+		                if (objVO.LCDate != DateTime.MinValue)
+		                {
+		                    objMaster.LCDate = objVO.LCDate;
+		                }
+		                if (objVO.OnBoardDate != DateTime.MinValue)
+		                {
+		                    objMaster.OnBoardDate = objVO.OnBoardDate;
+		                }
+		                if (objVO.InvoiceDate != DateTime.MinValue)
+		                {
+		                    objMaster.InvoiceDate = objVO.InvoiceDate;
+		                }
+		                objMaster.CCNID = objVO.CCNID;
+		                objMaster.BinID = objVO.BinID;
+		                objMaster.LocationID = objVO.LocationID;
 
-                        #endregion
+		                #endregion
 
-                        db.SubmitChanges();
-                    }
-                    trans.Complete();
-                }
-            }
-            catch (PCSBOException ex)
-            {
-                if (ex.mCode == ErrorCode.SQLDUPLICATE_KEYCODE)
-                    throw new PCSDBException(ErrorCode.DUPLICATE_KEY, methodName, ex);
-                if (ex.mCode == ErrorCode.MESSAGE_NOT_ENOUGH_COMPONENT_TO_COMPLETE)
-                    throw new PCSDBException(ErrorCode.MESSAGE_NOT_ENOUGH_COMPONENT_TO_COMPLETE, methodName, ex);
-                throw new PCSDBException(ErrorCode.ERROR_DB, methodName, ex);
-            }
-			
-			return objMaster.InvoiceMasterID;
+		                #region Insert Detail
+
+		                var listDetail = new List<SO_InvoiceDetail>();
+
+		                foreach (DataRow dr in pdstData.Tables[0].Rows)
+		                {
+		                    if (dr.RowState == DataRowState.Deleted)
+		                        continue;
+		                    var objDetail = new SO_InvoiceDetail();
+		                    if (dr[SO_DeliveryScheduleTable.DELIVERYSCHEDULEID_FLD] != DBNull.Value)
+		                    {
+		                        objDetail.DeliveryScheduleID =
+		                            Convert.ToInt32(dr[SO_DeliveryScheduleTable.DELIVERYSCHEDULEID_FLD]);
+		                    }
+		                    if (dr[ITM_ProductTable.PRODUCTID_FLD] != DBNull.Value)
+		                    {
+		                        objDetail.ProductID = Convert.ToInt32(dr[ITM_ProductTable.PRODUCTID_FLD]);
+		                    }
+		                    if (dr[SO_SaleOrderDetailTable.SALEORDERDETAILID_FLD] != DBNull.Value)
+		                    {
+		                        objDetail.SaleOrderDetailID =
+		                            Convert.ToInt32(dr[SO_SaleOrderDetailTable.SALEORDERDETAILID_FLD]);
+		                    }
+		                    if (dr[SO_ConfirmShipDetailTable.PRICE_FLD] != DBNull.Value)
+		                    {
+		                        objDetail.Price = Convert.ToDecimal(dr[SO_ConfirmShipDetailTable.PRICE_FLD]);
+		                    }
+		                    if (dr[SO_ConfirmShipDetailTable.INVOICEQTY_FLD] != DBNull.Value)
+		                    {
+		                        objDetail.InvoiceQty = Convert.ToDecimal(dr[SO_ConfirmShipDetailTable.INVOICEQTY_FLD]);
+		                    }
+		                    if (dr[SO_ConfirmShipDetailTable.NETAMOUNT_FLD] != DBNull.Value)
+		                    {
+		                        objDetail.NetAmount = Convert.ToDecimal(dr[SO_ConfirmShipDetailTable.NETAMOUNT_FLD]);
+		                    }
+		                    if (dr[SO_ConfirmShipDetailTable.VATAMOUNT_FLD] != DBNull.Value)
+		                    {
+		                        objDetail.VATAmount = Convert.ToDecimal(dr[SO_ConfirmShipDetailTable.VATAMOUNT_FLD]);
+		                    }
+		                    if (dr[SO_ConfirmShipDetailTable.VATPERCENT_FLD] != DBNull.Value)
+		                    {
+		                        objDetail.VATPercent = Convert.ToDecimal(dr[SO_ConfirmShipDetailTable.VATPERCENT_FLD]);
+		                    }
+		                    listDetail.Add(objDetail);
+		                }
+		                objMaster.SO_InvoiceDetails.AddRange(listDetail);
+
+		                #endregion
+
+		                db.SO_InvoiceMasters.InsertOnSubmit(objMaster);
+		                db.SubmitChanges();
+		            }
+		            trans.Complete();
+		        }
+		    }
+		    catch (PCSBOException ex)
+		    {
+		        if (ex.mCode == ErrorCode.SQLDUPLICATE_KEYCODE)
+		            throw new PCSDBException(ErrorCode.DUPLICATE_KEY, methodName, ex);
+		        if (ex.mCode == ErrorCode.MESSAGE_NOT_ENOUGH_COMPONENT_TO_COMPLETE)
+		            throw new PCSDBException(ErrorCode.MESSAGE_NOT_ENOUGH_COMPONENT_TO_COMPLETE, methodName, ex);
+		        throw new PCSDBException(ErrorCode.ERROR_DB, methodName, ex);
+		    }
+
+		    return objMaster.InvoiceMasterID;
 		}
 		public void ModifyInvoice(object pobjInvoiceMaster, DataSet pdstData, List<int> removedId)
 		{
-			//Update Master
-            using (var trans = new TransactionScope())
+            //Update Master
+            using (var trans = new TransactionScope(TransactionScopeOption.Required, TimeSpan.FromHours(1)))
             {
                 using (var db = new PCSDataContext(Utils.Instance.ConnectionString))
                 {
@@ -191,6 +195,7 @@ namespace PCSComSale.Order.BO
                     objMaster.Comment = objVO.Comment;
                     objMaster.ReferenceNo = objVO.ReferenceNo;
                     objMaster.InvoiceNo = objVO.InvoiceNo;
+                    objMaster.PONumber = objVO.PONumber;
                     if (objVO.LCDate != DateTime.MinValue)
                     {
                         objMaster.LCDate = objVO.LCDate;
@@ -322,7 +327,7 @@ namespace PCSComSale.Order.BO
             {
                 var confirmShipMaster = new SO_ConfirmShipMaster();
 
-                using (var trans = new TransactionScope())
+                using (var trans = new TransactionScope(TransactionScopeOption.Required, TimeSpan.FromHours(1)))
                 {
                     using (var db = new PCSDataContext(Utils.Instance.ConnectionString))
                     {
@@ -351,6 +356,7 @@ namespace PCSComSale.Order.BO
                         confirmShipMaster.Comment = voConfirmShipMaster.Comment;
                         confirmShipMaster.ReferenceNo = voConfirmShipMaster.ReferenceNo;
                         confirmShipMaster.InvoiceNo = voConfirmShipMaster.InvoiceNo;
+                        confirmShipMaster.PONumber = voConfirmShipMaster.PONumber;
                         if (voConfirmShipMaster.LCDate != DateTime.MinValue)
                         {
                             confirmShipMaster.LCDate = voConfirmShipMaster.LCDate;
@@ -556,7 +562,7 @@ namespace PCSComSale.Order.BO
         public void ModifyShip(SO_ConfirmShipMasterVO voConfirmShipMaster, DataSet pdstData, List<int> removeIds)
         {
             //Update Master
-            using (var trans = new TransactionScope())
+            using (var trans = new TransactionScope(TransactionScopeOption.Required, TimeSpan.FromHours(1)))
             {
                 using (var db = new PCSDataContext(Utils.Instance.ConnectionString))
                 {
@@ -588,6 +594,7 @@ namespace PCSComSale.Order.BO
                         objConfirmShipMaster.Comment = voConfirmShipMaster.Comment;
                         objConfirmShipMaster.ReferenceNo = voConfirmShipMaster.ReferenceNo;
                         objConfirmShipMaster.InvoiceNo = voConfirmShipMaster.InvoiceNo;
+                        objConfirmShipMaster.PONumber = voConfirmShipMaster.PONumber;
                         if (voConfirmShipMaster.LCDate != DateTime.MinValue)
                         {
                             objConfirmShipMaster.LCDate = voConfirmShipMaster.LCDate;

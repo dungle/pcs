@@ -138,6 +138,8 @@ namespace PCSSale.Order
             this.dtmToDate = new C1.Win.C1Input.C1DateEdit();
             this.lblPurpose = new System.Windows.Forms.Label();
             this.cboPurpose = new System.Windows.Forms.ComboBox();
+            this.lblPONo = new System.Windows.Forms.Label();
+            this.txtPONo = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dtmShipmentDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgrdData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboCCN)).BeginInit();
@@ -172,9 +174,9 @@ namespace PCSSale.Order
             this.dtmShipmentDate.EmptyAsNull = true;
             this.dtmShipmentDate.ErrorInfo.ShowErrorMessage = false;
             this.dtmShipmentDate.FormatType = C1.Win.C1Input.FormatTypeEnum.CustomFormat;
-            this.dtmShipmentDate.Location = new System.Drawing.Point(130, 113);
+            this.dtmShipmentDate.Location = new System.Drawing.Point(108, 98);
             this.dtmShipmentDate.Name = "dtmShipmentDate";
-            this.dtmShipmentDate.Size = new System.Drawing.Size(141, 20);
+            this.dtmShipmentDate.Size = new System.Drawing.Size(118, 18);
             this.dtmShipmentDate.TabIndex = 26;
             this.dtmShipmentDate.Tag = null;
             this.dtmShipmentDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -188,9 +190,9 @@ namespace PCSSale.Order
             this.btnSearchMasLoc.AccessibleDescription = "";
             this.btnSearchMasLoc.AccessibleName = "";
             this.btnSearchMasLoc.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSearchMasLoc.Location = new System.Drawing.Point(274, 32);
+            this.btnSearchMasLoc.Location = new System.Drawing.Point(228, 28);
             this.btnSearchMasLoc.Name = "btnSearchMasLoc";
-            this.btnSearchMasLoc.Size = new System.Drawing.Size(26, 23);
+            this.btnSearchMasLoc.Size = new System.Drawing.Size(22, 20);
             this.btnSearchMasLoc.TabIndex = 9;
             this.btnSearchMasLoc.Text = "...";
             this.btnSearchMasLoc.Click += new System.EventHandler(this.btnSearchMasLoc_Click);
@@ -199,9 +201,9 @@ namespace PCSSale.Order
             // 
             this.txtMasLoc.AccessibleDescription = "";
             this.txtMasLoc.AccessibleName = "";
-            this.txtMasLoc.Location = new System.Drawing.Point(130, 32);
+            this.txtMasLoc.Location = new System.Drawing.Point(108, 28);
             this.txtMasLoc.Name = "txtMasLoc";
-            this.txtMasLoc.Size = new System.Drawing.Size(141, 22);
+            this.txtMasLoc.Size = new System.Drawing.Size(118, 20);
             this.txtMasLoc.TabIndex = 8;
             this.txtMasLoc.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtMasLoc_KeyDown);
             this.txtMasLoc.Leave += new System.EventHandler(this.txtMasLoc_Leave);
@@ -216,7 +218,7 @@ namespace PCSSale.Order
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgrdData.CaptionHeight = 19;
             this.dgrdData.Images.Add(((System.Drawing.Image)(resources.GetObject("dgrdData.Images"))));
-            this.dgrdData.Location = new System.Drawing.Point(8, 343);
+            this.dgrdData.Location = new System.Drawing.Point(7, 297);
             this.dgrdData.Name = "dgrdData";
             this.dgrdData.PreviewInfo.Location = new System.Drawing.Point(0, 0);
             this.dgrdData.PreviewInfo.Size = new System.Drawing.Size(0, 0);
@@ -224,7 +226,7 @@ namespace PCSSale.Order
             this.dgrdData.PrintInfo.PageSettings = ((System.Drawing.Printing.PageSettings)(resources.GetObject("dgrdData.PrintInfo.PageSettings")));
             this.dgrdData.RecordSelectorWidth = 16;
             this.dgrdData.RowHeight = 17;
-            this.dgrdData.Size = new System.Drawing.Size(1017, 154);
+            this.dgrdData.Size = new System.Drawing.Size(1018, 206);
             this.dgrdData.TabIndex = 41;
             this.dgrdData.VisualStyle = C1.Win.C1TrueDBGrid.VisualStyle.Office2007Blue;
             this.dgrdData.AfterColUpdate += new C1.Win.C1TrueDBGrid.ColEventHandler(this.dgrdData_AfterColUpdate);
@@ -240,9 +242,9 @@ namespace PCSSale.Order
             this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnClose.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnClose.Location = new System.Drawing.Point(944, 504);
+            this.btnClose.Location = new System.Drawing.Point(958, 509);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(78, 27);
+            this.btnClose.Size = new System.Drawing.Size(65, 23);
             this.btnClose.TabIndex = 49;
             this.btnClose.Text = "&Close";
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
@@ -255,9 +257,9 @@ namespace PCSSale.Order
             this.btnHelp.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnHelp.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnHelp.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnHelp.Location = new System.Drawing.Point(864, 504);
+            this.btnHelp.Location = new System.Drawing.Point(891, 509);
             this.btnHelp.Name = "btnHelp";
-            this.btnHelp.Size = new System.Drawing.Size(78, 27);
+            this.btnHelp.Size = new System.Drawing.Size(65, 23);
             this.btnHelp.TabIndex = 48;
             this.btnHelp.Text = "&Help";
             // 
@@ -269,9 +271,9 @@ namespace PCSSale.Order
             this.btnConfirmShippment.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnConfirmShippment.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnConfirmShippment.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnConfirmShippment.Location = new System.Drawing.Point(85, 504);
+            this.btnConfirmShippment.Location = new System.Drawing.Point(71, 509);
             this.btnConfirmShippment.Name = "btnConfirmShippment";
-            this.btnConfirmShippment.Size = new System.Drawing.Size(78, 28);
+            this.btnConfirmShippment.Size = new System.Drawing.Size(65, 24);
             this.btnConfirmShippment.TabIndex = 43;
             this.btnConfirmShippment.Text = "Con&firm";
             this.btnConfirmShippment.Click += new System.EventHandler(this.btnConfirmShippment_Click);
@@ -282,9 +284,9 @@ namespace PCSSale.Order
             this.lblShippedDate.AccessibleName = "";
             this.lblShippedDate.ForeColor = System.Drawing.Color.Maroon;
             this.lblShippedDate.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblShippedDate.Location = new System.Drawing.Point(5, 113);
+            this.lblShippedDate.Location = new System.Drawing.Point(4, 98);
             this.lblShippedDate.Name = "lblShippedDate";
-            this.lblShippedDate.Size = new System.Drawing.Size(125, 23);
+            this.lblShippedDate.Size = new System.Drawing.Size(104, 20);
             this.lblShippedDate.TabIndex = 25;
             this.lblShippedDate.Text = "Shipped Date, Time";
             this.lblShippedDate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -297,9 +299,9 @@ namespace PCSSale.Order
             this.lblCCN.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblCCN.ForeColor = System.Drawing.Color.Maroon;
             this.lblCCN.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblCCN.Location = new System.Drawing.Point(879, 6);
+            this.lblCCN.Location = new System.Drawing.Point(903, 5);
             this.lblCCN.Name = "lblCCN";
-            this.lblCCN.Size = new System.Drawing.Size(37, 23);
+            this.lblCCN.Size = new System.Drawing.Size(31, 20);
             this.lblCCN.TabIndex = 2;
             this.lblCCN.Text = "CCN";
             this.lblCCN.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -318,14 +320,14 @@ namespace PCSSale.Order
             this.cboCCN.EditorFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboCCN.EditorForeColor = System.Drawing.SystemColors.WindowText;
             this.cboCCN.Images.Add(((System.Drawing.Image)(resources.GetObject("cboCCN.Images"))));
-            this.cboCCN.Location = new System.Drawing.Point(915, 6);
+            this.cboCCN.Location = new System.Drawing.Point(933, 5);
             this.cboCCN.MatchEntryTimeout = ((long)(2000));
             this.cboCCN.MaxDropDownItems = ((short)(5));
             this.cboCCN.MaxLength = 32767;
             this.cboCCN.MouseCursor = System.Windows.Forms.Cursors.Default;
             this.cboCCN.Name = "cboCCN";
             this.cboCCN.RowSubDividerColor = System.Drawing.Color.DarkGray;
-            this.cboCCN.Size = new System.Drawing.Size(108, 24);
+            this.cboCCN.Size = new System.Drawing.Size(90, 21);
             this.cboCCN.TabIndex = 3;
             this.cboCCN.VisualStyle = C1.Win.C1List.VisualStyle.Office2007Blue;
             this.cboCCN.PropBag = resources.GetString("cboCCN.PropBag");
@@ -336,9 +338,9 @@ namespace PCSSale.Order
             this.lblMasLoc.AccessibleName = "";
             this.lblMasLoc.ForeColor = System.Drawing.Color.Maroon;
             this.lblMasLoc.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblMasLoc.Location = new System.Drawing.Point(5, 32);
+            this.lblMasLoc.Location = new System.Drawing.Point(4, 28);
             this.lblMasLoc.Name = "lblMasLoc";
-            this.lblMasLoc.Size = new System.Drawing.Size(125, 23);
+            this.lblMasLoc.Size = new System.Drawing.Size(104, 20);
             this.lblMasLoc.TabIndex = 7;
             this.lblMasLoc.Text = "Master Location";
             this.lblMasLoc.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -347,9 +349,9 @@ namespace PCSSale.Order
             // 
             this.txtConfirmShipNo.AccessibleDescription = "";
             this.txtConfirmShipNo.AccessibleName = "";
-            this.txtConfirmShipNo.Location = new System.Drawing.Point(130, 6);
+            this.txtConfirmShipNo.Location = new System.Drawing.Point(108, 5);
             this.txtConfirmShipNo.Name = "txtConfirmShipNo";
-            this.txtConfirmShipNo.Size = new System.Drawing.Size(141, 22);
+            this.txtConfirmShipNo.Size = new System.Drawing.Size(118, 20);
             this.txtConfirmShipNo.TabIndex = 5;
             this.txtConfirmShipNo.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtConfirmShipNo_KeyDown);
             this.txtConfirmShipNo.Leave += new System.EventHandler(this.txtConfirmShipNo_Leave);
@@ -361,9 +363,9 @@ namespace PCSSale.Order
             this.lblShipNo.AccessibleName = "";
             this.lblShipNo.ForeColor = System.Drawing.Color.Maroon;
             this.lblShipNo.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblShipNo.Location = new System.Drawing.Point(5, 6);
+            this.lblShipNo.Location = new System.Drawing.Point(4, 5);
             this.lblShipNo.Name = "lblShipNo";
-            this.lblShipNo.Size = new System.Drawing.Size(125, 23);
+            this.lblShipNo.Size = new System.Drawing.Size(104, 20);
             this.lblShipNo.TabIndex = 4;
             this.lblShipNo.Text = "Confirm Ship No.";
             this.lblShipNo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -373,9 +375,9 @@ namespace PCSSale.Order
             this.btnShipNo.AccessibleDescription = "";
             this.btnShipNo.AccessibleName = "";
             this.btnShipNo.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnShipNo.Location = new System.Drawing.Point(274, 6);
+            this.btnShipNo.Location = new System.Drawing.Point(228, 5);
             this.btnShipNo.Name = "btnShipNo";
-            this.btnShipNo.Size = new System.Drawing.Size(26, 23);
+            this.btnShipNo.Size = new System.Drawing.Size(22, 20);
             this.btnShipNo.TabIndex = 6;
             this.btnShipNo.Text = "...";
             this.btnShipNo.Click += new System.EventHandler(this.btnShipNo_Click);
@@ -385,9 +387,9 @@ namespace PCSSale.Order
             this.btnSO.AccessibleDescription = "";
             this.btnSO.AccessibleName = "";
             this.btnSO.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSO.Location = new System.Drawing.Point(274, 85);
+            this.btnSO.Location = new System.Drawing.Point(228, 74);
             this.btnSO.Name = "btnSO";
-            this.btnSO.Size = new System.Drawing.Size(26, 23);
+            this.btnSO.Size = new System.Drawing.Size(22, 20);
             this.btnSO.TabIndex = 15;
             this.btnSO.Text = "...";
             this.btnSO.Click += new System.EventHandler(this.btnSO_Click);
@@ -396,9 +398,9 @@ namespace PCSSale.Order
             // 
             this.txtSalesOrder.AccessibleDescription = "";
             this.txtSalesOrder.AccessibleName = "";
-            this.txtSalesOrder.Location = new System.Drawing.Point(130, 85);
+            this.txtSalesOrder.Location = new System.Drawing.Point(108, 74);
             this.txtSalesOrder.Name = "txtSalesOrder";
-            this.txtSalesOrder.Size = new System.Drawing.Size(141, 22);
+            this.txtSalesOrder.Size = new System.Drawing.Size(118, 20);
             this.txtSalesOrder.TabIndex = 14;
             this.txtSalesOrder.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSalesOrder_KeyDown);
             this.txtSalesOrder.Leave += new System.EventHandler(this.txtSalesOrder_Leave);
@@ -410,9 +412,9 @@ namespace PCSSale.Order
             this.lblSO.AccessibleName = "";
             this.lblSO.ForeColor = System.Drawing.Color.Maroon;
             this.lblSO.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblSO.Location = new System.Drawing.Point(5, 85);
+            this.lblSO.Location = new System.Drawing.Point(4, 74);
             this.lblSO.Name = "lblSO";
-            this.lblSO.Size = new System.Drawing.Size(125, 23);
+            this.lblSO.Size = new System.Drawing.Size(104, 20);
             this.lblSO.TabIndex = 13;
             this.lblSO.Text = "Sales Order";
             this.lblSO.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -425,9 +427,9 @@ namespace PCSSale.Order
             this.btnAdd.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnAdd.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnAdd.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnAdd.Location = new System.Drawing.Point(6, 504);
+            this.btnAdd.Location = new System.Drawing.Point(5, 509);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(78, 28);
+            this.btnAdd.Size = new System.Drawing.Size(65, 24);
             this.btnAdd.TabIndex = 42;
             this.btnAdd.Text = "&Add";
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
@@ -440,9 +442,9 @@ namespace PCSSale.Order
             this.btnPrint.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnPrint.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnPrint.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnPrint.Location = new System.Drawing.Point(374, 504);
+            this.btnPrint.Location = new System.Drawing.Point(312, 509);
             this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(78, 28);
+            this.btnPrint.Size = new System.Drawing.Size(65, 24);
             this.btnPrint.TabIndex = 46;
             this.btnPrint.Text = "&Print";
             // 
@@ -450,10 +452,10 @@ namespace PCSSale.Order
             // 
             this.txtCustomerCode.AccessibleDescription = "";
             this.txtCustomerCode.AccessibleName = "";
-            this.txtCustomerCode.Location = new System.Drawing.Point(408, 59);
+            this.txtCustomerCode.Location = new System.Drawing.Point(340, 51);
             this.txtCustomerCode.Name = "txtCustomerCode";
             this.txtCustomerCode.ReadOnly = true;
-            this.txtCustomerCode.Size = new System.Drawing.Size(120, 22);
+            this.txtCustomerCode.Size = new System.Drawing.Size(100, 20);
             this.txtCustomerCode.TabIndex = 22;
             // 
             // lblCustomerCode
@@ -462,9 +464,9 @@ namespace PCSSale.Order
             this.lblCustomerCode.AccessibleName = "";
             this.lblCustomerCode.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblCustomerCode.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblCustomerCode.Location = new System.Drawing.Point(310, 58);
+            this.lblCustomerCode.Location = new System.Drawing.Point(258, 50);
             this.lblCustomerCode.Name = "lblCustomerCode";
-            this.lblCustomerCode.Size = new System.Drawing.Size(100, 23);
+            this.lblCustomerCode.Size = new System.Drawing.Size(84, 20);
             this.lblCustomerCode.TabIndex = 21;
             this.lblCustomerCode.Text = "Customer Code";
             this.lblCustomerCode.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -473,9 +475,9 @@ namespace PCSSale.Order
             // 
             this.txtSaleType.AccessibleDescription = "";
             this.txtSaleType.AccessibleName = "";
-            this.txtSaleType.Location = new System.Drawing.Point(130, 59);
+            this.txtSaleType.Location = new System.Drawing.Point(108, 51);
             this.txtSaleType.Name = "txtSaleType";
-            this.txtSaleType.Size = new System.Drawing.Size(141, 22);
+            this.txtSaleType.Size = new System.Drawing.Size(118, 20);
             this.txtSaleType.TabIndex = 11;
             this.txtSaleType.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSaleType_KeyDown);
             this.txtSaleType.Validating += new System.ComponentModel.CancelEventHandler(this.txtSaleType_Validating);
@@ -486,9 +488,9 @@ namespace PCSSale.Order
             this.lblSaleType.AccessibleName = "";
             this.lblSaleType.ForeColor = System.Drawing.Color.Maroon;
             this.lblSaleType.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblSaleType.Location = new System.Drawing.Point(5, 60);
+            this.lblSaleType.Location = new System.Drawing.Point(4, 52);
             this.lblSaleType.Name = "lblSaleType";
-            this.lblSaleType.Size = new System.Drawing.Size(101, 23);
+            this.lblSaleType.Size = new System.Drawing.Size(84, 20);
             this.lblSaleType.TabIndex = 10;
             this.lblSaleType.Text = "Type";
             this.lblSaleType.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -497,10 +499,10 @@ namespace PCSSale.Order
             // 
             this.txtCustomerName.AccessibleDescription = "";
             this.txtCustomerName.AccessibleName = "";
-            this.txtCustomerName.Location = new System.Drawing.Point(408, 85);
+            this.txtCustomerName.Location = new System.Drawing.Point(340, 74);
             this.txtCustomerName.Name = "txtCustomerName";
             this.txtCustomerName.ReadOnly = true;
-            this.txtCustomerName.Size = new System.Drawing.Size(343, 22);
+            this.txtCustomerName.Size = new System.Drawing.Size(286, 20);
             this.txtCustomerName.TabIndex = 24;
             // 
             // lblCustomerName
@@ -509,9 +511,9 @@ namespace PCSSale.Order
             this.lblCustomerName.AccessibleName = "";
             this.lblCustomerName.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblCustomerName.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblCustomerName.Location = new System.Drawing.Point(310, 85);
+            this.lblCustomerName.Location = new System.Drawing.Point(258, 74);
             this.lblCustomerName.Name = "lblCustomerName";
-            this.lblCustomerName.Size = new System.Drawing.Size(105, 23);
+            this.lblCustomerName.Size = new System.Drawing.Size(88, 20);
             this.lblCustomerName.TabIndex = 23;
             this.lblCustomerName.Text = "Customer Name";
             this.lblCustomerName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -520,9 +522,9 @@ namespace PCSSale.Order
             // 
             this.txtCurrency.AccessibleDescription = "";
             this.txtCurrency.AccessibleName = "";
-            this.txtCurrency.Location = new System.Drawing.Point(408, 6);
+            this.txtCurrency.Location = new System.Drawing.Point(340, 5);
             this.txtCurrency.Name = "txtCurrency";
-            this.txtCurrency.Size = new System.Drawing.Size(120, 22);
+            this.txtCurrency.Size = new System.Drawing.Size(100, 20);
             this.txtCurrency.TabIndex = 17;
             this.txtCurrency.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCurrency_KeyDown);
             this.txtCurrency.Validating += new System.ComponentModel.CancelEventHandler(this.txtCurrency_Validating);
@@ -533,9 +535,9 @@ namespace PCSSale.Order
             this.btnCurrency.AccessibleName = "";
             this.btnCurrency.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnCurrency.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnCurrency.Location = new System.Drawing.Point(530, 6);
+            this.btnCurrency.Location = new System.Drawing.Point(442, 5);
             this.btnCurrency.Name = "btnCurrency";
-            this.btnCurrency.Size = new System.Drawing.Size(29, 23);
+            this.btnCurrency.Size = new System.Drawing.Size(24, 20);
             this.btnCurrency.TabIndex = 18;
             this.btnCurrency.Text = "...";
             this.btnCurrency.Click += new System.EventHandler(this.btnCurrency_Click);
@@ -553,7 +555,7 @@ namespace PCSSale.Order
             this.txtExchRate.EmptyAsNull = true;
             this.txtExchRate.ErrorInfo.ShowErrorMessage = false;
             this.txtExchRate.FormatType = C1.Win.C1Input.FormatTypeEnum.CustomFormat;
-            this.txtExchRate.Location = new System.Drawing.Point(408, 32);
+            this.txtExchRate.Location = new System.Drawing.Point(340, 28);
             this.txtExchRate.Name = "txtExchRate";
             this.txtExchRate.PostValidation.Intervals.AddRange(new C1.Win.C1Input.ValueInterval[] {
             new C1.Win.C1Input.ValueInterval(new decimal(new int[] {
@@ -565,7 +567,7 @@ namespace PCSSale.Order
                             2,
                             0,
                             0}), false, true)});
-            this.txtExchRate.Size = new System.Drawing.Size(120, 22);
+            this.txtExchRate.Size = new System.Drawing.Size(100, 20);
             this.txtExchRate.TabIndex = 20;
             this.txtExchRate.Tag = null;
             this.txtExchRate.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
@@ -584,9 +586,9 @@ namespace PCSSale.Order
             this.lblExchRate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblExchRate.ForeColor = System.Drawing.Color.Maroon;
             this.lblExchRate.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblExchRate.Location = new System.Drawing.Point(312, 32);
+            this.lblExchRate.Location = new System.Drawing.Point(260, 28);
             this.lblExchRate.Name = "lblExchRate";
-            this.lblExchRate.Size = new System.Drawing.Size(78, 23);
+            this.lblExchRate.Size = new System.Drawing.Size(65, 20);
             this.lblExchRate.TabIndex = 19;
             this.lblExchRate.Text = "Exch. Rate";
             this.lblExchRate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -597,9 +599,9 @@ namespace PCSSale.Order
             this.lblCurrency.AccessibleName = "";
             this.lblCurrency.ForeColor = System.Drawing.Color.Maroon;
             this.lblCurrency.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblCurrency.Location = new System.Drawing.Point(312, 8);
+            this.lblCurrency.Location = new System.Drawing.Point(260, 7);
             this.lblCurrency.Name = "lblCurrency";
-            this.lblCurrency.Size = new System.Drawing.Size(78, 21);
+            this.lblCurrency.Size = new System.Drawing.Size(65, 18);
             this.lblCurrency.TabIndex = 16;
             this.lblCurrency.Text = "Currency";
             this.lblCurrency.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -609,18 +611,18 @@ namespace PCSSale.Order
             this.btnSaleType.AccessibleDescription = "";
             this.btnSaleType.AccessibleName = "";
             this.btnSaleType.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSaleType.Location = new System.Drawing.Point(274, 59);
+            this.btnSaleType.Location = new System.Drawing.Point(228, 51);
             this.btnSaleType.Name = "btnSaleType";
-            this.btnSaleType.Size = new System.Drawing.Size(26, 23);
+            this.btnSaleType.Size = new System.Drawing.Size(22, 20);
             this.btnSaleType.TabIndex = 12;
             this.btnSaleType.Text = "...";
             this.btnSaleType.Click += new System.EventHandler(this.btnSaleType_Click);
             // 
             // chkHaveGate
             // 
-            this.chkHaveGate.Location = new System.Drawing.Point(312, 113);
+            this.chkHaveGate.Location = new System.Drawing.Point(260, 98);
             this.chkHaveGate.Name = "chkHaveGate";
-            this.chkHaveGate.Size = new System.Drawing.Size(125, 23);
+            this.chkHaveGate.Size = new System.Drawing.Size(104, 20);
             this.chkHaveGate.TabIndex = 29;
             this.chkHaveGate.Text = "Have Gate";
             this.chkHaveGate.CheckedChanged += new System.EventHandler(this.chkHaveGate_CheckedChanged);
@@ -629,9 +631,9 @@ namespace PCSSale.Order
             // 
             this.txtGate.AccessibleDescription = "";
             this.txtGate.AccessibleName = "";
-            this.txtGate.Location = new System.Drawing.Point(470, 113);
+            this.txtGate.Location = new System.Drawing.Point(392, 98);
             this.txtGate.Name = "txtGate";
-            this.txtGate.Size = new System.Drawing.Size(250, 22);
+            this.txtGate.Size = new System.Drawing.Size(208, 20);
             this.txtGate.TabIndex = 30;
             this.txtGate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtGate_KeyDown);
             this.txtGate.Validating += new System.ComponentModel.CancelEventHandler(this.txtGate_Validating);
@@ -641,9 +643,9 @@ namespace PCSSale.Order
             this.btnGate.AccessibleDescription = "";
             this.btnGate.AccessibleName = "";
             this.btnGate.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnGate.Location = new System.Drawing.Point(722, 113);
+            this.btnGate.Location = new System.Drawing.Point(602, 98);
             this.btnGate.Name = "btnGate";
-            this.btnGate.Size = new System.Drawing.Size(29, 23);
+            this.btnGate.Size = new System.Drawing.Size(24, 20);
             this.btnGate.TabIndex = 31;
             this.btnGate.Text = "...";
             this.btnGate.Click += new System.EventHandler(this.btnGate_Click);
@@ -654,18 +656,18 @@ namespace PCSSale.Order
             this.lblGate.AccessibleName = "";
             this.lblGate.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblGate.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblGate.Location = new System.Drawing.Point(422, 113);
+            this.lblGate.Location = new System.Drawing.Point(352, 98);
             this.lblGate.Name = "lblGate";
-            this.lblGate.Size = new System.Drawing.Size(44, 23);
+            this.lblGate.Size = new System.Drawing.Size(36, 20);
             this.lblGate.TabIndex = 33;
             this.lblGate.Text = "Gate";
             this.lblGate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // btnSearch
             // 
-            this.btnSearch.Location = new System.Drawing.Point(660, 168);
+            this.btnSearch.Location = new System.Drawing.Point(550, 146);
             this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(90, 27);
+            this.btnSearch.Size = new System.Drawing.Size(75, 23);
             this.btnSearch.TabIndex = 39;
             this.btnSearch.Text = "S&earch";
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
@@ -695,6 +697,8 @@ namespace PCSSale.Order
             this.grpMoreDetail.Controls.Add(this.lblPaymentTerm);
             this.grpMoreDetail.Controls.Add(this.txtVessel);
             this.grpMoreDetail.Controls.Add(this.lblVessel);
+            this.grpMoreDetail.Controls.Add(this.txtPONo);
+            this.grpMoreDetail.Controls.Add(this.lblPONo);
             this.grpMoreDetail.Controls.Add(this.txtLCNo);
             this.grpMoreDetail.Controls.Add(this.lblLCNo);
             this.grpMoreDetail.Controls.Add(this.lblLCDate);
@@ -710,9 +714,9 @@ namespace PCSSale.Order
             this.grpMoreDetail.Controls.Add(this.txtShippingCode);
             this.grpMoreDetail.Controls.Add(this.lblShippingCode);
             this.grpMoreDetail.Controls.Add(this.txtMeasurement);
-            this.grpMoreDetail.Location = new System.Drawing.Point(5, 194);
+            this.grpMoreDetail.Location = new System.Drawing.Point(4, 168);
             this.grpMoreDetail.Name = "grpMoreDetail";
-            this.grpMoreDetail.Size = new System.Drawing.Size(1015, 145);
+            this.grpMoreDetail.Size = new System.Drawing.Size(1017, 126);
             this.grpMoreDetail.TabIndex = 40;
             this.grpMoreDetail.TabStop = false;
             // 
@@ -720,9 +724,9 @@ namespace PCSSale.Order
             // 
             this.btnSearchBin.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnSearchBin.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSearchBin.Location = new System.Drawing.Point(1176, 113);
+            this.btnSearchBin.Location = new System.Drawing.Point(980, 98);
             this.btnSearchBin.Name = "btnSearchBin";
-            this.btnSearchBin.Size = new System.Drawing.Size(29, 23);
+            this.btnSearchBin.Size = new System.Drawing.Size(24, 20);
             this.btnSearchBin.TabIndex = 35;
             this.btnSearchBin.Text = "...";
             this.btnSearchBin.Click += new System.EventHandler(this.btnSearchBin_Click);
@@ -731,9 +735,9 @@ namespace PCSSale.Order
             // 
             this.txtInvoiceNo.AccessibleDescription = "";
             this.txtInvoiceNo.AccessibleName = "";
-            this.txtInvoiceNo.Location = new System.Drawing.Point(329, 115);
+            this.txtInvoiceNo.Location = new System.Drawing.Point(274, 100);
             this.txtInvoiceNo.Name = "txtInvoiceNo";
-            this.txtInvoiceNo.Size = new System.Drawing.Size(120, 22);
+            this.txtInvoiceNo.Size = new System.Drawing.Size(100, 20);
             this.txtInvoiceNo.TabIndex = 27;
             // 
             // lblInvoiceNo
@@ -742,28 +746,28 @@ namespace PCSSale.Order
             this.lblInvoiceNo.AccessibleName = "";
             this.lblInvoiceNo.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblInvoiceNo.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblInvoiceNo.Location = new System.Drawing.Point(233, 115);
+            this.lblInvoiceNo.Location = new System.Drawing.Point(194, 100);
             this.lblInvoiceNo.Name = "lblInvoiceNo";
-            this.lblInvoiceNo.Size = new System.Drawing.Size(101, 23);
+            this.lblInvoiceNo.Size = new System.Drawing.Size(84, 20);
             this.lblInvoiceNo.TabIndex = 26;
             this.lblInvoiceNo.Text = "Invoice No";
             this.lblInvoiceNo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtBin
             // 
-            this.txtBin.Location = new System.Drawing.Point(1056, 113);
+            this.txtBin.Location = new System.Drawing.Point(880, 98);
             this.txtBin.Name = "txtBin";
-            this.txtBin.Size = new System.Drawing.Size(118, 22);
+            this.txtBin.Size = new System.Drawing.Size(98, 20);
             this.txtBin.TabIndex = 34;
             this.txtBin.Validating += new System.ComponentModel.CancelEventHandler(this.txtBin_Validating);
             // 
             // txtNetWeight
             // 
             this.txtNetWeight.EmptyAsNull = true;
-            this.txtNetWeight.Location = new System.Drawing.Point(593, 39);
+            this.txtNetWeight.Location = new System.Drawing.Point(494, 34);
             this.txtNetWeight.MaxLength = 15;
             this.txtNetWeight.Name = "txtNetWeight";
-            this.txtNetWeight.Size = new System.Drawing.Size(120, 22);
+            this.txtNetWeight.Size = new System.Drawing.Size(118, 20);
             this.txtNetWeight.TabIndex = 11;
             this.txtNetWeight.Tag = null;
             this.txtNetWeight.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None;
@@ -771,10 +775,10 @@ namespace PCSSale.Order
             // txtGrossWeight
             // 
             this.txtGrossWeight.EmptyAsNull = true;
-            this.txtGrossWeight.Location = new System.Drawing.Point(329, 39);
+            this.txtGrossWeight.Location = new System.Drawing.Point(274, 34);
             this.txtGrossWeight.MaxLength = 15;
             this.txtGrossWeight.Name = "txtGrossWeight";
-            this.txtGrossWeight.Size = new System.Drawing.Size(120, 22);
+            this.txtGrossWeight.Size = new System.Drawing.Size(100, 20);
             this.txtGrossWeight.TabIndex = 9;
             this.txtGrossWeight.Tag = null;
             this.txtGrossWeight.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None;
@@ -784,9 +788,9 @@ namespace PCSSale.Order
             this.lblBin.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.lblBin.ForeColor = System.Drawing.Color.Maroon;
             this.lblBin.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblBin.Location = new System.Drawing.Point(1022, 113);
+            this.lblBin.Location = new System.Drawing.Point(852, 98);
             this.lblBin.Name = "lblBin";
-            this.lblBin.Size = new System.Drawing.Size(32, 23);
+            this.lblBin.Size = new System.Drawing.Size(26, 20);
             this.lblBin.TabIndex = 33;
             this.lblBin.Text = "Bin";
             this.lblBin.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -810,9 +814,9 @@ namespace PCSSale.Order
             this.dtmLCDate.EmptyAsNull = true;
             this.dtmLCDate.ErrorInfo.ShowErrorMessage = false;
             this.dtmLCDate.FormatType = C1.Win.C1Input.FormatTypeEnum.CustomFormat;
-            this.dtmLCDate.Location = new System.Drawing.Point(593, 90);
+            this.dtmLCDate.Location = new System.Drawing.Point(494, 78);
             this.dtmLCDate.Name = "dtmLCDate";
-            this.dtmLCDate.Size = new System.Drawing.Size(141, 20);
+            this.dtmLCDate.Size = new System.Drawing.Size(118, 18);
             this.dtmLCDate.TabIndex = 23;
             this.dtmLCDate.Tag = null;
             this.dtmLCDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -839,9 +843,9 @@ namespace PCSSale.Order
             this.dtmOnBoardDate.EmptyAsNull = true;
             this.dtmOnBoardDate.ErrorInfo.ShowErrorMessage = false;
             this.dtmOnBoardDate.FormatType = C1.Win.C1Input.FormatTypeEnum.CustomFormat;
-            this.dtmOnBoardDate.Location = new System.Drawing.Point(593, 115);
+            this.dtmOnBoardDate.Location = new System.Drawing.Point(494, 100);
             this.dtmOnBoardDate.Name = "dtmOnBoardDate";
-            this.dtmOnBoardDate.Size = new System.Drawing.Size(141, 20);
+            this.dtmOnBoardDate.Size = new System.Drawing.Size(118, 18);
             this.dtmOnBoardDate.TabIndex = 29;
             this.dtmOnBoardDate.Tag = null;
             this.dtmOnBoardDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -854,9 +858,9 @@ namespace PCSSale.Order
             this.lblLocation.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.lblLocation.ForeColor = System.Drawing.Color.Maroon;
             this.lblLocation.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblLocation.Location = new System.Drawing.Point(746, 113);
+            this.lblLocation.Location = new System.Drawing.Point(622, 98);
             this.lblLocation.Name = "lblLocation";
-            this.lblLocation.Size = new System.Drawing.Size(65, 23);
+            this.lblLocation.Size = new System.Drawing.Size(54, 20);
             this.lblLocation.TabIndex = 30;
             this.lblLocation.Text = "Location";
             this.lblLocation.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -867,18 +871,18 @@ namespace PCSSale.Order
             this.lblOnBoardDate.AccessibleName = "";
             this.lblOnBoardDate.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblOnBoardDate.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblOnBoardDate.Location = new System.Drawing.Point(456, 115);
+            this.lblOnBoardDate.Location = new System.Drawing.Point(380, 100);
             this.lblOnBoardDate.Name = "lblOnBoardDate";
-            this.lblOnBoardDate.Size = new System.Drawing.Size(134, 23);
+            this.lblOnBoardDate.Size = new System.Drawing.Size(112, 20);
             this.lblOnBoardDate.TabIndex = 28;
             this.lblOnBoardDate.Text = "On Board Date, Time";
             this.lblOnBoardDate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtLocation
             // 
-            this.txtLocation.Location = new System.Drawing.Point(820, 113);
+            this.txtLocation.Location = new System.Drawing.Point(683, 98);
             this.txtLocation.Name = "txtLocation";
-            this.txtLocation.Size = new System.Drawing.Size(144, 22);
+            this.txtLocation.Size = new System.Drawing.Size(120, 20);
             this.txtLocation.TabIndex = 31;
             this.txtLocation.Validating += new System.ComponentModel.CancelEventHandler(this.txtLocation_Validating);
             // 
@@ -886,18 +890,18 @@ namespace PCSSale.Order
             // 
             this.txtReferenceNo.AccessibleDescription = "";
             this.txtReferenceNo.AccessibleName = "";
-            this.txtReferenceNo.Location = new System.Drawing.Point(106, 115);
+            this.txtReferenceNo.Location = new System.Drawing.Point(88, 100);
             this.txtReferenceNo.Name = "txtReferenceNo";
-            this.txtReferenceNo.Size = new System.Drawing.Size(120, 22);
+            this.txtReferenceNo.Size = new System.Drawing.Size(100, 20);
             this.txtReferenceNo.TabIndex = 25;
             // 
             // btnSearchLocation
             // 
             this.btnSearchLocation.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnSearchLocation.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSearchLocation.Location = new System.Drawing.Point(966, 113);
+            this.btnSearchLocation.Location = new System.Drawing.Point(805, 98);
             this.btnSearchLocation.Name = "btnSearchLocation";
-            this.btnSearchLocation.Size = new System.Drawing.Size(29, 23);
+            this.btnSearchLocation.Size = new System.Drawing.Size(24, 20);
             this.btnSearchLocation.TabIndex = 32;
             this.btnSearchLocation.Text = "...";
             this.btnSearchLocation.Click += new System.EventHandler(this.btnSearchLocation_Click);
@@ -908,9 +912,9 @@ namespace PCSSale.Order
             this.lblReferenceNo.AccessibleName = "";
             this.lblReferenceNo.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblReferenceNo.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblReferenceNo.Location = new System.Drawing.Point(7, 113);
+            this.lblReferenceNo.Location = new System.Drawing.Point(6, 98);
             this.lblReferenceNo.Name = "lblReferenceNo";
-            this.lblReferenceNo.Size = new System.Drawing.Size(101, 23);
+            this.lblReferenceNo.Size = new System.Drawing.Size(84, 20);
             this.lblReferenceNo.TabIndex = 24;
             this.lblReferenceNo.Text = "Reference No";
             this.lblReferenceNo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -919,9 +923,9 @@ namespace PCSSale.Order
             // 
             this.txtComment.AccessibleDescription = "";
             this.txtComment.AccessibleName = "";
-            this.txtComment.Location = new System.Drawing.Point(329, 90);
+            this.txtComment.Location = new System.Drawing.Point(274, 78);
             this.txtComment.Name = "txtComment";
-            this.txtComment.Size = new System.Drawing.Size(120, 22);
+            this.txtComment.Size = new System.Drawing.Size(100, 20);
             this.txtComment.TabIndex = 21;
             // 
             // lblComment
@@ -930,9 +934,9 @@ namespace PCSSale.Order
             this.lblComment.AccessibleName = "";
             this.lblComment.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblComment.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblComment.Location = new System.Drawing.Point(233, 90);
+            this.lblComment.Location = new System.Drawing.Point(194, 78);
             this.lblComment.Name = "lblComment";
-            this.lblComment.Size = new System.Drawing.Size(101, 23);
+            this.lblComment.Size = new System.Drawing.Size(84, 20);
             this.lblComment.TabIndex = 20;
             this.lblComment.Text = "Comment";
             this.lblComment.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -941,10 +945,10 @@ namespace PCSSale.Order
             // 
             this.txtPaymentTerm.AccessibleDescription = "";
             this.txtPaymentTerm.AccessibleName = "";
-            this.txtPaymentTerm.Location = new System.Drawing.Point(329, 65);
+            this.txtPaymentTerm.Location = new System.Drawing.Point(274, 56);
             this.txtPaymentTerm.Name = "txtPaymentTerm";
             this.txtPaymentTerm.ReadOnly = true;
-            this.txtPaymentTerm.Size = new System.Drawing.Size(120, 22);
+            this.txtPaymentTerm.Size = new System.Drawing.Size(100, 20);
             this.txtPaymentTerm.TabIndex = 15;
             // 
             // lblPaymentTerm
@@ -953,9 +957,9 @@ namespace PCSSale.Order
             this.lblPaymentTerm.AccessibleName = "";
             this.lblPaymentTerm.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblPaymentTerm.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblPaymentTerm.Location = new System.Drawing.Point(233, 65);
+            this.lblPaymentTerm.Location = new System.Drawing.Point(194, 56);
             this.lblPaymentTerm.Name = "lblPaymentTerm";
-            this.lblPaymentTerm.Size = new System.Drawing.Size(101, 23);
+            this.lblPaymentTerm.Size = new System.Drawing.Size(84, 20);
             this.lblPaymentTerm.TabIndex = 14;
             this.lblPaymentTerm.Text = "Payment Term";
             this.lblPaymentTerm.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -964,9 +968,9 @@ namespace PCSSale.Order
             // 
             this.txtVessel.AccessibleDescription = "";
             this.txtVessel.AccessibleName = "";
-            this.txtVessel.Location = new System.Drawing.Point(106, 90);
+            this.txtVessel.Location = new System.Drawing.Point(88, 78);
             this.txtVessel.Name = "txtVessel";
-            this.txtVessel.Size = new System.Drawing.Size(120, 22);
+            this.txtVessel.Size = new System.Drawing.Size(100, 20);
             this.txtVessel.TabIndex = 19;
             // 
             // lblVessel
@@ -975,9 +979,9 @@ namespace PCSSale.Order
             this.lblVessel.AccessibleName = "";
             this.lblVessel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblVessel.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblVessel.Location = new System.Drawing.Point(7, 90);
+            this.lblVessel.Location = new System.Drawing.Point(6, 78);
             this.lblVessel.Name = "lblVessel";
-            this.lblVessel.Size = new System.Drawing.Size(101, 23);
+            this.lblVessel.Size = new System.Drawing.Size(84, 20);
             this.lblVessel.TabIndex = 18;
             this.lblVessel.Text = "Vessel";
             this.lblVessel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -986,9 +990,9 @@ namespace PCSSale.Order
             // 
             this.txtLCNo.AccessibleDescription = "";
             this.txtLCNo.AccessibleName = "";
-            this.txtLCNo.Location = new System.Drawing.Point(593, 65);
+            this.txtLCNo.Location = new System.Drawing.Point(494, 56);
             this.txtLCNo.Name = "txtLCNo";
-            this.txtLCNo.Size = new System.Drawing.Size(120, 22);
+            this.txtLCNo.Size = new System.Drawing.Size(118, 20);
             this.txtLCNo.TabIndex = 17;
             // 
             // lblLCNo
@@ -997,9 +1001,9 @@ namespace PCSSale.Order
             this.lblLCNo.AccessibleName = "";
             this.lblLCNo.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblLCNo.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblLCNo.Location = new System.Drawing.Point(456, 65);
+            this.lblLCNo.Location = new System.Drawing.Point(380, 56);
             this.lblLCNo.Name = "lblLCNo";
-            this.lblLCNo.Size = new System.Drawing.Size(101, 23);
+            this.lblLCNo.Size = new System.Drawing.Size(84, 20);
             this.lblLCNo.TabIndex = 16;
             this.lblLCNo.Text = "L/C No";
             this.lblLCNo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1010,9 +1014,9 @@ namespace PCSSale.Order
             this.lblLCDate.AccessibleName = "";
             this.lblLCDate.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblLCDate.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblLCDate.Location = new System.Drawing.Point(456, 90);
+            this.lblLCDate.Location = new System.Drawing.Point(380, 78);
             this.lblLCDate.Name = "lblLCDate";
-            this.lblLCDate.Size = new System.Drawing.Size(101, 23);
+            this.lblLCDate.Size = new System.Drawing.Size(84, 20);
             this.lblLCDate.TabIndex = 22;
             this.lblLCDate.Text = "L/C Date";
             this.lblLCDate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1021,9 +1025,9 @@ namespace PCSSale.Order
             // 
             this.txtIssuingBank.AccessibleDescription = "";
             this.txtIssuingBank.AccessibleName = "";
-            this.txtIssuingBank.Location = new System.Drawing.Point(106, 65);
+            this.txtIssuingBank.Location = new System.Drawing.Point(88, 56);
             this.txtIssuingBank.Name = "txtIssuingBank";
-            this.txtIssuingBank.Size = new System.Drawing.Size(120, 22);
+            this.txtIssuingBank.Size = new System.Drawing.Size(100, 20);
             this.txtIssuingBank.TabIndex = 13;
             // 
             // lblIssuingBank
@@ -1032,9 +1036,9 @@ namespace PCSSale.Order
             this.lblIssuingBank.AccessibleName = "";
             this.lblIssuingBank.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblIssuingBank.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblIssuingBank.Location = new System.Drawing.Point(7, 65);
+            this.lblIssuingBank.Location = new System.Drawing.Point(6, 56);
             this.lblIssuingBank.Name = "lblIssuingBank";
-            this.lblIssuingBank.Size = new System.Drawing.Size(101, 23);
+            this.lblIssuingBank.Size = new System.Drawing.Size(84, 20);
             this.lblIssuingBank.TabIndex = 12;
             this.lblIssuingBank.Text = "Issuing Bank";
             this.lblIssuingBank.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1045,9 +1049,9 @@ namespace PCSSale.Order
             this.lblNetWeight.AccessibleName = "";
             this.lblNetWeight.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblNetWeight.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblNetWeight.Location = new System.Drawing.Point(456, 39);
+            this.lblNetWeight.Location = new System.Drawing.Point(380, 34);
             this.lblNetWeight.Name = "lblNetWeight";
-            this.lblNetWeight.Size = new System.Drawing.Size(101, 23);
+            this.lblNetWeight.Size = new System.Drawing.Size(84, 20);
             this.lblNetWeight.TabIndex = 10;
             this.lblNetWeight.Text = "Net Weight";
             this.lblNetWeight.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1058,9 +1062,9 @@ namespace PCSSale.Order
             this.lblGrossWeight.AccessibleName = "";
             this.lblGrossWeight.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblGrossWeight.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblGrossWeight.Location = new System.Drawing.Point(233, 39);
+            this.lblGrossWeight.Location = new System.Drawing.Point(194, 34);
             this.lblGrossWeight.Name = "lblGrossWeight";
-            this.lblGrossWeight.Size = new System.Drawing.Size(101, 23);
+            this.lblGrossWeight.Size = new System.Drawing.Size(84, 20);
             this.lblGrossWeight.TabIndex = 8;
             this.lblGrossWeight.Text = "Gross Weight";
             this.lblGrossWeight.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1071,9 +1075,9 @@ namespace PCSSale.Order
             this.lblMeasurement.AccessibleName = "";
             this.lblMeasurement.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblMeasurement.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblMeasurement.Location = new System.Drawing.Point(7, 39);
+            this.lblMeasurement.Location = new System.Drawing.Point(6, 34);
             this.lblMeasurement.Name = "lblMeasurement";
-            this.lblMeasurement.Size = new System.Drawing.Size(91, 23);
+            this.lblMeasurement.Size = new System.Drawing.Size(76, 20);
             this.lblMeasurement.TabIndex = 6;
             this.lblMeasurement.Text = "Measurement";
             this.lblMeasurement.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1082,9 +1086,9 @@ namespace PCSSale.Order
             // 
             this.txtCNo.AccessibleDescription = "";
             this.txtCNo.AccessibleName = "";
-            this.txtCNo.Location = new System.Drawing.Point(593, 14);
+            this.txtCNo.Location = new System.Drawing.Point(494, 12);
             this.txtCNo.Name = "txtCNo";
-            this.txtCNo.Size = new System.Drawing.Size(120, 22);
+            this.txtCNo.Size = new System.Drawing.Size(118, 20);
             this.txtCNo.TabIndex = 5;
             // 
             // lblCNO
@@ -1093,9 +1097,9 @@ namespace PCSSale.Order
             this.lblCNO.AccessibleName = "";
             this.lblCNO.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblCNO.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblCNO.Location = new System.Drawing.Point(456, 14);
+            this.lblCNO.Location = new System.Drawing.Point(380, 12);
             this.lblCNO.Name = "lblCNO";
-            this.lblCNO.Size = new System.Drawing.Size(101, 23);
+            this.lblCNO.Size = new System.Drawing.Size(84, 20);
             this.lblCNO.TabIndex = 4;
             this.lblCNO.Text = "C/No";
             this.lblCNO.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1104,9 +1108,9 @@ namespace PCSSale.Order
             // 
             this.txtFromPort.AccessibleDescription = "";
             this.txtFromPort.AccessibleName = "";
-            this.txtFromPort.Location = new System.Drawing.Point(329, 14);
+            this.txtFromPort.Location = new System.Drawing.Point(274, 12);
             this.txtFromPort.Name = "txtFromPort";
-            this.txtFromPort.Size = new System.Drawing.Size(120, 22);
+            this.txtFromPort.Size = new System.Drawing.Size(100, 20);
             this.txtFromPort.TabIndex = 3;
             // 
             // lblFromPort
@@ -1115,9 +1119,9 @@ namespace PCSSale.Order
             this.lblFromPort.AccessibleName = "";
             this.lblFromPort.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblFromPort.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblFromPort.Location = new System.Drawing.Point(233, 14);
+            this.lblFromPort.Location = new System.Drawing.Point(194, 12);
             this.lblFromPort.Name = "lblFromPort";
-            this.lblFromPort.Size = new System.Drawing.Size(101, 23);
+            this.lblFromPort.Size = new System.Drawing.Size(84, 20);
             this.lblFromPort.TabIndex = 2;
             this.lblFromPort.Text = "From Port";
             this.lblFromPort.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1126,9 +1130,9 @@ namespace PCSSale.Order
             // 
             this.txtShippingCode.AccessibleDescription = "";
             this.txtShippingCode.AccessibleName = "";
-            this.txtShippingCode.Location = new System.Drawing.Point(106, 14);
+            this.txtShippingCode.Location = new System.Drawing.Point(88, 12);
             this.txtShippingCode.Name = "txtShippingCode";
-            this.txtShippingCode.Size = new System.Drawing.Size(120, 22);
+            this.txtShippingCode.Size = new System.Drawing.Size(100, 20);
             this.txtShippingCode.TabIndex = 1;
             // 
             // lblShippingCode
@@ -1137,9 +1141,9 @@ namespace PCSSale.Order
             this.lblShippingCode.AccessibleName = "";
             this.lblShippingCode.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblShippingCode.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblShippingCode.Location = new System.Drawing.Point(7, 14);
+            this.lblShippingCode.Location = new System.Drawing.Point(6, 12);
             this.lblShippingCode.Name = "lblShippingCode";
-            this.lblShippingCode.Size = new System.Drawing.Size(101, 23);
+            this.lblShippingCode.Size = new System.Drawing.Size(84, 20);
             this.lblShippingCode.TabIndex = 0;
             this.lblShippingCode.Text = "Shipping Code";
             this.lblShippingCode.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1147,10 +1151,10 @@ namespace PCSSale.Order
             // txtMeasurement
             // 
             this.txtMeasurement.EmptyAsNull = true;
-            this.txtMeasurement.Location = new System.Drawing.Point(106, 39);
+            this.txtMeasurement.Location = new System.Drawing.Point(88, 34);
             this.txtMeasurement.MaxLength = 15;
             this.txtMeasurement.Name = "txtMeasurement";
-            this.txtMeasurement.Size = new System.Drawing.Size(120, 22);
+            this.txtMeasurement.Size = new System.Drawing.Size(100, 20);
             this.txtMeasurement.TabIndex = 7;
             this.txtMeasurement.Tag = null;
             this.txtMeasurement.VisibleButtons = C1.Win.C1Input.DropDownControlButtonFlags.None;
@@ -1162,9 +1166,9 @@ namespace PCSSale.Order
             this.btnModify.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnModify.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnModify.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnModify.Location = new System.Drawing.Point(163, 504);
+            this.btnModify.Location = new System.Drawing.Point(136, 509);
             this.btnModify.Name = "btnModify";
-            this.btnModify.Size = new System.Drawing.Size(78, 28);
+            this.btnModify.Size = new System.Drawing.Size(65, 24);
             this.btnModify.TabIndex = 44;
             this.btnModify.Text = "&Modify";
             this.btnModify.Click += new System.EventHandler(this.btnModify_Click);
@@ -1174,9 +1178,9 @@ namespace PCSSale.Order
             this.btnPrintConfiguration.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnPrintConfiguration.Font = new System.Drawing.Font("Wingdings 3", 6F);
             this.btnPrintConfiguration.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnPrintConfiguration.Location = new System.Drawing.Point(454, 504);
+            this.btnPrintConfiguration.Location = new System.Drawing.Point(378, 509);
             this.btnPrintConfiguration.Name = "btnPrintConfiguration";
-            this.btnPrintConfiguration.Size = new System.Drawing.Size(21, 28);
+            this.btnPrintConfiguration.Size = new System.Drawing.Size(18, 24);
             this.btnPrintConfiguration.TabIndex = 47;
             this.btnPrintConfiguration.Text = "q";
             // 
@@ -1188,27 +1192,27 @@ namespace PCSSale.Order
             this.btnAttachedSheet.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnAttachedSheet.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnAttachedSheet.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnAttachedSheet.Location = new System.Drawing.Point(253, 504);
+            this.btnAttachedSheet.Location = new System.Drawing.Point(211, 509);
             this.btnAttachedSheet.Name = "btnAttachedSheet";
-            this.btnAttachedSheet.Size = new System.Drawing.Size(120, 28);
+            this.btnAttachedSheet.Size = new System.Drawing.Size(100, 24);
             this.btnAttachedSheet.TabIndex = 45;
             this.btnAttachedSheet.Text = "A&ttached Sheet";
             this.btnAttachedSheet.Click += new System.EventHandler(this.btnAttachedSheet_Click);
             // 
             // lblVATInInvoice
             // 
-            this.lblVATInInvoice.Location = new System.Drawing.Point(463, 117);
+            this.lblVATInInvoice.Location = new System.Drawing.Point(386, 101);
             this.lblVATInInvoice.Name = "lblVATInInvoice";
-            this.lblVATInInvoice.Size = new System.Drawing.Size(190, 16);
+            this.lblVATInInvoice.Size = new System.Drawing.Size(158, 14);
             this.lblVATInInvoice.TabIndex = 34;
             this.lblVATInInvoice.Text = "VAT values in the Invoice";
             this.lblVATInInvoice.Visible = false;
             // 
             // groupBox1
             // 
-            this.groupBox1.Location = new System.Drawing.Point(408, 108);
+            this.groupBox1.Location = new System.Drawing.Point(340, 94);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(5, 26);
+            this.groupBox1.Size = new System.Drawing.Size(4, 22);
             this.groupBox1.TabIndex = 32;
             this.groupBox1.TabStop = false;
             // 
@@ -1218,9 +1222,9 @@ namespace PCSSale.Order
             this.lblInvoiceDate.AccessibleName = "";
             this.lblInvoiceDate.ForeColor = System.Drawing.Color.Maroon;
             this.lblInvoiceDate.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblInvoiceDate.Location = new System.Drawing.Point(5, 138);
+            this.lblInvoiceDate.Location = new System.Drawing.Point(4, 120);
             this.lblInvoiceDate.Name = "lblInvoiceDate";
-            this.lblInvoiceDate.Size = new System.Drawing.Size(125, 24);
+            this.lblInvoiceDate.Size = new System.Drawing.Size(104, 20);
             this.lblInvoiceDate.TabIndex = 27;
             this.lblInvoiceDate.Text = "Invoice Date";
             this.lblInvoiceDate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1244,9 +1248,9 @@ namespace PCSSale.Order
             this.dtmInvoiceDate.EmptyAsNull = true;
             this.dtmInvoiceDate.ErrorInfo.ShowErrorMessage = false;
             this.dtmInvoiceDate.FormatType = C1.Win.C1Input.FormatTypeEnum.CustomFormat;
-            this.dtmInvoiceDate.Location = new System.Drawing.Point(130, 138);
+            this.dtmInvoiceDate.Location = new System.Drawing.Point(108, 120);
             this.dtmInvoiceDate.Name = "dtmInvoiceDate";
-            this.dtmInvoiceDate.Size = new System.Drawing.Size(141, 20);
+            this.dtmInvoiceDate.Size = new System.Drawing.Size(118, 18);
             this.dtmInvoiceDate.TabIndex = 28;
             this.dtmInvoiceDate.Tag = null;
             this.dtmInvoiceDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -1260,9 +1264,9 @@ namespace PCSSale.Order
             this.lblFromDate.AccessibleName = "";
             this.lblFromDate.ForeColor = System.Drawing.Color.Maroon;
             this.lblFromDate.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblFromDate.Location = new System.Drawing.Point(5, 168);
+            this.lblFromDate.Location = new System.Drawing.Point(4, 146);
             this.lblFromDate.Name = "lblFromDate";
-            this.lblFromDate.Size = new System.Drawing.Size(108, 24);
+            this.lblFromDate.Size = new System.Drawing.Size(90, 20);
             this.lblFromDate.TabIndex = 35;
             this.lblFromDate.Text = "From Date";
             this.lblFromDate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1286,9 +1290,9 @@ namespace PCSSale.Order
             this.dtmFromDate.EmptyAsNull = true;
             this.dtmFromDate.ErrorInfo.ShowErrorMessage = false;
             this.dtmFromDate.FormatType = C1.Win.C1Input.FormatTypeEnum.CustomFormat;
-            this.dtmFromDate.Location = new System.Drawing.Point(130, 168);
+            this.dtmFromDate.Location = new System.Drawing.Point(108, 146);
             this.dtmFromDate.Name = "dtmFromDate";
-            this.dtmFromDate.Size = new System.Drawing.Size(141, 20);
+            this.dtmFromDate.Size = new System.Drawing.Size(118, 18);
             this.dtmFromDate.TabIndex = 36;
             this.dtmFromDate.Tag = null;
             this.dtmFromDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -1302,9 +1306,9 @@ namespace PCSSale.Order
             this.lblToDate.AccessibleName = "";
             this.lblToDate.ForeColor = System.Drawing.Color.Maroon;
             this.lblToDate.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblToDate.Location = new System.Drawing.Point(274, 168);
+            this.lblToDate.Location = new System.Drawing.Point(228, 146);
             this.lblToDate.Name = "lblToDate";
-            this.lblToDate.Size = new System.Drawing.Size(60, 24);
+            this.lblToDate.Size = new System.Drawing.Size(50, 20);
             this.lblToDate.TabIndex = 37;
             this.lblToDate.Text = "To Date";
             this.lblToDate.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1328,9 +1332,9 @@ namespace PCSSale.Order
             this.dtmToDate.EmptyAsNull = true;
             this.dtmToDate.ErrorInfo.ShowErrorMessage = false;
             this.dtmToDate.FormatType = C1.Win.C1Input.FormatTypeEnum.CustomFormat;
-            this.dtmToDate.Location = new System.Drawing.Point(336, 168);
+            this.dtmToDate.Location = new System.Drawing.Point(280, 146);
             this.dtmToDate.Name = "dtmToDate";
-            this.dtmToDate.Size = new System.Drawing.Size(142, 20);
+            this.dtmToDate.Size = new System.Drawing.Size(118, 18);
             this.dtmToDate.TabIndex = 38;
             this.dtmToDate.Tag = null;
             this.dtmToDate.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -1346,9 +1350,9 @@ namespace PCSSale.Order
             this.lblPurpose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblPurpose.ForeColor = System.Drawing.Color.Maroon;
             this.lblPurpose.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblPurpose.Location = new System.Drawing.Point(860, 31);
+            this.lblPurpose.Location = new System.Drawing.Point(888, 27);
             this.lblPurpose.Name = "lblPurpose";
-            this.lblPurpose.Size = new System.Drawing.Size(55, 23);
+            this.lblPurpose.Size = new System.Drawing.Size(45, 20);
             this.lblPurpose.TabIndex = 0;
             this.lblPurpose.Text = "Purpose";
             this.lblPurpose.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -1360,15 +1364,37 @@ namespace PCSSale.Order
             this.cboPurpose.Items.AddRange(new object[] {
             "Print Invoice",
             "Shipping"});
-            this.cboPurpose.Location = new System.Drawing.Point(915, 32);
+            this.cboPurpose.Location = new System.Drawing.Point(933, 28);
             this.cboPurpose.Name = "cboPurpose";
-            this.cboPurpose.Size = new System.Drawing.Size(108, 24);
+            this.cboPurpose.Size = new System.Drawing.Size(90, 21);
             this.cboPurpose.TabIndex = 1;
             this.cboPurpose.SelectedIndexChanged += new System.EventHandler(this.cboPurpose_SelectedIndexChanged);
             // 
+            // lblPONo
+            // 
+            this.lblPONo.AccessibleDescription = "";
+            this.lblPONo.AccessibleName = "";
+            this.lblPONo.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblPONo.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblPONo.Location = new System.Drawing.Point(627, 56);
+            this.lblPONo.Name = "lblPONo";
+            this.lblPONo.Size = new System.Drawing.Size(49, 20);
+            this.lblPONo.TabIndex = 16;
+            this.lblPONo.Text = "PO No.";
+            this.lblPONo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtPONo
+            // 
+            this.txtPONo.AccessibleDescription = "";
+            this.txtPONo.AccessibleName = "";
+            this.txtPONo.Location = new System.Drawing.Point(683, 56);
+            this.txtPONo.Name = "txtPONo";
+            this.txtPONo.Size = new System.Drawing.Size(120, 20);
+            this.txtPONo.TabIndex = 17;
+            // 
             // ConfirmShipManagement
             // 
-            this.AutoScaleBaseSize = new System.Drawing.Size(6, 15);
+            this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(1028, 539);
             this.Controls.Add(this.cboPurpose);
@@ -1537,5 +1563,7 @@ namespace PCSSale.Order
         private C1DateEdit dtmToDate;
         private GroupBox groupBox1;
         private GroupBox grpMoreDetail;
+        private TextBox txtPONo;
+        private Label lblPONo;
     }
 }

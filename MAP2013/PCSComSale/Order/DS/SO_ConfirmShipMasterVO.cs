@@ -32,8 +32,9 @@ namespace PCSComSale.Order.DS
 		private DateTime mInvoiceDate;
         public int BinId { get; set; }
         public int LocationId { get; set; }
+        public string PONumber { get; set; }
 
-		public int ConfirmShipMasterID
+        public int ConfirmShipMasterID
 		{
 			set { mConfirmShipMasterID = value; }
 			get { return mConfirmShipMasterID; }

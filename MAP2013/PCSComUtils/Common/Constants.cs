@@ -8354,6 +8354,7 @@ namespace PCSComUtils.Common
         public const string TABLE_NAME = "SO_ConfirmShipMaster";
         public const string USERNAME_FLD = "UserName";
         public const string VESSELNAME_FLD = "VesselName";
+        public const string PONumber_FLD = "PONumber";
     }
 
     public sealed class SO_CustomerItemRefDetailTable
@@ -8458,6 +8459,7 @@ namespace PCSComUtils.Common
         public const string TABLE_NAME = "SO_InvoiceMaster";
         public const string USERNAME_FLD = "UserName";
         public const string VESSELNAME_FLD = "VesselName";
+        public const string PONumber_FLD = "PONumber";
     }
 
     public sealed class SO_PaymentMethodTable

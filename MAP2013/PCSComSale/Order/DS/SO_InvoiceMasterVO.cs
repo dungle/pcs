@@ -164,5 +164,7 @@ namespace PCSComSale.Order.DS
             get { return mLocationID; }
             set { mLocationID = value; }
         }
-	}
+
+        public string PONumber { get; set; }
+    }
 }

@@ -27,52 +27,10 @@ namespace PCSComUtils.Properties {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
         [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.;Initial Catalog=MAP;Persist Security Info=True;User ID=sa;Password=" +
-            "khongbiet")]
-        public string vbc2009ConnectionString {
-            get {
-                return ((string)(this["vbc2009ConnectionString"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.;Initial Catalog=map;Persist Security Info=True;User ID=sa;Password=" +
-            "khongbiet")]
-        public string map2010ConnectionString {
-            get {
-                return ((string)(this["map2010ConnectionString"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.;Initial Catalog=MAP;Persist Security Info=True;User ID=sa;Password=" +
-            "khongbiet")]
-        public string MAP2010ConnectionString1 {
-            get {
-                return ((string)(this["MAP2010ConnectionString1"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=EPVNWKS13;Initial Catalog=MAP;Integrated Security=True")]
+            "Niteco@123")]
         public string MAPConnectionString {
             get {
                 return ((string)(this["MAPConnectionString"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=.;Initial Catalog=MAP;Integrated Security=True")]
-        public string MAPConnectionString1 {
-            get {
-                return ((string)(this["MAPConnectionString1"]));
             }
         }
     }

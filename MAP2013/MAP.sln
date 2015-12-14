@@ -1,5 +1,7 @@
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PCSComUtils", "PCSComUtils\PCSComUtils.csproj", "{A146CF5E-F135-44DE-B57F-CEE4C2B0D688}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PCSComProduct", "PCSComProduct\PCSComProduct.csproj", "{0F848537-F9CD-47FD-9843-B47981FC0F33}"
@@ -37,6 +39,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DBScripts", "DBScripts", "{
 		Script\DBScript\03. NewTableConfig.sql = Script\DBScript\03. NewTableConfig.sql
 		Script\DBScript\04. MenuConfig.sql = Script\DBScript\04. MenuConfig.sql
 		Script\DBScript\05. StoreProcedure.sql = Script\DBScript\05. StoreProcedure.sql
+		Script\DBScript\Changes2016.sql = Script\DBScript\Changes2016.sql
 		Script\DBScript\MessageScript.sql = Script\DBScript\MessageScript.sql
 		Script\DBScript\ReportConfig.sql = Script\DBScript\ReportConfig.sql
 		Script\DBScript\Script-02.sql = Script\DBScript\Script-02.sql
@@ -57,60 +60,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "References", "References", 
 	EndProjectSection
 EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 17
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://tfs.codeplex.com/tfs/tfs17
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = PCSAssemblyLoader\\PCSAssemblyLoader.csproj
-		SccProjectName1 = PCSAssemblyLoader
-		SccLocalPath1 = PCSAssemblyLoader
-		SccProjectUniqueName2 = PCSComMaterials\\PCSComMaterials.csproj
-		SccProjectName2 = PCSComMaterials
-		SccLocalPath2 = PCSComMaterials
-		SccProjectUniqueName3 = PCSComProcurement\\PCSComProcurement.csproj
-		SccProjectName3 = PCSComProcurement
-		SccLocalPath3 = PCSComProcurement
-		SccProjectUniqueName4 = PCSComProduct\\PCSComProduct.csproj
-		SccProjectName4 = PCSComProduct
-		SccLocalPath4 = PCSComProduct
-		SccProjectUniqueName5 = PCSComProduction\\PCSComProduction.csproj
-		SccProjectName5 = PCSComProduction
-		SccLocalPath5 = PCSComProduction
-		SccProjectUniqueName6 = PCSComSale\\PCSComSale.csproj
-		SccProjectName6 = PCSComSale
-		SccLocalPath6 = PCSComSale
-		SccProjectUniqueName7 = PCSComUtils\\PCSComUtils.csproj
-		SccProjectName7 = PCSComUtils
-		SccLocalPath7 = PCSComUtils
-		SccProjectUniqueName8 = PCSMain\\PCSMain.csproj
-		SccProjectName8 = PCSMain
-		SccLocalPath8 = PCSMain
-		SccProjectUniqueName9 = PCSMaterials\\PCSMaterials.csproj
-		SccProjectName9 = PCSMaterials
-		SccLocalPath9 = PCSMaterials
-		SccProjectUniqueName10 = PCSProcurement\\PCSProcurement.csproj
-		SccProjectName10 = PCSProcurement
-		SccLocalPath10 = PCSProcurement
-		SccProjectUniqueName11 = PCSProduct\\PCSProduct.csproj
-		SccProjectName11 = PCSProduct
-		SccLocalPath11 = PCSProduct
-		SccProjectUniqueName12 = PCSProduction\\PCSProduction.csproj
-		SccProjectName12 = PCSProduction
-		SccLocalPath12 = PCSProduction
-		SccProjectUniqueName13 = PCSReport\\PCSReport.csproj
-		SccProjectName13 = PCSReport
-		SccLocalPath13 = PCSReport
-		SccProjectUniqueName14 = PCSSale\\PCSSale.csproj
-		SccProjectName14 = PCSSale
-		SccLocalPath14 = PCSSale
-		SccProjectUniqueName15 = PCSTestReport\\PCSTestReport\\PCSTestReport.csproj
-		SccProjectName15 = PCSTestReport/PCSTestReport
-		SccLocalPath15 = PCSTestReport\\PCSTestReport
-		SccProjectUniqueName16 = PCSUtils\\PCSUtils.csproj
-		SccProjectName16 = PCSUtils
-		SccLocalPath16 = PCSUtils
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|Mixed Platforms = Debug|Mixed Platforms
