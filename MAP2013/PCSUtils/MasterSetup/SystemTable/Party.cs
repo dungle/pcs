@@ -296,8 +296,8 @@ namespace PCSUtils.MasterSetup.SystemTable
             // 
             resources.ApplyResources(this.txtWebSite, "txtWebSite");
             this.txtWebSite.Name = "txtWebSite";
-            this.txtWebSite.Leave += new System.EventHandler(this.OnLeaveControl);
             this.txtWebSite.Enter += new System.EventHandler(this.OnEnterControl);
+            this.txtWebSite.Leave += new System.EventHandler(this.OnLeaveControl);
             // 
             // lblWebSite
             // 
@@ -323,8 +323,8 @@ namespace PCSUtils.MasterSetup.SystemTable
             // 
             resources.ApplyResources(this.txtZIP, "txtZIP");
             this.txtZIP.Name = "txtZIP";
-            this.txtZIP.Leave += new System.EventHandler(this.OnLeaveControl);
             this.txtZIP.Enter += new System.EventHandler(this.OnEnterControl);
+            this.txtZIP.Leave += new System.EventHandler(this.OnLeaveControl);
             // 
             // lblZIP
             // 
@@ -337,8 +337,8 @@ namespace PCSUtils.MasterSetup.SystemTable
             // 
             resources.ApplyResources(this.txtState, "txtState");
             this.txtState.Name = "txtState";
-            this.txtState.Leave += new System.EventHandler(this.OnLeaveControl);
             this.txtState.Enter += new System.EventHandler(this.OnEnterControl);
+            this.txtState.Leave += new System.EventHandler(this.OnLeaveControl);
             // 
             // lblState
             // 
@@ -358,8 +358,8 @@ namespace PCSUtils.MasterSetup.SystemTable
             // 
             resources.ApplyResources(this.txtAddress, "txtAddress");
             this.txtAddress.Name = "txtAddress";
-            this.txtAddress.Leave += new System.EventHandler(this.OnLeaveControl);
             this.txtAddress.Enter += new System.EventHandler(this.OnEnterControl);
+            this.txtAddress.Leave += new System.EventHandler(this.OnLeaveControl);
             // 
             // lblAddress
             // 
@@ -387,8 +387,8 @@ namespace PCSUtils.MasterSetup.SystemTable
             // 
             resources.ApplyResources(this.txtPhone, "txtPhone");
             this.txtPhone.Name = "txtPhone";
-            this.txtPhone.Leave += new System.EventHandler(this.OnLeaveControl);
             this.txtPhone.Enter += new System.EventHandler(this.OnEnterControl);
+            this.txtPhone.Leave += new System.EventHandler(this.OnLeaveControl);
             // 
             // lblPhone
             // 
@@ -401,8 +401,8 @@ namespace PCSUtils.MasterSetup.SystemTable
             // 
             resources.ApplyResources(this.txtFax, "txtFax");
             this.txtFax.Name = "txtFax";
-            this.txtFax.Leave += new System.EventHandler(this.OnLeaveControl);
             this.txtFax.Enter += new System.EventHandler(this.OnEnterControl);
+            this.txtFax.Leave += new System.EventHandler(this.OnLeaveControl);
             // 
             // lblFax
             // 
@@ -415,8 +415,8 @@ namespace PCSUtils.MasterSetup.SystemTable
             // 
             resources.ApplyResources(this.txtVATCode, "txtVATCode");
             this.txtVATCode.Name = "txtVATCode";
-            this.txtVATCode.Leave += new System.EventHandler(this.OnLeaveControl);
             this.txtVATCode.Enter += new System.EventHandler(this.OnEnterControl);
+            this.txtVATCode.Leave += new System.EventHandler(this.OnLeaveControl);
             // 
             // lblVATCode
             // 
@@ -429,8 +429,8 @@ namespace PCSUtils.MasterSetup.SystemTable
             // 
             resources.ApplyResources(this.txtBankAccount, "txtBankAccount");
             this.txtBankAccount.Name = "txtBankAccount";
-            this.txtBankAccount.Leave += new System.EventHandler(this.OnLeaveControl);
             this.txtBankAccount.Enter += new System.EventHandler(this.OnEnterControl);
+            this.txtBankAccount.Leave += new System.EventHandler(this.OnLeaveControl);
             // 
             // lblBankAccount
             // 
@@ -443,82 +443,64 @@ namespace PCSUtils.MasterSetup.SystemTable
             // 
             this.cboType.AddItemSeparator = ';';
             resources.ApplyResources(this.cboType, "cboType");
-            this.cboType.CaptionHeight = 17;
             this.cboType.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
-            this.cboType.ColumnCaptionHeight = 17;
-            this.cboType.ColumnFooterHeight = 17;
             this.cboType.ComboStyle = C1.Win.C1List.ComboStyleEnum.DropdownList;
-            this.cboType.ContentHeight = 15;
             this.cboType.DeadAreaBackColor = System.Drawing.Color.Empty;
             this.cboType.EditorBackColor = System.Drawing.SystemColors.Window;
             this.cboType.EditorFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboType.EditorForeColor = System.Drawing.SystemColors.WindowText;
-            this.cboType.EditorHeight = 15;
             this.cboType.Images.Add(((System.Drawing.Image)(resources.GetObject("cboType.Images"))));
-            this.cboType.ItemHeight = 15;
             this.cboType.MatchEntryTimeout = ((long)(2000));
             this.cboType.MaxDropDownItems = ((short)(5));
             this.cboType.MaxLength = 32767;
             this.cboType.MouseCursor = System.Windows.Forms.Cursors.Default;
             this.cboType.Name = "cboType";
             this.cboType.RowSubDividerColor = System.Drawing.Color.DarkGray;
-            this.cboType.Leave += new System.EventHandler(this.OnLeaveControl);
             this.cboType.Enter += new System.EventHandler(this.OnEnterControl);
+            this.cboType.Leave += new System.EventHandler(this.OnLeaveControl);
             this.cboType.PropBag = resources.GetString("cboType.PropBag");
             // 
             // cboCountry
             // 
             this.cboCountry.AddItemSeparator = ';';
             resources.ApplyResources(this.cboCountry, "cboCountry");
-            this.cboCountry.CaptionHeight = 17;
             this.cboCountry.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
-            this.cboCountry.ColumnCaptionHeight = 17;
-            this.cboCountry.ColumnFooterHeight = 17;
             this.cboCountry.ComboStyle = C1.Win.C1List.ComboStyleEnum.DropdownList;
-            this.cboCountry.ContentHeight = 15;
             this.cboCountry.DeadAreaBackColor = System.Drawing.Color.Empty;
             this.cboCountry.EditorBackColor = System.Drawing.SystemColors.Window;
             this.cboCountry.EditorFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboCountry.EditorForeColor = System.Drawing.SystemColors.WindowText;
-            this.cboCountry.EditorHeight = 15;
             this.cboCountry.Images.Add(((System.Drawing.Image)(resources.GetObject("cboCountry.Images"))));
-            this.cboCountry.ItemHeight = 15;
             this.cboCountry.MatchEntryTimeout = ((long)(2000));
             this.cboCountry.MaxDropDownItems = ((short)(5));
             this.cboCountry.MaxLength = 32767;
             this.cboCountry.MouseCursor = System.Windows.Forms.Cursors.Default;
             this.cboCountry.Name = "cboCountry";
             this.cboCountry.RowSubDividerColor = System.Drawing.Color.DarkGray;
-            this.cboCountry.Leave += new System.EventHandler(this.OnLeaveControl);
             this.cboCountry.SelectedValueChanged += new System.EventHandler(this.cboCountry_SelectedValueChanged);
             this.cboCountry.Enter += new System.EventHandler(this.OnEnterControl);
+            this.cboCountry.Leave += new System.EventHandler(this.OnLeaveControl);
             this.cboCountry.PropBag = resources.GetString("cboCountry.PropBag");
             // 
             // cboCity
             // 
             this.cboCity.AddItemSeparator = ';';
             resources.ApplyResources(this.cboCity, "cboCity");
-            this.cboCity.CaptionHeight = 17;
             this.cboCity.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
-            this.cboCity.ColumnCaptionHeight = 17;
-            this.cboCity.ColumnFooterHeight = 17;
             this.cboCity.ComboStyle = C1.Win.C1List.ComboStyleEnum.DropdownList;
-            this.cboCity.ContentHeight = 15;
             this.cboCity.DeadAreaBackColor = System.Drawing.Color.Empty;
             this.cboCity.EditorBackColor = System.Drawing.SystemColors.Window;
             this.cboCity.EditorFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboCity.EditorForeColor = System.Drawing.SystemColors.WindowText;
-            this.cboCity.EditorHeight = 15;
             this.cboCity.Images.Add(((System.Drawing.Image)(resources.GetObject("cboCity.Images"))));
-            this.cboCity.ItemHeight = 15;
             this.cboCity.MatchEntryTimeout = ((long)(2000));
             this.cboCity.MaxDropDownItems = ((short)(5));
             this.cboCity.MaxLength = 32767;
             this.cboCity.MouseCursor = System.Windows.Forms.Cursors.Default;
             this.cboCity.Name = "cboCity";
             this.cboCity.RowSubDividerColor = System.Drawing.Color.DarkGray;
-            this.cboCity.Leave += new System.EventHandler(this.OnLeaveControl);
             this.cboCity.Enter += new System.EventHandler(this.OnEnterControl);
+            this.cboCity.Leave += new System.EventHandler(this.OnLeaveControl);
             this.cboCity.PropBag = resources.GetString("cboCity.PropBag");
             // 
             // lblPaymentTerm
@@ -532,19 +514,13 @@ namespace PCSUtils.MasterSetup.SystemTable
             // 
             this.cboPaymentTerm.AddItemSeparator = ';';
             resources.ApplyResources(this.cboPaymentTerm, "cboPaymentTerm");
-            this.cboPaymentTerm.CaptionHeight = 17;
             this.cboPaymentTerm.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
-            this.cboPaymentTerm.ColumnCaptionHeight = 17;
-            this.cboPaymentTerm.ColumnFooterHeight = 17;
             this.cboPaymentTerm.ComboStyle = C1.Win.C1List.ComboStyleEnum.DropdownList;
-            this.cboPaymentTerm.ContentHeight = 15;
             this.cboPaymentTerm.DeadAreaBackColor = System.Drawing.Color.Empty;
             this.cboPaymentTerm.EditorBackColor = System.Drawing.SystemColors.Window;
             this.cboPaymentTerm.EditorFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboPaymentTerm.EditorForeColor = System.Drawing.SystemColors.WindowText;
-            this.cboPaymentTerm.EditorHeight = 15;
             this.cboPaymentTerm.Images.Add(((System.Drawing.Image)(resources.GetObject("cboPaymentTerm.Images"))));
-            this.cboPaymentTerm.ItemHeight = 15;
             this.cboPaymentTerm.MatchEntryTimeout = ((long)(2000));
             this.cboPaymentTerm.MaxDropDownItems = ((short)(5));
             this.cboPaymentTerm.MaxLength = 32767;
@@ -660,8 +636,8 @@ namespace PCSUtils.MasterSetup.SystemTable
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.Name = "Party";
-            this.Load += new System.EventHandler(this.Party_Load);
             this.Closing += new System.ComponentModel.CancelEventHandler(this.Party_Closing);
+            this.Load += new System.EventHandler(this.Party_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Party_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.cboType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboCountry)).EndInit();

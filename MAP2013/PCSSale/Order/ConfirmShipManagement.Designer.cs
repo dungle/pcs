@@ -138,6 +138,7 @@ namespace PCSSale.Order
             this.dtmToDate = new C1.Win.C1Input.C1DateEdit();
             this.lblPurpose = new System.Windows.Forms.Label();
             this.cboPurpose = new System.Windows.Forms.ComboBox();
+            this.lblVATInInvoice = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dtmShipmentDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgrdData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboCCN)).BeginInit();
@@ -1373,11 +1374,22 @@ namespace PCSSale.Order
             this.cboPurpose.TabIndex = 1;
             this.cboPurpose.SelectedIndexChanged += new System.EventHandler(this.cboPurpose_SelectedIndexChanged);
             // 
+            // lblVATInInvoice
+            // 
+            this.lblVATInInvoice.AutoSize = true;
+            this.lblVATInInvoice.Location = new System.Drawing.Point(713, 89);
+            this.lblVATInInvoice.Name = "lblVATInInvoice";
+            this.lblVATInInvoice.Size = new System.Drawing.Size(129, 13);
+            this.lblVATInInvoice.TabIndex = 50;
+            this.lblVATInInvoice.Text = "VAT values in the Invoice";
+            this.lblVATInInvoice.Visible = false;
+            // 
             // ConfirmShipManagement
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(1028, 539);
+            this.Controls.Add(this.lblVATInInvoice);
             this.Controls.Add(this.cboPurpose);
             this.Controls.Add(this.lblPurpose);
             this.Controls.Add(this.lblFromDate);
@@ -1542,5 +1554,6 @@ namespace PCSSale.Order
         private GroupBox grpMoreDetail;
         private TextBox txtPONo;
         private Label lblPONo;
+        private Label lblVATInInvoice;
     }
 }
