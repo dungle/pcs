@@ -110,6 +110,8 @@ namespace PCSSale.Order
             this.lblPaymentTerm = new System.Windows.Forms.Label();
             this.txtVessel = new System.Windows.Forms.TextBox();
             this.lblVessel = new System.Windows.Forms.Label();
+            this.txtPONo = new System.Windows.Forms.TextBox();
+            this.lblPONo = new System.Windows.Forms.Label();
             this.txtLCNo = new System.Windows.Forms.TextBox();
             this.lblLCNo = new System.Windows.Forms.Label();
             this.lblLCDate = new System.Windows.Forms.Label();
@@ -128,8 +130,6 @@ namespace PCSSale.Order
             this.btnModify = new System.Windows.Forms.Button();
             this.btnPrintConfiguration = new System.Windows.Forms.Button();
             this.btnAttachedSheet = new System.Windows.Forms.Button();
-            this.lblVATInInvoice = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lblInvoiceDate = new System.Windows.Forms.Label();
             this.dtmInvoiceDate = new C1.Win.C1Input.C1DateEdit();
             this.lblFromDate = new System.Windows.Forms.Label();
@@ -138,8 +138,6 @@ namespace PCSSale.Order
             this.dtmToDate = new C1.Win.C1Input.C1DateEdit();
             this.lblPurpose = new System.Windows.Forms.Label();
             this.cboPurpose = new System.Windows.Forms.ComboBox();
-            this.lblPONo = new System.Windows.Forms.Label();
-            this.txtPONo = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dtmShipmentDate)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgrdData)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboCCN)).BeginInit();
@@ -622,7 +620,7 @@ namespace PCSSale.Order
             // 
             this.chkHaveGate.Location = new System.Drawing.Point(260, 98);
             this.chkHaveGate.Name = "chkHaveGate";
-            this.chkHaveGate.Size = new System.Drawing.Size(104, 20);
+            this.chkHaveGate.Size = new System.Drawing.Size(84, 20);
             this.chkHaveGate.TabIndex = 29;
             this.chkHaveGate.Text = "Have Gate";
             this.chkHaveGate.CheckedChanged += new System.EventHandler(this.chkHaveGate_CheckedChanged);
@@ -656,7 +654,7 @@ namespace PCSSale.Order
             this.lblGate.AccessibleName = "";
             this.lblGate.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lblGate.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblGate.Location = new System.Drawing.Point(352, 98);
+            this.lblGate.Location = new System.Drawing.Point(350, 98);
             this.lblGate.Name = "lblGate";
             this.lblGate.Size = new System.Drawing.Size(36, 20);
             this.lblGate.TabIndex = 33;
@@ -724,7 +722,7 @@ namespace PCSSale.Order
             // 
             this.btnSearchBin.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnSearchBin.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSearchBin.Location = new System.Drawing.Point(980, 98);
+            this.btnSearchBin.Location = new System.Drawing.Point(987, 98);
             this.btnSearchBin.Name = "btnSearchBin";
             this.btnSearchBin.Size = new System.Drawing.Size(24, 20);
             this.btnSearchBin.TabIndex = 35;
@@ -755,7 +753,7 @@ namespace PCSSale.Order
             // 
             // txtBin
             // 
-            this.txtBin.Location = new System.Drawing.Point(880, 98);
+            this.txtBin.Location = new System.Drawing.Point(887, 98);
             this.txtBin.Name = "txtBin";
             this.txtBin.Size = new System.Drawing.Size(98, 20);
             this.txtBin.TabIndex = 34;
@@ -788,7 +786,7 @@ namespace PCSSale.Order
             this.lblBin.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F);
             this.lblBin.ForeColor = System.Drawing.Color.Maroon;
             this.lblBin.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblBin.Location = new System.Drawing.Point(852, 98);
+            this.lblBin.Location = new System.Drawing.Point(859, 98);
             this.lblBin.Name = "lblBin";
             this.lblBin.Size = new System.Drawing.Size(26, 20);
             this.lblBin.TabIndex = 33;
@@ -880,7 +878,7 @@ namespace PCSSale.Order
             // 
             // txtLocation
             // 
-            this.txtLocation.Location = new System.Drawing.Point(683, 98);
+            this.txtLocation.Location = new System.Drawing.Point(709, 98);
             this.txtLocation.Name = "txtLocation";
             this.txtLocation.Size = new System.Drawing.Size(120, 20);
             this.txtLocation.TabIndex = 31;
@@ -899,7 +897,7 @@ namespace PCSSale.Order
             // 
             this.btnSearchLocation.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.btnSearchLocation.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.btnSearchLocation.Location = new System.Drawing.Point(805, 98);
+            this.btnSearchLocation.Location = new System.Drawing.Point(831, 98);
             this.btnSearchLocation.Name = "btnSearchLocation";
             this.btnSearchLocation.Size = new System.Drawing.Size(24, 20);
             this.btnSearchLocation.TabIndex = 32;
@@ -985,6 +983,28 @@ namespace PCSSale.Order
             this.lblVessel.TabIndex = 18;
             this.lblVessel.Text = "Vessel";
             this.lblVessel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // txtPONo
+            // 
+            this.txtPONo.AccessibleDescription = "";
+            this.txtPONo.AccessibleName = "";
+            this.txtPONo.Location = new System.Drawing.Point(709, 56);
+            this.txtPONo.Name = "txtPONo";
+            this.txtPONo.Size = new System.Drawing.Size(120, 20);
+            this.txtPONo.TabIndex = 17;
+            // 
+            // lblPONo
+            // 
+            this.lblPONo.AccessibleDescription = "";
+            this.lblPONo.AccessibleName = "";
+            this.lblPONo.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblPONo.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblPONo.Location = new System.Drawing.Point(622, 56);
+            this.lblPONo.Name = "lblPONo";
+            this.lblPONo.Size = new System.Drawing.Size(76, 20);
+            this.lblPONo.TabIndex = 16;
+            this.lblPONo.Text = "Document No.";
+            this.lblPONo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtLCNo
             // 
@@ -1199,23 +1219,6 @@ namespace PCSSale.Order
             this.btnAttachedSheet.Text = "A&ttached Sheet";
             this.btnAttachedSheet.Click += new System.EventHandler(this.btnAttachedSheet_Click);
             // 
-            // lblVATInInvoice
-            // 
-            this.lblVATInInvoice.Location = new System.Drawing.Point(386, 101);
-            this.lblVATInInvoice.Name = "lblVATInInvoice";
-            this.lblVATInInvoice.Size = new System.Drawing.Size(158, 14);
-            this.lblVATInInvoice.TabIndex = 34;
-            this.lblVATInInvoice.Text = "VAT values in the Invoice";
-            this.lblVATInInvoice.Visible = false;
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Location = new System.Drawing.Point(340, 94);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(4, 22);
-            this.groupBox1.TabIndex = 32;
-            this.groupBox1.TabStop = false;
-            // 
             // lblInvoiceDate
             // 
             this.lblInvoiceDate.AccessibleDescription = "";
@@ -1370,28 +1373,6 @@ namespace PCSSale.Order
             this.cboPurpose.TabIndex = 1;
             this.cboPurpose.SelectedIndexChanged += new System.EventHandler(this.cboPurpose_SelectedIndexChanged);
             // 
-            // lblPONo
-            // 
-            this.lblPONo.AccessibleDescription = "";
-            this.lblPONo.AccessibleName = "";
-            this.lblPONo.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblPONo.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblPONo.Location = new System.Drawing.Point(627, 56);
-            this.lblPONo.Name = "lblPONo";
-            this.lblPONo.Size = new System.Drawing.Size(49, 20);
-            this.lblPONo.TabIndex = 16;
-            this.lblPONo.Text = "PO No.";
-            this.lblPONo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
-            // txtPONo
-            // 
-            this.txtPONo.AccessibleDescription = "";
-            this.txtPONo.AccessibleName = "";
-            this.txtPONo.Location = new System.Drawing.Point(683, 56);
-            this.txtPONo.Name = "txtPONo";
-            this.txtPONo.Size = new System.Drawing.Size(120, 20);
-            this.txtPONo.TabIndex = 17;
-            // 
             // ConfirmShipManagement
             // 
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
@@ -1403,7 +1384,6 @@ namespace PCSSale.Order
             this.Controls.Add(this.dtmFromDate);
             this.Controls.Add(this.lblToDate);
             this.Controls.Add(this.dtmToDate);
-            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnAttachedSheet);
             this.Controls.Add(this.btnPrintConfiguration);
             this.Controls.Add(this.btnModify);
@@ -1444,7 +1424,6 @@ namespace PCSSale.Order
             this.Controls.Add(this.cboCCN);
             this.Controls.Add(this.lblMasLoc);
             this.Controls.Add(this.lblCCN);
-            this.Controls.Add(this.lblVATInInvoice);
             this.Controls.Add(this.lblInvoiceDate);
             this.Controls.Add(this.dtmInvoiceDate);
             this.Name = "ConfirmShipManagement";
@@ -1529,7 +1508,6 @@ namespace PCSSale.Order
         private Label lblShippedDate;
         private Label lblShippingCode;
         private Label lblToDate;
-        private Label lblVATInInvoice;
         private Label lblVessel;
         private Button btnAdd;
         private Button btnAttachedSheet;
@@ -1561,7 +1539,6 @@ namespace PCSSale.Order
         private C1DateEdit dtmOnBoardDate;
         private C1DateEdit dtmShipmentDate;
         private C1DateEdit dtmToDate;
-        private GroupBox groupBox1;
         private GroupBox grpMoreDetail;
         private TextBox txtPONo;
         private Label lblPONo;
