@@ -1354,9 +1354,9 @@ namespace PCSSale.Order
             this.lblPurpose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblPurpose.ForeColor = System.Drawing.Color.Maroon;
             this.lblPurpose.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblPurpose.Location = new System.Drawing.Point(888, 27);
+            this.lblPurpose.Location = new System.Drawing.Point(866, 27);
             this.lblPurpose.Name = "lblPurpose";
-            this.lblPurpose.Size = new System.Drawing.Size(45, 20);
+            this.lblPurpose.Size = new System.Drawing.Size(67, 20);
             this.lblPurpose.TabIndex = 0;
             this.lblPurpose.Text = "Purpose";
             this.lblPurpose.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;

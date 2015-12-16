@@ -2797,8 +2797,8 @@
       <Field>
         <Name>Label3</Name>
         <Section>4</Section>
-        <Text>MACHINO AUTO-PARTS CO., LTD</Text>
-        <Left>675</Left>
+        <Text>SHOWA AUTO PARTS VIET NAM CO., LTD</Text>
+        <Left>630</Left>
         <Top>60</Top>
         <Width>3435</Width>
         <Height>300</Height>
@@ -2908,7 +2908,7 @@
       <Field>
         <Name>LevelCtl</Name>
         <Section>5</Section>
-        <Text>MACHINO AUTO - PARTS CO., LTD</Text>
+        <Text>SHOWA AUTO PARTS VIET NAM CO., LTD</Text>
         <Left>13785</Left>
         <Top>360</Top>
         <Width>2355</Width>

@@ -282,10 +282,16 @@
     <Content Include="ReportDefinition\InventoryStatusReport.xml" />
     <Content Include="ReportDefinition\InventoryStatusSummaryByMasterLocationReport.xml" />
     <Content Include="ReportDefinition\Invoice4SaleOrder.xml" />
+    <Content Include="ReportDefinition\Invoice4SaleOrderEN.xml" />
     <Content Include="ReportDefinition\Invoice4SaleOrderVN.xml" />
     <Content Include="ReportDefinition\Invoice4SaleOrder_Appendix.xml" />
+    <Content Include="ReportDefinition\Invoice4SaleOrder_AppendixEN.xml" />
     <Content Include="ReportDefinition\Invoice4SaleOrder_AppendixVN.xml" />
+    <Content Include="ReportDefinition\InvoiceEN\Invoice4SaleOrder.xml" />
+    <Content Include="ReportDefinition\InvoiceEN\Invoice4SaleOrder_Appendix.xml" />
     <Content Include="ReportDefinition\InvoiceReport.xml" />
+    <Content Include="ReportDefinition\InvoiceVN\Invoice4SaleOrder.xml" />
+    <Content Include="ReportDefinition\InvoiceVN\Invoice4SaleOrder_Appendix.xml" />
     <Content Include="ReportDefinition\IssuanceSlipReport.xml" />
     <Content Include="ReportDefinition\IssueMaterialSlip.xml" />
     <Content Include="ReportDefinition\IssueSlip.xml" />

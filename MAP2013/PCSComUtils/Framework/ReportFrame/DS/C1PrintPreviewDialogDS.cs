@@ -2310,21 +2310,23 @@ namespace PCSComUtils.Framework.ReportFrame.DS
 					+ " )AS SaleType,"
                     + " GA.Code SOGate,"
 					+ " SO_SaleOrderMaster.CustomerPurchaseOrderNo,"
-					+ " SO_ConfirmShipDetail.ConfirmShipDetailID"
+					+ " SO_ConfirmShipDetail.ConfirmShipDetailID, MST_PartyLocation.[Description] AS ShipToLocation, ST.Code AS SaleType1"
 
-					+ " FROM    SO_ConfirmShipDetail "
+                    + " FROM    SO_ConfirmShipDetail "
 					+ " INNER JOIN SO_ConfirmShipMaster ON SO_ConfirmShipDetail.ConfirmShipMasterID = SO_ConfirmShipMaster.ConfirmShipMasterID "
 					+ " INNER JOIN SO_SaleOrderMaster ON SO_ConfirmShipMaster.SaleOrderMasterID = SO_SaleOrderMaster.SaleOrderMasterID "
 					+ " INNER JOIN MST_Party ON SO_SaleOrderMaster.PartyID = MST_Party.PartyID "
-					+ " INNER JOIN SO_SaleOrderDetail ON SO_ConfirmShipDetail.SaleOrderDetailID = SO_SaleOrderDetail.SaleOrderDetailID "
+					+ " INNER JOIN MST_PartyLocation ON SO_SaleOrderMaster.ShipToLocID = MST_PartyLocation.PartyLocationID "
+                    + " INNER JOIN SO_SaleOrderDetail ON SO_ConfirmShipDetail.SaleOrderDetailID = SO_SaleOrderDetail.SaleOrderDetailID "
 					+ " INNER JOIN ITM_Product ON SO_ConfirmShipDetail.ProductID = ITM_Product.ProductID "
                     + " INNER JOIN SO_DeliverySchedule E ON E.DeliveryScheduleID = SO_ConfirmShipDetail.DeliveryScheduleID"
 					+ " LEFT JOIN MST_UnitOfMeasure ON SO_SaleOrderDetail.SellingUMID = MST_UnitOfMeasure.UnitOfMeasureID "					
 					+ " LEFT JOIN SO_CustomerItemRefMaster refMaster ON refMaster.PartyID = MST_Party.PartyID"
 					+ " LEFT JOIN SO_CustomerItemRefDetail refDetail ON refMaster.CustomerItemRefMasterID = refDetail.CustomerItemRefMasterID"
-					+ " AND refDetail.ProductID = ITM_Product.ProductID"
+                    + " AND refDetail.ProductID = ITM_Product.ProductID"
                     + " LEFT JOIN SO_Gate GA ON E.GateID = GA.GateID"
-					+ " WHERE SO_ConfirmShipMaster.ConfirmShipMasterID = " + pintSOCommitMasterID
+                    + " LEFT JOIN SO_SaleType ST ON SO_SaleOrderMaster.SaleTypeID = ST.SaleTypeID"
+                    + " WHERE SO_ConfirmShipMaster.ConfirmShipMasterID = " + pintSOCommitMasterID
 					+ " AND SO_ConfirmShipDetail.InvoiceQty > 0"
 					+ " ORDER BY refDetail.CustomerItemCode";
 				
@@ -2455,7 +2457,6 @@ namespace PCSComUtils.Framework.ReportFrame.DS
 					+ " else MST_Party.MAPBankAccountName"
 					+ " End As BankAccountName,"					
 
-					//HACK:Change datasource, get Sale Type from delivery schedule
 					+ " ("
 					+ " SELECT TOP 1 enm_GateType.Description"
 					+ " FROM SO_DeliverySchedule"
@@ -2464,26 +2465,27 @@ namespace PCSComUtils.Framework.ReportFrame.DS
 					+ " WHERE SO_DeliverySchedule.DeliveryScheduleID = SO_InvoiceDetail.DeliveryScheduleID"
 					+ " )AS SaleType,"
                     + " GA.Code SOGate,"
-					+ " SO_SaleOrderMaster.CustomerPurchaseOrderNo,"
-					+ " SO_InvoiceDetail.InvoiceDetailID"
+					+ " SO_InvoiceMaster.PONumber AS CustomerPurchaseOrderNo,"
+                    + " SO_InvoiceDetail.InvoiceDetailID, MST_PartyLocation.[Description] AS ShipToLocation, ST.Code AS SaleType1"
 
-					+ " FROM    SO_InvoiceDetail "
+                    + " FROM    SO_InvoiceDetail "
 					+ " INNER JOIN SO_InvoiceMaster ON SO_InvoiceDetail.InvoiceMasterID = SO_InvoiceMaster.InvoiceMasterID "
 					+ " INNER JOIN SO_SaleOrderMaster ON SO_InvoiceMaster.SaleOrderMasterID = SO_SaleOrderMaster.SaleOrderMasterID "
-					+ " INNER JOIN MST_Party ON SO_SaleOrderMaster.PartyID = MST_Party.PartyID "
+					+ " INNER JOIN MST_PartyLocation ON SO_SaleOrderMaster.ShipToLocID = MST_PartyLocation.PartyLocationID "
+                    + " INNER JOIN MST_Party ON SO_SaleOrderMaster.PartyID = MST_Party.PartyID "
 					+ " INNER JOIN SO_SaleOrderDetail ON SO_InvoiceDetail.SaleOrderDetailID = SO_SaleOrderDetail.SaleOrderDetailID "
 					+ " INNER JOIN ITM_Product ON SO_InvoiceDetail.ProductID = ITM_Product.ProductID "
                     + " INNER JOIN SO_DeliverySchedule E ON E.DeliveryScheduleID = SO_InvoiceDetail.DeliveryScheduleID"
 					+ " LEFT JOIN MST_UnitOfMeasure ON SO_SaleOrderDetail.SellingUMID = MST_UnitOfMeasure.UnitOfMeasureID "					
 					+ " LEFT JOIN SO_CustomerItemRefMaster refMaster ON refMaster.PartyID = MST_Party.PartyID"
 					+ " LEFT JOIN SO_CustomerItemRefDetail refDetail ON refMaster.CustomerItemRefMasterID = refDetail.CustomerItemRefMasterID"
-					+ " AND refDetail.ProductID = ITM_Product.ProductID"
+                    + " AND refDetail.ProductID = ITM_Product.ProductID"
                     + " LEFT JOIN SO_Gate GA ON E.GateID = GA.GateID"
-					+ " WHERE SO_InvoiceMaster.InvoiceMasterID = " + pintSOInvoiceMasterID
+                    + " LEFT JOIN SO_SaleType ST ON SO_SaleOrderMaster.SaleTypeID = ST.SaleTypeID"
+                    + " WHERE SO_InvoiceMaster.InvoiceMasterID = " + pintSOInvoiceMasterID
 					+ " AND SO_InvoiceDetail.InvoiceQty > 0"
 					+ " ORDER BY refDetail.CustomerItemCode";
 				
-				Utils utils = new Utils();
 				oconPCS = new OleDbConnection(Utils.Instance.OleDbConnectionString);
 				ocmdPCS = new OleDbCommand(strSql, oconPCS);
 				

@@ -991,7 +991,7 @@ namespace PCSSale.Order
             const string methodName = This + ".btnShipNo_Click()";
             try
             {
-                DataRowView drwResult = null;
+                DataRowView drwResult;
                 if (cboPurpose.SelectedIndex == (int) ShipViewType.Shipping)
                     drwResult = FormControlComponents.OpenSearchForm(VIEW_NAME,
                                                                      SO_ConfirmShipMasterTable.CONFIRMSHIPNO_FLD,
@@ -2719,7 +2719,7 @@ namespace PCSSale.Order
                 txtCurrency.Enabled = true;
                 txtExchRate.Enabled = true;
                 btnCurrency.Enabled = true;
-
+                txtPONo.Enabled = true;
                 //HACK: added by Tuan TQ
                 btnAttachedSheet.Enabled = false;
                 btnPrint.Enabled = false;

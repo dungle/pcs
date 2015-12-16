@@ -114,7 +114,7 @@ ORDER BY refDetail.CustomerItemCode</RecordSource>
       <Section>
         <Name>ProductID Header</Name>
         <Type>5</Type>
-        <Height>285</Height>
+        <Height>360</Height>
       </Section>
       <Section>
         <Name>ProductID Footer</Name>
@@ -303,6 +303,20 @@ ORDER BY refDetail.CustomerItemCode</RecordSource>
         </Font>
       </Field>
       <Field>
+        <Name>Field75</Name>
+        <Section>1</Section>
+        <Text>Liên 1/ 1st copy: Lưu/Original</Text>
+        <Left>7815</Left>
+        <Top>2325</Top>
+        <Width>2775</Width>
+        <Height>270</Height>
+        <Align>6</Align>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
         <Name>Field84</Name>
         <Section>1</Section>
         <Left>1290</Left>
@@ -333,47 +347,6 @@ ORDER BY refDetail.CustomerItemCode</RecordSource>
         </Font>
       </Field>
       <Field>
-        <Name>Field75</Name>
-        <Section>1</Section>
-        <Text>Liên 1/ 1st copy: Lưu/Original</Text>
-        <Left>7815</Left>
-        <Top>2325</Top>
-        <Width>2775</Width>
-        <Height>270</Height>
-        <Align>6</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-      </Field>
-      <Field>
-        <Name>Field91</Name>
-        <Section>1</Section>
-        <Left>3375</Left>
-        <Top>3030</Top>
-        <Width>3615</Width>
-        <ZOrder>-2</ZOrder>
-        <BorderStyle>3</BorderStyle>
-        <LineSlant>1</LineSlant>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-      </Field>
-      <Field>
-        <Name>Field11</Name>
-        <Section>1</Section>
-        <Text>Ngày/ Delivery Date:</Text>
-        <Left>7905</Left>
-        <Top>2760</Top>
-        <Width>1560</Width>
-        <Height>270</Height>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-      </Field>
-      <Field>
         <Name>fldShippedDate</Name>
         <Section>1</Section>
         <Text>ShippedDate</Text>
@@ -391,13 +364,14 @@ ORDER BY refDetail.CustomerItemCode</RecordSource>
         <Tag>100</Tag>
       </Field>
       <Field>
-        <Name>Field16</Name>
+        <Name>Field91</Name>
         <Section>1</Section>
-        <Text>Tên/ Name:</Text>
-        <Left>1395</Left>
-        <Top>2775</Top>
-        <Width>1920</Width>
-        <Height>255</Height>
+        <Left>3375</Left>
+        <Top>3030</Top>
+        <Width>3615</Width>
+        <ZOrder>-2</ZOrder>
+        <BorderStyle>3</BorderStyle>
+        <LineSlant>1</LineSlant>
         <Font>
           <Name>Arial</Name>
           <Size>8.25</Size>
@@ -413,6 +387,48 @@ ORDER BY refDetail.CustomerItemCode</RecordSource>
         <Width>4455</Width>
         <Height>270</Height>
         <Align>0</Align>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Tag>100</Tag>
+      </Field>
+      <Field>
+        <Name>Field11</Name>
+        <Section>1</Section>
+        <Text>Ngày/ Delivery Date:</Text>
+        <Left>7905</Left>
+        <Top>2760</Top>
+        <Width>1560</Width>
+        <Height>270</Height>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field16</Name>
+        <Section>1</Section>
+        <Text>Tên/ Name:</Text>
+        <Left>1395</Left>
+        <Top>2775</Top>
+        <Width>1920</Width>
+        <Height>255</Height>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>fldCustomerPurchaseOrderNo</Name>
+        <Section>1</Section>
+        <Text>CustomerPurchaseOrderNo</Text>
+        <Calculated>-1</Calculated>
+        <Left>9270</Left>
+        <Top>3015</Top>
+        <Width>1455</Width>
+        <Height>270</Height>
+        <Align>2</Align>
         <Font>
           <Name>Arial</Name>
           <Size>8.25</Size>
@@ -476,13 +492,14 @@ ORDER BY refDetail.CustomerItemCode</RecordSource>
         </Font>
       </Field>
       <Field>
-        <Name>fldCustomerPurchaseOrderNo</Name>
+        <Name>fldShippedDate1</Name>
         <Section>1</Section>
-        <Text>CustomerPurchaseOrderNo</Text>
+        <Text>ShippedDate</Text>
         <Calculated>-1</Calculated>
-        <Left>9270</Left>
-        <Top>3015</Top>
-        <Width>1455</Width>
+        <Format>HH:mm</Format>
+        <Left>9165</Left>
+        <Top>3300</Top>
+        <Width>1560</Width>
         <Height>270</Height>
         <Align>2</Align>
         <Font>
@@ -548,14 +565,13 @@ ORDER BY refDetail.CustomerItemCode</RecordSource>
         </Font>
       </Field>
       <Field>
-        <Name>fldShippedDate1</Name>
+        <Name>fldSaleType</Name>
         <Section>1</Section>
-        <Text>ShippedDate</Text>
+        <Text>SaleType</Text>
         <Calculated>-1</Calculated>
-        <Format>HH:mm</Format>
-        <Left>9165</Left>
-        <Top>3300</Top>
-        <Width>1560</Width>
+        <Left>8715</Left>
+        <Top>3585</Top>
+        <Width>2010</Width>
         <Height>270</Height>
         <Align>2</Align>
         <Font>
@@ -563,6 +579,19 @@ ORDER BY refDetail.CustomerItemCode</RecordSource>
           <Size>8.25</Size>
         </Font>
         <Tag>100</Tag>
+      </Field>
+      <Field>
+        <Name>Field14</Name>
+        <Section>1</Section>
+        <Text>Phân loại: </Text>
+        <Left>7920</Left>
+        <Top>3615</Top>
+        <Width>810</Width>
+        <Height>270</Height>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
       </Field>
       <Field>
         <Name>Field94</Name>
@@ -608,26 +637,27 @@ ORDER BY refDetail.CustomerItemCode</RecordSource>
         <Tag>100</Tag>
       </Field>
       <Field>
-        <Name>Field14</Name>
+        <Name>Field86</Name>
         <Section>1</Section>
-        <Text>Phân loại: </Text>
-        <Left>7920</Left>
-        <Top>3615</Top>
-        <Width>810</Width>
-        <Height>270</Height>
+        <Left>3390</Left>
+        <Top>4110</Top>
+        <Width>3615</Width>
+        <ZOrder>-2</ZOrder>
+        <BorderStyle>3</BorderStyle>
+        <LineSlant>1</LineSlant>
         <Font>
           <Name>Arial</Name>
           <Size>8.25</Size>
         </Font>
       </Field>
       <Field>
-        <Name>fldSaleType</Name>
+        <Name>fldConfirmShipNo</Name>
         <Section>1</Section>
-        <Text>SaleType</Text>
+        <Text>ConfirmShipNo</Text>
         <Calculated>-1</Calculated>
-        <Left>8715</Left>
-        <Top>3585</Top>
-        <Width>2010</Width>
+        <Left>8430</Left>
+        <Top>3870</Top>
+        <Width>2295</Width>
         <Height>270</Height>
         <Align>2</Align>
         <Font>
@@ -637,14 +667,13 @@ ORDER BY refDetail.CustomerItemCode</RecordSource>
         <Tag>100</Tag>
       </Field>
       <Field>
-        <Name>Field86</Name>
+        <Name>Field15</Name>
         <Section>1</Section>
-        <Left>3390</Left>
-        <Top>4110</Top>
-        <Width>3615</Width>
-        <ZOrder>-2</ZOrder>
-        <BorderStyle>3</BorderStyle>
-        <LineSlant>1</LineSlant>
+        <Text>Ref.: </Text>
+        <Left>7920</Left>
+        <Top>3900</Top>
+        <Width>450</Width>
+        <Height>270</Height>
         <Font>
           <Name>Arial</Name>
           <Size>8.25</Size>
@@ -673,35 +702,6 @@ ORDER BY refDetail.CustomerItemCode</RecordSource>
         <Width>4470</Width>
         <Height>270</Height>
         <Align>3</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field15</Name>
-        <Section>1</Section>
-        <Text>Ref.: </Text>
-        <Left>7920</Left>
-        <Top>3900</Top>
-        <Width>450</Width>
-        <Height>270</Height>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-      </Field>
-      <Field>
-        <Name>fldConfirmShipNo</Name>
-        <Section>1</Section>
-        <Text>ConfirmShipNo</Text>
-        <Calculated>-1</Calculated>
-        <Left>8430</Left>
-        <Top>3870</Top>
-        <Width>2295</Width>
-        <Height>270</Height>
-        <Align>2</Align>
         <Font>
           <Name>Arial</Name>
           <Size>8.25</Size>
@@ -766,7 +766,7 @@ ORDER BY refDetail.CustomerItemCode</RecordSource>
       <Field>
         <Name>Field24</Name>
         <Section>3</Section>
-        <Left>6255</Left>
+        <Left>6480</Left>
         <Height>720</Height>
         <BorderStyle>1</BorderStyle>
         <LineSlant>1</LineSlant>
@@ -835,7 +835,7 @@ ORDER BY refDetail.CustomerItemCode</RecordSource>
         <Name>Field29</Name>
         <Section>3</Section>
         <Text>Diễn giải hàng hóa, dịch vụ</Text>
-        <Left>3840</Left>
+        <Left>3990</Left>
         <Top>30</Top>
         <Width>2415</Width>
         <Height>255</Height>
@@ -940,7 +940,7 @@ ORDER BY refDetail.CustomerItemCode</RecordSource>
         <Name>Field30</Name>
         <Section>3</Section>
         <Text>Description</Text>
-        <Left>3900</Left>
+        <Left>4050</Left>
         <Top>210</Top>
         <Width>2265</Width>
         <Height>260</Height>
@@ -1045,7 +1045,7 @@ ORDER BY refDetail.CustomerItemCode</RecordSource>
         <Name>Field48</Name>
         <Section>3</Section>
         <Text>3</Text>
-        <Left>3900</Left>
+        <Left>3975</Left>
         <Top>480</Top>
         <Width>2265</Width>
         <Height>220</Height>
@@ -1117,15 +1117,14 @@ ORDER BY refDetail.CustomerItemCode</RecordSource>
         </Font>
       </Field>
       <Field>
-        <Name>Field12</Name>
+        <Name>Field80</Name>
         <Section>4</Section>
-        <Left>1650</Left>
-        <Top>495</Top>
-        <Width>4875</Width>
-        <Height>1935</Height>
-        <ZOrder>-15</ZOrder>
-        <Picture encoding="base64">iVBORw0KGgoAAAANSUhEUgAAAioAAABiCAYAAAB+pPibAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAB1pJREFUeF7t3YFtGmkQBWC3QA2U4BLogQJchJtwAZRACZRBCZRAB954LCDZCBOHAPOU/SJZl7tTnP+Gj+jNvmXv6ckPEzABEzABEzABE/ifJjCbzYaP/57Pr+fnZ19mwAADDDDAAANnDRzzwuGv94tDFU7m8/nw+vo67Ha74f393ZcZMMAAAwwwwMC3DOz3+2G1Wn2GmZuHlvqmwolgJpwywAADDDBwCwMVWhaLxXBoaK6/ylLfYLPZfCsp3eLgvoc3AAMMMMAAA9MxUBdBqq25KqnUL6zEA8x0wHitvdYMMMAAA482cLy68ldhpaqeRx/U7+fNwQADDDDAwHQNLJfL711ZqboHlOlC8dp77RlggAEGugz8sQaqkLLdbgUVd3AzwAADDDDAQIuBi58IqssuXSnK7yvBM8AAAwwwwEA9BuWr+1XcPCs9C6oMMMAAAwy0Gzj7sWVXU6RYmwwDDDDAAAMJBs5eVVmv1+0JKmE4zuBNygADDDDAQK+Bul/296sqQopLfQwwwAADDDAQY2B0U62PJPcmR8nd/BlggAEGGBgbqEfsn26q9YA3bxBvEAYYYIABBpIMjB4A50ZaOJNwOguPDDDAAAOjG2rrb6CAggEGGGCAAQZSDLy9vf2sfgQVMFNgOgeLDDDAAANlYHRFpVILGGAwwAADDDDAQIoB1Y+PoAmnDDDAAAMMxBpQ/cAZizMlzTuHzZIBBhjoM+CKiqAiqDDAAAMMMBBrwD0qcMbitMH0bTBmb/YMMJBiQPUjqAgqDDDAAAMMxBpQ/cAZizMlzTuHzZIBBhjoM6D6EVQEFQYYYIABBmINqH7gjMVpg+nbYMze7BlgIMWA6kdQEVQYYIABBhiINaD6gTMWZ0qadw6bJQMMMNBnQPUjqAgqDDDAAAMMxBpQ/cAZi9MG07fBmL3ZM8BAigHVj6AiqDDAAAMMMBBrQPUDZyzOlDTvHDZLBhhgoM+A6kdQEVQYYIABBhiINaD6gTMWpw2mb4Mxe7NngIEUA6ofQUVQYYABBhhgINaA6gfOWJwpad45bJYMMMBAnwHVj6AiqDDAAAMMMBBrQPUDZyxOG0zfBmP2Zs8AAykGVD+CiqDCAAMMMMBArAHVD5yxOFPSvHPYLBlggIE+A6ofQUVQYYABBhhgINaA6gfOWJw2mL4NxuzNngEGUgyofgQVQYUBBhhggIFYA6ofOGNxpqR557BZMsAAA30GVD+CiqDCAAMMMMBArAHVD5yxOG0wfRuM2Zs9AwykGFD9CCqCCgMMMMAAA7EGVD9wxuJMSfPOYbNkgAEG+gyofgQVQYUBBhhggIFYA6ofOGNx2mD6NhizN3sGGEgxoPoRVAQVBhhggAEGYg2ofuCMxZmS5p3DZskAAwz0GVD9CCqCCgMMMMAAA7EGVD9wxuK0wfRtMGZv9gwwkGJA9SOoCCoMMMAAAwzEGlD9wBmLMyXNO4fNkgEGGOgzoPoRVAQVBhhggAEGYg2ofuCMxWmD6dtgzN7sGWAgxYDqR1ARVBhggAEGGIg1oPqBMxZnSpp3DpslAwww0GdA9SOoCCoMMMAAAwzEGlD9wBmL0wbTt8GYvdkzwECKAdWPoCKoMMAAAwwwEGtA9QNnLM6UNO8cNksGGGCgz4DqR1ARVBhggAEGGIg1oPqBMxanDaZvgzF7s2eAgRQDqh9BRVBhgAEGGGAg1oDqB85YnClp3jlslgwwwECfAdWPoCKoMMAAAwwwEGtA9QNnLE4bTN8GY/ZmzwADKQZUP4KKoMIAAwwwwECsAdUPnLE4U9K8c9gsGWCAgT4Dqh9BRVBhgAEGGGAg1oDqB85YnDaYvg3G7M2eAQZSDKh+BBVBhQEGGGCAgVgDqh84Y3GmpHnnsFkywAADfQZUP4KKoMIAAwwwwECsAdUPnLE4bTB9G4zZmz0DDKQYUP0IKoIKAwwwwAADsQZG1c9yuYw9aEqycw5bBgMMMMAAA48zMLqislgsBBWpmgEGGGCAAQZiDLy8vAxPxx/z+TzmYNLq49KqWZs1AwwwwECqgWp7TkHl4yeCihTNAAMMMMAAAzEG6iLKKajMZrNhu93GHC413TmXzYMBBhhggIH7G9jtdhVSRldUnqoLMvz7D9+MzZgBBhhggIHLBlar1Tik1KUV96l443jjMMAAAwwwkGCgmp5f7085/bw+s5xwQGfwRmGAAQYYYGCaBjabzfmQUmmlEgwY04Thdfe6M8AAAwwkGPjyasrxsopnqoCaANUZOGSAAQamZ2D0kLez3c/hH6qApofDHwhecwYYYICBTgNnb6AVVqDsROn35o8BBhhgoAys1+uv70u5FFbUQAD5Q4QBBhhggIF7Ghg9Kv9SKLnw74a6HHPPQ/re3gQMMMAAAwxMy0BdRRk9ffbKkDJ6em0FlnpaHEzTwuT19nozwAADDNzCwH6//7z4cdOAcibgDPXRofqfBdXdub7MgAEGGGCAAQYuGajMcAgn192L8q9XW/x6EzABEzABEzABE7jHBH4AENmx1OL3IZQAAAAASUVORK5CYII=</Picture>
-        <PictureScale>1</PictureScale>
+        <Text>Tiền hàng/ Sub-Total</Text>
+        <Left>7245</Left>
+        <Top>75</Top>
+        <Width>1680</Width>
+        <Height>270</Height>
+        <Align>6</Align>
         <Font>
           <Name>Arial</Name>
           <Size>8.25</Size>
@@ -1158,20 +1157,6 @@ ORDER BY refDetail.CustomerItemCode</RecordSource>
         <Tag>100</Tag>
       </Field>
       <Field>
-        <Name>Field80</Name>
-        <Section>4</Section>
-        <Text>Tiền hàng/ Sub-Total</Text>
-        <Left>7245</Left>
-        <Top>75</Top>
-        <Width>1680</Width>
-        <Height>270</Height>
-        <Align>6</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-      </Field>
-      <Field>
         <Name>Field77</Name>
         <Section>4</Section>
         <Left>9120</Left>
@@ -1179,6 +1164,21 @@ ORDER BY refDetail.CustomerItemCode</RecordSource>
         <Width>1590</Width>
         <BorderStyle>1</BorderStyle>
         <LineSlant>1</LineSlant>
+      </Field>
+      <Field>
+        <Name>Field12</Name>
+        <Section>4</Section>
+        <Left>1650</Left>
+        <Top>495</Top>
+        <Width>4875</Width>
+        <Height>1935</Height>
+        <ZOrder>-15</ZOrder>
+        <Picture encoding="base64">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</Picture>
+        <PictureScale>1</PictureScale>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
       </Field>
       <Field>
         <Name>fldVATPercent</Name>
@@ -1228,6 +1228,32 @@ ORDER BY refDetail.CustomerItemCode</RecordSource>
         </Font>
       </Field>
       <Field>
+        <Name>Field78</Name>
+        <Section>4</Section>
+        <Left>9120</Left>
+        <Top>675</Top>
+        <Width>1590</Width>
+        <BorderStyle>1</BorderStyle>
+        <LineSlant>1</LineSlant>
+      </Field>
+      <Field>
+        <Name>fldSumVATAmount</Name>
+        <Section>4</Section>
+        <Text>SUM(NetAmount)*VATPercent/100</Text>
+        <Calculated>-1</Calculated>
+        <Format>#,##0</Format>
+        <Left>9135</Left>
+        <Top>675</Top>
+        <Width>1560</Width>
+        <Height>360</Height>
+        <Align>5</Align>
+        <Font>
+          <Name>Arial Narrow</Name>
+          <Size>9.75</Size>
+        </Font>
+        <Tag>100</Tag>
+      </Field>
+      <Field>
         <Name>Field57</Name>
         <Section>4</Section>
         <Left>2595</Left>
@@ -1253,32 +1279,6 @@ ORDER BY refDetail.CustomerItemCode</RecordSource>
           <Name>Arial</Name>
           <Size>8.25</Size>
         </Font>
-      </Field>
-      <Field>
-        <Name>Field78</Name>
-        <Section>4</Section>
-        <Left>9120</Left>
-        <Top>675</Top>
-        <Width>1590</Width>
-        <BorderStyle>1</BorderStyle>
-        <LineSlant>1</LineSlant>
-      </Field>
-      <Field>
-        <Name>fldSumVATAmount</Name>
-        <Section>4</Section>
-        <Text>SUM(NetAmount)*VATPercent/100</Text>
-        <Calculated>-1</Calculated>
-        <Format>#,##0</Format>
-        <Left>9135</Left>
-        <Top>675</Top>
-        <Width>1560</Width>
-        <Height>360</Height>
-        <Align>5</Align>
-        <Font>
-          <Name>Arial Narrow</Name>
-          <Size>9.75</Size>
-        </Font>
-        <Tag>100</Tag>
       </Field>
       <Field>
         <Name>Field82</Name>
@@ -1440,13 +1440,6 @@ ORDER BY refDetail.CustomerItemCode</RecordSource>
         <Tag>100</Tag>
       </Field>
       <Field>
-        <Name>Field85</Name>
-        <Section>4</Section>
-        <Text>Field85</Text>
-        <Left>720</Left>
-        <Top>3510</Top>
-      </Field>
-      <Field>
         <Name>Field63</Name>
         <Section>4</Section>
         <Text>Khách hàng</Text>
@@ -1531,6 +1524,13 @@ ORDER BY refDetail.CustomerItemCode</RecordSource>
         </Font>
       </Field>
       <Field>
+        <Name>Field85</Name>
+        <Section>4</Section>
+        <Text>Field85</Text>
+        <Left>720</Left>
+        <Top>3510</Top>
+      </Field>
+      <Field>
         <Name>Field87</Name>
         <Section>4</Section>
         <Text>Bán hàng qua ĐT,FAX</Text>
@@ -1585,17 +1585,34 @@ ORDER BY refDetail.CustomerItemCode</RecordSource>
         </Font>
       </Field>
       <Field>
+        <Name>fldITM_ProductDescription</Name>
+        <Section>5</Section>
+        <Text>ITM_ProductDescriptionVN</Text>
+        <Calculated>-1</Calculated>
+        <Left>3870</Left>
+        <Width>2580</Width>
+        <Height>360</Height>
+        <ZOrder>-24</ZOrder>
+        <Align>6</Align>
+        <CanGrow>-1</CanGrow>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Tag>100</Tag>
+      </Field>
+      <Field>
         <Name>fldUnitPrice</Name>
         <Section>5</Section>
         <Text>AVGPrice</Text>
         <Calculated>-1</Calculated>
         <Format>#,##0.0000</Format>
         <Left>7920</Left>
-        <Top>15</Top>
         <Width>1200</Width>
-        <Height>255</Height>
+        <Height>360</Height>
         <ZOrder>-23</ZOrder>
         <Align>8</Align>
+        <CanGrow>-1</CanGrow>
         <Font>
           <Name>Arial</Name>
           <Size>8.25</Size>
@@ -1608,9 +1625,10 @@ ORDER BY refDetail.CustomerItemCode</RecordSource>
         <Format>#,##0</Format>
         <Left>1260</Left>
         <Width>9465</Width>
-        <Height>285</Height>
+        <Height>360</Height>
         <ZOrder>-21</ZOrder>
         <BorderStyle>1</BorderStyle>
+        <CanGrow>-1</CanGrow>
         <Font>
           <Name>Arial</Name>
           <Size>8.25</Size>
@@ -1622,13 +1640,13 @@ ORDER BY refDetail.CustomerItemCode</RecordSource>
         <Text>1</Text>
         <Calculated>-1</Calculated>
         <Left>1290</Left>
-        <Top>30</Top>
         <Width>540</Width>
-        <Height>255</Height>
+        <Height>360</Height>
         <ZOrder>-20</ZOrder>
         <Align>6</Align>
         <MarginLeft>5</MarginLeft>
         <RunningSum>2</RunningSum>
+        <CanGrow>-1</CanGrow>
         <Font>
           <Name>Arial</Name>
           <Size>8.25</Size>
@@ -1639,9 +1657,10 @@ ORDER BY refDetail.CustomerItemCode</RecordSource>
         <Name>Field39</Name>
         <Section>5</Section>
         <Left>1890</Left>
-        <Height>280</Height>
+        <Height>360</Height>
         <BorderStyle>1</BorderStyle>
         <LineSlant>1</LineSlant>
+        <CanGrow>-1</CanGrow>
         <Font>
           <Name>Arial</Name>
           <Size>8.25</Size>
@@ -1651,9 +1670,10 @@ ORDER BY refDetail.CustomerItemCode</RecordSource>
         <Name>Field40</Name>
         <Section>5</Section>
         <Left>3825</Left>
-        <Height>280</Height>
+        <Height>360</Height>
         <BorderStyle>1</BorderStyle>
         <LineSlant>1</LineSlant>
+        <CanGrow>-1</CanGrow>
         <Font>
           <Name>Arial</Name>
           <Size>8.25</Size>
@@ -1662,10 +1682,11 @@ ORDER BY refDetail.CustomerItemCode</RecordSource>
       <Field>
         <Name>Field41</Name>
         <Section>5</Section>
-        <Left>6255</Left>
-        <Height>280</Height>
+        <Left>6480</Left>
+        <Height>360</Height>
         <BorderStyle>1</BorderStyle>
         <LineSlant>1</LineSlant>
+        <CanGrow>-1</CanGrow>
         <Font>
           <Name>Arial</Name>
           <Size>8.25</Size>
@@ -1675,9 +1696,10 @@ ORDER BY refDetail.CustomerItemCode</RecordSource>
         <Name>Field42</Name>
         <Section>5</Section>
         <Left>7020</Left>
-        <Height>280</Height>
+        <Height>360</Height>
         <BorderStyle>1</BorderStyle>
         <LineSlant>1</LineSlant>
+        <CanGrow>-1</CanGrow>
         <Font>
           <Name>Arial</Name>
           <Size>8.25</Size>
@@ -1687,9 +1709,10 @@ ORDER BY refDetail.CustomerItemCode</RecordSource>
         <Name>Field43</Name>
         <Section>5</Section>
         <Left>7815</Left>
-        <Height>280</Height>
+        <Height>360</Height>
         <BorderStyle>1</BorderStyle>
         <LineSlant>1</LineSlant>
+        <CanGrow>-1</CanGrow>
         <Font>
           <Name>Arial</Name>
           <Size>8.25</Size>
@@ -1699,9 +1722,10 @@ ORDER BY refDetail.CustomerItemCode</RecordSource>
         <Name>Field55</Name>
         <Section>5</Section>
         <Left>9150</Left>
-        <Height>280</Height>
+        <Height>360</Height>
         <BorderStyle>1</BorderStyle>
         <LineSlant>1</LineSlant>
+        <CanGrow>-1</CanGrow>
         <Font>
           <Name>Arial</Name>
           <Size>8.25</Size>
@@ -1713,26 +1737,10 @@ ORDER BY refDetail.CustomerItemCode</RecordSource>
         <Text>ITM_ProductCode</Text>
         <Calculated>-1</Calculated>
         <Left>1920</Left>
-        <Top>15</Top>
         <Width>1740</Width>
-        <Height>255</Height>
+        <Height>360</Height>
         <Align>6</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>fldITM_ProductDescription</Name>
-        <Section>5</Section>
-        <Text>ITM_ProductDescriptionVN</Text>
-        <Calculated>-1</Calculated>
-        <Left>3870</Left>
-        <Top>15</Top>
-        <Width>2350</Width>
-        <Height>255</Height>
-        <Align>6</Align>
+        <CanGrow>-1</CanGrow>
         <Font>
           <Name>Arial</Name>
           <Size>8.25</Size>
@@ -1745,10 +1753,10 @@ ORDER BY refDetail.CustomerItemCode</RecordSource>
         <Text>MST_UnitOfMeasureCode</Text>
         <Calculated>-1</Calculated>
         <Left>6540</Left>
-        <Top>15</Top>
         <Width>450</Width>
-        <Height>255</Height>
+        <Height>360</Height>
         <Align>7</Align>
+        <CanGrow>-1</CanGrow>
         <Font>
           <Name>Arial</Name>
           <Size>8.25</Size>
@@ -1762,10 +1770,10 @@ ORDER BY refDetail.CustomerItemCode</RecordSource>
         <Calculated>-1</Calculated>
         <Format>#,###.##</Format>
         <Left>7050</Left>
-        <Top>15</Top>
         <Width>675</Width>
-        <Height>255</Height>
+        <Height>360</Height>
         <Align>8</Align>
+        <CanGrow>-1</CanGrow>
         <Font>
           <Name>Arial</Name>
           <Size>8.25</Size>
@@ -1779,10 +1787,10 @@ ORDER BY refDetail.CustomerItemCode</RecordSource>
         <Calculated>-1</Calculated>
         <Format>#,##0</Format>
         <Left>9180</Left>
-        <Top>15</Top>
         <Width>1520</Width>
-        <Height>255</Height>
+        <Height>360</Height>
         <Align>8</Align>
+        <CanGrow>-1</CanGrow>
         <Font>
           <Name>Arial</Name>
           <Size>8.25</Size>

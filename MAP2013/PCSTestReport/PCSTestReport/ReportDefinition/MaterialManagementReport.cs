@@ -400,7 +400,7 @@ namespace MaterialManagementReport
 					// indent the part no following the level
 					int intLevel = int.Parse(row["Level"].ToString());
 					for (int i = 0; i < intLevel; i++)
-						strPartNo = "- " + strPartNo;
+						strPartNo = "'- " + strPartNo;
 					row["Part No."] = strPartNo;
 					intCount++;
 				}

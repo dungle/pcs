@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <Reports>
   <!--Report *** RecycledSlip ***-->
   <Report version="2.5.20043.144">
@@ -356,7 +356,7 @@
       <Field>
         <Name>fldCompany</Name>
         <Section>3</Section>
-        <Text>Machino Auto - Parts Co.,Ltd.</Text>
+        <Text>Showa Auto - Parts Viet Nam Co.,Ltd.</Text>
         <Left>3285</Left>
         <Top>450</Top>
         <Width>3330</Width>

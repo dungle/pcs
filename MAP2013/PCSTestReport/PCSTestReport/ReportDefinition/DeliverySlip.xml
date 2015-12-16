@@ -1,4 +1,4 @@
-<?xml version="1.0"?>
+﻿<?xml version="1.0"?>
 <Reports>
   <!--Report *** DeliverySlip ***-->
   <Report version="2.5.20043.144">
@@ -155,7 +155,7 @@
         <CanShrink>-1</CanShrink>
         <Anchor>2</Anchor>
         <Font>
-          <Name>Arial Narrow</Name>
+          <Name>Times new roman</Name>
           <Size>6.75</Size>
         </Font>
       </Field>
@@ -436,7 +436,7 @@
       <Field>
         <Name>fldCompany</Name>
         <Section>7</Section>
-        <Text>Machino Auto - Parts Co.,Ltd.</Text>
+        <Text>--SHOWA Auto - Parts VIET NAM Co.,Ltd.</Text>
         <Left>3240</Left>
         <Top>675</Top>
         <Width>3330</Width>
@@ -530,7 +530,7 @@
         <WordWrap>0</WordWrap>
         <Font>
           <Name>Arial Narrow</Name>
-          <Size>9</Size>
+          <Size>8</Size>
         </Font>
       </Field>
       <Field>
@@ -578,7 +578,7 @@
         <WordWrap>0</WordWrap>
         <Font>
           <Name>Arial Narrow</Name>
-          <Size>9</Size>
+          <Size>8</Size>
         </Font>
       </Field>
       <Field>
@@ -593,7 +593,7 @@
         <WordWrap>0</WordWrap>
         <Font>
           <Name>Arial Narrow</Name>
-          <Size>9</Size>
+          <Size>8</Size>
         </Font>
       </Field>
       <Field>
@@ -609,7 +609,7 @@
         <WordWrap>0</WordWrap>
         <Font>
           <Name>Arial Narrow</Name>
-          <Size>9</Size>
+          <Size>8</Size>
         </Font>
       </Field>
       <Field>
@@ -626,7 +626,7 @@
         <WordWrap>0</WordWrap>
         <Font>
           <Name>Arial Narrow</Name>
-          <Size>9</Size>
+          <Size>8</Size>
         </Font>
       </Field>
       <Field>
@@ -643,7 +643,7 @@
         <WordWrap>0</WordWrap>
         <Font>
           <Name>Arial Narrow</Name>
-          <Size>9</Size>
+          <Size>8</Size>
         </Font>
       </Field>
       <Field>
@@ -659,7 +659,7 @@
         <WordWrap>0</WordWrap>
         <Font>
           <Name>Arial Narrow</Name>
-          <Size>9</Size>
+          <Size>8</Size>
         </Font>
       </Field>
       <Field>
@@ -676,7 +676,7 @@
         <WordWrap>0</WordWrap>
         <Font>
           <Name>Arial Narrow</Name>
-          <Size>9</Size>
+          <Size>8</Size>
         </Font>
       </Field>
       <Field>
@@ -693,7 +693,7 @@
         <WordWrap>0</WordWrap>
         <Font>
           <Name>Arial Narrow</Name>
-          <Size>9</Size>
+          <Size>8</Size>
         </Font>
       </Field>
       <Field>
@@ -871,7 +871,7 @@
         <WordWrap>0</WordWrap>
         <Font>
           <Name>Arial Narrow</Name>
-          <Size>9</Size>
+          <Size>8</Size>
         </Font>
       </Field>
       <Field>
@@ -888,7 +888,7 @@
         <WordWrap>0</WordWrap>
         <Font>
           <Name>Arial Narrow</Name>
-          <Size>9</Size>
+          <Size>8</Size>
         </Font>
       </Field>
       <Field>
@@ -1325,7 +1325,7 @@
         <Align>7</Align>
         <WordWrap>0</WordWrap>
         <Font>
-          <Name>Arial Narrow</Name>
+          <Name>Times New Roman</Name>
           <Size>9</Size>
         </Font>
       </Field>
@@ -1674,7 +1674,7 @@
       <Field>
         <Name>fldCompany</Name>
         <Section>7</Section>
-        <Text>Machino Auto - Parts Co.,Ltd.</Text>
+        <Text>Showa Auto - Parts Viet Nam Co.,Ltd.</Text>
         <Left>3240</Left>
         <Top>225</Top>
         <Width>3330</Width>
@@ -1864,7 +1864,7 @@
         <WordWrap>0</WordWrap>
         <Font>
           <Name>Arial Narrow</Name>
-          <Size>9</Size>
+          <Size>8</Size>
         </Font>
       </Field>
       <Field>
@@ -1881,7 +1881,7 @@
         <WordWrap>0</WordWrap>
         <Font>
           <Name>Arial Narrow</Name>
-          <Size>9</Size>
+          <Size>8</Size>
         </Font>
       </Field>
       <Field>
@@ -1898,7 +1898,7 @@
         <WordWrap>0</WordWrap>
         <Font>
           <Name>Arial Narrow</Name>
-          <Size>9</Size>
+          <Size>8</Size>
         </Font>
       </Field>
       <Field>
@@ -1914,7 +1914,7 @@
         <WordWrap>0</WordWrap>
         <Font>
           <Name>Arial Narrow</Name>
-          <Size>9</Size>
+          <Size>8</Size>
         </Font>
       </Field>
       <Field>
@@ -1931,7 +1931,7 @@
         <WordWrap>0</WordWrap>
         <Font>
           <Name>Arial Narrow</Name>
-          <Size>9</Size>
+          <Size>8</Size>
         </Font>
       </Field>
       <Field>
@@ -1957,7 +1957,7 @@
         <WordWrap>0</WordWrap>
         <Font>
           <Name>Arial Narrow</Name>
-          <Size>9</Size>
+          <Size>8</Size>
         </Font>
       </Field>
       <Field>
@@ -2584,7 +2584,7 @@
         <Align>7</Align>
         <WordWrap>0</WordWrap>
         <Font>
-          <Name>Arial Narrow</Name>
+          <Name>Times new roman</Name>
           <Size>9</Size>
         </Font>
       </Field>
@@ -2752,7 +2752,7 @@
         <CanShrink>-1</CanShrink>
         <Anchor>2</Anchor>
         <Font>
-          <Name>Arial Narrow</Name>
+          <Name>Times New Roman</Name>
           <Size>6.75</Size>
         </Font>
       </Field>

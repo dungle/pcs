@@ -3628,8 +3628,8 @@ namespace BaoCaoTongHopSanXuat
 					+ "\n LEFT JOIN MST_Party V ON P.PrimaryVendorID = V.PartyID"
 					+ "\n LEFT JOIN ITM_Source S ON P.SourceID = S.SourceID"
 					+ "\n WHERE PostDate BETWEEN @CurrentMonth AND @EndMonth"
-					+ "\n AND SourceLocationID = 148 /*Hardcode: 148 = QC-QC-WH Qualtity Control Warehouse*/"
-					+ "\n AND DesLocationID <> 148 /*Hardcode: 148 = QC-QC-WH Qualtity Control Warehouse*/";
+					+ "\n AND SourceLocationID in (148,250) /*Hardcode: 148 = QC-QC-WH Qualtity Control Warehouse*/"
+					+ "\n AND DesLocationID not in (148,250) /*Hardcode: 148 = QC-QC-WH Qualtity Control Warehouse*/";
 				if (pstrDepartmentID != null && pstrDepartmentID.Length > 0)
 					InQCTable += "\n AND D.DepartmentID IN (" + pstrDepartmentID + ")";
 				if (pstrLocationID != null && pstrLocationID.Length > 0)
@@ -3696,7 +3696,7 @@ namespace BaoCaoTongHopSanXuat
 					+ "\n LEFT JOIN MST_Party V ON P.PrimaryVendorID = V.PartyID"
 					+ "\n LEFT JOIN ITM_Source S ON P.SourceID = S.SourceID"
 					+ "\n WHERE PostDate BETWEEN @CurrentMonth AND @EndMonth"
-					+ "\n AND (SourceLocationID <> 148  OR (SourceLocationID = 148 AND DesLocationID = 148)) /*Hardcode: 148 = QC-QC-WH Qualtity Control Warehouse*/"
+					+ "\n AND (SourceLocationID not in (148,250)  OR (SourceLocationID = 148 AND DesLocationID = 148) OR (SourceLocationID = 250 AND DesLocationID = 250)) /*Hardcode: 148 = QC-QC-WH Qualtity Control Warehouse*/"
 					+ "\n AND IssuePurposeID <> 2 /*HardCode: IssuePurposeID = 2: Xuat Bat Thuong*/";
 				if (pstrDepartmentID != null && pstrDepartmentID.Length > 0)
 					InMiscTable += "\n AND D.DepartmentID IN (" + pstrDepartmentID + ")";
@@ -3832,8 +3832,8 @@ namespace BaoCaoTongHopSanXuat
 					+ "\n LEFT JOIN MST_Party V ON P.PrimaryVendorID = V.PartyID"
 					+ "\n LEFT JOIN ITM_Source S ON P.SourceID = S.SourceID"
 					+ "\n WHERE PostDate BETWEEN @CurrentMonth AND @EndMonth"
-					+ "\n AND DesLocationID = 148 /*Hardcode: 148 = QC-QC-WH Qualtity Control Warehouse*/"
-					+ "\n AND SourceLocationID <> 148 /*Hardcode: 148 = QC-QC-WH Qualtity Control Warehouse*/";
+					+ "\n AND DesLocationID in (148,250) /*Hardcode: 148 = QC-QC-WH Qualtity Control Warehouse*/"
+					+ "\n AND SourceLocationID not in (148,250) /*Hardcode: 148 = QC-QC-WH Qualtity Control Warehouse*/";
 				if (pstrDepartmentID != null && pstrDepartmentID.Length > 0)
 					OutQCTable += "\n AND D.DepartmentID IN (" + pstrDepartmentID + ")";
 				if (pstrLocationID != null && pstrLocationID.Length > 0)
@@ -3900,7 +3900,7 @@ namespace BaoCaoTongHopSanXuat
 					+ "\n LEFT JOIN MST_Party V ON P.PrimaryVendorID = V.PartyID"
 					+ "\n LEFT JOIN ITM_Source S ON P.SourceID = S.SourceID"
 					+ "\n WHERE PostDate BETWEEN @CurrentMonth AND @EndMonth"
-					+ "\n  AND (DesLocationID <> 148 OR (DesLocationID = 148 AND SourceLocationID = 148)) /*Hardcode: 148 = QC-QC-WH Qualtity Control Warehouse*/"
+					+ "\n  AND (DesLocationID not in (148,250) OR (DesLocationID = 148 AND SourceLocationID = 148)OR (DesLocationID = 250 AND SourceLocationID = 250)) /*Hardcode: 148 = QC-QC-WH Qualtity Control Warehouse*/"
 					+ "\n AND IssuePurposeID NOT IN (2, 14) /*HardCode: IssuePurposeID = 2: Xuat Bat Thuong, 14: Xuat Huy*/";
 				if (pstrDepartmentID != null && pstrDepartmentID.Length > 0)
 					OutMiscTable += "\n AND D.DepartmentID IN (" + pstrDepartmentID + ")";
@@ -3958,9 +3958,10 @@ namespace BaoCaoTongHopSanXuat
 				string ShippingTable = "\n SELECT D.Code Department, D.DepartmentID, L.Code Location, L.LocationID, B.Code Bin, B.BinID,"
 					+ "\n C.Code Category, P.Code PartNo, P.Description PartName, P.Revision Model, P.ProductID,"
 					+ "\n V.Code Vendor, S.Code Source,"
-                    + "\n SUM(ISNULL(SO_ConfirmShipDetail.InvoiceQty,0)) Shipping"
+                    + "\n SUM(ISNULL(SO_DeliverySchedule.DeliveryQuantity,0)) Shipping"
 					+ "\n FROM SO_ConfirmShipMaster JOIN SO_ConfirmShipDetail"
 					+ "\n ON SO_ConfirmShipMaster.ConfirmShipMasterID = SO_ConfirmShipDetail.ConfirmShipMasterID"
+					+ "\n JOIN SO_DeliverySchedule ON SO_ConfirmShipDetail.DeliveryScheduleID = SO_DeliverySchedule.DeliveryScheduleID"
 					+ "\n JOIN ITM_Product P ON SO_ConfirmShipDetail.ProductID = P.ProductID"
                     + "\n JOIN MST_Bin B ON SO_ConfirmShipMaster.BinID = B.BinID"
                     + "\n JOIN MST_Location L ON SO_ConfirmShipMaster.LocationID = L.LocationID"

@@ -2743,8 +2743,8 @@ End If</OnPrint>
       <Field>
         <Name>LevelCtl</Name>
         <Section>3</Section>
-        <Text>MACHINO AUTO - PARTS CO., LTD</Text>
-        <Left>12555</Left>
+        <Text>SHOWA AUTO PARTS VIET NAM CO., LTD</Text>
+        <Left>12300</Left>
         <Top>360</Top>
         <Width>3120</Width>
         <Height>300</Height>
@@ -2754,7 +2754,7 @@ End If</OnPrint>
         <Font>
           <Bold>-1</Bold>
           <Name>Arial</Name>
-          <Size>8.25</Size>
+          <Size>7.75</Size>
         </Font>
       </Field>
       <Field>
@@ -2901,7 +2901,7 @@ End If</OnPrint>
       <Field>
         <Name>Label3</Name>
         <Section>4</Section>
-        <Text>MACHINO AUTO-PARTS CO., LTD</Text>
+        <Text>SHOWA AUTO PARTS VIET NAM CO., LTD</Text>
         <Left>675</Left>
         <Top>60</Top>
         <Width>3435</Width>
@@ -2910,7 +2910,7 @@ End If</OnPrint>
         <Font>
           <Bold>-1</Bold>
           <Name>Arial</Name>
-          <Size>8.25</Size>
+          <Size>7.75</Size>
         </Font>
       </Field>
       <Field>
