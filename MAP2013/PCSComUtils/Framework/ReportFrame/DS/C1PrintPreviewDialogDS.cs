@@ -2331,7 +2331,7 @@ namespace PCSComUtils.Framework.ReportFrame.DS
 					+ " ORDER BY refDetail.CustomerItemCode";
 				
 				oconPCS = new OleDbConnection(Utils.Instance.OleDbConnectionString);
-				ocmdPCS = new OleDbCommand(strSql, oconPCS);
+				ocmdPCS = new OleDbCommand(strSql, oconPCS) {CommandTimeout = 3600};
 				
 				ocmdPCS.Connection.Open();				
 				OleDbDataAdapter odadPCS = new OleDbDataAdapter(ocmdPCS);
@@ -2487,9 +2487,9 @@ namespace PCSComUtils.Framework.ReportFrame.DS
 					+ " ORDER BY refDetail.CustomerItemCode";
 				
 				oconPCS = new OleDbConnection(Utils.Instance.OleDbConnectionString);
-				ocmdPCS = new OleDbCommand(strSql, oconPCS);
-				
-				ocmdPCS.Connection.Open();				
+			    ocmdPCS = new OleDbCommand(strSql, oconPCS) {CommandTimeout = 3600};
+
+			    ocmdPCS.Connection.Open();				
 				OleDbDataAdapter odadPCS = new OleDbDataAdapter(ocmdPCS);
 				odadPCS.Fill(dstPCS, SO_InvoiceDetailTable.TABLE_NAME);
 

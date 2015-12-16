@@ -103,11 +103,13 @@ namespace PCSComSale.Order.BO
 		                {
 		                    if (dr.RowState == DataRowState.Deleted)
 		                        continue;
-		                    var objDetail = new SO_InvoiceDetail();
+		                    var objDetail = new SO_InvoiceDetail
+		                    {
+                                PONumber = dr["PONumber"].ToString()
+                            };
 		                    if (dr[SO_DeliveryScheduleTable.DELIVERYSCHEDULEID_FLD] != DBNull.Value)
 		                    {
-		                        objDetail.DeliveryScheduleID =
-		                            Convert.ToInt32(dr[SO_DeliveryScheduleTable.DELIVERYSCHEDULEID_FLD]);
+		                        objDetail.DeliveryScheduleID = Convert.ToInt32(dr[SO_DeliveryScheduleTable.DELIVERYSCHEDULEID_FLD]);
 		                    }
 		                    if (dr[ITM_ProductTable.PRODUCTID_FLD] != DBNull.Value)
 		                    {
@@ -228,6 +230,7 @@ namespace PCSComSale.Order.BO
                                 if (objDetail != null)
                                 {
                                     objDetail.InvoiceMasterID = objMaster.InvoiceMasterID;
+                                    objDetail.PONumber = dr["PONumber"].ToString();
                                     if (dr[SO_DeliveryScheduleTable.DELIVERYSCHEDULEID_FLD] != DBNull.Value)
                                     {
                                         objDetail.DeliveryScheduleID = Convert.ToInt32(dr[SO_DeliveryScheduleTable.DELIVERYSCHEDULEID_FLD]);
@@ -264,7 +267,11 @@ namespace PCSComSale.Order.BO
                             }
                             else
                             {
-                                var objDetail = new SO_InvoiceDetail { InvoiceMasterID = 0 };
+                                var objDetail = new SO_InvoiceDetail
+                                {
+                                    InvoiceMasterID = 0,
+                                    PONumber = dr["PONumber"].ToString()
+                                };
                                 if (dr[SO_DeliveryScheduleTable.DELIVERYSCHEDULEID_FLD] != DBNull.Value)
                                 {
                                     objDetail.DeliveryScheduleID = Convert.ToInt32(dr[SO_DeliveryScheduleTable.DELIVERYSCHEDULEID_FLD]);
@@ -390,7 +397,8 @@ namespace PCSComSale.Order.BO
                                 continue;
                             var objShipDetail = new SO_ConfirmShipDetail
                             {
-                                ConfirmShipMasterID = confirmShipMaster.ConfirmShipMasterID                                
+                                ConfirmShipMasterID = confirmShipMaster.ConfirmShipMasterID,
+                                PONumber = dr["PONumber"].ToString()
                             };
                             if (dr[SO_DeliveryScheduleTable.DELIVERYSCHEDULEID_FLD] != DBNull.Value)
                             {
@@ -803,9 +811,10 @@ namespace PCSComSale.Order.BO
                                 isNew = true;
                                 objShipDetail = new SO_ConfirmShipDetail
                                 {
-                                    ConfirmShipMasterID = objConfirmShipMaster.ConfirmShipMasterID
+                                    ConfirmShipMasterID = objConfirmShipMaster.ConfirmShipMasterID,
                                 };
                             }
+                            objShipDetail.PONumber = dr["PONumber"].ToString();
                             if (dr[SO_DeliveryScheduleTable.DELIVERYSCHEDULEID_FLD] != DBNull.Value)
                             {
                                 objShipDetail.DeliveryScheduleID = Convert.ToInt32(dr[SO_DeliveryScheduleTable.DELIVERYSCHEDULEID_FLD]);

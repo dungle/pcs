@@ -167,7 +167,7 @@ namespace PCSComSale.Order.DS
 				var strSql = " SELECT DISTINCT Bin.Code AS BCode, L.Code As LCode," +
                     "  CA.Code ITM_CategoryCode, G.Code PartNo, G.Description, G.Revision,H.Code UMCode, " +
                     " C.SaleOrderDetailID, E.DeliveryScheduleID, G.ProductID, ISNULL(G.AllowNegativeQty,0) AllowNegativeQty," +
-                    " E.ScheduleDate, GA.Code SO_GateCode, E.DeliveryQuantity AS CommittedQuantity," +
+                    " E.ScheduleDate, A.PONumber, GA.Code SO_GateCode, E.DeliveryQuantity AS CommittedQuantity," +
                     " A.InvoiceQty, A.InvoiceQty OldInvoiceQty, ISNULL(BC.OHQuantity,0) - ISNULL(BC.CommitQuantity,0) AvailableQty, " +
                     " A.Price, A.NetAmount, A.NetAmount * ISNULL(B.ExchangeRate,1) AS NetAmountRate, A.VATPercent, A.VATAmount, A.InvoiceMasterID ," +
 					" A.InvoiceDetailID, B.LocationID,B.BinID," +

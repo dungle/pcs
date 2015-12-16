@@ -1,7 +1,25 @@
 /****** Object:  Add PO Number to SO_InvoiceMaster and SO_ConfirmShipMaster  Script Date: 12/14/2015 3:27:52 PM ******/
-ALTER TABLE SO_InvoiceMaster ADD PONumber VARCHAR(500) NULL
+IF NOT EXISTS(SELECT Name FROM sys.columns  WHERE Name = N'PONumber' AND Object_ID = Object_ID(N'SO_InvoiceMaster'))
+BEGIN
+    ALTER TABLE SO_InvoiceMaster ADD PONumber VARCHAR(500) NULL
+END
 GO
-ALTER TABLE SO_ConfirmShipMaster ADD PONumber VARCHAR(500) NULL
+IF NOT EXISTS(SELECT Name FROM sys.columns  WHERE Name = N'PONumber' AND Object_ID = Object_ID(N'SO_ConfirmShipMaster'))
+BEGIN
+    ALTER TABLE SO_ConfirmShipMaster ADD PONumber VARCHAR(500) NULL
+END
+GO
+
+IF NOT EXISTS(SELECT Name FROM sys.columns  WHERE Name = N'PONumber' AND Object_ID = Object_ID(N'SO_ConfirmShipDetail'))
+BEGIN
+    ALTER TABLE SO_ConfirmShipDetail ADD PONumber VARCHAR(500) NULL
+END
+GO
+
+IF NOT EXISTS(SELECT Name FROM sys.columns  WHERE Name = N'PONumber' AND Object_ID = Object_ID(N'SO_InvoiceDetail'))
+BEGIN
+    ALTER TABLE SO_InvoiceDetail ADD PONumber VARCHAR(500) NULL
+END
 GO
 
 /****** Object:  View [dbo].[v_SOInvoiceMaster]    Script Date: 12/14/2015 3:27:52 PM ******/

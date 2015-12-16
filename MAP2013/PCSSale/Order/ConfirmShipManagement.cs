@@ -2621,11 +2621,12 @@ namespace PCSSale.Order
                 dgrdData.Columns[SO_ConfirmShipDetailTable.VATPERCENT_FLD].NumberFormat = Constants.DECIMAL_NUMBERFORMAT;
                 dgrdData.Columns[IV_AdjustmentTable.AVAILABLEQTY_FLD].NumberFormat = Constants.DECIMAL_NUMBERFORMAT;
                 dgrdData.Splits[0].DisplayColumns[IV_AdjustmentTable.AVAILABLEQTY_FLD].Visible = true;
-                //Allow edit Price column
+                // editable columns
                 dgrdData.Splits[0].DisplayColumns[SO_ConfirmShipDetailTable.PRICE_FLD].Locked = false;
                 dgrdData.Splits[0].DisplayColumns[SO_ConfirmShipDetailTable.VATAMOUNT_FLD].Locked = false;
                 dgrdData.Splits[0].DisplayColumns[SO_ConfirmShipDetailTable.VATPERCENT_FLD].Locked = false;
                 dgrdData.Splits[0].DisplayColumns[SO_ConfirmShipDetailTable.NETAMOUNT_FLD].Locked = false;
+                dgrdData.Splits[0].DisplayColumns["PONumber"].Locked = false;
                 
                 dgrdData.Columns[SO_ConfirmShipDetailTable.VATAMOUNT_FLD].NumberFormat = Constants.DECIMAL_NUMBERFORMAT;
                 dgrdData.Columns[SO_ConfirmShipDetailTable.PRICE_FLD].NumberFormat = Constants.DECIMAL_NUMBERFORMAT;
@@ -2711,6 +2712,7 @@ namespace PCSSale.Order
                 dgrdData.Splits[0].DisplayColumns[SO_ConfirmShipDetailTable.VATPERCENT_FLD].Locked = false;
                 dgrdData.Splits[0].DisplayColumns[SO_ConfirmShipDetailTable.NETAMOUNT_FLD].Locked = false;
                 dgrdData.Splits[0].DisplayColumns[IV_AdjustmentTable.AVAILABLEQTY_FLD].Visible = true;
+                dgrdData.Splits[0].DisplayColumns["PONumber"].Locked = false;
                 //enable Save button
                 btnConfirmShippment.Enabled = true;
                 btnAdd.Enabled = false;

@@ -636,13 +636,13 @@
       <Association Name="ITM_Product_PRO_WorkOrderCompletion" Member="PRO_WorkOrderCompletions" ThisKey="ProductID" OtherKey="ProductID" Type="PRO_WorkOrderCompletion" />
       <Association Name="ITM_Product_PRO_WorkOrderDetail" Member="PRO_WorkOrderDetails" ThisKey="ProductID" OtherKey="ProductID" Type="PRO_WorkOrderDetail" />
       <Association Name="ITM_Product_SO_CommitInventoryDetail" Member="SO_CommitInventoryDetails" ThisKey="ProductID" OtherKey="ProductID" Type="SO_CommitInventoryDetail" />
-      <Association Name="ITM_Product_SO_ConfirmShipDetail" Member="SO_ConfirmShipDetails" ThisKey="ProductID" OtherKey="ProductID" Type="SO_ConfirmShipDetail" />
       <Association Name="ITM_Product_SO_CustomerItemRefDetail" Member="SO_CustomerItemRefDetails" ThisKey="ProductID" OtherKey="ProductID" Type="SO_CustomerItemRefDetail" />
-      <Association Name="ITM_Product_SO_InvoiceDetail" Member="SO_InvoiceDetails" ThisKey="ProductID" OtherKey="ProductID" Type="SO_InvoiceDetail" />
       <Association Name="ITM_Product_SO_ReturnedGoodsDetail" Member="SO_ReturnedGoodsDetails" ThisKey="ProductID" OtherKey="ProductID" Type="SO_ReturnedGoodsDetail" />
       <Association Name="ITM_Product_SO_SaleOrderDetail" Member="SO_SaleOrderDetails" ThisKey="ProductID" OtherKey="ProductID" Type="SO_SaleOrderDetail" />
       <Association Name="ITM_Product_STD_CostCenterRateMaster" Member="STD_CostCenterRateMasters" ThisKey="ProductID" OtherKey="ProductID" Type="STD_CostCenterRateMaster" />
       <Association Name="ITM_Product_sys_RoleProduct" Member="sys_RoleProducts" ThisKey="ProductID" OtherKey="ProductID" Type="sys_RoleProduct" />
+      <Association Name="ITM_Product_SO_ConfirmShipDetail" Member="SO_ConfirmShipDetails" ThisKey="ProductID" OtherKey="ProductID" Type="SO_ConfirmShipDetail" />
+      <Association Name="ITM_Product_SO_InvoiceDetail" Member="SO_InvoiceDetails" ThisKey="ProductID" OtherKey="ProductID" Type="SO_InvoiceDetail" />
       <Association Name="cst_ACAdjustmentMaster_ITM_Product" Member="cst_ACAdjustmentMaster" ThisKey="ACAdjustmentMasterID" OtherKey="ACAdjustmentMasterID" Type="cst_ACAdjustmentMaster" IsForeignKey="true" />
       <Association Name="ITM_Buyer_ITM_Product" Member="ITM_Buyer" ThisKey="BuyerID" OtherKey="BuyerID" Type="ITM_Buyer" IsForeignKey="true" />
       <Association Name="ITM_Category_ITM_Product" Member="ITM_Category" ThisKey="CategoryID" OtherKey="CategoryID" Type="ITM_Category" IsForeignKey="true" />
@@ -2970,24 +2970,6 @@
       <Association Name="SO_SaleOrderMaster_SO_CommitInventoryMaster" Member="SO_SaleOrderMaster" ThisKey="SaleOrderMasterID" OtherKey="SaleOrderMasterID" Type="SO_SaleOrderMaster" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.SO_ConfirmShipDetail" Member="SO_ConfirmShipDetails">
-    <Type Name="SO_ConfirmShipDetail">
-      <Column Name="ConfirmShipDetailID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="ConfirmShipMasterID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="SaleOrderDetailID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="DeliveryScheduleID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="ProductID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Price" Type="System.Decimal" DbType="Decimal(20,5) NOT NULL" CanBeNull="false" />
-      <Column Name="InvoiceQty" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
-      <Column Name="VATPercent" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
-      <Column Name="VATAmount" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
-      <Column Name="NetAmount" Type="System.Decimal" DbType="Decimal(20,8)" CanBeNull="true" />
-      <Association Name="ITM_Product_SO_ConfirmShipDetail" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
-      <Association Name="SO_DeliverySchedule_SO_ConfirmShipDetail" Member="SO_DeliverySchedule" ThisKey="DeliveryScheduleID" OtherKey="DeliveryScheduleID" Type="SO_DeliverySchedule" IsForeignKey="true" />
-      <Association Name="SO_SaleOrderDetail_SO_ConfirmShipDetail" Member="SO_SaleOrderDetail" ThisKey="SaleOrderDetailID" OtherKey="SaleOrderDetailID" Type="SO_SaleOrderDetail" IsForeignKey="true" />
-      <Association Name="SO_ConfirmShipMaster_SO_ConfirmShipDetail" Member="SO_ConfirmShipMaster" ThisKey="ConfirmShipMasterID" OtherKey="ConfirmShipMasterID" Type="SO_ConfirmShipMaster" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.SO_CustomerItemRefDetail" Member="SO_CustomerItemRefDetails">
     <Type Name="SO_CustomerItemRefDetail">
       <Column Name="CustomerItemRefDetailID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -3040,24 +3022,6 @@
       <Association Name="SO_Gate_SO_ConfirmShipMaster" Member="SO_ConfirmShipMasters" ThisKey="GateID" OtherKey="GateID" Type="SO_ConfirmShipMaster" />
       <Association Name="SO_Gate_SO_InvoiceMaster" Member="SO_InvoiceMasters" ThisKey="GateID" OtherKey="GateID" Type="SO_InvoiceMaster" />
       <Association Name="enm_GateType_SO_Gate" Member="enm_GateType" ThisKey="GateTypeID" OtherKey="GateTypeID" Type="enm_GateType" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.SO_InvoiceDetail" Member="SO_InvoiceDetails">
-    <Type Name="SO_InvoiceDetail">
-      <Column Name="InvoiceDetailID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="InvoiceMasterID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="SaleOrderDetailID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="DeliveryScheduleID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="ProductID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Price" Type="System.Decimal" DbType="Decimal(20,5) NOT NULL" CanBeNull="false" />
-      <Column Name="InvoiceQty" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
-      <Column Name="VATPercent" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
-      <Column Name="VATAmount" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
-      <Column Name="NetAmount" Type="System.Decimal" DbType="Decimal(20,8)" CanBeNull="true" />
-      <Association Name="SO_DeliverySchedule_SO_InvoiceDetail" Member="SO_DeliverySchedule" ThisKey="DeliveryScheduleID" OtherKey="DeliveryScheduleID" Type="SO_DeliverySchedule" IsForeignKey="true" />
-      <Association Name="ITM_Product_SO_InvoiceDetail" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
-      <Association Name="SO_SaleOrderDetail_SO_InvoiceDetail" Member="SO_SaleOrderDetail" ThisKey="SaleOrderDetailID" OtherKey="SaleOrderDetailID" Type="SO_SaleOrderDetail" IsForeignKey="true" />
-      <Association Name="SO_InvoiceMaster_SO_InvoiceDetail" Member="SO_InvoiceMaster" ThisKey="InvoiceMasterID" OtherKey="InvoiceMasterID" Type="SO_InvoiceMaster" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.SO_PaymentMethod" Member="SO_PaymentMethods">
@@ -3156,10 +3120,10 @@
       <Column Name="SellingUMID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="StockUMID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="SO_SaleOrderDetail_PRO_WorkOrderDetail" Member="PRO_WorkOrderDetails" ThisKey="SaleOrderDetailID" OtherKey="SaleOrderDetailID" Type="PRO_WorkOrderDetail" />
-      <Association Name="SO_SaleOrderDetail_SO_ConfirmShipDetail" Member="SO_ConfirmShipDetails" ThisKey="SaleOrderDetailID" OtherKey="SaleOrderDetailID" Type="SO_ConfirmShipDetail" />
       <Association Name="SO_SaleOrderDetail_SO_DeliverySchedule" Member="SO_DeliverySchedules" ThisKey="SaleOrderDetailID" OtherKey="SaleOrderDetailID" Type="SO_DeliverySchedule" />
-      <Association Name="SO_SaleOrderDetail_SO_InvoiceDetail" Member="SO_InvoiceDetails" ThisKey="SaleOrderDetailID" OtherKey="SaleOrderDetailID" Type="SO_InvoiceDetail" />
       <Association Name="SO_SaleOrderDetail_SO_ReturnedGoodsDetail" Member="SO_ReturnedGoodsDetails" ThisKey="SaleOrderDetailID" OtherKey="SaleOrderDetailID" Type="SO_ReturnedGoodsDetail" />
+      <Association Name="SO_SaleOrderDetail_SO_ConfirmShipDetail" Member="SO_ConfirmShipDetails" ThisKey="SaleOrderDetailID" OtherKey="SaleOrderDetailID" Type="SO_ConfirmShipDetail" />
+      <Association Name="SO_SaleOrderDetail_SO_InvoiceDetail" Member="SO_InvoiceDetails" ThisKey="SaleOrderDetailID" OtherKey="SaleOrderDetailID" Type="SO_InvoiceDetail" />
       <Association Name="SO_CancelReason_SO_SaleOrderDetail" Member="SO_CancelReason" ThisKey="CancelReasonID" OtherKey="CancelReasonID" Type="SO_CancelReason" IsForeignKey="true" />
       <Association Name="ITM_Product_SO_SaleOrderDetail" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
       <Association Name="MST_Reason_SO_SaleOrderDetail" Member="MST_Reason" ThisKey="ReasonID" OtherKey="ReasonID" Type="MST_Reason" IsForeignKey="true" />
@@ -6299,8 +6263,8 @@
       <Column Name="LocationID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="BinID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="PONumber" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
-      <Association Name="SO_ConfirmShipMaster_SO_ConfirmShipDetail" Member="SO_ConfirmShipDetails" ThisKey="ConfirmShipMasterID" OtherKey="ConfirmShipMasterID" Type="SO_ConfirmShipDetail" />
       <Association Name="SO_ConfirmShipMaster_SO_ReturnedGoodsDetail" Member="SO_ReturnedGoodsDetails" ThisKey="ConfirmShipMasterID" OtherKey="ConfirmShipMasterID" Type="SO_ReturnedGoodsDetail" />
+      <Association Name="SO_ConfirmShipMaster_SO_ConfirmShipDetail" Member="SO_ConfirmShipDetails" ThisKey="ConfirmShipMasterID" OtherKey="ConfirmShipMasterID" Type="SO_ConfirmShipDetail" />
       <Association Name="MST_BIN_SO_ConfirmShipMaster" Member="MST_BIN" ThisKey="BinID" OtherKey="BinID" Type="MST_BIN" IsForeignKey="true" />
       <Association Name="MST_CCN_SO_ConfirmShipMaster" Member="MST_CCN" ThisKey="CCNID" OtherKey="CCNID" Type="MST_CCN" IsForeignKey="true" />
       <Association Name="MST_Currency_SO_ConfirmShipMaster" Member="MST_Currency" ThisKey="CurrencyID" OtherKey="CurrencyID" Type="MST_Currency" IsForeignKey="true" />
@@ -6349,6 +6313,44 @@
       <Association Name="MST_Location_SO_InvoiceMaster" Member="MST_Location" ThisKey="LocationID" OtherKey="LocationID" Type="MST_Location" IsForeignKey="true" />
       <Association Name="MST_MasterLocation_SO_InvoiceMaster" Member="MST_MasterLocation" ThisKey="MasterLocationID" OtherKey="MasterLocationID" Type="MST_MasterLocation" IsForeignKey="true" />
       <Association Name="SO_SaleOrderMaster_SO_InvoiceMaster" Member="SO_SaleOrderMaster" ThisKey="SaleOrderMasterID" OtherKey="SaleOrderMasterID" Type="SO_SaleOrderMaster" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SO_ConfirmShipDetail" Member="SO_ConfirmShipDetails">
+    <Type Name="SO_ConfirmShipDetail">
+      <Column Name="ConfirmShipDetailID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ConfirmShipMasterID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SaleOrderDetailID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DeliveryScheduleID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ProductID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(20,5) NOT NULL" CanBeNull="false" />
+      <Column Name="InvoiceQty" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
+      <Column Name="VATPercent" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
+      <Column Name="VATAmount" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
+      <Column Name="NetAmount" Type="System.Decimal" DbType="Decimal(20,8)" CanBeNull="true" />
+      <Column Name="PONumber" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Association Name="SO_ConfirmShipMaster_SO_ConfirmShipDetail" Member="SO_ConfirmShipMaster" ThisKey="ConfirmShipMasterID" OtherKey="ConfirmShipMasterID" Type="SO_ConfirmShipMaster" IsForeignKey="true" />
+      <Association Name="SO_DeliverySchedule_SO_ConfirmShipDetail" Member="SO_DeliverySchedule" ThisKey="DeliveryScheduleID" OtherKey="DeliveryScheduleID" Type="SO_DeliverySchedule" IsForeignKey="true" />
+      <Association Name="ITM_Product_SO_ConfirmShipDetail" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
+      <Association Name="SO_SaleOrderDetail_SO_ConfirmShipDetail" Member="SO_SaleOrderDetail" ThisKey="SaleOrderDetailID" OtherKey="SaleOrderDetailID" Type="SO_SaleOrderDetail" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SO_InvoiceDetail" Member="SO_InvoiceDetails">
+    <Type Name="SO_InvoiceDetail">
+      <Column Name="InvoiceDetailID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="InvoiceMasterID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SaleOrderDetailID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DeliveryScheduleID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ProductID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(20,5) NOT NULL" CanBeNull="false" />
+      <Column Name="InvoiceQty" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
+      <Column Name="VATPercent" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
+      <Column Name="VATAmount" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
+      <Column Name="NetAmount" Type="System.Decimal" DbType="Decimal(20,8)" CanBeNull="true" />
+      <Column Name="PONumber" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Association Name="SO_DeliverySchedule_SO_InvoiceDetail" Member="SO_DeliverySchedule" ThisKey="DeliveryScheduleID" OtherKey="DeliveryScheduleID" Type="SO_DeliverySchedule" IsForeignKey="true" />
+      <Association Name="SO_InvoiceMaster_SO_InvoiceDetail" Member="SO_InvoiceMaster" ThisKey="InvoiceMasterID" OtherKey="InvoiceMasterID" Type="SO_InvoiceMaster" IsForeignKey="true" />
+      <Association Name="ITM_Product_SO_InvoiceDetail" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
+      <Association Name="SO_SaleOrderDetail_SO_InvoiceDetail" Member="SO_SaleOrderDetail" ThisKey="SaleOrderDetailID" OtherKey="SaleOrderDetailID" Type="SO_SaleOrderDetail" IsForeignKey="true" />
     </Type>
   </Table>
   <Function Name="dbo.GetAvailableQtyByPostDate" Method="GetAvailableQtyByPostDate">
