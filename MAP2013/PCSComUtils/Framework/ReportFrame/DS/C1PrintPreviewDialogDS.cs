@@ -2328,7 +2328,7 @@ namespace PCSComUtils.Framework.ReportFrame.DS
                     + " LEFT JOIN SO_SaleType ST ON SO_SaleOrderMaster.SaleTypeID = ST.SaleTypeID"
                     + " WHERE SO_ConfirmShipMaster.ConfirmShipMasterID = " + pintSOCommitMasterID
 					+ " AND SO_ConfirmShipDetail.InvoiceQty > 0"
-					+ " ORDER BY refDetail.CustomerItemCode";
+					+ " ORDER BY ITM_Product.Revision";
 				
 				oconPCS = new OleDbConnection(Utils.Instance.OleDbConnectionString);
 				ocmdPCS = new OleDbCommand(strSql, oconPCS) {CommandTimeout = 3600};
@@ -2465,7 +2465,7 @@ namespace PCSComUtils.Framework.ReportFrame.DS
 					+ " WHERE SO_DeliverySchedule.DeliveryScheduleID = SO_InvoiceDetail.DeliveryScheduleID"
 					+ " )AS SaleType,"
                     + " GA.Code SOGate,"
-					+ " SO_InvoiceMaster.PONumber AS CustomerPurchaseOrderNo,"
+					+ " SO_InvoiceMaster.DocumentNumber AS CustomerPurchaseOrderNo,"
                     + " SO_InvoiceDetail.InvoiceDetailID, MST_PartyLocation.[Description] AS ShipToLocation, ST.Code AS SaleType1"
 
                     + " FROM    SO_InvoiceDetail "
@@ -2484,7 +2484,7 @@ namespace PCSComUtils.Framework.ReportFrame.DS
                     + " LEFT JOIN SO_SaleType ST ON SO_SaleOrderMaster.SaleTypeID = ST.SaleTypeID"
                     + " WHERE SO_InvoiceMaster.InvoiceMasterID = " + pintSOInvoiceMasterID
 					+ " AND SO_InvoiceDetail.InvoiceQty > 0"
-					+ " ORDER BY refDetail.CustomerItemCode";
+					+ " ORDER BY ITM_Product.Revision";
 				
 				oconPCS = new OleDbConnection(Utils.Instance.OleDbConnectionString);
 			    ocmdPCS = new OleDbCommand(strSql, oconPCS) {CommandTimeout = 3600};

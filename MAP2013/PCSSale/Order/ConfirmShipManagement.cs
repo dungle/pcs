@@ -138,7 +138,7 @@ namespace PCSSale.Order
                 txtReferenceNo.Text = pdrowData[SO_ConfirmShipMasterTable.REFERENCENO_FLD].ToString();
                 txtInvoiceNo.Text = pdrowData[SO_ConfirmShipMasterTable.INVOICENO_FLD].ToString();
                 dtmInvoiceDate.Value = (DateTime) pdrowData[SO_ConfirmShipMasterTable.INVOICEDATE_FLD];
-                txtPONo.Text = pdrowData[SO_ConfirmShipMasterTable.PONumber_FLD].ToString();
+                txtDocumentNumber.Text = pdrowData[SO_ConfirmShipMasterTable.DOCUMENTNUMBER_FLD].ToString();
                 if (pdrowData[SO_ConfirmShipMasterTable.LCDATE_FLD] != DBNull.Value)
                     dtmLCDate.Value = (DateTime) pdrowData[SO_ConfirmShipMasterTable.LCDATE_FLD];
                 if (pdrowData[SO_ConfirmShipMasterTable.ONBOARDDATE_FLD] != DBNull.Value)
@@ -154,7 +154,7 @@ namespace PCSSale.Order
         {
             if (_formAction == EnumAction.Add)
             {
-                txtPONo.Enabled = true;
+                txtDocumentNumber.Enabled = true;
                 btnShipNo.Enabled = false;
                 btnSearchMasLoc.Enabled = true;
                 dtmShipmentDate.Enabled = true;
@@ -207,7 +207,7 @@ namespace PCSSale.Order
             }
             else if (_formAction == EnumAction.Default)
             {
-                txtPONo.Enabled = false;
+                txtDocumentNumber.Enabled = false;
                 btnSearchMasLoc.Enabled = false;
                 dtmShipmentDate.Enabled = false;
                 btnSO.Enabled = false;
@@ -567,7 +567,7 @@ namespace PCSSale.Order
 
         private void SaveShipping()
         {
-            _voMaster.PONumber = txtPONo.Text.Trim();
+            _voMaster.DocumentNumber = txtDocumentNumber.Text.Trim();
             _voMaster.ConfirmShipNo = txtConfirmShipNo.Text.Trim();
             _voMaster.CCNID = int.Parse(cboCCN.SelectedValue.ToString());
             _voMaster.MasterLocationID = _voMasLoc.MasterLocationID = int.Parse(txtMasLoc.Tag.ToString());
@@ -630,7 +630,7 @@ namespace PCSSale.Order
 
         private void SaveInvoice()
         {
-            _voInvoiceMaster.PONumber = txtPONo.Text.Trim();
+            _voInvoiceMaster.DocumentNumber = txtDocumentNumber.Text.Trim();
             _voInvoiceMaster.ConfirmShipNo = txtConfirmShipNo.Text.Trim();
             _voInvoiceMaster.CCNID = int.Parse(cboCCN.SelectedValue.ToString());
             _voInvoiceMaster.MasterLocationID = _voMasLoc.MasterLocationID = int.Parse(txtMasLoc.Tag.ToString());
@@ -787,8 +787,8 @@ namespace PCSSale.Order
                 txtConfirmShipNo.Text = FormControlComponents.GetNoByMask("", tableName, "ConfirmShipNo", "", "yy.MM.###");
                 txtConfirmShipNo.Tag = null;
                 // auto fill po reference number for invoice printing
-                var poNumber = FormControlComponents.GetNoByMask("", tableName, "PONumber", "", "8.MM.###");
-                txtPONo.Text = poNumber;
+                var poNumber = FormControlComponents.GetNoByMask("", tableName, "DocumentNumber", "", "8.MM.###");
+                txtDocumentNumber.Text = poNumber;
                 //Fill Default Master Location 
                 FormControlComponents.SetDefaultMasterLocation(txtMasLoc);
                 _voMasLoc.MasterLocationID = SystemProperty.MasterLocationID;
@@ -2626,7 +2626,7 @@ namespace PCSSale.Order
                 dgrdData.Splits[0].DisplayColumns[SO_ConfirmShipDetailTable.VATAMOUNT_FLD].Locked = false;
                 dgrdData.Splits[0].DisplayColumns[SO_ConfirmShipDetailTable.VATPERCENT_FLD].Locked = false;
                 dgrdData.Splits[0].DisplayColumns[SO_ConfirmShipDetailTable.NETAMOUNT_FLD].Locked = false;
-                dgrdData.Splits[0].DisplayColumns["PONumber"].Locked = false;
+                dgrdData.Splits[0].DisplayColumns[SO_ConfirmShipDetailTable.PONUMBER_FLD].Locked = false;
                 
                 dgrdData.Columns[SO_ConfirmShipDetailTable.VATAMOUNT_FLD].NumberFormat = Constants.DECIMAL_NUMBERFORMAT;
                 dgrdData.Columns[SO_ConfirmShipDetailTable.PRICE_FLD].NumberFormat = Constants.DECIMAL_NUMBERFORMAT;
@@ -2712,7 +2712,7 @@ namespace PCSSale.Order
                 dgrdData.Splits[0].DisplayColumns[SO_ConfirmShipDetailTable.VATPERCENT_FLD].Locked = false;
                 dgrdData.Splits[0].DisplayColumns[SO_ConfirmShipDetailTable.NETAMOUNT_FLD].Locked = false;
                 dgrdData.Splits[0].DisplayColumns[IV_AdjustmentTable.AVAILABLEQTY_FLD].Visible = true;
-                dgrdData.Splits[0].DisplayColumns["PONumber"].Locked = false;
+                dgrdData.Splits[0].DisplayColumns[SO_ConfirmShipDetailTable.PONUMBER_FLD].Locked = false;
                 //enable Save button
                 btnConfirmShippment.Enabled = true;
                 btnAdd.Enabled = false;
@@ -2721,7 +2721,7 @@ namespace PCSSale.Order
                 txtCurrency.Enabled = true;
                 txtExchRate.Enabled = true;
                 btnCurrency.Enabled = true;
-                txtPONo.Enabled = true;
+                txtDocumentNumber.Enabled = true;
                 //HACK: added by Tuan TQ
                 btnAttachedSheet.Enabled = false;
                 btnPrint.Enabled = false;

@@ -76,7 +76,7 @@ namespace PCSComSale.Order.BO
 		                objMaster.Comment = objVO.Comment;
 		                objMaster.ReferenceNo = objVO.ReferenceNo;
 		                objMaster.InvoiceNo = objVO.InvoiceNo;
-		                objMaster.PONumber = objVO.PONumber;
+		                objMaster.DocumentNumber = objVO.DocumentNumber;
 		                if (objVO.LCDate != DateTime.MinValue)
 		                {
 		                    objMaster.LCDate = objVO.LCDate;
@@ -105,7 +105,7 @@ namespace PCSComSale.Order.BO
 		                        continue;
 		                    var objDetail = new SO_InvoiceDetail
 		                    {
-                                PONumber = dr["PONumber"].ToString()
+                                PONumber = dr[SO_ConfirmShipDetailTable.PONUMBER_FLD].ToString()
                             };
 		                    if (dr[SO_DeliveryScheduleTable.DELIVERYSCHEDULEID_FLD] != DBNull.Value)
 		                    {
@@ -197,7 +197,7 @@ namespace PCSComSale.Order.BO
                     objMaster.Comment = objVO.Comment;
                     objMaster.ReferenceNo = objVO.ReferenceNo;
                     objMaster.InvoiceNo = objVO.InvoiceNo;
-                    objMaster.PONumber = objVO.PONumber;
+                    objMaster.DocumentNumber = objVO.DocumentNumber;
                     if (objVO.LCDate != DateTime.MinValue)
                     {
                         objMaster.LCDate = objVO.LCDate;
@@ -230,7 +230,7 @@ namespace PCSComSale.Order.BO
                                 if (objDetail != null)
                                 {
                                     objDetail.InvoiceMasterID = objMaster.InvoiceMasterID;
-                                    objDetail.PONumber = dr["PONumber"].ToString();
+                                    objDetail.PONumber = dr[SO_ConfirmShipDetailTable.PONUMBER_FLD].ToString();
                                     if (dr[SO_DeliveryScheduleTable.DELIVERYSCHEDULEID_FLD] != DBNull.Value)
                                     {
                                         objDetail.DeliveryScheduleID = Convert.ToInt32(dr[SO_DeliveryScheduleTable.DELIVERYSCHEDULEID_FLD]);
@@ -270,7 +270,7 @@ namespace PCSComSale.Order.BO
                                 var objDetail = new SO_InvoiceDetail
                                 {
                                     InvoiceMasterID = 0,
-                                    PONumber = dr["PONumber"].ToString()
+                                    PONumber = dr[SO_ConfirmShipDetailTable.PONUMBER_FLD].ToString()
                                 };
                                 if (dr[SO_DeliveryScheduleTable.DELIVERYSCHEDULEID_FLD] != DBNull.Value)
                                 {
@@ -363,7 +363,7 @@ namespace PCSComSale.Order.BO
                         confirmShipMaster.Comment = voConfirmShipMaster.Comment;
                         confirmShipMaster.ReferenceNo = voConfirmShipMaster.ReferenceNo;
                         confirmShipMaster.InvoiceNo = voConfirmShipMaster.InvoiceNo;
-                        confirmShipMaster.PONumber = voConfirmShipMaster.PONumber;
+                        confirmShipMaster.DocumentNumber = voConfirmShipMaster.DocumentNumber;
                         if (voConfirmShipMaster.LCDate != DateTime.MinValue)
                         {
                             confirmShipMaster.LCDate = voConfirmShipMaster.LCDate;
@@ -398,7 +398,7 @@ namespace PCSComSale.Order.BO
                             var objShipDetail = new SO_ConfirmShipDetail
                             {
                                 ConfirmShipMasterID = confirmShipMaster.ConfirmShipMasterID,
-                                PONumber = dr["PONumber"].ToString()
+                                PONumber = dr[SO_ConfirmShipDetailTable.PONUMBER_FLD].ToString()
                             };
                             if (dr[SO_DeliveryScheduleTable.DELIVERYSCHEDULEID_FLD] != DBNull.Value)
                             {
@@ -602,7 +602,7 @@ namespace PCSComSale.Order.BO
                         objConfirmShipMaster.Comment = voConfirmShipMaster.Comment;
                         objConfirmShipMaster.ReferenceNo = voConfirmShipMaster.ReferenceNo;
                         objConfirmShipMaster.InvoiceNo = voConfirmShipMaster.InvoiceNo;
-                        objConfirmShipMaster.PONumber = voConfirmShipMaster.PONumber;
+                        objConfirmShipMaster.DocumentNumber = voConfirmShipMaster.DocumentNumber;
                         if (voConfirmShipMaster.LCDate != DateTime.MinValue)
                         {
                             objConfirmShipMaster.LCDate = voConfirmShipMaster.LCDate;
@@ -814,7 +814,7 @@ namespace PCSComSale.Order.BO
                                     ConfirmShipMasterID = objConfirmShipMaster.ConfirmShipMasterID,
                                 };
                             }
-                            objShipDetail.PONumber = dr["PONumber"].ToString();
+                            objShipDetail.PONumber = dr[SO_ConfirmShipDetailTable.PONUMBER_FLD].ToString();
                             if (dr[SO_DeliveryScheduleTable.DELIVERYSCHEDULEID_FLD] != DBNull.Value)
                             {
                                 objShipDetail.DeliveryScheduleID = Convert.ToInt32(dr[SO_DeliveryScheduleTable.DELIVERYSCHEDULEID_FLD]);

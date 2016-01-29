@@ -648,18 +648,18 @@ namespace PCSComUtils.DataContext
     partial void InsertPO_DeliverySchedule(PO_DeliverySchedule instance);
     partial void UpdatePO_DeliverySchedule(PO_DeliverySchedule instance);
     partial void DeletePO_DeliverySchedule(PO_DeliverySchedule instance);
-    partial void InsertSO_ConfirmShipMaster(SO_ConfirmShipMaster instance);
-    partial void UpdateSO_ConfirmShipMaster(SO_ConfirmShipMaster instance);
-    partial void DeleteSO_ConfirmShipMaster(SO_ConfirmShipMaster instance);
-    partial void InsertSO_InvoiceMaster(SO_InvoiceMaster instance);
-    partial void UpdateSO_InvoiceMaster(SO_InvoiceMaster instance);
-    partial void DeleteSO_InvoiceMaster(SO_InvoiceMaster instance);
     partial void InsertSO_ConfirmShipDetail(SO_ConfirmShipDetail instance);
     partial void UpdateSO_ConfirmShipDetail(SO_ConfirmShipDetail instance);
     partial void DeleteSO_ConfirmShipDetail(SO_ConfirmShipDetail instance);
     partial void InsertSO_InvoiceDetail(SO_InvoiceDetail instance);
     partial void UpdateSO_InvoiceDetail(SO_InvoiceDetail instance);
     partial void DeleteSO_InvoiceDetail(SO_InvoiceDetail instance);
+    partial void InsertSO_InvoiceMaster(SO_InvoiceMaster instance);
+    partial void UpdateSO_InvoiceMaster(SO_InvoiceMaster instance);
+    partial void DeleteSO_InvoiceMaster(SO_InvoiceMaster instance);
+    partial void InsertSO_ConfirmShipMaster(SO_ConfirmShipMaster instance);
+    partial void UpdateSO_ConfirmShipMaster(SO_ConfirmShipMaster instance);
+    partial void DeleteSO_ConfirmShipMaster(SO_ConfirmShipMaster instance);
     #endregion
 		
 		public PCSDataContext() : 
@@ -3468,22 +3468,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		public System.Data.Linq.Table<SO_ConfirmShipMaster> SO_ConfirmShipMasters
-		{
-			get
-			{
-				return this.GetTable<SO_ConfirmShipMaster>();
-			}
-		}
-		
-		public System.Data.Linq.Table<SO_InvoiceMaster> SO_InvoiceMasters
-		{
-			get
-			{
-				return this.GetTable<SO_InvoiceMaster>();
-			}
-		}
-		
 		public System.Data.Linq.Table<SO_ConfirmShipDetail> SO_ConfirmShipDetails
 		{
 			get
@@ -3497,6 +3481,22 @@ namespace PCSComUtils.DataContext
 			get
 			{
 				return this.GetTable<SO_InvoiceDetail>();
+			}
+		}
+		
+		public System.Data.Linq.Table<SO_InvoiceMaster> SO_InvoiceMasters
+		{
+			get
+			{
+				return this.GetTable<SO_InvoiceMaster>();
+			}
+		}
+		
+		public System.Data.Linq.Table<SO_ConfirmShipMaster> SO_ConfirmShipMasters
+		{
+			get
+			{
+				return this.GetTable<SO_ConfirmShipMaster>();
 			}
 		}
 		
@@ -29797,9 +29797,9 @@ namespace PCSComUtils.DataContext
 		
 		private EntitySet<SO_ReturnedGoodsDetail> _SO_ReturnedGoodsDetails;
 		
-		private EntitySet<SO_ConfirmShipMaster> _SO_ConfirmShipMasters;
-		
 		private EntitySet<SO_InvoiceMaster> _SO_InvoiceMasters;
+		
+		private EntitySet<SO_ConfirmShipMaster> _SO_ConfirmShipMasters;
 		
 		private EntityRef<enm_BINType> _enm_BINType;
 		
@@ -29866,8 +29866,8 @@ namespace PCSComUtils.DataContext
 			this._PRO_WorkOrderCompletions = new EntitySet<PRO_WorkOrderCompletion>(new Action<PRO_WorkOrderCompletion>(this.attach_PRO_WorkOrderCompletions), new Action<PRO_WorkOrderCompletion>(this.detach_PRO_WorkOrderCompletions));
 			this._SO_CommitInventoryDetails = new EntitySet<SO_CommitInventoryDetail>(new Action<SO_CommitInventoryDetail>(this.attach_SO_CommitInventoryDetails), new Action<SO_CommitInventoryDetail>(this.detach_SO_CommitInventoryDetails));
 			this._SO_ReturnedGoodsDetails = new EntitySet<SO_ReturnedGoodsDetail>(new Action<SO_ReturnedGoodsDetail>(this.attach_SO_ReturnedGoodsDetails), new Action<SO_ReturnedGoodsDetail>(this.detach_SO_ReturnedGoodsDetails));
-			this._SO_ConfirmShipMasters = new EntitySet<SO_ConfirmShipMaster>(new Action<SO_ConfirmShipMaster>(this.attach_SO_ConfirmShipMasters), new Action<SO_ConfirmShipMaster>(this.detach_SO_ConfirmShipMasters));
 			this._SO_InvoiceMasters = new EntitySet<SO_InvoiceMaster>(new Action<SO_InvoiceMaster>(this.attach_SO_InvoiceMasters), new Action<SO_InvoiceMaster>(this.detach_SO_InvoiceMasters));
+			this._SO_ConfirmShipMasters = new EntitySet<SO_ConfirmShipMaster>(new Action<SO_ConfirmShipMaster>(this.attach_SO_ConfirmShipMasters), new Action<SO_ConfirmShipMaster>(this.detach_SO_ConfirmShipMasters));
 			this._enm_BINType = default(EntityRef<enm_BINType>);
 			this._enm_LocationType = default(EntityRef<enm_LocationType>);
 			this._MST_Location = default(EntityRef<MST_Location>);
@@ -30414,19 +30414,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_BIN_SO_ConfirmShipMaster", Storage="_SO_ConfirmShipMasters", ThisKey="BinID", OtherKey="BinID")]
-		public EntitySet<SO_ConfirmShipMaster> SO_ConfirmShipMasters
-		{
-			get
-			{
-				return this._SO_ConfirmShipMasters;
-			}
-			set
-			{
-				this._SO_ConfirmShipMasters.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_BIN_SO_InvoiceMaster", Storage="_SO_InvoiceMasters", ThisKey="BinID", OtherKey="BinID")]
 		public EntitySet<SO_InvoiceMaster> SO_InvoiceMasters
 		{
@@ -30437,6 +30424,19 @@ namespace PCSComUtils.DataContext
 			set
 			{
 				this._SO_InvoiceMasters.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_BIN_SO_ConfirmShipMaster", Storage="_SO_ConfirmShipMasters", ThisKey="BinID", OtherKey="BinID")]
+		public EntitySet<SO_ConfirmShipMaster> SO_ConfirmShipMasters
+		{
+			get
+			{
+				return this._SO_ConfirmShipMasters;
+			}
+			set
+			{
+				this._SO_ConfirmShipMasters.Assign(value);
 			}
 		}
 		
@@ -30916,18 +30916,6 @@ namespace PCSComUtils.DataContext
 			entity.MST_BIN = null;
 		}
 		
-		private void attach_SO_ConfirmShipMasters(SO_ConfirmShipMaster entity)
-		{
-			this.SendPropertyChanging();
-			entity.MST_BIN = this;
-		}
-		
-		private void detach_SO_ConfirmShipMasters(SO_ConfirmShipMaster entity)
-		{
-			this.SendPropertyChanging();
-			entity.MST_BIN = null;
-		}
-		
 		private void attach_SO_InvoiceMasters(SO_InvoiceMaster entity)
 		{
 			this.SendPropertyChanging();
@@ -30935,6 +30923,18 @@ namespace PCSComUtils.DataContext
 		}
 		
 		private void detach_SO_InvoiceMasters(SO_InvoiceMaster entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_BIN = null;
+		}
+		
+		private void attach_SO_ConfirmShipMasters(SO_ConfirmShipMaster entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_BIN = this;
+		}
+		
+		private void detach_SO_ConfirmShipMasters(SO_ConfirmShipMaster entity)
 		{
 			this.SendPropertyChanging();
 			entity.MST_BIN = null;
@@ -31415,9 +31415,9 @@ namespace PCSComUtils.DataContext
 		
 		private EntitySet<Sys_User> _Sys_Users;
 		
-		private EntitySet<SO_ConfirmShipMaster> _SO_ConfirmShipMasters;
-		
 		private EntitySet<SO_InvoiceMaster> _SO_InvoiceMasters;
+		
+		private EntitySet<SO_ConfirmShipMaster> _SO_ConfirmShipMasters;
 		
 		private EntityRef<MST_City> _MST_City;
 		
@@ -31515,8 +31515,8 @@ namespace PCSComUtils.DataContext
 			this._SO_ReturnedGoodsMasters = new EntitySet<SO_ReturnedGoodsMaster>(new Action<SO_ReturnedGoodsMaster>(this.attach_SO_ReturnedGoodsMasters), new Action<SO_ReturnedGoodsMaster>(this.detach_SO_ReturnedGoodsMasters));
 			this._SO_SaleOrderMasters = new EntitySet<SO_SaleOrderMaster>(new Action<SO_SaleOrderMaster>(this.attach_SO_SaleOrderMasters), new Action<SO_SaleOrderMaster>(this.detach_SO_SaleOrderMasters));
 			this._Sys_Users = new EntitySet<Sys_User>(new Action<Sys_User>(this.attach_Sys_Users), new Action<Sys_User>(this.detach_Sys_Users));
-			this._SO_ConfirmShipMasters = new EntitySet<SO_ConfirmShipMaster>(new Action<SO_ConfirmShipMaster>(this.attach_SO_ConfirmShipMasters), new Action<SO_ConfirmShipMaster>(this.detach_SO_ConfirmShipMasters));
 			this._SO_InvoiceMasters = new EntitySet<SO_InvoiceMaster>(new Action<SO_InvoiceMaster>(this.attach_SO_InvoiceMasters), new Action<SO_InvoiceMaster>(this.detach_SO_InvoiceMasters));
+			this._SO_ConfirmShipMasters = new EntitySet<SO_ConfirmShipMaster>(new Action<SO_ConfirmShipMaster>(this.attach_SO_ConfirmShipMasters), new Action<SO_ConfirmShipMaster>(this.detach_SO_ConfirmShipMasters));
 			this._MST_City = default(EntityRef<MST_City>);
 			this._MST_Country = default(EntityRef<MST_Country>);
 			this._MST_Currency = default(EntityRef<MST_Currency>);
@@ -32478,19 +32478,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_CCN_SO_ConfirmShipMaster", Storage="_SO_ConfirmShipMasters", ThisKey="CCNID", OtherKey="CCNID")]
-		public EntitySet<SO_ConfirmShipMaster> SO_ConfirmShipMasters
-		{
-			get
-			{
-				return this._SO_ConfirmShipMasters;
-			}
-			set
-			{
-				this._SO_ConfirmShipMasters.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_CCN_SO_InvoiceMaster", Storage="_SO_InvoiceMasters", ThisKey="CCNID", OtherKey="CCNID")]
 		public EntitySet<SO_InvoiceMaster> SO_InvoiceMasters
 		{
@@ -32501,6 +32488,19 @@ namespace PCSComUtils.DataContext
 			set
 			{
 				this._SO_InvoiceMasters.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_CCN_SO_ConfirmShipMaster", Storage="_SO_ConfirmShipMasters", ThisKey="CCNID", OtherKey="CCNID")]
+		public EntitySet<SO_ConfirmShipMaster> SO_ConfirmShipMasters
+		{
+			get
+			{
+				return this._SO_ConfirmShipMasters;
+			}
+			set
+			{
+				this._SO_ConfirmShipMasters.Assign(value);
 			}
 		}
 		
@@ -33212,18 +33212,6 @@ namespace PCSComUtils.DataContext
 			entity.MST_CCN = null;
 		}
 		
-		private void attach_SO_ConfirmShipMasters(SO_ConfirmShipMaster entity)
-		{
-			this.SendPropertyChanging();
-			entity.MST_CCN = this;
-		}
-		
-		private void detach_SO_ConfirmShipMasters(SO_ConfirmShipMaster entity)
-		{
-			this.SendPropertyChanging();
-			entity.MST_CCN = null;
-		}
-		
 		private void attach_SO_InvoiceMasters(SO_InvoiceMaster entity)
 		{
 			this.SendPropertyChanging();
@@ -33231,6 +33219,18 @@ namespace PCSComUtils.DataContext
 		}
 		
 		private void detach_SO_InvoiceMasters(SO_InvoiceMaster entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_CCN = null;
+		}
+		
+		private void attach_SO_ConfirmShipMasters(SO_ConfirmShipMaster entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_CCN = this;
+		}
+		
+		private void detach_SO_ConfirmShipMasters(SO_ConfirmShipMaster entity)
 		{
 			this.SendPropertyChanging();
 			entity.MST_CCN = null;
@@ -33814,9 +33814,9 @@ namespace PCSComUtils.DataContext
 		
 		private EntitySet<SO_SaleOrderMaster> _SO_SaleOrderMasters;
 		
-		private EntitySet<SO_ConfirmShipMaster> _SO_ConfirmShipMasters;
-		
 		private EntitySet<SO_InvoiceMaster> _SO_InvoiceMasters;
+		
+		private EntitySet<SO_ConfirmShipMaster> _SO_ConfirmShipMasters;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -33847,8 +33847,8 @@ namespace PCSComUtils.DataContext
 			this._PO_PurchaseOrderMasters = new EntitySet<PO_PurchaseOrderMaster>(new Action<PO_PurchaseOrderMaster>(this.attach_PO_PurchaseOrderMasters), new Action<PO_PurchaseOrderMaster>(this.detach_PO_PurchaseOrderMasters));
 			this._SO_ReturnedGoodsMasters = new EntitySet<SO_ReturnedGoodsMaster>(new Action<SO_ReturnedGoodsMaster>(this.attach_SO_ReturnedGoodsMasters), new Action<SO_ReturnedGoodsMaster>(this.detach_SO_ReturnedGoodsMasters));
 			this._SO_SaleOrderMasters = new EntitySet<SO_SaleOrderMaster>(new Action<SO_SaleOrderMaster>(this.attach_SO_SaleOrderMasters), new Action<SO_SaleOrderMaster>(this.detach_SO_SaleOrderMasters));
-			this._SO_ConfirmShipMasters = new EntitySet<SO_ConfirmShipMaster>(new Action<SO_ConfirmShipMaster>(this.attach_SO_ConfirmShipMasters), new Action<SO_ConfirmShipMaster>(this.detach_SO_ConfirmShipMasters));
 			this._SO_InvoiceMasters = new EntitySet<SO_InvoiceMaster>(new Action<SO_InvoiceMaster>(this.attach_SO_InvoiceMasters), new Action<SO_InvoiceMaster>(this.detach_SO_InvoiceMasters));
+			this._SO_ConfirmShipMasters = new EntitySet<SO_ConfirmShipMaster>(new Action<SO_ConfirmShipMaster>(this.attach_SO_ConfirmShipMasters), new Action<SO_ConfirmShipMaster>(this.detach_SO_ConfirmShipMasters));
 			OnCreated();
 		}
 		
@@ -34101,19 +34101,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_Currency_SO_ConfirmShipMaster", Storage="_SO_ConfirmShipMasters", ThisKey="CurrencyID", OtherKey="CurrencyID")]
-		public EntitySet<SO_ConfirmShipMaster> SO_ConfirmShipMasters
-		{
-			get
-			{
-				return this._SO_ConfirmShipMasters;
-			}
-			set
-			{
-				this._SO_ConfirmShipMasters.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_Currency_SO_InvoiceMaster", Storage="_SO_InvoiceMasters", ThisKey="CurrencyID", OtherKey="CurrencyID")]
 		public EntitySet<SO_InvoiceMaster> SO_InvoiceMasters
 		{
@@ -34124,6 +34111,19 @@ namespace PCSComUtils.DataContext
 			set
 			{
 				this._SO_InvoiceMasters.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_Currency_SO_ConfirmShipMaster", Storage="_SO_ConfirmShipMasters", ThisKey="CurrencyID", OtherKey="CurrencyID")]
+		public EntitySet<SO_ConfirmShipMaster> SO_ConfirmShipMasters
+		{
+			get
+			{
+				return this._SO_ConfirmShipMasters;
+			}
+			set
+			{
+				this._SO_ConfirmShipMasters.Assign(value);
 			}
 		}
 		
@@ -34303,18 +34303,6 @@ namespace PCSComUtils.DataContext
 			entity.MST_Currency = null;
 		}
 		
-		private void attach_SO_ConfirmShipMasters(SO_ConfirmShipMaster entity)
-		{
-			this.SendPropertyChanging();
-			entity.MST_Currency = this;
-		}
-		
-		private void detach_SO_ConfirmShipMasters(SO_ConfirmShipMaster entity)
-		{
-			this.SendPropertyChanging();
-			entity.MST_Currency = null;
-		}
-		
 		private void attach_SO_InvoiceMasters(SO_InvoiceMaster entity)
 		{
 			this.SendPropertyChanging();
@@ -34322,6 +34310,18 @@ namespace PCSComUtils.DataContext
 		}
 		
 		private void detach_SO_InvoiceMasters(SO_InvoiceMaster entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_Currency = null;
+		}
+		
+		private void attach_SO_ConfirmShipMasters(SO_ConfirmShipMaster entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_Currency = this;
+		}
+		
+		private void detach_SO_ConfirmShipMasters(SO_ConfirmShipMaster entity)
 		{
 			this.SendPropertyChanging();
 			entity.MST_Currency = null;
@@ -36335,9 +36335,9 @@ namespace PCSComUtils.DataContext
 		
 		private EntitySet<sys_RoleLocation> _sys_RoleLocations;
 		
-		private EntitySet<SO_ConfirmShipMaster> _SO_ConfirmShipMasters;
-		
 		private EntitySet<SO_InvoiceMaster> _SO_InvoiceMasters;
+		
+		private EntitySet<SO_ConfirmShipMaster> _SO_ConfirmShipMasters;
 		
 		private EntityRef<MST_Department> _MST_Department;
 		
@@ -36401,8 +36401,8 @@ namespace PCSComUtils.DataContext
 			this._SO_ReturnedGoodsDetails = new EntitySet<SO_ReturnedGoodsDetail>(new Action<SO_ReturnedGoodsDetail>(this.attach_SO_ReturnedGoodsDetails), new Action<SO_ReturnedGoodsDetail>(this.detach_SO_ReturnedGoodsDetails));
 			this._SO_SaleOrderMasters = new EntitySet<SO_SaleOrderMaster>(new Action<SO_SaleOrderMaster>(this.attach_SO_SaleOrderMasters), new Action<SO_SaleOrderMaster>(this.detach_SO_SaleOrderMasters));
 			this._sys_RoleLocations = new EntitySet<sys_RoleLocation>(new Action<sys_RoleLocation>(this.attach_sys_RoleLocations), new Action<sys_RoleLocation>(this.detach_sys_RoleLocations));
-			this._SO_ConfirmShipMasters = new EntitySet<SO_ConfirmShipMaster>(new Action<SO_ConfirmShipMaster>(this.attach_SO_ConfirmShipMasters), new Action<SO_ConfirmShipMaster>(this.detach_SO_ConfirmShipMasters));
 			this._SO_InvoiceMasters = new EntitySet<SO_InvoiceMaster>(new Action<SO_InvoiceMaster>(this.attach_SO_InvoiceMasters), new Action<SO_InvoiceMaster>(this.detach_SO_InvoiceMasters));
+			this._SO_ConfirmShipMasters = new EntitySet<SO_ConfirmShipMaster>(new Action<SO_ConfirmShipMaster>(this.attach_SO_ConfirmShipMasters), new Action<SO_ConfirmShipMaster>(this.detach_SO_ConfirmShipMasters));
 			this._MST_Department = default(EntityRef<MST_Department>);
 			this._enm_LocationType = default(EntityRef<enm_LocationType>);
 			this._MST_MasterLocation = default(EntityRef<MST_MasterLocation>);
@@ -36985,19 +36985,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_Location_SO_ConfirmShipMaster", Storage="_SO_ConfirmShipMasters", ThisKey="LocationID", OtherKey="LocationID")]
-		public EntitySet<SO_ConfirmShipMaster> SO_ConfirmShipMasters
-		{
-			get
-			{
-				return this._SO_ConfirmShipMasters;
-			}
-			set
-			{
-				this._SO_ConfirmShipMasters.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_Location_SO_InvoiceMaster", Storage="_SO_InvoiceMasters", ThisKey="LocationID", OtherKey="LocationID")]
 		public EntitySet<SO_InvoiceMaster> SO_InvoiceMasters
 		{
@@ -37008,6 +36995,19 @@ namespace PCSComUtils.DataContext
 			set
 			{
 				this._SO_InvoiceMasters.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_Location_SO_ConfirmShipMaster", Storage="_SO_ConfirmShipMasters", ThisKey="LocationID", OtherKey="LocationID")]
+		public EntitySet<SO_ConfirmShipMaster> SO_ConfirmShipMasters
+		{
+			get
+			{
+				return this._SO_ConfirmShipMasters;
+			}
+			set
+			{
+				this._SO_ConfirmShipMasters.Assign(value);
 			}
 		}
 		
@@ -37469,18 +37469,6 @@ namespace PCSComUtils.DataContext
 			entity.MST_Location = null;
 		}
 		
-		private void attach_SO_ConfirmShipMasters(SO_ConfirmShipMaster entity)
-		{
-			this.SendPropertyChanging();
-			entity.MST_Location = this;
-		}
-		
-		private void detach_SO_ConfirmShipMasters(SO_ConfirmShipMaster entity)
-		{
-			this.SendPropertyChanging();
-			entity.MST_Location = null;
-		}
-		
 		private void attach_SO_InvoiceMasters(SO_InvoiceMaster entity)
 		{
 			this.SendPropertyChanging();
@@ -37488,6 +37476,18 @@ namespace PCSComUtils.DataContext
 		}
 		
 		private void detach_SO_InvoiceMasters(SO_InvoiceMaster entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_Location = null;
+		}
+		
+		private void attach_SO_ConfirmShipMasters(SO_ConfirmShipMaster entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_Location = this;
+		}
+		
+		private void detach_SO_ConfirmShipMasters(SO_ConfirmShipMaster entity)
 		{
 			this.SendPropertyChanging();
 			entity.MST_Location = null;
@@ -37584,9 +37584,9 @@ namespace PCSComUtils.DataContext
 		
 		private EntitySet<Sys_User> _Sys_Users;
 		
-		private EntitySet<SO_ConfirmShipMaster> _SO_ConfirmShipMasters;
-		
 		private EntitySet<SO_InvoiceMaster> _SO_InvoiceMasters;
+		
+		private EntitySet<SO_ConfirmShipMaster> _SO_ConfirmShipMasters;
 		
 		private EntityRef<MST_CCN> _MST_CCN;
 		
@@ -37653,8 +37653,8 @@ namespace PCSComUtils.DataContext
 			this._SO_ReturnedGoodsMasters = new EntitySet<SO_ReturnedGoodsMaster>(new Action<SO_ReturnedGoodsMaster>(this.attach_SO_ReturnedGoodsMasters), new Action<SO_ReturnedGoodsMaster>(this.detach_SO_ReturnedGoodsMasters));
 			this._SO_SaleOrderMasters = new EntitySet<SO_SaleOrderMaster>(new Action<SO_SaleOrderMaster>(this.attach_SO_SaleOrderMasters), new Action<SO_SaleOrderMaster>(this.detach_SO_SaleOrderMasters));
 			this._Sys_Users = new EntitySet<Sys_User>(new Action<Sys_User>(this.attach_Sys_Users), new Action<Sys_User>(this.detach_Sys_Users));
-			this._SO_ConfirmShipMasters = new EntitySet<SO_ConfirmShipMaster>(new Action<SO_ConfirmShipMaster>(this.attach_SO_ConfirmShipMasters), new Action<SO_ConfirmShipMaster>(this.detach_SO_ConfirmShipMasters));
 			this._SO_InvoiceMasters = new EntitySet<SO_InvoiceMaster>(new Action<SO_InvoiceMaster>(this.attach_SO_InvoiceMasters), new Action<SO_InvoiceMaster>(this.detach_SO_InvoiceMasters));
+			this._SO_ConfirmShipMasters = new EntitySet<SO_ConfirmShipMaster>(new Action<SO_ConfirmShipMaster>(this.attach_SO_ConfirmShipMasters), new Action<SO_ConfirmShipMaster>(this.detach_SO_ConfirmShipMasters));
 			this._MST_CCN = default(EntityRef<MST_CCN>);
 			this._MST_City = default(EntityRef<MST_City>);
 			this._MST_Country = default(EntityRef<MST_Country>);
@@ -38282,19 +38282,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_MasterLocation_SO_ConfirmShipMaster", Storage="_SO_ConfirmShipMasters", ThisKey="MasterLocationID", OtherKey="MasterLocationID")]
-		public EntitySet<SO_ConfirmShipMaster> SO_ConfirmShipMasters
-		{
-			get
-			{
-				return this._SO_ConfirmShipMasters;
-			}
-			set
-			{
-				this._SO_ConfirmShipMasters.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_MasterLocation_SO_InvoiceMaster", Storage="_SO_InvoiceMasters", ThisKey="MasterLocationID", OtherKey="MasterLocationID")]
 		public EntitySet<SO_InvoiceMaster> SO_InvoiceMasters
 		{
@@ -38305,6 +38292,19 @@ namespace PCSComUtils.DataContext
 			set
 			{
 				this._SO_InvoiceMasters.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_MasterLocation_SO_ConfirmShipMaster", Storage="_SO_ConfirmShipMasters", ThisKey="MasterLocationID", OtherKey="MasterLocationID")]
+		public EntitySet<SO_ConfirmShipMaster> SO_ConfirmShipMasters
+		{
+			get
+			{
+				return this._SO_ConfirmShipMasters;
+			}
+			set
+			{
+				this._SO_ConfirmShipMasters.Assign(value);
 			}
 		}
 		
@@ -38826,18 +38826,6 @@ namespace PCSComUtils.DataContext
 			entity.MST_MasterLocation = null;
 		}
 		
-		private void attach_SO_ConfirmShipMasters(SO_ConfirmShipMaster entity)
-		{
-			this.SendPropertyChanging();
-			entity.MST_MasterLocation = this;
-		}
-		
-		private void detach_SO_ConfirmShipMasters(SO_ConfirmShipMaster entity)
-		{
-			this.SendPropertyChanging();
-			entity.MST_MasterLocation = null;
-		}
-		
 		private void attach_SO_InvoiceMasters(SO_InvoiceMaster entity)
 		{
 			this.SendPropertyChanging();
@@ -38845,6 +38833,18 @@ namespace PCSComUtils.DataContext
 		}
 		
 		private void detach_SO_InvoiceMasters(SO_InvoiceMaster entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_MasterLocation = null;
+		}
+		
+		private void attach_SO_ConfirmShipMasters(SO_ConfirmShipMaster entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_MasterLocation = this;
+		}
+		
+		private void detach_SO_ConfirmShipMasters(SO_ConfirmShipMaster entity)
 		{
 			this.SendPropertyChanging();
 			entity.MST_MasterLocation = null;
@@ -76050,9 +76050,9 @@ namespace PCSComUtils.DataContext
 		
 		private EntitySet<SO_DeliverySchedule> _SO_DeliverySchedules;
 		
-		private EntitySet<SO_ConfirmShipMaster> _SO_ConfirmShipMasters;
-		
 		private EntitySet<SO_InvoiceMaster> _SO_InvoiceMasters;
+		
+		private EntitySet<SO_ConfirmShipMaster> _SO_ConfirmShipMasters;
 		
 		private EntityRef<enm_GateType> _enm_GateType;
 		
@@ -76073,8 +76073,8 @@ namespace PCSComUtils.DataContext
 		public SO_Gate()
 		{
 			this._SO_DeliverySchedules = new EntitySet<SO_DeliverySchedule>(new Action<SO_DeliverySchedule>(this.attach_SO_DeliverySchedules), new Action<SO_DeliverySchedule>(this.detach_SO_DeliverySchedules));
-			this._SO_ConfirmShipMasters = new EntitySet<SO_ConfirmShipMaster>(new Action<SO_ConfirmShipMaster>(this.attach_SO_ConfirmShipMasters), new Action<SO_ConfirmShipMaster>(this.detach_SO_ConfirmShipMasters));
 			this._SO_InvoiceMasters = new EntitySet<SO_InvoiceMaster>(new Action<SO_InvoiceMaster>(this.attach_SO_InvoiceMasters), new Action<SO_InvoiceMaster>(this.detach_SO_InvoiceMasters));
+			this._SO_ConfirmShipMasters = new EntitySet<SO_ConfirmShipMaster>(new Action<SO_ConfirmShipMaster>(this.attach_SO_ConfirmShipMasters), new Action<SO_ConfirmShipMaster>(this.detach_SO_ConfirmShipMasters));
 			this._enm_GateType = default(EntityRef<enm_GateType>);
 			OnCreated();
 		}
@@ -76176,19 +76176,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SO_Gate_SO_ConfirmShipMaster", Storage="_SO_ConfirmShipMasters", ThisKey="GateID", OtherKey="GateID")]
-		public EntitySet<SO_ConfirmShipMaster> SO_ConfirmShipMasters
-		{
-			get
-			{
-				return this._SO_ConfirmShipMasters;
-			}
-			set
-			{
-				this._SO_ConfirmShipMasters.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SO_Gate_SO_InvoiceMaster", Storage="_SO_InvoiceMasters", ThisKey="GateID", OtherKey="GateID")]
 		public EntitySet<SO_InvoiceMaster> SO_InvoiceMasters
 		{
@@ -76199,6 +76186,19 @@ namespace PCSComUtils.DataContext
 			set
 			{
 				this._SO_InvoiceMasters.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SO_Gate_SO_ConfirmShipMaster", Storage="_SO_ConfirmShipMasters", ThisKey="GateID", OtherKey="GateID")]
+		public EntitySet<SO_ConfirmShipMaster> SO_ConfirmShipMasters
+		{
+			get
+			{
+				return this._SO_ConfirmShipMasters;
+			}
+			set
+			{
+				this._SO_ConfirmShipMasters.Assign(value);
 			}
 		}
 		
@@ -76268,18 +76268,6 @@ namespace PCSComUtils.DataContext
 			entity.SO_Gate = null;
 		}
 		
-		private void attach_SO_ConfirmShipMasters(SO_ConfirmShipMaster entity)
-		{
-			this.SendPropertyChanging();
-			entity.SO_Gate = this;
-		}
-		
-		private void detach_SO_ConfirmShipMasters(SO_ConfirmShipMaster entity)
-		{
-			this.SendPropertyChanging();
-			entity.SO_Gate = null;
-		}
-		
 		private void attach_SO_InvoiceMasters(SO_InvoiceMaster entity)
 		{
 			this.SendPropertyChanging();
@@ -76287,6 +76275,18 @@ namespace PCSComUtils.DataContext
 		}
 		
 		private void detach_SO_InvoiceMasters(SO_InvoiceMaster entity)
+		{
+			this.SendPropertyChanging();
+			entity.SO_Gate = null;
+		}
+		
+		private void attach_SO_ConfirmShipMasters(SO_ConfirmShipMaster entity)
+		{
+			this.SendPropertyChanging();
+			entity.SO_Gate = this;
+		}
+		
+		private void detach_SO_ConfirmShipMasters(SO_ConfirmShipMaster entity)
 		{
 			this.SendPropertyChanging();
 			entity.SO_Gate = null;
@@ -79151,9 +79151,9 @@ namespace PCSComUtils.DataContext
 		
 		private EntitySet<SO_SaleOrderDetail> _SO_SaleOrderDetails;
 		
-		private EntitySet<SO_ConfirmShipMaster> _SO_ConfirmShipMasters;
-		
 		private EntitySet<SO_InvoiceMaster> _SO_InvoiceMasters;
+		
+		private EntitySet<SO_ConfirmShipMaster> _SO_ConfirmShipMasters;
 		
 		private EntityRef<MST_PartyLocation> _MST_PartyLocation;
 		
@@ -79287,8 +79287,8 @@ namespace PCSComUtils.DataContext
 			this._SO_CommitInventoryMasters = new EntitySet<SO_CommitInventoryMaster>(new Action<SO_CommitInventoryMaster>(this.attach_SO_CommitInventoryMasters), new Action<SO_CommitInventoryMaster>(this.detach_SO_CommitInventoryMasters));
 			this._SO_ReturnedGoodsMasters = new EntitySet<SO_ReturnedGoodsMaster>(new Action<SO_ReturnedGoodsMaster>(this.attach_SO_ReturnedGoodsMasters), new Action<SO_ReturnedGoodsMaster>(this.detach_SO_ReturnedGoodsMasters));
 			this._SO_SaleOrderDetails = new EntitySet<SO_SaleOrderDetail>(new Action<SO_SaleOrderDetail>(this.attach_SO_SaleOrderDetails), new Action<SO_SaleOrderDetail>(this.detach_SO_SaleOrderDetails));
-			this._SO_ConfirmShipMasters = new EntitySet<SO_ConfirmShipMaster>(new Action<SO_ConfirmShipMaster>(this.attach_SO_ConfirmShipMasters), new Action<SO_ConfirmShipMaster>(this.detach_SO_ConfirmShipMasters));
 			this._SO_InvoiceMasters = new EntitySet<SO_InvoiceMaster>(new Action<SO_InvoiceMaster>(this.attach_SO_InvoiceMasters), new Action<SO_InvoiceMaster>(this.detach_SO_InvoiceMasters));
+			this._SO_ConfirmShipMasters = new EntitySet<SO_ConfirmShipMaster>(new Action<SO_ConfirmShipMaster>(this.attach_SO_ConfirmShipMasters), new Action<SO_ConfirmShipMaster>(this.detach_SO_ConfirmShipMasters));
 			this._MST_PartyLocation = default(EntityRef<MST_PartyLocation>);
 			this._MST_PartyLocation1 = default(EntityRef<MST_PartyLocation>);
 			this._SO_CancelReason = default(EntityRef<SO_CancelReason>);
@@ -80259,19 +80259,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SO_SaleOrderMaster_SO_ConfirmShipMaster", Storage="_SO_ConfirmShipMasters", ThisKey="SaleOrderMasterID", OtherKey="SaleOrderMasterID")]
-		public EntitySet<SO_ConfirmShipMaster> SO_ConfirmShipMasters
-		{
-			get
-			{
-				return this._SO_ConfirmShipMasters;
-			}
-			set
-			{
-				this._SO_ConfirmShipMasters.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SO_SaleOrderMaster_SO_InvoiceMaster", Storage="_SO_InvoiceMasters", ThisKey="SaleOrderMasterID", OtherKey="SaleOrderMasterID")]
 		public EntitySet<SO_InvoiceMaster> SO_InvoiceMasters
 		{
@@ -80282,6 +80269,19 @@ namespace PCSComUtils.DataContext
 			set
 			{
 				this._SO_InvoiceMasters.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SO_SaleOrderMaster_SO_ConfirmShipMaster", Storage="_SO_ConfirmShipMasters", ThisKey="SaleOrderMasterID", OtherKey="SaleOrderMasterID")]
+		public EntitySet<SO_ConfirmShipMaster> SO_ConfirmShipMasters
+		{
+			get
+			{
+				return this._SO_ConfirmShipMasters;
+			}
+			set
+			{
+				this._SO_ConfirmShipMasters.Assign(value);
 			}
 		}
 		
@@ -80999,18 +80999,6 @@ namespace PCSComUtils.DataContext
 			entity.SO_SaleOrderMaster = null;
 		}
 		
-		private void attach_SO_ConfirmShipMasters(SO_ConfirmShipMaster entity)
-		{
-			this.SendPropertyChanging();
-			entity.SO_SaleOrderMaster = this;
-		}
-		
-		private void detach_SO_ConfirmShipMasters(SO_ConfirmShipMaster entity)
-		{
-			this.SendPropertyChanging();
-			entity.SO_SaleOrderMaster = null;
-		}
-		
 		private void attach_SO_InvoiceMasters(SO_InvoiceMaster entity)
 		{
 			this.SendPropertyChanging();
@@ -81018,6 +81006,18 @@ namespace PCSComUtils.DataContext
 		}
 		
 		private void detach_SO_InvoiceMasters(SO_InvoiceMaster entity)
+		{
+			this.SendPropertyChanging();
+			entity.SO_SaleOrderMaster = null;
+		}
+		
+		private void attach_SO_ConfirmShipMasters(SO_ConfirmShipMaster entity)
+		{
+			this.SendPropertyChanging();
+			entity.SO_SaleOrderMaster = this;
+		}
+		
+		private void detach_SO_ConfirmShipMasters(SO_ConfirmShipMaster entity)
 		{
 			this.SendPropertyChanging();
 			entity.SO_SaleOrderMaster = null;
@@ -128384,6 +128384,1987 @@ namespace PCSComUtils.DataContext
 		}
 	}
 	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SO_ConfirmShipDetail")]
+	public partial class SO_ConfirmShipDetail : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ConfirmShipDetailID;
+		
+		private int _ConfirmShipMasterID;
+		
+		private int _SaleOrderDetailID;
+		
+		private int _DeliveryScheduleID;
+		
+		private int _ProductID;
+		
+		private decimal _Price;
+		
+		private System.Nullable<decimal> _InvoiceQty;
+		
+		private System.Nullable<decimal> _VATPercent;
+		
+		private System.Nullable<decimal> _VATAmount;
+		
+		private System.Nullable<decimal> _NetAmount;
+		
+		private string _PONumber;
+		
+		private EntityRef<SO_DeliverySchedule> _SO_DeliverySchedule;
+		
+		private EntityRef<ITM_Product> _ITM_Product;
+		
+		private EntityRef<SO_SaleOrderDetail> _SO_SaleOrderDetail;
+		
+		private EntityRef<SO_ConfirmShipMaster> _SO_ConfirmShipMaster;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnConfirmShipDetailIDChanging(int value);
+    partial void OnConfirmShipDetailIDChanged();
+    partial void OnConfirmShipMasterIDChanging(int value);
+    partial void OnConfirmShipMasterIDChanged();
+    partial void OnSaleOrderDetailIDChanging(int value);
+    partial void OnSaleOrderDetailIDChanged();
+    partial void OnDeliveryScheduleIDChanging(int value);
+    partial void OnDeliveryScheduleIDChanged();
+    partial void OnProductIDChanging(int value);
+    partial void OnProductIDChanged();
+    partial void OnPriceChanging(decimal value);
+    partial void OnPriceChanged();
+    partial void OnInvoiceQtyChanging(System.Nullable<decimal> value);
+    partial void OnInvoiceQtyChanged();
+    partial void OnVATPercentChanging(System.Nullable<decimal> value);
+    partial void OnVATPercentChanged();
+    partial void OnVATAmountChanging(System.Nullable<decimal> value);
+    partial void OnVATAmountChanged();
+    partial void OnNetAmountChanging(System.Nullable<decimal> value);
+    partial void OnNetAmountChanged();
+    partial void OnPONumberChanging(string value);
+    partial void OnPONumberChanged();
+    #endregion
+		
+		public SO_ConfirmShipDetail()
+		{
+			this._SO_DeliverySchedule = default(EntityRef<SO_DeliverySchedule>);
+			this._ITM_Product = default(EntityRef<ITM_Product>);
+			this._SO_SaleOrderDetail = default(EntityRef<SO_SaleOrderDetail>);
+			this._SO_ConfirmShipMaster = default(EntityRef<SO_ConfirmShipMaster>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ConfirmShipDetailID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ConfirmShipDetailID
+		{
+			get
+			{
+				return this._ConfirmShipDetailID;
+			}
+			set
+			{
+				if ((this._ConfirmShipDetailID != value))
+				{
+					this.OnConfirmShipDetailIDChanging(value);
+					this.SendPropertyChanging();
+					this._ConfirmShipDetailID = value;
+					this.SendPropertyChanged("ConfirmShipDetailID");
+					this.OnConfirmShipDetailIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ConfirmShipMasterID", DbType="Int NOT NULL")]
+		public int ConfirmShipMasterID
+		{
+			get
+			{
+				return this._ConfirmShipMasterID;
+			}
+			set
+			{
+				if ((this._ConfirmShipMasterID != value))
+				{
+					if (this._SO_ConfirmShipMaster.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnConfirmShipMasterIDChanging(value);
+					this.SendPropertyChanging();
+					this._ConfirmShipMasterID = value;
+					this.SendPropertyChanged("ConfirmShipMasterID");
+					this.OnConfirmShipMasterIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SaleOrderDetailID", DbType="Int NOT NULL")]
+		public int SaleOrderDetailID
+		{
+			get
+			{
+				return this._SaleOrderDetailID;
+			}
+			set
+			{
+				if ((this._SaleOrderDetailID != value))
+				{
+					if (this._SO_SaleOrderDetail.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnSaleOrderDetailIDChanging(value);
+					this.SendPropertyChanging();
+					this._SaleOrderDetailID = value;
+					this.SendPropertyChanged("SaleOrderDetailID");
+					this.OnSaleOrderDetailIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeliveryScheduleID", DbType="Int NOT NULL")]
+		public int DeliveryScheduleID
+		{
+			get
+			{
+				return this._DeliveryScheduleID;
+			}
+			set
+			{
+				if ((this._DeliveryScheduleID != value))
+				{
+					if (this._SO_DeliverySchedule.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnDeliveryScheduleIDChanging(value);
+					this.SendPropertyChanging();
+					this._DeliveryScheduleID = value;
+					this.SendPropertyChanged("DeliveryScheduleID");
+					this.OnDeliveryScheduleIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductID", DbType="Int NOT NULL")]
+		public int ProductID
+		{
+			get
+			{
+				return this._ProductID;
+			}
+			set
+			{
+				if ((this._ProductID != value))
+				{
+					if (this._ITM_Product.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnProductIDChanging(value);
+					this.SendPropertyChanging();
+					this._ProductID = value;
+					this.SendPropertyChanged("ProductID");
+					this.OnProductIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Decimal(20,5) NOT NULL")]
+		public decimal Price
+		{
+			get
+			{
+				return this._Price;
+			}
+			set
+			{
+				if ((this._Price != value))
+				{
+					this.OnPriceChanging(value);
+					this.SendPropertyChanging();
+					this._Price = value;
+					this.SendPropertyChanged("Price");
+					this.OnPriceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InvoiceQty", DbType="Decimal(20,5)")]
+		public System.Nullable<decimal> InvoiceQty
+		{
+			get
+			{
+				return this._InvoiceQty;
+			}
+			set
+			{
+				if ((this._InvoiceQty != value))
+				{
+					this.OnInvoiceQtyChanging(value);
+					this.SendPropertyChanging();
+					this._InvoiceQty = value;
+					this.SendPropertyChanged("InvoiceQty");
+					this.OnInvoiceQtyChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VATPercent", DbType="Decimal(20,5)")]
+		public System.Nullable<decimal> VATPercent
+		{
+			get
+			{
+				return this._VATPercent;
+			}
+			set
+			{
+				if ((this._VATPercent != value))
+				{
+					this.OnVATPercentChanging(value);
+					this.SendPropertyChanging();
+					this._VATPercent = value;
+					this.SendPropertyChanged("VATPercent");
+					this.OnVATPercentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VATAmount", DbType="Decimal(20,5)")]
+		public System.Nullable<decimal> VATAmount
+		{
+			get
+			{
+				return this._VATAmount;
+			}
+			set
+			{
+				if ((this._VATAmount != value))
+				{
+					this.OnVATAmountChanging(value);
+					this.SendPropertyChanging();
+					this._VATAmount = value;
+					this.SendPropertyChanged("VATAmount");
+					this.OnVATAmountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NetAmount", DbType="Decimal(20,8)")]
+		public System.Nullable<decimal> NetAmount
+		{
+			get
+			{
+				return this._NetAmount;
+			}
+			set
+			{
+				if ((this._NetAmount != value))
+				{
+					this.OnNetAmountChanging(value);
+					this.SendPropertyChanging();
+					this._NetAmount = value;
+					this.SendPropertyChanged("NetAmount");
+					this.OnNetAmountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PONumber", DbType="VarChar(500)")]
+		public string PONumber
+		{
+			get
+			{
+				return this._PONumber;
+			}
+			set
+			{
+				if ((this._PONumber != value))
+				{
+					this.OnPONumberChanging(value);
+					this.SendPropertyChanging();
+					this._PONumber = value;
+					this.SendPropertyChanged("PONumber");
+					this.OnPONumberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SO_DeliverySchedule_SO_ConfirmShipDetail", Storage="_SO_DeliverySchedule", ThisKey="DeliveryScheduleID", OtherKey="DeliveryScheduleID", IsForeignKey=true)]
+		public SO_DeliverySchedule SO_DeliverySchedule
+		{
+			get
+			{
+				return this._SO_DeliverySchedule.Entity;
+			}
+			set
+			{
+				SO_DeliverySchedule previousValue = this._SO_DeliverySchedule.Entity;
+				if (((previousValue != value) 
+							|| (this._SO_DeliverySchedule.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._SO_DeliverySchedule.Entity = null;
+						previousValue.SO_ConfirmShipDetails.Remove(this);
+					}
+					this._SO_DeliverySchedule.Entity = value;
+					if ((value != null))
+					{
+						value.SO_ConfirmShipDetails.Add(this);
+						this._DeliveryScheduleID = value.DeliveryScheduleID;
+					}
+					else
+					{
+						this._DeliveryScheduleID = default(int);
+					}
+					this.SendPropertyChanged("SO_DeliverySchedule");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_SO_ConfirmShipDetail", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
+		public ITM_Product ITM_Product
+		{
+			get
+			{
+				return this._ITM_Product.Entity;
+			}
+			set
+			{
+				ITM_Product previousValue = this._ITM_Product.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_Product.Entity = null;
+						previousValue.SO_ConfirmShipDetails.Remove(this);
+					}
+					this._ITM_Product.Entity = value;
+					if ((value != null))
+					{
+						value.SO_ConfirmShipDetails.Add(this);
+						this._ProductID = value.ProductID;
+					}
+					else
+					{
+						this._ProductID = default(int);
+					}
+					this.SendPropertyChanged("ITM_Product");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SO_SaleOrderDetail_SO_ConfirmShipDetail", Storage="_SO_SaleOrderDetail", ThisKey="SaleOrderDetailID", OtherKey="SaleOrderDetailID", IsForeignKey=true)]
+		public SO_SaleOrderDetail SO_SaleOrderDetail
+		{
+			get
+			{
+				return this._SO_SaleOrderDetail.Entity;
+			}
+			set
+			{
+				SO_SaleOrderDetail previousValue = this._SO_SaleOrderDetail.Entity;
+				if (((previousValue != value) 
+							|| (this._SO_SaleOrderDetail.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._SO_SaleOrderDetail.Entity = null;
+						previousValue.SO_ConfirmShipDetails.Remove(this);
+					}
+					this._SO_SaleOrderDetail.Entity = value;
+					if ((value != null))
+					{
+						value.SO_ConfirmShipDetails.Add(this);
+						this._SaleOrderDetailID = value.SaleOrderDetailID;
+					}
+					else
+					{
+						this._SaleOrderDetailID = default(int);
+					}
+					this.SendPropertyChanged("SO_SaleOrderDetail");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SO_ConfirmShipMaster_SO_ConfirmShipDetail", Storage="_SO_ConfirmShipMaster", ThisKey="ConfirmShipMasterID", OtherKey="ConfirmShipMasterID", IsForeignKey=true)]
+		public SO_ConfirmShipMaster SO_ConfirmShipMaster
+		{
+			get
+			{
+				return this._SO_ConfirmShipMaster.Entity;
+			}
+			set
+			{
+				SO_ConfirmShipMaster previousValue = this._SO_ConfirmShipMaster.Entity;
+				if (((previousValue != value) 
+							|| (this._SO_ConfirmShipMaster.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._SO_ConfirmShipMaster.Entity = null;
+						previousValue.SO_ConfirmShipDetails.Remove(this);
+					}
+					this._SO_ConfirmShipMaster.Entity = value;
+					if ((value != null))
+					{
+						value.SO_ConfirmShipDetails.Add(this);
+						this._ConfirmShipMasterID = value.ConfirmShipMasterID;
+					}
+					else
+					{
+						this._ConfirmShipMasterID = default(int);
+					}
+					this.SendPropertyChanged("SO_ConfirmShipMaster");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SO_InvoiceDetail")]
+	public partial class SO_InvoiceDetail : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _InvoiceDetailID;
+		
+		private int _InvoiceMasterID;
+		
+		private int _SaleOrderDetailID;
+		
+		private int _DeliveryScheduleID;
+		
+		private int _ProductID;
+		
+		private decimal _Price;
+		
+		private System.Nullable<decimal> _InvoiceQty;
+		
+		private System.Nullable<decimal> _VATPercent;
+		
+		private System.Nullable<decimal> _VATAmount;
+		
+		private System.Nullable<decimal> _NetAmount;
+		
+		private string _PONumber;
+		
+		private EntityRef<SO_DeliverySchedule> _SO_DeliverySchedule;
+		
+		private EntityRef<ITM_Product> _ITM_Product;
+		
+		private EntityRef<SO_SaleOrderDetail> _SO_SaleOrderDetail;
+		
+		private EntityRef<SO_InvoiceMaster> _SO_InvoiceMaster;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnInvoiceDetailIDChanging(int value);
+    partial void OnInvoiceDetailIDChanged();
+    partial void OnInvoiceMasterIDChanging(int value);
+    partial void OnInvoiceMasterIDChanged();
+    partial void OnSaleOrderDetailIDChanging(int value);
+    partial void OnSaleOrderDetailIDChanged();
+    partial void OnDeliveryScheduleIDChanging(int value);
+    partial void OnDeliveryScheduleIDChanged();
+    partial void OnProductIDChanging(int value);
+    partial void OnProductIDChanged();
+    partial void OnPriceChanging(decimal value);
+    partial void OnPriceChanged();
+    partial void OnInvoiceQtyChanging(System.Nullable<decimal> value);
+    partial void OnInvoiceQtyChanged();
+    partial void OnVATPercentChanging(System.Nullable<decimal> value);
+    partial void OnVATPercentChanged();
+    partial void OnVATAmountChanging(System.Nullable<decimal> value);
+    partial void OnVATAmountChanged();
+    partial void OnNetAmountChanging(System.Nullable<decimal> value);
+    partial void OnNetAmountChanged();
+    partial void OnPONumberChanging(string value);
+    partial void OnPONumberChanged();
+    #endregion
+		
+		public SO_InvoiceDetail()
+		{
+			this._SO_DeliverySchedule = default(EntityRef<SO_DeliverySchedule>);
+			this._ITM_Product = default(EntityRef<ITM_Product>);
+			this._SO_SaleOrderDetail = default(EntityRef<SO_SaleOrderDetail>);
+			this._SO_InvoiceMaster = default(EntityRef<SO_InvoiceMaster>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InvoiceDetailID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int InvoiceDetailID
+		{
+			get
+			{
+				return this._InvoiceDetailID;
+			}
+			set
+			{
+				if ((this._InvoiceDetailID != value))
+				{
+					this.OnInvoiceDetailIDChanging(value);
+					this.SendPropertyChanging();
+					this._InvoiceDetailID = value;
+					this.SendPropertyChanged("InvoiceDetailID");
+					this.OnInvoiceDetailIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InvoiceMasterID", DbType="Int NOT NULL")]
+		public int InvoiceMasterID
+		{
+			get
+			{
+				return this._InvoiceMasterID;
+			}
+			set
+			{
+				if ((this._InvoiceMasterID != value))
+				{
+					if (this._SO_InvoiceMaster.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnInvoiceMasterIDChanging(value);
+					this.SendPropertyChanging();
+					this._InvoiceMasterID = value;
+					this.SendPropertyChanged("InvoiceMasterID");
+					this.OnInvoiceMasterIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SaleOrderDetailID", DbType="Int NOT NULL")]
+		public int SaleOrderDetailID
+		{
+			get
+			{
+				return this._SaleOrderDetailID;
+			}
+			set
+			{
+				if ((this._SaleOrderDetailID != value))
+				{
+					if (this._SO_SaleOrderDetail.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnSaleOrderDetailIDChanging(value);
+					this.SendPropertyChanging();
+					this._SaleOrderDetailID = value;
+					this.SendPropertyChanged("SaleOrderDetailID");
+					this.OnSaleOrderDetailIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeliveryScheduleID", DbType="Int NOT NULL")]
+		public int DeliveryScheduleID
+		{
+			get
+			{
+				return this._DeliveryScheduleID;
+			}
+			set
+			{
+				if ((this._DeliveryScheduleID != value))
+				{
+					if (this._SO_DeliverySchedule.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnDeliveryScheduleIDChanging(value);
+					this.SendPropertyChanging();
+					this._DeliveryScheduleID = value;
+					this.SendPropertyChanged("DeliveryScheduleID");
+					this.OnDeliveryScheduleIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductID", DbType="Int NOT NULL")]
+		public int ProductID
+		{
+			get
+			{
+				return this._ProductID;
+			}
+			set
+			{
+				if ((this._ProductID != value))
+				{
+					if (this._ITM_Product.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnProductIDChanging(value);
+					this.SendPropertyChanging();
+					this._ProductID = value;
+					this.SendPropertyChanged("ProductID");
+					this.OnProductIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Decimal(20,5) NOT NULL")]
+		public decimal Price
+		{
+			get
+			{
+				return this._Price;
+			}
+			set
+			{
+				if ((this._Price != value))
+				{
+					this.OnPriceChanging(value);
+					this.SendPropertyChanging();
+					this._Price = value;
+					this.SendPropertyChanged("Price");
+					this.OnPriceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InvoiceQty", DbType="Decimal(20,5)")]
+		public System.Nullable<decimal> InvoiceQty
+		{
+			get
+			{
+				return this._InvoiceQty;
+			}
+			set
+			{
+				if ((this._InvoiceQty != value))
+				{
+					this.OnInvoiceQtyChanging(value);
+					this.SendPropertyChanging();
+					this._InvoiceQty = value;
+					this.SendPropertyChanged("InvoiceQty");
+					this.OnInvoiceQtyChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VATPercent", DbType="Decimal(20,5)")]
+		public System.Nullable<decimal> VATPercent
+		{
+			get
+			{
+				return this._VATPercent;
+			}
+			set
+			{
+				if ((this._VATPercent != value))
+				{
+					this.OnVATPercentChanging(value);
+					this.SendPropertyChanging();
+					this._VATPercent = value;
+					this.SendPropertyChanged("VATPercent");
+					this.OnVATPercentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VATAmount", DbType="Decimal(20,5)")]
+		public System.Nullable<decimal> VATAmount
+		{
+			get
+			{
+				return this._VATAmount;
+			}
+			set
+			{
+				if ((this._VATAmount != value))
+				{
+					this.OnVATAmountChanging(value);
+					this.SendPropertyChanging();
+					this._VATAmount = value;
+					this.SendPropertyChanged("VATAmount");
+					this.OnVATAmountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NetAmount", DbType="Decimal(20,8)")]
+		public System.Nullable<decimal> NetAmount
+		{
+			get
+			{
+				return this._NetAmount;
+			}
+			set
+			{
+				if ((this._NetAmount != value))
+				{
+					this.OnNetAmountChanging(value);
+					this.SendPropertyChanging();
+					this._NetAmount = value;
+					this.SendPropertyChanged("NetAmount");
+					this.OnNetAmountChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PONumber", DbType="VarChar(500)")]
+		public string PONumber
+		{
+			get
+			{
+				return this._PONumber;
+			}
+			set
+			{
+				if ((this._PONumber != value))
+				{
+					this.OnPONumberChanging(value);
+					this.SendPropertyChanging();
+					this._PONumber = value;
+					this.SendPropertyChanged("PONumber");
+					this.OnPONumberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SO_DeliverySchedule_SO_InvoiceDetail", Storage="_SO_DeliverySchedule", ThisKey="DeliveryScheduleID", OtherKey="DeliveryScheduleID", IsForeignKey=true)]
+		public SO_DeliverySchedule SO_DeliverySchedule
+		{
+			get
+			{
+				return this._SO_DeliverySchedule.Entity;
+			}
+			set
+			{
+				SO_DeliverySchedule previousValue = this._SO_DeliverySchedule.Entity;
+				if (((previousValue != value) 
+							|| (this._SO_DeliverySchedule.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._SO_DeliverySchedule.Entity = null;
+						previousValue.SO_InvoiceDetails.Remove(this);
+					}
+					this._SO_DeliverySchedule.Entity = value;
+					if ((value != null))
+					{
+						value.SO_InvoiceDetails.Add(this);
+						this._DeliveryScheduleID = value.DeliveryScheduleID;
+					}
+					else
+					{
+						this._DeliveryScheduleID = default(int);
+					}
+					this.SendPropertyChanged("SO_DeliverySchedule");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_SO_InvoiceDetail", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
+		public ITM_Product ITM_Product
+		{
+			get
+			{
+				return this._ITM_Product.Entity;
+			}
+			set
+			{
+				ITM_Product previousValue = this._ITM_Product.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_Product.Entity = null;
+						previousValue.SO_InvoiceDetails.Remove(this);
+					}
+					this._ITM_Product.Entity = value;
+					if ((value != null))
+					{
+						value.SO_InvoiceDetails.Add(this);
+						this._ProductID = value.ProductID;
+					}
+					else
+					{
+						this._ProductID = default(int);
+					}
+					this.SendPropertyChanged("ITM_Product");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SO_SaleOrderDetail_SO_InvoiceDetail", Storage="_SO_SaleOrderDetail", ThisKey="SaleOrderDetailID", OtherKey="SaleOrderDetailID", IsForeignKey=true)]
+		public SO_SaleOrderDetail SO_SaleOrderDetail
+		{
+			get
+			{
+				return this._SO_SaleOrderDetail.Entity;
+			}
+			set
+			{
+				SO_SaleOrderDetail previousValue = this._SO_SaleOrderDetail.Entity;
+				if (((previousValue != value) 
+							|| (this._SO_SaleOrderDetail.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._SO_SaleOrderDetail.Entity = null;
+						previousValue.SO_InvoiceDetails.Remove(this);
+					}
+					this._SO_SaleOrderDetail.Entity = value;
+					if ((value != null))
+					{
+						value.SO_InvoiceDetails.Add(this);
+						this._SaleOrderDetailID = value.SaleOrderDetailID;
+					}
+					else
+					{
+						this._SaleOrderDetailID = default(int);
+					}
+					this.SendPropertyChanged("SO_SaleOrderDetail");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SO_InvoiceMaster_SO_InvoiceDetail", Storage="_SO_InvoiceMaster", ThisKey="InvoiceMasterID", OtherKey="InvoiceMasterID", IsForeignKey=true)]
+		public SO_InvoiceMaster SO_InvoiceMaster
+		{
+			get
+			{
+				return this._SO_InvoiceMaster.Entity;
+			}
+			set
+			{
+				SO_InvoiceMaster previousValue = this._SO_InvoiceMaster.Entity;
+				if (((previousValue != value) 
+							|| (this._SO_InvoiceMaster.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._SO_InvoiceMaster.Entity = null;
+						previousValue.SO_InvoiceDetails.Remove(this);
+					}
+					this._SO_InvoiceMaster.Entity = value;
+					if ((value != null))
+					{
+						value.SO_InvoiceDetails.Add(this);
+						this._InvoiceMasterID = value.InvoiceMasterID;
+					}
+					else
+					{
+						this._InvoiceMasterID = default(int);
+					}
+					this.SendPropertyChanged("SO_InvoiceMaster");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SO_InvoiceMaster")]
+	public partial class SO_InvoiceMaster : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _InvoiceMasterID;
+		
+		private string _ConfirmShipNo;
+		
+		private System.DateTime _ShippedDate;
+		
+		private int _SaleOrderMasterID;
+		
+		private int _MasterLocationID;
+		
+		private int _CCNID;
+		
+		private string _UserName;
+		
+		private System.Nullable<System.DateTime> _LastChange;
+		
+		private decimal _ExchangeRate;
+		
+		private int _CurrencyID;
+		
+		private System.Nullable<int> _GateID;
+		
+		private string _Comment;
+		
+		private string _FromPort;
+		
+		private string _CNo;
+		
+		private System.Nullable<decimal> _Measurement;
+		
+		private System.Nullable<decimal> _GrossWeight;
+		
+		private System.Nullable<decimal> _NetWeight;
+		
+		private string _IssuingBank;
+		
+		private System.Nullable<System.DateTime> _LCDate;
+		
+		private string _LCNo;
+		
+		private string _VesselName;
+		
+		private string _ShipCode;
+		
+		private System.Nullable<System.DateTime> _OnBoardDate;
+		
+		private string _ReferenceNo;
+		
+		private string _InvoiceNo;
+		
+		private System.DateTime _InvoiceDate;
+		
+		private System.Nullable<int> _LocationID;
+		
+		private System.Nullable<int> _BinID;
+		
+		private string _DocumentNumber;
+		
+		private EntitySet<SO_InvoiceDetail> _SO_InvoiceDetails;
+		
+		private EntityRef<MST_BIN> _MST_BIN;
+		
+		private EntityRef<MST_CCN> _MST_CCN;
+		
+		private EntityRef<MST_Currency> _MST_Currency;
+		
+		private EntityRef<SO_Gate> _SO_Gate;
+		
+		private EntityRef<MST_Location> _MST_Location;
+		
+		private EntityRef<MST_MasterLocation> _MST_MasterLocation;
+		
+		private EntityRef<SO_SaleOrderMaster> _SO_SaleOrderMaster;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnInvoiceMasterIDChanging(int value);
+    partial void OnInvoiceMasterIDChanged();
+    partial void OnConfirmShipNoChanging(string value);
+    partial void OnConfirmShipNoChanged();
+    partial void OnShippedDateChanging(System.DateTime value);
+    partial void OnShippedDateChanged();
+    partial void OnSaleOrderMasterIDChanging(int value);
+    partial void OnSaleOrderMasterIDChanged();
+    partial void OnMasterLocationIDChanging(int value);
+    partial void OnMasterLocationIDChanged();
+    partial void OnCCNIDChanging(int value);
+    partial void OnCCNIDChanged();
+    partial void OnUserNameChanging(string value);
+    partial void OnUserNameChanged();
+    partial void OnLastChangeChanging(System.Nullable<System.DateTime> value);
+    partial void OnLastChangeChanged();
+    partial void OnExchangeRateChanging(decimal value);
+    partial void OnExchangeRateChanged();
+    partial void OnCurrencyIDChanging(int value);
+    partial void OnCurrencyIDChanged();
+    partial void OnGateIDChanging(System.Nullable<int> value);
+    partial void OnGateIDChanged();
+    partial void OnCommentChanging(string value);
+    partial void OnCommentChanged();
+    partial void OnFromPortChanging(string value);
+    partial void OnFromPortChanged();
+    partial void OnCNoChanging(string value);
+    partial void OnCNoChanged();
+    partial void OnMeasurementChanging(System.Nullable<decimal> value);
+    partial void OnMeasurementChanged();
+    partial void OnGrossWeightChanging(System.Nullable<decimal> value);
+    partial void OnGrossWeightChanged();
+    partial void OnNetWeightChanging(System.Nullable<decimal> value);
+    partial void OnNetWeightChanged();
+    partial void OnIssuingBankChanging(string value);
+    partial void OnIssuingBankChanged();
+    partial void OnLCDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnLCDateChanged();
+    partial void OnLCNoChanging(string value);
+    partial void OnLCNoChanged();
+    partial void OnVesselNameChanging(string value);
+    partial void OnVesselNameChanged();
+    partial void OnShipCodeChanging(string value);
+    partial void OnShipCodeChanged();
+    partial void OnOnBoardDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnOnBoardDateChanged();
+    partial void OnReferenceNoChanging(string value);
+    partial void OnReferenceNoChanged();
+    partial void OnInvoiceNoChanging(string value);
+    partial void OnInvoiceNoChanged();
+    partial void OnInvoiceDateChanging(System.DateTime value);
+    partial void OnInvoiceDateChanged();
+    partial void OnLocationIDChanging(System.Nullable<int> value);
+    partial void OnLocationIDChanged();
+    partial void OnBinIDChanging(System.Nullable<int> value);
+    partial void OnBinIDChanged();
+    partial void OnDocumentNumberChanging(string value);
+    partial void OnDocumentNumberChanged();
+    #endregion
+		
+		public SO_InvoiceMaster()
+		{
+			this._SO_InvoiceDetails = new EntitySet<SO_InvoiceDetail>(new Action<SO_InvoiceDetail>(this.attach_SO_InvoiceDetails), new Action<SO_InvoiceDetail>(this.detach_SO_InvoiceDetails));
+			this._MST_BIN = default(EntityRef<MST_BIN>);
+			this._MST_CCN = default(EntityRef<MST_CCN>);
+			this._MST_Currency = default(EntityRef<MST_Currency>);
+			this._SO_Gate = default(EntityRef<SO_Gate>);
+			this._MST_Location = default(EntityRef<MST_Location>);
+			this._MST_MasterLocation = default(EntityRef<MST_MasterLocation>);
+			this._SO_SaleOrderMaster = default(EntityRef<SO_SaleOrderMaster>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InvoiceMasterID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int InvoiceMasterID
+		{
+			get
+			{
+				return this._InvoiceMasterID;
+			}
+			set
+			{
+				if ((this._InvoiceMasterID != value))
+				{
+					this.OnInvoiceMasterIDChanging(value);
+					this.SendPropertyChanging();
+					this._InvoiceMasterID = value;
+					this.SendPropertyChanged("InvoiceMasterID");
+					this.OnInvoiceMasterIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ConfirmShipNo", DbType="NVarChar(20) NOT NULL", CanBeNull=false)]
+		public string ConfirmShipNo
+		{
+			get
+			{
+				return this._ConfirmShipNo;
+			}
+			set
+			{
+				if ((this._ConfirmShipNo != value))
+				{
+					this.OnConfirmShipNoChanging(value);
+					this.SendPropertyChanging();
+					this._ConfirmShipNo = value;
+					this.SendPropertyChanged("ConfirmShipNo");
+					this.OnConfirmShipNoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ShippedDate", DbType="DateTime NOT NULL")]
+		public System.DateTime ShippedDate
+		{
+			get
+			{
+				return this._ShippedDate;
+			}
+			set
+			{
+				if ((this._ShippedDate != value))
+				{
+					this.OnShippedDateChanging(value);
+					this.SendPropertyChanging();
+					this._ShippedDate = value;
+					this.SendPropertyChanged("ShippedDate");
+					this.OnShippedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SaleOrderMasterID", DbType="Int NOT NULL")]
+		public int SaleOrderMasterID
+		{
+			get
+			{
+				return this._SaleOrderMasterID;
+			}
+			set
+			{
+				if ((this._SaleOrderMasterID != value))
+				{
+					if (this._SO_SaleOrderMaster.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnSaleOrderMasterIDChanging(value);
+					this.SendPropertyChanging();
+					this._SaleOrderMasterID = value;
+					this.SendPropertyChanged("SaleOrderMasterID");
+					this.OnSaleOrderMasterIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MasterLocationID", DbType="Int NOT NULL")]
+		public int MasterLocationID
+		{
+			get
+			{
+				return this._MasterLocationID;
+			}
+			set
+			{
+				if ((this._MasterLocationID != value))
+				{
+					if (this._MST_MasterLocation.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnMasterLocationIDChanging(value);
+					this.SendPropertyChanging();
+					this._MasterLocationID = value;
+					this.SendPropertyChanged("MasterLocationID");
+					this.OnMasterLocationIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CCNID", DbType="Int NOT NULL")]
+		public int CCNID
+		{
+			get
+			{
+				return this._CCNID;
+			}
+			set
+			{
+				if ((this._CCNID != value))
+				{
+					if (this._MST_CCN.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnCCNIDChanging(value);
+					this.SendPropertyChanging();
+					this._CCNID = value;
+					this.SendPropertyChanged("CCNID");
+					this.OnCCNIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserName", DbType="NVarChar(40)")]
+		public string UserName
+		{
+			get
+			{
+				return this._UserName;
+			}
+			set
+			{
+				if ((this._UserName != value))
+				{
+					this.OnUserNameChanging(value);
+					this.SendPropertyChanging();
+					this._UserName = value;
+					this.SendPropertyChanged("UserName");
+					this.OnUserNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastChange", DbType="DateTime")]
+		public System.Nullable<System.DateTime> LastChange
+		{
+			get
+			{
+				return this._LastChange;
+			}
+			set
+			{
+				if ((this._LastChange != value))
+				{
+					this.OnLastChangeChanging(value);
+					this.SendPropertyChanging();
+					this._LastChange = value;
+					this.SendPropertyChanged("LastChange");
+					this.OnLastChangeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ExchangeRate", DbType="Decimal(20,5) NOT NULL")]
+		public decimal ExchangeRate
+		{
+			get
+			{
+				return this._ExchangeRate;
+			}
+			set
+			{
+				if ((this._ExchangeRate != value))
+				{
+					this.OnExchangeRateChanging(value);
+					this.SendPropertyChanging();
+					this._ExchangeRate = value;
+					this.SendPropertyChanged("ExchangeRate");
+					this.OnExchangeRateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CurrencyID", DbType="Int NOT NULL")]
+		public int CurrencyID
+		{
+			get
+			{
+				return this._CurrencyID;
+			}
+			set
+			{
+				if ((this._CurrencyID != value))
+				{
+					if (this._MST_Currency.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnCurrencyIDChanging(value);
+					this.SendPropertyChanging();
+					this._CurrencyID = value;
+					this.SendPropertyChanged("CurrencyID");
+					this.OnCurrencyIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GateID", DbType="Int")]
+		public System.Nullable<int> GateID
+		{
+			get
+			{
+				return this._GateID;
+			}
+			set
+			{
+				if ((this._GateID != value))
+				{
+					if (this._SO_Gate.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnGateIDChanging(value);
+					this.SendPropertyChanging();
+					this._GateID = value;
+					this.SendPropertyChanged("GateID");
+					this.OnGateIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Comment", DbType="NVarChar(100)")]
+		public string Comment
+		{
+			get
+			{
+				return this._Comment;
+			}
+			set
+			{
+				if ((this._Comment != value))
+				{
+					this.OnCommentChanging(value);
+					this.SendPropertyChanging();
+					this._Comment = value;
+					this.SendPropertyChanged("Comment");
+					this.OnCommentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FromPort", DbType="NVarChar(100)")]
+		public string FromPort
+		{
+			get
+			{
+				return this._FromPort;
+			}
+			set
+			{
+				if ((this._FromPort != value))
+				{
+					this.OnFromPortChanging(value);
+					this.SendPropertyChanging();
+					this._FromPort = value;
+					this.SendPropertyChanged("FromPort");
+					this.OnFromPortChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CNo", DbType="NVarChar(30)")]
+		public string CNo
+		{
+			get
+			{
+				return this._CNo;
+			}
+			set
+			{
+				if ((this._CNo != value))
+				{
+					this.OnCNoChanging(value);
+					this.SendPropertyChanging();
+					this._CNo = value;
+					this.SendPropertyChanged("CNo");
+					this.OnCNoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Measurement", DbType="Decimal(20,5)")]
+		public System.Nullable<decimal> Measurement
+		{
+			get
+			{
+				return this._Measurement;
+			}
+			set
+			{
+				if ((this._Measurement != value))
+				{
+					this.OnMeasurementChanging(value);
+					this.SendPropertyChanging();
+					this._Measurement = value;
+					this.SendPropertyChanged("Measurement");
+					this.OnMeasurementChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GrossWeight", DbType="Decimal(20,5)")]
+		public System.Nullable<decimal> GrossWeight
+		{
+			get
+			{
+				return this._GrossWeight;
+			}
+			set
+			{
+				if ((this._GrossWeight != value))
+				{
+					this.OnGrossWeightChanging(value);
+					this.SendPropertyChanging();
+					this._GrossWeight = value;
+					this.SendPropertyChanged("GrossWeight");
+					this.OnGrossWeightChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NetWeight", DbType="Decimal(20,5)")]
+		public System.Nullable<decimal> NetWeight
+		{
+			get
+			{
+				return this._NetWeight;
+			}
+			set
+			{
+				if ((this._NetWeight != value))
+				{
+					this.OnNetWeightChanging(value);
+					this.SendPropertyChanging();
+					this._NetWeight = value;
+					this.SendPropertyChanged("NetWeight");
+					this.OnNetWeightChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IssuingBank", DbType="NVarChar(80)")]
+		public string IssuingBank
+		{
+			get
+			{
+				return this._IssuingBank;
+			}
+			set
+			{
+				if ((this._IssuingBank != value))
+				{
+					this.OnIssuingBankChanging(value);
+					this.SendPropertyChanging();
+					this._IssuingBank = value;
+					this.SendPropertyChanged("IssuingBank");
+					this.OnIssuingBankChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LCDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> LCDate
+		{
+			get
+			{
+				return this._LCDate;
+			}
+			set
+			{
+				if ((this._LCDate != value))
+				{
+					this.OnLCDateChanging(value);
+					this.SendPropertyChanging();
+					this._LCDate = value;
+					this.SendPropertyChanged("LCDate");
+					this.OnLCDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LCNo", DbType="NVarChar(30)")]
+		public string LCNo
+		{
+			get
+			{
+				return this._LCNo;
+			}
+			set
+			{
+				if ((this._LCNo != value))
+				{
+					this.OnLCNoChanging(value);
+					this.SendPropertyChanging();
+					this._LCNo = value;
+					this.SendPropertyChanged("LCNo");
+					this.OnLCNoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VesselName", DbType="NVarChar(30)")]
+		public string VesselName
+		{
+			get
+			{
+				return this._VesselName;
+			}
+			set
+			{
+				if ((this._VesselName != value))
+				{
+					this.OnVesselNameChanging(value);
+					this.SendPropertyChanging();
+					this._VesselName = value;
+					this.SendPropertyChanged("VesselName");
+					this.OnVesselNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ShipCode", DbType="NVarChar(20) NOT NULL", CanBeNull=false)]
+		public string ShipCode
+		{
+			get
+			{
+				return this._ShipCode;
+			}
+			set
+			{
+				if ((this._ShipCode != value))
+				{
+					this.OnShipCodeChanging(value);
+					this.SendPropertyChanging();
+					this._ShipCode = value;
+					this.SendPropertyChanged("ShipCode");
+					this.OnShipCodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OnBoardDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> OnBoardDate
+		{
+			get
+			{
+				return this._OnBoardDate;
+			}
+			set
+			{
+				if ((this._OnBoardDate != value))
+				{
+					this.OnOnBoardDateChanging(value);
+					this.SendPropertyChanging();
+					this._OnBoardDate = value;
+					this.SendPropertyChanged("OnBoardDate");
+					this.OnOnBoardDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReferenceNo", DbType="NVarChar(60)")]
+		public string ReferenceNo
+		{
+			get
+			{
+				return this._ReferenceNo;
+			}
+			set
+			{
+				if ((this._ReferenceNo != value))
+				{
+					this.OnReferenceNoChanging(value);
+					this.SendPropertyChanging();
+					this._ReferenceNo = value;
+					this.SendPropertyChanged("ReferenceNo");
+					this.OnReferenceNoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InvoiceNo", DbType="NVarChar(40)")]
+		public string InvoiceNo
+		{
+			get
+			{
+				return this._InvoiceNo;
+			}
+			set
+			{
+				if ((this._InvoiceNo != value))
+				{
+					this.OnInvoiceNoChanging(value);
+					this.SendPropertyChanging();
+					this._InvoiceNo = value;
+					this.SendPropertyChanged("InvoiceNo");
+					this.OnInvoiceNoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InvoiceDate", DbType="DateTime NOT NULL")]
+		public System.DateTime InvoiceDate
+		{
+			get
+			{
+				return this._InvoiceDate;
+			}
+			set
+			{
+				if ((this._InvoiceDate != value))
+				{
+					this.OnInvoiceDateChanging(value);
+					this.SendPropertyChanging();
+					this._InvoiceDate = value;
+					this.SendPropertyChanged("InvoiceDate");
+					this.OnInvoiceDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LocationID", DbType="Int")]
+		public System.Nullable<int> LocationID
+		{
+			get
+			{
+				return this._LocationID;
+			}
+			set
+			{
+				if ((this._LocationID != value))
+				{
+					if (this._MST_Location.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnLocationIDChanging(value);
+					this.SendPropertyChanging();
+					this._LocationID = value;
+					this.SendPropertyChanged("LocationID");
+					this.OnLocationIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BinID", DbType="Int")]
+		public System.Nullable<int> BinID
+		{
+			get
+			{
+				return this._BinID;
+			}
+			set
+			{
+				if ((this._BinID != value))
+				{
+					if (this._MST_BIN.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnBinIDChanging(value);
+					this.SendPropertyChanging();
+					this._BinID = value;
+					this.SendPropertyChanged("BinID");
+					this.OnBinIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DocumentNumber", DbType="VarChar(500)")]
+		public string DocumentNumber
+		{
+			get
+			{
+				return this._DocumentNumber;
+			}
+			set
+			{
+				if ((this._DocumentNumber != value))
+				{
+					this.OnDocumentNumberChanging(value);
+					this.SendPropertyChanging();
+					this._DocumentNumber = value;
+					this.SendPropertyChanged("DocumentNumber");
+					this.OnDocumentNumberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SO_InvoiceMaster_SO_InvoiceDetail", Storage="_SO_InvoiceDetails", ThisKey="InvoiceMasterID", OtherKey="InvoiceMasterID")]
+		public EntitySet<SO_InvoiceDetail> SO_InvoiceDetails
+		{
+			get
+			{
+				return this._SO_InvoiceDetails;
+			}
+			set
+			{
+				this._SO_InvoiceDetails.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_BIN_SO_InvoiceMaster", Storage="_MST_BIN", ThisKey="BinID", OtherKey="BinID", IsForeignKey=true)]
+		public MST_BIN MST_BIN
+		{
+			get
+			{
+				return this._MST_BIN.Entity;
+			}
+			set
+			{
+				MST_BIN previousValue = this._MST_BIN.Entity;
+				if (((previousValue != value) 
+							|| (this._MST_BIN.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._MST_BIN.Entity = null;
+						previousValue.SO_InvoiceMasters.Remove(this);
+					}
+					this._MST_BIN.Entity = value;
+					if ((value != null))
+					{
+						value.SO_InvoiceMasters.Add(this);
+						this._BinID = value.BinID;
+					}
+					else
+					{
+						this._BinID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("MST_BIN");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_CCN_SO_InvoiceMaster", Storage="_MST_CCN", ThisKey="CCNID", OtherKey="CCNID", IsForeignKey=true)]
+		public MST_CCN MST_CCN
+		{
+			get
+			{
+				return this._MST_CCN.Entity;
+			}
+			set
+			{
+				MST_CCN previousValue = this._MST_CCN.Entity;
+				if (((previousValue != value) 
+							|| (this._MST_CCN.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._MST_CCN.Entity = null;
+						previousValue.SO_InvoiceMasters.Remove(this);
+					}
+					this._MST_CCN.Entity = value;
+					if ((value != null))
+					{
+						value.SO_InvoiceMasters.Add(this);
+						this._CCNID = value.CCNID;
+					}
+					else
+					{
+						this._CCNID = default(int);
+					}
+					this.SendPropertyChanged("MST_CCN");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_Currency_SO_InvoiceMaster", Storage="_MST_Currency", ThisKey="CurrencyID", OtherKey="CurrencyID", IsForeignKey=true)]
+		public MST_Currency MST_Currency
+		{
+			get
+			{
+				return this._MST_Currency.Entity;
+			}
+			set
+			{
+				MST_Currency previousValue = this._MST_Currency.Entity;
+				if (((previousValue != value) 
+							|| (this._MST_Currency.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._MST_Currency.Entity = null;
+						previousValue.SO_InvoiceMasters.Remove(this);
+					}
+					this._MST_Currency.Entity = value;
+					if ((value != null))
+					{
+						value.SO_InvoiceMasters.Add(this);
+						this._CurrencyID = value.CurrencyID;
+					}
+					else
+					{
+						this._CurrencyID = default(int);
+					}
+					this.SendPropertyChanged("MST_Currency");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SO_Gate_SO_InvoiceMaster", Storage="_SO_Gate", ThisKey="GateID", OtherKey="GateID", IsForeignKey=true)]
+		public SO_Gate SO_Gate
+		{
+			get
+			{
+				return this._SO_Gate.Entity;
+			}
+			set
+			{
+				SO_Gate previousValue = this._SO_Gate.Entity;
+				if (((previousValue != value) 
+							|| (this._SO_Gate.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._SO_Gate.Entity = null;
+						previousValue.SO_InvoiceMasters.Remove(this);
+					}
+					this._SO_Gate.Entity = value;
+					if ((value != null))
+					{
+						value.SO_InvoiceMasters.Add(this);
+						this._GateID = value.GateID;
+					}
+					else
+					{
+						this._GateID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("SO_Gate");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_Location_SO_InvoiceMaster", Storage="_MST_Location", ThisKey="LocationID", OtherKey="LocationID", IsForeignKey=true)]
+		public MST_Location MST_Location
+		{
+			get
+			{
+				return this._MST_Location.Entity;
+			}
+			set
+			{
+				MST_Location previousValue = this._MST_Location.Entity;
+				if (((previousValue != value) 
+							|| (this._MST_Location.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._MST_Location.Entity = null;
+						previousValue.SO_InvoiceMasters.Remove(this);
+					}
+					this._MST_Location.Entity = value;
+					if ((value != null))
+					{
+						value.SO_InvoiceMasters.Add(this);
+						this._LocationID = value.LocationID;
+					}
+					else
+					{
+						this._LocationID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("MST_Location");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_MasterLocation_SO_InvoiceMaster", Storage="_MST_MasterLocation", ThisKey="MasterLocationID", OtherKey="MasterLocationID", IsForeignKey=true)]
+		public MST_MasterLocation MST_MasterLocation
+		{
+			get
+			{
+				return this._MST_MasterLocation.Entity;
+			}
+			set
+			{
+				MST_MasterLocation previousValue = this._MST_MasterLocation.Entity;
+				if (((previousValue != value) 
+							|| (this._MST_MasterLocation.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._MST_MasterLocation.Entity = null;
+						previousValue.SO_InvoiceMasters.Remove(this);
+					}
+					this._MST_MasterLocation.Entity = value;
+					if ((value != null))
+					{
+						value.SO_InvoiceMasters.Add(this);
+						this._MasterLocationID = value.MasterLocationID;
+					}
+					else
+					{
+						this._MasterLocationID = default(int);
+					}
+					this.SendPropertyChanged("MST_MasterLocation");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SO_SaleOrderMaster_SO_InvoiceMaster", Storage="_SO_SaleOrderMaster", ThisKey="SaleOrderMasterID", OtherKey="SaleOrderMasterID", IsForeignKey=true)]
+		public SO_SaleOrderMaster SO_SaleOrderMaster
+		{
+			get
+			{
+				return this._SO_SaleOrderMaster.Entity;
+			}
+			set
+			{
+				SO_SaleOrderMaster previousValue = this._SO_SaleOrderMaster.Entity;
+				if (((previousValue != value) 
+							|| (this._SO_SaleOrderMaster.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._SO_SaleOrderMaster.Entity = null;
+						previousValue.SO_InvoiceMasters.Remove(this);
+					}
+					this._SO_SaleOrderMaster.Entity = value;
+					if ((value != null))
+					{
+						value.SO_InvoiceMasters.Add(this);
+						this._SaleOrderMasterID = value.SaleOrderMasterID;
+					}
+					else
+					{
+						this._SaleOrderMasterID = default(int);
+					}
+					this.SendPropertyChanged("SO_SaleOrderMaster");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_SO_InvoiceDetails(SO_InvoiceDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.SO_InvoiceMaster = this;
+		}
+		
+		private void detach_SO_InvoiceDetails(SO_InvoiceDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.SO_InvoiceMaster = null;
+		}
+	}
+	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SO_ConfirmShipMaster")]
 	public partial class SO_ConfirmShipMaster : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -128446,7 +130427,7 @@ namespace PCSComUtils.DataContext
 		
 		private System.Nullable<int> _BinID;
 		
-		private string _PONumber;
+		private string _DocumentNumber;
 		
 		private EntitySet<SO_ReturnedGoodsDetail> _SO_ReturnedGoodsDetails;
 		
@@ -128526,8 +130507,8 @@ namespace PCSComUtils.DataContext
     partial void OnLocationIDChanged();
     partial void OnBinIDChanging(System.Nullable<int> value);
     partial void OnBinIDChanged();
-    partial void OnPONumberChanging(string value);
-    partial void OnPONumberChanged();
+    partial void OnDocumentNumberChanging(string value);
+    partial void OnDocumentNumberChanged();
     #endregion
 		
 		public SO_ConfirmShipMaster()
@@ -129132,22 +131113,22 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PONumber", DbType="VarChar(500)")]
-		public string PONumber
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DocumentNumber", DbType="VarChar(500)")]
+		public string DocumentNumber
 		{
 			get
 			{
-				return this._PONumber;
+				return this._DocumentNumber;
 			}
 			set
 			{
-				if ((this._PONumber != value))
+				if ((this._DocumentNumber != value))
 				{
-					this.OnPONumberChanging(value);
+					this.OnDocumentNumberChanging(value);
 					this.SendPropertyChanging();
-					this._PONumber = value;
-					this.SendPropertyChanged("PONumber");
-					this.OnPONumberChanged();
+					this._DocumentNumber = value;
+					this.SendPropertyChanged("DocumentNumber");
+					this.OnDocumentNumberChanged();
 				}
 			}
 		}
@@ -129458,1987 +131439,6 @@ namespace PCSComUtils.DataContext
 		{
 			this.SendPropertyChanging();
 			entity.SO_ConfirmShipMaster = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SO_InvoiceMaster")]
-	public partial class SO_InvoiceMaster : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _InvoiceMasterID;
-		
-		private string _ConfirmShipNo;
-		
-		private System.DateTime _ShippedDate;
-		
-		private int _SaleOrderMasterID;
-		
-		private int _MasterLocationID;
-		
-		private int _CCNID;
-		
-		private string _UserName;
-		
-		private System.Nullable<System.DateTime> _LastChange;
-		
-		private decimal _ExchangeRate;
-		
-		private int _CurrencyID;
-		
-		private System.Nullable<int> _GateID;
-		
-		private string _Comment;
-		
-		private string _FromPort;
-		
-		private string _CNo;
-		
-		private System.Nullable<decimal> _Measurement;
-		
-		private System.Nullable<decimal> _GrossWeight;
-		
-		private System.Nullable<decimal> _NetWeight;
-		
-		private string _IssuingBank;
-		
-		private System.Nullable<System.DateTime> _LCDate;
-		
-		private string _LCNo;
-		
-		private string _VesselName;
-		
-		private string _ShipCode;
-		
-		private System.Nullable<System.DateTime> _OnBoardDate;
-		
-		private string _ReferenceNo;
-		
-		private string _InvoiceNo;
-		
-		private System.DateTime _InvoiceDate;
-		
-		private System.Nullable<int> _LocationID;
-		
-		private System.Nullable<int> _BinID;
-		
-		private string _PONumber;
-		
-		private EntitySet<SO_InvoiceDetail> _SO_InvoiceDetails;
-		
-		private EntityRef<MST_BIN> _MST_BIN;
-		
-		private EntityRef<MST_CCN> _MST_CCN;
-		
-		private EntityRef<MST_Currency> _MST_Currency;
-		
-		private EntityRef<SO_Gate> _SO_Gate;
-		
-		private EntityRef<MST_Location> _MST_Location;
-		
-		private EntityRef<MST_MasterLocation> _MST_MasterLocation;
-		
-		private EntityRef<SO_SaleOrderMaster> _SO_SaleOrderMaster;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnInvoiceMasterIDChanging(int value);
-    partial void OnInvoiceMasterIDChanged();
-    partial void OnConfirmShipNoChanging(string value);
-    partial void OnConfirmShipNoChanged();
-    partial void OnShippedDateChanging(System.DateTime value);
-    partial void OnShippedDateChanged();
-    partial void OnSaleOrderMasterIDChanging(int value);
-    partial void OnSaleOrderMasterIDChanged();
-    partial void OnMasterLocationIDChanging(int value);
-    partial void OnMasterLocationIDChanged();
-    partial void OnCCNIDChanging(int value);
-    partial void OnCCNIDChanged();
-    partial void OnUserNameChanging(string value);
-    partial void OnUserNameChanged();
-    partial void OnLastChangeChanging(System.Nullable<System.DateTime> value);
-    partial void OnLastChangeChanged();
-    partial void OnExchangeRateChanging(decimal value);
-    partial void OnExchangeRateChanged();
-    partial void OnCurrencyIDChanging(int value);
-    partial void OnCurrencyIDChanged();
-    partial void OnGateIDChanging(System.Nullable<int> value);
-    partial void OnGateIDChanged();
-    partial void OnCommentChanging(string value);
-    partial void OnCommentChanged();
-    partial void OnFromPortChanging(string value);
-    partial void OnFromPortChanged();
-    partial void OnCNoChanging(string value);
-    partial void OnCNoChanged();
-    partial void OnMeasurementChanging(System.Nullable<decimal> value);
-    partial void OnMeasurementChanged();
-    partial void OnGrossWeightChanging(System.Nullable<decimal> value);
-    partial void OnGrossWeightChanged();
-    partial void OnNetWeightChanging(System.Nullable<decimal> value);
-    partial void OnNetWeightChanged();
-    partial void OnIssuingBankChanging(string value);
-    partial void OnIssuingBankChanged();
-    partial void OnLCDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnLCDateChanged();
-    partial void OnLCNoChanging(string value);
-    partial void OnLCNoChanged();
-    partial void OnVesselNameChanging(string value);
-    partial void OnVesselNameChanged();
-    partial void OnShipCodeChanging(string value);
-    partial void OnShipCodeChanged();
-    partial void OnOnBoardDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnOnBoardDateChanged();
-    partial void OnReferenceNoChanging(string value);
-    partial void OnReferenceNoChanged();
-    partial void OnInvoiceNoChanging(string value);
-    partial void OnInvoiceNoChanged();
-    partial void OnInvoiceDateChanging(System.DateTime value);
-    partial void OnInvoiceDateChanged();
-    partial void OnLocationIDChanging(System.Nullable<int> value);
-    partial void OnLocationIDChanged();
-    partial void OnBinIDChanging(System.Nullable<int> value);
-    partial void OnBinIDChanged();
-    partial void OnPONumberChanging(string value);
-    partial void OnPONumberChanged();
-    #endregion
-		
-		public SO_InvoiceMaster()
-		{
-			this._SO_InvoiceDetails = new EntitySet<SO_InvoiceDetail>(new Action<SO_InvoiceDetail>(this.attach_SO_InvoiceDetails), new Action<SO_InvoiceDetail>(this.detach_SO_InvoiceDetails));
-			this._MST_BIN = default(EntityRef<MST_BIN>);
-			this._MST_CCN = default(EntityRef<MST_CCN>);
-			this._MST_Currency = default(EntityRef<MST_Currency>);
-			this._SO_Gate = default(EntityRef<SO_Gate>);
-			this._MST_Location = default(EntityRef<MST_Location>);
-			this._MST_MasterLocation = default(EntityRef<MST_MasterLocation>);
-			this._SO_SaleOrderMaster = default(EntityRef<SO_SaleOrderMaster>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InvoiceMasterID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int InvoiceMasterID
-		{
-			get
-			{
-				return this._InvoiceMasterID;
-			}
-			set
-			{
-				if ((this._InvoiceMasterID != value))
-				{
-					this.OnInvoiceMasterIDChanging(value);
-					this.SendPropertyChanging();
-					this._InvoiceMasterID = value;
-					this.SendPropertyChanged("InvoiceMasterID");
-					this.OnInvoiceMasterIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ConfirmShipNo", DbType="NVarChar(20) NOT NULL", CanBeNull=false)]
-		public string ConfirmShipNo
-		{
-			get
-			{
-				return this._ConfirmShipNo;
-			}
-			set
-			{
-				if ((this._ConfirmShipNo != value))
-				{
-					this.OnConfirmShipNoChanging(value);
-					this.SendPropertyChanging();
-					this._ConfirmShipNo = value;
-					this.SendPropertyChanged("ConfirmShipNo");
-					this.OnConfirmShipNoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ShippedDate", DbType="DateTime NOT NULL")]
-		public System.DateTime ShippedDate
-		{
-			get
-			{
-				return this._ShippedDate;
-			}
-			set
-			{
-				if ((this._ShippedDate != value))
-				{
-					this.OnShippedDateChanging(value);
-					this.SendPropertyChanging();
-					this._ShippedDate = value;
-					this.SendPropertyChanged("ShippedDate");
-					this.OnShippedDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SaleOrderMasterID", DbType="Int NOT NULL")]
-		public int SaleOrderMasterID
-		{
-			get
-			{
-				return this._SaleOrderMasterID;
-			}
-			set
-			{
-				if ((this._SaleOrderMasterID != value))
-				{
-					if (this._SO_SaleOrderMaster.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnSaleOrderMasterIDChanging(value);
-					this.SendPropertyChanging();
-					this._SaleOrderMasterID = value;
-					this.SendPropertyChanged("SaleOrderMasterID");
-					this.OnSaleOrderMasterIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MasterLocationID", DbType="Int NOT NULL")]
-		public int MasterLocationID
-		{
-			get
-			{
-				return this._MasterLocationID;
-			}
-			set
-			{
-				if ((this._MasterLocationID != value))
-				{
-					if (this._MST_MasterLocation.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnMasterLocationIDChanging(value);
-					this.SendPropertyChanging();
-					this._MasterLocationID = value;
-					this.SendPropertyChanged("MasterLocationID");
-					this.OnMasterLocationIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CCNID", DbType="Int NOT NULL")]
-		public int CCNID
-		{
-			get
-			{
-				return this._CCNID;
-			}
-			set
-			{
-				if ((this._CCNID != value))
-				{
-					if (this._MST_CCN.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnCCNIDChanging(value);
-					this.SendPropertyChanging();
-					this._CCNID = value;
-					this.SendPropertyChanged("CCNID");
-					this.OnCCNIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserName", DbType="NVarChar(40)")]
-		public string UserName
-		{
-			get
-			{
-				return this._UserName;
-			}
-			set
-			{
-				if ((this._UserName != value))
-				{
-					this.OnUserNameChanging(value);
-					this.SendPropertyChanging();
-					this._UserName = value;
-					this.SendPropertyChanged("UserName");
-					this.OnUserNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastChange", DbType="DateTime")]
-		public System.Nullable<System.DateTime> LastChange
-		{
-			get
-			{
-				return this._LastChange;
-			}
-			set
-			{
-				if ((this._LastChange != value))
-				{
-					this.OnLastChangeChanging(value);
-					this.SendPropertyChanging();
-					this._LastChange = value;
-					this.SendPropertyChanged("LastChange");
-					this.OnLastChangeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ExchangeRate", DbType="Decimal(20,5) NOT NULL")]
-		public decimal ExchangeRate
-		{
-			get
-			{
-				return this._ExchangeRate;
-			}
-			set
-			{
-				if ((this._ExchangeRate != value))
-				{
-					this.OnExchangeRateChanging(value);
-					this.SendPropertyChanging();
-					this._ExchangeRate = value;
-					this.SendPropertyChanged("ExchangeRate");
-					this.OnExchangeRateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CurrencyID", DbType="Int NOT NULL")]
-		public int CurrencyID
-		{
-			get
-			{
-				return this._CurrencyID;
-			}
-			set
-			{
-				if ((this._CurrencyID != value))
-				{
-					if (this._MST_Currency.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnCurrencyIDChanging(value);
-					this.SendPropertyChanging();
-					this._CurrencyID = value;
-					this.SendPropertyChanged("CurrencyID");
-					this.OnCurrencyIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GateID", DbType="Int")]
-		public System.Nullable<int> GateID
-		{
-			get
-			{
-				return this._GateID;
-			}
-			set
-			{
-				if ((this._GateID != value))
-				{
-					if (this._SO_Gate.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnGateIDChanging(value);
-					this.SendPropertyChanging();
-					this._GateID = value;
-					this.SendPropertyChanged("GateID");
-					this.OnGateIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Comment", DbType="NVarChar(100)")]
-		public string Comment
-		{
-			get
-			{
-				return this._Comment;
-			}
-			set
-			{
-				if ((this._Comment != value))
-				{
-					this.OnCommentChanging(value);
-					this.SendPropertyChanging();
-					this._Comment = value;
-					this.SendPropertyChanged("Comment");
-					this.OnCommentChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FromPort", DbType="NVarChar(100)")]
-		public string FromPort
-		{
-			get
-			{
-				return this._FromPort;
-			}
-			set
-			{
-				if ((this._FromPort != value))
-				{
-					this.OnFromPortChanging(value);
-					this.SendPropertyChanging();
-					this._FromPort = value;
-					this.SendPropertyChanged("FromPort");
-					this.OnFromPortChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CNo", DbType="NVarChar(30)")]
-		public string CNo
-		{
-			get
-			{
-				return this._CNo;
-			}
-			set
-			{
-				if ((this._CNo != value))
-				{
-					this.OnCNoChanging(value);
-					this.SendPropertyChanging();
-					this._CNo = value;
-					this.SendPropertyChanged("CNo");
-					this.OnCNoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Measurement", DbType="Decimal(20,5)")]
-		public System.Nullable<decimal> Measurement
-		{
-			get
-			{
-				return this._Measurement;
-			}
-			set
-			{
-				if ((this._Measurement != value))
-				{
-					this.OnMeasurementChanging(value);
-					this.SendPropertyChanging();
-					this._Measurement = value;
-					this.SendPropertyChanged("Measurement");
-					this.OnMeasurementChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GrossWeight", DbType="Decimal(20,5)")]
-		public System.Nullable<decimal> GrossWeight
-		{
-			get
-			{
-				return this._GrossWeight;
-			}
-			set
-			{
-				if ((this._GrossWeight != value))
-				{
-					this.OnGrossWeightChanging(value);
-					this.SendPropertyChanging();
-					this._GrossWeight = value;
-					this.SendPropertyChanged("GrossWeight");
-					this.OnGrossWeightChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NetWeight", DbType="Decimal(20,5)")]
-		public System.Nullable<decimal> NetWeight
-		{
-			get
-			{
-				return this._NetWeight;
-			}
-			set
-			{
-				if ((this._NetWeight != value))
-				{
-					this.OnNetWeightChanging(value);
-					this.SendPropertyChanging();
-					this._NetWeight = value;
-					this.SendPropertyChanged("NetWeight");
-					this.OnNetWeightChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IssuingBank", DbType="NVarChar(80)")]
-		public string IssuingBank
-		{
-			get
-			{
-				return this._IssuingBank;
-			}
-			set
-			{
-				if ((this._IssuingBank != value))
-				{
-					this.OnIssuingBankChanging(value);
-					this.SendPropertyChanging();
-					this._IssuingBank = value;
-					this.SendPropertyChanged("IssuingBank");
-					this.OnIssuingBankChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LCDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> LCDate
-		{
-			get
-			{
-				return this._LCDate;
-			}
-			set
-			{
-				if ((this._LCDate != value))
-				{
-					this.OnLCDateChanging(value);
-					this.SendPropertyChanging();
-					this._LCDate = value;
-					this.SendPropertyChanged("LCDate");
-					this.OnLCDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LCNo", DbType="NVarChar(30)")]
-		public string LCNo
-		{
-			get
-			{
-				return this._LCNo;
-			}
-			set
-			{
-				if ((this._LCNo != value))
-				{
-					this.OnLCNoChanging(value);
-					this.SendPropertyChanging();
-					this._LCNo = value;
-					this.SendPropertyChanged("LCNo");
-					this.OnLCNoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VesselName", DbType="NVarChar(30)")]
-		public string VesselName
-		{
-			get
-			{
-				return this._VesselName;
-			}
-			set
-			{
-				if ((this._VesselName != value))
-				{
-					this.OnVesselNameChanging(value);
-					this.SendPropertyChanging();
-					this._VesselName = value;
-					this.SendPropertyChanged("VesselName");
-					this.OnVesselNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ShipCode", DbType="NVarChar(20) NOT NULL", CanBeNull=false)]
-		public string ShipCode
-		{
-			get
-			{
-				return this._ShipCode;
-			}
-			set
-			{
-				if ((this._ShipCode != value))
-				{
-					this.OnShipCodeChanging(value);
-					this.SendPropertyChanging();
-					this._ShipCode = value;
-					this.SendPropertyChanged("ShipCode");
-					this.OnShipCodeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OnBoardDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> OnBoardDate
-		{
-			get
-			{
-				return this._OnBoardDate;
-			}
-			set
-			{
-				if ((this._OnBoardDate != value))
-				{
-					this.OnOnBoardDateChanging(value);
-					this.SendPropertyChanging();
-					this._OnBoardDate = value;
-					this.SendPropertyChanged("OnBoardDate");
-					this.OnOnBoardDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReferenceNo", DbType="NVarChar(60)")]
-		public string ReferenceNo
-		{
-			get
-			{
-				return this._ReferenceNo;
-			}
-			set
-			{
-				if ((this._ReferenceNo != value))
-				{
-					this.OnReferenceNoChanging(value);
-					this.SendPropertyChanging();
-					this._ReferenceNo = value;
-					this.SendPropertyChanged("ReferenceNo");
-					this.OnReferenceNoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InvoiceNo", DbType="NVarChar(40)")]
-		public string InvoiceNo
-		{
-			get
-			{
-				return this._InvoiceNo;
-			}
-			set
-			{
-				if ((this._InvoiceNo != value))
-				{
-					this.OnInvoiceNoChanging(value);
-					this.SendPropertyChanging();
-					this._InvoiceNo = value;
-					this.SendPropertyChanged("InvoiceNo");
-					this.OnInvoiceNoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InvoiceDate", DbType="DateTime NOT NULL")]
-		public System.DateTime InvoiceDate
-		{
-			get
-			{
-				return this._InvoiceDate;
-			}
-			set
-			{
-				if ((this._InvoiceDate != value))
-				{
-					this.OnInvoiceDateChanging(value);
-					this.SendPropertyChanging();
-					this._InvoiceDate = value;
-					this.SendPropertyChanged("InvoiceDate");
-					this.OnInvoiceDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LocationID", DbType="Int")]
-		public System.Nullable<int> LocationID
-		{
-			get
-			{
-				return this._LocationID;
-			}
-			set
-			{
-				if ((this._LocationID != value))
-				{
-					if (this._MST_Location.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnLocationIDChanging(value);
-					this.SendPropertyChanging();
-					this._LocationID = value;
-					this.SendPropertyChanged("LocationID");
-					this.OnLocationIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BinID", DbType="Int")]
-		public System.Nullable<int> BinID
-		{
-			get
-			{
-				return this._BinID;
-			}
-			set
-			{
-				if ((this._BinID != value))
-				{
-					if (this._MST_BIN.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnBinIDChanging(value);
-					this.SendPropertyChanging();
-					this._BinID = value;
-					this.SendPropertyChanged("BinID");
-					this.OnBinIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PONumber", DbType="VarChar(500)")]
-		public string PONumber
-		{
-			get
-			{
-				return this._PONumber;
-			}
-			set
-			{
-				if ((this._PONumber != value))
-				{
-					this.OnPONumberChanging(value);
-					this.SendPropertyChanging();
-					this._PONumber = value;
-					this.SendPropertyChanged("PONumber");
-					this.OnPONumberChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SO_InvoiceMaster_SO_InvoiceDetail", Storage="_SO_InvoiceDetails", ThisKey="InvoiceMasterID", OtherKey="InvoiceMasterID")]
-		public EntitySet<SO_InvoiceDetail> SO_InvoiceDetails
-		{
-			get
-			{
-				return this._SO_InvoiceDetails;
-			}
-			set
-			{
-				this._SO_InvoiceDetails.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_BIN_SO_InvoiceMaster", Storage="_MST_BIN", ThisKey="BinID", OtherKey="BinID", IsForeignKey=true)]
-		public MST_BIN MST_BIN
-		{
-			get
-			{
-				return this._MST_BIN.Entity;
-			}
-			set
-			{
-				MST_BIN previousValue = this._MST_BIN.Entity;
-				if (((previousValue != value) 
-							|| (this._MST_BIN.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._MST_BIN.Entity = null;
-						previousValue.SO_InvoiceMasters.Remove(this);
-					}
-					this._MST_BIN.Entity = value;
-					if ((value != null))
-					{
-						value.SO_InvoiceMasters.Add(this);
-						this._BinID = value.BinID;
-					}
-					else
-					{
-						this._BinID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("MST_BIN");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_CCN_SO_InvoiceMaster", Storage="_MST_CCN", ThisKey="CCNID", OtherKey="CCNID", IsForeignKey=true)]
-		public MST_CCN MST_CCN
-		{
-			get
-			{
-				return this._MST_CCN.Entity;
-			}
-			set
-			{
-				MST_CCN previousValue = this._MST_CCN.Entity;
-				if (((previousValue != value) 
-							|| (this._MST_CCN.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._MST_CCN.Entity = null;
-						previousValue.SO_InvoiceMasters.Remove(this);
-					}
-					this._MST_CCN.Entity = value;
-					if ((value != null))
-					{
-						value.SO_InvoiceMasters.Add(this);
-						this._CCNID = value.CCNID;
-					}
-					else
-					{
-						this._CCNID = default(int);
-					}
-					this.SendPropertyChanged("MST_CCN");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_Currency_SO_InvoiceMaster", Storage="_MST_Currency", ThisKey="CurrencyID", OtherKey="CurrencyID", IsForeignKey=true)]
-		public MST_Currency MST_Currency
-		{
-			get
-			{
-				return this._MST_Currency.Entity;
-			}
-			set
-			{
-				MST_Currency previousValue = this._MST_Currency.Entity;
-				if (((previousValue != value) 
-							|| (this._MST_Currency.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._MST_Currency.Entity = null;
-						previousValue.SO_InvoiceMasters.Remove(this);
-					}
-					this._MST_Currency.Entity = value;
-					if ((value != null))
-					{
-						value.SO_InvoiceMasters.Add(this);
-						this._CurrencyID = value.CurrencyID;
-					}
-					else
-					{
-						this._CurrencyID = default(int);
-					}
-					this.SendPropertyChanged("MST_Currency");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SO_Gate_SO_InvoiceMaster", Storage="_SO_Gate", ThisKey="GateID", OtherKey="GateID", IsForeignKey=true)]
-		public SO_Gate SO_Gate
-		{
-			get
-			{
-				return this._SO_Gate.Entity;
-			}
-			set
-			{
-				SO_Gate previousValue = this._SO_Gate.Entity;
-				if (((previousValue != value) 
-							|| (this._SO_Gate.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._SO_Gate.Entity = null;
-						previousValue.SO_InvoiceMasters.Remove(this);
-					}
-					this._SO_Gate.Entity = value;
-					if ((value != null))
-					{
-						value.SO_InvoiceMasters.Add(this);
-						this._GateID = value.GateID;
-					}
-					else
-					{
-						this._GateID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("SO_Gate");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_Location_SO_InvoiceMaster", Storage="_MST_Location", ThisKey="LocationID", OtherKey="LocationID", IsForeignKey=true)]
-		public MST_Location MST_Location
-		{
-			get
-			{
-				return this._MST_Location.Entity;
-			}
-			set
-			{
-				MST_Location previousValue = this._MST_Location.Entity;
-				if (((previousValue != value) 
-							|| (this._MST_Location.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._MST_Location.Entity = null;
-						previousValue.SO_InvoiceMasters.Remove(this);
-					}
-					this._MST_Location.Entity = value;
-					if ((value != null))
-					{
-						value.SO_InvoiceMasters.Add(this);
-						this._LocationID = value.LocationID;
-					}
-					else
-					{
-						this._LocationID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("MST_Location");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_MasterLocation_SO_InvoiceMaster", Storage="_MST_MasterLocation", ThisKey="MasterLocationID", OtherKey="MasterLocationID", IsForeignKey=true)]
-		public MST_MasterLocation MST_MasterLocation
-		{
-			get
-			{
-				return this._MST_MasterLocation.Entity;
-			}
-			set
-			{
-				MST_MasterLocation previousValue = this._MST_MasterLocation.Entity;
-				if (((previousValue != value) 
-							|| (this._MST_MasterLocation.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._MST_MasterLocation.Entity = null;
-						previousValue.SO_InvoiceMasters.Remove(this);
-					}
-					this._MST_MasterLocation.Entity = value;
-					if ((value != null))
-					{
-						value.SO_InvoiceMasters.Add(this);
-						this._MasterLocationID = value.MasterLocationID;
-					}
-					else
-					{
-						this._MasterLocationID = default(int);
-					}
-					this.SendPropertyChanged("MST_MasterLocation");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SO_SaleOrderMaster_SO_InvoiceMaster", Storage="_SO_SaleOrderMaster", ThisKey="SaleOrderMasterID", OtherKey="SaleOrderMasterID", IsForeignKey=true)]
-		public SO_SaleOrderMaster SO_SaleOrderMaster
-		{
-			get
-			{
-				return this._SO_SaleOrderMaster.Entity;
-			}
-			set
-			{
-				SO_SaleOrderMaster previousValue = this._SO_SaleOrderMaster.Entity;
-				if (((previousValue != value) 
-							|| (this._SO_SaleOrderMaster.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._SO_SaleOrderMaster.Entity = null;
-						previousValue.SO_InvoiceMasters.Remove(this);
-					}
-					this._SO_SaleOrderMaster.Entity = value;
-					if ((value != null))
-					{
-						value.SO_InvoiceMasters.Add(this);
-						this._SaleOrderMasterID = value.SaleOrderMasterID;
-					}
-					else
-					{
-						this._SaleOrderMasterID = default(int);
-					}
-					this.SendPropertyChanged("SO_SaleOrderMaster");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_SO_InvoiceDetails(SO_InvoiceDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.SO_InvoiceMaster = this;
-		}
-		
-		private void detach_SO_InvoiceDetails(SO_InvoiceDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.SO_InvoiceMaster = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SO_ConfirmShipDetail")]
-	public partial class SO_ConfirmShipDetail : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ConfirmShipDetailID;
-		
-		private int _ConfirmShipMasterID;
-		
-		private int _SaleOrderDetailID;
-		
-		private int _DeliveryScheduleID;
-		
-		private int _ProductID;
-		
-		private decimal _Price;
-		
-		private System.Nullable<decimal> _InvoiceQty;
-		
-		private System.Nullable<decimal> _VATPercent;
-		
-		private System.Nullable<decimal> _VATAmount;
-		
-		private System.Nullable<decimal> _NetAmount;
-		
-		private string _PONumber;
-		
-		private EntityRef<SO_ConfirmShipMaster> _SO_ConfirmShipMaster;
-		
-		private EntityRef<SO_DeliverySchedule> _SO_DeliverySchedule;
-		
-		private EntityRef<ITM_Product> _ITM_Product;
-		
-		private EntityRef<SO_SaleOrderDetail> _SO_SaleOrderDetail;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnConfirmShipDetailIDChanging(int value);
-    partial void OnConfirmShipDetailIDChanged();
-    partial void OnConfirmShipMasterIDChanging(int value);
-    partial void OnConfirmShipMasterIDChanged();
-    partial void OnSaleOrderDetailIDChanging(int value);
-    partial void OnSaleOrderDetailIDChanged();
-    partial void OnDeliveryScheduleIDChanging(int value);
-    partial void OnDeliveryScheduleIDChanged();
-    partial void OnProductIDChanging(int value);
-    partial void OnProductIDChanged();
-    partial void OnPriceChanging(decimal value);
-    partial void OnPriceChanged();
-    partial void OnInvoiceQtyChanging(System.Nullable<decimal> value);
-    partial void OnInvoiceQtyChanged();
-    partial void OnVATPercentChanging(System.Nullable<decimal> value);
-    partial void OnVATPercentChanged();
-    partial void OnVATAmountChanging(System.Nullable<decimal> value);
-    partial void OnVATAmountChanged();
-    partial void OnNetAmountChanging(System.Nullable<decimal> value);
-    partial void OnNetAmountChanged();
-    partial void OnPONumberChanging(string value);
-    partial void OnPONumberChanged();
-    #endregion
-		
-		public SO_ConfirmShipDetail()
-		{
-			this._SO_ConfirmShipMaster = default(EntityRef<SO_ConfirmShipMaster>);
-			this._SO_DeliverySchedule = default(EntityRef<SO_DeliverySchedule>);
-			this._ITM_Product = default(EntityRef<ITM_Product>);
-			this._SO_SaleOrderDetail = default(EntityRef<SO_SaleOrderDetail>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ConfirmShipDetailID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ConfirmShipDetailID
-		{
-			get
-			{
-				return this._ConfirmShipDetailID;
-			}
-			set
-			{
-				if ((this._ConfirmShipDetailID != value))
-				{
-					this.OnConfirmShipDetailIDChanging(value);
-					this.SendPropertyChanging();
-					this._ConfirmShipDetailID = value;
-					this.SendPropertyChanged("ConfirmShipDetailID");
-					this.OnConfirmShipDetailIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ConfirmShipMasterID", DbType="Int NOT NULL")]
-		public int ConfirmShipMasterID
-		{
-			get
-			{
-				return this._ConfirmShipMasterID;
-			}
-			set
-			{
-				if ((this._ConfirmShipMasterID != value))
-				{
-					if (this._SO_ConfirmShipMaster.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnConfirmShipMasterIDChanging(value);
-					this.SendPropertyChanging();
-					this._ConfirmShipMasterID = value;
-					this.SendPropertyChanged("ConfirmShipMasterID");
-					this.OnConfirmShipMasterIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SaleOrderDetailID", DbType="Int NOT NULL")]
-		public int SaleOrderDetailID
-		{
-			get
-			{
-				return this._SaleOrderDetailID;
-			}
-			set
-			{
-				if ((this._SaleOrderDetailID != value))
-				{
-					if (this._SO_SaleOrderDetail.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnSaleOrderDetailIDChanging(value);
-					this.SendPropertyChanging();
-					this._SaleOrderDetailID = value;
-					this.SendPropertyChanged("SaleOrderDetailID");
-					this.OnSaleOrderDetailIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeliveryScheduleID", DbType="Int NOT NULL")]
-		public int DeliveryScheduleID
-		{
-			get
-			{
-				return this._DeliveryScheduleID;
-			}
-			set
-			{
-				if ((this._DeliveryScheduleID != value))
-				{
-					if (this._SO_DeliverySchedule.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnDeliveryScheduleIDChanging(value);
-					this.SendPropertyChanging();
-					this._DeliveryScheduleID = value;
-					this.SendPropertyChanged("DeliveryScheduleID");
-					this.OnDeliveryScheduleIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductID", DbType="Int NOT NULL")]
-		public int ProductID
-		{
-			get
-			{
-				return this._ProductID;
-			}
-			set
-			{
-				if ((this._ProductID != value))
-				{
-					if (this._ITM_Product.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnProductIDChanging(value);
-					this.SendPropertyChanging();
-					this._ProductID = value;
-					this.SendPropertyChanged("ProductID");
-					this.OnProductIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Decimal(20,5) NOT NULL")]
-		public decimal Price
-		{
-			get
-			{
-				return this._Price;
-			}
-			set
-			{
-				if ((this._Price != value))
-				{
-					this.OnPriceChanging(value);
-					this.SendPropertyChanging();
-					this._Price = value;
-					this.SendPropertyChanged("Price");
-					this.OnPriceChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InvoiceQty", DbType="Decimal(20,5)")]
-		public System.Nullable<decimal> InvoiceQty
-		{
-			get
-			{
-				return this._InvoiceQty;
-			}
-			set
-			{
-				if ((this._InvoiceQty != value))
-				{
-					this.OnInvoiceQtyChanging(value);
-					this.SendPropertyChanging();
-					this._InvoiceQty = value;
-					this.SendPropertyChanged("InvoiceQty");
-					this.OnInvoiceQtyChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VATPercent", DbType="Decimal(20,5)")]
-		public System.Nullable<decimal> VATPercent
-		{
-			get
-			{
-				return this._VATPercent;
-			}
-			set
-			{
-				if ((this._VATPercent != value))
-				{
-					this.OnVATPercentChanging(value);
-					this.SendPropertyChanging();
-					this._VATPercent = value;
-					this.SendPropertyChanged("VATPercent");
-					this.OnVATPercentChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VATAmount", DbType="Decimal(20,5)")]
-		public System.Nullable<decimal> VATAmount
-		{
-			get
-			{
-				return this._VATAmount;
-			}
-			set
-			{
-				if ((this._VATAmount != value))
-				{
-					this.OnVATAmountChanging(value);
-					this.SendPropertyChanging();
-					this._VATAmount = value;
-					this.SendPropertyChanged("VATAmount");
-					this.OnVATAmountChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NetAmount", DbType="Decimal(20,8)")]
-		public System.Nullable<decimal> NetAmount
-		{
-			get
-			{
-				return this._NetAmount;
-			}
-			set
-			{
-				if ((this._NetAmount != value))
-				{
-					this.OnNetAmountChanging(value);
-					this.SendPropertyChanging();
-					this._NetAmount = value;
-					this.SendPropertyChanged("NetAmount");
-					this.OnNetAmountChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PONumber", DbType="VarChar(500)")]
-		public string PONumber
-		{
-			get
-			{
-				return this._PONumber;
-			}
-			set
-			{
-				if ((this._PONumber != value))
-				{
-					this.OnPONumberChanging(value);
-					this.SendPropertyChanging();
-					this._PONumber = value;
-					this.SendPropertyChanged("PONumber");
-					this.OnPONumberChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SO_ConfirmShipMaster_SO_ConfirmShipDetail", Storage="_SO_ConfirmShipMaster", ThisKey="ConfirmShipMasterID", OtherKey="ConfirmShipMasterID", IsForeignKey=true)]
-		public SO_ConfirmShipMaster SO_ConfirmShipMaster
-		{
-			get
-			{
-				return this._SO_ConfirmShipMaster.Entity;
-			}
-			set
-			{
-				SO_ConfirmShipMaster previousValue = this._SO_ConfirmShipMaster.Entity;
-				if (((previousValue != value) 
-							|| (this._SO_ConfirmShipMaster.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._SO_ConfirmShipMaster.Entity = null;
-						previousValue.SO_ConfirmShipDetails.Remove(this);
-					}
-					this._SO_ConfirmShipMaster.Entity = value;
-					if ((value != null))
-					{
-						value.SO_ConfirmShipDetails.Add(this);
-						this._ConfirmShipMasterID = value.ConfirmShipMasterID;
-					}
-					else
-					{
-						this._ConfirmShipMasterID = default(int);
-					}
-					this.SendPropertyChanged("SO_ConfirmShipMaster");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SO_DeliverySchedule_SO_ConfirmShipDetail", Storage="_SO_DeliverySchedule", ThisKey="DeliveryScheduleID", OtherKey="DeliveryScheduleID", IsForeignKey=true)]
-		public SO_DeliverySchedule SO_DeliverySchedule
-		{
-			get
-			{
-				return this._SO_DeliverySchedule.Entity;
-			}
-			set
-			{
-				SO_DeliverySchedule previousValue = this._SO_DeliverySchedule.Entity;
-				if (((previousValue != value) 
-							|| (this._SO_DeliverySchedule.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._SO_DeliverySchedule.Entity = null;
-						previousValue.SO_ConfirmShipDetails.Remove(this);
-					}
-					this._SO_DeliverySchedule.Entity = value;
-					if ((value != null))
-					{
-						value.SO_ConfirmShipDetails.Add(this);
-						this._DeliveryScheduleID = value.DeliveryScheduleID;
-					}
-					else
-					{
-						this._DeliveryScheduleID = default(int);
-					}
-					this.SendPropertyChanged("SO_DeliverySchedule");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_SO_ConfirmShipDetail", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
-		public ITM_Product ITM_Product
-		{
-			get
-			{
-				return this._ITM_Product.Entity;
-			}
-			set
-			{
-				ITM_Product previousValue = this._ITM_Product.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_Product.Entity = null;
-						previousValue.SO_ConfirmShipDetails.Remove(this);
-					}
-					this._ITM_Product.Entity = value;
-					if ((value != null))
-					{
-						value.SO_ConfirmShipDetails.Add(this);
-						this._ProductID = value.ProductID;
-					}
-					else
-					{
-						this._ProductID = default(int);
-					}
-					this.SendPropertyChanged("ITM_Product");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SO_SaleOrderDetail_SO_ConfirmShipDetail", Storage="_SO_SaleOrderDetail", ThisKey="SaleOrderDetailID", OtherKey="SaleOrderDetailID", IsForeignKey=true)]
-		public SO_SaleOrderDetail SO_SaleOrderDetail
-		{
-			get
-			{
-				return this._SO_SaleOrderDetail.Entity;
-			}
-			set
-			{
-				SO_SaleOrderDetail previousValue = this._SO_SaleOrderDetail.Entity;
-				if (((previousValue != value) 
-							|| (this._SO_SaleOrderDetail.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._SO_SaleOrderDetail.Entity = null;
-						previousValue.SO_ConfirmShipDetails.Remove(this);
-					}
-					this._SO_SaleOrderDetail.Entity = value;
-					if ((value != null))
-					{
-						value.SO_ConfirmShipDetails.Add(this);
-						this._SaleOrderDetailID = value.SaleOrderDetailID;
-					}
-					else
-					{
-						this._SaleOrderDetailID = default(int);
-					}
-					this.SendPropertyChanged("SO_SaleOrderDetail");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.SO_InvoiceDetail")]
-	public partial class SO_InvoiceDetail : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _InvoiceDetailID;
-		
-		private int _InvoiceMasterID;
-		
-		private int _SaleOrderDetailID;
-		
-		private int _DeliveryScheduleID;
-		
-		private int _ProductID;
-		
-		private decimal _Price;
-		
-		private System.Nullable<decimal> _InvoiceQty;
-		
-		private System.Nullable<decimal> _VATPercent;
-		
-		private System.Nullable<decimal> _VATAmount;
-		
-		private System.Nullable<decimal> _NetAmount;
-		
-		private string _PONumber;
-		
-		private EntityRef<SO_DeliverySchedule> _SO_DeliverySchedule;
-		
-		private EntityRef<SO_InvoiceMaster> _SO_InvoiceMaster;
-		
-		private EntityRef<ITM_Product> _ITM_Product;
-		
-		private EntityRef<SO_SaleOrderDetail> _SO_SaleOrderDetail;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnInvoiceDetailIDChanging(int value);
-    partial void OnInvoiceDetailIDChanged();
-    partial void OnInvoiceMasterIDChanging(int value);
-    partial void OnInvoiceMasterIDChanged();
-    partial void OnSaleOrderDetailIDChanging(int value);
-    partial void OnSaleOrderDetailIDChanged();
-    partial void OnDeliveryScheduleIDChanging(int value);
-    partial void OnDeliveryScheduleIDChanged();
-    partial void OnProductIDChanging(int value);
-    partial void OnProductIDChanged();
-    partial void OnPriceChanging(decimal value);
-    partial void OnPriceChanged();
-    partial void OnInvoiceQtyChanging(System.Nullable<decimal> value);
-    partial void OnInvoiceQtyChanged();
-    partial void OnVATPercentChanging(System.Nullable<decimal> value);
-    partial void OnVATPercentChanged();
-    partial void OnVATAmountChanging(System.Nullable<decimal> value);
-    partial void OnVATAmountChanged();
-    partial void OnNetAmountChanging(System.Nullable<decimal> value);
-    partial void OnNetAmountChanged();
-    partial void OnPONumberChanging(string value);
-    partial void OnPONumberChanged();
-    #endregion
-		
-		public SO_InvoiceDetail()
-		{
-			this._SO_DeliverySchedule = default(EntityRef<SO_DeliverySchedule>);
-			this._SO_InvoiceMaster = default(EntityRef<SO_InvoiceMaster>);
-			this._ITM_Product = default(EntityRef<ITM_Product>);
-			this._SO_SaleOrderDetail = default(EntityRef<SO_SaleOrderDetail>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InvoiceDetailID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int InvoiceDetailID
-		{
-			get
-			{
-				return this._InvoiceDetailID;
-			}
-			set
-			{
-				if ((this._InvoiceDetailID != value))
-				{
-					this.OnInvoiceDetailIDChanging(value);
-					this.SendPropertyChanging();
-					this._InvoiceDetailID = value;
-					this.SendPropertyChanged("InvoiceDetailID");
-					this.OnInvoiceDetailIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InvoiceMasterID", DbType="Int NOT NULL")]
-		public int InvoiceMasterID
-		{
-			get
-			{
-				return this._InvoiceMasterID;
-			}
-			set
-			{
-				if ((this._InvoiceMasterID != value))
-				{
-					if (this._SO_InvoiceMaster.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnInvoiceMasterIDChanging(value);
-					this.SendPropertyChanging();
-					this._InvoiceMasterID = value;
-					this.SendPropertyChanged("InvoiceMasterID");
-					this.OnInvoiceMasterIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SaleOrderDetailID", DbType="Int NOT NULL")]
-		public int SaleOrderDetailID
-		{
-			get
-			{
-				return this._SaleOrderDetailID;
-			}
-			set
-			{
-				if ((this._SaleOrderDetailID != value))
-				{
-					if (this._SO_SaleOrderDetail.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnSaleOrderDetailIDChanging(value);
-					this.SendPropertyChanging();
-					this._SaleOrderDetailID = value;
-					this.SendPropertyChanged("SaleOrderDetailID");
-					this.OnSaleOrderDetailIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeliveryScheduleID", DbType="Int NOT NULL")]
-		public int DeliveryScheduleID
-		{
-			get
-			{
-				return this._DeliveryScheduleID;
-			}
-			set
-			{
-				if ((this._DeliveryScheduleID != value))
-				{
-					if (this._SO_DeliverySchedule.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnDeliveryScheduleIDChanging(value);
-					this.SendPropertyChanging();
-					this._DeliveryScheduleID = value;
-					this.SendPropertyChanged("DeliveryScheduleID");
-					this.OnDeliveryScheduleIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductID", DbType="Int NOT NULL")]
-		public int ProductID
-		{
-			get
-			{
-				return this._ProductID;
-			}
-			set
-			{
-				if ((this._ProductID != value))
-				{
-					if (this._ITM_Product.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnProductIDChanging(value);
-					this.SendPropertyChanging();
-					this._ProductID = value;
-					this.SendPropertyChanged("ProductID");
-					this.OnProductIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Decimal(20,5) NOT NULL")]
-		public decimal Price
-		{
-			get
-			{
-				return this._Price;
-			}
-			set
-			{
-				if ((this._Price != value))
-				{
-					this.OnPriceChanging(value);
-					this.SendPropertyChanging();
-					this._Price = value;
-					this.SendPropertyChanged("Price");
-					this.OnPriceChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InvoiceQty", DbType="Decimal(20,5)")]
-		public System.Nullable<decimal> InvoiceQty
-		{
-			get
-			{
-				return this._InvoiceQty;
-			}
-			set
-			{
-				if ((this._InvoiceQty != value))
-				{
-					this.OnInvoiceQtyChanging(value);
-					this.SendPropertyChanging();
-					this._InvoiceQty = value;
-					this.SendPropertyChanged("InvoiceQty");
-					this.OnInvoiceQtyChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VATPercent", DbType="Decimal(20,5)")]
-		public System.Nullable<decimal> VATPercent
-		{
-			get
-			{
-				return this._VATPercent;
-			}
-			set
-			{
-				if ((this._VATPercent != value))
-				{
-					this.OnVATPercentChanging(value);
-					this.SendPropertyChanging();
-					this._VATPercent = value;
-					this.SendPropertyChanged("VATPercent");
-					this.OnVATPercentChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VATAmount", DbType="Decimal(20,5)")]
-		public System.Nullable<decimal> VATAmount
-		{
-			get
-			{
-				return this._VATAmount;
-			}
-			set
-			{
-				if ((this._VATAmount != value))
-				{
-					this.OnVATAmountChanging(value);
-					this.SendPropertyChanging();
-					this._VATAmount = value;
-					this.SendPropertyChanged("VATAmount");
-					this.OnVATAmountChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NetAmount", DbType="Decimal(20,8)")]
-		public System.Nullable<decimal> NetAmount
-		{
-			get
-			{
-				return this._NetAmount;
-			}
-			set
-			{
-				if ((this._NetAmount != value))
-				{
-					this.OnNetAmountChanging(value);
-					this.SendPropertyChanging();
-					this._NetAmount = value;
-					this.SendPropertyChanged("NetAmount");
-					this.OnNetAmountChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PONumber", DbType="VarChar(500)")]
-		public string PONumber
-		{
-			get
-			{
-				return this._PONumber;
-			}
-			set
-			{
-				if ((this._PONumber != value))
-				{
-					this.OnPONumberChanging(value);
-					this.SendPropertyChanging();
-					this._PONumber = value;
-					this.SendPropertyChanged("PONumber");
-					this.OnPONumberChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SO_DeliverySchedule_SO_InvoiceDetail", Storage="_SO_DeliverySchedule", ThisKey="DeliveryScheduleID", OtherKey="DeliveryScheduleID", IsForeignKey=true)]
-		public SO_DeliverySchedule SO_DeliverySchedule
-		{
-			get
-			{
-				return this._SO_DeliverySchedule.Entity;
-			}
-			set
-			{
-				SO_DeliverySchedule previousValue = this._SO_DeliverySchedule.Entity;
-				if (((previousValue != value) 
-							|| (this._SO_DeliverySchedule.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._SO_DeliverySchedule.Entity = null;
-						previousValue.SO_InvoiceDetails.Remove(this);
-					}
-					this._SO_DeliverySchedule.Entity = value;
-					if ((value != null))
-					{
-						value.SO_InvoiceDetails.Add(this);
-						this._DeliveryScheduleID = value.DeliveryScheduleID;
-					}
-					else
-					{
-						this._DeliveryScheduleID = default(int);
-					}
-					this.SendPropertyChanged("SO_DeliverySchedule");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SO_InvoiceMaster_SO_InvoiceDetail", Storage="_SO_InvoiceMaster", ThisKey="InvoiceMasterID", OtherKey="InvoiceMasterID", IsForeignKey=true)]
-		public SO_InvoiceMaster SO_InvoiceMaster
-		{
-			get
-			{
-				return this._SO_InvoiceMaster.Entity;
-			}
-			set
-			{
-				SO_InvoiceMaster previousValue = this._SO_InvoiceMaster.Entity;
-				if (((previousValue != value) 
-							|| (this._SO_InvoiceMaster.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._SO_InvoiceMaster.Entity = null;
-						previousValue.SO_InvoiceDetails.Remove(this);
-					}
-					this._SO_InvoiceMaster.Entity = value;
-					if ((value != null))
-					{
-						value.SO_InvoiceDetails.Add(this);
-						this._InvoiceMasterID = value.InvoiceMasterID;
-					}
-					else
-					{
-						this._InvoiceMasterID = default(int);
-					}
-					this.SendPropertyChanged("SO_InvoiceMaster");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_SO_InvoiceDetail", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
-		public ITM_Product ITM_Product
-		{
-			get
-			{
-				return this._ITM_Product.Entity;
-			}
-			set
-			{
-				ITM_Product previousValue = this._ITM_Product.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_Product.Entity = null;
-						previousValue.SO_InvoiceDetails.Remove(this);
-					}
-					this._ITM_Product.Entity = value;
-					if ((value != null))
-					{
-						value.SO_InvoiceDetails.Add(this);
-						this._ProductID = value.ProductID;
-					}
-					else
-					{
-						this._ProductID = default(int);
-					}
-					this.SendPropertyChanged("ITM_Product");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SO_SaleOrderDetail_SO_InvoiceDetail", Storage="_SO_SaleOrderDetail", ThisKey="SaleOrderDetailID", OtherKey="SaleOrderDetailID", IsForeignKey=true)]
-		public SO_SaleOrderDetail SO_SaleOrderDetail
-		{
-			get
-			{
-				return this._SO_SaleOrderDetail.Entity;
-			}
-			set
-			{
-				SO_SaleOrderDetail previousValue = this._SO_SaleOrderDetail.Entity;
-				if (((previousValue != value) 
-							|| (this._SO_SaleOrderDetail.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._SO_SaleOrderDetail.Entity = null;
-						previousValue.SO_InvoiceDetails.Remove(this);
-					}
-					this._SO_SaleOrderDetail.Entity = value;
-					if ((value != null))
-					{
-						value.SO_InvoiceDetails.Add(this);
-						this._SaleOrderDetailID = value.SaleOrderDetailID;
-					}
-					else
-					{
-						this._SaleOrderDetailID = default(int);
-					}
-					this.SendPropertyChanged("SO_SaleOrderDetail");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
 		}
 	}
 	

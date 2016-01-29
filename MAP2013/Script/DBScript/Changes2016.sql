@@ -1,12 +1,28 @@
-/****** Object:  Add PO Number to SO_InvoiceMaster and SO_ConfirmShipMaster  Script Date: 12/14/2015 3:27:52 PM ******/
-IF NOT EXISTS(SELECT Name FROM sys.columns  WHERE Name = N'PONumber' AND Object_ID = Object_ID(N'SO_InvoiceMaster'))
+IF EXISTS(SELECT Name FROM sys.columns  WHERE Name = N'PONumber' AND Object_ID = Object_ID(N'SO_InvoiceMaster'))
 BEGIN
-    ALTER TABLE SO_InvoiceMaster ADD PONumber VARCHAR(500) NULL
+    EXEC sys.sp_rename 
+    @objname = N'SO_InvoiceMaster.PONumber', 
+    @newname = 'DocumentNumber', 
+    @objtype = 'COLUMN'
 END
 GO
-IF NOT EXISTS(SELECT Name FROM sys.columns  WHERE Name = N'PONumber' AND Object_ID = Object_ID(N'SO_ConfirmShipMaster'))
+IF EXISTS(SELECT Name FROM sys.columns  WHERE Name = N'PONumber' AND Object_ID = Object_ID(N'SO_ConfirmShipMaster'))
 BEGIN
-    ALTER TABLE SO_ConfirmShipMaster ADD PONumber VARCHAR(500) NULL
+    EXEC sys.sp_rename 
+    @objname = N'SO_ConfirmShipMaster.PONumber', 
+    @newname = 'DocumentNumber', 
+    @objtype = 'COLUMN'
+END
+GO
+
+IF NOT EXISTS(SELECT Name FROM sys.columns  WHERE Name = N'DocumentNumber' AND Object_ID = Object_ID(N'SO_InvoiceMaster'))
+BEGIN
+    ALTER TABLE SO_InvoiceMaster ADD DocumentNumber VARCHAR(500) NULL
+END
+GO
+IF NOT EXISTS(SELECT Name FROM sys.columns  WHERE Name = N'DocumentNumber' AND Object_ID = Object_ID(N'SO_ConfirmShipMaster'))
+BEGIN
+    ALTER TABLE SO_ConfirmShipMaster ADD DocumentNumber VARCHAR(500) NULL
 END
 GO
 
@@ -35,7 +51,7 @@ SELECT     SO_InvoiceMaster.InvoiceMasterID, SO_InvoiceMaster.ConfirmShipNo, SO_
                       SO_InvoiceMaster.GrossWeight, SO_InvoiceMaster.NetWeight, SO_InvoiceMaster.IssuingBank, 
                       SO_InvoiceMaster.LCDate, SO_InvoiceMaster.LCNo, SO_InvoiceMaster.VesselName, 
                       SO_InvoiceMaster.ShipCode, SO_InvoiceMaster.OnBoardDate, SO_InvoiceMaster.ReferenceNo, 
-                      SO_InvoiceMaster.InvoiceNo, SO_InvoiceMaster.InvoiceDate, PT.Code MST_PaymentTermCode, SO_InvoiceMaster.PONumber
+                      SO_InvoiceMaster.InvoiceNo, SO_InvoiceMaster.InvoiceDate, PT.Code MST_PaymentTermCode, SO_InvoiceMaster.DocumentNumber
 
 FROM         SO_InvoiceMaster INNER JOIN
                       SO_SaleOrderMaster INNER JOIN
@@ -63,7 +79,7 @@ SELECT     SO_ConfirmShipMaster.ConfirmShipMasterID, SO_ConfirmShipMaster.Confir
                       SO_ConfirmShipMaster.GrossWeight, SO_ConfirmShipMaster.NetWeight, SO_ConfirmShipMaster.IssuingBank, 
                       SO_ConfirmShipMaster.LCDate, SO_ConfirmShipMaster.LCNo, SO_ConfirmShipMaster.VesselName, 
                       SO_ConfirmShipMaster.ShipCode, SO_ConfirmShipMaster.OnBoardDate, SO_ConfirmShipMaster.ReferenceNo, 
-                      SO_ConfirmShipMaster.InvoiceNo, SO_ConfirmShipMaster.InvoiceDate, PT.Code MST_PaymentTermCode, SO_ConfirmShipMaster.PONumber
+                      SO_ConfirmShipMaster.InvoiceNo, SO_ConfirmShipMaster.InvoiceDate, PT.Code MST_PaymentTermCode, SO_ConfirmShipMaster.DocumentNumber
 
 FROM         SO_ConfirmShipMaster INNER JOIN
                       SO_SaleOrderMaster INNER JOIN
@@ -85,7 +101,7 @@ SO_ConfirmShipDetail.ProductID, ITM_Product.Code AS PartNo, ITM_Product.Descript
 MST_UnitOfMeasure.Code AS SellingUM, MST_Currency.Code AS Currency, SO_ConfirmShipMaster.InvoiceNo,
 SO_ConfirmShipDetail.InvoiceQty, SO_ConfirmShipDetail.Price, SO_ConfirmShipDetail.NetAmount, SO_ConfirmShipDetail.NetAmount * SO_ConfirmShipMaster.ExchangeRate AS NetAmountExchange,
 SO_SaleType.Code AS SaleType, SO_SaleOrderMaster.Code AS SONo, SaleOrderLine, SO_DeliverySchedule.Line AS DelLine,
-MST_Party.Code AS CustomerCode, MST_Party.Name AS CustomerName, SO_ConfirmShipMaster.Username
+MST_Party.Code AS CustomerCode, MST_Party.Name AS CustomerName, SO_ConfirmShipMaster.Username, SO_ConfirmShipMaster.ExchangeRate, SO_ConfirmShipDetail.PONumber
 FROM SO_ConfirmShipMaster JOIN SO_ConfirmShipDetail
 ON SO_ConfirmShipMaster.ConfirmShipMasterID = SO_ConfirmShipDetail.ConfirmShipMasterID
 JOIN ITM_Product

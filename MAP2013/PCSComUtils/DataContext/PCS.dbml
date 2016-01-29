@@ -1152,8 +1152,8 @@
       <Association Name="MST_BIN_PRO_WorkOrderCompletion" Member="PRO_WorkOrderCompletions" ThisKey="BinID" OtherKey="BinID" Type="PRO_WorkOrderCompletion" />
       <Association Name="MST_BIN_SO_CommitInventoryDetail" Member="SO_CommitInventoryDetails" ThisKey="BinID" OtherKey="BinID" Type="SO_CommitInventoryDetail" />
       <Association Name="MST_BIN_SO_ReturnedGoodsDetail" Member="SO_ReturnedGoodsDetails" ThisKey="BinID" OtherKey="BinID" Type="SO_ReturnedGoodsDetail" />
-      <Association Name="MST_BIN_SO_ConfirmShipMaster" Member="SO_ConfirmShipMasters" ThisKey="BinID" OtherKey="BinID" Type="SO_ConfirmShipMaster" />
       <Association Name="MST_BIN_SO_InvoiceMaster" Member="SO_InvoiceMasters" ThisKey="BinID" OtherKey="BinID" Type="SO_InvoiceMaster" />
+      <Association Name="MST_BIN_SO_ConfirmShipMaster" Member="SO_ConfirmShipMasters" ThisKey="BinID" OtherKey="BinID" Type="SO_ConfirmShipMaster" />
       <Association Name="enm_BINType_MST_BIN" Member="enm_BINType" ThisKey="BinTypeID" OtherKey="BINTypeID" Type="enm_BINType" IsForeignKey="true" />
       <Association Name="enm_LocationType_MST_BIN" Member="enm_LocationType" ThisKey="LocationTypeID" OtherKey="LocationTypeID" Type="enm_LocationType" IsForeignKey="true" />
       <Association Name="MST_Location_MST_BIN" Member="MST_Location" ThisKey="LocationID" OtherKey="LocationID" Type="MST_Location" IsForeignKey="true" />
@@ -1243,8 +1243,8 @@
       <Association Name="MST_CCN_SO_ReturnedGoodsMaster" Member="SO_ReturnedGoodsMasters" ThisKey="CCNID" OtherKey="CCNID" Type="SO_ReturnedGoodsMaster" />
       <Association Name="MST_CCN_SO_SaleOrderMaster" Member="SO_SaleOrderMasters" ThisKey="CCNID" OtherKey="CCNID" Type="SO_SaleOrderMaster" />
       <Association Name="MST_CCN_Sys_User" Member="Sys_Users" ThisKey="CCNID" OtherKey="CCNID" Type="Sys_User" />
-      <Association Name="MST_CCN_SO_ConfirmShipMaster" Member="SO_ConfirmShipMasters" ThisKey="CCNID" OtherKey="CCNID" Type="SO_ConfirmShipMaster" />
       <Association Name="MST_CCN_SO_InvoiceMaster" Member="SO_InvoiceMasters" ThisKey="CCNID" OtherKey="CCNID" Type="SO_InvoiceMaster" />
+      <Association Name="MST_CCN_SO_ConfirmShipMaster" Member="SO_ConfirmShipMasters" ThisKey="CCNID" OtherKey="CCNID" Type="SO_ConfirmShipMaster" />
       <Association Name="MST_City_MST_CCN" Member="MST_City" ThisKey="CityID" OtherKey="CityID" Type="MST_City" IsForeignKey="true" />
       <Association Name="MST_Country_MST_CCN" Member="MST_Country" ThisKey="CountryID" OtherKey="CountryID" Type="MST_Country" IsForeignKey="true" />
       <Association Name="MST_Currency_MST_CCN" Member="MST_Currency" ThisKey="DefaultCurrencyID" OtherKey="CurrencyID" Type="MST_Currency" IsForeignKey="true" />
@@ -1295,8 +1295,8 @@
       <Association Name="MST_Currency_PO_PurchaseOrderMaster" Member="PO_PurchaseOrderMasters" ThisKey="CurrencyID" OtherKey="CurrencyID" Type="PO_PurchaseOrderMaster" />
       <Association Name="MST_Currency_SO_ReturnedGoodsMaster" Member="SO_ReturnedGoodsMasters" ThisKey="CurrencyID" OtherKey="CurrencyID" Type="SO_ReturnedGoodsMaster" />
       <Association Name="MST_Currency_SO_SaleOrderMaster" Member="SO_SaleOrderMasters" ThisKey="CurrencyID" OtherKey="CurrencyID" Type="SO_SaleOrderMaster" />
-      <Association Name="MST_Currency_SO_ConfirmShipMaster" Member="SO_ConfirmShipMasters" ThisKey="CurrencyID" OtherKey="CurrencyID" Type="SO_ConfirmShipMaster" />
       <Association Name="MST_Currency_SO_InvoiceMaster" Member="SO_InvoiceMasters" ThisKey="CurrencyID" OtherKey="CurrencyID" Type="SO_InvoiceMaster" />
+      <Association Name="MST_Currency_SO_ConfirmShipMaster" Member="SO_ConfirmShipMasters" ThisKey="CurrencyID" OtherKey="CurrencyID" Type="SO_ConfirmShipMaster" />
     </Type>
   </Table>
   <Table Name="dbo.MST_DeliveryTerm" Member="MST_DeliveryTerms">
@@ -1428,8 +1428,8 @@
       <Association Name="MST_Location_SO_ReturnedGoodsDetail" Member="SO_ReturnedGoodsDetails" ThisKey="LocationID" OtherKey="LocationID" Type="SO_ReturnedGoodsDetail" />
       <Association Name="MST_Location_SO_SaleOrderMaster" Member="SO_SaleOrderMasters" ThisKey="LocationID" OtherKey="LocationID" Type="SO_SaleOrderMaster" />
       <Association Name="MST_Location_sys_RoleLocation" Member="sys_RoleLocations" ThisKey="LocationID" OtherKey="LocationID" Type="sys_RoleLocation" />
-      <Association Name="MST_Location_SO_ConfirmShipMaster" Member="SO_ConfirmShipMasters" ThisKey="LocationID" OtherKey="LocationID" Type="SO_ConfirmShipMaster" />
       <Association Name="MST_Location_SO_InvoiceMaster" Member="SO_InvoiceMasters" ThisKey="LocationID" OtherKey="LocationID" Type="SO_InvoiceMaster" />
+      <Association Name="MST_Location_SO_ConfirmShipMaster" Member="SO_ConfirmShipMasters" ThisKey="LocationID" OtherKey="LocationID" Type="SO_ConfirmShipMaster" />
       <Association Name="MST_Department_MST_Location" Member="MST_Department" ThisKey="DepartmentID" OtherKey="DepartmentID" Type="MST_Department" IsForeignKey="true" />
       <Association Name="enm_LocationType_MST_Location" Member="enm_LocationType" ThisKey="LocationTypeID" OtherKey="LocationTypeID" Type="enm_LocationType" IsForeignKey="true" />
       <Association Name="MST_MasterLocation_MST_Location" Member="MST_MasterLocation" ThisKey="MasterLocationID" OtherKey="MasterLocationID" Type="MST_MasterLocation" IsForeignKey="true" />
@@ -1479,8 +1479,8 @@
       <Association Name="MST_MasterLocation_SO_ReturnedGoodsMaster" Member="SO_ReturnedGoodsMasters" ThisKey="MasterLocationID" OtherKey="MasterLocationID" Type="SO_ReturnedGoodsMaster" />
       <Association Name="MST_MasterLocation_SO_SaleOrderMaster" Member="SO_SaleOrderMasters" ThisKey="MasterLocationID" OtherKey="ShipFromLocID" Type="SO_SaleOrderMaster" />
       <Association Name="MST_MasterLocation_Sys_User" Member="Sys_Users" ThisKey="MasterLocationID" OtherKey="MasterLocationID" Type="Sys_User" />
-      <Association Name="MST_MasterLocation_SO_ConfirmShipMaster" Member="SO_ConfirmShipMasters" ThisKey="MasterLocationID" OtherKey="MasterLocationID" Type="SO_ConfirmShipMaster" />
       <Association Name="MST_MasterLocation_SO_InvoiceMaster" Member="SO_InvoiceMasters" ThisKey="MasterLocationID" OtherKey="MasterLocationID" Type="SO_InvoiceMaster" />
+      <Association Name="MST_MasterLocation_SO_ConfirmShipMaster" Member="SO_ConfirmShipMasters" ThisKey="MasterLocationID" OtherKey="MasterLocationID" Type="SO_ConfirmShipMaster" />
       <Association Name="MST_CCN_MST_MasterLocation" Member="MST_CCN" ThisKey="CCNID" OtherKey="CCNID" Type="MST_CCN" IsForeignKey="true" />
       <Association Name="MST_City_MST_MasterLocation" Member="MST_City" ThisKey="CityID" OtherKey="CityID" Type="MST_City" IsForeignKey="true" />
       <Association Name="MST_Country_MST_MasterLocation" Member="MST_Country" ThisKey="CountryID" OtherKey="CountryID" Type="MST_Country" IsForeignKey="true" />
@@ -3019,8 +3019,8 @@
       <Column Name="Description" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
       <Column Name="GateTypeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="SO_Gate_SO_DeliverySchedule" Member="SO_DeliverySchedules" ThisKey="GateID" OtherKey="GateID" Type="SO_DeliverySchedule" />
-      <Association Name="SO_Gate_SO_ConfirmShipMaster" Member="SO_ConfirmShipMasters" ThisKey="GateID" OtherKey="GateID" Type="SO_ConfirmShipMaster" />
       <Association Name="SO_Gate_SO_InvoiceMaster" Member="SO_InvoiceMasters" ThisKey="GateID" OtherKey="GateID" Type="SO_InvoiceMaster" />
+      <Association Name="SO_Gate_SO_ConfirmShipMaster" Member="SO_ConfirmShipMasters" ThisKey="GateID" OtherKey="GateID" Type="SO_ConfirmShipMaster" />
       <Association Name="enm_GateType_SO_Gate" Member="enm_GateType" ThisKey="GateTypeID" OtherKey="GateTypeID" Type="enm_GateType" IsForeignKey="true" />
     </Type>
   </Table>
@@ -3179,8 +3179,8 @@
       <Association Name="SO_SaleOrderMaster_SO_CommitInventoryMaster" Member="SO_CommitInventoryMasters" ThisKey="SaleOrderMasterID" OtherKey="SaleOrderMasterID" Type="SO_CommitInventoryMaster" />
       <Association Name="SO_SaleOrderMaster_SO_ReturnedGoodsMaster" Member="SO_ReturnedGoodsMasters" ThisKey="SaleOrderMasterID" OtherKey="SaleOrderMasterID" Type="SO_ReturnedGoodsMaster" />
       <Association Name="SO_SaleOrderMaster_SO_SaleOrderDetail" Member="SO_SaleOrderDetails" ThisKey="SaleOrderMasterID" OtherKey="SaleOrderMasterID" Type="SO_SaleOrderDetail" />
-      <Association Name="SO_SaleOrderMaster_SO_ConfirmShipMaster" Member="SO_ConfirmShipMasters" ThisKey="SaleOrderMasterID" OtherKey="SaleOrderMasterID" Type="SO_ConfirmShipMaster" />
       <Association Name="SO_SaleOrderMaster_SO_InvoiceMaster" Member="SO_InvoiceMasters" ThisKey="SaleOrderMasterID" OtherKey="SaleOrderMasterID" Type="SO_InvoiceMaster" />
+      <Association Name="SO_SaleOrderMaster_SO_ConfirmShipMaster" Member="SO_ConfirmShipMasters" ThisKey="SaleOrderMasterID" OtherKey="SaleOrderMasterID" Type="SO_ConfirmShipMaster" />
       <Association Name="MST_PartyLocation_SO_SaleOrderMaster" Member="MST_PartyLocation" ThisKey="BillToLocID" OtherKey="PartyLocationID" Type="MST_PartyLocation" IsForeignKey="true" />
       <Association Name="MST_PartyLocation_SO_SaleOrderMaster1" Member="MST_PartyLocation1" ThisKey="BuyingLocID" OtherKey="PartyLocationID" Type="MST_PartyLocation" IsForeignKey="true" />
       <Association Name="SO_CancelReason_SO_SaleOrderMaster" Member="SO_CancelReason" ThisKey="CancelReasonID" OtherKey="CancelReasonID" Type="SO_CancelReason" IsForeignKey="true" />
@@ -6232,46 +6232,42 @@
       <Column Name="LocationID" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.SO_ConfirmShipMaster" Member="SO_ConfirmShipMasters">
-    <Type Name="SO_ConfirmShipMaster">
-      <Column Name="ConfirmShipMasterID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="ConfirmShipNo" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
-      <Column Name="ShippedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="SaleOrderMasterID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="MasterLocationID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="CCNID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="UserName" Type="System.String" DbType="NVarChar(40)" CanBeNull="true" />
-      <Column Name="LastChange" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="ExchangeRate" Type="System.Decimal" DbType="Decimal(20,5) NOT NULL" CanBeNull="false" />
-      <Column Name="CurrencyID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="GateID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="Comment" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="FromPort" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="CNo" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Column Name="Measurement" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
-      <Column Name="GrossWeight" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
-      <Column Name="NetWeight" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
-      <Column Name="IssuingBank" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
-      <Column Name="LCDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="LCNo" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Column Name="VesselName" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Column Name="ShipCode" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
-      <Column Name="OnBoardDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="ReferenceNo" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
-      <Column Name="InvoiceNo" Type="System.String" DbType="NVarChar(40)" CanBeNull="true" />
-      <Column Name="InvoiceDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="LocationID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="BinID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+  <Table Name="dbo.SO_ConfirmShipDetail" Member="SO_ConfirmShipDetails">
+    <Type Name="SO_ConfirmShipDetail">
+      <Column Name="ConfirmShipDetailID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ConfirmShipMasterID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SaleOrderDetailID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DeliveryScheduleID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ProductID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(20,5) NOT NULL" CanBeNull="false" />
+      <Column Name="InvoiceQty" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
+      <Column Name="VATPercent" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
+      <Column Name="VATAmount" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
+      <Column Name="NetAmount" Type="System.Decimal" DbType="Decimal(20,8)" CanBeNull="true" />
       <Column Name="PONumber" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
-      <Association Name="SO_ConfirmShipMaster_SO_ReturnedGoodsDetail" Member="SO_ReturnedGoodsDetails" ThisKey="ConfirmShipMasterID" OtherKey="ConfirmShipMasterID" Type="SO_ReturnedGoodsDetail" />
-      <Association Name="SO_ConfirmShipMaster_SO_ConfirmShipDetail" Member="SO_ConfirmShipDetails" ThisKey="ConfirmShipMasterID" OtherKey="ConfirmShipMasterID" Type="SO_ConfirmShipDetail" />
-      <Association Name="MST_BIN_SO_ConfirmShipMaster" Member="MST_BIN" ThisKey="BinID" OtherKey="BinID" Type="MST_BIN" IsForeignKey="true" />
-      <Association Name="MST_CCN_SO_ConfirmShipMaster" Member="MST_CCN" ThisKey="CCNID" OtherKey="CCNID" Type="MST_CCN" IsForeignKey="true" />
-      <Association Name="MST_Currency_SO_ConfirmShipMaster" Member="MST_Currency" ThisKey="CurrencyID" OtherKey="CurrencyID" Type="MST_Currency" IsForeignKey="true" />
-      <Association Name="SO_Gate_SO_ConfirmShipMaster" Member="SO_Gate" ThisKey="GateID" OtherKey="GateID" Type="SO_Gate" IsForeignKey="true" />
-      <Association Name="MST_Location_SO_ConfirmShipMaster" Member="MST_Location" ThisKey="LocationID" OtherKey="LocationID" Type="MST_Location" IsForeignKey="true" />
-      <Association Name="MST_MasterLocation_SO_ConfirmShipMaster" Member="MST_MasterLocation" ThisKey="MasterLocationID" OtherKey="MasterLocationID" Type="MST_MasterLocation" IsForeignKey="true" />
-      <Association Name="SO_SaleOrderMaster_SO_ConfirmShipMaster" Member="SO_SaleOrderMaster" ThisKey="SaleOrderMasterID" OtherKey="SaleOrderMasterID" Type="SO_SaleOrderMaster" IsForeignKey="true" />
+      <Association Name="SO_DeliverySchedule_SO_ConfirmShipDetail" Member="SO_DeliverySchedule" ThisKey="DeliveryScheduleID" OtherKey="DeliveryScheduleID" Type="SO_DeliverySchedule" IsForeignKey="true" />
+      <Association Name="ITM_Product_SO_ConfirmShipDetail" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
+      <Association Name="SO_SaleOrderDetail_SO_ConfirmShipDetail" Member="SO_SaleOrderDetail" ThisKey="SaleOrderDetailID" OtherKey="SaleOrderDetailID" Type="SO_SaleOrderDetail" IsForeignKey="true" />
+      <Association Name="SO_ConfirmShipMaster_SO_ConfirmShipDetail" Member="SO_ConfirmShipMaster" ThisKey="ConfirmShipMasterID" OtherKey="ConfirmShipMasterID" Type="SO_ConfirmShipMaster" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.SO_InvoiceDetail" Member="SO_InvoiceDetails">
+    <Type Name="SO_InvoiceDetail">
+      <Column Name="InvoiceDetailID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="InvoiceMasterID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SaleOrderDetailID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DeliveryScheduleID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ProductID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="Price" Type="System.Decimal" DbType="Decimal(20,5) NOT NULL" CanBeNull="false" />
+      <Column Name="InvoiceQty" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
+      <Column Name="VATPercent" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
+      <Column Name="VATAmount" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
+      <Column Name="NetAmount" Type="System.Decimal" DbType="Decimal(20,8)" CanBeNull="true" />
+      <Column Name="PONumber" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Association Name="SO_DeliverySchedule_SO_InvoiceDetail" Member="SO_DeliverySchedule" ThisKey="DeliveryScheduleID" OtherKey="DeliveryScheduleID" Type="SO_DeliverySchedule" IsForeignKey="true" />
+      <Association Name="ITM_Product_SO_InvoiceDetail" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
+      <Association Name="SO_SaleOrderDetail_SO_InvoiceDetail" Member="SO_SaleOrderDetail" ThisKey="SaleOrderDetailID" OtherKey="SaleOrderDetailID" Type="SO_SaleOrderDetail" IsForeignKey="true" />
+      <Association Name="SO_InvoiceMaster_SO_InvoiceDetail" Member="SO_InvoiceMaster" ThisKey="InvoiceMasterID" OtherKey="InvoiceMasterID" Type="SO_InvoiceMaster" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.SO_InvoiceMaster" Member="SO_InvoiceMasters">
@@ -6304,7 +6300,7 @@
       <Column Name="InvoiceDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
       <Column Name="LocationID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="BinID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="PONumber" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="DocumentNumber" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
       <Association Name="SO_InvoiceMaster_SO_InvoiceDetail" Member="SO_InvoiceDetails" ThisKey="InvoiceMasterID" OtherKey="InvoiceMasterID" Type="SO_InvoiceDetail" />
       <Association Name="MST_BIN_SO_InvoiceMaster" Member="MST_BIN" ThisKey="BinID" OtherKey="BinID" Type="MST_BIN" IsForeignKey="true" />
       <Association Name="MST_CCN_SO_InvoiceMaster" Member="MST_CCN" ThisKey="CCNID" OtherKey="CCNID" Type="MST_CCN" IsForeignKey="true" />
@@ -6315,42 +6311,46 @@
       <Association Name="SO_SaleOrderMaster_SO_InvoiceMaster" Member="SO_SaleOrderMaster" ThisKey="SaleOrderMasterID" OtherKey="SaleOrderMasterID" Type="SO_SaleOrderMaster" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.SO_ConfirmShipDetail" Member="SO_ConfirmShipDetails">
-    <Type Name="SO_ConfirmShipDetail">
-      <Column Name="ConfirmShipDetailID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="ConfirmShipMasterID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="SaleOrderDetailID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="DeliveryScheduleID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="ProductID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Price" Type="System.Decimal" DbType="Decimal(20,5) NOT NULL" CanBeNull="false" />
-      <Column Name="InvoiceQty" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
-      <Column Name="VATPercent" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
-      <Column Name="VATAmount" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
-      <Column Name="NetAmount" Type="System.Decimal" DbType="Decimal(20,8)" CanBeNull="true" />
-      <Column Name="PONumber" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
-      <Association Name="SO_ConfirmShipMaster_SO_ConfirmShipDetail" Member="SO_ConfirmShipMaster" ThisKey="ConfirmShipMasterID" OtherKey="ConfirmShipMasterID" Type="SO_ConfirmShipMaster" IsForeignKey="true" />
-      <Association Name="SO_DeliverySchedule_SO_ConfirmShipDetail" Member="SO_DeliverySchedule" ThisKey="DeliveryScheduleID" OtherKey="DeliveryScheduleID" Type="SO_DeliverySchedule" IsForeignKey="true" />
-      <Association Name="ITM_Product_SO_ConfirmShipDetail" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
-      <Association Name="SO_SaleOrderDetail_SO_ConfirmShipDetail" Member="SO_SaleOrderDetail" ThisKey="SaleOrderDetailID" OtherKey="SaleOrderDetailID" Type="SO_SaleOrderDetail" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.SO_InvoiceDetail" Member="SO_InvoiceDetails">
-    <Type Name="SO_InvoiceDetail">
-      <Column Name="InvoiceDetailID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="InvoiceMasterID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="SaleOrderDetailID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="DeliveryScheduleID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="ProductID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="Price" Type="System.Decimal" DbType="Decimal(20,5) NOT NULL" CanBeNull="false" />
-      <Column Name="InvoiceQty" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
-      <Column Name="VATPercent" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
-      <Column Name="VATAmount" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
-      <Column Name="NetAmount" Type="System.Decimal" DbType="Decimal(20,8)" CanBeNull="true" />
-      <Column Name="PONumber" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
-      <Association Name="SO_DeliverySchedule_SO_InvoiceDetail" Member="SO_DeliverySchedule" ThisKey="DeliveryScheduleID" OtherKey="DeliveryScheduleID" Type="SO_DeliverySchedule" IsForeignKey="true" />
-      <Association Name="SO_InvoiceMaster_SO_InvoiceDetail" Member="SO_InvoiceMaster" ThisKey="InvoiceMasterID" OtherKey="InvoiceMasterID" Type="SO_InvoiceMaster" IsForeignKey="true" />
-      <Association Name="ITM_Product_SO_InvoiceDetail" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
-      <Association Name="SO_SaleOrderDetail_SO_InvoiceDetail" Member="SO_SaleOrderDetail" ThisKey="SaleOrderDetailID" OtherKey="SaleOrderDetailID" Type="SO_SaleOrderDetail" IsForeignKey="true" />
+  <Table Name="dbo.SO_ConfirmShipMaster" Member="SO_ConfirmShipMasters">
+    <Type Name="SO_ConfirmShipMaster">
+      <Column Name="ConfirmShipMasterID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ConfirmShipNo" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="ShippedDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="SaleOrderMasterID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="MasterLocationID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CCNID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="NVarChar(40)" CanBeNull="true" />
+      <Column Name="LastChange" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ExchangeRate" Type="System.Decimal" DbType="Decimal(20,5) NOT NULL" CanBeNull="false" />
+      <Column Name="CurrencyID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="GateID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Comment" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="FromPort" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="CNo" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="Measurement" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
+      <Column Name="GrossWeight" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
+      <Column Name="NetWeight" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
+      <Column Name="IssuingBank" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
+      <Column Name="LCDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="LCNo" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="VesselName" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
+      <Column Name="ShipCode" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="OnBoardDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ReferenceNo" Type="System.String" DbType="NVarChar(60)" CanBeNull="true" />
+      <Column Name="InvoiceNo" Type="System.String" DbType="NVarChar(40)" CanBeNull="true" />
+      <Column Name="InvoiceDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="LocationID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BinID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DocumentNumber" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Association Name="SO_ConfirmShipMaster_SO_ReturnedGoodsDetail" Member="SO_ReturnedGoodsDetails" ThisKey="ConfirmShipMasterID" OtherKey="ConfirmShipMasterID" Type="SO_ReturnedGoodsDetail" />
+      <Association Name="SO_ConfirmShipMaster_SO_ConfirmShipDetail" Member="SO_ConfirmShipDetails" ThisKey="ConfirmShipMasterID" OtherKey="ConfirmShipMasterID" Type="SO_ConfirmShipDetail" />
+      <Association Name="MST_BIN_SO_ConfirmShipMaster" Member="MST_BIN" ThisKey="BinID" OtherKey="BinID" Type="MST_BIN" IsForeignKey="true" />
+      <Association Name="MST_CCN_SO_ConfirmShipMaster" Member="MST_CCN" ThisKey="CCNID" OtherKey="CCNID" Type="MST_CCN" IsForeignKey="true" />
+      <Association Name="MST_Currency_SO_ConfirmShipMaster" Member="MST_Currency" ThisKey="CurrencyID" OtherKey="CurrencyID" Type="MST_Currency" IsForeignKey="true" />
+      <Association Name="SO_Gate_SO_ConfirmShipMaster" Member="SO_Gate" ThisKey="GateID" OtherKey="GateID" Type="SO_Gate" IsForeignKey="true" />
+      <Association Name="MST_Location_SO_ConfirmShipMaster" Member="MST_Location" ThisKey="LocationID" OtherKey="LocationID" Type="MST_Location" IsForeignKey="true" />
+      <Association Name="MST_MasterLocation_SO_ConfirmShipMaster" Member="MST_MasterLocation" ThisKey="MasterLocationID" OtherKey="MasterLocationID" Type="MST_MasterLocation" IsForeignKey="true" />
+      <Association Name="SO_SaleOrderMaster_SO_ConfirmShipMaster" Member="SO_SaleOrderMaster" ThisKey="SaleOrderMasterID" OtherKey="SaleOrderMasterID" Type="SO_SaleOrderMaster" IsForeignKey="true" />
     </Type>
   </Table>
   <Function Name="dbo.GetAvailableQtyByPostDate" Method="GetAvailableQtyByPostDate">

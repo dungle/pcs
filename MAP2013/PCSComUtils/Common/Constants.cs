@@ -8323,6 +8323,7 @@ namespace PCSComUtils.Common
         public const string TABLE_NAME = "SO_ConfirmShipDetail";
         public const string VATAMOUNT_FLD = "VATAmount";
         public const string VATPERCENT_FLD = "VATPercent";
+        public const string PONUMBER_FLD = "PONumber";
     }
 
     public sealed class SO_ConfirmShipMasterTable
@@ -8354,7 +8355,7 @@ namespace PCSComUtils.Common
         public const string TABLE_NAME = "SO_ConfirmShipMaster";
         public const string USERNAME_FLD = "UserName";
         public const string VESSELNAME_FLD = "VesselName";
-        public const string PONumber_FLD = "PONumber";
+        public const string DOCUMENTNUMBER_FLD = "DocumentNumber";
     }
 
     public sealed class SO_CustomerItemRefDetailTable

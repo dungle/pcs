@@ -110,8 +110,8 @@ namespace PCSSale.Order
             this.lblPaymentTerm = new System.Windows.Forms.Label();
             this.txtVessel = new System.Windows.Forms.TextBox();
             this.lblVessel = new System.Windows.Forms.Label();
-            this.txtPONo = new System.Windows.Forms.TextBox();
-            this.lblPONo = new System.Windows.Forms.Label();
+            this.txtDocumentNumber = new System.Windows.Forms.TextBox();
+            this.lblDocumentNumber = new System.Windows.Forms.Label();
             this.txtLCNo = new System.Windows.Forms.TextBox();
             this.lblLCNo = new System.Windows.Forms.Label();
             this.lblLCDate = new System.Windows.Forms.Label();
@@ -696,8 +696,8 @@ namespace PCSSale.Order
             this.grpMoreDetail.Controls.Add(this.lblPaymentTerm);
             this.grpMoreDetail.Controls.Add(this.txtVessel);
             this.grpMoreDetail.Controls.Add(this.lblVessel);
-            this.grpMoreDetail.Controls.Add(this.txtPONo);
-            this.grpMoreDetail.Controls.Add(this.lblPONo);
+            this.grpMoreDetail.Controls.Add(this.txtDocumentNumber);
+            this.grpMoreDetail.Controls.Add(this.lblDocumentNumber);
             this.grpMoreDetail.Controls.Add(this.txtLCNo);
             this.grpMoreDetail.Controls.Add(this.lblLCNo);
             this.grpMoreDetail.Controls.Add(this.lblLCDate);
@@ -985,27 +985,27 @@ namespace PCSSale.Order
             this.lblVessel.Text = "Vessel";
             this.lblVessel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // txtPONo
+            // txtDocumentNumber
             // 
-            this.txtPONo.AccessibleDescription = "";
-            this.txtPONo.AccessibleName = "";
-            this.txtPONo.Location = new System.Drawing.Point(709, 56);
-            this.txtPONo.Name = "txtPONo";
-            this.txtPONo.Size = new System.Drawing.Size(120, 20);
-            this.txtPONo.TabIndex = 17;
+            this.txtDocumentNumber.AccessibleDescription = "";
+            this.txtDocumentNumber.AccessibleName = "";
+            this.txtDocumentNumber.Location = new System.Drawing.Point(709, 56);
+            this.txtDocumentNumber.Name = "txtDocumentNumber";
+            this.txtDocumentNumber.Size = new System.Drawing.Size(120, 20);
+            this.txtDocumentNumber.TabIndex = 17;
             // 
-            // lblPONo
+            // lblDocumentNumber
             // 
-            this.lblPONo.AccessibleDescription = "";
-            this.lblPONo.AccessibleName = "";
-            this.lblPONo.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.lblPONo.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.lblPONo.Location = new System.Drawing.Point(622, 56);
-            this.lblPONo.Name = "lblPONo";
-            this.lblPONo.Size = new System.Drawing.Size(76, 20);
-            this.lblPONo.TabIndex = 16;
-            this.lblPONo.Text = "Document No.";
-            this.lblPONo.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.lblDocumentNumber.AccessibleDescription = "";
+            this.lblDocumentNumber.AccessibleName = "";
+            this.lblDocumentNumber.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblDocumentNumber.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.lblDocumentNumber.Location = new System.Drawing.Point(622, 56);
+            this.lblDocumentNumber.Name = "lblDocumentNumber";
+            this.lblDocumentNumber.Size = new System.Drawing.Size(76, 20);
+            this.lblDocumentNumber.TabIndex = 16;
+            this.lblDocumentNumber.Text = "Document No.";
+            this.lblDocumentNumber.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // txtLCNo
             // 
@@ -1552,8 +1552,8 @@ namespace PCSSale.Order
         private C1DateEdit dtmShipmentDate;
         private C1DateEdit dtmToDate;
         private GroupBox grpMoreDetail;
-        private TextBox txtPONo;
-        private Label lblPONo;
+        private TextBox txtDocumentNumber;
+        private Label lblDocumentNumber;
         private Label lblVATInInvoice;
     }
 }

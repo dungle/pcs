@@ -165,6 +165,6 @@ namespace PCSComSale.Order.DS
             set { mLocationID = value; }
         }
 
-        public string PONumber { get; set; }
+        public string DocumentNumber { get; set; }
     }
 }

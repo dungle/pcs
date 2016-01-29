@@ -24,7 +24,7 @@ else    (  SELECT SUM(detail.InvoiceQty)  FROM SO_InvoiceDetail detail  WHERE de
 		 CharIndex('#', MST_Party.MAPBankAccountName) - 1)  else MST_Party.MAPBankAccountName End As BankAccountName, 
 		 ( SELECT TOP 1 enm_GateType.Description FROM SO_DeliverySchedule LEFT JOIN SO_Gate ON SO_DeliverySchedule.GateID = SO_Gate.GateID LEFT JOIN enm_GateType 
 		 ON enm_GateType.GateTypeID = SO_Gate.GateTypeID WHERE SO_DeliverySchedule.DeliveryScheduleID = SO_InvoiceDetail.DeliveryScheduleID )AS SaleType, GA.Code SOGate,
-		  SO_InvoiceMaster.PONumber AS CustomerPurchaseOrderNo, SO_InvoiceDetail.InvoiceDetailID, MST_PartyLocation.[Description] AS ShipToLocation
+		  SO_InvoiceMaster.DocumentNumber AS CustomerPurchaseOrderNo, SO_InvoiceDetail.InvoiceDetailID, MST_PartyLocation.[Description] AS ShipToLocation, ST.Code AS SaleType1
 		  FROM    SO_InvoiceDetail 
 		   INNER JOIN SO_InvoiceMaster ON SO_InvoiceDetail.InvoiceMasterID = SO_InvoiceMaster.InvoiceMasterID  
 		   INNER JOIN SO_SaleOrderMaster ON SO_InvoiceMaster.SaleOrderMasterID = SO_SaleOrderMaster.SaleOrderMasterID  
@@ -37,11 +37,12 @@ else    (  SELECT SUM(detail.InvoiceQty)  FROM SO_InvoiceDetail detail  WHERE de
 			  LEFT JOIN SO_CustomerItemRefMaster refMaster ON refMaster.PartyID = MST_Party.PartyID 
 			  LEFT JOIN SO_CustomerItemRefDetail refDetail ON refMaster.CustomerItemRefMasterID = refDetail.CustomerItemRefMasterID AND refDetail.ProductID = ITM_Product.ProductID 
 			  LEFT JOIN SO_Gate GA ON E.GateID = GA.GateID 
-WHERE SO_InvoiceMaster.InvoiceMasterID = 27495 AND SO_InvoiceDetail.InvoiceQty &gt; 0 ORDER BY refDetail.CustomerItemCode</RecordSource>
+			  LEFT JOIN SO_SaleType ST ON SO_SaleOrderMaster.SaleTypeID = ST.SaleTypeID
+WHERE SO_InvoiceMaster.InvoiceMasterID = 27495 AND SO_InvoiceDetail.InvoiceQty &gt; 0 ORDER BY ITM_ProductRevision</RecordSource>
       <DataProvider>1</DataProvider>
     </DataSource>
     <Layout>
-      <Width>11880</Width>
+      <Width>12030</Width>
       <MarginLeft>0</MarginLeft>
       <MarginTop>0</MarginTop>
       <MarginRight>0</MarginRight>
@@ -55,23 +56,12 @@ WHERE SO_InvoiceMaster.InvoiceMasterID = 27495 AND SO_InvoiceDetail.InvoiceQty &
       <Name>Times New Roman</Name>
       <Size>9</Size>
     </Font>
+    <OnOpen>stt = 0</OnOpen>
     <CompatibilityOptions />
     <Groups>
       <Group>
-        <Name>Appendix_Section</Name>
-      </Group>
-      <Group>
-        <Name>New Group</Name>
-      </Group>
-      <Group>
-        <Name>Model_Group</Name>
+        <Name>ITM_ProductRevision</Name>
         <GroupBy>ITM_ProductRevision</GroupBy>
-        <Sort>1</Sort>
-        <KeepTogether>1</KeepTogether>
-      </Group>
-      <Group>
-        <Name>ProductID</Name>
-        <GroupBy>ProductID</GroupBy>
         <Sort>1</Sort>
       </Group>
     </Groups>
@@ -79,7 +69,8 @@ WHERE SO_InvoiceMaster.InvoiceMasterID = 27495 AND SO_InvoiceDetail.InvoiceQty &
       <Section>
         <Name>Detail</Name>
         <Type>0</Type>
-        <Visible>0</Visible>
+        <Height>315</Height>
+        <OnPrint>stt = stt +1</OnPrint>
       </Section>
       <Section>
         <Name>Header</Name>
@@ -89,63 +80,312 @@ WHERE SO_InvoiceMaster.InvoiceMasterID = 27495 AND SO_InvoiceDetail.InvoiceQty &
       <Section>
         <Name>Footer</Name>
         <Type>2</Type>
-        <Height>3375</Height>
+        <Height>5160</Height>
       </Section>
       <Section>
         <Name>PageHeader</Name>
         <Type>3</Type>
-        <Height>5520</Height>
+        <Height>4845</Height>
         <KeepTogether>0</KeepTogether>
       </Section>
       <Section>
         <Name>PageFooter</Name>
         <Type>4</Type>
-        <Height>705</Height>
+        <Visible>0</Visible>
       </Section>
       <Section>
-        <Name>Appendix_Section Header</Name>
+        <Name>ITM_ProductRevision_Header</Name>
         <Type>5</Type>
-        <Height>480</Height>
-        <Repeat>-1</Repeat>
+        <Visible>0</Visible>
       </Section>
       <Section>
-        <Name>Appendix_Section Footer</Name>
+        <Name>ITM_ProductRevision_Footer</Name>
         <Type>6</Type>
-      </Section>
-      <Section>
-        <Name>New Group Header</Name>
-        <Type>7</Type>
-        <Visible>0</Visible>
-        <CanShrink>-1</CanShrink>
-      </Section>
-      <Section>
-        <Name>New Group Footer</Name>
-        <Type>8</Type>
-        <Height>2535</Height>
-      </Section>
-      <Section>
-        <Name>Model_Group Header</Name>
-        <Type>9</Type>
-        <Visible>0</Visible>
-        <CanShrink>-1</CanShrink>
-      </Section>
-      <Section>
-        <Name>Model_Group Footer</Name>
-        <Type>10</Type>
-        <Height>400</Height>
-      </Section>
-      <Section>
-        <Name>ProductID Header</Name>
-        <Type>11</Type>
-        <Height>500</Height>
-      </Section>
-      <Section>
-        <Name>ProductID Footer</Name>
-        <Type>12</Type>
         <Visible>0</Visible>
       </Section>
     </Sections>
     <Fields>
+      <Field>
+        <Name>stt_field</Name>
+        <Section>0</Section>
+        <Text>stt</Text>
+        <Calculated>-1</Calculated>
+        <Left>240</Left>
+        <Width>400</Width>
+        <Height>300</Height>
+        <ZOrder>-65</ZOrder>
+        <Align>7</Align>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field183</Name>
+        <Section>0</Section>
+        <Text>NetAmount</Text>
+        <Calculated>-1</Calculated>
+        <Format>#,##0</Format>
+        <Left>9722</Left>
+        <Width>2082</Width>
+        <Height>300</Height>
+        <ZOrder>-63</ZOrder>
+        <Align>8</Align>
+        <MarginRight>20</MarginRight>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field174</Name>
+        <Section>0</Section>
+        <Text>ITM_ProductDescriptionVN</Text>
+        <Calculated>-1</Calculated>
+        <Left>4522</Left>
+        <Width>2800</Width>
+        <Height>300</Height>
+        <ZOrder>-62</ZOrder>
+        <Align>7</Align>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field180</Name>
+        <Section>0</Section>
+        <Text>AVGPrice</Text>
+        <Calculated>-1</Calculated>
+        <Format>#,##0</Format>
+        <Left>8872</Left>
+        <Width>850</Width>
+        <Height>300</Height>
+        <ZOrder>-61</ZOrder>
+        <Align>8</Align>
+        <MarginRight>20</MarginRight>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field178</Name>
+        <Section>0</Section>
+        <Text>DeliveryQuantity</Text>
+        <Calculated>-1</Calculated>
+        <Format>#,##0</Format>
+        <Left>8022</Left>
+        <Width>850</Width>
+        <Height>300</Height>
+        <ZOrder>-60</ZOrder>
+        <Align>8</Align>
+        <MarginRight>20</MarginRight>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Tag>FORMAT_QUANTITY</Tag>
+      </Field>
+      <Field>
+        <Name>Field177</Name>
+        <Section>0</Section>
+        <Text>MST_UnitOfMeasureCode</Text>
+        <Calculated>-1</Calculated>
+        <Left>7322</Left>
+        <Width>700</Width>
+        <Height>300</Height>
+        <ZOrder>-59</ZOrder>
+        <Align>6</Align>
+        <MarginLeft>20</MarginLeft>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field173</Name>
+        <Section>0</Section>
+        <Text>ITM_ProductCode</Text>
+        <Calculated>-1</Calculated>
+        <Left>2782</Left>
+        <Width>1740</Width>
+        <Height>300</Height>
+        <ZOrder>-58</ZOrder>
+        <Align>7</Align>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field170</Name>
+        <Section>0</Section>
+        <Text>SaleType1</Text>
+        <Calculated>-1</Calculated>
+        <Left>1838</Left>
+        <Width>945</Width>
+        <Height>300</Height>
+        <ZOrder>-57</ZOrder>
+        <Align>7</Align>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field165</Name>
+        <Section>0</Section>
+        <Left>240</Left>
+        <Height>300</Height>
+        <BorderStyle>1</BorderStyle>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Shape Type="Line" />
+      </Field>
+      <Field>
+        <Name>Field167</Name>
+        <Section>0</Section>
+        <Text>ITM_ProductRevision</Text>
+        <Calculated>-1</Calculated>
+        <Left>639</Left>
+        <Width>1200</Width>
+        <Height>300</Height>
+        <Align>6</Align>
+        <MarginLeft>20</MarginLeft>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field169</Name>
+        <Section>0</Section>
+        <Left>640</Left>
+        <Height>300</Height>
+        <BorderStyle>1</BorderStyle>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Shape Type="Line" />
+      </Field>
+      <Field>
+        <Name>Field171</Name>
+        <Section>0</Section>
+        <Left>1839</Left>
+        <Height>300</Height>
+        <BorderStyle>1</BorderStyle>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Shape Type="Line" />
+      </Field>
+      <Field>
+        <Name>Field172</Name>
+        <Section>0</Section>
+        <Left>2783</Left>
+        <Height>300</Height>
+        <BorderStyle>1</BorderStyle>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Shape Type="Line" />
+      </Field>
+      <Field>
+        <Name>Field175</Name>
+        <Section>0</Section>
+        <Left>4522</Left>
+        <Height>300</Height>
+        <BorderStyle>1</BorderStyle>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Shape Type="Line" />
+      </Field>
+      <Field>
+        <Name>Field176</Name>
+        <Section>0</Section>
+        <Left>7322</Left>
+        <Height>300</Height>
+        <BorderStyle>1</BorderStyle>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Shape Type="Line" />
+      </Field>
+      <Field>
+        <Name>Field179</Name>
+        <Section>0</Section>
+        <Left>8022</Left>
+        <Height>300</Height>
+        <BorderStyle>1</BorderStyle>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Shape Type="Line" />
+      </Field>
+      <Field>
+        <Name>Field181</Name>
+        <Section>0</Section>
+        <Left>8872</Left>
+        <Height>300</Height>
+        <BorderStyle>1</BorderStyle>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Shape Type="Line" />
+      </Field>
+      <Field>
+        <Name>Field182</Name>
+        <Section>0</Section>
+        <Left>9722</Left>
+        <Height>300</Height>
+        <BorderStyle>1</BorderStyle>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Shape Type="Line" />
+      </Field>
+      <Field>
+        <Name>Field184</Name>
+        <Section>0</Section>
+        <Left>11804</Left>
+        <Height>300</Height>
+        <BorderStyle>1</BorderStyle>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Shape Type="Line" />
+      </Field>
+      <Field>
+        <Name>Field185</Name>
+        <Section>0</Section>
+        <Text>Field82</Text>
+        <Left>330</Left>
+        <Top>15</Top>
+      </Field>
+      <Field>
+        <Name>Field186</Name>
+        <Section>0</Section>
+        <Left>240</Left>
+        <Top>300</Top>
+        <Width>11565</Width>
+        <Height>15</Height>
+        <BorderStyle>1</BorderStyle>
+        <Tag>100</Tag>
+        <Shape Type="Line" />
+      </Field>
       <Field>
         <Name>Field1</Name>
         <Section>1</Section>
@@ -673,6 +913,20 @@ WHERE SO_InvoiceMaster.InvoiceMasterID = 27495 AND SO_InvoiceDetail.InvoiceQty &
         <Tag>100</Tag>
       </Field>
       <Field>
+        <Name>Field168</Name>
+        <Section>1</Section>
+        <Left>3630</Left>
+        <Top>4185</Top>
+        <Width>3615</Width>
+        <ZOrder>-2</ZOrder>
+        <BorderStyle>3</BorderStyle>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Shape Type="Line" />
+      </Field>
+      <Field>
         <Name>fldSaleType2</Name>
         <Section>1</Section>
         <Text>ShipToLocation</Text>
@@ -687,20 +941,6 @@ WHERE SO_InvoiceMaster.InvoiceMasterID = 27495 AND SO_InvoiceDetail.InvoiceQty &
           <Size>8.25</Size>
         </Font>
         <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field168</Name>
-        <Section>1</Section>
-        <Left>3630</Left>
-        <Top>4185</Top>
-        <Width>3615</Width>
-        <ZOrder>-2</ZOrder>
-        <BorderStyle>3</BorderStyle>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Shape Type="Line" />
       </Field>
       <Field>
         <Name>Field20</Name>
@@ -1171,6 +1411,23 @@ WHERE SO_InvoiceMaster.InvoiceMasterID = 27495 AND SO_InvoiceDetail.InvoiceQty &
         <Align>6</Align>
         <Font>
           <Name>Arial</Name>
+          <Size>9.75</Size>
+        </Font>
+        <Tag>100</Tag>
+      </Field>
+      <Field>
+        <Name>fldSumNetAmount3</Name>
+        <Section>1</Section>
+        <Text>SUM(NetAmount)</Text>
+        <Calculated>-1</Calculated>
+        <Format>#,##0</Format>
+        <Left>8880</Left>
+        <Top>6135</Top>
+        <Width>1470</Width>
+        <Height>300</Height>
+        <Align>8</Align>
+        <Font>
+          <Name>Arial Narrow</Name>
           <Size>9.75</Size>
         </Font>
         <Tag>100</Tag>
@@ -1700,1723 +1957,54 @@ WHERE SO_InvoiceMaster.InvoiceMasterID = 27495 AND SO_InvoiceDetail.InvoiceQty &
         <Shape Type="Line" />
       </Field>
       <Field>
-        <Name>Field172</Name>
+        <Name>fldVAT1</Name>
         <Section>2</Section>
-        <Text>Người lập phiếu</Text>
-        <Left>1080</Left>
+        <Text>VATPercent</Text>
+        <Calculated>-1</Calculated>
+        <Format>#,##0</Format>
+        <Left>9722</Left>
         <Top>390</Top>
-        <Width>1335</Width>
-        <Height>270</Height>
-        <Align>7</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field173</Name>
-        <Section>2</Section>
-        <Text>Thủ kho</Text>
-        <Left>2595</Left>
-        <Top>390</Top>
-        <Width>1185</Width>
-        <Height>270</Height>
-        <Align>7</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field174</Name>
-        <Section>2</Section>
-        <Text>Kiểm tra</Text>
-        <Left>3945</Left>
-        <Top>390</Top>
-        <Width>1185</Width>
-        <Height>270</Height>
-        <Align>7</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field175</Name>
-        <Section>2</Section>
-        <Text>Kế toán trưởng</Text>
-        <Left>5340</Left>
-        <Top>390</Top>
-        <Width>1335</Width>
-        <Height>270</Height>
-        <Align>7</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field176</Name>
-        <Section>2</Section>
-        <Text>Ký duyệt</Text>
-        <Left>6870</Left>
-        <Top>390</Top>
-        <Width>1185</Width>
-        <Height>270</Height>
-        <Align>7</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field177</Name>
-        <Section>2</Section>
-        <Text>Người giao hàng</Text>
-        <Left>8235</Left>
-        <Top>390</Top>
-        <Width>1335</Width>
-        <Height>270</Height>
-        <Align>7</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field178</Name>
-        <Section>2</Section>
-        <Text>Người nhận</Text>
-        <Left>9750</Left>
-        <Top>390</Top>
-        <Width>1335</Width>
-        <Height>270</Height>
-        <Align>7</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field179</Name>
-        <Section>2</Section>
-        <Text>Prepared by</Text>
-        <Left>1080</Left>
-        <Top>645</Top>
-        <Width>1335</Width>
-        <Height>270</Height>
-        <Align>7</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field180</Name>
-        <Section>2</Section>
-        <Text>Storekeeper</Text>
-        <Left>2595</Left>
-        <Top>645</Top>
-        <Width>1185</Width>
-        <Height>270</Height>
-        <Align>7</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field181</Name>
-        <Section>2</Section>
-        <Text>Checked by</Text>
-        <Left>3945</Left>
-        <Top>645</Top>
-        <Width>1185</Width>
-        <Height>270</Height>
-        <Align>7</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field182</Name>
-        <Section>2</Section>
-        <Text>Chief Accountant</Text>
-        <Left>5340</Left>
-        <Top>645</Top>
-        <Width>1335</Width>
-        <Height>270</Height>
-        <Align>7</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field183</Name>
-        <Section>2</Section>
-        <Text>Approved by</Text>
-        <Left>6870</Left>
-        <Top>645</Top>
-        <Width>1185</Width>
-        <Height>270</Height>
-        <Align>7</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field184</Name>
-        <Section>2</Section>
-        <Text>Delivery by</Text>
-        <Left>8235</Left>
-        <Top>645</Top>
-        <Width>1335</Width>
-        <Height>270</Height>
-        <Align>7</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field185</Name>
-        <Section>2</Section>
-        <Text>Received by</Text>
-        <Left>9750</Left>
-        <Top>645</Top>
-        <Width>1335</Width>
-        <Height>270</Height>
-        <Align>7</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field186</Name>
-        <Section>2</Section>
-        <Left>1020</Left>
-        <Top>1740</Top>
-        <Width>1395</Width>
-        <BorderStyle>1</BorderStyle>
-        <Tag>100</Tag>
-        <Shape Type="Line" />
-      </Field>
-      <Field>
-        <Name>Field187</Name>
-        <Section>2</Section>
-        <Left>2535</Left>
-        <Top>1740</Top>
-        <Width>1245</Width>
-        <BorderStyle>1</BorderStyle>
-        <Tag>100</Tag>
-        <Shape Type="Line" />
-      </Field>
-      <Field>
-        <Name>Field188</Name>
-        <Section>2</Section>
-        <Left>3885</Left>
-        <Top>1740</Top>
-        <Width>1245</Width>
-        <BorderStyle>1</BorderStyle>
-        <Tag>100</Tag>
-        <Shape Type="Line" />
-      </Field>
-      <Field>
-        <Name>Field189</Name>
-        <Section>2</Section>
-        <Left>5280</Left>
-        <Top>1740</Top>
-        <Width>1395</Width>
-        <BorderStyle>1</BorderStyle>
-        <Tag>100</Tag>
-        <Shape Type="Line" />
-      </Field>
-      <Field>
-        <Name>Field190</Name>
-        <Section>2</Section>
-        <Left>6810</Left>
-        <Top>1740</Top>
-        <Width>1245</Width>
-        <BorderStyle>1</BorderStyle>
-        <Tag>100</Tag>
-        <Shape Type="Line" />
-      </Field>
-      <Field>
-        <Name>Field191</Name>
-        <Section>2</Section>
-        <Left>8175</Left>
-        <Top>1740</Top>
-        <Width>1395</Width>
-        <BorderStyle>1</BorderStyle>
-        <Tag>100</Tag>
-        <Shape Type="Line" />
-      </Field>
-      <Field>
-        <Name>Field192</Name>
-        <Section>2</Section>
-        <Left>9690</Left>
-        <Top>1740</Top>
-        <Width>1395</Width>
-        <BorderStyle>1</BorderStyle>
-        <Tag>100</Tag>
-        <Shape Type="Line" />
-      </Field>
-      <Field>
-        <Name>Field193</Name>
-        <Section>2</Section>
-        <Left>990</Left>
-        <Top>2640</Top>
-        <Width>10095</Width>
-        <BorderStyle>1</BorderStyle>
-        <Tag>100</Tag>
-        <Shape Type="Line" />
-      </Field>
-      <Field>
-        <Name>Field194</Name>
-        <Section>2</Section>
-        <Text>Trang số:</Text>
-        <Left>8865</Left>
-        <Top>2655</Top>
-        <Width>1050</Width>
-        <Height>270</Height>
+        <Width>1830</Width>
+        <Height>375</Height>
+        <ZOrder>-67</ZOrder>
         <Align>8</Align>
         <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>fldPageNumber1</Name>
-        <Section>2</Section>
-        <Text>=IIf([Page]=[Pages],[Page],[Page]-1)</Text>
-        <Calculated>-1</Calculated>
-        <Left>9960</Left>
-        <Top>2655</Top>
-        <Width>1125</Width>
-        <Height>255</Height>
-        <Align>6</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field196</Name>
-        <Section>2</Section>
-        <Text>Ghi chú: Bảng kê được phát hành 2 liên như nhau, 1 liên SHOWA giữ, 1 liên khách hàng giữ.</Text>
-        <Left>1500</Left>
-        <Top>2670</Top>
-        <Width>6900</Width>
-        <Height>270</Height>
-        <Align>7</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field199</Name>
-        <Section>2</Section>
-        <Left>9960</Left>
-        <Top>2880</Top>
-        <Width>1095</Width>
-        <BorderStyle>1</BorderStyle>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-        <Shape Type="Line" />
-      </Field>
-      <Field>
-        <Name>Field197</Name>
-        <Section>2</Section>
-        <Text>Page</Text>
-        <Left>8955</Left>
-        <Top>2895</Top>
-        <Width>960</Width>
-        <Height>270</Height>
-        <Align>7</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field198</Name>
-        <Section>2</Section>
-        <Text>(Note: There are 2 same copies, SHOWA keeps one, Customer keeps one)</Text>
-        <Left>1515</Left>
-        <Top>2910</Top>
-        <Width>6570</Width>
-        <Height>270</Height>
-        <Align>7</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>fldCompany1</Name>
-        <Section>3</Section>
-        <Text>SHOWA AUTO PARTS VIET NAM CO., LTD.</Text>
-        <Left>1685</Left>
-        <Top>120</Top>
-        <Width>8730</Width>
-        <Height>270</Height>
-        <Align>7</Align>
-        <Font>
-          <Bold>-1</Bold>
           <Name>Arial Narrow</Name>
-          <Size>9</Size>
+          <Size>9.75</Size>
         </Font>
         <Tag>100</Tag>
       </Field>
       <Field>
-        <Name>Field78</Name>
-        <Section>3</Section>
-        <Text>Địa chỉ (Add): </Text>
-        <Left>3795</Left>
-        <Top>405</Top>
-        <Width>1290</Width>
-        <Height>225</Height>
-        <Align>6</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>fldAddress1</Name>
-        <Section>3</Section>
-        <Text>Lô M6 - Khu công nghiệp Thăng Long - Đông Anh - Hà Nội</Text>
-        <Left>5070</Left>
-        <Top>405</Top>
-        <Width>5040</Width>
-        <Height>225</Height>
-        <Align>6</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field79</Name>
-        <Section>3</Section>
-        <Text>Điện thoại (Tel):                              Fax No: </Text>
-        <Left>3795</Left>
-        <Top>615</Top>
-        <Width>3255</Width>
-        <Height>300</Height>
-        <Align>6</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>fldTel</Name>
-        <Section>3</Section>
-        <Text>04-8-835500</Text>
-        <Left>5310</Left>
-        <Top>615</Top>
-        <Width>1020</Width>
-        <Height>300</Height>
-        <Align>6</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>fldFax</Name>
-        <Section>3</Section>
-        <Text>04-8-835500</Text>
-        <Left>7020</Left>
-        <Top>615</Top>
-        <Width>1095</Width>
-        <Height>300</Height>
-        <Align>6</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field81</Name>
-        <Section>3</Section>
-        <Left>1425</Left>
-        <Top>915</Top>
-        <Width>8820</Width>
-        <Height>90</Height>
+        <Name>Field82</Name>
+        <Section>2</Section>
+        <Left>9722</Left>
+        <Top>15</Top>
+        <Width>2082</Width>
+        <Height>1500</Height>
+        <ZOrder>-53</ZOrder>
         <BorderStyle>1</BorderStyle>
-        <Tag>100</Tag>
-        <Shape Type="Line" />
       </Field>
       <Field>
-        <Name>Field83</Name>
-        <Section>3</Section>
-        <Left>1425</Left>
-        <Top>945</Top>
-        <Width>8820</Width>
-        <Height>75</Height>
-        <Align>6</Align>
-        <BorderStyle>1</BorderStyle>
-        <Tag>100</Tag>
-        <Shape Type="Line" />
-      </Field>
-      <Field>
-        <Name>fldSaleType3</Name>
-        <Section>3</Section>
-        <Text>ConfirmShipNo</Text>
+        <Name>fldSumNetAmount2</Name>
+        <Section>2</Section>
+        <Text>SUM(NetAmount)</Text>
         <Calculated>-1</Calculated>
-        <Left>8655</Left>
-        <Top>960</Top>
-        <Width>1590</Width>
-        <Height>270</Height>
-        <Align>6</Align>
+        <Format>#,##0</Format>
+        <Left>9722</Left>
+        <Top>15</Top>
+        <Width>2082</Width>
+        <Height>375</Height>
+        <Align>8</Align>
+        <MarginRight>50</MarginRight>
         <Font>
-          <Bold>-1</Bold>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field84</Name>
-        <Section>3</Section>
-        <Text>Ref.: ...........................</Text>
-        <Left>8340</Left>
-        <Top>1020</Top>
-        <Width>1905</Width>
-        <Height>225</Height>
-        <Align>6</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field85</Name>
-        <Section>3</Section>
-        <Text>BẢNG KÊ CHI TIẾT BÁN HÀNG</Text>
-        <Left>1485</Left>
-        <Top>1245</Top>
-        <Width>8730</Width>
-        <Height>300</Height>
-        <Align>7</Align>
-        <Font>
-          <Bold>-1</Bold>
-          <Name>Arial</Name>
-          <Size>11.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field86</Name>
-        <Section>3</Section>
-        <Text>ATTACHMENT LIST</Text>
-        <Left>1455</Left>
-        <Top>1530</Top>
-        <Width>8730</Width>
-        <Height>300</Height>
-        <Align>7</Align>
-        <Font>
-          <Bold>-1</Bold>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field87</Name>
-        <Section>3</Section>
-        <Left>4650</Left>
-        <Top>2100</Top>
-        <Width>1590</Width>
-        <ZOrder>-2</ZOrder>
-        <BorderStyle>3</BorderStyle>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-        <Shape Type="Line" />
-      </Field>
-      <Field>
-        <Name>fldConfirmShipNo1</Name>
-        <Section>3</Section>
-        <Text>InvoiceNo</Text>
-        <Calculated>-1</Calculated>
-        <Left>4665</Left>
-        <Top>1890</Top>
-        <Width>1590</Width>
-        <Height>255</Height>
-        <Align>6</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field88</Name>
-        <Section>3</Section>
-        <Text>Đính kèm theo hóa đơn số</Text>
-        <Left>2490</Left>
-        <Top>1905</Top>
-        <Width>2220</Width>
-        <Height>225</Height>
-        <Align>6</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field89</Name>
-        <Section>3</Section>
-        <Text>Ngày</Text>
-        <Left>6285</Left>
-        <Top>1905</Top>
-        <Width>420</Width>
-        <Height>225</Height>
-        <Align>6</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>fldShippedDate_Day</Name>
-        <Section>3</Section>
-        <Text>ShippedDate</Text>
-        <Calculated>-1</Calculated>
-        <Format>dd</Format>
-        <Left>6680</Left>
-        <Top>1905</Top>
-        <Width>300</Width>
-        <Height>225</Height>
-        <Align>6</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field90</Name>
-        <Section>3</Section>
-        <Text>Tháng</Text>
-        <Left>6915</Left>
-        <Top>1905</Top>
-        <Width>540</Width>
-        <Height>225</Height>
-        <Align>6</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>fldShippedDate_Month</Name>
-        <Section>3</Section>
-        <Text>ShippedDate</Text>
-        <Calculated>-1</Calculated>
-        <Format>MM</Format>
-        <Left>7395</Left>
-        <Top>1905</Top>
-        <Width>300</Width>
-        <Height>225</Height>
-        <Align>7</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field91</Name>
-        <Section>3</Section>
-        <Text>Năm</Text>
-        <Left>7650</Left>
-        <Top>1905</Top>
-        <Width>450</Width>
-        <Height>225</Height>
-        <Align>6</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>fldShippedDate_Year</Name>
-        <Section>3</Section>
-        <Text>ShippedDate</Text>
-        <Calculated>-1</Calculated>
-        <Format>yyyy</Format>
-        <Left>8025</Left>
-        <Top>1905</Top>
-        <Width>915</Width>
-        <Height>225</Height>
-        <Align>6</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
+          <Name>Arial Narrow</Name>
+          <Size>9.75</Size>
         </Font>
         <Tag>100</Tag>
       </Field>
       <Field>
         <Name>Field92</Name>
-        <Section>3</Section>
-        <Left>1050</Left>
-        <Top>2325</Top>
-        <Width>6525</Width>
-        <Height>3045</Height>
-        <ZOrder>-7</ZOrder>
-        <Picture encoding="base64">iVBORw0KGgoAAAANSUhEUgAAAioAAABiCAYAAAB+pPibAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAADSElEQVR4Xu3d7W0aQRQFUFqgBkpwCfRAAS7CTbgASqAEyqAESqADNn5kUTLJmPgDdq+ic6UjC2l2+fs0dxgvRERERP6rLJfL4e3PxdPTEwBA13VeGD0uNZysVqvh5eVlOB6Pw/l8BgD4kNPpNGy329+Hl/ulXmo4AQDuoYaW9Xo9jA3N11Mv2O/33S8BAPiO2gSptmYcOz6XerAmnt6LAQDu4bq7Mo4fH0tVPb2XAQA8wmaz+diwUnVP7wUAAI/0zxqohpTD4dB9GADg0d7GkfeHldp26T0EADCFugZlHEv+isOzAMDsuj9btpsCACTo7qrsdrvuYgCAKdV52T93VboLAQDmULPJzxHlLX6SDAAkaS6Bc8EbAJCkuQDOQVoAIElzoLY+9BYBAMzh9fXVoAIAZGp2VGpq6S0CAJiD6gcAiKX6AQBi2VEBAGI1g4ozKgBAEtUPABBL9QMAxFL9AACxVD8AQCzVDwAQS/UDAMRS/QAAsVQ/AEAs1Q8AEEv1AwDEUv0AALFUPwBALNUPABBL9QMAxFL9AACxVD8AQCzVDwAQS/UDAMRS/QAAsVQ/AEAs1Q8AEEv1AwDEUv0AALFUPwBALNUPABBL9QMAxFL9AACxVD8AQCzVDwAQS/UDAMRS/QAAsVQ/AEAs1Q8AEEv1AwDEUv0AALFUPwBALNUPABBL9QMAxFL9AACxVD8AQCzVDwAQS/UDAMRS/QAAsVQ/AEAs1Q8AEEv1AwDEUv0AALFUPwBALNUPABBL9QMAxFL9AACxVD8AQCzVDwAQS/UDAMRS/QAAsVQ/AEAs1Q8AEKupfjabTXcRAMAcmh2V9XrdXQQAMIfn5+dfg8pqteouAgCYQ7U945hySXcRAMAcahNlnFEWi+VyORwOh+5CAIApHY/HGlKaHZVFdUG9xQAAU9put+2QUnFOBQBIUE3POJ60cZ8KADCn/X7fH1IqNcH0HgIAmMK7uynXuFMFAJhDc8nbraiAAIApdQ/Q3ophBQCYwm63+9yQco0aCAB4pOaq/C/msh3TezkAwFfULkpz++x3U6dwa2Cp2+J6XwgAcMvpdLrMEncdUDq5/HSo/llQnc4FALilZoZxOHnogCIiIiIyYRaLHxDZsdTV4fK6AAAAAElFTkSuQmCC</Picture>
-        <PictureScale>1</PictureScale>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field93</Name>
-        <Section>3</Section>
-        <Left>8550</Left>
-        <Top>2430</Top>
-        <Width>2340</Width>
-        <ZOrder>-2</ZOrder>
-        <BorderStyle>3</BorderStyle>
-        <Tag>100</Tag>
-        <Shape Type="Line" />
-      </Field>
-      <Field>
-        <Name>fldCustomerPurchaseOrderNo1</Name>
-        <Section>3</Section>
-        <Text>CustomerPurchaseOrderNo</Text>
-        <Calculated>-1</Calculated>
-        <Left>8685</Left>
-        <Top>2205</Top>
-        <Width>1920</Width>
-        <Height>270</Height>
-        <Align>6</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>9.75</Size>
-        </Font>
-      </Field>
-      <Field>
-        <Name>Field94</Name>
-        <Section>3</Section>
-        <Text>Số (No):</Text>
-        <Left>7710</Left>
-        <Top>2235</Top>
-        <Width>975</Width>
-        <Height>270</Height>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field95</Name>
-        <Section>3</Section>
-        <Left>1710</Left>
-        <Top>2580</Top>
-        <Width>2790</Width>
-        <ZOrder>-2</ZOrder>
-        <BorderStyle>3</BorderStyle>
-        <Tag>100</Tag>
-        <Shape Type="Line" />
-      </Field>
-      <Field>
-        <Name>Field96</Name>
-        <Section>3</Section>
-        <Text>Ngày:</Text>
-        <Left>1155</Left>
-        <Top>2310</Top>
-        <Width>495</Width>
-        <Height>270</Height>
-        <Align>6</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>fldShippedDate1</Name>
-        <Section>3</Section>
-        <Text>ShippedDate</Text>
-        <Calculated>-1</Calculated>
-        <Format>dd-MM-yyyy</Format>
-        <Left>1740</Left>
-        <Top>2340</Top>
-        <Width>2370</Width>
-        <Height>270</Height>
-        <Align>6</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field97</Name>
-        <Section>3</Section>
-        <Left>8580</Left>
-        <Top>2775</Top>
-        <Width>2340</Width>
-        <ZOrder>-2</ZOrder>
-        <BorderStyle>3</BorderStyle>
-        <Tag>100</Tag>
-        <Shape Type="Line" />
-      </Field>
-      <Field>
-        <Name>fldShippedDate4</Name>
-        <Section>3</Section>
-        <Text>ShippedDate</Text>
-        <Calculated>-1</Calculated>
-        <Format>HH:mm</Format>
-        <Left>8685</Left>
-        <Top>2520</Top>
-        <Width>1980</Width>
-        <Height>270</Height>
-        <Align>6</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field98</Name>
-        <Section>3</Section>
-        <Text>(Date)</Text>
-        <Left>1140</Left>
-        <Top>2535</Top>
-        <Width>570</Width>
-        <Height>270</Height>
-        <Align>6</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field101</Name>
-        <Section>3</Section>
-        <Left>2100</Left>
-        <Top>3030</Top>
-        <Width>5190</Width>
-        <ZOrder>-2</ZOrder>
-        <BorderStyle>3</BorderStyle>
-        <Tag>100</Tag>
-        <Shape Type="Line" />
-      </Field>
-      <Field>
-        <Name>Field99</Name>
-        <Section>3</Section>
-        <Text>Time</Text>
-        <Left>7725</Left>
-        <Top>2865</Top>
-        <Width>1080</Width>
-        <Height>285</Height>
-        <ZOrder>-1</ZOrder>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field100</Name>
-        <Section>3</Section>
-        <Text>Giờ giao:</Text>
-        <Left>7710</Left>
-        <Top>2595</Top>
-        <Width>840</Width>
-        <Height>270</Height>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>fldMST_PartyName1</Name>
-        <Section>3</Section>
-        <Text>MST_PartyName</Text>
-        <Calculated>-1</Calculated>
-        <Left>2190</Left>
-        <Top>2790</Top>
-        <Width>5340</Width>
-        <Height>270</Height>
-        <Align>6</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field102</Name>
-        <Section>3</Section>
-        <Text>Khách hàng:</Text>
-        <Left>1170</Left>
-        <Top>2820</Top>
-        <Width>945</Width>
-        <Height>270</Height>
-        <Align>6</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field103</Name>
-        <Section>3</Section>
-        <Text>(Customer)</Text>
-        <Left>1155</Left>
-        <Top>3045</Top>
-        <Width>915</Width>
-        <Height>270</Height>
-        <Align>6</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field104</Name>
-        <Section>3</Section>
-        <Left>8640</Left>
-        <Top>3420</Top>
-        <Width>2265</Width>
-        <ZOrder>-2</ZOrder>
-        <BorderStyle>3</BorderStyle>
-        <Tag>100</Tag>
-        <Shape Type="Line" />
-      </Field>
-      <Field>
-        <Name>fldSaleType1</Name>
-        <Section>3</Section>
-        <Text>SaleType</Text>
-        <Calculated>-1</Calculated>
-        <Left>8715</Left>
-        <Top>3180</Top>
-        <Width>1890</Width>
-        <Height>270</Height>
-        <Align>6</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field105</Name>
-        <Section>3</Section>
-        <Text>Phân loại: </Text>
-        <Left>7725</Left>
-        <Top>3225</Top>
-        <Width>990</Width>
-        <Height>270</Height>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field106</Name>
-        <Section>3</Section>
-        <Left>1770</Left>
-        <Top>3540</Top>
-        <Width>5490</Width>
-        <ZOrder>-2</ZOrder>
-        <BorderStyle>3</BorderStyle>
-        <Tag>100</Tag>
-        <Shape Type="Line" />
-      </Field>
-      <Field>
-        <Name>fldMST_PartyAddress1</Name>
-        <Section>3</Section>
-        <Text>MST_PartyAddress</Text>
-        <Calculated>-1</Calculated>
-        <Left>1830</Left>
-        <Top>3300</Top>
-        <Width>5700</Width>
-        <Height>270</Height>
-        <Align>6</Align>
-        <CanGrow>-1</CanGrow>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field135</Name>
-        <Section>3</Section>
-        <Text>Địa chỉ:</Text>
-        <Left>1170</Left>
-        <Top>3330</Top>
-        <Width>630</Width>
-        <Height>270</Height>
-        <Align>6</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field136</Name>
-        <Section>3</Section>
-        <Text>Classify</Text>
-        <Left>7725</Left>
-        <Top>3480</Top>
-        <Width>1230</Width>
-        <Height>270</Height>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field137</Name>
-        <Section>3</Section>
-        <Text>(Add.)</Text>
-        <Left>1155</Left>
-        <Top>3555</Top>
-        <Width>645</Width>
-        <Height>270</Height>
-        <Align>6</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>fldMST_PartyTaxCode1</Name>
-        <Section>3</Section>
-        <Text>MST_PartyTaxCode</Text>
-        <Calculated>-1</Calculated>
-        <Left>2100</Left>
-        <Top>3840</Top>
-        <Width>5430</Width>
-        <Height>270</Height>
-        <ZOrder>-50</ZOrder>
-        <Align>6</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field138</Name>
-        <Section>3</Section>
-        <Left>2040</Left>
-        <Top>4065</Top>
-        <Width>5190</Width>
-        <ZOrder>-2</ZOrder>
-        <BorderStyle>3</BorderStyle>
-        <Tag>100</Tag>
-        <Shape Type="Line" />
-      </Field>
-      <Field>
-        <Name>Field144</Name>
-        <Section>3</Section>
-        <Text>Mã số thuế:</Text>
-        <Left>1170</Left>
-        <Top>3840</Top>
-        <Width>900</Width>
-        <Height>270</Height>
-        <Align>6</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field149</Name>
-        <Section>3</Section>
-        <Text>(Tax Code)</Text>
-        <Left>1155</Left>
-        <Top>4065</Top>
-        <Width>825</Width>
-        <Height>270</Height>
-        <Align>6</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field107</Name>
-        <Section>3</Section>
-        <Text>Số tài khoản</Text>
-        <Left>1140</Left>
-        <Top>4305</Top>
-        <Width>1035</Width>
-        <Height>270</Height>
-        <Align>6</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>fldMST_PartyTaxCode2</Name>
-        <Section>3</Section>
-        <Text>MST_PartyBankAccount</Text>
-        <Calculated>-1</Calculated>
-        <Left>2205</Left>
-        <Top>4305</Top>
-        <Width>5295</Width>
-        <Height>270</Height>
-        <Align>6</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field133</Name>
-        <Section>3</Section>
-        <Text>(Account No)</Text>
-        <Left>1125</Left>
-        <Top>4530</Top>
-        <Width>1005</Width>
-        <Height>270</Height>
-        <Align>6</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field200</Name>
-        <Section>4</Section>
-        <Left>990</Left>
-        <Top>15</Top>
-        <Width>10095</Width>
-        <BorderStyle>1</BorderStyle>
-        <Tag>100</Tag>
-        <Shape Type="Line" />
-      </Field>
-      <Field>
-        <Name>Field201</Name>
-        <Section>4</Section>
-        <Text>Trang số:</Text>
-        <Left>8865</Left>
-        <Top>30</Top>
-        <Width>1050</Width>
-        <Height>270</Height>
-        <Align>8</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>fldPageNumber</Name>
-        <Section>4</Section>
-        <Text>[Page] -1</Text>
-        <Calculated>-1</Calculated>
-        <Left>9960</Left>
-        <Top>30</Top>
-        <Width>1125</Width>
-        <Height>255</Height>
-        <Align>6</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field203</Name>
-        <Section>4</Section>
-        <Text>Ghi chú: Bảng kê được phát hành 2 liên như nhau, 1 liên SHOWA giữ, 1 liên khách hàng giữ.</Text>
-        <Left>1400</Left>
-        <Top>45</Top>
-        <Width>6900</Width>
-        <Height>270</Height>
-        <Align>7</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field204</Name>
-        <Section>4</Section>
-        <Text>Page</Text>
-        <Left>8970</Left>
-        <Top>255</Top>
-        <Width>960</Width>
-        <Height>270</Height>
-        <Align>7</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field206</Name>
-        <Section>4</Section>
-        <Left>9960</Left>
-        <Top>255</Top>
-        <Width>1095</Width>
-        <BorderStyle>1</BorderStyle>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-        <Shape Type="Line" />
-      </Field>
-      <Field>
-        <Name>Field205</Name>
-        <Section>4</Section>
-        <Text>(Note: There are 2 same copies, SHOWA keeps one, Customer keeps one)</Text>
-        <Left>1415</Left>
-        <Top>270</Top>
-        <Width>6570</Width>
-        <Height>270</Height>
-        <Align>7</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field123</Name>
-        <Section>5</Section>
-        <Text>STT   No</Text>
-        <Left>810</Left>
-        <Width>435</Width>
-        <Height>450</Height>
-        <ZOrder>-44</ZOrder>
-        <Align>7</Align>
-        <BorderColor>Transparent</BorderColor>
-        <Font>
-          <Bold>-1</Bold>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field122</Name>
-        <Section>5</Section>
-        <Text>Thành tiền</Text>
-        <Left>9945</Left>
-        <Width>1320</Width>
-        <Height>255</Height>
-        <ZOrder>-32</ZOrder>
-        <Align>7</Align>
-        <Font>
-          <Bold>-1</Bold>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field120</Name>
-        <Section>5</Section>
-        <Text>Đơn giá</Text>
-        <Left>8985</Left>
-        <Width>885</Width>
-        <Height>255</Height>
-        <ZOrder>-30</ZOrder>
-        <Align>7</Align>
-        <Font>
-          <Bold>-1</Bold>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field150</Name>
-        <Section>5</Section>
-        <Left>810</Left>
-        <Width>10500</Width>
-        <ZOrder>4</ZOrder>
-        <BorderStyle>1</BorderStyle>
-        <Tag>100</Tag>
-        <Shape Type="Line" />
-      </Field>
-      <Field>
-        <Name>Field131</Name>
-        <Section>5</Section>
-        <Text>Amount</Text>
-        <Left>9960</Left>
-        <Top>210</Top>
-        <Width>1275</Width>
-        <Height>255</Height>
-        <ZOrder>-33</ZOrder>
-        <Align>7</Align>
-        <Font>
-          <Bold>-1</Bold>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field126</Name>
-        <Section>5</Section>
-        <Text>Unit Price</Text>
-        <Left>9000</Left>
-        <Top>195</Top>
-        <Width>885</Width>
-        <Height>255</Height>
-        <ZOrder>-31</ZOrder>
-        <Align>7</Align>
-        <Font>
-          <Bold>-1</Bold>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field130</Name>
-        <Section>5</Section>
-        <Text>Qty</Text>
-        <Left>8175</Left>
-        <Top>210</Top>
-        <Width>735</Width>
-        <Height>255</Height>
-        <ZOrder>-29</ZOrder>
-        <Align>7</Align>
-        <Font>
-          <Bold>-1</Bold>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field119</Name>
-        <Section>5</Section>
-        <Text>Slg</Text>
-        <Left>8175</Left>
-        <Width>735</Width>
-        <Height>255</Height>
-        <ZOrder>-28</ZOrder>
-        <Align>7</Align>
-        <Font>
-          <Bold>-1</Bold>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field125</Name>
-        <Section>5</Section>
-        <Text>Unit</Text>
-        <Left>7500</Left>
-        <Top>195</Top>
-        <Width>630</Width>
-        <Height>255</Height>
-        <ZOrder>-27</ZOrder>
-        <Align>7</Align>
-        <Font>
-          <Bold>-1</Bold>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field118</Name>
-        <Section>5</Section>
-        <Text>ĐV</Text>
-        <Left>7480</Left>
-        <Width>630</Width>
-        <Height>255</Height>
-        <ZOrder>-26</ZOrder>
-        <Align>7</Align>
-        <Font>
-          <Bold>-1</Bold>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field132</Name>
-        <Section>5</Section>
-        <Text>Item Name</Text>
-        <Left>5145</Left>
-        <Top>210</Top>
-        <Width>2265</Width>
-        <Height>255</Height>
-        <ZOrder>-25</ZOrder>
-        <Align>7</Align>
-        <Font>
-          <Bold>-1</Bold>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field124</Name>
-        <Section>5</Section>
-        <Text>Tên hàng hóa</Text>
-        <Left>5145</Left>
-        <Width>2265</Width>
-        <Height>255</Height>
-        <ZOrder>-24</ZOrder>
-        <Align>7</Align>
-        <Font>
-          <Bold>-1</Bold>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field129</Name>
-        <Section>5</Section>
-        <Text>Item Code</Text>
-        <Left>3315</Left>
-        <Top>210</Top>
-        <Width>1740</Width>
-        <Height>255</Height>
-        <ZOrder>-23</ZOrder>
-        <Align>7</Align>
-        <Font>
-          <Bold>-1</Bold>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field115</Name>
-        <Section>5</Section>
-        <Text>Mã hàng hóa</Text>
-        <Left>3315</Left>
-        <Width>1740</Width>
-        <Height>255</Height>
-        <ZOrder>-22</ZOrder>
-        <Align>7</Align>
-        <Font>
-          <Bold>-1</Bold>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field128</Name>
-        <Section>5</Section>
-        <Text>PO No</Text>
-        <Left>2430</Left>
-        <Top>210</Top>
-        <Width>825</Width>
-        <Height>255</Height>
-        <ZOrder>-21</ZOrder>
-        <Align>7</Align>
-        <Font>
-          <Bold>-1</Bold>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field114</Name>
-        <Section>5</Section>
-        <Text>Đơn hàng</Text>
-        <Left>2430</Left>
-        <Width>840</Width>
-        <Height>255</Height>
-        <ZOrder>-20</ZOrder>
-        <Align>7</Align>
-        <Font>
-          <Bold>-1</Bold>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field127</Name>
-        <Section>5</Section>
-        <Text>Model</Text>
-        <Left>1335</Left>
-        <Top>210</Top>
-        <Width>1035</Width>
-        <Height>255</Height>
-        <ZOrder>-18</ZOrder>
-        <Align>7</Align>
-        <Font>
-          <Bold>-1</Bold>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field113</Name>
-        <Section>5</Section>
-        <Text>Chủng loại</Text>
-        <Left>1335</Left>
-        <Width>1035</Width>
-        <Height>255</Height>
-        <ZOrder>-17</ZOrder>
-        <Align>7</Align>
-        <Font>
-          <Bold>-1</Bold>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field109</Name>
-        <Section>5</Section>
-        <Left>2415</Left>
-        <Height>480</Height>
-        <BorderStyle>1</BorderStyle>
-        <Font>
-          <Bold>-1</Bold>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-        <Shape Type="Line" />
-      </Field>
-      <Field>
-        <Name>Field110</Name>
-        <Section>5</Section>
-        <Left>3300</Left>
-        <Height>480</Height>
-        <BorderStyle>1</BorderStyle>
-        <Font>
-          <Bold>-1</Bold>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-        <Shape Type="Line" />
-      </Field>
-      <Field>
-        <Name>Field116</Name>
-        <Section>5</Section>
-        <Left>5100</Left>
-        <Height>480</Height>
-        <BorderStyle>1</BorderStyle>
-        <Font>
-          <Bold>-1</Bold>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-        <Shape Type="Line" />
-      </Field>
-      <Field>
-        <Name>Field117</Name>
-        <Section>5</Section>
-        <Left>7455</Left>
-        <Height>480</Height>
-        <BorderStyle>1</BorderStyle>
-        <Font>
-          <Bold>-1</Bold>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-        <Shape Type="Line" />
-      </Field>
-      <Field>
-        <Name>Field111</Name>
-        <Section>5</Section>
-        <Left>8115</Left>
-        <Height>480</Height>
-        <BorderStyle>1</BorderStyle>
-        <Font>
-          <Bold>-1</Bold>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-        <Shape Type="Line" />
-      </Field>
-      <Field>
-        <Name>Field112</Name>
-        <Section>5</Section>
-        <Left>8940</Left>
-        <Height>480</Height>
-        <BorderStyle>1</BorderStyle>
-        <Font>
-          <Bold>-1</Bold>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-        <Shape Type="Line" />
-      </Field>
-      <Field>
-        <Name>Field121</Name>
-        <Section>5</Section>
-        <Left>9915</Left>
-        <Height>480</Height>
-        <BorderStyle>1</BorderStyle>
-        <Font>
-          <Bold>-1</Bold>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-        <Shape Type="Line" />
-      </Field>
-      <Field>
-        <Name>Field151</Name>
-        <Section>5</Section>
-        <Left>810</Left>
-        <Top>480</Top>
-        <Width>10500</Width>
-        <BorderStyle>1</BorderStyle>
-        <CanGrow>-1</CanGrow>
-        <Anchor>2</Anchor>
-        <Tag>100</Tag>
-        <Shape Type="Line" />
-      </Field>
-      <Field>
-        <Name>Field108</Name>
-        <Section>5</Section>
-        <Left>1290</Left>
-        <Height>480</Height>
-        <ZOrder>2</ZOrder>
-        <BorderStyle>1</BorderStyle>
-        <Font>
-          <Bold>-1</Bold>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-        <Shape Type="Line" />
-      </Field>
-      <Field>
-        <Name>Field152</Name>
-        <Section>5</Section>
-        <Left>11310</Left>
-        <Height>480</Height>
-        <ZOrder>2</ZOrder>
-        <BorderStyle>1</BorderStyle>
-        <Font>
-          <Bold>-1</Bold>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-        <Shape Type="Line" />
-      </Field>
-      <Field>
-        <Name>Field153</Name>
-        <Section>5</Section>
-        <Left>810</Left>
-        <Height>480</Height>
-        <ZOrder>3</ZOrder>
-        <BorderStyle>1</BorderStyle>
-        <CanGrow>-1</CanGrow>
-        <Anchor>2</Anchor>
-        <Font>
-          <Name>Arial Narrow</Name>
-          <Size>6</Size>
-        </Font>
-        <Tag>100</Tag>
-        <Shape Type="Line" />
-      </Field>
-      <Field>
-        <Name>Field143</Name>
-        <Section>8</Section>
-        <Left>9870</Left>
-        <Top>15</Top>
-        <Width>1440</Width>
-        <Height>1470</Height>
-        <ZOrder>-46</ZOrder>
-        <BorderStyle>1</BorderStyle>
-      </Field>
-      <Field>
-        <Name>fldSumNetAmount2</Name>
-        <Section>8</Section>
-        <Text>SUM(NetAmount)</Text>
-        <Calculated>-1</Calculated>
-        <Format>#,##0</Format>
-        <Left>9855</Left>
-        <Top>30</Top>
-        <Width>1455</Width>
-        <Height>285</Height>
-        <Align>8</Align>
-        <Font>
-          <Name>Arial Narrow</Name>
-          <Size>9.75</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field145</Name>
-        <Section>8</Section>
+        <Section>2</Section>
         <Text>Tiền hàng/ Sub-Total</Text>
         <Left>7830</Left>
         <Top>105</Top>
@@ -3429,39 +2017,22 @@ WHERE SO_InvoiceMaster.InvoiceMasterID = 27495 AND SO_InvoiceDetail.InvoiceQty &
         </Font>
       </Field>
       <Field>
-        <Name>Field146</Name>
-        <Section>8</Section>
-        <Left>9870</Left>
-        <Top>345</Top>
-        <Width>1440</Width>
+        <Name>Field93</Name>
+        <Section>2</Section>
+        <Left>9722</Left>
+        <Top>390</Top>
+        <Width>2082</Width>
         <BorderStyle>1</BorderStyle>
         <Shape Type="Line" />
       </Field>
       <Field>
-        <Name>fldVAT1</Name>
-        <Section>8</Section>
-        <Text>VATPercent</Text>
-        <Calculated>-1</Calculated>
-        <Format>#,##0</Format>
-        <Left>9885</Left>
-        <Top>390</Top>
-        <Width>1200</Width>
-        <Height>270</Height>
-        <Align>8</Align>
-        <Font>
-          <Name>Arial Narrow</Name>
-          <Size>9.75</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field147</Name>
-        <Section>8</Section>
+        <Name>Field94</Name>
+        <Section>2</Section>
         <Text>%</Text>
-        <Left>11085</Left>
+        <Left>11595</Left>
         <Top>390</Top>
         <Width>210</Width>
-        <Height>270</Height>
+        <Height>375</Height>
         <Align>6</Align>
         <Font>
           <Name>Arial</Name>
@@ -3470,8 +2041,8 @@ WHERE SO_InvoiceMaster.InvoiceMasterID = 27495 AND SO_InvoiceDetail.InvoiceQty &
         <Tag>100</Tag>
       </Field>
       <Field>
-        <Name>Field148</Name>
-        <Section>8</Section>
+        <Name>Field97</Name>
+        <Section>2</Section>
         <Text>Thuế suất/ VAT rate</Text>
         <Left>7845</Left>
         <Top>450</Top>
@@ -3484,25 +2055,18 @@ WHERE SO_InvoiceMaster.InvoiceMasterID = 27495 AND SO_InvoiceDetail.InvoiceQty &
         </Font>
       </Field>
       <Field>
-        <Name>Field155</Name>
-        <Section>8</Section>
-        <Left>9870</Left>
-        <Top>690</Top>
-        <Width>1440</Width>
-        <BorderStyle>1</BorderStyle>
-        <Shape Type="Line" />
-      </Field>
-      <Field>
         <Name>fldVATAmount2</Name>
-        <Section>8</Section>
+        <Section>2</Section>
         <Text>SUM(NetAmount)*VATPercent/100</Text>
         <Calculated>-1</Calculated>
         <Format>#,##0</Format>
-        <Left>9825</Left>
-        <Top>735</Top>
-        <Width>1455</Width>
-        <Height>285</Height>
+        <Left>9722</Left>
+        <Top>765</Top>
+        <Width>2082</Width>
+        <Height>375</Height>
+        <ZOrder>-66</ZOrder>
         <Align>8</Align>
+        <MarginRight>50</MarginRight>
         <Font>
           <Name>Arial Narrow</Name>
           <Size>9.75</Size>
@@ -3510,8 +2074,8 @@ WHERE SO_InvoiceMaster.InvoiceMasterID = 27495 AND SO_InvoiceDetail.InvoiceQty &
         <Tag>100</Tag>
       </Field>
       <Field>
-        <Name>Field156</Name>
-        <Section>8</Section>
+        <Name>Field100</Name>
+        <Section>2</Section>
         <Text>Tiền thuế/ VAT Amount</Text>
         <Left>7845</Left>
         <Top>765</Top>
@@ -3524,26 +2088,27 @@ WHERE SO_InvoiceMaster.InvoiceMasterID = 27495 AND SO_InvoiceDetail.InvoiceQty &
         </Font>
       </Field>
       <Field>
-        <Name>Field157</Name>
-        <Section>8</Section>
-        <Left>9870</Left>
-        <Top>1095</Top>
-        <Width>1440</Width>
+        <Name>Field99</Name>
+        <Section>2</Section>
+        <Left>9722</Left>
+        <Top>765</Top>
+        <Width>2082</Width>
         <BorderStyle>1</BorderStyle>
         <Shape Type="Line" />
       </Field>
       <Field>
         <Name>fldSumTotalNetAmount1</Name>
-        <Section>8</Section>
+        <Section>2</Section>
         <Text>SUM(NetAmount) + SUM(NetAmount)*VATPercent/100</Text>
         <Calculated>-1</Calculated>
         <Format>#,##0</Format>
-        <Left>9840</Left>
-        <Top>1110</Top>
-        <Width>1455</Width>
-        <Height>270</Height>
-        <ZOrder>-47</ZOrder>
+        <Left>9722</Left>
+        <Top>1140</Top>
+        <Width>2082</Width>
+        <Height>375</Height>
+        <ZOrder>-54</ZOrder>
         <Align>8</Align>
+        <MarginRight>50</MarginRight>
         <Font>
           <Name>Arial Narrow</Name>
           <Size>9.75</Size>
@@ -3551,8 +2116,8 @@ WHERE SO_InvoiceMaster.InvoiceMasterID = 27495 AND SO_InvoiceDetail.InvoiceQty &
         <Tag>100</Tag>
       </Field>
       <Field>
-        <Name>Field158</Name>
-        <Section>8</Section>
+        <Name>Field104</Name>
+        <Section>2</Section>
         <Text>Tổng cộng/ Grand-Total</Text>
         <Left>7845</Left>
         <Top>1110</Top>
@@ -3565,13 +2130,36 @@ WHERE SO_InvoiceMaster.InvoiceMasterID = 27495 AND SO_InvoiceDetail.InvoiceQty &
         </Font>
       </Field>
       <Field>
+        <Name>Field105</Name>
+        <Section>2</Section>
+        <Left>9722</Left>
+        <Top>1140</Top>
+        <Width>2082</Width>
+        <BorderStyle>1</BorderStyle>
+        <Shape Type="Line" />
+      </Field>
+      <Field>
+        <Name>Field107</Name>
+        <Section>2</Section>
+        <Text>Bằng chữ / in words:</Text>
+        <Left>4080</Left>
+        <Top>1545</Top>
+        <Width>1830</Width>
+        <Height>270</Height>
+        <Align>6</Align>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
         <Name>fldAmountInWord1</Name>
-        <Section>8</Section>
+        <Section>2</Section>
         <Left>6105</Left>
         <Top>1545</Top>
-        <Width>5250</Width>
-        <Height>990</Height>
-        <Align>2</Align>
+        <Width>5700</Width>
+        <Height>1005</Height>
+        <Align>1</Align>
         <MarginTop>15</MarginTop>
         <Font>
           <Italic>-1</Italic>
@@ -3581,45 +2169,162 @@ WHERE SO_InvoiceMaster.InvoiceMasterID = 27495 AND SO_InvoiceDetail.InvoiceQty &
         <Tag>100</Tag>
       </Field>
       <Field>
-        <Name>Field82</Name>
-        <Section>10</Section>
-        <Left>810</Left>
-        <Width>10500</Width>
-        <Height>400</Height>
-        <ZOrder>-49</ZOrder>
+        <Name>Field130</Name>
+        <Section>2</Section>
+        <Left>1305</Left>
+        <Top>2715</Top>
+        <Width>8760</Width>
+        <Height>2445</Height>
+        <ZOrder>-56</ZOrder>
         <BorderStyle>1</BorderStyle>
-        <Font>
-          <Name>Arial Narrow</Name>
-          <Size>9</Size>
-        </Font>
-        <Tag>100</Tag>
       </Field>
       <Field>
-        <Name>fldSumNetAmount</Name>
-        <Section>10</Section>
-        <Text>SUM(Round(NETAmount))</Text>
-        <Calculated>-1</Calculated>
-        <Format>#,##0</Format>
-        <Left>9945</Left>
-        <Width>1320</Width>
-        <Height>400</Height>
-        <ZOrder>-48</ZOrder>
-        <Align>8</Align>
+        <Name>Field131</Name>
+        <Section>2</Section>
+        <Text>Người lập phiếu
+Prepared by</Text>
+        <Left>1305</Left>
+        <Top>2715</Top>
+        <Width>2910</Width>
+        <Height>480</Height>
+        <Align>7</Align>
         <Font>
           <Name>Arial</Name>
-          <Size>9.5</Size>
+          <Size>8.25</Size>
         </Font>
         <Tag>100</Tag>
       </Field>
       <Field>
-        <Name>Field167</Name>
-        <Section>10</Section>
-        <Text>"Total (" + ITM_ProductRevision + ")"</Text>
-        <Calculated>-1</Calculated>
-        <Left>855</Left>
-        <Width>7215</Width>
-        <Height>400</Height>
-        <Align>6</Align>
+        <Name>Field132</Name>
+        <Section>2</Section>
+        <Text>Ký duyệt
+Approved by</Text>
+        <Left>4320</Left>
+        <Top>2715</Top>
+        <Width>2910</Width>
+        <Height>480</Height>
+        <Align>7</Align>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Tag>100</Tag>
+      </Field>
+      <Field>
+        <Name>Field133</Name>
+        <Section>2</Section>
+        <Text>Người nhận hàng
+Received by</Text>
+        <Left>7200</Left>
+        <Top>2715</Top>
+        <Width>2910</Width>
+        <Height>480</Height>
+        <Align>7</Align>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Tag>100</Tag>
+      </Field>
+      <Field>
+        <Name>Field134</Name>
+        <Section>2</Section>
+        <Left>4170</Left>
+        <Top>2715</Top>
+        <Width>45</Width>
+        <Height>2445</Height>
+        <BorderStyle>1</BorderStyle>
+        <CanGrow>-1</CanGrow>
+        <Anchor>2</Anchor>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Shape Type="Line" />
+      </Field>
+      <Field>
+        <Name>Field135</Name>
+        <Section>2</Section>
+        <Left>7170</Left>
+        <Top>2715</Top>
+        <Width>60</Width>
+        <Height>2445</Height>
+        <BorderStyle>1</BorderStyle>
+        <CanGrow>-1</CanGrow>
+        <Anchor>2</Anchor>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Shape Type="Line" />
+      </Field>
+      <Field>
+        <Name>Field136</Name>
+        <Section>2</Section>
+        <Left>1305</Left>
+        <Top>3180</Top>
+        <Width>8760</Width>
+        <Height>15</Height>
+        <BorderStyle>1</BorderStyle>
+        <CanGrow>-1</CanGrow>
+        <CanShrink>-1</CanShrink>
+        <Anchor>2</Anchor>
+        <Tag>100</Tag>
+        <Shape Type="Line" />
+      </Field>
+      <Field>
+        <Name>Field137</Name>
+        <Section>2</Section>
+        <Text>Nguyễn Thị Tâm</Text>
+        <Left>1305</Left>
+        <Top>4650</Top>
+        <Width>2940</Width>
+        <Height>510</Height>
+        <Align>7</Align>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Tag>100</Tag>
+      </Field>
+      <Field>
+        <Name>Field138</Name>
+        <Section>2</Section>
+        <Left>1305</Left>
+        <Top>4650</Top>
+        <Width>8775</Width>
+        <Height>30</Height>
+        <BorderStyle>3</BorderStyle>
+        <CanGrow>-1</CanGrow>
+        <CanShrink>-1</CanShrink>
+        <Anchor>2</Anchor>
+        <Tag>100</Tag>
+        <Shape Type="Line" />
+      </Field>
+      <Field>
+        <Name>Field142</Name>
+        <Section>2</Section>
+        <Text>Bán hàng qua ĐT, Fax</Text>
+        <Left>7170</Left>
+        <Top>4665</Top>
+        <Width>2925</Width>
+        <Height>495</Height>
+        <Align>7</Align>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Tag>100</Tag>
+      </Field>
+      <Field>
+        <Name>fldCompany2</Name>
+        <Section>3</Section>
+        <Text>CÔNG TY TNHH PHỤ TÙNG XE MÁY-Ô TÔ SHOWA VIỆT NAM</Text>
+        <Left>1665</Left>
+        <Top>60</Top>
+        <Width>8730</Width>
+        <Height>270</Height>
+        <Align>7</Align>
         <Font>
           <Bold>-1</Bold>
           <Name>Arial</Name>
@@ -3628,181 +2333,374 @@ WHERE SO_InvoiceMaster.InvoiceMasterID = 27495 AND SO_InvoiceDetail.InvoiceQty &
         <Tag>100</Tag>
       </Field>
       <Field>
-        <Name>Field154</Name>
-        <Section>10</Section>
-        <Left>9915</Left>
-        <Height>400</Height>
+        <Name>fldCompany1</Name>
+        <Section>3</Section>
+        <Text>SHOWA AUTO PARTS VIET NAM CO., LTD.</Text>
+        <Left>1665</Left>
+        <Top>345</Top>
+        <Width>8730</Width>
+        <Height>270</Height>
+        <Align>7</Align>
+        <Font>
+          <Bold>-1</Bold>
+          <Name>Arial</Name>
+          <Size>9</Size>
+        </Font>
+        <Tag>100</Tag>
+      </Field>
+      <Field>
+        <Name>fldAddress1</Name>
+        <Section>3</Section>
+        <Text>Địa chỉ (Address): Lô M6 - Khu công nghiệp Thăng Long, Huyện Đông Anh, Thành phố Hà Nội
+Điện thoại (Tel): 84-4-3835500	Fax No: 84-4-38834765
+Mã số thuế (Tax Code): 0100142907</Text>
+        <Left>1665</Left>
+        <Top>630</Top>
+        <Width>8805</Width>
+        <Height>705</Height>
+        <Align>7</Align>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Tag>100</Tag>
+      </Field>
+      <Field>
+        <Name>Field81</Name>
+        <Section>3</Section>
+        <Left>270</Left>
+        <Top>1365</Top>
+        <Width>11565</Width>
+        <Height>15</Height>
         <BorderStyle>1</BorderStyle>
         <Tag>100</Tag>
         <Shape Type="Line" />
       </Field>
       <Field>
-        <Name>fldNetAmount1</Name>
-        <Section>11</Section>
-        <Text>Sum(NetAmount)</Text>
-        <Calculated>-1</Calculated>
-        <Format>#,##0</Format>
-        <Left>9960</Left>
-        <Width>1275</Width>
-        <Height>500</Height>
-        <ZOrder>-42</ZOrder>
-        <Align>8</Align>
-        <CanGrow>-1</CanGrow>
-        <CanShrink>-1</CanShrink>
-        <Anchor>2</Anchor>
+        <Name>Field85</Name>
+        <Section>3</Section>
+        <Text>BẢNG KÊ CHI TIẾT BÁN HÀNG</Text>
+        <Left>1665</Left>
+        <Top>1395</Top>
+        <Width>8820</Width>
+        <Height>405</Height>
+        <Align>7</Align>
         <Font>
+          <Bold>-1</Bold>
           <Name>Arial</Name>
-          <Size>8</Size>
+          <Size>9</Size>
         </Font>
         <Tag>100</Tag>
       </Field>
       <Field>
-        <Name>fldUnitPrice1</Name>
-        <Section>11</Section>
-        <Text>AVGPrice</Text>
-        <Calculated>-1</Calculated>
-        <Format>#,##0</Format>
-        <Left>9000</Left>
-        <Width>885</Width>
-        <Height>500</Height>
-        <ZOrder>-41</ZOrder>
-        <Align>8</Align>
-        <CanGrow>-1</CanGrow>
-        <CanShrink>-1</CanShrink>
-        <Anchor>2</Anchor>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>fldDeliveryQuantity1</Name>
-        <Section>11</Section>
-        <Text>Sum(DeliveryQuantity)</Text>
-        <Calculated>-1</Calculated>
-        <Format>#,##0.00</Format>
-        <Left>8175</Left>
-        <Width>735</Width>
-        <Height>500</Height>
-        <ZOrder>-40</ZOrder>
-        <Align>8</Align>
-        <CanGrow>-1</CanGrow>
-        <CanShrink>-1</CanShrink>
-        <Anchor>2</Anchor>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8</Size>
-        </Font>
-        <Tag>FORMAT_QUANTITY</Tag>
-      </Field>
-      <Field>
-        <Name>fldMST_UnitOfMeasureCode1</Name>
-        <Section>11</Section>
-        <Text>MST_UnitOfMeasureCode</Text>
-        <Calculated>-1</Calculated>
-        <Left>7500</Left>
-        <Width>630</Width>
-        <Height>500</Height>
-        <ZOrder>-39</ZOrder>
+        <Name>Field88</Name>
+        <Section>3</Section>
+        <Text>Đính kèm theo hóa đơn số</Text>
+        <Left>240</Left>
+        <Top>1755</Top>
+        <Width>1995</Width>
+        <Height>285</Height>
         <Align>6</Align>
-        <CanGrow>-1</CanGrow>
-        <CanShrink>-1</CanShrink>
-        <Anchor>2</Anchor>
         <Font>
+          <Italic>-1</Italic>
           <Name>Arial</Name>
-          <Size>8</Size>
+          <Size>8.25</Size>
         </Font>
         <Tag>100</Tag>
       </Field>
       <Field>
-        <Name>fldITM_ProductDescription1</Name>
-        <Section>11</Section>
-        <Text>ITM_ProductDescriptionVN</Text>
+        <Name>fldConfirmShipNo1</Name>
+        <Section>3</Section>
+        <Text>InvoiceNo</Text>
         <Calculated>-1</Calculated>
-        <Left>5145</Left>
-        <Width>2265</Width>
-        <Height>500</Height>
-        <ZOrder>-38</ZOrder>
+        <Left>2265</Left>
+        <Top>1755</Top>
+        <Width>800</Width>
+        <Height>285</Height>
         <Align>6</Align>
-        <CanGrow>-1</CanGrow>
-        <CanShrink>-1</CanShrink>
-        <Anchor>2</Anchor>
         <Font>
+          <Italic>-1</Italic>
           <Name>Arial</Name>
-          <Size>8</Size>
+          <Size>8.25</Size>
         </Font>
         <Tag>100</Tag>
       </Field>
       <Field>
-        <Name>fldITM_ProductCode1</Name>
-        <Section>11</Section>
-        <Text>ITM_ProductCode</Text>
+        <Name>Field89</Name>
+        <Section>3</Section>
+        <Text>ngày</Text>
+        <Left>3060</Left>
+        <Top>1755</Top>
+        <Width>420</Width>
+        <Height>285</Height>
+        <Align>6</Align>
+        <Font>
+          <Italic>-1</Italic>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Tag>100</Tag>
+      </Field>
+      <Field>
+        <Name>fldShippedDate_Day</Name>
+        <Section>3</Section>
+        <Text>ShippedDate</Text>
         <Calculated>-1</Calculated>
-        <Left>3315</Left>
-        <Width>1740</Width>
-        <Height>500</Height>
-        <ZOrder>-37</ZOrder>
+        <Format>dd</Format>
+        <Left>3455</Left>
+        <Top>1755</Top>
+        <Width>300</Width>
+        <Height>285</Height>
         <Align>6</Align>
-        <CanGrow>-1</CanGrow>
-        <CanShrink>-1</CanShrink>
-        <Anchor>2</Anchor>
         <Font>
+          <Italic>-1</Italic>
           <Name>Arial</Name>
-          <Size>8</Size>
+          <Size>8.25</Size>
         </Font>
         <Tag>100</Tag>
       </Field>
       <Field>
-        <Name>fldCustomerPurchaseOrderNo2</Name>
-        <Section>11</Section>
+        <Name>Field90</Name>
+        <Section>3</Section>
+        <Text>tháng</Text>
+        <Left>3690</Left>
+        <Top>1755</Top>
+        <Width>450</Width>
+        <Height>285</Height>
+        <Align>6</Align>
+        <Font>
+          <Italic>-1</Italic>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Tag>100</Tag>
+      </Field>
+      <Field>
+        <Name>fldShippedDate_Month</Name>
+        <Section>3</Section>
+        <Text>ShippedDate</Text>
+        <Calculated>-1</Calculated>
+        <Format>MM</Format>
+        <Left>4150</Left>
+        <Top>1755</Top>
+        <Width>250</Width>
+        <Height>285</Height>
+        <Align>7</Align>
+        <Font>
+          <Italic>-1</Italic>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Tag>100</Tag>
+      </Field>
+      <Field>
+        <Name>Field91</Name>
+        <Section>3</Section>
+        <Text>năm</Text>
+        <Left>4425</Left>
+        <Top>1755</Top>
+        <Width>450</Width>
+        <Height>285</Height>
+        <Align>6</Align>
+        <Font>
+          <Italic>-1</Italic>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Tag>100</Tag>
+      </Field>
+      <Field>
+        <Name>fldShippedDate_Year</Name>
+        <Section>3</Section>
+        <Text>ShippedDate</Text>
+        <Calculated>-1</Calculated>
+        <Format>yyyy</Format>
+        <Left>4800</Left>
+        <Top>1755</Top>
+        <Width>705</Width>
+        <Height>300</Height>
+        <Align>6</Align>
+        <Font>
+          <Italic>-1</Italic>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Tag>100</Tag>
+      </Field>
+      <Field>
+        <Name>Field15</Name>
+        <Section>3</Section>
+        <Text>Mẫu số: 01GTKT3/002, Ký hiệu: AA/11p</Text>
+        <Left>5550</Left>
+        <Top>1755</Top>
+        <Width>3090</Width>
+        <Height>330</Height>
+        <Align>6</Align>
+        <Font>
+          <Italic>-1</Italic>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Tag>100</Tag>
+      </Field>
+      <Field>
+        <Name>fldSaleType3</Name>
+        <Section>3</Section>
+        <Text>ShipToLocation</Text>
+        <Calculated>-1</Calculated>
+        <Left>8790</Left>
+        <Top>1770</Top>
+        <Width>2880</Width>
+        <Height>345</Height>
+        <Align>7</Align>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Tag>100</Tag>
+      </Field>
+      <Field>
+        <Name>Field98</Name>
+        <Section>3</Section>
+        <Left>8790</Left>
+        <Top>2160</Top>
+        <Width>2925</Width>
+        <Height>1980</Height>
+        <ZOrder>-69</ZOrder>
+        <BorderStyle>1</BorderStyle>
+        <Tag>100</Tag>
+      </Field>
+      <Field>
+        <Name>Field78</Name>
+        <Section>3</Section>
+        <Left>270</Left>
+        <Top>2160</Top>
+        <Width>7125</Width>
+        <Height>1770</Height>
+        <ZOrder>-55</ZOrder>
+        <Picture encoding="base64">iVBORw0KGgoAAAANSUhEUgAAAioAAABiCAYAAAB+pPibAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAADSElEQVR4Xu3d7W0aQRQFUFqgBkpwCfRAAS7CTbgASqAEyqAESqADNn5kUTLJmPgDdq+ic6UjC2l2+fs0dxgvRERERP6rLJfL4e3PxdPTEwBA13VeGD0uNZysVqvh5eVlOB6Pw/l8BgD4kNPpNGy329+Hl/ulXmo4AQDuoYaW9Xo9jA3N11Mv2O/33S8BAPiO2gSptmYcOz6XerAmnt6LAQDu4bq7Mo4fH0tVPb2XAQA8wmaz+diwUnVP7wUAAI/0zxqohpTD4dB9GADg0d7GkfeHldp26T0EADCFugZlHEv+isOzAMDsuj9btpsCACTo7qrsdrvuYgCAKdV52T93VboLAQDmULPJzxHlLX6SDAAkaS6Bc8EbAJCkuQDOQVoAIElzoLY+9BYBAMzh9fXVoAIAZGp2VGpq6S0CAJiD6gcAiKX6AQBi2VEBAGI1g4ozKgBAEtUPABBL9QMAxFL9AACxVD8AQCzVDwAQS/UDAMRS/QAAsVQ/AEAs1Q8AEEv1AwDEUv0AALFUPwBALNUPABBL9QMAxFL9AACxVD8AQCzVDwAQS/UDAMRS/QAAsVQ/AEAs1Q8AEEv1AwDEUv0AALFUPwBALNUPABBL9QMAxFL9AACxVD8AQCzVDwAQS/UDAMRS/QAAsVQ/AEAs1Q8AEEv1AwDEUv0AALFUPwBALNUPABBL9QMAxFL9AACxVD8AQCzVDwAQS/UDAMRS/QAAsVQ/AEAs1Q8AEEv1AwDEUv0AALFUPwBALNUPABBL9QMAxFL9AACxVD8AQCzVDwAQS/UDAMRS/QAAsVQ/AEAs1Q8AEKupfjabTXcRAMAcmh2V9XrdXQQAMIfn5+dfg8pqteouAgCYQ7U945hySXcRAMAcahNlnFEWi+VyORwOh+5CAIApHY/HGlKaHZVFdUG9xQAAU9put+2QUnFOBQBIUE3POJ60cZ8KADCn/X7fH1IqNcH0HgIAmMK7uynXuFMFAJhDc8nbraiAAIApdQ/Q3ophBQCYwm63+9yQco0aCAB4pOaq/C/msh3TezkAwFfULkpz++x3U6dwa2Cp2+J6XwgAcMvpdLrMEncdUDq5/HSo/llQnc4FALilZoZxOHnogCIiIiIyYRaLHxDZsdTV4fK6AAAAAElFTkSuQmCC</Picture>
+        <PictureScale>1</PictureScale>
+        <Tag>100</Tag>
+      </Field>
+      <Field>
+        <Name>Field101</Name>
+        <Section>3</Section>
+        <Text>Ngày:</Text>
+        <Left>8790</Left>
+        <Top>2190</Top>
+        <Width>1440</Width>
+        <Height>270</Height>
+        <Align>8</Align>
+        <MarginRight>100</MarginRight>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Tag>100</Tag>
+      </Field>
+      <Field>
+        <Name>fldShippedDate1</Name>
+        <Section>3</Section>
+        <Text>ShippedDate</Text>
+        <Calculated>-1</Calculated>
+        <Format>dd-MM-yyyy</Format>
+        <Left>10230</Left>
+        <Top>2190</Top>
+        <Width>1440</Width>
+        <Height>270</Height>
+        <Align>6</Align>
+        <MarginLeft>20</MarginLeft>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Tag>100</Tag>
+      </Field>
+      <Field>
+        <Name>Field79</Name>
+        <Section>3</Section>
+        <Text>Khách hàng:</Text>
+        <Left>645</Left>
+        <Top>2280</Top>
+        <Width>945</Width>
+        <Height>270</Height>
+        <Align>6</Align>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Tag>100</Tag>
+      </Field>
+      <Field>
+        <Name>fldMST_PartyName2</Name>
+        <Section>3</Section>
+        <Text>MST_PartyName</Text>
+        <Calculated>-1</Calculated>
+        <Left>1740</Left>
+        <Top>2280</Top>
+        <Width>5295</Width>
+        <Height>270</Height>
+        <Align>6</Align>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Tag>100</Tag>
+      </Field>
+      <Field>
+        <Name>Field96</Name>
+        <Section>3</Section>
+        <Text>Số (No):</Text>
+        <Left>8790</Left>
+        <Top>2430</Top>
+        <Width>1455</Width>
+        <Height>420</Height>
+        <Align>7</Align>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Tag>100</Tag>
+      </Field>
+      <Field>
+        <Name>Field103</Name>
+        <Section>3</Section>
+        <Left>8790</Left>
+        <Top>2430</Top>
+        <Width>2910</Width>
+        <Height>30</Height>
+        <BorderStyle>1</BorderStyle>
+        <Tag>100</Tag>
+        <Shape Type="Line" />
+      </Field>
+      <Field>
+        <Name>Field95</Name>
+        <Section>3</Section>
+        <Text>Ghi chú: Bảng kê được phát hành 2 liên như nhau, 1 liên SAV giữ, 1 liên khách hàng giữ (Note: there are 02 same copies, SAV keeps one, Customer keeps one)</Text>
+        <Left>8790</Left>
+        <Top>2805</Top>
+        <Width>2895</Width>
+        <Height>1290</Height>
+        <ZOrder>-68</ZOrder>
+        <Align>7</Align>
+        <MarginLeft>100</MarginLeft>
+        <MarginRight>100</MarginRight>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Tag>100</Tag>
+      </Field>
+      <Field>
+        <Name>fldCustomerPurchaseOrderNo3</Name>
+        <Section>3</Section>
         <Text>CustomerPurchaseOrderNo</Text>
         <Calculated>-1</Calculated>
-        <Left>2430</Left>
-        <Width>825</Width>
-        <Height>500</Height>
-        <ZOrder>-36</ZOrder>
-        <Align>6</Align>
-        <CanGrow>-1</CanGrow>
-        <CanShrink>-1</CanShrink>
-        <Anchor>2</Anchor>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>fldITM_ProductRevision1</Name>
-        <Section>11</Section>
-        <Text>ITM_ProductRevision</Text>
-        <Calculated>-1</Calculated>
-        <Left>1320</Left>
-        <Width>1050</Width>
-        <Height>500</Height>
-        <ZOrder>-35</ZOrder>
-        <Align>6</Align>
-        <CanGrow>-1</CanGrow>
-        <CanShrink>-1</CanShrink>
-        <Anchor>2</Anchor>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field210</Name>
-        <Section>11</Section>
-        <Text>1</Text>
-        <Calculated>-1</Calculated>
-        <Left>810</Left>
-        <Width>390</Width>
-        <Height>500</Height>
-        <ZOrder>-19</ZOrder>
+        <Left>10230</Left>
+        <Top>2430</Top>
+        <Width>1440</Width>
+        <Height>420</Height>
         <Align>7</Align>
-        <BorderColor>Transparent</BorderColor>
-        <RunningSum>2</RunningSum>
         <Font>
           <Name>Arial</Name>
           <Size>8.25</Size>
@@ -3810,171 +2708,68 @@ WHERE SO_InvoiceMaster.InvoiceMasterID = 27495 AND SO_InvoiceDetail.InvoiceQty &
         <Tag>100</Tag>
       </Field>
       <Field>
-        <Name>Field213</Name>
-        <Section>11</Section>
-        <Left>2415</Left>
-        <Height>500</Height>
-        <BorderStyle>1</BorderStyle>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-        <Shape Type="Line" />
-      </Field>
-      <Field>
-        <Name>Field214</Name>
-        <Section>11</Section>
-        <Left>3300</Left>
-        <Height>500</Height>
-        <BorderStyle>1</BorderStyle>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-        <Shape Type="Line" />
-      </Field>
-      <Field>
-        <Name>Field219</Name>
-        <Section>11</Section>
-        <Left>5100</Left>
-        <Height>500</Height>
-        <BorderStyle>1</BorderStyle>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-        <Shape Type="Line" />
-      </Field>
-      <Field>
-        <Name>Field220</Name>
-        <Section>11</Section>
-        <Left>7455</Left>
-        <Height>500</Height>
-        <BorderStyle>1</BorderStyle>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-        <Shape Type="Line" />
-      </Field>
-      <Field>
-        <Name>Field221</Name>
-        <Section>11</Section>
-        <Left>8115</Left>
-        <Height>500</Height>
-        <BorderStyle>1</BorderStyle>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-        <Shape Type="Line" />
-      </Field>
-      <Field>
-        <Name>Field222</Name>
-        <Section>11</Section>
-        <Left>8940</Left>
-        <Height>500</Height>
-        <BorderStyle>1</BorderStyle>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-        <Shape Type="Line" />
-      </Field>
-      <Field>
-        <Name>Field223</Name>
-        <Section>11</Section>
-        <Left>9915</Left>
-        <Height>500</Height>
-        <BorderStyle>1</BorderStyle>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-        <Shape Type="Line" />
-      </Field>
-      <Field>
-        <Name>Field228</Name>
-        <Section>11</Section>
-        <Left>810</Left>
-        <Height>500</Height>
-        <BorderStyle>1</BorderStyle>
-        <CanGrow>-1</CanGrow>
-        <Anchor>2</Anchor>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Shape Type="Line" />
-      </Field>
-      <Field>
-        <Name>Field226</Name>
-        <Section>11</Section>
-        <Left>810</Left>
-        <Top>500</Top>
-        <Width>10500</Width>
-        <BorderStyle>2</BorderStyle>
-        <BorderColor>12632256</BorderColor>
-        <CanGrow>-1</CanGrow>
-        <Anchor>2</Anchor>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Shape Type="Line" />
-      </Field>
-      <Field>
-        <Name>Field224</Name>
-        <Section>11</Section>
-        <Left>1290</Left>
-        <Height>500</Height>
-        <ZOrder>2</ZOrder>
-        <BorderStyle>1</BorderStyle>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-        <Shape Type="Line" />
-      </Field>
-      <Field>
-        <Name>Field227</Name>
-        <Section>11</Section>
-        <Left>11310</Left>
-        <Height>500</Height>
-        <ZOrder>2</ZOrder>
-        <BorderStyle>1</BorderStyle>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-        <Shape Type="Line" />
-      </Field>
-      <Field>
-        <Name>Field134</Name>
+        <Name>Field106</Name>
         <Section>3</Section>
-        <Left>2190</Left>
-        <Top>4590</Top>
-        <Width>5055</Width>
-        <ZOrder>-2</ZOrder>
-        <BorderStyle>3</BorderStyle>
+        <Left>10245</Left>
+        <Top>2430</Top>
+        <Width>1</Width>
+        <Height>420</Height>
+        <BorderStyle>1</BorderStyle>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
         <Tag>100</Tag>
         <Shape Type="Line" />
       </Field>
       <Field>
-        <Name>Field142</Name>
+        <Name>Field83</Name>
         <Section>3</Section>
-        <Text>Ngân hàng</Text>
-        <Left>1140</Left>
-        <Top>4815</Top>
+        <Text>Địa chỉ:</Text>
+        <Left>645</Left>
+        <Top>2595</Top>
+        <Width>630</Width>
+        <Height>270</Height>
+        <Align>6</Align>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Tag>100</Tag>
+      </Field>
+      <Field>
+        <Name>fldMST_PartyAddress2</Name>
+        <Section>3</Section>
+        <Text>MST_PartyAddress</Text>
+        <Calculated>-1</Calculated>
+        <Left>1740</Left>
+        <Top>2595</Top>
+        <Width>5295</Width>
+        <Height>270</Height>
+        <Align>6</Align>
+        <CanGrow>-1</CanGrow>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Tag>100</Tag>
+      </Field>
+      <Field>
+        <Name>Field102</Name>
+        <Section>3</Section>
+        <Left>8790</Left>
+        <Top>2850</Top>
+        <Width>2910</Width>
+        <BorderStyle>1</BorderStyle>
+        <Tag>100</Tag>
+        <Shape Type="Line" />
+      </Field>
+      <Field>
+        <Name>Field84</Name>
+        <Section>3</Section>
+        <Text>Mã số thuế:</Text>
+        <Left>645</Left>
+        <Top>2910</Top>
         <Width>900</Width>
         <Height>270</Height>
         <Align>6</Align>
@@ -3985,22 +2780,28 @@ WHERE SO_InvoiceMaster.InvoiceMasterID = 27495 AND SO_InvoiceDetail.InvoiceQty &
         <Tag>100</Tag>
       </Field>
       <Field>
-        <Name>Field159</Name>
+        <Name>fldMST_PartyTaxCode</Name>
         <Section>3</Section>
-        <Left>2055</Left>
-        <Top>5100</Top>
-        <Width>5190</Width>
-        <ZOrder>-2</ZOrder>
-        <BorderStyle>3</BorderStyle>
+        <Text>MST_PartyTaxCode</Text>
+        <Calculated>-1</Calculated>
+        <Left>1740</Left>
+        <Top>2910</Top>
+        <Width>5295</Width>
+        <Height>270</Height>
+        <Align>6</Align>
+        <CanGrow>-1</CanGrow>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
         <Tag>100</Tag>
-        <Shape Type="Line" />
       </Field>
       <Field>
-        <Name>Field160</Name>
+        <Name>Field86</Name>
         <Section>3</Section>
-        <Text>(Bank name)</Text>
-        <Left>1125</Left>
-        <Top>5040</Top>
+        <Text>Số tài khoản</Text>
+        <Left>615</Left>
+        <Top>3210</Top>
         <Width>1035</Width>
         <Height>270</Height>
         <Align>6</Align>
@@ -4011,13 +2812,13 @@ WHERE SO_InvoiceMaster.InvoiceMasterID = 27495 AND SO_InvoiceDetail.InvoiceQty &
         <Tag>100</Tag>
       </Field>
       <Field>
-        <Name>fldMST_PartyTaxCode3</Name>
+        <Name>fldMST_PartyTaxCode5</Name>
         <Section>3</Section>
-        <Text>MST_PartyBankName</Text>
+        <Text>MST_PartyBankAccount</Text>
         <Calculated>-1</Calculated>
-        <Left>2070</Left>
-        <Top>4815</Top>
-        <Width>5430</Width>
+        <Left>1740</Left>
+        <Top>3210</Top>
+        <Width>5295</Width>
         <Height>270</Height>
         <Align>6</Align>
         <Font>
@@ -4027,21 +2828,381 @@ WHERE SO_InvoiceMaster.InvoiceMasterID = 27495 AND SO_InvoiceDetail.InvoiceQty &
         <Tag>100</Tag>
       </Field>
       <Field>
-        <Name>fldSumNetAmount3</Name>
-        <Section>1</Section>
-        <Text>SUM(NetAmount)</Text>
-        <Calculated>-1</Calculated>
-        <Format>#,##0</Format>
-        <Left>8880</Left>
-        <Top>6135</Top>
-        <Width>1470</Width>
-        <Height>300</Height>
-        <Align>8</Align>
+        <Name>Field87</Name>
+        <Section>3</Section>
+        <Text>Ngân hàng</Text>
+        <Left>615</Left>
+        <Top>3525</Top>
+        <Width>900</Width>
+        <Height>270</Height>
+        <Align>6</Align>
         <Font>
-          <Name>Arial Narrow</Name>
-          <Size>9.75</Size>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
         </Font>
         <Tag>100</Tag>
+      </Field>
+      <Field>
+        <Name>fldMST_PartyTaxCode6</Name>
+        <Section>3</Section>
+        <Text>MST_PartyBankName</Text>
+        <Calculated>-1</Calculated>
+        <Left>1740</Left>
+        <Top>3525</Top>
+        <Width>5295</Width>
+        <Height>270</Height>
+        <Align>6</Align>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Tag>100</Tag>
+      </Field>
+      <Field>
+        <Name>Field108</Name>
+        <Section>3</Section>
+        <Text>Tên hàng hóa
+Name of Goods</Text>
+        <Left>4522</Left>
+        <Top>4200</Top>
+        <Width>2800</Width>
+        <Height>645</Height>
+        <ZOrder>-64</ZOrder>
+        <Align>7</Align>
+        <Font>
+          <Bold>-1</Bold>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Tag>100</Tag>
+      </Field>
+      <Field>
+        <Name>Field109</Name>
+        <Section>3</Section>
+        <Left>240</Left>
+        <Top>4200</Top>
+        <Width>11565</Width>
+        <Height>1</Height>
+        <BorderStyle>1</BorderStyle>
+        <Tag>100</Tag>
+        <Shape Type="Line" />
+      </Field>
+      <Field>
+        <Name>Field110</Name>
+        <Section>3</Section>
+        <Text>STT
+No</Text>
+        <Left>240</Left>
+        <Top>4200</Top>
+        <Width>400</Width>
+        <Height>615</Height>
+        <Align>7</Align>
+        <Font>
+          <Bold>-1</Bold>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Tag>100</Tag>
+      </Field>
+      <Field>
+        <Name>Field128</Name>
+        <Section>3</Section>
+        <Text>Field82</Text>
+        <Left>330</Left>
+        <Top>4200</Top>
+        <Tag>100</Tag>
+      </Field>
+      <Field>
+        <Name>Field111</Name>
+        <Section>3</Section>
+        <Text>Chủng loại
+Model</Text>
+        <Left>639</Left>
+        <Top>4200</Top>
+        <Width>1200</Width>
+        <Height>615</Height>
+        <Align>7</Align>
+        <Font>
+          <Bold>-1</Bold>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Tag>100</Tag>
+      </Field>
+      <Field>
+        <Name>Field112</Name>
+        <Section>3</Section>
+        <Text>Loại đơn
+Order Type</Text>
+        <Left>1838</Left>
+        <Top>4200</Top>
+        <Width>945</Width>
+        <Height>615</Height>
+        <Align>7</Align>
+        <MarginLeft>20</MarginLeft>
+        <MarginRight>20</MarginRight>
+        <Font>
+          <Bold>-1</Bold>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Tag>100</Tag>
+      </Field>
+      <Field>
+        <Name>Field113</Name>
+        <Section>3</Section>
+        <Text>Mã hiệu hàng hóa
+Customer Code</Text>
+        <Left>2782</Left>
+        <Top>4200</Top>
+        <Width>1740</Width>
+        <Height>615</Height>
+        <Align>7</Align>
+        <Font>
+          <Bold>-1</Bold>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Tag>100</Tag>
+      </Field>
+      <Field>
+        <Name>Field114</Name>
+        <Section>3</Section>
+        <Text>Đơn vị
+tính Unit</Text>
+        <Left>7322</Left>
+        <Top>4200</Top>
+        <Width>700</Width>
+        <Height>615</Height>
+        <Align>7</Align>
+        <Font>
+          <Bold>-1</Bold>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Tag>100</Tag>
+      </Field>
+      <Field>
+        <Name>Field115</Name>
+        <Section>3</Section>
+        <Text>Số lượng
+Quantity</Text>
+        <Left>8022</Left>
+        <Top>4200</Top>
+        <Width>850</Width>
+        <Height>615</Height>
+        <Align>7</Align>
+        <Font>
+          <Bold>-1</Bold>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Tag>100</Tag>
+      </Field>
+      <Field>
+        <Name>Field116</Name>
+        <Section>3</Section>
+        <Text>Đơn giá
+Unit price</Text>
+        <Left>8872</Left>
+        <Top>4200</Top>
+        <Width>850</Width>
+        <Height>615</Height>
+        <Align>7</Align>
+        <Font>
+          <Bold>-1</Bold>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Tag>100</Tag>
+      </Field>
+      <Field>
+        <Name>Field117</Name>
+        <Section>3</Section>
+        <Text>Thành tiền
+Amount</Text>
+        <Left>9722</Left>
+        <Top>4200</Top>
+        <Width>2082</Width>
+        <Height>615</Height>
+        <Align>7</Align>
+        <Font>
+          <Bold>-1</Bold>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Tag>100</Tag>
+      </Field>
+      <Field>
+        <Name>Field118</Name>
+        <Section>3</Section>
+        <Left>240</Left>
+        <Top>4200</Top>
+        <Height>615</Height>
+        <BorderStyle>1</BorderStyle>
+        <CanGrow>-1</CanGrow>
+        <Anchor>2</Anchor>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Tag>100</Tag>
+        <Shape Type="Line" />
+      </Field>
+      <Field>
+        <Name>Field119</Name>
+        <Section>3</Section>
+        <Left>639</Left>
+        <Top>4200</Top>
+        <Height>615</Height>
+        <BorderStyle>1</BorderStyle>
+        <CanGrow>-1</CanGrow>
+        <Anchor>2</Anchor>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Tag>100</Tag>
+        <Shape Type="Line" />
+      </Field>
+      <Field>
+        <Name>Field120</Name>
+        <Section>3</Section>
+        <Left>1838</Left>
+        <Top>4200</Top>
+        <Height>615</Height>
+        <BorderStyle>1</BorderStyle>
+        <CanGrow>-1</CanGrow>
+        <Anchor>2</Anchor>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Tag>100</Tag>
+        <Shape Type="Line" />
+      </Field>
+      <Field>
+        <Name>Field121</Name>
+        <Section>3</Section>
+        <Left>2782</Left>
+        <Top>4200</Top>
+        <Height>615</Height>
+        <BorderStyle>1</BorderStyle>
+        <CanGrow>-1</CanGrow>
+        <Anchor>2</Anchor>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Tag>100</Tag>
+        <Shape Type="Line" />
+      </Field>
+      <Field>
+        <Name>Field122</Name>
+        <Section>3</Section>
+        <Left>4522</Left>
+        <Top>4200</Top>
+        <Height>615</Height>
+        <BorderStyle>1</BorderStyle>
+        <CanGrow>-1</CanGrow>
+        <Anchor>2</Anchor>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Tag>100</Tag>
+        <Shape Type="Line" />
+      </Field>
+      <Field>
+        <Name>Field123</Name>
+        <Section>3</Section>
+        <Left>7322</Left>
+        <Top>4200</Top>
+        <Height>615</Height>
+        <BorderStyle>1</BorderStyle>
+        <CanGrow>-1</CanGrow>
+        <Anchor>2</Anchor>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Tag>100</Tag>
+        <Shape Type="Line" />
+      </Field>
+      <Field>
+        <Name>Field124</Name>
+        <Section>3</Section>
+        <Left>8022</Left>
+        <Top>4200</Top>
+        <Height>615</Height>
+        <BorderStyle>1</BorderStyle>
+        <CanGrow>-1</CanGrow>
+        <Anchor>2</Anchor>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Tag>100</Tag>
+        <Shape Type="Line" />
+      </Field>
+      <Field>
+        <Name>Field125</Name>
+        <Section>3</Section>
+        <Left>8872</Left>
+        <Top>4200</Top>
+        <Height>615</Height>
+        <BorderStyle>1</BorderStyle>
+        <CanGrow>-1</CanGrow>
+        <Anchor>2</Anchor>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Tag>100</Tag>
+        <Shape Type="Line" />
+      </Field>
+      <Field>
+        <Name>Field126</Name>
+        <Section>3</Section>
+        <Left>9722</Left>
+        <Top>4200</Top>
+        <Height>615</Height>
+        <BorderStyle>1</BorderStyle>
+        <CanGrow>-1</CanGrow>
+        <Anchor>2</Anchor>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Tag>100</Tag>
+        <Shape Type="Line" />
+      </Field>
+      <Field>
+        <Name>Field127</Name>
+        <Section>3</Section>
+        <Left>11804</Left>
+        <Top>4200</Top>
+        <Height>615</Height>
+        <BorderStyle>1</BorderStyle>
+        <CanGrow>-1</CanGrow>
+        <Anchor>2</Anchor>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Tag>100</Tag>
+        <Shape Type="Line" />
+      </Field>
+      <Field>
+        <Name>Field129</Name>
+        <Section>3</Section>
+        <Left>240</Left>
+        <Top>4844</Top>
+        <Width>11565</Width>
+        <Height>1</Height>
+        <BorderStyle>1</BorderStyle>
+        <Tag>100</Tag>
+        <Shape Type="Line" />
       </Field>
     </Fields>
   </Report>
