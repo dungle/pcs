@@ -506,7 +506,7 @@ namespace PCSComSale.Order.DS
 			{
 			    string strSql = " SELECT CA.Code ITM_CategoryCode, D.Code PartNo, D.Description, D.Revision,"
 			                    + "  F.Code UMCode, B.SaleOrderDetailID, A.DeliveryScheduleID, D.ProductID, "
-                                + " A.ScheduleDate, '' AS DocumentNumber, G.Code SO_GateCode, DeliveryQuantity AS CommittedQuantity,"
+                                + " A.ScheduleDate, '' AS PONumber, G.Code SO_GateCode, DeliveryQuantity AS CommittedQuantity,"
 			                    + " DeliveryQuantity InvoiceQty, 0.0 OldInvoiceQty, ISNULL(D.AllowNegativeQty,0) AllowNegativeQty,"
 			                    + " ISNULL(BC.OHQuantity,0) AvailableQty, "
 			                    + " B.UnitPrice Price, DeliveryQuantity * B.UnitPrice NetAmount, DeliveryQuantity * B.UnitPrice * " + exchangeRate + " NetAmountRate, "

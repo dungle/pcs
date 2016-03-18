@@ -2309,8 +2309,8 @@ namespace PCSComUtils.Framework.ReportFrame.DS
 					+ " WHERE SO_DeliverySchedule.DeliveryScheduleID = SO_ConfirmShipDetail.DeliveryScheduleID"
 					+ " )AS SaleType,"
                     + " GA.Code SOGate,"
-					+ " SO_SaleOrderMaster.CustomerPurchaseOrderNo,"
-					+ " SO_ConfirmShipDetail.ConfirmShipDetailID, MST_PartyLocation.[Description] AS ShipToLocation, ST.Code AS SaleType1"
+                    + " SO_ConfirmShipMaster.DocumentNumber AS CustomerPurchaseOrderNo,"
+                    + " SO_ConfirmShipDetail.ConfirmShipDetailID, MST_PartyLocation.[Description] AS ShipToLocation, ST.Code AS SaleType1"
 
                     + " FROM    SO_ConfirmShipDetail "
 					+ " INNER JOIN SO_ConfirmShipMaster ON SO_ConfirmShipDetail.ConfirmShipMasterID = SO_ConfirmShipMaster.ConfirmShipMasterID "

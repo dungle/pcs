@@ -146,7 +146,8 @@ WHERE SO_InvoiceMaster.InvoiceMasterID = 27495 AND SO_InvoiceDetail.InvoiceQty &
         <Width>2800</Width>
         <Height>300</Height>
         <ZOrder>-62</ZOrder>
-        <Align>7</Align>
+        <Align>6</Align>
+        <MarginLeft>20</MarginLeft>
         <Font>
           <Name>Arial</Name>
           <Size>8.25</Size>
@@ -212,7 +213,8 @@ WHERE SO_InvoiceMaster.InvoiceMasterID = 27495 AND SO_InvoiceDetail.InvoiceQty &
         <Width>1740</Width>
         <Height>300</Height>
         <ZOrder>-58</ZOrder>
-        <Align>7</Align>
+        <Align>6</Align>
+        <MarginLeft>20</MarginLeft>
         <Font>
           <Name>Arial</Name>
           <Size>8.25</Size>

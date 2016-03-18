@@ -21,14 +21,13 @@ namespace PCSTestReport
             try
             {
                 //NIGURI2.NIGURI2 report = new NIGURI2.NIGURI2();
-                BaoCaoTongHopSanXuat.BaoCaoTongHopSanXuat report = new BaoCaoTongHopSanXuat.BaoCaoTongHopSanXuat();
-                report.PCSConnectionString = "Provider=SQLOLEDB;Data Source=.;User ID=sa;Password=khongbiet;Initial Catalog=MAP";
+                InvoiceForSaleOrderReport.InvoiceForSaleOrderReport report = new InvoiceForSaleOrderReport.InvoiceForSaleOrderReport();
+                report.PCSConnectionString = "Provider=SQLOLEDB;Data Source=.;User ID=sa;Password=Niteco@123;Initial Catalog=MAP";
                 var startupPath = Application.StartupPath;
                 startupPath = startupPath.Replace(@"bin\Debug", "ReportDefinition");
                 report.ReportDefinitionFolder = startupPath;
-                //report.ReportDefinitionFolder = @"I:\iMAS\PCSTestReport\PCSTestReport\ReportDefinition";
-                DateTime month = new DateTime(2011, 1, 1);
-                var data = report.ExecuteReport(month.ToString(), "", "", "111", "", "", "");
+                DateTime month = new DateTime(2016, 2, 27);
+                var data = report.ExecuteReport(month.ToString(), "", "", "", "", "", "");
                 GridView.DataSource = data;
             }
             catch (Exception ex)
