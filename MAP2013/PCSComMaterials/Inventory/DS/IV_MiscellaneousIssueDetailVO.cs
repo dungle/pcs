@@ -50,5 +50,7 @@ namespace PCSComMaterials.Inventory.DS
 			get { return mAvailableQuantity; }
 			set { mAvailableQuantity = value; }
 		}
+        public int DepartmentID { get; set; }
+        public string Reason { get; set; }
 	}
 }

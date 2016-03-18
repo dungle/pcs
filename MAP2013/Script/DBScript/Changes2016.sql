@@ -1,3 +1,19 @@
+IF NOT EXISTS(SELECT Name FROM sys.columns  WHERE Name = N'DepartmentID' AND Object_ID = Object_ID(N'IV_MiscellaneousIssueDetail'))
+BEGIN
+    ALTER TABLE [IV_MiscellaneousIssueDetail] ADD [DepartmentID] INT NULL
+	ALTER TABLE [IV_MiscellaneousIssueDetail]
+    ADD CONSTRAINT [FK_IV_MiscellaneousIssueDetail_MST_Department] FOREIGN KEY ([DepartmentID]) REFERENCES [MST_Department] ([DepartmentID]);
+END
+GO
+
+IF NOT EXISTS(SELECT Name FROM sys.columns  WHERE Name = N'ReasonID' AND Object_ID = Object_ID(N'IV_MiscellaneousIssueDetail'))
+BEGIN
+    ALTER TABLE [IV_MiscellaneousIssueDetail] ADD ReasonID INT NULL
+	ALTER TABLE [IV_MiscellaneousIssueDetail]
+    ADD CONSTRAINT [FK_IV_MiscellaneousIssueDetail_MST_Reason] FOREIGN KEY (ReasonID) REFERENCES MST_Reason (ReasonID);
+END
+GO
+
 IF EXISTS(SELECT Name FROM sys.columns  WHERE Name = N'PONumber' AND Object_ID = Object_ID(N'SO_InvoiceMaster'))
 BEGIN
     EXEC sys.sp_rename 

@@ -186,24 +186,9 @@ namespace PCSComMaterials.Inventory.DS
 			}
 		}
 
-		///    <summary>
-		///       This method uses to add data to IV_MiscellaneousDetail by MasterID
-		///    </summary>
-		///    <Inputs>
-		///    </Inputs>
-		///    <Returns>
-		///       void
-		///    </Returns>
-		///    <History>
-		///    </History>
 		public DataSet GetMiscellaneousDetailByMaster(int pintMaster)
 		{
 			const string METHOD_NAME = THIS + ".GetMiscellaneousDetailByMaster()";
-			const string PART_NUMBER_FLD = "PartNumber";
-			const string PART_NAME_FLD = "PartName";
-			const string MODEL_FLD = "Model";
-			const string UNIT_FLD = "UM";
-			const string AVAILABLE_QUANTITY_FLD = "AvailableQuantity";
 			DataSet dstPCS = new DataSet();
 
 			OleDbConnection oconPCS = null;
@@ -212,14 +197,15 @@ namespace PCSComMaterials.Inventory.DS
 			{
 				string strSql = "SELECT  null as Line, MiscellaneousIssueDetailID, C.Code AS ITM_CategoryCode, "
 					+ " P.Code PartNumber, P.Description PartName, P.Revision Model,"
-					+ " V.Code AS MST_PartyCode, U.Code AS UM, P.LotControl,"
-					+ " D.Quantity, D.AvailableQty, P.ProductID, D.Lot, MiscellaneousIssueMasterID, D.StockUMID"
+					+ " V.Code AS MST_PartyCode, U.Code AS UM, P.LotControl, MST_Department.Code AS Department, MST_Reason.Code Reason,"
+                    + " D.Quantity, D.AvailableQty, P.ProductID, D.Lot, MiscellaneousIssueMasterID, D.StockUMID, D.DepartmentID, D.ReasonID"
 					+ " FROM IV_MiscellaneousIssueDetail D JOIN ITM_Product P ON D.ProductID = P.ProductID"
 					+ " LEFT JOIN MST_UnitOfMeasure U ON D.StockUMID = U.UnitOfMeasureID"
 					+ " LEFT JOIN ITM_Category C ON P.CategoryID = C.CategoryID"
 					+ " LEFT JOIN MST_Party V ON P.PrimaryVendorID = V.PartyID"
-					+ " WHERE MiscellaneousIssueMasterID=" + pintMaster;
-				Utils utils = new Utils();
+					+ " LEFT JOIN MST_Department ON D.DepartmentID = MST_Department.DepartmentID"
+					+ " LEFT JOIN MST_Reason ON D.ReasonID = MST_Reason.ReasonID"
+                    + " WHERE MiscellaneousIssueMasterID=" + pintMaster;
 				oconPCS = new OleDbConnection(Utils.Instance.OleDbConnectionString);
 				ocmdPCS = new OleDbCommand(strSql, oconPCS);
 				ocmdPCS.Connection.Open();

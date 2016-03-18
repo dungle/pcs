@@ -6179,6 +6179,9 @@ namespace PCSComUtils.Common
         public const string QUANTITY_FLD = "Quantity";
         public const string REQUIREDMATERIALDETAILID_FLD = "RequiredMaterialDetailID";
         public const string STOCKUMID_FLD = "StockUMID";
+        public const string DEPARTMENTID_FLD = "DepartmentID";
+        public const string REASON_FLD = "Reason";
+        public const string REASONID_FLD = "ReasonID";
         public const string TABLE_NAME = "IV_MiscellaneousIssueDetail";
     }
 

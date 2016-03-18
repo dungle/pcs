@@ -86,6 +86,25 @@ namespace PCSComMaterials.Inventory.BO
                             {
                                 objDetail.AvailableQty = Convert.ToDecimal(dr[IV_MiscellaneousIssueDetailTable.AVAILABLEQTY_FLD]);
                             }
+                            if (dr[IV_MiscellaneousIssueDetailTable.DEPARTMENTID_FLD] != DBNull.Value)
+                            {
+                                int departmentId;
+                                int.TryParse(dr[IV_MiscellaneousIssueDetailTable.DEPARTMENTID_FLD].ToString(), out departmentId);
+                                if (departmentId > 0)
+                                {
+                                    objDetail.DepartmentID = departmentId;
+                                }
+                            }
+                            if (dr[IV_MiscellaneousIssueDetailTable.REASONID_FLD] != DBNull.Value
+                                && dr[IV_MiscellaneousIssueDetailTable.REASONID_FLD] != null)
+                            {
+                                int reasonId;
+                                int.TryParse(dr[IV_MiscellaneousIssueDetailTable.REASONID_FLD].ToString(), out reasonId);
+                                if (reasonId > 0)
+                                {
+                                    objDetail.ReasonID = reasonId;
+                                }
+                            }
                             issueMaster.IV_MiscellaneousIssueDetails.Add(objDetail);
                         }
                         // temporary save master and detail to database

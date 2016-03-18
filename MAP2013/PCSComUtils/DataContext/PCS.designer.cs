@@ -204,9 +204,6 @@ namespace PCSComUtils.DataContext
     partial void InsertIV_MasLocCache(IV_MasLocCache instance);
     partial void UpdateIV_MasLocCache(IV_MasLocCache instance);
     partial void DeleteIV_MasLocCache(IV_MasLocCache instance);
-    partial void InsertIV_MiscellaneousIssueDetail(IV_MiscellaneousIssueDetail instance);
-    partial void UpdateIV_MiscellaneousIssueDetail(IV_MiscellaneousIssueDetail instance);
-    partial void DeleteIV_MiscellaneousIssueDetail(IV_MiscellaneousIssueDetail instance);
     partial void InsertIV_MiscellaneousIssueMaster(IV_MiscellaneousIssueMaster instance);
     partial void UpdateIV_MiscellaneousIssueMaster(IV_MiscellaneousIssueMaster instance);
     partial void DeleteIV_MiscellaneousIssueMaster(IV_MiscellaneousIssueMaster instance);
@@ -660,6 +657,9 @@ namespace PCSComUtils.DataContext
     partial void InsertSO_ConfirmShipMaster(SO_ConfirmShipMaster instance);
     partial void UpdateSO_ConfirmShipMaster(SO_ConfirmShipMaster instance);
     partial void DeleteSO_ConfirmShipMaster(SO_ConfirmShipMaster instance);
+    partial void InsertIV_MiscellaneousIssueDetail(IV_MiscellaneousIssueDetail instance);
+    partial void UpdateIV_MiscellaneousIssueDetail(IV_MiscellaneousIssueDetail instance);
+    partial void DeleteIV_MiscellaneousIssueDetail(IV_MiscellaneousIssueDetail instance);
     #endregion
 		
 		public PCSDataContext() : 
@@ -1153,14 +1153,6 @@ namespace PCSComUtils.DataContext
 			get
 			{
 				return this.GetTable<IV_MasLocCache>();
-			}
-		}
-		
-		public System.Data.Linq.Table<IV_MiscellaneousIssueDetail> IV_MiscellaneousIssueDetails
-		{
-			get
-			{
-				return this.GetTable<IV_MiscellaneousIssueDetail>();
 			}
 		}
 		
@@ -3497,6 +3489,14 @@ namespace PCSComUtils.DataContext
 			get
 			{
 				return this.GetTable<SO_ConfirmShipMaster>();
+			}
+		}
+		
+		public System.Data.Linq.Table<IV_MiscellaneousIssueDetail> IV_MiscellaneousIssueDetails
+		{
+			get
+			{
+				return this.GetTable<IV_MiscellaneousIssueDetail>();
 			}
 		}
 		
@@ -12378,7 +12378,7 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Picture", DbType="Image", UpdateCheck=UpdateCheck.Never)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Picture", DbType="Image", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
 		public System.Data.Linq.Binary Picture
 		{
 			get
@@ -13901,7 +13901,7 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PictureImage", DbType="Image", UpdateCheck=UpdateCheck.Never)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PictureImage", DbType="Image", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
 		public System.Data.Linq.Binary PictureImage
 		{
 			get
@@ -14274,8 +14274,6 @@ namespace PCSComUtils.DataContext
 		
 		private EntitySet<IV_MasLocCache> _IV_MasLocCaches;
 		
-		private EntitySet<IV_MiscellaneousIssueDetail> _IV_MiscellaneousIssueDetails;
-		
 		private EntitySet<IV_StockTaking> _IV_StockTakings;
 		
 		private EntitySet<IV_StockTakingDifferent> _IV_StockTakingDifferents;
@@ -14341,6 +14339,8 @@ namespace PCSComUtils.DataContext
 		private EntitySet<SO_ConfirmShipDetail> _SO_ConfirmShipDetails;
 		
 		private EntitySet<SO_InvoiceDetail> _SO_InvoiceDetails;
+		
+		private EntitySet<IV_MiscellaneousIssueDetail> _IV_MiscellaneousIssueDetails;
 		
 		private EntityRef<cst_ACAdjustmentMaster> _cst_ACAdjustmentMaster;
 		
@@ -14641,7 +14641,6 @@ namespace PCSComUtils.DataContext
 			this._IV_CostHistories = new EntitySet<IV_CostHistory>(new Action<IV_CostHistory>(this.attach_IV_CostHistories), new Action<IV_CostHistory>(this.detach_IV_CostHistories));
 			this._IV_LocationCaches = new EntitySet<IV_LocationCache>(new Action<IV_LocationCache>(this.attach_IV_LocationCaches), new Action<IV_LocationCache>(this.detach_IV_LocationCaches));
 			this._IV_MasLocCaches = new EntitySet<IV_MasLocCache>(new Action<IV_MasLocCache>(this.attach_IV_MasLocCaches), new Action<IV_MasLocCache>(this.detach_IV_MasLocCaches));
-			this._IV_MiscellaneousIssueDetails = new EntitySet<IV_MiscellaneousIssueDetail>(new Action<IV_MiscellaneousIssueDetail>(this.attach_IV_MiscellaneousIssueDetails), new Action<IV_MiscellaneousIssueDetail>(this.detach_IV_MiscellaneousIssueDetails));
 			this._IV_StockTakings = new EntitySet<IV_StockTaking>(new Action<IV_StockTaking>(this.attach_IV_StockTakings), new Action<IV_StockTaking>(this.detach_IV_StockTakings));
 			this._IV_StockTakingDifferents = new EntitySet<IV_StockTakingDifferent>(new Action<IV_StockTakingDifferent>(this.attach_IV_StockTakingDifferents), new Action<IV_StockTakingDifferent>(this.detach_IV_StockTakingDifferents));
 			this._MST_TransactionHistories = new EntitySet<MST_TransactionHistory>(new Action<MST_TransactionHistory>(this.attach_MST_TransactionHistories), new Action<MST_TransactionHistory>(this.detach_MST_TransactionHistories));
@@ -14675,6 +14674,7 @@ namespace PCSComUtils.DataContext
 			this._sys_RoleProducts = new EntitySet<sys_RoleProduct>(new Action<sys_RoleProduct>(this.attach_sys_RoleProducts), new Action<sys_RoleProduct>(this.detach_sys_RoleProducts));
 			this._SO_ConfirmShipDetails = new EntitySet<SO_ConfirmShipDetail>(new Action<SO_ConfirmShipDetail>(this.attach_SO_ConfirmShipDetails), new Action<SO_ConfirmShipDetail>(this.detach_SO_ConfirmShipDetails));
 			this._SO_InvoiceDetails = new EntitySet<SO_InvoiceDetail>(new Action<SO_InvoiceDetail>(this.attach_SO_InvoiceDetails), new Action<SO_InvoiceDetail>(this.detach_SO_InvoiceDetails));
+			this._IV_MiscellaneousIssueDetails = new EntitySet<IV_MiscellaneousIssueDetail>(new Action<IV_MiscellaneousIssueDetail>(this.attach_IV_MiscellaneousIssueDetails), new Action<IV_MiscellaneousIssueDetail>(this.detach_IV_MiscellaneousIssueDetails));
 			this._cst_ACAdjustmentMaster = default(EntityRef<cst_ACAdjustmentMaster>);
 			this._ITM_Buyer = default(EntityRef<ITM_Buyer>);
 			this._ITM_Category = default(EntityRef<ITM_Category>);
@@ -16659,7 +16659,7 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Picture", DbType="Image", UpdateCheck=UpdateCheck.Never)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Picture", DbType="Image", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
 		public System.Data.Linq.Binary Picture
 		{
 			get
@@ -17162,19 +17162,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_IV_MiscellaneousIssueDetail", Storage="_IV_MiscellaneousIssueDetails", ThisKey="ProductID", OtherKey="ProductID")]
-		public EntitySet<IV_MiscellaneousIssueDetail> IV_MiscellaneousIssueDetails
-		{
-			get
-			{
-				return this._IV_MiscellaneousIssueDetails;
-			}
-			set
-			{
-				this._IV_MiscellaneousIssueDetails.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_IV_StockTaking", Storage="_IV_StockTakings", ThisKey="ProductID", OtherKey="ProductID")]
 		public EntitySet<IV_StockTaking> IV_StockTakings
 		{
@@ -17601,6 +17588,19 @@ namespace PCSComUtils.DataContext
 			set
 			{
 				this._SO_InvoiceDetails.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_IV_MiscellaneousIssueDetail", Storage="_IV_MiscellaneousIssueDetails", ThisKey="ProductID", OtherKey="ProductID")]
+		public EntitySet<IV_MiscellaneousIssueDetail> IV_MiscellaneousIssueDetails
+		{
+			get
+			{
+				return this._IV_MiscellaneousIssueDetails;
+			}
+			set
+			{
+				this._IV_MiscellaneousIssueDetails.Assign(value);
 			}
 		}
 		
@@ -19022,18 +19022,6 @@ namespace PCSComUtils.DataContext
 			entity.ITM_Product = null;
 		}
 		
-		private void attach_IV_MiscellaneousIssueDetails(IV_MiscellaneousIssueDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = this;
-		}
-		
-		private void detach_IV_MiscellaneousIssueDetails(IV_MiscellaneousIssueDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = null;
-		}
-		
 		private void attach_IV_StockTakings(IV_StockTaking entity)
 		{
 			this.SendPropertyChanging();
@@ -19425,6 +19413,18 @@ namespace PCSComUtils.DataContext
 		}
 		
 		private void detach_SO_InvoiceDetails(SO_InvoiceDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = null;
+		}
+		
+		private void attach_IV_MiscellaneousIssueDetails(IV_MiscellaneousIssueDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = this;
+		}
+		
+		private void detach_IV_MiscellaneousIssueDetails(IV_MiscellaneousIssueDetail entity)
 		{
 			this.SendPropertyChanging();
 			entity.ITM_Product = null;
@@ -26224,335 +26224,6 @@ namespace PCSComUtils.DataContext
 						this._MasterLocationID = default(int);
 					}
 					this.SendPropertyChanged("MST_MasterLocation");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.IV_MiscellaneousIssueDetail")]
-	public partial class IV_MiscellaneousIssueDetail : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _MiscellaneousIssueDetailID;
-		
-		private string _Lot;
-		
-		private decimal _Quantity;
-		
-		private int _MiscellaneousIssueMasterID;
-		
-		private int _ProductID;
-		
-		private int _StockUMID;
-		
-		private System.Nullable<decimal> _AvailableQty;
-		
-		private EntityRef<ITM_Product> _ITM_Product;
-		
-		private EntityRef<IV_MiscellaneousIssueMaster> _IV_MiscellaneousIssueMaster;
-		
-		private EntityRef<MST_UnitOfMeasure> _MST_UnitOfMeasure;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnMiscellaneousIssueDetailIDChanging(int value);
-    partial void OnMiscellaneousIssueDetailIDChanged();
-    partial void OnLotChanging(string value);
-    partial void OnLotChanged();
-    partial void OnQuantityChanging(decimal value);
-    partial void OnQuantityChanged();
-    partial void OnMiscellaneousIssueMasterIDChanging(int value);
-    partial void OnMiscellaneousIssueMasterIDChanged();
-    partial void OnProductIDChanging(int value);
-    partial void OnProductIDChanged();
-    partial void OnStockUMIDChanging(int value);
-    partial void OnStockUMIDChanged();
-    partial void OnAvailableQtyChanging(System.Nullable<decimal> value);
-    partial void OnAvailableQtyChanged();
-    #endregion
-		
-		public IV_MiscellaneousIssueDetail()
-		{
-			this._ITM_Product = default(EntityRef<ITM_Product>);
-			this._IV_MiscellaneousIssueMaster = default(EntityRef<IV_MiscellaneousIssueMaster>);
-			this._MST_UnitOfMeasure = default(EntityRef<MST_UnitOfMeasure>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MiscellaneousIssueDetailID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int MiscellaneousIssueDetailID
-		{
-			get
-			{
-				return this._MiscellaneousIssueDetailID;
-			}
-			set
-			{
-				if ((this._MiscellaneousIssueDetailID != value))
-				{
-					this.OnMiscellaneousIssueDetailIDChanging(value);
-					this.SendPropertyChanging();
-					this._MiscellaneousIssueDetailID = value;
-					this.SendPropertyChanged("MiscellaneousIssueDetailID");
-					this.OnMiscellaneousIssueDetailIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Lot", DbType="NVarChar(40)")]
-		public string Lot
-		{
-			get
-			{
-				return this._Lot;
-			}
-			set
-			{
-				if ((this._Lot != value))
-				{
-					this.OnLotChanging(value);
-					this.SendPropertyChanging();
-					this._Lot = value;
-					this.SendPropertyChanged("Lot");
-					this.OnLotChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Quantity", DbType="Decimal(20,5) NOT NULL")]
-		public decimal Quantity
-		{
-			get
-			{
-				return this._Quantity;
-			}
-			set
-			{
-				if ((this._Quantity != value))
-				{
-					this.OnQuantityChanging(value);
-					this.SendPropertyChanging();
-					this._Quantity = value;
-					this.SendPropertyChanged("Quantity");
-					this.OnQuantityChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MiscellaneousIssueMasterID", DbType="Int NOT NULL")]
-		public int MiscellaneousIssueMasterID
-		{
-			get
-			{
-				return this._MiscellaneousIssueMasterID;
-			}
-			set
-			{
-				if ((this._MiscellaneousIssueMasterID != value))
-				{
-					if (this._IV_MiscellaneousIssueMaster.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnMiscellaneousIssueMasterIDChanging(value);
-					this.SendPropertyChanging();
-					this._MiscellaneousIssueMasterID = value;
-					this.SendPropertyChanged("MiscellaneousIssueMasterID");
-					this.OnMiscellaneousIssueMasterIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductID", DbType="Int NOT NULL")]
-		public int ProductID
-		{
-			get
-			{
-				return this._ProductID;
-			}
-			set
-			{
-				if ((this._ProductID != value))
-				{
-					if (this._ITM_Product.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnProductIDChanging(value);
-					this.SendPropertyChanging();
-					this._ProductID = value;
-					this.SendPropertyChanged("ProductID");
-					this.OnProductIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StockUMID", DbType="Int NOT NULL")]
-		public int StockUMID
-		{
-			get
-			{
-				return this._StockUMID;
-			}
-			set
-			{
-				if ((this._StockUMID != value))
-				{
-					if (this._MST_UnitOfMeasure.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnStockUMIDChanging(value);
-					this.SendPropertyChanging();
-					this._StockUMID = value;
-					this.SendPropertyChanged("StockUMID");
-					this.OnStockUMIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AvailableQty", DbType="Decimal(20,5)")]
-		public System.Nullable<decimal> AvailableQty
-		{
-			get
-			{
-				return this._AvailableQty;
-			}
-			set
-			{
-				if ((this._AvailableQty != value))
-				{
-					this.OnAvailableQtyChanging(value);
-					this.SendPropertyChanging();
-					this._AvailableQty = value;
-					this.SendPropertyChanged("AvailableQty");
-					this.OnAvailableQtyChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_IV_MiscellaneousIssueDetail", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
-		public ITM_Product ITM_Product
-		{
-			get
-			{
-				return this._ITM_Product.Entity;
-			}
-			set
-			{
-				ITM_Product previousValue = this._ITM_Product.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_Product.Entity = null;
-						previousValue.IV_MiscellaneousIssueDetails.Remove(this);
-					}
-					this._ITM_Product.Entity = value;
-					if ((value != null))
-					{
-						value.IV_MiscellaneousIssueDetails.Add(this);
-						this._ProductID = value.ProductID;
-					}
-					else
-					{
-						this._ProductID = default(int);
-					}
-					this.SendPropertyChanged("ITM_Product");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="IV_MiscellaneousIssueMaster_IV_MiscellaneousIssueDetail", Storage="_IV_MiscellaneousIssueMaster", ThisKey="MiscellaneousIssueMasterID", OtherKey="MiscellaneousIssueMasterID", IsForeignKey=true)]
-		public IV_MiscellaneousIssueMaster IV_MiscellaneousIssueMaster
-		{
-			get
-			{
-				return this._IV_MiscellaneousIssueMaster.Entity;
-			}
-			set
-			{
-				IV_MiscellaneousIssueMaster previousValue = this._IV_MiscellaneousIssueMaster.Entity;
-				if (((previousValue != value) 
-							|| (this._IV_MiscellaneousIssueMaster.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._IV_MiscellaneousIssueMaster.Entity = null;
-						previousValue.IV_MiscellaneousIssueDetails.Remove(this);
-					}
-					this._IV_MiscellaneousIssueMaster.Entity = value;
-					if ((value != null))
-					{
-						value.IV_MiscellaneousIssueDetails.Add(this);
-						this._MiscellaneousIssueMasterID = value.MiscellaneousIssueMasterID;
-					}
-					else
-					{
-						this._MiscellaneousIssueMasterID = default(int);
-					}
-					this.SendPropertyChanged("IV_MiscellaneousIssueMaster");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_UnitOfMeasure_IV_MiscellaneousIssueDetail", Storage="_MST_UnitOfMeasure", ThisKey="StockUMID", OtherKey="UnitOfMeasureID", IsForeignKey=true)]
-		public MST_UnitOfMeasure MST_UnitOfMeasure
-		{
-			get
-			{
-				return this._MST_UnitOfMeasure.Entity;
-			}
-			set
-			{
-				MST_UnitOfMeasure previousValue = this._MST_UnitOfMeasure.Entity;
-				if (((previousValue != value) 
-							|| (this._MST_UnitOfMeasure.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._MST_UnitOfMeasure.Entity = null;
-						previousValue.IV_MiscellaneousIssueDetails.Remove(this);
-					}
-					this._MST_UnitOfMeasure.Entity = value;
-					if ((value != null))
-					{
-						value.IV_MiscellaneousIssueDetails.Add(this);
-						this._StockUMID = value.UnitOfMeasureID;
-					}
-					else
-					{
-						this._StockUMID = default(int);
-					}
-					this.SendPropertyChanged("MST_UnitOfMeasure");
 				}
 			}
 		}
@@ -34548,6 +34219,8 @@ namespace PCSComUtils.DataContext
 		
 		private EntitySet<PRO_ProductionLine> _PRO_ProductionLines;
 		
+		private EntitySet<IV_MiscellaneousIssueDetail> _IV_MiscellaneousIssueDetails;
+		
 		private EntityRef<MST_CCN> _MST_CCN;
 		
     #region Extensibility Method Definitions
@@ -34572,6 +34245,7 @@ namespace PCSComUtils.DataContext
 			this._MST_Employees = new EntitySet<MST_Employee>(new Action<MST_Employee>(this.attach_MST_Employees), new Action<MST_Employee>(this.detach_MST_Employees));
 			this._MST_Locations = new EntitySet<MST_Location>(new Action<MST_Location>(this.attach_MST_Locations), new Action<MST_Location>(this.detach_MST_Locations));
 			this._PRO_ProductionLines = new EntitySet<PRO_ProductionLine>(new Action<PRO_ProductionLine>(this.attach_PRO_ProductionLines), new Action<PRO_ProductionLine>(this.detach_PRO_ProductionLines));
+			this._IV_MiscellaneousIssueDetails = new EntitySet<IV_MiscellaneousIssueDetail>(new Action<IV_MiscellaneousIssueDetail>(this.attach_IV_MiscellaneousIssueDetails), new Action<IV_MiscellaneousIssueDetail>(this.detach_IV_MiscellaneousIssueDetails));
 			this._MST_CCN = default(EntityRef<MST_CCN>);
 			OnCreated();
 		}
@@ -34738,6 +34412,19 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_Department_IV_MiscellaneousIssueDetail", Storage="_IV_MiscellaneousIssueDetails", ThisKey="DepartmentID", OtherKey="DepartmentID")]
+		public EntitySet<IV_MiscellaneousIssueDetail> IV_MiscellaneousIssueDetails
+		{
+			get
+			{
+				return this._IV_MiscellaneousIssueDetails;
+			}
+			set
+			{
+				this._IV_MiscellaneousIssueDetails.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_CCN_MST_Department", Storage="_MST_CCN", ThisKey="CCNID", OtherKey="CCNID", IsForeignKey=true)]
 		public MST_CCN MST_CCN
 		{
@@ -34859,6 +34546,18 @@ namespace PCSComUtils.DataContext
 		}
 		
 		private void detach_PRO_ProductionLines(PRO_ProductionLine entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_Department = null;
+		}
+		
+		private void attach_IV_MiscellaneousIssueDetails(IV_MiscellaneousIssueDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_Department = this;
+		}
+		
+		private void detach_IV_MiscellaneousIssueDetails(IV_MiscellaneousIssueDetail entity)
 		{
 			this.SendPropertyChanging();
 			entity.MST_Department = null;
@@ -41925,6 +41624,8 @@ namespace PCSComUtils.DataContext
 		
 		private EntitySet<SO_SaleOrderDetail> _SO_SaleOrderDetails;
 		
+		private EntitySet<IV_MiscellaneousIssueDetail> _IV_MiscellaneousIssueDetails;
+		
 		private EntityRef<MST_CCN> _MST_CCN;
 		
     #region Extensibility Method Definitions
@@ -41945,6 +41646,7 @@ namespace PCSComUtils.DataContext
 		{
 			this._PO_AdditionCharges = new EntitySet<PO_AdditionCharge>(new Action<PO_AdditionCharge>(this.attach_PO_AdditionCharges), new Action<PO_AdditionCharge>(this.detach_PO_AdditionCharges));
 			this._SO_SaleOrderDetails = new EntitySet<SO_SaleOrderDetail>(new Action<SO_SaleOrderDetail>(this.attach_SO_SaleOrderDetails), new Action<SO_SaleOrderDetail>(this.detach_SO_SaleOrderDetails));
+			this._IV_MiscellaneousIssueDetails = new EntitySet<IV_MiscellaneousIssueDetail>(new Action<IV_MiscellaneousIssueDetail>(this.attach_IV_MiscellaneousIssueDetails), new Action<IV_MiscellaneousIssueDetail>(this.detach_IV_MiscellaneousIssueDetails));
 			this._MST_CCN = default(EntityRef<MST_CCN>);
 			OnCreated();
 		}
@@ -42059,6 +41761,19 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_Reason_IV_MiscellaneousIssueDetail", Storage="_IV_MiscellaneousIssueDetails", ThisKey="ReasonID", OtherKey="ReasonID")]
+		public EntitySet<IV_MiscellaneousIssueDetail> IV_MiscellaneousIssueDetails
+		{
+			get
+			{
+				return this._IV_MiscellaneousIssueDetails;
+			}
+			set
+			{
+				this._IV_MiscellaneousIssueDetails.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_CCN_MST_Reason", Storage="_MST_CCN", ThisKey="CCNID", OtherKey="CCNID", IsForeignKey=true)]
 		public MST_CCN MST_CCN
 		{
@@ -42132,6 +41847,18 @@ namespace PCSComUtils.DataContext
 		}
 		
 		private void detach_SO_SaleOrderDetails(SO_SaleOrderDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_Reason = null;
+		}
+		
+		private void attach_IV_MiscellaneousIssueDetails(IV_MiscellaneousIssueDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_Reason = this;
+		}
+		
+		private void detach_IV_MiscellaneousIssueDetails(IV_MiscellaneousIssueDetail entity)
 		{
 			this.SendPropertyChanging();
 			entity.MST_Reason = null;
@@ -44344,8 +44071,6 @@ namespace PCSComUtils.DataContext
 		
 		private EntitySet<IV_CostHistory> _IV_CostHistories;
 		
-		private EntitySet<IV_MiscellaneousIssueDetail> _IV_MiscellaneousIssueDetails;
-		
 		private EntitySet<IV_StockTaking> _IV_StockTakings;
 		
 		private EntitySet<MST_BIN> _MST_BINs;
@@ -44396,6 +44121,8 @@ namespace PCSComUtils.DataContext
 		
 		private EntitySet<SO_SaleOrderDetail> _SO_SaleOrderDetails1;
 		
+		private EntitySet<IV_MiscellaneousIssueDetail> _IV_MiscellaneousIssueDetails;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -44424,7 +44151,6 @@ namespace PCSComUtils.DataContext
 			this._IV_BalanceLocations = new EntitySet<IV_BalanceLocation>(new Action<IV_BalanceLocation>(this.attach_IV_BalanceLocations), new Action<IV_BalanceLocation>(this.detach_IV_BalanceLocations));
 			this._IV_BalanceMasterLocations = new EntitySet<IV_BalanceMasterLocation>(new Action<IV_BalanceMasterLocation>(this.attach_IV_BalanceMasterLocations), new Action<IV_BalanceMasterLocation>(this.detach_IV_BalanceMasterLocations));
 			this._IV_CostHistories = new EntitySet<IV_CostHistory>(new Action<IV_CostHistory>(this.attach_IV_CostHistories), new Action<IV_CostHistory>(this.detach_IV_CostHistories));
-			this._IV_MiscellaneousIssueDetails = new EntitySet<IV_MiscellaneousIssueDetail>(new Action<IV_MiscellaneousIssueDetail>(this.attach_IV_MiscellaneousIssueDetails), new Action<IV_MiscellaneousIssueDetail>(this.detach_IV_MiscellaneousIssueDetails));
 			this._IV_StockTakings = new EntitySet<IV_StockTaking>(new Action<IV_StockTaking>(this.attach_IV_StockTakings), new Action<IV_StockTaking>(this.detach_IV_StockTakings));
 			this._MST_BINs = new EntitySet<MST_BIN>(new Action<MST_BIN>(this.attach_MST_BINs), new Action<MST_BIN>(this.detach_MST_BINs));
 			this._MST_BINs1 = new EntitySet<MST_BIN>(new Action<MST_BIN>(this.attach_MST_BINs1), new Action<MST_BIN>(this.detach_MST_BINs1));
@@ -44450,6 +44176,7 @@ namespace PCSComUtils.DataContext
 			this._SO_ReturnedGoodsDetails = new EntitySet<SO_ReturnedGoodsDetail>(new Action<SO_ReturnedGoodsDetail>(this.attach_SO_ReturnedGoodsDetails), new Action<SO_ReturnedGoodsDetail>(this.detach_SO_ReturnedGoodsDetails));
 			this._SO_SaleOrderDetails = new EntitySet<SO_SaleOrderDetail>(new Action<SO_SaleOrderDetail>(this.attach_SO_SaleOrderDetails), new Action<SO_SaleOrderDetail>(this.detach_SO_SaleOrderDetails));
 			this._SO_SaleOrderDetails1 = new EntitySet<SO_SaleOrderDetail>(new Action<SO_SaleOrderDetail>(this.attach_SO_SaleOrderDetails1), new Action<SO_SaleOrderDetail>(this.detach_SO_SaleOrderDetails1));
+			this._IV_MiscellaneousIssueDetails = new EntitySet<IV_MiscellaneousIssueDetail>(new Action<IV_MiscellaneousIssueDetail>(this.attach_IV_MiscellaneousIssueDetails), new Action<IV_MiscellaneousIssueDetail>(this.detach_IV_MiscellaneousIssueDetails));
 			OnCreated();
 		}
 		
@@ -44692,19 +44419,6 @@ namespace PCSComUtils.DataContext
 			set
 			{
 				this._IV_CostHistories.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_UnitOfMeasure_IV_MiscellaneousIssueDetail", Storage="_IV_MiscellaneousIssueDetails", ThisKey="UnitOfMeasureID", OtherKey="StockUMID")]
-		public EntitySet<IV_MiscellaneousIssueDetail> IV_MiscellaneousIssueDetails
-		{
-			get
-			{
-				return this._IV_MiscellaneousIssueDetails;
-			}
-			set
-			{
-				this._IV_MiscellaneousIssueDetails.Assign(value);
 			}
 		}
 		
@@ -45033,6 +44747,19 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_UnitOfMeasure_IV_MiscellaneousIssueDetail", Storage="_IV_MiscellaneousIssueDetails", ThisKey="UnitOfMeasureID", OtherKey="StockUMID")]
+		public EntitySet<IV_MiscellaneousIssueDetail> IV_MiscellaneousIssueDetails
+		{
+			get
+			{
+				return this._IV_MiscellaneousIssueDetails;
+			}
+			set
+			{
+				this._IV_MiscellaneousIssueDetails.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -45216,18 +44943,6 @@ namespace PCSComUtils.DataContext
 		}
 		
 		private void detach_IV_CostHistories(IV_CostHistory entity)
-		{
-			this.SendPropertyChanging();
-			entity.MST_UnitOfMeasure = null;
-		}
-		
-		private void attach_IV_MiscellaneousIssueDetails(IV_MiscellaneousIssueDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.MST_UnitOfMeasure = this;
-		}
-		
-		private void detach_IV_MiscellaneousIssueDetails(IV_MiscellaneousIssueDetail entity)
 		{
 			this.SendPropertyChanging();
 			entity.MST_UnitOfMeasure = null;
@@ -45531,6 +45246,18 @@ namespace PCSComUtils.DataContext
 		{
 			this.SendPropertyChanging();
 			entity.MST_UnitOfMeasure1 = null;
+		}
+		
+		private void attach_IV_MiscellaneousIssueDetails(IV_MiscellaneousIssueDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_UnitOfMeasure = this;
+		}
+		
+		private void detach_IV_MiscellaneousIssueDetails(IV_MiscellaneousIssueDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_UnitOfMeasure = null;
 		}
 	}
 	
@@ -131439,6 +131166,465 @@ namespace PCSComUtils.DataContext
 		{
 			this.SendPropertyChanging();
 			entity.SO_ConfirmShipMaster = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.IV_MiscellaneousIssueDetail")]
+	public partial class IV_MiscellaneousIssueDetail : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _MiscellaneousIssueDetailID;
+		
+		private string _Lot;
+		
+		private decimal _Quantity;
+		
+		private int _MiscellaneousIssueMasterID;
+		
+		private int _ProductID;
+		
+		private int _StockUMID;
+		
+		private System.Nullable<decimal> _AvailableQty;
+		
+		private System.Nullable<int> _DepartmentID;
+		
+		private System.Nullable<int> _ReasonID;
+		
+		private EntityRef<IV_MiscellaneousIssueMaster> _IV_MiscellaneousIssueMaster;
+		
+		private EntityRef<ITM_Product> _ITM_Product;
+		
+		private EntityRef<MST_UnitOfMeasure> _MST_UnitOfMeasure;
+		
+		private EntityRef<MST_Department> _MST_Department;
+		
+		private EntityRef<MST_Reason> _MST_Reason;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnMiscellaneousIssueDetailIDChanging(int value);
+    partial void OnMiscellaneousIssueDetailIDChanged();
+    partial void OnLotChanging(string value);
+    partial void OnLotChanged();
+    partial void OnQuantityChanging(decimal value);
+    partial void OnQuantityChanged();
+    partial void OnMiscellaneousIssueMasterIDChanging(int value);
+    partial void OnMiscellaneousIssueMasterIDChanged();
+    partial void OnProductIDChanging(int value);
+    partial void OnProductIDChanged();
+    partial void OnStockUMIDChanging(int value);
+    partial void OnStockUMIDChanged();
+    partial void OnAvailableQtyChanging(System.Nullable<decimal> value);
+    partial void OnAvailableQtyChanged();
+    partial void OnDepartmentIDChanging(System.Nullable<int> value);
+    partial void OnDepartmentIDChanged();
+    partial void OnReasonIDChanging(System.Nullable<int> value);
+    partial void OnReasonIDChanged();
+    #endregion
+		
+		public IV_MiscellaneousIssueDetail()
+		{
+			this._IV_MiscellaneousIssueMaster = default(EntityRef<IV_MiscellaneousIssueMaster>);
+			this._ITM_Product = default(EntityRef<ITM_Product>);
+			this._MST_UnitOfMeasure = default(EntityRef<MST_UnitOfMeasure>);
+			this._MST_Department = default(EntityRef<MST_Department>);
+			this._MST_Reason = default(EntityRef<MST_Reason>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MiscellaneousIssueDetailID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int MiscellaneousIssueDetailID
+		{
+			get
+			{
+				return this._MiscellaneousIssueDetailID;
+			}
+			set
+			{
+				if ((this._MiscellaneousIssueDetailID != value))
+				{
+					this.OnMiscellaneousIssueDetailIDChanging(value);
+					this.SendPropertyChanging();
+					this._MiscellaneousIssueDetailID = value;
+					this.SendPropertyChanged("MiscellaneousIssueDetailID");
+					this.OnMiscellaneousIssueDetailIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Lot", DbType="NVarChar(40)")]
+		public string Lot
+		{
+			get
+			{
+				return this._Lot;
+			}
+			set
+			{
+				if ((this._Lot != value))
+				{
+					this.OnLotChanging(value);
+					this.SendPropertyChanging();
+					this._Lot = value;
+					this.SendPropertyChanged("Lot");
+					this.OnLotChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Quantity", DbType="Decimal(20,5) NOT NULL")]
+		public decimal Quantity
+		{
+			get
+			{
+				return this._Quantity;
+			}
+			set
+			{
+				if ((this._Quantity != value))
+				{
+					this.OnQuantityChanging(value);
+					this.SendPropertyChanging();
+					this._Quantity = value;
+					this.SendPropertyChanged("Quantity");
+					this.OnQuantityChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MiscellaneousIssueMasterID", DbType="Int NOT NULL")]
+		public int MiscellaneousIssueMasterID
+		{
+			get
+			{
+				return this._MiscellaneousIssueMasterID;
+			}
+			set
+			{
+				if ((this._MiscellaneousIssueMasterID != value))
+				{
+					if (this._IV_MiscellaneousIssueMaster.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnMiscellaneousIssueMasterIDChanging(value);
+					this.SendPropertyChanging();
+					this._MiscellaneousIssueMasterID = value;
+					this.SendPropertyChanged("MiscellaneousIssueMasterID");
+					this.OnMiscellaneousIssueMasterIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductID", DbType="Int NOT NULL")]
+		public int ProductID
+		{
+			get
+			{
+				return this._ProductID;
+			}
+			set
+			{
+				if ((this._ProductID != value))
+				{
+					if (this._ITM_Product.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnProductIDChanging(value);
+					this.SendPropertyChanging();
+					this._ProductID = value;
+					this.SendPropertyChanged("ProductID");
+					this.OnProductIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StockUMID", DbType="Int NOT NULL")]
+		public int StockUMID
+		{
+			get
+			{
+				return this._StockUMID;
+			}
+			set
+			{
+				if ((this._StockUMID != value))
+				{
+					if (this._MST_UnitOfMeasure.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnStockUMIDChanging(value);
+					this.SendPropertyChanging();
+					this._StockUMID = value;
+					this.SendPropertyChanged("StockUMID");
+					this.OnStockUMIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AvailableQty", DbType="Decimal(20,5)")]
+		public System.Nullable<decimal> AvailableQty
+		{
+			get
+			{
+				return this._AvailableQty;
+			}
+			set
+			{
+				if ((this._AvailableQty != value))
+				{
+					this.OnAvailableQtyChanging(value);
+					this.SendPropertyChanging();
+					this._AvailableQty = value;
+					this.SendPropertyChanged("AvailableQty");
+					this.OnAvailableQtyChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DepartmentID", DbType="Int")]
+		public System.Nullable<int> DepartmentID
+		{
+			get
+			{
+				return this._DepartmentID;
+			}
+			set
+			{
+				if ((this._DepartmentID != value))
+				{
+					if (this._MST_Department.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnDepartmentIDChanging(value);
+					this.SendPropertyChanging();
+					this._DepartmentID = value;
+					this.SendPropertyChanged("DepartmentID");
+					this.OnDepartmentIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReasonID", DbType="Int")]
+		public System.Nullable<int> ReasonID
+		{
+			get
+			{
+				return this._ReasonID;
+			}
+			set
+			{
+				if ((this._ReasonID != value))
+				{
+					if (this._MST_Reason.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnReasonIDChanging(value);
+					this.SendPropertyChanging();
+					this._ReasonID = value;
+					this.SendPropertyChanged("ReasonID");
+					this.OnReasonIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="IV_MiscellaneousIssueMaster_IV_MiscellaneousIssueDetail", Storage="_IV_MiscellaneousIssueMaster", ThisKey="MiscellaneousIssueMasterID", OtherKey="MiscellaneousIssueMasterID", IsForeignKey=true)]
+		public IV_MiscellaneousIssueMaster IV_MiscellaneousIssueMaster
+		{
+			get
+			{
+				return this._IV_MiscellaneousIssueMaster.Entity;
+			}
+			set
+			{
+				IV_MiscellaneousIssueMaster previousValue = this._IV_MiscellaneousIssueMaster.Entity;
+				if (((previousValue != value) 
+							|| (this._IV_MiscellaneousIssueMaster.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._IV_MiscellaneousIssueMaster.Entity = null;
+						previousValue.IV_MiscellaneousIssueDetails.Remove(this);
+					}
+					this._IV_MiscellaneousIssueMaster.Entity = value;
+					if ((value != null))
+					{
+						value.IV_MiscellaneousIssueDetails.Add(this);
+						this._MiscellaneousIssueMasterID = value.MiscellaneousIssueMasterID;
+					}
+					else
+					{
+						this._MiscellaneousIssueMasterID = default(int);
+					}
+					this.SendPropertyChanged("IV_MiscellaneousIssueMaster");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_IV_MiscellaneousIssueDetail", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
+		public ITM_Product ITM_Product
+		{
+			get
+			{
+				return this._ITM_Product.Entity;
+			}
+			set
+			{
+				ITM_Product previousValue = this._ITM_Product.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_Product.Entity = null;
+						previousValue.IV_MiscellaneousIssueDetails.Remove(this);
+					}
+					this._ITM_Product.Entity = value;
+					if ((value != null))
+					{
+						value.IV_MiscellaneousIssueDetails.Add(this);
+						this._ProductID = value.ProductID;
+					}
+					else
+					{
+						this._ProductID = default(int);
+					}
+					this.SendPropertyChanged("ITM_Product");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_UnitOfMeasure_IV_MiscellaneousIssueDetail", Storage="_MST_UnitOfMeasure", ThisKey="StockUMID", OtherKey="UnitOfMeasureID", IsForeignKey=true)]
+		public MST_UnitOfMeasure MST_UnitOfMeasure
+		{
+			get
+			{
+				return this._MST_UnitOfMeasure.Entity;
+			}
+			set
+			{
+				MST_UnitOfMeasure previousValue = this._MST_UnitOfMeasure.Entity;
+				if (((previousValue != value) 
+							|| (this._MST_UnitOfMeasure.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._MST_UnitOfMeasure.Entity = null;
+						previousValue.IV_MiscellaneousIssueDetails.Remove(this);
+					}
+					this._MST_UnitOfMeasure.Entity = value;
+					if ((value != null))
+					{
+						value.IV_MiscellaneousIssueDetails.Add(this);
+						this._StockUMID = value.UnitOfMeasureID;
+					}
+					else
+					{
+						this._StockUMID = default(int);
+					}
+					this.SendPropertyChanged("MST_UnitOfMeasure");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_Department_IV_MiscellaneousIssueDetail", Storage="_MST_Department", ThisKey="DepartmentID", OtherKey="DepartmentID", IsForeignKey=true)]
+		public MST_Department MST_Department
+		{
+			get
+			{
+				return this._MST_Department.Entity;
+			}
+			set
+			{
+				MST_Department previousValue = this._MST_Department.Entity;
+				if (((previousValue != value) 
+							|| (this._MST_Department.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._MST_Department.Entity = null;
+						previousValue.IV_MiscellaneousIssueDetails.Remove(this);
+					}
+					this._MST_Department.Entity = value;
+					if ((value != null))
+					{
+						value.IV_MiscellaneousIssueDetails.Add(this);
+						this._DepartmentID = value.DepartmentID;
+					}
+					else
+					{
+						this._DepartmentID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("MST_Department");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_Reason_IV_MiscellaneousIssueDetail", Storage="_MST_Reason", ThisKey="ReasonID", OtherKey="ReasonID", IsForeignKey=true)]
+		public MST_Reason MST_Reason
+		{
+			get
+			{
+				return this._MST_Reason.Entity;
+			}
+			set
+			{
+				MST_Reason previousValue = this._MST_Reason.Entity;
+				if (((previousValue != value) 
+							|| (this._MST_Reason.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._MST_Reason.Entity = null;
+						previousValue.IV_MiscellaneousIssueDetails.Remove(this);
+					}
+					this._MST_Reason.Entity = value;
+					if ((value != null))
+					{
+						value.IV_MiscellaneousIssueDetails.Add(this);
+						this._ReasonID = value.ReasonID;
+					}
+					else
+					{
+						this._ReasonID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("MST_Reason");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
 		}
 	}
 	

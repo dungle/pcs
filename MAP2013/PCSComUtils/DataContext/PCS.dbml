@@ -609,7 +609,6 @@
       <Association Name="ITM_Product_IV_CostHistory" Member="IV_CostHistories" ThisKey="ProductID" OtherKey="ProductID" Type="IV_CostHistory" />
       <Association Name="ITM_Product_IV_LocationCache" Member="IV_LocationCaches" ThisKey="ProductID" OtherKey="ProductID" Type="IV_LocationCache" />
       <Association Name="ITM_Product_IV_MasLocCache" Member="IV_MasLocCaches" ThisKey="ProductID" OtherKey="ProductID" Type="IV_MasLocCache" />
-      <Association Name="ITM_Product_IV_MiscellaneousIssueDetail" Member="IV_MiscellaneousIssueDetails" ThisKey="ProductID" OtherKey="ProductID" Type="IV_MiscellaneousIssueDetail" />
       <Association Name="ITM_Product_IV_StockTaking" Member="IV_StockTakings" ThisKey="ProductID" OtherKey="ProductID" Type="IV_StockTaking" />
       <Association Name="ITM_Product_IV_StockTakingDifferent" Member="IV_StockTakingDifferents" ThisKey="ProductID" OtherKey="ProductID" Type="IV_StockTakingDifferent" />
       <Association Name="ITM_Product_MST_TransactionHistory" Member="MST_TransactionHistories" ThisKey="ProductID" OtherKey="ProductID" Type="MST_TransactionHistory" />
@@ -643,6 +642,7 @@
       <Association Name="ITM_Product_sys_RoleProduct" Member="sys_RoleProducts" ThisKey="ProductID" OtherKey="ProductID" Type="sys_RoleProduct" />
       <Association Name="ITM_Product_SO_ConfirmShipDetail" Member="SO_ConfirmShipDetails" ThisKey="ProductID" OtherKey="ProductID" Type="SO_ConfirmShipDetail" />
       <Association Name="ITM_Product_SO_InvoiceDetail" Member="SO_InvoiceDetails" ThisKey="ProductID" OtherKey="ProductID" Type="SO_InvoiceDetail" />
+      <Association Name="ITM_Product_IV_MiscellaneousIssueDetail" Member="IV_MiscellaneousIssueDetails" ThisKey="ProductID" OtherKey="ProductID" Type="IV_MiscellaneousIssueDetail" />
       <Association Name="cst_ACAdjustmentMaster_ITM_Product" Member="cst_ACAdjustmentMaster" ThisKey="ACAdjustmentMasterID" OtherKey="ACAdjustmentMasterID" Type="cst_ACAdjustmentMaster" IsForeignKey="true" />
       <Association Name="ITM_Buyer_ITM_Product" Member="ITM_Buyer" ThisKey="BuyerID" OtherKey="BuyerID" Type="ITM_Buyer" IsForeignKey="true" />
       <Association Name="ITM_Category_ITM_Product" Member="ITM_Category" ThisKey="CategoryID" OtherKey="CategoryID" Type="ITM_Category" IsForeignKey="true" />
@@ -967,20 +967,6 @@
       <Association Name="ITM_Product_IV_MasLocCache" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
       <Association Name="MST_CCN_IV_MasLocCache" Member="MST_CCN" ThisKey="CCNID" OtherKey="CCNID" Type="MST_CCN" IsForeignKey="true" />
       <Association Name="MST_MasterLocation_IV_MasLocCache" Member="MST_MasterLocation" ThisKey="MasterLocationID" OtherKey="MasterLocationID" Type="MST_MasterLocation" IsForeignKey="true" />
-    </Type>
-  </Table>
-  <Table Name="dbo.IV_MiscellaneousIssueDetail" Member="IV_MiscellaneousIssueDetails">
-    <Type Name="IV_MiscellaneousIssueDetail">
-      <Column Name="MiscellaneousIssueDetailID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Lot" Type="System.String" DbType="NVarChar(40)" CanBeNull="true" />
-      <Column Name="Quantity" Type="System.Decimal" DbType="Decimal(20,5) NOT NULL" CanBeNull="false" />
-      <Column Name="MiscellaneousIssueMasterID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="ProductID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="StockUMID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="AvailableQty" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
-      <Association Name="ITM_Product_IV_MiscellaneousIssueDetail" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
-      <Association Name="IV_MiscellaneousIssueMaster_IV_MiscellaneousIssueDetail" Member="IV_MiscellaneousIssueMaster" ThisKey="MiscellaneousIssueMasterID" OtherKey="MiscellaneousIssueMasterID" Type="IV_MiscellaneousIssueMaster" IsForeignKey="true" />
-      <Association Name="MST_UnitOfMeasure_IV_MiscellaneousIssueDetail" Member="MST_UnitOfMeasure" ThisKey="StockUMID" OtherKey="UnitOfMeasureID" Type="MST_UnitOfMeasure" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.IV_MiscellaneousIssueMaster" Member="IV_MiscellaneousIssueMasters">
@@ -1321,6 +1307,7 @@
       <Association Name="MST_Department_MST_Employee" Member="MST_Employees" ThisKey="DepartmentID" OtherKey="DepartmentID" Type="MST_Employee" />
       <Association Name="MST_Department_MST_Location" Member="MST_Locations" ThisKey="DepartmentID" OtherKey="DepartmentID" Type="MST_Location" />
       <Association Name="MST_Department_PRO_ProductionLine" Member="PRO_ProductionLines" ThisKey="DepartmentID" OtherKey="DepartmentID" Type="PRO_ProductionLine" />
+      <Association Name="MST_Department_IV_MiscellaneousIssueDetail" Member="IV_MiscellaneousIssueDetails" ThisKey="DepartmentID" OtherKey="DepartmentID" Type="IV_MiscellaneousIssueDetail" />
       <Association Name="MST_CCN_MST_Department" Member="MST_CCN" ThisKey="CCNID" OtherKey="CCNID" Type="MST_CCN" IsForeignKey="true" />
     </Type>
   </Table>
@@ -1619,6 +1606,7 @@
       <Column Name="CCNID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="MST_Reason_PO_AdditionCharge" Member="PO_AdditionCharges" ThisKey="ReasonID" OtherKey="ReasonID" Type="PO_AdditionCharge" />
       <Association Name="MST_Reason_SO_SaleOrderDetail" Member="SO_SaleOrderDetails" ThisKey="ReasonID" OtherKey="ReasonID" Type="SO_SaleOrderDetail" />
+      <Association Name="MST_Reason_IV_MiscellaneousIssueDetail" Member="IV_MiscellaneousIssueDetails" ThisKey="ReasonID" OtherKey="ReasonID" Type="IV_MiscellaneousIssueDetail" />
       <Association Name="MST_CCN_MST_Reason" Member="MST_CCN" ThisKey="CCNID" OtherKey="CCNID" Type="MST_CCN" IsForeignKey="true" />
     </Type>
   </Table>
@@ -1722,7 +1710,6 @@
       <Association Name="MST_UnitOfMeasure_IV_BalanceLocation" Member="IV_BalanceLocations" ThisKey="UnitOfMeasureID" OtherKey="StockUMID" Type="IV_BalanceLocation" />
       <Association Name="MST_UnitOfMeasure_IV_BalanceMasterLocation" Member="IV_BalanceMasterLocations" ThisKey="UnitOfMeasureID" OtherKey="StockUMID" Type="IV_BalanceMasterLocation" />
       <Association Name="MST_UnitOfMeasure_IV_CostHistory" Member="IV_CostHistories" ThisKey="UnitOfMeasureID" OtherKey="StockUMID" Type="IV_CostHistory" />
-      <Association Name="MST_UnitOfMeasure_IV_MiscellaneousIssueDetail" Member="IV_MiscellaneousIssueDetails" ThisKey="UnitOfMeasureID" OtherKey="StockUMID" Type="IV_MiscellaneousIssueDetail" />
       <Association Name="MST_UnitOfMeasure_IV_StockTaking" Member="IV_StockTakings" ThisKey="UnitOfMeasureID" OtherKey="StockUMID" Type="IV_StockTaking" />
       <Association Name="MST_UnitOfMeasure_MST_BIN" Member="MST_BINs" ThisKey="UnitOfMeasureID" OtherKey="HeightUnitID" Type="MST_BIN" />
       <Association Name="MST_UnitOfMeasure_MST_BIN1" Member="MST_BINs1" ThisKey="UnitOfMeasureID" OtherKey="LengthUnitID" Type="MST_BIN" />
@@ -1748,6 +1735,7 @@
       <Association Name="MST_UnitOfMeasure_SO_ReturnedGoodsDetail" Member="SO_ReturnedGoodsDetails" ThisKey="UnitOfMeasureID" OtherKey="UnitID" Type="SO_ReturnedGoodsDetail" />
       <Association Name="MST_UnitOfMeasure_SO_SaleOrderDetail" Member="SO_SaleOrderDetails" ThisKey="UnitOfMeasureID" OtherKey="SellingUMID" Type="SO_SaleOrderDetail" />
       <Association Name="MST_UnitOfMeasure_SO_SaleOrderDetail1" Member="SO_SaleOrderDetails1" ThisKey="UnitOfMeasureID" OtherKey="StockUMID" Type="SO_SaleOrderDetail" />
+      <Association Name="MST_UnitOfMeasure_IV_MiscellaneousIssueDetail" Member="IV_MiscellaneousIssueDetails" ThisKey="UnitOfMeasureID" OtherKey="StockUMID" Type="IV_MiscellaneousIssueDetail" />
     </Type>
   </Table>
   <Table Name="dbo.MST_WorkCenter" Member="MST_WorkCenters">
@@ -6351,6 +6339,24 @@
       <Association Name="MST_Location_SO_ConfirmShipMaster" Member="MST_Location" ThisKey="LocationID" OtherKey="LocationID" Type="MST_Location" IsForeignKey="true" />
       <Association Name="MST_MasterLocation_SO_ConfirmShipMaster" Member="MST_MasterLocation" ThisKey="MasterLocationID" OtherKey="MasterLocationID" Type="MST_MasterLocation" IsForeignKey="true" />
       <Association Name="SO_SaleOrderMaster_SO_ConfirmShipMaster" Member="SO_SaleOrderMaster" ThisKey="SaleOrderMasterID" OtherKey="SaleOrderMasterID" Type="SO_SaleOrderMaster" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.IV_MiscellaneousIssueDetail" Member="IV_MiscellaneousIssueDetails">
+    <Type Name="IV_MiscellaneousIssueDetail">
+      <Column Name="MiscellaneousIssueDetailID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Lot" Type="System.String" DbType="NVarChar(40)" CanBeNull="true" />
+      <Column Name="Quantity" Type="System.Decimal" DbType="Decimal(20,5) NOT NULL" CanBeNull="false" />
+      <Column Name="MiscellaneousIssueMasterID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ProductID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="StockUMID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="AvailableQty" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
+      <Column Name="DepartmentID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ReasonID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="IV_MiscellaneousIssueMaster_IV_MiscellaneousIssueDetail" Member="IV_MiscellaneousIssueMaster" ThisKey="MiscellaneousIssueMasterID" OtherKey="MiscellaneousIssueMasterID" Type="IV_MiscellaneousIssueMaster" IsForeignKey="true" />
+      <Association Name="ITM_Product_IV_MiscellaneousIssueDetail" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
+      <Association Name="MST_UnitOfMeasure_IV_MiscellaneousIssueDetail" Member="MST_UnitOfMeasure" ThisKey="StockUMID" OtherKey="UnitOfMeasureID" Type="MST_UnitOfMeasure" IsForeignKey="true" />
+      <Association Name="MST_Department_IV_MiscellaneousIssueDetail" Member="MST_Department" ThisKey="DepartmentID" OtherKey="DepartmentID" Type="MST_Department" IsForeignKey="true" />
+      <Association Name="MST_Reason_IV_MiscellaneousIssueDetail" Member="MST_Reason" ThisKey="ReasonID" OtherKey="ReasonID" Type="MST_Reason" IsForeignKey="true" />
     </Type>
   </Table>
   <Function Name="dbo.GetAvailableQtyByPostDate" Method="GetAvailableQtyByPostDate">

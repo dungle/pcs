@@ -112,26 +112,26 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="lblCCN.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
   <data name="lblCCN.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="lblCCN.Location" type="System.Drawing.Point, System.Drawing">
-    <value>904, 2</value>
+    <value>1091, 2</value>
   </data>
   <data name="lblCCN.Size" type="System.Drawing.Size, System.Drawing">
-    <value>30, 18</value>
+    <value>36, 21</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="lblCCN.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
@@ -145,7 +145,7 @@
     <value>lblCCN</value>
   </data>
   <data name="&gt;&gt;lblCCN.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lblCCN.Parent" xml:space="preserve">
     <value>$this</value>
@@ -160,10 +160,10 @@
     <value>NoControl</value>
   </data>
   <data name="SourceBinButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>588, 18</value>
+    <value>706, 21</value>
   </data>
   <data name="SourceBinButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>26, 18</value>
+    <value>31, 21</value>
   </data>
   <data name="SourceBinButton.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -175,7 +175,7 @@
     <value>SourceBinButton</value>
   </data>
   <data name="&gt;&gt;SourceBinButton.Type" xml:space="preserve">
-    <value>C1.Win.C1Input.C1Button, C1.Win.C1Input.2, Version=2.0.20101.33244, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a</value>
+    <value>C1.Win.C1Input.C1Button, C1.Win.C1Input.4, Version=4.0.20131.33296, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a</value>
   </data>
   <data name="&gt;&gt;SourceBinButton.Parent" xml:space="preserve">
     <value>grbSource</value>
@@ -187,10 +187,10 @@
     <value>NoControl</value>
   </data>
   <data name="SourceLocButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>401, 18</value>
+    <value>481, 21</value>
   </data>
   <data name="SourceLocButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>26, 18</value>
+    <value>31, 21</value>
   </data>
   <data name="SourceLocButton.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -202,7 +202,7 @@
     <value>SourceLocButton</value>
   </data>
   <data name="&gt;&gt;SourceLocButton.Type" xml:space="preserve">
-    <value>C1.Win.C1Input.C1Button, C1.Win.C1Input.2, Version=2.0.20101.33244, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a</value>
+    <value>C1.Win.C1Input.C1Button, C1.Win.C1Input.4, Version=4.0.20131.33296, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a</value>
   </data>
   <data name="&gt;&gt;SourceLocButton.Parent" xml:space="preserve">
     <value>grbSource</value>
@@ -214,10 +214,10 @@
     <value>NoControl</value>
   </data>
   <data name="SourceMasLocButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>190, 18</value>
+    <value>228, 21</value>
   </data>
   <data name="SourceMasLocButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>26, 18</value>
+    <value>31, 21</value>
   </data>
   <data name="SourceMasLocButton.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -229,7 +229,7 @@
     <value>SourceMasLocButton</value>
   </data>
   <data name="&gt;&gt;SourceMasLocButton.Type" xml:space="preserve">
-    <value>C1.Win.C1Input.C1Button, C1.Win.C1Input.2, Version=2.0.20101.33244, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a</value>
+    <value>C1.Win.C1Input.C1Button, C1.Win.C1Input.4, Version=4.0.20131.33296, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a</value>
   </data>
   <data name="&gt;&gt;SourceMasLocButton.Parent" xml:space="preserve">
     <value>grbSource</value>
@@ -241,10 +241,10 @@
     <value>FixedSingle</value>
   </data>
   <data name="SourceBinText.Location" type="System.Drawing.Point, System.Drawing">
-    <value>488, 18</value>
+    <value>586, 21</value>
   </data>
   <data name="SourceBinText.Size" type="System.Drawing.Size, System.Drawing">
-    <value>98, 18</value>
+    <value>117, 20</value>
   </data>
   <data name="SourceBinText.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -259,7 +259,7 @@
     <value>SourceBinText</value>
   </data>
   <data name="&gt;&gt;SourceBinText.Type" xml:space="preserve">
-    <value>C1.Win.C1Input.C1TextBox, C1.Win.C1Input.2, Version=2.0.20101.33244, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a</value>
+    <value>C1.Win.C1Input.C1TextBox, C1.Win.C1Input.4, Version=4.0.20131.33296, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a</value>
   </data>
   <data name="&gt;&gt;SourceBinText.Parent" xml:space="preserve">
     <value>grbSource</value>
@@ -271,10 +271,10 @@
     <value>FixedSingle</value>
   </data>
   <data name="SourceLocText.Location" type="System.Drawing.Point, System.Drawing">
-    <value>301, 18</value>
+    <value>361, 21</value>
   </data>
   <data name="SourceLocText.Size" type="System.Drawing.Size, System.Drawing">
-    <value>98, 18</value>
+    <value>118, 20</value>
   </data>
   <data name="SourceLocText.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -289,7 +289,7 @@
     <value>SourceLocText</value>
   </data>
   <data name="&gt;&gt;SourceLocText.Type" xml:space="preserve">
-    <value>C1.Win.C1Input.C1TextBox, C1.Win.C1Input.2, Version=2.0.20101.33244, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a</value>
+    <value>C1.Win.C1Input.C1TextBox, C1.Win.C1Input.4, Version=4.0.20131.33296, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a</value>
   </data>
   <data name="&gt;&gt;SourceLocText.Parent" xml:space="preserve">
     <value>grbSource</value>
@@ -301,10 +301,10 @@
     <value>FixedSingle</value>
   </data>
   <data name="SourceMasLocText.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 18</value>
+    <value>108, 21</value>
   </data>
   <data name="SourceMasLocText.Size" type="System.Drawing.Size, System.Drawing">
-    <value>98, 18</value>
+    <value>118, 20</value>
   </data>
   <data name="SourceMasLocText.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -319,7 +319,7 @@
     <value>SourceMasLocText</value>
   </data>
   <data name="&gt;&gt;SourceMasLocText.Type" xml:space="preserve">
-    <value>C1.Win.C1Input.C1TextBox, C1.Win.C1Input.2, Version=2.0.20101.33244, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a</value>
+    <value>C1.Win.C1Input.C1TextBox, C1.Win.C1Input.4, Version=4.0.20131.33296, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a</value>
   </data>
   <data name="&gt;&gt;SourceMasLocText.Parent" xml:space="preserve">
     <value>grbSource</value>
@@ -331,10 +331,10 @@
     <value>NoControl</value>
   </data>
   <data name="lblSourceLoc.Location" type="System.Drawing.Point, System.Drawing">
-    <value>248, 18</value>
+    <value>285, 21</value>
   </data>
   <data name="lblSourceLoc.Size" type="System.Drawing.Size, System.Drawing">
-    <value>51, 18</value>
+    <value>74, 21</value>
   </data>
   <data name="lblSourceLoc.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -349,7 +349,7 @@
     <value>lblSourceLoc</value>
   </data>
   <data name="&gt;&gt;lblSourceLoc.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lblSourceLoc.Parent" xml:space="preserve">
     <value>grbSource</value>
@@ -361,10 +361,10 @@
     <value>NoControl</value>
   </data>
   <data name="lblSourceMasLoc.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 18</value>
+    <value>10, 21</value>
   </data>
   <data name="lblSourceMasLoc.Size" type="System.Drawing.Size, System.Drawing">
-    <value>76, 18</value>
+    <value>103, 21</value>
   </data>
   <data name="lblSourceMasLoc.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -379,7 +379,7 @@
     <value>lblSourceMasLoc</value>
   </data>
   <data name="&gt;&gt;lblSourceMasLoc.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lblSourceMasLoc.Parent" xml:space="preserve">
     <value>grbSource</value>
@@ -391,10 +391,10 @@
     <value>NoControl</value>
   </data>
   <data name="lblSourceBin.Location" type="System.Drawing.Point, System.Drawing">
-    <value>462, 18</value>
+    <value>554, 21</value>
   </data>
   <data name="lblSourceBin.Size" type="System.Drawing.Size, System.Drawing">
-    <value>24, 18</value>
+    <value>29, 21</value>
   </data>
   <data name="lblSourceBin.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -409,7 +409,7 @@
     <value>lblSourceBin</value>
   </data>
   <data name="&gt;&gt;lblSourceBin.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lblSourceBin.Parent" xml:space="preserve">
     <value>grbSource</value>
@@ -418,10 +418,10 @@
     <value>8</value>
   </data>
   <data name="grbSource.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 72</value>
+    <value>5, 83</value>
   </data>
   <data name="grbSource.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1012, 44</value>
+    <value>1220, 51</value>
   </data>
   <data name="grbSource.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -433,7 +433,7 @@
     <value>grbSource</value>
   </data>
   <data name="&gt;&gt;grbSource.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;grbSource.Parent" xml:space="preserve">
     <value>$this</value>
@@ -445,10 +445,10 @@
     <value>NoControl</value>
   </data>
   <data name="lblPostDate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 5</value>
+    <value>5, 6</value>
   </data>
   <data name="lblPostDate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>84, 18</value>
+    <value>101, 21</value>
   </data>
   <data name="lblPostDate.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -463,7 +463,7 @@
     <value>lblPostDate</value>
   </data>
   <data name="&gt;&gt;lblPostDate.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lblPostDate.Parent" xml:space="preserve">
     <value>$this</value>
@@ -475,10 +475,10 @@
     <value>NoControl</value>
   </data>
   <data name="lblComment.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 45</value>
+    <value>5, 52</value>
   </data>
   <data name="lblComment.Size" type="System.Drawing.Size, System.Drawing">
-    <value>84, 18</value>
+    <value>101, 21</value>
   </data>
   <data name="lblComment.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -493,7 +493,7 @@
     <value>lblComment</value>
   </data>
   <data name="&gt;&gt;lblComment.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lblComment.Parent" xml:space="preserve">
     <value>$this</value>
@@ -513,18 +513,15 @@
   <data name="DetailGrid.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
-  <data name="DetailGrid.GroupByCaption" xml:space="preserve">
-    <value>Drag a column header here to group by that column</value>
-  </data>
   <data name="DetailGrid.Images" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADr8AAA6/ATgFUyQAAAA3SURBVChTY2DABP+xiIGFkCVwsVEUwhThNREkiaEAJoiP
-        RnEmskKs7kd3C1YrYTrx+g6bIrAYAKCqHOQvFu6BAAAAAElFTkSuQmCC
+        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAA0SURBVChTdYkBCgAgDAL9/6eLIsd0eSCKhw/r9aCLtC88
+        vAdHMEIXKUIUhMK76EfagglgA6CqHOQpL6GyAAAAAElFTkSuQmCC
 </value>
   </data>
   <data name="DetailGrid.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 194</value>
+    <value>5, 224</value>
   </data>
   <data name="DetailGrid.PrintInfo.PageSettings" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
@@ -556,10 +553,10 @@
 </value>
   </data>
   <data name="DetailGrid.PropBag" xml:space="preserve">
-    <value>&lt;?xml version="1.0"?&gt;&lt;Blob&gt;&lt;DataCols&gt;&lt;C1DataColumn Caption="Model" DataField="Model"&gt;&lt;ValueItems /&gt;&lt;GroupInfo /&gt;&lt;/C1DataColumn&gt;&lt;C1DataColumn Caption="Unit" DataField="UM"&gt;&lt;ValueItems /&gt;&lt;GroupInfo /&gt;&lt;/C1DataColumn&gt;&lt;C1DataColumn Caption="Line" DataField="Line"&gt;&lt;ValueItems /&gt;&lt;GroupInfo /&gt;&lt;/C1DataColumn&gt;&lt;C1DataColumn Caption="Available Qty" DataField="AvailableQty"&gt;&lt;ValueItems /&gt;&lt;GroupInfo /&gt;&lt;/C1DataColumn&gt;&lt;C1DataColumn Caption="Part Number" DataField="PartNumber"&gt;&lt;ValueItems /&gt;&lt;GroupInfo /&gt;&lt;/C1DataColumn&gt;&lt;C1DataColumn Caption="Part Name" DataField="PartName"&gt;&lt;ValueItems /&gt;&lt;GroupInfo /&gt;&lt;/C1DataColumn&gt;&lt;C1DataColumn Caption="Issue Quantity" DataField="Quantity"&gt;&lt;ValueItems /&gt;&lt;GroupInfo /&gt;&lt;/C1DataColumn&gt;&lt;C1DataColumn Caption="Category" DataField="ITM_CategoryCode"&gt;&lt;ValueItems /&gt;&lt;GroupInfo /&gt;&lt;/C1DataColumn&gt;&lt;C1DataColumn Caption="Vendor" DataField="MST_PartyCode"&gt;&lt;ValueItems /&gt;&lt;GroupInfo /&gt;&lt;/C1DataColumn&gt;&lt;/DataCols&gt;&lt;Styles type="C1.Win.C1TrueDBGrid.Design.ContextWrapper"&gt;&lt;Data&gt;Style8{}Style38{}Style84{}Style16{AlignHorz:Center;ForeColor:Maroon;}Style73{}Caption{AlignHorz:Center;}Style77{AlignHorz:Near;}Style40{AlignHorz:Center;}Style4{}EvenRow{BackColor:Aqua;}Style52{}Style32{}Style36{}Style49{}FilterWatermark{ForeColor:InfoText;BackColor:Info;}Style29{AlignHorz:Near;}Style81{}Style41{AlignHorz:Near;}Style50{}Style11{}Style21{}Style5{}Style45{}Style6{}Style15{}Style3{}Style25{}Style34{AlignHorz:Center;}Style78{}Style9{}Style85{}Style17{AlignHorz:Far;}Style43{}Style13{}Style23{AlignHorz:Near;}RecordSelector{AlignImage:Center;}Style47{AlignHorz:Near;}Style83{AlignHorz:Near;}Style27{}Style87{}Group{Border:None,,0, 0, 0, 0;AlignVert:Center;BackColor:ControlDark;}Heading{ForeColor:ControlText;Wrap:True;BackColor:Control;AlignVert:Center;Border:Raised,,1, 1, 1, 1;}Editor{}Style72{}Style75{}Style76{AlignHorz:Center;ForeColor:Maroon;}FilterBar{}Style44{}Style39{}Style30{}Style51{}Style70{AlignHorz:Center;}Style31{}Style7{}Style74{}Style35{AlignHorz:Near;}Style48{}Normal{}Style18{}Style28{AlignHorz:Center;}OddRow{}Style33{}Style2{}Style37{}Inactive{ForeColor:InactiveCaptionText;BackColor:InactiveCaption;}Style42{}Style12{}Style22{AlignHorz:Center;}Style46{AlignHorz:Center;}Style19{}Style82{AlignHorz:Center;ForeColor:Maroon;}Style26{}Style79{}Style86{}Style14{}Style71{AlignHorz:Far;}Selected{ForeColor:WindowText;BackColor:239, 239, 247;}Style10{AlignHorz:Near;}Style20{}Footer{}Style1{}Style80{}HighlightRow{ForeColor:HighlightText;BackColor:Highlight;}Style24{}&lt;/Data&gt;&lt;/Styles&gt;&lt;Splits&gt;&lt;C1.Win.C1TrueDBGrid.MergeView Name="" CaptionHeight="17" ColumnCaptionHeight="17" ColumnFooterHeight="17" MarqueeStyle="DottedCellBorder" RecordSelectorWidth="17" DefRecSelWidth="17" VerticalScrollGroup="1" HorizontalScrollGroup="1"&gt;&lt;Height&gt;251&lt;/Height&gt;&lt;CaptionStyle parent="Style2" me="Style10" /&gt;&lt;EditorStyle parent="Editor" me="Style5" /&gt;&lt;EvenRowStyle parent="EvenRow" me="Style8" /&gt;&lt;FilterBarStyle parent="FilterBar" me="Style13" /&gt;&lt;FilterWatermarkStyle parent="FilterWatermark" me="Style52" /&gt;&lt;FooterStyle parent="Footer" me="Style3" /&gt;&lt;GroupStyle parent="Group" me="Style12" /&gt;&lt;HeadingStyle parent="Heading" me="Style2" /&gt;&lt;HighLightRowStyle parent="HighlightRow" me="Style7" /&gt;&lt;InactiveStyle parent="Inactive" me="Style4" /&gt;&lt;OddRowStyle parent="OddRow" me="Style9" /&gt;&lt;RecordSelectorStyle parent="RecordSelector" me="Style11" /&gt;&lt;SelectedStyle parent="Selected" me="Style6" /&gt;&lt;Style parent="Normal" me="Style1" /&gt;&lt;internalCols&gt;&lt;C1DisplayColumn&gt;&lt;HeadingStyle parent="Style2" me="Style46" /&gt;&lt;Style parent="Style1" me="Style47" /&gt;&lt;FooterStyle parent="Style3" me="Style48" /&gt;&lt;EditorStyle parent="Style5" me="Style49" /&gt;&lt;GroupHeaderStyle parent="Style1" me="Style51" /&gt;&lt;GroupFooterStyle parent="Style1" me="Style50" /&gt;&lt;Visible&gt;True&lt;/Visible&gt;&lt;ColumnDivider&gt;DarkGray,Single&lt;/ColumnDivider&gt;&lt;Width&gt;33&lt;/Width&gt;&lt;Height&gt;15&lt;/Height&gt;&lt;DCIdx&gt;2&lt;/DCIdx&gt;&lt;/C1DisplayColumn&gt;&lt;C1DisplayColumn&gt;&lt;HeadingStyle parent="Style2" me="Style22" /&gt;&lt;Style parent="Style1" me="Style23" /&gt;&lt;FooterStyle parent="Style3" me="Style24" /&gt;&lt;EditorStyle parent="Style5" me="Style25" /&gt;&lt;GroupHeaderStyle parent="Style1" me="Style27" /&gt;&lt;GroupFooterStyle parent="Style1" me="Style26" /&gt;&lt;Visible&gt;True&lt;/Visible&gt;&lt;ColumnDivider&gt;DarkGray,Single&lt;/ColumnDivider&gt;&lt;Width&gt;68&lt;/Width&gt;&lt;Height&gt;15&lt;/Height&gt;&lt;Locked&gt;True&lt;/Locked&gt;&lt;DCIdx&gt;7&lt;/DCIdx&gt;&lt;/C1DisplayColumn&gt;&lt;C1DisplayColumn&gt;&lt;HeadingStyle parent="Style2" me="Style76" /&gt;&lt;Style parent="Style1" me="Style77" /&gt;&lt;FooterStyle parent="Style3" me="Style78" /&gt;&lt;EditorStyle parent="Style5" me="Style79" /&gt;&lt;GroupHeaderStyle parent="Style1" me="Style81" /&gt;&lt;GroupFooterStyle parent="Style1" me="Style80" /&gt;&lt;Visible&gt;True&lt;/Visible&gt;&lt;ColumnDivider&gt;DarkGray,Single&lt;/ColumnDivider&gt;&lt;Width&gt;225&lt;/Width&gt;&lt;Height&gt;15&lt;/Height&gt;&lt;DCIdx&gt;4&lt;/DCIdx&gt;&lt;/C1DisplayColumn&gt;&lt;C1DisplayColumn&gt;&lt;HeadingStyle parent="Style2" me="Style82" /&gt;&lt;Style parent="Style1" me="Style83" /&gt;&lt;FooterStyle parent="Style3" me="Style84" /&gt;&lt;EditorStyle parent="Style5" me="Style85" /&gt;&lt;GroupHeaderStyle parent="Style1" me="Style87" /&gt;&lt;GroupFooterStyle parent="Style1" me="Style86" /&gt;&lt;Visible&gt;True&lt;/Visible&gt;&lt;ColumnDivider&gt;DarkGray,Single&lt;/ColumnDivider&gt;&lt;Width&gt;272&lt;/Width&gt;&lt;Height&gt;15&lt;/Height&gt;&lt;DCIdx&gt;5&lt;/DCIdx&gt;&lt;/C1DisplayColumn&gt;&lt;C1DisplayColumn&gt;&lt;HeadingStyle parent="Style2" me="Style28" /&gt;&lt;Style parent="Style1" me="Style29" /&gt;&lt;FooterStyle parent="Style3" me="Style30" /&gt;&lt;EditorStyle parent="Style5" me="Style31" /&gt;&lt;GroupHeaderStyle parent="Style1" me="Style33" /&gt;&lt;GroupFooterStyle parent="Style1" me="Style32" /&gt;&lt;Visible&gt;True&lt;/Visible&gt;&lt;ColumnDivider&gt;DarkGray,Single&lt;/ColumnDivider&gt;&lt;Width&gt;70&lt;/Width&gt;&lt;Height&gt;15&lt;/Height&gt;&lt;DCIdx&gt;0&lt;/DCIdx&gt;&lt;/C1DisplayColumn&gt;&lt;C1DisplayColumn&gt;&lt;HeadingStyle parent="Style2" me="Style40" /&gt;&lt;Style parent="Style1" me="Style41" /&gt;&lt;FooterStyle parent="Style3" me="Style42" /&gt;&lt;EditorStyle parent="Style5" me="Style43" /&gt;&lt;GroupHeaderStyle parent="Style1" me="Style45" /&gt;&lt;GroupFooterStyle parent="Style1" me="Style44" /&gt;&lt;Visible&gt;True&lt;/Visible&gt;&lt;ColumnDivider&gt;DarkGray,Single&lt;/ColumnDivider&gt;&lt;Height&gt;15&lt;/Height&gt;&lt;Locked&gt;True&lt;/Locked&gt;&lt;DCIdx&gt;8&lt;/DCIdx&gt;&lt;/C1DisplayColumn&gt;&lt;C1DisplayColumn&gt;&lt;HeadingStyle parent="Style2" me="Style34" /&gt;&lt;Style parent="Style1" me="Style35" /&gt;&lt;FooterStyle parent="Style3" me="Style36" /&gt;&lt;EditorStyle parent="Style5" me="Style37" /&gt;&lt;GroupHeaderStyle parent="Style1" me="Style39" /&gt;&lt;GroupFooterStyle parent="Style1" me="Style38" /&gt;&lt;Visible&gt;True&lt;/Visible&gt;&lt;ColumnDivider&gt;DarkGray,Single&lt;/ColumnDivider&gt;&lt;Width&gt;43&lt;/Width&gt;&lt;Height&gt;15&lt;/Height&gt;&lt;DCIdx&gt;1&lt;/DCIdx&gt;&lt;/C1DisplayColumn&gt;&lt;C1DisplayColumn&gt;&lt;HeadingStyle parent="Style2" me="Style16" /&gt;&lt;Style parent="Style1" me="Style17" /&gt;&lt;FooterStyle parent="Style3" me="Style18" /&gt;&lt;EditorStyle parent="Style5" me="Style19" /&gt;&lt;GroupHeaderStyle parent="Style1" me="Style21" /&gt;&lt;GroupFooterStyle parent="Style1" me="Style20" /&gt;&lt;Visible&gt;True&lt;/Visible&gt;&lt;ColumnDivider&gt;DarkGray,Single&lt;/ColumnDivider&gt;&lt;Width&gt;85&lt;/Width&gt;&lt;Height&gt;15&lt;/Height&gt;&lt;DCIdx&gt;6&lt;/DCIdx&gt;&lt;/C1DisplayColumn&gt;&lt;C1DisplayColumn&gt;&lt;HeadingStyle parent="Style2" me="Style70" /&gt;&lt;Style parent="Style1" me="Style71" /&gt;&lt;FooterStyle parent="Style3" me="Style72" /&gt;&lt;EditorStyle parent="Style5" me="Style73" /&gt;&lt;GroupHeaderStyle parent="Style1" me="Style75" /&gt;&lt;GroupFooterStyle parent="Style1" me="Style74" /&gt;&lt;Visible&gt;True&lt;/Visible&gt;&lt;ColumnDivider&gt;DarkGray,Single&lt;/ColumnDivider&gt;&lt;Width&gt;87&lt;/Width&gt;&lt;Height&gt;15&lt;/Height&gt;&lt;DCIdx&gt;3&lt;/DCIdx&gt;&lt;/C1DisplayColumn&gt;&lt;/internalCols&gt;&lt;ClientRect&gt;0, 0, 1010, 251&lt;/ClientRect&gt;&lt;BorderSide&gt;0&lt;/BorderSide&gt;&lt;/C1.Win.C1TrueDBGrid.MergeView&gt;&lt;/Splits&gt;&lt;NamedStyles&gt;&lt;Style parent="" me="Normal" /&gt;&lt;Style parent="Normal" me="Heading" /&gt;&lt;Style parent="Heading" me="Footer" /&gt;&lt;Style parent="Heading" me="Caption" /&gt;&lt;Style parent="Heading" me="Inactive" /&gt;&lt;Style parent="Normal" me="Selected" /&gt;&lt;Style parent="Normal" me="Editor" /&gt;&lt;Style parent="Normal" me="HighlightRow" /&gt;&lt;Style parent="Normal" me="EvenRow" /&gt;&lt;Style parent="Normal" me="OddRow" /&gt;&lt;Style parent="Heading" me="RecordSelector" /&gt;&lt;Style parent="Normal" me="FilterBar" /&gt;&lt;Style parent="Caption" me="Group" /&gt;&lt;Style parent="FilterBar" me="FilterWatermark" /&gt;&lt;/NamedStyles&gt;&lt;vertSplits&gt;1&lt;/vertSplits&gt;&lt;horzSplits&gt;1&lt;/horzSplits&gt;&lt;Layout&gt;Modified&lt;/Layout&gt;&lt;DefaultRecSelWidth&gt;17&lt;/DefaultRecSelWidth&gt;&lt;ClientArea&gt;0, 0, 1010, 251&lt;/ClientArea&gt;&lt;PrintPageHeaderStyle parent="" me="Style14" /&gt;&lt;PrintPageFooterStyle parent="" me="Style15" /&gt;&lt;/Blob&gt;</value>
+    <value>&lt;?xml version="1.0"?&gt;&lt;Blob&gt;&lt;DataCols&gt;&lt;C1DataColumn Caption="Model" DataField="Model"&gt;&lt;FilterCancelText&gt;&amp;amp;Close&lt;/FilterCancelText&gt;&lt;FilterClearText&gt;C&amp;amp;lear&lt;/FilterClearText&gt;&lt;ValueItems /&gt;&lt;GroupInfo /&gt;&lt;/C1DataColumn&gt;&lt;C1DataColumn Caption="Unit" DataField="UM"&gt;&lt;FilterCancelText&gt;&amp;amp;Close&lt;/FilterCancelText&gt;&lt;FilterClearText&gt;C&amp;amp;lear&lt;/FilterClearText&gt;&lt;ValueItems /&gt;&lt;GroupInfo /&gt;&lt;/C1DataColumn&gt;&lt;C1DataColumn Caption="Line" DataField="Line"&gt;&lt;FilterCancelText&gt;&amp;amp;Close&lt;/FilterCancelText&gt;&lt;FilterClearText&gt;C&amp;amp;lear&lt;/FilterClearText&gt;&lt;ValueItems /&gt;&lt;GroupInfo /&gt;&lt;/C1DataColumn&gt;&lt;C1DataColumn Caption="Available Qty" DataField="AvailableQty"&gt;&lt;FilterCancelText&gt;&amp;amp;Close&lt;/FilterCancelText&gt;&lt;FilterClearText&gt;C&amp;amp;lear&lt;/FilterClearText&gt;&lt;ValueItems /&gt;&lt;GroupInfo /&gt;&lt;/C1DataColumn&gt;&lt;C1DataColumn Caption="Part Number" DataField="PartNumber"&gt;&lt;FilterCancelText&gt;&amp;amp;Close&lt;/FilterCancelText&gt;&lt;FilterClearText&gt;C&amp;amp;lear&lt;/FilterClearText&gt;&lt;ValueItems /&gt;&lt;GroupInfo /&gt;&lt;/C1DataColumn&gt;&lt;C1DataColumn Caption="Department" DataField="Department"&gt;&lt;FilterCancelText&gt;&amp;amp;Close&lt;/FilterCancelText&gt;&lt;FilterClearText&gt;C&amp;amp;lear&lt;/FilterClearText&gt;&lt;ValueItems /&gt;&lt;GroupInfo /&gt;&lt;/C1DataColumn&gt;&lt;C1DataColumn Caption="Part Name" DataField="PartName"&gt;&lt;FilterCancelText&gt;&amp;amp;Close&lt;/FilterCancelText&gt;&lt;FilterClearText&gt;C&amp;amp;lear&lt;/FilterClearText&gt;&lt;ValueItems /&gt;&lt;GroupInfo /&gt;&lt;/C1DataColumn&gt;&lt;C1DataColumn Caption="Issue Quantity" DataField="Quantity"&gt;&lt;FilterCancelText&gt;&amp;amp;Close&lt;/FilterCancelText&gt;&lt;FilterClearText&gt;C&amp;amp;lear&lt;/FilterClearText&gt;&lt;ValueItems /&gt;&lt;GroupInfo /&gt;&lt;/C1DataColumn&gt;&lt;C1DataColumn Caption="Reason" DataField="Reason"&gt;&lt;FilterCancelText&gt;&amp;amp;Close&lt;/FilterCancelText&gt;&lt;FilterClearText&gt;C&amp;amp;lear&lt;/FilterClearText&gt;&lt;ValueItems /&gt;&lt;GroupInfo /&gt;&lt;/C1DataColumn&gt;&lt;C1DataColumn Caption="Category" DataField="ITM_CategoryCode"&gt;&lt;FilterCancelText&gt;&amp;amp;Close&lt;/FilterCancelText&gt;&lt;FilterClearText&gt;C&amp;amp;lear&lt;/FilterClearText&gt;&lt;ValueItems /&gt;&lt;GroupInfo /&gt;&lt;/C1DataColumn&gt;&lt;C1DataColumn Caption="Vendor" DataField="MST_PartyCode"&gt;&lt;FilterCancelText&gt;&amp;amp;Close&lt;/FilterCancelText&gt;&lt;FilterClearText&gt;C&amp;amp;lear&lt;/FilterClearText&gt;&lt;ValueItems /&gt;&lt;GroupInfo /&gt;&lt;/C1DataColumn&gt;&lt;/DataCols&gt;&lt;Styles type="C1.Win.C1TrueDBGrid.Design.ContextWrapper"&gt;&lt;Data&gt;Style8{}Style38{}Style84{}Style73{}Caption{AlignHorz:Center;}Style77{AlignHorz:Near;}Style16{AlignHorz:Center;ForeColor:Maroon;}Style4{}Style19{}EvenRow{BackColor:Aqua;}Style52{}Style64{}Style62{}Style2{}Style32{}Style56{}Style36{}Style49{}FilterWatermark{ForeColor:InfoText;BackColor:Info;}Style29{AlignHorz:Near;}Style44{}Style75{}Style41{AlignHorz:Near;}Style50{}Style11{}Style60{AlignHorz:Near;}Style21{}Style5{}Style45{}Style6{}Style81{}Style3{}Style25{}Editor{}Style78{}Style9{}Style85{}Style43{}Style13{}Style23{AlignHorz:Near;}RecordSelector{AlignImage:Center;}Style47{AlignHorz:Near;}Style30{}Style17{AlignHorz:Far;}Style27{}Style83{AlignHorz:Near;}Style87{}Group{Border:None,,0, 0, 0, 0;AlignVert:Center;BackColor:ControlDark;}Heading{ForeColor:ControlText;Border:Raised,,1, 1, 1, 1;AlignVert:Center;BackColor:Control;Wrap:True;}Style72{}Style40{AlignHorz:Center;}Style76{AlignHorz:Center;ForeColor:Maroon;}FilterBar{}Style59{AlignHorz:Near;}Style58{}Style39{}Style51{}Style61{}Style70{AlignHorz:Center;}Style31{}Style55{}Style7{}Style74{}Style35{AlignHorz:Near;}Style48{}Normal{}Style18{}Style28{AlignHorz:Center;}Style53{AlignHorz:Near;}Style63{}Style33{}Style57{}Style37{}Style34{AlignHorz:Center;}Inactive{ForeColor:InactiveCaptionText;BackColor:InactiveCaption;}Style15{}Style42{}Style12{}Style54{AlignHorz:Near;}Style46{AlignHorz:Center;}Style82{AlignHorz:Center;ForeColor:Maroon;}Style26{}Style79{}Style86{}OddRow{}Style22{AlignHorz:Center;}Style14{}Style71{AlignHorz:Far;}Selected{ForeColor:WindowText;BackColor:239, 239, 247;}Style10{AlignHorz:Near;}Style20{}Footer{}Style1{}Style80{}HighlightRow{ForeColor:HighlightText;BackColor:Highlight;}Style24{}&lt;/Data&gt;&lt;/Styles&gt;&lt;Splits&gt;&lt;C1.Win.C1TrueDBGrid.MergeView HBarHeight="25" VBarHeight="25" Name="" CaptionHeight="17" ColumnCaptionHeight="17" ColumnFooterHeight="17" MarqueeStyle="DottedCellBorder" RecordSelectorWidth="21" DefRecSelWidth="21" VerticalScrollGroup="1" HorizontalScrollGroup="1"&gt;&lt;CaptionStyle parent="Style2" me="Style10" /&gt;&lt;EditorStyle parent="Editor" me="Style5" /&gt;&lt;EvenRowStyle parent="EvenRow" me="Style8" /&gt;&lt;FilterBarStyle parent="FilterBar" me="Style13" /&gt;&lt;FilterWatermarkStyle parent="FilterWatermark" me="Style52" /&gt;&lt;FooterStyle parent="Footer" me="Style3" /&gt;&lt;GroupStyle parent="Group" me="Style12" /&gt;&lt;HeadingStyle parent="Heading" me="Style2" /&gt;&lt;HighLightRowStyle parent="HighlightRow" me="Style7" /&gt;&lt;InactiveStyle parent="Inactive" me="Style4" /&gt;&lt;OddRowStyle parent="OddRow" me="Style9" /&gt;&lt;RecordSelectorStyle parent="RecordSelector" me="Style11" /&gt;&lt;SelectedStyle parent="Selected" me="Style6" /&gt;&lt;Style parent="Normal" me="Style1" /&gt;&lt;internalCols&gt;&lt;C1DisplayColumn&gt;&lt;HeadingStyle parent="Style2" me="Style46" /&gt;&lt;Style parent="Style1" me="Style47" /&gt;&lt;FooterStyle parent="Style3" me="Style48" /&gt;&lt;EditorStyle parent="Style5" me="Style49" /&gt;&lt;GroupHeaderStyle parent="Style1" me="Style51" /&gt;&lt;GroupFooterStyle parent="Style1" me="Style50" /&gt;&lt;Visible&gt;True&lt;/Visible&gt;&lt;ColumnDivider&gt;DarkGray,Single&lt;/ColumnDivider&gt;&lt;Width&gt;33&lt;/Width&gt;&lt;Height&gt;15&lt;/Height&gt;&lt;DCIdx&gt;2&lt;/DCIdx&gt;&lt;/C1DisplayColumn&gt;&lt;C1DisplayColumn&gt;&lt;HeadingStyle parent="Style2" me="Style22" /&gt;&lt;Style parent="Style1" me="Style23" /&gt;&lt;FooterStyle parent="Style3" me="Style24" /&gt;&lt;EditorStyle parent="Style5" me="Style25" /&gt;&lt;GroupHeaderStyle parent="Style1" me="Style27" /&gt;&lt;GroupFooterStyle parent="Style1" me="Style26" /&gt;&lt;Visible&gt;True&lt;/Visible&gt;&lt;ColumnDivider&gt;DarkGray,Single&lt;/ColumnDivider&gt;&lt;Width&gt;68&lt;/Width&gt;&lt;Height&gt;15&lt;/Height&gt;&lt;Locked&gt;True&lt;/Locked&gt;&lt;DCIdx&gt;9&lt;/DCIdx&gt;&lt;/C1DisplayColumn&gt;&lt;C1DisplayColumn&gt;&lt;HeadingStyle parent="Style2" me="Style76" /&gt;&lt;Style parent="Style1" me="Style77" /&gt;&lt;FooterStyle parent="Style3" me="Style78" /&gt;&lt;EditorStyle parent="Style5" me="Style79" /&gt;&lt;GroupHeaderStyle parent="Style1" me="Style81" /&gt;&lt;GroupFooterStyle parent="Style1" me="Style80" /&gt;&lt;Visible&gt;True&lt;/Visible&gt;&lt;ColumnDivider&gt;DarkGray,Single&lt;/ColumnDivider&gt;&lt;Width&gt;225&lt;/Width&gt;&lt;Height&gt;15&lt;/Height&gt;&lt;DCIdx&gt;4&lt;/DCIdx&gt;&lt;/C1DisplayColumn&gt;&lt;C1DisplayColumn&gt;&lt;HeadingStyle parent="Style2" me="Style82" /&gt;&lt;Style parent="Style1" me="Style83" /&gt;&lt;FooterStyle parent="Style3" me="Style84" /&gt;&lt;EditorStyle parent="Style5" me="Style85" /&gt;&lt;GroupHeaderStyle parent="Style1" me="Style87" /&gt;&lt;GroupFooterStyle parent="Style1" me="Style86" /&gt;&lt;Visible&gt;True&lt;/Visible&gt;&lt;ColumnDivider&gt;DarkGray,Single&lt;/ColumnDivider&gt;&lt;Width&gt;272&lt;/Width&gt;&lt;Height&gt;15&lt;/Height&gt;&lt;DCIdx&gt;6&lt;/DCIdx&gt;&lt;/C1DisplayColumn&gt;&lt;C1DisplayColumn&gt;&lt;HeadingStyle parent="Style2" me="Style28" /&gt;&lt;Style parent="Style1" me="Style29" /&gt;&lt;FooterStyle parent="Style3" me="Style30" /&gt;&lt;EditorStyle parent="Style5" me="Style31" /&gt;&lt;GroupHeaderStyle parent="Style1" me="Style33" /&gt;&lt;GroupFooterStyle parent="Style1" me="Style32" /&gt;&lt;Visible&gt;True&lt;/Visible&gt;&lt;ColumnDivider&gt;DarkGray,Single&lt;/ColumnDivider&gt;&lt;Width&gt;70&lt;/Width&gt;&lt;Height&gt;15&lt;/Height&gt;&lt;DCIdx&gt;0&lt;/DCIdx&gt;&lt;/C1DisplayColumn&gt;&lt;C1DisplayColumn&gt;&lt;HeadingStyle parent="Style2" me="Style53" /&gt;&lt;Style parent="Style1" me="Style54" /&gt;&lt;FooterStyle parent="Style3" me="Style55" /&gt;&lt;EditorStyle parent="Style5" me="Style56" /&gt;&lt;GroupHeaderStyle parent="Style1" me="Style58" /&gt;&lt;GroupFooterStyle parent="Style1" me="Style57" /&gt;&lt;Visible&gt;True&lt;/Visible&gt;&lt;ColumnDivider&gt;DarkGray,Single&lt;/ColumnDivider&gt;&lt;Height&gt;17&lt;/Height&gt;&lt;DCIdx&gt;5&lt;/DCIdx&gt;&lt;/C1DisplayColumn&gt;&lt;C1DisplayColumn&gt;&lt;HeadingStyle parent="Style2" me="Style40" /&gt;&lt;Style parent="Style1" me="Style41" /&gt;&lt;FooterStyle parent="Style3" me="Style42" /&gt;&lt;EditorStyle parent="Style5" me="Style43" /&gt;&lt;GroupHeaderStyle parent="Style1" me="Style45" /&gt;&lt;GroupFooterStyle parent="Style1" me="Style44" /&gt;&lt;Visible&gt;True&lt;/Visible&gt;&lt;ColumnDivider&gt;DarkGray,Single&lt;/ColumnDivider&gt;&lt;Height&gt;15&lt;/Height&gt;&lt;Locked&gt;True&lt;/Locked&gt;&lt;DCIdx&gt;10&lt;/DCIdx&gt;&lt;/C1DisplayColumn&gt;&lt;C1DisplayColumn&gt;&lt;HeadingStyle parent="Style2" me="Style34" /&gt;&lt;Style parent="Style1" me="Style35" /&gt;&lt;FooterStyle parent="Style3" me="Style36" /&gt;&lt;EditorStyle parent="Style5" me="Style37" /&gt;&lt;GroupHeaderStyle parent="Style1" me="Style39" /&gt;&lt;GroupFooterStyle parent="Style1" me="Style38" /&gt;&lt;Visible&gt;True&lt;/Visible&gt;&lt;ColumnDivider&gt;DarkGray,Single&lt;/ColumnDivider&gt;&lt;Width&gt;43&lt;/Width&gt;&lt;Height&gt;15&lt;/Height&gt;&lt;DCIdx&gt;1&lt;/DCIdx&gt;&lt;/C1DisplayColumn&gt;&lt;C1DisplayColumn&gt;&lt;HeadingStyle parent="Style2" me="Style59" /&gt;&lt;Style parent="Style1" me="Style60" /&gt;&lt;FooterStyle parent="Style3" me="Style61" /&gt;&lt;EditorStyle parent="Style5" me="Style62" /&gt;&lt;GroupHeaderStyle parent="Style1" me="Style64" /&gt;&lt;GroupFooterStyle parent="Style1" me="Style63" /&gt;&lt;Visible&gt;True&lt;/Visible&gt;&lt;ColumnDivider&gt;DarkGray,Single&lt;/ColumnDivider&gt;&lt;Height&gt;17&lt;/Height&gt;&lt;DCIdx&gt;8&lt;/DCIdx&gt;&lt;/C1DisplayColumn&gt;&lt;C1DisplayColumn&gt;&lt;HeadingStyle parent="Style2" me="Style16" /&gt;&lt;Style parent="Style1" me="Style17" /&gt;&lt;FooterStyle parent="Style3" me="Style18" /&gt;&lt;EditorStyle parent="Style5" me="Style19" /&gt;&lt;GroupHeaderStyle parent="Style1" me="Style21" /&gt;&lt;GroupFooterStyle parent="Style1" me="Style20" /&gt;&lt;Visible&gt;True&lt;/Visible&gt;&lt;ColumnDivider&gt;DarkGray,Single&lt;/ColumnDivider&gt;&lt;Width&gt;85&lt;/Width&gt;&lt;Height&gt;15&lt;/Height&gt;&lt;DCIdx&gt;7&lt;/DCIdx&gt;&lt;/C1DisplayColumn&gt;&lt;C1DisplayColumn&gt;&lt;HeadingStyle parent="Style2" me="Style70" /&gt;&lt;Style parent="Style1" me="Style71" /&gt;&lt;FooterStyle parent="Style3" me="Style72" /&gt;&lt;EditorStyle parent="Style5" me="Style73" /&gt;&lt;GroupHeaderStyle parent="Style1" me="Style75" /&gt;&lt;GroupFooterStyle parent="Style1" me="Style74" /&gt;&lt;Visible&gt;True&lt;/Visible&gt;&lt;ColumnDivider&gt;DarkGray,Single&lt;/ColumnDivider&gt;&lt;Width&gt;87&lt;/Width&gt;&lt;Height&gt;15&lt;/Height&gt;&lt;DCIdx&gt;3&lt;/DCIdx&gt;&lt;/C1DisplayColumn&gt;&lt;/internalCols&gt;&lt;ClientRect&gt;0, 0, 1218, 335&lt;/ClientRect&gt;&lt;BorderSide&gt;0&lt;/BorderSide&gt;&lt;/C1.Win.C1TrueDBGrid.MergeView&gt;&lt;/Splits&gt;&lt;NamedStyles&gt;&lt;Style parent="" me="Normal" /&gt;&lt;Style parent="Normal" me="Heading" /&gt;&lt;Style parent="Heading" me="Footer" /&gt;&lt;Style parent="Heading" me="Caption" /&gt;&lt;Style parent="Heading" me="Inactive" /&gt;&lt;Style parent="Normal" me="Selected" /&gt;&lt;Style parent="Normal" me="Editor" /&gt;&lt;Style parent="Normal" me="HighlightRow" /&gt;&lt;Style parent="Normal" me="EvenRow" /&gt;&lt;Style parent="Normal" me="OddRow" /&gt;&lt;Style parent="Heading" me="RecordSelector" /&gt;&lt;Style parent="Normal" me="FilterBar" /&gt;&lt;Style parent="Caption" me="Group" /&gt;&lt;Style parent="FilterBar" me="FilterWatermark" /&gt;&lt;/NamedStyles&gt;&lt;vertSplits&gt;1&lt;/vertSplits&gt;&lt;horzSplits&gt;1&lt;/horzSplits&gt;&lt;Layout&gt;Modified&lt;/Layout&gt;&lt;DefaultRecSelWidth&gt;21&lt;/DefaultRecSelWidth&gt;&lt;ClientArea&gt;0, 0, 1218, 335&lt;/ClientArea&gt;&lt;PrintPageHeaderStyle parent="" me="Style14" /&gt;&lt;PrintPageFooterStyle parent="" me="Style15" /&gt;&lt;/Blob&gt;</value>
   </data>
   <data name="DetailGrid.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1012, 253</value>
+    <value>1220, 337</value>
   </data>
   <data name="DetailGrid.TabIndex" type="System.Int32, mscorlib">
     <value>14</value>
@@ -571,7 +568,7 @@
     <value>DetailGrid</value>
   </data>
   <data name="&gt;&gt;DetailGrid.Type" xml:space="preserve">
-    <value>C1.Win.C1TrueDBGrid.C1TrueDBGrid, C1.Win.C1TrueDBGrid.2, Version=2.0.20101.61177, Culture=neutral, PublicKeyToken=75ae3fb0e2b1e0da</value>
+    <value>C1.Win.C1TrueDBGrid.C1TrueDBGrid, C1.Win.C1TrueDBGrid.4, Version=4.0.20131.61298, Culture=neutral, PublicKeyToken=75ae3fb0e2b1e0da</value>
   </data>
   <data name="&gt;&gt;DetailGrid.Parent" xml:space="preserve">
     <value>$this</value>
@@ -583,10 +580,10 @@
     <value>NoControl</value>
   </data>
   <data name="lblTransNo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 25</value>
+    <value>5, 29</value>
   </data>
   <data name="lblTransNo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>84, 18</value>
+    <value>101, 21</value>
   </data>
   <data name="lblTransNo.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -601,7 +598,7 @@
     <value>lblTransNo</value>
   </data>
   <data name="&gt;&gt;lblTransNo.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lblTransNo.Parent" xml:space="preserve">
     <value>$this</value>
@@ -616,10 +613,10 @@
     <value>NoControl</value>
   </data>
   <data name="DestBinButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>588, 18</value>
+    <value>706, 21</value>
   </data>
   <data name="DestBinButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>26, 18</value>
+    <value>31, 21</value>
   </data>
   <data name="DestBinButton.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -631,7 +628,7 @@
     <value>DestBinButton</value>
   </data>
   <data name="&gt;&gt;DestBinButton.Type" xml:space="preserve">
-    <value>C1.Win.C1Input.C1Button, C1.Win.C1Input.2, Version=2.0.20101.33244, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a</value>
+    <value>C1.Win.C1Input.C1Button, C1.Win.C1Input.4, Version=4.0.20131.33296, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a</value>
   </data>
   <data name="&gt;&gt;DestBinButton.Parent" xml:space="preserve">
     <value>grbDestination</value>
@@ -643,10 +640,10 @@
     <value>NoControl</value>
   </data>
   <data name="DestLocButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>401, 18</value>
+    <value>481, 21</value>
   </data>
   <data name="DestLocButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>26, 18</value>
+    <value>31, 21</value>
   </data>
   <data name="DestLocButton.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -658,7 +655,7 @@
     <value>DestLocButton</value>
   </data>
   <data name="&gt;&gt;DestLocButton.Type" xml:space="preserve">
-    <value>C1.Win.C1Input.C1Button, C1.Win.C1Input.2, Version=2.0.20101.33244, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a</value>
+    <value>C1.Win.C1Input.C1Button, C1.Win.C1Input.4, Version=4.0.20131.33296, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a</value>
   </data>
   <data name="&gt;&gt;DestLocButton.Parent" xml:space="preserve">
     <value>grbDestination</value>
@@ -670,10 +667,10 @@
     <value>NoControl</value>
   </data>
   <data name="PartyNameButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>499, 40</value>
+    <value>599, 46</value>
   </data>
   <data name="PartyNameButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>26, 18</value>
+    <value>31, 21</value>
   </data>
   <data name="PartyNameButton.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -685,7 +682,7 @@
     <value>PartyNameButton</value>
   </data>
   <data name="&gt;&gt;PartyNameButton.Type" xml:space="preserve">
-    <value>C1.Win.C1Input.C1Button, C1.Win.C1Input.2, Version=2.0.20101.33244, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a</value>
+    <value>C1.Win.C1Input.C1Button, C1.Win.C1Input.4, Version=4.0.20131.33296, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a</value>
   </data>
   <data name="&gt;&gt;PartyNameButton.Parent" xml:space="preserve">
     <value>grbDestination</value>
@@ -697,10 +694,10 @@
     <value>NoControl</value>
   </data>
   <data name="PartyCodeButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>190, 40</value>
+    <value>228, 46</value>
   </data>
   <data name="PartyCodeButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>26, 18</value>
+    <value>31, 21</value>
   </data>
   <data name="PartyCodeButton.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -712,7 +709,7 @@
     <value>PartyCodeButton</value>
   </data>
   <data name="&gt;&gt;PartyCodeButton.Type" xml:space="preserve">
-    <value>C1.Win.C1Input.C1Button, C1.Win.C1Input.2, Version=2.0.20101.33244, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a</value>
+    <value>C1.Win.C1Input.C1Button, C1.Win.C1Input.4, Version=4.0.20131.33296, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a</value>
   </data>
   <data name="&gt;&gt;PartyCodeButton.Parent" xml:space="preserve">
     <value>grbDestination</value>
@@ -724,10 +721,10 @@
     <value>NoControl</value>
   </data>
   <data name="DestMasLocButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>190, 18</value>
+    <value>228, 21</value>
   </data>
   <data name="DestMasLocButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>26, 18</value>
+    <value>31, 21</value>
   </data>
   <data name="DestMasLocButton.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
@@ -739,7 +736,7 @@
     <value>DestMasLocButton</value>
   </data>
   <data name="&gt;&gt;DestMasLocButton.Type" xml:space="preserve">
-    <value>C1.Win.C1Input.C1Button, C1.Win.C1Input.2, Version=2.0.20101.33244, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a</value>
+    <value>C1.Win.C1Input.C1Button, C1.Win.C1Input.4, Version=4.0.20131.33296, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a</value>
   </data>
   <data name="&gt;&gt;DestMasLocButton.Parent" xml:space="preserve">
     <value>grbDestination</value>
@@ -751,10 +748,10 @@
     <value>FixedSingle</value>
   </data>
   <data name="DestBinText.Location" type="System.Drawing.Point, System.Drawing">
-    <value>488, 18</value>
+    <value>586, 21</value>
   </data>
   <data name="DestBinText.Size" type="System.Drawing.Size, System.Drawing">
-    <value>98, 18</value>
+    <value>117, 20</value>
   </data>
   <data name="DestBinText.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -769,7 +766,7 @@
     <value>DestBinText</value>
   </data>
   <data name="&gt;&gt;DestBinText.Type" xml:space="preserve">
-    <value>C1.Win.C1Input.C1TextBox, C1.Win.C1Input.2, Version=2.0.20101.33244, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a</value>
+    <value>C1.Win.C1Input.C1TextBox, C1.Win.C1Input.4, Version=4.0.20131.33296, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a</value>
   </data>
   <data name="&gt;&gt;DestBinText.Parent" xml:space="preserve">
     <value>grbDestination</value>
@@ -781,10 +778,10 @@
     <value>FixedSingle</value>
   </data>
   <data name="DestLocText.Location" type="System.Drawing.Point, System.Drawing">
-    <value>301, 18</value>
+    <value>361, 21</value>
   </data>
   <data name="DestLocText.Size" type="System.Drawing.Size, System.Drawing">
-    <value>98, 18</value>
+    <value>118, 20</value>
   </data>
   <data name="DestLocText.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -799,7 +796,7 @@
     <value>DestLocText</value>
   </data>
   <data name="&gt;&gt;DestLocText.Type" xml:space="preserve">
-    <value>C1.Win.C1Input.C1TextBox, C1.Win.C1Input.2, Version=2.0.20101.33244, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a</value>
+    <value>C1.Win.C1Input.C1TextBox, C1.Win.C1Input.4, Version=4.0.20131.33296, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a</value>
   </data>
   <data name="&gt;&gt;DestLocText.Parent" xml:space="preserve">
     <value>grbDestination</value>
@@ -811,10 +808,10 @@
     <value>FixedSingle</value>
   </data>
   <data name="PartyNameText.Location" type="System.Drawing.Point, System.Drawing">
-    <value>218, 40</value>
+    <value>262, 46</value>
   </data>
   <data name="PartyNameText.Size" type="System.Drawing.Size, System.Drawing">
-    <value>279, 18</value>
+    <value>334, 20</value>
   </data>
   <data name="PartyNameText.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -829,7 +826,7 @@
     <value>PartyNameText</value>
   </data>
   <data name="&gt;&gt;PartyNameText.Type" xml:space="preserve">
-    <value>C1.Win.C1Input.C1TextBox, C1.Win.C1Input.2, Version=2.0.20101.33244, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a</value>
+    <value>C1.Win.C1Input.C1TextBox, C1.Win.C1Input.4, Version=4.0.20131.33296, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a</value>
   </data>
   <data name="&gt;&gt;PartyNameText.Parent" xml:space="preserve">
     <value>grbDestination</value>
@@ -841,10 +838,10 @@
     <value>FixedSingle</value>
   </data>
   <data name="PartyCodeText.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 40</value>
+    <value>108, 46</value>
   </data>
   <data name="PartyCodeText.Size" type="System.Drawing.Size, System.Drawing">
-    <value>98, 18</value>
+    <value>118, 20</value>
   </data>
   <data name="PartyCodeText.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -859,7 +856,7 @@
     <value>PartyCodeText</value>
   </data>
   <data name="&gt;&gt;PartyCodeText.Type" xml:space="preserve">
-    <value>C1.Win.C1Input.C1TextBox, C1.Win.C1Input.2, Version=2.0.20101.33244, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a</value>
+    <value>C1.Win.C1Input.C1TextBox, C1.Win.C1Input.4, Version=4.0.20131.33296, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a</value>
   </data>
   <data name="&gt;&gt;PartyCodeText.Parent" xml:space="preserve">
     <value>grbDestination</value>
@@ -871,10 +868,10 @@
     <value>FixedSingle</value>
   </data>
   <data name="DestMasLocText.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 18</value>
+    <value>108, 21</value>
   </data>
   <data name="DestMasLocText.Size" type="System.Drawing.Size, System.Drawing">
-    <value>98, 18</value>
+    <value>118, 20</value>
   </data>
   <data name="DestMasLocText.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
@@ -889,7 +886,7 @@
     <value>DestMasLocText</value>
   </data>
   <data name="&gt;&gt;DestMasLocText.Type" xml:space="preserve">
-    <value>C1.Win.C1Input.C1TextBox, C1.Win.C1Input.2, Version=2.0.20101.33244, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a</value>
+    <value>C1.Win.C1Input.C1TextBox, C1.Win.C1Input.4, Version=4.0.20131.33296, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a</value>
   </data>
   <data name="&gt;&gt;DestMasLocText.Parent" xml:space="preserve">
     <value>grbDestination</value>
@@ -901,10 +898,10 @@
     <value>NoControl</value>
   </data>
   <data name="lblDestLoc.Location" type="System.Drawing.Point, System.Drawing">
-    <value>248, 18</value>
+    <value>285, 21</value>
   </data>
   <data name="lblDestLoc.Size" type="System.Drawing.Size, System.Drawing">
-    <value>51, 18</value>
+    <value>74, 21</value>
   </data>
   <data name="lblDestLoc.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -919,7 +916,7 @@
     <value>lblDestLoc</value>
   </data>
   <data name="&gt;&gt;lblDestLoc.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lblDestLoc.Parent" xml:space="preserve">
     <value>grbDestination</value>
@@ -931,10 +928,10 @@
     <value>NoControl</value>
   </data>
   <data name="lblDestMasLoc.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 18</value>
+    <value>10, 21</value>
   </data>
   <data name="lblDestMasLoc.Size" type="System.Drawing.Size, System.Drawing">
-    <value>76, 18</value>
+    <value>103, 21</value>
   </data>
   <data name="lblDestMasLoc.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -949,7 +946,7 @@
     <value>lblDestMasLoc</value>
   </data>
   <data name="&gt;&gt;lblDestMasLoc.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lblDestMasLoc.Parent" xml:space="preserve">
     <value>grbDestination</value>
@@ -961,10 +958,10 @@
     <value>NoControl</value>
   </data>
   <data name="lblDestBin.Location" type="System.Drawing.Point, System.Drawing">
-    <value>462, 18</value>
+    <value>554, 21</value>
   </data>
   <data name="lblDestBin.Size" type="System.Drawing.Size, System.Drawing">
-    <value>24, 18</value>
+    <value>29, 21</value>
   </data>
   <data name="lblDestBin.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -979,7 +976,7 @@
     <value>lblDestBin</value>
   </data>
   <data name="&gt;&gt;lblDestBin.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lblDestBin.Parent" xml:space="preserve">
     <value>grbDestination</value>
@@ -991,10 +988,10 @@
     <value>NoControl</value>
   </data>
   <data name="lblParty.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 40</value>
+    <value>10, 46</value>
   </data>
   <data name="lblParty.Size" type="System.Drawing.Size, System.Drawing">
-    <value>72, 18</value>
+    <value>86, 21</value>
   </data>
   <data name="lblParty.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -1009,7 +1006,7 @@
     <value>lblParty</value>
   </data>
   <data name="&gt;&gt;lblParty.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lblParty.Parent" xml:space="preserve">
     <value>grbDestination</value>
@@ -1018,10 +1015,10 @@
     <value>13</value>
   </data>
   <data name="grbDestination.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 118</value>
+    <value>5, 136</value>
   </data>
   <data name="grbDestination.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1012, 66</value>
+    <value>1220, 76</value>
   </data>
   <data name="grbDestination.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -1033,7 +1030,7 @@
     <value>grbDestination</value>
   </data>
   <data name="&gt;&gt;grbDestination.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;grbDestination.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1050,18 +1047,18 @@
   <data name="cboCCN.Images" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAA3SURBVChTY2DABP+xiIGFkCVwsVEUwhThNREkiaEAJoiP
-        RnEmskKs7kd3C1YrYTrx+g6bIrAYAKCqHOQvFu6BAAAAAElFTkSuQmCC
+        YQUAAAAJcEhZcwAAEnQAABJ0Ad5mH3gAAAA0SURBVChTdYkBCgAgDAL9/6eLIsd0eSCKhw/r9aCLtC88
+        vAdHMEIXKUIUhMK76EfagglgA6CqHOQpL6GyAAAAAElFTkSuQmCC
 </value>
   </data>
   <data name="cboCCN.Location" type="System.Drawing.Point, System.Drawing">
-    <value>937, 2</value>
+    <value>1130, 2</value>
   </data>
   <data name="cboCCN.PropBag" xml:space="preserve">
-    <value>&lt;?xml version="1.0"?&gt;&lt;Blob&gt;&lt;Styles type="C1.Win.C1List.Design.ContextWrapper"&gt;&lt;Data&gt;Style6{}EvenRow{BackColor:Aqua;}Group{Border:None,,0, 0, 0, 0;AlignVert:Center;BackColor:ControlDark;}Normal{BackColor:Window;}Style9{AlignHorz:Near;}OddRow{}Style1{}Style5{}Style11{}Selected{ForeColor:WindowText;BackColor:239, 239, 247;}Style8{}Style2{}Style4{}HighlightRow{ForeColor:HighlightText;BackColor:Highlight;}RecordSelector{AlignImage:Center;}Footer{}Style3{}Style7{}Heading{ForeColor:ControlText;Wrap:True;BackColor:Control;AlignVert:Center;Border:Raised,,1, 1, 1, 1;}Caption{AlignHorz:Center;}Style10{}Inactive{ForeColor:InactiveCaptionText;BackColor:InactiveCaption;}&lt;/Data&gt;&lt;/Styles&gt;&lt;Splits&gt;&lt;C1.Win.C1List.ListBoxView AllowColSelect="False" Name="Split[0,0]" CaptionHeight="17" ColumnCaptionHeight="17" ColumnFooterHeight="17" DefRecSelWidth="17" VerticalScrollGroup="1" HorizontalScrollGroup="1"&gt;&lt;ClientRect&gt;0, 0, 116, 156&lt;/ClientRect&gt;&lt;Height&gt;156&lt;/Height&gt;&lt;BorderSide&gt;Right&lt;/BorderSide&gt;&lt;VScrollBar&gt;&lt;Width&gt;16&lt;/Width&gt;&lt;/VScrollBar&gt;&lt;HScrollBar&gt;&lt;Height&gt;16&lt;/Height&gt;&lt;/HScrollBar&gt;&lt;CaptionStyle parent="Style2" me="Style9" /&gt;&lt;EvenRowStyle parent="EvenRow" me="Style7" /&gt;&lt;FooterStyle parent="Footer" me="Style3" /&gt;&lt;GroupStyle parent="Group" me="Style11" /&gt;&lt;HeadingStyle parent="Heading" me="Style2" /&gt;&lt;HighLightRowStyle parent="HighlightRow" me="Style6" /&gt;&lt;InactiveStyle parent="Inactive" me="Style4" /&gt;&lt;OddRowStyle parent="OddRow" me="Style8" /&gt;&lt;RecordSelectorStyle parent="RecordSelector" me="Style10" /&gt;&lt;SelectedStyle parent="Selected" me="Style5" /&gt;&lt;Style parent="Normal" me="Style1" /&gt;&lt;/C1.Win.C1List.ListBoxView&gt;&lt;/Splits&gt;&lt;NamedStyles&gt;&lt;Style parent="" me="Normal" /&gt;&lt;Style parent="Normal" me="Heading" /&gt;&lt;Style parent="Heading" me="Footer" /&gt;&lt;Style parent="Heading" me="Caption" /&gt;&lt;Style parent="Heading" me="Inactive" /&gt;&lt;Style parent="Normal" me="Selected" /&gt;&lt;Style parent="Normal" me="HighlightRow" /&gt;&lt;Style parent="Normal" me="EvenRow" /&gt;&lt;Style parent="Normal" me="OddRow" /&gt;&lt;Style parent="Heading" me="RecordSelector" /&gt;&lt;Style parent="Caption" me="Group" /&gt;&lt;/NamedStyles&gt;&lt;vertSplits&gt;1&lt;/vertSplits&gt;&lt;horzSplits&gt;1&lt;/horzSplits&gt;&lt;Layout&gt;Modified&lt;/Layout&gt;&lt;DefaultRecSelWidth&gt;17&lt;/DefaultRecSelWidth&gt;&lt;/Blob&gt;</value>
+    <value>&lt;?xml version="1.0"?&gt;&lt;Blob&gt;&lt;Styles type="C1.Win.C1List.Design.ContextWrapper"&gt;&lt;Data&gt;Style6{}EvenRow{BackColor:Aqua;}Group{Border:None,,0, 0, 0, 0;AlignVert:Center;BackColor:ControlDark;}Normal{BackColor:Window;}Style9{AlignHorz:Near;}OddRow{}Style1{}Style5{}Selected{ForeColor:WindowText;BackColor:239, 239, 247;}Style8{}Style2{}Style4{}HighlightRow{ForeColor:HighlightText;BackColor:Highlight;}RecordSelector{AlignImage:Center;}Footer{}Style3{}Style7{}Caption{AlignHorz:Center;}Style11{}Heading{Wrap:True;Border:Raised,,1, 1, 1, 1;AlignVert:Center;BackColor:Control;ForeColor:ControlText;}Style10{}Inactive{ForeColor:InactiveCaptionText;BackColor:InactiveCaption;}&lt;/Data&gt;&lt;/Styles&gt;&lt;Splits&gt;&lt;C1.Win.C1List.ListBoxView AllowColSelect="False" Name="Split[0,0]" CaptionHeight="17" ColumnCaptionHeight="17" ColumnFooterHeight="17" DefRecSelWidth="21" VerticalScrollGroup="1" HorizontalScrollGroup="1"&gt;&lt;ClientRect&gt;0, 0, 116, 156&lt;/ClientRect&gt;&lt;Height&gt;156&lt;/Height&gt;&lt;BorderSide&gt;Right&lt;/BorderSide&gt;&lt;VScrollBar&gt;&lt;Width&gt;16&lt;/Width&gt;&lt;/VScrollBar&gt;&lt;HScrollBar&gt;&lt;Height&gt;16&lt;/Height&gt;&lt;/HScrollBar&gt;&lt;CaptionStyle parent="Style2" me="Style9" /&gt;&lt;EvenRowStyle parent="EvenRow" me="Style7" /&gt;&lt;FooterStyle parent="Footer" me="Style3" /&gt;&lt;GroupStyle parent="Group" me="Style11" /&gt;&lt;HeadingStyle parent="Heading" me="Style2" /&gt;&lt;HighLightRowStyle parent="HighlightRow" me="Style6" /&gt;&lt;InactiveStyle parent="Inactive" me="Style4" /&gt;&lt;OddRowStyle parent="OddRow" me="Style8" /&gt;&lt;RecordSelectorStyle parent="RecordSelector" me="Style10" /&gt;&lt;SelectedStyle parent="Selected" me="Style5" /&gt;&lt;Style parent="Normal" me="Style1" /&gt;&lt;/C1.Win.C1List.ListBoxView&gt;&lt;/Splits&gt;&lt;NamedStyles&gt;&lt;Style parent="" me="Normal" /&gt;&lt;Style parent="Normal" me="Heading" /&gt;&lt;Style parent="Heading" me="Footer" /&gt;&lt;Style parent="Heading" me="Caption" /&gt;&lt;Style parent="Heading" me="Inactive" /&gt;&lt;Style parent="Normal" me="Selected" /&gt;&lt;Style parent="Normal" me="HighlightRow" /&gt;&lt;Style parent="Normal" me="EvenRow" /&gt;&lt;Style parent="Normal" me="OddRow" /&gt;&lt;Style parent="Heading" me="RecordSelector" /&gt;&lt;Style parent="Caption" me="Group" /&gt;&lt;/NamedStyles&gt;&lt;vertSplits&gt;1&lt;/vertSplits&gt;&lt;horzSplits&gt;1&lt;/horzSplits&gt;&lt;Layout&gt;Modified&lt;/Layout&gt;&lt;DefaultRecSelWidth&gt;21&lt;/DefaultRecSelWidth&gt;&lt;/Blob&gt;</value>
   </data>
   <data name="cboCCN.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 21</value>
+    <value>96, 24</value>
   </data>
   <data name="cboCCN.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -1070,10 +1067,10 @@
     <value>NoControl</value>
   </data>
   <data name="lblPurpose.Location" type="System.Drawing.Point, System.Drawing">
-    <value>289, 25</value>
+    <value>336, 29</value>
   </data>
   <data name="lblPurpose.Size" type="System.Drawing.Size, System.Drawing">
-    <value>50, 18</value>
+    <value>71, 21</value>
   </data>
   <data name="lblPurpose.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
@@ -1088,7 +1085,7 @@
     <value>lblPurpose</value>
   </data>
   <data name="&gt;&gt;lblPurpose.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;lblPurpose.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1106,10 +1103,10 @@
     <value>Inherit</value>
   </data>
   <data name="PostDatePicker.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 5</value>
+    <value>108, 6</value>
   </data>
   <data name="PostDatePicker.Size" type="System.Drawing.Size, System.Drawing">
-    <value>137, 18</value>
+    <value>164, 20</value>
   </data>
   <data name="PostDatePicker.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -1120,15 +1117,15 @@
   <data name="PostDatePicker.TextAlign" type="System.Windows.Forms.HorizontalAlignment, System.Windows.Forms">
     <value>Center</value>
   </data>
-  <assembly alias="C1.Win.C1Input.2" name="C1.Win.C1Input.2, Version=2.0.20101.33244, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a" />
-  <data name="PostDatePicker.VisibleButtons" type="C1.Win.C1Input.DropDownControlButtonFlags, C1.Win.C1Input.2">
+  <assembly alias="C1.Win.C1Input.4" name="C1.Win.C1Input.4, Version=4.0.20131.33296, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a" />
+  <data name="PostDatePicker.VisibleButtons" type="C1.Win.C1Input.DropDownControlButtonFlags, C1.Win.C1Input.4">
     <value>DropDown</value>
   </data>
   <data name="&gt;&gt;PostDatePicker.Name" xml:space="preserve">
     <value>PostDatePicker</value>
   </data>
   <data name="&gt;&gt;PostDatePicker.Type" xml:space="preserve">
-    <value>C1.Win.C1Input.C1DateEdit, C1.Win.C1Input.2, Version=2.0.20101.33244, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a</value>
+    <value>C1.Win.C1Input.C1DateEdit, C1.Win.C1Input.4, Version=4.0.20131.33296, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a</value>
   </data>
   <data name="&gt;&gt;PostDatePicker.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1140,10 +1137,10 @@
     <value>NoControl</value>
   </data>
   <data name="TransNoButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>229, 25</value>
+    <value>275, 29</value>
   </data>
   <data name="TransNoButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>26, 18</value>
+    <value>31, 21</value>
   </data>
   <data name="TransNoButton.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -1155,7 +1152,7 @@
     <value>TransNoButton</value>
   </data>
   <data name="&gt;&gt;TransNoButton.Type" xml:space="preserve">
-    <value>C1.Win.C1Input.C1Button, C1.Win.C1Input.2, Version=2.0.20101.33244, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a</value>
+    <value>C1.Win.C1Input.C1Button, C1.Win.C1Input.4, Version=4.0.20131.33296, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a</value>
   </data>
   <data name="&gt;&gt;TransNoButton.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1167,10 +1164,10 @@
     <value>FixedSingle</value>
   </data>
   <data name="TransNoText.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 25</value>
+    <value>108, 29</value>
   </data>
   <data name="TransNoText.Size" type="System.Drawing.Size, System.Drawing">
-    <value>137, 18</value>
+    <value>164, 20</value>
   </data>
   <data name="TransNoText.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -1185,7 +1182,7 @@
     <value>TransNoText</value>
   </data>
   <data name="&gt;&gt;TransNoText.Type" xml:space="preserve">
-    <value>C1.Win.C1Input.C1TextBox, C1.Win.C1Input.2, Version=2.0.20101.33244, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a</value>
+    <value>C1.Win.C1Input.C1TextBox, C1.Win.C1Input.4, Version=4.0.20131.33296, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a</value>
   </data>
   <data name="&gt;&gt;TransNoText.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1197,10 +1194,10 @@
     <value>NoControl</value>
   </data>
   <data name="PurposeButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>598, 25</value>
+    <value>718, 29</value>
   </data>
   <data name="PurposeButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>26, 18</value>
+    <value>31, 21</value>
   </data>
   <data name="PurposeButton.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
@@ -1212,7 +1209,7 @@
     <value>PurposeButton</value>
   </data>
   <data name="&gt;&gt;PurposeButton.Type" xml:space="preserve">
-    <value>C1.Win.C1Input.C1Button, C1.Win.C1Input.2, Version=2.0.20101.33244, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a</value>
+    <value>C1.Win.C1Input.C1Button, C1.Win.C1Input.4, Version=4.0.20131.33296, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a</value>
   </data>
   <data name="&gt;&gt;PurposeButton.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1224,10 +1221,10 @@
     <value>FixedSingle</value>
   </data>
   <data name="PurposeText.Location" type="System.Drawing.Point, System.Drawing">
-    <value>341, 25</value>
+    <value>409, 29</value>
   </data>
   <data name="PurposeText.Size" type="System.Drawing.Size, System.Drawing">
-    <value>255, 18</value>
+    <value>306, 20</value>
   </data>
   <data name="PurposeText.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -1242,7 +1239,7 @@
     <value>PurposeText</value>
   </data>
   <data name="&gt;&gt;PurposeText.Type" xml:space="preserve">
-    <value>C1.Win.C1Input.C1TextBox, C1.Win.C1Input.2, Version=2.0.20101.33244, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a</value>
+    <value>C1.Win.C1Input.C1TextBox, C1.Win.C1Input.4, Version=4.0.20131.33296, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a</value>
   </data>
   <data name="&gt;&gt;PurposeText.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1254,10 +1251,10 @@
     <value>FixedSingle</value>
   </data>
   <data name="CommentText.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 45</value>
+    <value>108, 52</value>
   </data>
   <data name="CommentText.Size" type="System.Drawing.Size, System.Drawing">
-    <value>534, 18</value>
+    <value>641, 20</value>
   </data>
   <data name="CommentText.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
@@ -1272,7 +1269,7 @@
     <value>CommentText</value>
   </data>
   <data name="&gt;&gt;CommentText.Type" xml:space="preserve">
-    <value>C1.Win.C1Input.C1TextBox, C1.Win.C1Input.2, Version=2.0.20101.33244, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a</value>
+    <value>C1.Win.C1Input.C1TextBox, C1.Win.C1Input.4, Version=4.0.20131.33296, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a</value>
   </data>
   <data name="&gt;&gt;CommentText.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1287,10 +1284,10 @@
     <value>NoControl</value>
   </data>
   <data name="SaveButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>67, 453</value>
+    <value>80, 568</value>
   </data>
   <data name="SaveButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>57, 23</value>
+    <value>69, 26</value>
   </data>
   <data name="SaveButton.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
@@ -1302,7 +1299,7 @@
     <value>SaveButton</value>
   </data>
   <data name="&gt;&gt;SaveButton.Type" xml:space="preserve">
-    <value>C1.Win.C1Input.C1Button, C1.Win.C1Input.2, Version=2.0.20101.33244, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a</value>
+    <value>C1.Win.C1Input.C1Button, C1.Win.C1Input.4, Version=4.0.20131.33296, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a</value>
   </data>
   <data name="&gt;&gt;SaveButton.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1317,10 +1314,10 @@
     <value>NoControl</value>
   </data>
   <data name="AddButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 453</value>
+    <value>5, 568</value>
   </data>
   <data name="AddButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>57, 23</value>
+    <value>68, 26</value>
   </data>
   <data name="AddButton.TabIndex" type="System.Int32, mscorlib">
     <value>15</value>
@@ -1332,7 +1329,7 @@
     <value>AddButton</value>
   </data>
   <data name="&gt;&gt;AddButton.Type" xml:space="preserve">
-    <value>C1.Win.C1Input.C1Button, C1.Win.C1Input.2, Version=2.0.20101.33244, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a</value>
+    <value>C1.Win.C1Input.C1Button, C1.Win.C1Input.4, Version=4.0.20131.33296, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a</value>
   </data>
   <data name="&gt;&gt;AddButton.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1347,10 +1344,10 @@
     <value>NoControl</value>
   </data>
   <data name="DeleteButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>130, 453</value>
+    <value>156, 568</value>
   </data>
   <data name="DeleteButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>57, 23</value>
+    <value>68, 26</value>
   </data>
   <data name="DeleteButton.TabIndex" type="System.Int32, mscorlib">
     <value>17</value>
@@ -1362,7 +1359,7 @@
     <value>DeleteButton</value>
   </data>
   <data name="&gt;&gt;DeleteButton.Type" xml:space="preserve">
-    <value>C1.Win.C1Input.C1Button, C1.Win.C1Input.2, Version=2.0.20101.33244, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a</value>
+    <value>C1.Win.C1Input.C1Button, C1.Win.C1Input.4, Version=4.0.20131.33296, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a</value>
   </data>
   <data name="&gt;&gt;DeleteButton.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1377,10 +1374,10 @@
     <value>NoControl</value>
   </data>
   <data name="PrintButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>193, 453</value>
+    <value>232, 568</value>
   </data>
   <data name="PrintButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>57, 23</value>
+    <value>68, 26</value>
   </data>
   <data name="PrintButton.TabIndex" type="System.Int32, mscorlib">
     <value>18</value>
@@ -1392,7 +1389,7 @@
     <value>PrintButton</value>
   </data>
   <data name="&gt;&gt;PrintButton.Type" xml:space="preserve">
-    <value>C1.Win.C1Input.C1Button, C1.Win.C1Input.2, Version=2.0.20101.33244, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a</value>
+    <value>C1.Win.C1Input.C1Button, C1.Win.C1Input.4, Version=4.0.20131.33296, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a</value>
   </data>
   <data name="&gt;&gt;PrintButton.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1407,10 +1404,10 @@
     <value>NoControl</value>
   </data>
   <data name="HelpButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>897, 453</value>
+    <value>1082, 568</value>
   </data>
   <data name="HelpButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>57, 23</value>
+    <value>69, 26</value>
   </data>
   <data name="HelpButton.TabIndex" type="System.Int32, mscorlib">
     <value>19</value>
@@ -1422,7 +1419,7 @@
     <value>HelpButton</value>
   </data>
   <data name="&gt;&gt;HelpButton.Type" xml:space="preserve">
-    <value>C1.Win.C1Input.C1Button, C1.Win.C1Input.2, Version=2.0.20101.33244, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a</value>
+    <value>C1.Win.C1Input.C1Button, C1.Win.C1Input.4, Version=4.0.20131.33296, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a</value>
   </data>
   <data name="&gt;&gt;HelpButton.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1437,10 +1434,10 @@
     <value>NoControl</value>
   </data>
   <data name="CloseButton.Location" type="System.Drawing.Point, System.Drawing">
-    <value>960, 453</value>
+    <value>1158, 568</value>
   </data>
   <data name="CloseButton.Size" type="System.Drawing.Size, System.Drawing">
-    <value>57, 23</value>
+    <value>68, 26</value>
   </data>
   <data name="CloseButton.TabIndex" type="System.Int32, mscorlib">
     <value>20</value>
@@ -1452,7 +1449,7 @@
     <value>CloseButton</value>
   </data>
   <data name="&gt;&gt;CloseButton.Type" xml:space="preserve">
-    <value>C1.Win.C1Input.C1Button, C1.Win.C1Input.2, Version=2.0.20101.33244, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a</value>
+    <value>C1.Win.C1Input.C1Button, C1.Win.C1Input.4, Version=4.0.20131.33296, Culture=neutral, PublicKeyToken=7e7ff60f0c214f9a</value>
   </data>
   <data name="&gt;&gt;CloseButton.Parent" xml:space="preserve">
     <value>$this</value>
@@ -1460,14 +1457,14 @@
   <data name="&gt;&gt;CloseButton.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <data name="$this.AutoScaleBaseSize" type="System.Drawing.Size, System.Drawing">
-    <value>5, 13</value>
+    <value>6, 15</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>1022, 480</value>
+    <value>1232, 599</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterScreen</value>
@@ -1479,6 +1476,6 @@
     <value>IVMiscellaneousIssue</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
 </root>
