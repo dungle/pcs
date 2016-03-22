@@ -234,12 +234,6 @@
     <Compile Include="Inventory\IVMiscellaneousIssue.Designer.cs">
       <DependentUpon>IVMiscellaneousIssue.cs</DependentUpon>
     </Compile>
-    <Compile Include="Inventory\MiscIssue.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Inventory\MiscIssue.Designer.cs">
-      <DependentUpon>MiscIssue.cs</DependentUpon>
-    </Compile>
     <Compile Include="Inventory\OpenAndClosePeriod.cs">
       <SubType>Form</SubType>
     </Compile>

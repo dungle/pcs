@@ -40,6 +40,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DBScripts", "DBScripts", "{
 		Script\DBScript\04. MenuConfig.sql = Script\DBScript\04. MenuConfig.sql
 		Script\DBScript\05. StoreProcedure.sql = Script\DBScript\05. StoreProcedure.sql
 		Script\DBScript\Changes2016.sql = Script\DBScript\Changes2016.sql
+		Script\DBScript\DestroySlipsReport.sql = Script\DBScript\DestroySlipsReport.sql
 		Script\DBScript\MessageScript.sql = Script\DBScript\MessageScript.sql
 		Script\DBScript\ReportConfig.sql = Script\DBScript\ReportConfig.sql
 		Script\DBScript\SaleOrderInvoiceByDayReport.sql = Script\DBScript\SaleOrderInvoiceByDayReport.sql

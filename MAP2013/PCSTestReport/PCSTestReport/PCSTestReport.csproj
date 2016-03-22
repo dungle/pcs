@@ -152,6 +152,7 @@
     <Compile Include="ReportDefinition\InventoryDetailReport.cs" />
     <Compile Include="ReportDefinition\InventoryStatusReport.cs" />
     <Compile Include="ReportDefinition\InventoryStatusSummaryByMasterLocationReport.cs" />
+    <Compile Include="ReportDefinition\DestroySlipsReport.cs" />
     <Compile Include="ReportDefinition\ItemListReport.cs" />
     <Compile Include="ReportDefinition\ItemStandardCostReport.cs" />
     <Compile Include="ReportDefinition\LocalReceivingMaterialReport.cs" />
@@ -263,6 +264,7 @@
     <Content Include="ReportDefinition\DestroyAllocationRate.xml" />
     <Content Include="ReportDefinition\DestroyMaterialReport.xml" />
     <Content Include="ReportDefinition\DestroySlipReport.xml" />
+    <Content Include="ReportDefinition\DestroySlipsReport.xml" />
     <Content Include="ReportDefinition\DetailedItemCostByMonthReport.xml" />
     <Content Include="ReportDefinition\DetailItemPriceByPOReceipt.xml" />
     <Content Include="ReportDefinition\DSRate Allocation %28By Product In Sales%29.xml" />
