@@ -7,59 +7,11 @@ using PCSComUtils.Common;
 using PCSComProduct.Items.DS;
 using PCSComUtils.MasterSetup.DS;
 using PCSComUtils.Common.BO;
-
-
-
 namespace PCSComProduct.Items.BO
 {
-	public interface IProductItemInfoBO 
-	{
-		DataTable GetUnitOfMeasure();
-		DataTable GetCostMethod();
-		DataTable GetAGC();
-		DataTable GetQAStatus();
-		DataTable GetCategory();
-		DataTable GetSource();
-		DataTable GetHarzard();
-		DataTable GetFreightClass();
-		DataTable GetDeleteReason();
-		DataTable GetFormatCodes();
-		DataTable GetCCN();
-		DataTable GetDeliveryPolicy();
-		DataTable GetOrderPolicy();
-		DataTable GetShipTolerence();
-		DataTable GetBuyer();
-		DataTable GetVendorLocation();
-		DataTable GetOrderRule();
-		DataTable GetProductType();
-		DataSet GetLocation();
-		int AddAndReturnID(object pObjectDetail, int pintCopyFromProductID);
-		void DeleteProduct(int pintProductID) ;
-		object GetProductInfo(int pintID);
-		string GetVendorCodeAndName(int pintVendorID);
-		int GetVendorID(string pstrVendorName);
-		int GetProductIDByCode(string pstrCode);
-		int GetProductIDByDescription(string pstrDescription);
-		bool isTwoUnitOfMeasureScalled(int pintUnitID1, int pintUnitID2);
-		decimal UpdateLTVariableTimeAndReturn(int piProductID);
-		string GetCategoryCodeByProductID (int pintProductID);
-		string GetACAdjustCodeByID(int pintID);
-	}
-	/// <summary>
-	/// Summary description for .
-	/// </summary>
-	
-	
 	public class ProductItemInfoBO //: IProductItemInfoBO
 	{
 		private const string THIS = "PCSComProduct.Items.BO.ProductItemInfoBO";
-
-		public ProductItemInfoBO()
-		{
-			//
-			// TODO: Add constructor logic here
-			//
-		}
 		
 		/// <summary>
 		/// Update LTVariableTime property of product after updating routing info and return LTVariableTime value
@@ -89,31 +41,6 @@ namespace PCSComProduct.Items.BO
 			// TODO:  Add ProductItemInfoBO.Add implementation
 
 		}
-
-		//**************************************************************************              
-		///    <Description>
-		///       add a new Product Item into database and return its new ID
-		///    </Description>
-		///    <Inputs>
-		///       
-		///    </Inputs>
-		///    <Outputs>
-		///       
-		///    </Outputs>
-		///    <Returns>
-		///       
-		///    </Returns>
-		///    <Authors>
-		///       THIENHD
-		///    </Authors>
-		///    <History>
-		///       15-Dec-2004
-		///    </History>
-		///    <Notes>
-		///    </Notes>
-		//**************************************************************************
-
-	
 		public int AddAndReturnID(object pObjectDetail, int pintCopyFromProductID)
 		{
 			// TODO:  Add ProductItemInfoBO.Add implementation
@@ -180,30 +107,6 @@ namespace PCSComProduct.Items.BO
 			return null;
 		}
 
-		//**************************************************************************              
-		///    <Description>
-		///       Get the Product Information from Database
-		///    </Description>
-		///    <Inputs>
-		///       
-		///    </Inputs>
-		///    <Outputs>
-		///       
-		///    </Outputs>
-		///    <Returns>
-		///       
-		///    </Returns>
-		///    <Authors>
-		///       THIENHD
-		///    </Authors>
-		///    <History>
-		///       15-Dec-2004
-		///    </History>
-		///    <Notes>
-		///    </Notes>
-		//**************************************************************************
-
-	
 		public object GetProductInfo(int pintID)
 		{
 			// TODO:  Add ProductItemInfoBO.GetObjectVO implementation
@@ -222,34 +125,8 @@ namespace PCSComProduct.Items.BO
 			}
 		}
 	
-		//**************************************************************************              
-		///    <Description>
-		///       Update the information for an existing product
-		///    </Description>
-		///    <Inputs>
-		///       
-		///    </Inputs>
-		///    <Outputs>
-		///       
-		///    </Outputs>
-		///    <Returns>
-		///       
-		///    </Returns>
-		///    <Authors>
-		///       THIENHD
-		///    </Authors>
-		///    <History>
-		///       15-Dec-2004
-		///    </History>
-		///    <Notes>
-		///    </Notes>
-		//**************************************************************************
-
-	
 		public void Update(object pObjectDetail)
 		{
-			// TODO:  Add ProductItemInfoBO.Update implementation
-			// TODO:  Add ProductItemInfoBO.Add implementation
 			try
 			{
 				if (ValidateBusiness(pObjectDetail)) 
@@ -268,36 +145,7 @@ namespace PCSComProduct.Items.BO
 			}
 		}
 	
-	
-		public void UpdateDataSet(DataSet dstData)
-		{
-			// TODO:  Add ProductItemInfoBO.UpdateDataSet implementation
 
-		}
-		//**************************************************************************              
-		///    <Description>
-		///       Get the product ID by code
-		///    </Description>
-		///    <Inputs>
-		///       
-		///    </Inputs>
-		///    <Outputs>
-		///       
-		///    </Outputs>
-		///    <Returns>
-		///       
-		///    </Returns>
-		///    <Authors>
-		///       THIENHD
-		///    </Authors>
-		///    <History>
-		///       15-Dec-2004
-		///    </History>
-		///    <Notes>
-		///    </Notes>
-		//**************************************************************************
-
-	
 		public int GetProductIDByCode(string pstrCode)
 		{
 			try 
@@ -315,29 +163,6 @@ namespace PCSComProduct.Items.BO
 			}
 
 		}
-		//**************************************************************************              
-		///    <Description>
-		///       Get the product ID by Description
-		///    </Description>
-		///    <Inputs>
-		///       
-		///    </Inputs>
-		///    <Outputs>
-		///       
-		///    </Outputs>
-		///    <Returns>
-		///       
-		///    </Returns>
-		///    <Authors>
-		///       THIENHD
-		///    </Authors>
-		///    <History>
-		///       15-Dec-2004
-		///    </History>
-		///    <Notes>
-		///    </Notes>
-		//**************************************************************************
-
 	
 		public int GetProductIDByDescription(string pstrDescription)
 		{
@@ -355,29 +180,6 @@ namespace PCSComProduct.Items.BO
 				throw ex;
 			}
 		}
-		//**************************************************************************              
-		///    <Description>
-		///       Compare two unit to know if they are scalled
-		///    </Description>
-		///    <Inputs>
-		///       
-		///    </Inputs>
-		///    <Outputs>
-		///       
-		///    </Outputs>
-		///    <Returns>
-		///       
-		///    </Returns>
-		///    <Authors>
-		///       THIENHD
-		///    </Authors>
-		///    <History>
-		///       15-Dec-2004
-		///    </History>
-		///    <Notes>
-		///    </Notes>
-		//**************************************************************************
-
 	
 		public bool isTwoUnitOfMeasureScalled(int pintUnitID1, int pintUnitID2)
 		{
@@ -406,33 +208,8 @@ namespace PCSComProduct.Items.BO
 
 		#region IProductItemInfoBO Members
 
-		//**************************************************************************              
-		///    <Description>
-		///       Get list of Unit of measure
-		///    </Description>
-		///    <Inputs>
-		///       
-		///    </Inputs>
-		///    <Outputs>
-		///       
-		///    </Outputs>
-		///    <Returns>
-		///       
-		///    </Returns>
-		///    <Authors>
-		///       THIENHD
-		///    </Authors>
-		///    <History>
-		///       15-Dec-2004
-		///    </History>
-		///    <Notes>
-		///    </Notes>
-		//**************************************************************************
-
-	
 		public DataTable GetUnitOfMeasure()
 		{
-			// TODO:  Add ProductItemInfoBO.GetUnitOfMeasure implementation
 			try 
 			{
 				MST_UnitOfMeasureDS objMST_UnitOfMeasureDS = new MST_UnitOfMeasureDS();
@@ -452,10 +229,8 @@ namespace PCSComProduct.Items.BO
 			}
 		}
 
-	
 		public DataTable GetProductType()
 		{
-			// TODO:  Add ProductItemInfoBO.GetUnitOfMeasure implementation
 			try 
 			{
 				ITM_ProductDS dsProduct = new ITM_ProductDS();
@@ -480,77 +255,7 @@ namespace PCSComProduct.Items.BO
 			}
 		}
 
-		//**************************************************************************              
-		///    <Description>
-		///       Get list of cost method
-		///    </Description>
-		///    <Inputs>
-		///       
-		///    </Inputs>
-		///    <Outputs>
-		///       
-		///    </Outputs>
-		///    <Returns>
-		///       
-		///    </Returns>
-		///    <Authors>
-		///       THIENHD
-		///    </Authors>
-		///    <History>
-		///       15-Dec-2004
-		///    </History>
-		///    <Notes>
-		///    </Notes>
-		//**************************************************************************
-
 		#region HACK: Tuan TQ - 04 Apr, 2006
-		/*
-		 * Del by Tuan TQ
-	
-		public DataTable GetCostMethod()
-		{
-			// TODO:  Add ProductItemInfoBO.GetCostMethod implementation
-			const string ID_FIELD = "ID";
-			const string VALUE_FIELD = "VALUE";
-
-			try 
-			{
-				DataTable dtCostMethod = new DataTable();
-				dtCostMethod.Columns.Add(ID_FIELD);
-				dtCostMethod.Columns.Add(VALUE_FIELD);
-				DataRow drNewRow = dtCostMethod.NewRow();
-				drNewRow[ID_FIELD] = "";
-				drNewRow[VALUE_FIELD] ="";
-				dtCostMethod.Rows.Add(drNewRow);
-
-				drNewRow = dtCostMethod.NewRow();
-				drNewRow[ID_FIELD] = "0";
-				drNewRow[VALUE_FIELD] ="ACT";
-				dtCostMethod.Rows.Add(drNewRow);
-
-				drNewRow = dtCostMethod.NewRow();
-				drNewRow[ID_FIELD] = "1";
-				drNewRow[VALUE_FIELD] ="STD";
-				dtCostMethod.Rows.Add(drNewRow);
-
-				drNewRow = dtCostMethod.NewRow();
-				
-				drNewRow[ID_FIELD] = "2";
-				drNewRow[VALUE_FIELD] ="AVG";
-				dtCostMethod.Rows.Add(drNewRow);
-
-				return dtCostMethod;
-			}
-			catch (PCSDBException ex) 
-			{
-				throw ex;
-			}
-			catch (Exception ex) 
-			{
-				throw ex;
-			}
-		}
-		*/
 		
 		/// <summary>
 		/// Get Cost method from database
@@ -566,31 +271,6 @@ namespace PCSComProduct.Items.BO
 
 		#endregion
 
-		//**************************************************************************              
-		///    <Description>
-		///       Get list of Accounting group code
-		///    </Description>
-		///    <Inputs>
-		///       
-		///    </Inputs>
-		///    <Outputs>
-		///       
-		///    </Outputs>
-		///    <Returns>
-		///       
-		///    </Returns>
-		///    <Authors>
-		///       THIENHD
-		///    </Authors>
-		///    <History>
-		///       15-Dec-2004
-		///    </History>
-		///    <Notes>
-		///    </Notes>
-		//**************************************************************************
-
-
-	
 		public DataTable GetAGC()
 		{
 			// TODO:  Add ProductItemInfoBO.GetAGC implementation
@@ -599,27 +279,6 @@ namespace PCSComProduct.Items.BO
 
 			try 
 			{
-				/*
-				DataTable dtAGC = new DataTable();
-				dtAGC.Columns.Add(ID_FIELD);
-				dtAGC.Columns.Add(VALUE_FIELD);
-				DataRow drNewRow = dtAGC.NewRow();
-				
-				drNewRow[ID_FIELD] = "1";
-				drNewRow[VALUE_FIELD] ="AGC 1";
-				dtAGC.Rows.Add(drNewRow);
-
-				drNewRow = dtAGC.NewRow();
-				drNewRow[ID_FIELD] = "2";
-				drNewRow[VALUE_FIELD] ="AGC 2";
-				dtAGC.Rows.Add(drNewRow);
-
-				drNewRow = dtAGC.NewRow();
-				
-				drNewRow[ID_FIELD] = "3";
-				drNewRow[VALUE_FIELD] ="AGC 3";
-				dtAGC.Rows.Add(drNewRow);
-				*/
 				MST_AGCDS objMST_AGCDS = new MST_AGCDS();
 				DataTable dt = objMST_AGCDS.List().Tables[0];
 				DataRow drEmptyRow = dt.NewRow();
@@ -636,31 +295,6 @@ namespace PCSComProduct.Items.BO
 			}
 		}
 
-		//**************************************************************************              
-		///    <Description>
-		///       Get list of QA status
-		///    </Description>
-		///    <Inputs>
-		///       
-		///    </Inputs>
-		///    <Outputs>
-		///       
-		///    </Outputs>
-		///    <Returns>
-		///       
-		///    </Returns>
-		///    <Authors>
-		///       THIENHD
-		///    </Authors>
-		///    <History>
-		///       15-Dec-2004
-		///    </History>
-		///    <Notes>
-		///    </Notes>
-		//**************************************************************************
-
-
-	
 		public DataTable GetQAStatus()
 		{
 			const string ID_FIELD = "ID";
@@ -705,31 +339,6 @@ namespace PCSComProduct.Items.BO
 			}
 		}
 
-		//**************************************************************************              
-		///    <Description>
-		///       Get list of Category
-		///    </Description>
-		///    <Inputs>
-		///       
-		///    </Inputs>
-		///    <Outputs>
-		///       
-		///    </Outputs>
-		///    <Returns>
-		///       
-		///    </Returns>
-		///    <Authors>
-		///       THIENHD
-		///    </Authors>
-		///    <History>
-		///       15-Dec-2004
-		///    </History>
-		///    <Notes>
-		///    </Notes>
-		//**************************************************************************
-
-
-	
 		public DataTable GetCategory()
 		{
 			// TODO:  Add ProductItemInfoBO.GetCategory implementation
@@ -751,32 +360,6 @@ namespace PCSComProduct.Items.BO
 			}
 
 		}
-
-		//**************************************************************************              
-		///    <Description>
-		///       Get list of Source
-		///    </Description>
-		///    <Inputs>
-		///       
-		///    </Inputs>
-		///    <Outputs>
-		///       
-		///    </Outputs>
-		///    <Returns>
-		///       
-		///    </Returns>
-		///    <Authors>
-		///       THIENHD
-		///    </Authors>
-		///    <History>
-		///       15-Dec-2004
-		///    </History>
-		///    <Notes>
-		///    </Notes>
-		//**************************************************************************
-
-
-	
 		public DataTable GetSource()
 		{
 			// TODO:  Add ProductItemInfoBO.GetSource implementation
@@ -799,31 +382,6 @@ namespace PCSComProduct.Items.BO
 			}
 		}
 
-		//**************************************************************************              
-		///    <Description>
-		///       Get list of Unit of Hazard
-		///    </Description>
-		///    <Inputs>
-		///       
-		///    </Inputs>
-		///    <Outputs>
-		///       
-		///    </Outputs>
-		///    <Returns>
-		///       
-		///    </Returns>
-		///    <Authors>
-		///       THIENHD
-		///    </Authors>
-		///    <History>
-		///       15-Dec-2004
-		///    </History>
-		///    <Notes>
-		///    </Notes>
-		//**************************************************************************
-
-
-	
 		public DataTable GetHarzard()
 		{
 			// TODO:  Add ProductItemInfoBO.GetHarzard implementation
@@ -846,31 +404,6 @@ namespace PCSComProduct.Items.BO
 			}
 		}
 
-		//**************************************************************************              
-		///    <Description>
-		///       Get list of Freight Class
-		///    </Description>
-		///    <Inputs>
-		///       
-		///    </Inputs>
-		///    <Outputs>
-		///       
-		///    </Outputs>
-		///    <Returns>
-		///       
-		///    </Returns>
-		///    <Authors>
-		///       THIENHD
-		///    </Authors>
-		///    <History>
-		///       15-Dec-2004
-		///    </History>
-		///    <Notes>
-		///    </Notes>
-		//**************************************************************************
-
-
-	
 		public DataTable GetFreightClass()
 		{
 			// TODO:  Add ProductItemInfoBO.GetFreightClass implementation
@@ -893,32 +426,6 @@ namespace PCSComProduct.Items.BO
 			}
 
 		}
-
-		//**************************************************************************              
-		///    <Description>
-		///       Get list of Delete Reason
-		///    </Description>
-		///    <Inputs>
-		///       
-		///    </Inputs>
-		///    <Outputs>
-		///       
-		///    </Outputs>
-		///    <Returns>
-		///       
-		///    </Returns>
-		///    <Authors>
-		///       THIENHD
-		///    </Authors>
-		///    <History>
-		///       15-Dec-2004
-		///    </History>
-		///    <Notes>
-		///    </Notes>
-		//**************************************************************************
-
-
-	
 		public DataTable GetDeleteReason()
 		{
 			// TODO:  Add ProductItemInfoBO.GetReason implementation
@@ -941,31 +448,6 @@ namespace PCSComProduct.Items.BO
 			}
 		}
 
-		//**************************************************************************              
-		///    <Description>
-		///       Get list of Format Code
-		///    </Description>
-		///    <Inputs>
-		///       
-		///    </Inputs>
-		///    <Outputs>
-		///       
-		///    </Outputs>
-		///    <Returns>
-		///       
-		///    </Returns>
-		///    <Authors>
-		///       THIENHD
-		///    </Authors>
-		///    <History>
-		///       15-Dec-2004
-		///    </History>
-		///    <Notes>
-		///    </Notes>
-		//**************************************************************************
-
-
-	
 		public DataTable GetFormatCodes()
 		{
 			// TODO:  Add ProductItemInfoBO.GetFormatCodes implementation
@@ -988,33 +470,6 @@ namespace PCSComProduct.Items.BO
 				throw ex;
 			}
 		}
-
-
-		//**************************************************************************              
-		///    <Description>
-		///       Get list of CCN
-		///    </Description>
-		///    <Inputs>
-		///       
-		///    </Inputs>
-		///    <Outputs>
-		///       
-		///    </Outputs>
-		///    <Returns>
-		///       
-		///    </Returns>
-		///    <Authors>
-		///       THIENHD
-		///    </Authors>
-		///    <History>
-		///       15-Dec-2004
-		///    </History>
-		///    <Notes>
-		///    </Notes>
-		//**************************************************************************
-
-
-	
 		public DataTable GetCCN()
 		{
 			// TODO:  Add ProductItemInfoBO.GetCCN implementation
@@ -1034,31 +489,6 @@ namespace PCSComProduct.Items.BO
 				throw ex;
 			}
 		}
-
-		//**************************************************************************              
-		///    <Description>
-		///       Get list of Delivery Policy
-		///    </Description>
-		///    <Inputs>
-		///       
-		///    </Inputs>
-		///    <Outputs>
-		///       
-		///    </Outputs>
-		///    <Returns>
-		///       
-		///    </Returns>
-		///    <Authors>
-		///       THIENHD
-		///    </Authors>
-		///    <History>
-		///       15-Dec-2004
-		///    </History>
-		///    <Notes>
-		///    </Notes>
-		//**************************************************************************
-
-
 	
 		public DataTable GetDeliveryPolicy()
 		{
@@ -1082,32 +512,6 @@ namespace PCSComProduct.Items.BO
 				throw ex;
 			}
 		}
-
-		//**************************************************************************              
-		///    <Description>
-		///       Get list of GetOrderPolicy
-		///    </Description>
-		///    <Inputs>
-		///       
-		///    </Inputs>
-		///    <Outputs>
-		///       
-		///    </Outputs>
-		///    <Returns>
-		///       
-		///    </Returns>
-		///    <Authors>
-		///       THIENHD
-		///    </Authors>
-		///    <History>
-		///       15-Dec-2004
-		///    </History>
-		///    <Notes>
-		///    </Notes>
-		//**************************************************************************
-
-
-	
 		public DataTable GetOrderPolicy()
 		{
 			// TODO:  Add ProductItemInfoBO.GetOrderPolicy implementation
@@ -1131,31 +535,6 @@ namespace PCSComProduct.Items.BO
 				throw ex;
 			}
 		}
-
-		//**************************************************************************              
-		///    <Description>
-		///       Get list of GetShipTolerence
-		///    </Description>
-		///    <Inputs>
-		///       
-		///    </Inputs>
-		///    <Outputs>
-		///       
-		///    </Outputs>
-		///    <Returns>
-		///       
-		///    </Returns>
-		///    <Authors>
-		///       THIENHD
-		///    </Authors>
-		///    <History>
-		///       15-Dec-2004
-		///    </History>
-		///    <Notes>
-		///    </Notes>
-		//**************************************************************************
-
-	
 		public DataTable GetShipTolerence()
 		{
 			// TODO:  Add ProductItemInfoBO.GetShipTolerence implementation
@@ -1179,30 +558,6 @@ namespace PCSComProduct.Items.BO
 				throw ex;
 			}
 		}
-
-		//**************************************************************************              
-		///    <Description>
-		///       Get list of Buyer
-		///    </Description>
-		///    <Inputs>
-		///       
-		///    </Inputs>
-		///    <Outputs>
-		///       
-		///    </Outputs>
-		///    <Returns>
-		///       
-		///    </Returns>
-		///    <Authors>
-		///       THIENHD
-		///    </Authors>
-		///    <History>
-		///       15-Dec-2004
-		///    </History>
-		///    <Notes>
-		///    </Notes>
-		//**************************************************************************
-
 	
 		public DataTable GetBuyer()
 		{
@@ -1228,30 +583,6 @@ namespace PCSComProduct.Items.BO
 				throw ex;
 			}
 		}
-
-		//**************************************************************************              
-		///    <Description>
-		///       Get list of Vendor Location
-		///    </Description>
-		///    <Inputs>
-		///       
-		///    </Inputs>
-		///    <Outputs>
-		///       
-		///    </Outputs>
-		///    <Returns>
-		///       
-		///    </Returns>
-		///    <Authors>
-		///       THIENHD
-		///    </Authors>
-		///    <History>
-		///       15-Dec-2004
-		///    </History>
-		///    <Notes>
-		///    </Notes>
-		//**************************************************************************
-
 	
 		public DataTable GetVendorLocation()
 		{
@@ -1278,31 +609,6 @@ namespace PCSComProduct.Items.BO
 			}
 		}
 
-
-		//**************************************************************************              
-		///    <Description>
-		///       Get list of Order Rule
-		///    </Description>
-		///    <Inputs>
-		///       
-		///    </Inputs>
-		///    <Outputs>
-		///       
-		///    </Outputs>
-		///    <Returns>
-		///       
-		///    </Returns>
-		///    <Authors>
-		///       THIENHD
-		///    </Authors>
-		///    <History>
-		///       15-Dec-2004
-		///    </History>
-		///    <Notes>
-		///    </Notes>
-		//**************************************************************************
-
-	
 		public DataTable GetOrderRule()
 		{
 			// TODO:  Add ProductItemInfoBO.GetOrderRule implementation
@@ -1326,30 +632,6 @@ namespace PCSComProduct.Items.BO
 				throw ex;
 			}
 		}
-
-		//**************************************************************************              
-		///    <Description>
-		///       Get list of Location
-		///    </Description>
-		///    <Inputs>
-		///       
-		///    </Inputs>
-		///    <Outputs>
-		///       
-		///    </Outputs>
-		///    <Returns>
-		///       
-		///    </Returns>
-		///    <Authors>
-		///       THIENHD
-		///    </Authors>
-		///    <History>
-		///       15-Dec-2004
-		///    </History>
-		///    <Notes>
-		///    </Notes>
-		//**************************************************************************
-
 	
 		public DataSet GetLocation()
 		{
@@ -1379,22 +661,6 @@ namespace PCSComProduct.Items.BO
 				dt.Rows.InsertAt(drEmptyRow,0);
 				dstLocation.Tables.Add(dt);
 
-				//Define relation for this dataset
-				//1. Relation between Master Location and Location
-				/*
-				DataColumn[] dtcolMasterLocationColumnParent = new DataColumn[1]{dstLocation.Tables[MST_MasterLocationTable.TABLE_NAME].Columns[MST_MasterLocationTable.MASTERLOCATIONID_FLD]};
-				DataColumn[] dtcolLocationColumnChild = new DataColumn[1]{dstLocation.Tables[MST_LocationTable.TABLE_NAME].Columns[MST_LocationTable.MASTERLOCATIONID_FLD]};
-				dstLocation.Relations.Add(dtcolMasterLocationColumnParent,dtcolLocationColumnChild);
-				*/
-
-
-				//2.Relation between Location and Bin
-				/*
-				DataColumn[] dtcolLocationColumnParent = new DataColumn[1]{dstLocation.Tables[MST_LocationTable.TABLE_NAME].Columns[MST_LocationTable.LOCATIONID_FLD]};
-				DataColumn[] dtcolBinColumnChild = new DataColumn[1]{dstLocation.Tables[MST_BINTable.TABLE_NAME].Columns[MST_BINTable.LOCATIONID_FLD]};
-				dstLocation.Relations.Add(dtcolLocationColumnParent,dtcolBinColumnChild);
-				*/
-
 				return dstLocation;
 
 			}
@@ -1407,30 +673,6 @@ namespace PCSComProduct.Items.BO
 				throw ex;
 			}
 		}
-
-		//**************************************************************************              
-		///    <Description>
-		///       Validate Bussiness rule
-		///    </Description>
-		///    <Inputs>
-		///       
-		///    </Inputs>
-		///    <Outputs>
-		///       
-		///    </Outputs>
-		///    <Returns>
-		///       
-		///    </Returns>
-		///    <Authors>
-		///       THIENHD
-		///    </Authors>
-		///    <History>
-		///       15-Dec-2004
-		///    </History>
-		///    <Notes>
-		///    </Notes>
-		//**************************************************************************
-
 	
 		private bool ValidateBusiness(object pObjectDetail) 
 		{
@@ -1459,29 +701,6 @@ namespace PCSComProduct.Items.BO
 				throw ex;
 			}
 		}
-		//**************************************************************************              
-		///    <Description>
-		///       Delete a product
-		///    </Description>
-		///    <Inputs>
-		///       
-		///    </Inputs>
-		///    <Outputs>
-		///       
-		///    </Outputs>
-		///    <Returns>
-		///       
-		///    </Returns>
-		///    <Authors>
-		///       THIENHD
-		///    </Authors>
-		///    <History>
-		///       15-Dec-2004
-		///    </History>
-		///    <Notes>
-		///    </Notes>
-		//**************************************************************************
-
 	
 		public void DeleteProduct(int pintProductID)
 		{
@@ -1499,29 +718,6 @@ namespace PCSComProduct.Items.BO
 				throw ex;
 			}
 		}
-		//**************************************************************************              
-		///    <Description>
-		///       Get vendor code based on ID
-		///    </Description>
-		///    <Inputs>
-		///       
-		///    </Inputs>
-		///    <Outputs>
-		///       
-		///    </Outputs>
-		///    <Returns>
-		///       
-		///    </Returns>
-		///    <Authors>
-		///       THIENHD
-		///    </Authors>
-		///    <History>
-		///       15-Dec-2004
-		///    </History>
-		///    <Notes>
-		///    </Notes>
-		//**************************************************************************
-
 	
 		public string GetVendorCodeAndName(int pintVendorID)
 		{
@@ -1597,30 +793,6 @@ namespace PCSComProduct.Items.BO
 			}
 		}
 
-		//**************************************************************************              
-		///    <Description>
-		///       Get vendor ID
-		///    </Description>
-		///    <Inputs>
-		///       
-		///    </Inputs>
-		///    <Outputs>
-		///       
-		///    </Outputs>
-		///    <Returns>
-		///       
-		///    </Returns>
-		///    <Authors>
-		///       THIENHD
-		///    </Authors>
-		///    <History>
-		///       15-Dec-2004
-		///    </History>
-		///    <Notes>
-		///    </Notes>
-		//**************************************************************************
-
-	
 		public int GetVendorID(string pstrVendorCode)
 		{
 			try 
@@ -1638,7 +810,6 @@ namespace PCSComProduct.Items.BO
 			}
 
 		}
-
 	
 		public bool HasVendorDeliverySchedule(int pintID)
 		{
@@ -1647,8 +818,7 @@ namespace PCSComProduct.Items.BO
 		}
 
 		#endregion
-
-
+        
 		#region HACKED: Thachnn: 01 / 03 / 2006 : add DB function to create data for ItemInformationReport
 
 
@@ -1676,7 +846,5 @@ namespace PCSComProduct.Items.BO
 
 		
 		#endregion ENDHACKED: Thachnn: 01 / 03 / 2006 : add DB function to create data for ItemInformationReport
-
-
 	}
 }

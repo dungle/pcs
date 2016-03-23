@@ -44,10 +44,10 @@
       <Column Name="Line" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="cst_ActCostAllocationMaster_cst_ActCostAllocationDetail" Member="cst_ActCostAllocationMaster" ThisKey="ActCostAllocationMasterID" OtherKey="ActCostAllocationMasterID" Type="cst_ActCostAllocationMaster" IsForeignKey="true" />
       <Association Name="CST_ProductGroup_cst_ActCostAllocationDetail" Member="CST_ProductGroup" ThisKey="ProductGroupID" OtherKey="ProductGroupID" Type="CST_ProductGroup" IsForeignKey="true" />
-      <Association Name="ITM_Product_cst_ActCostAllocationDetail" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
       <Association Name="MST_Department_cst_ActCostAllocationDetail" Member="MST_Department" ThisKey="DepartmentID" OtherKey="DepartmentID" Type="MST_Department" IsForeignKey="true" />
       <Association Name="PRO_ProductionLine_cst_ActCostAllocationDetail" Member="PRO_ProductionLine" ThisKey="ProductionLineID" OtherKey="ProductionLineID" Type="PRO_ProductionLine" IsForeignKey="true" />
       <Association Name="STD_CostElement_cst_ActCostAllocationDetail" Member="STD_CostElement" ThisKey="CostElementID" OtherKey="CostElementID" Type="STD_CostElement" IsForeignKey="true" />
+      <Association Name="ITM_Product_cst_ActCostAllocationDetail" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.cst_ActCostAllocationMaster" Member="cst_ActCostAllocationMasters">
@@ -90,8 +90,8 @@
       <Column Name="AdjustAmount" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
       <Column Name="BeginCost" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
       <Association Name="cst_ActCostAllocationMaster_CST_ActualCostHistory" Member="cst_ActCostAllocationMaster" ThisKey="ActCostAllocationMasterID" OtherKey="ActCostAllocationMasterID" Type="cst_ActCostAllocationMaster" IsForeignKey="true" />
-      <Association Name="ITM_Product_CST_ActualCostHistory" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
       <Association Name="STD_CostElement_CST_ActualCostHistory" Member="STD_CostElement" ThisKey="CostElementID" OtherKey="CostElementID" Type="STD_CostElement" IsForeignKey="true" />
+      <Association Name="ITM_Product_CST_ActualCostHistory" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.cst_AllocationResult" Member="cst_AllocationResults">
@@ -108,10 +108,10 @@
       <Column Name="ProductID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="cst_ActCostAllocationMaster_cst_AllocationResult" Member="cst_ActCostAllocationMaster" ThisKey="ActCostAllocationMasterID" OtherKey="ActCostAllocationMasterID" Type="cst_ActCostAllocationMaster" IsForeignKey="true" />
       <Association Name="CST_ProductGroup_cst_AllocationResult" Member="CST_ProductGroup" ThisKey="ProductGroupID" OtherKey="ProductGroupID" Type="CST_ProductGroup" IsForeignKey="true" />
-      <Association Name="ITM_Product_cst_AllocationResult" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
       <Association Name="MST_Department_cst_AllocationResult" Member="MST_Department" ThisKey="DepartmentID" OtherKey="DepartmentID" Type="MST_Department" IsForeignKey="true" />
       <Association Name="PRO_ProductionLine_cst_AllocationResult" Member="PRO_ProductionLine" ThisKey="ProductionLineID" OtherKey="ProductionLineID" Type="PRO_ProductionLine" IsForeignKey="true" />
       <Association Name="STD_CostElement_cst_AllocationResult" Member="STD_CostElement" ThisKey="CostElementID" OtherKey="CostElementID" Type="STD_CostElement" IsForeignKey="true" />
+      <Association Name="ITM_Product_cst_AllocationResult" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.CST_DSAndRecycleAllocation" Member="CST_DSAndRecycleAllocations">
@@ -131,8 +131,8 @@
       <Column Name="OH_AdjustAmount" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
       <Column Name="DSOHRate" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
       <Association Name="cst_ActCostAllocationMaster_CST_DSAndRecycleAllocation" Member="cst_ActCostAllocationMaster" ThisKey="ActCostAllocationMasterID" OtherKey="ActCostAllocationMasterID" Type="cst_ActCostAllocationMaster" IsForeignKey="true" />
-      <Association Name="ITM_Product_CST_DSAndRecycleAllocation" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
       <Association Name="STD_CostElement_CST_DSAndRecycleAllocation" Member="STD_CostElement" ThisKey="CostElementID" OtherKey="CostElementID" Type="STD_CostElement" IsForeignKey="true" />
+      <Association Name="ITM_Product_CST_DSAndRecycleAllocation" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.cst_FreightDetail" Member="cst_FreightDetails">
@@ -150,10 +150,10 @@
       <Column Name="InvoiceMasterID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="ReturnToVendorDetailID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="cst_FreightMaster_cst_FreightDetail" Member="cst_FreightMaster" ThisKey="FreightMasterID" OtherKey="FreightMasterID" Type="cst_FreightMaster" IsForeignKey="true" />
-      <Association Name="ITM_Product_cst_FreightDetail" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
       <Association Name="MST_UnitOfMeasure_cst_FreightDetail" Member="MST_UnitOfMeasure" ThisKey="BuyingUMID" OtherKey="UnitOfMeasureID" Type="MST_UnitOfMeasure" IsForeignKey="true" />
       <Association Name="PO_InvoiceMaster_cst_FreightDetail" Member="PO_InvoiceMaster" ThisKey="InvoiceMasterID" OtherKey="InvoiceMasterID" Type="PO_InvoiceMaster" IsForeignKey="true" />
       <Association Name="PO_ReturnToVendorDetail_cst_FreightDetail" Member="PO_ReturnToVendorDetail" ThisKey="ReturnToVendorDetailID" OtherKey="ReturnToVendorDetailID" Type="PO_ReturnToVendorDetail" IsForeignKey="true" />
+      <Association Name="ITM_Product_cst_FreightDetail" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.cst_FreightMaster" Member="cst_FreightMasters">
@@ -214,11 +214,11 @@
       <Column Name="ToLocationID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="PartyID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="CST_RecoverMaterialMaster_CST_RecoverMaterialDetail" Member="CST_RecoverMaterialMaster" ThisKey="RecoverMaterialMasterID" OtherKey="RecoverMaterialMasterID" Type="CST_RecoverMaterialMaster" IsForeignKey="true" />
-      <Association Name="ITM_Product_CST_RecoverMaterialDetail" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
       <Association Name="MST_BIN_CST_RecoverMaterialDetail" Member="MST_BIN" ThisKey="ToBinID" OtherKey="BinID" Type="MST_BIN" IsForeignKey="true" />
       <Association Name="MST_Location_CST_RecoverMaterialDetail" Member="MST_Location" ThisKey="ToLocationID" OtherKey="LocationID" Type="MST_Location" IsForeignKey="true" />
       <Association Name="MST_Party_CST_RecoverMaterialDetail" Member="MST_Party" ThisKey="PartyID" OtherKey="PartyID" Type="MST_Party" IsForeignKey="true" />
       <Association Name="MST_UnitOfMeasure_CST_RecoverMaterialDetail" Member="MST_UnitOfMeasure" ThisKey="UnitOfMeasureID" OtherKey="UnitOfMeasureID" Type="MST_UnitOfMeasure" IsForeignKey="true" />
+      <Association Name="ITM_Product_CST_RecoverMaterialDetail" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.CST_RecoverMaterialMaster" Member="CST_RecoverMaterialMasters">
@@ -235,10 +235,10 @@
       <Column Name="UserName" Type="System.String" DbType="NVarChar(80)" CanBeNull="true" />
       <Column Name="Comment" Type="System.String" DbType="NVarChar(40)" CanBeNull="true" />
       <Association Name="CST_RecoverMaterialMaster_CST_RecoverMaterialDetail" Member="CST_RecoverMaterialDetails" ThisKey="RecoverMaterialMasterID" OtherKey="RecoverMaterialMasterID" Type="CST_RecoverMaterialDetail" />
-      <Association Name="ITM_Product_CST_RecoverMaterialMaster" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
       <Association Name="MST_BIN_CST_RecoverMaterialMaster" Member="MST_BIN" ThisKey="FromBinID" OtherKey="BinID" Type="MST_BIN" IsForeignKey="true" />
       <Association Name="MST_CCN_CST_RecoverMaterialMaster" Member="MST_CCN" ThisKey="CCNID" OtherKey="CCNID" Type="MST_CCN" IsForeignKey="true" />
       <Association Name="MST_Location_CST_RecoverMaterialMaster" Member="MST_Location" ThisKey="FromLocationID" OtherKey="LocationID" Type="MST_Location" IsForeignKey="true" />
+      <Association Name="ITM_Product_CST_RecoverMaterialMaster" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.CST_STDItemCost" Member="CST_STDItemCosts">
@@ -248,8 +248,8 @@
       <Column Name="ProductID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="CostElementID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="STDItemCostID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Association Name="ITM_Product_CST_STDItemCost" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
       <Association Name="STD_CostElement_CST_STDItemCost" Member="STD_CostElement" ThisKey="CostElementID" OtherKey="CostElementID" Type="STD_CostElement" IsForeignKey="true" />
+      <Association Name="ITM_Product_CST_STDItemCost" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.DCP_BeginQuantity" Member="DCP_BeginQuantities">
@@ -258,8 +258,8 @@
       <Column Name="DCOptionMasterID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="ProductID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Quantity" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
-      <Association Name="ITM_Product_DCP_BeginQuantity" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
       <Association Name="PRO_DCOptionMaster_DCP_BeginQuantity" Member="PRO_DCOptionMaster" ThisKey="DCOptionMasterID" OtherKey="DCOptionMasterID" Type="PRO_DCOptionMaster" IsForeignKey="true" />
+      <Association Name="ITM_Product_DCP_BeginQuantity" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.DCP_OrderProduce" Member="DCP_OrderProduces">
@@ -369,9 +369,9 @@
       <Column Name="EffectiveBeginDay" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
       <Column Name="Alternative" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Line" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="ITM_Routing_ITM_BOM" Member="ITM_Routing" ThisKey="RoutingID" OtherKey="RoutingID" Type="ITM_Routing" IsForeignKey="true" />
       <Association Name="ITM_Product_ITM_BOM" Member="ITM_Product" ThisKey="ComponentID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
       <Association Name="ITM_Product_ITM_BOM1" Member="ITM_Product1" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
-      <Association Name="ITM_Routing_ITM_BOM" Member="ITM_Routing" ThisKey="RoutingID" OtherKey="RoutingID" Type="ITM_Routing" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.ITM_Buyer" Member="ITM_Buyers">
@@ -404,9 +404,9 @@
       <Column Name="Code" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
       <Column Name="Name" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="Description" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
-      <Association Name="ITM_CostCenter_ITM_Product" Member="ITM_Products" ThisKey="CostCenterID" OtherKey="CostCenterID" Type="ITM_Product" />
       <Association Name="ITM_CostCenter_ITM_Routing" Member="ITM_Routings" ThisKey="CostCenterID" OtherKey="LaborCostCenterID" Type="ITM_Routing" />
       <Association Name="ITM_CostCenter_ITM_Routing1" Member="ITM_Routings1" ThisKey="CostCenterID" OtherKey="MachineCostCenterID" Type="ITM_Routing" />
+      <Association Name="ITM_CostCenter_ITM_Product" Member="ITM_Products" ThisKey="CostCenterID" OtherKey="CostCenterID" Type="ITM_Product" />
     </Type>
   </Table>
   <Table Name="dbo.ITM_DeleteReason" Member="ITM_DeleteReasons">
@@ -483,201 +483,6 @@
       <Association Name="ITM_Product_ITM_Picture" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.ITM_Product" Member="ITM_Products">
-    <Type Name="ITM_Product">
-      <Column Name="ProductID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="Code" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="Revision" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
-      <Column Name="Description" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
-      <Column Name="SetupDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="VAT" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="ImportTax" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="ExportTax" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="SpecialTax" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="MakeItem" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="PartNumber" Type="System.String" DbType="NVarChar(40)" CanBeNull="true" />
-      <Column Name="OtherInfo1" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="OtherInfo2" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="Length" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="Width" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="Height" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="Weight" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="FinishedGoods" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="ShelfLife" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="LotControl" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="QAStatus" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
-      <Column Name="Stock" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="PlanType" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Column Name="AutoConversion" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="OrderQuantity" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="LTRequisition" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
-      <Column Name="LTSafetyStock" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
-      <Column Name="OrderQuantityMultiple" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="ScrapPercent" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="MinimumStock" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="MaximumStock" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="ConversionTolerance" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="VoucherTolerance" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="ReceiveTolerance" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="IssueSize" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="LTFixedTime" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
-      <Column Name="LTVariableTime" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
-      <Column Name="LTOrderPrepare" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
-      <Column Name="LTShippingPrepare" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
-      <Column Name="LTSalesATP" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
-      <Column Name="ShipToleranceID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="BuyerID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="BOMDescription" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
-      <Column Name="BomIncrement" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
-      <Column Name="RoutingDescription" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
-      <Column Name="CreateDateTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="UpdateDateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="CostMethod" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
-      <Column Name="RoutingIncrement" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
-      <Column Name="CCNID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="CategoryID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CostCenterID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="DeleteReasonID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="DeliveryPolicyID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="FormatCodeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="FreightClassID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="HazardID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="OrderPolicyID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="OrderRuleID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="SourceID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="StockUMID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="SellingUMID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="HeightUMID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="WidthUMID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="LengthUMID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="BuyingUMID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="WeightUMID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="LotSize" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="MasterLocationID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="LocationID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="BinID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="PrimaryVendorID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="VendorLocationID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="OrderPoint" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="SafetyStock" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
-      <Column Name="AGCID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="ParentProductID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="LTDockToStock" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
-      <Column Name="PartNameVN" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="LicenseFee" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
-      <Column Name="InventorID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="ProductTypeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="TaxCode" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
-      <Column Name="ListPrice" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
-      <Column Name="VendorCurrencyID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="QuantitySet" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
-      <Column Name="ProductionLineID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="CostCenterRateMasterID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="ProductGroupID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="MaxProduce" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="MinProduce" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Column Name="Picture" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="MaxRoundUpToMin" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
-      <Column Name="MaxRoundUpToMultiple" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
-      <Column Name="ACAdjustmentMasterID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="RegisteredCode" Type="System.String" DbType="NVarChar(40)" CanBeNull="true" />
-      <Column Name="SetUpPair" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="AVEG" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="StockTakingCode" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="MassOrder" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="AllowNegativeQty" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Association Name="ITM_Product_cst_ActCostAllocationDetail" Member="cst_ActCostAllocationDetails" ThisKey="ProductID" OtherKey="ProductID" Type="cst_ActCostAllocationDetail" />
-      <Association Name="ITM_Product_CST_ActualCostHistory" Member="CST_ActualCostHistories" ThisKey="ProductID" OtherKey="ProductID" Type="CST_ActualCostHistory" />
-      <Association Name="ITM_Product_cst_AllocationResult" Member="cst_AllocationResults" ThisKey="ProductID" OtherKey="ProductID" Type="cst_AllocationResult" />
-      <Association Name="ITM_Product_CST_DSAndRecycleAllocation" Member="CST_DSAndRecycleAllocations" ThisKey="ProductID" OtherKey="ProductID" Type="CST_DSAndRecycleAllocation" />
-      <Association Name="ITM_Product_cst_FreightDetail" Member="cst_FreightDetails" ThisKey="ProductID" OtherKey="ProductID" Type="cst_FreightDetail" />
-      <Association Name="ITM_Product_CST_RecoverMaterialDetail" Member="CST_RecoverMaterialDetails" ThisKey="ProductID" OtherKey="ProductID" Type="CST_RecoverMaterialDetail" />
-      <Association Name="ITM_Product_CST_RecoverMaterialMaster" Member="CST_RecoverMaterialMasters" ThisKey="ProductID" OtherKey="ProductID" Type="CST_RecoverMaterialMaster" />
-      <Association Name="ITM_Product_CST_STDItemCost" Member="CST_STDItemCosts" ThisKey="ProductID" OtherKey="ProductID" Type="CST_STDItemCost" />
-      <Association Name="ITM_Product_DCP_BeginQuantity" Member="DCP_BeginQuantities" ThisKey="ProductID" OtherKey="ProductID" Type="DCP_BeginQuantity" />
-      <Association Name="ITM_Product_ITM_BOM" Member="ITM_BOMs" ThisKey="ProductID" OtherKey="ComponentID" Type="ITM_BOM" />
-      <Association Name="ITM_Product_ITM_BOM1" Member="ITM_BOMs1" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_BOM" />
-      <Association Name="ITM_Product_ITM_Picture" Member="ITM_Pictures" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Picture" />
-      <Association Name="ITM_Product_ITM_Routing" Member="ITM_Routings" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Routing" />
-      <Association Name="ITM_Product_IV_Adjustment" Member="IV_Adjustments" ThisKey="ProductID" OtherKey="ProductID" Type="IV_Adjustment" />
-      <Association Name="ITM_Product_IV_BalanceBin" Member="IV_BalanceBins" ThisKey="ProductID" OtherKey="ProductID" Type="IV_BalanceBin" />
-      <Association Name="ITM_Product_IV_BalanceLocation" Member="IV_BalanceLocations" ThisKey="ProductID" OtherKey="ProductID" Type="IV_BalanceLocation" />
-      <Association Name="ITM_Product_IV_BalanceMasterLocation" Member="IV_BalanceMasterLocations" ThisKey="ProductID" OtherKey="ProductID" Type="IV_BalanceMasterLocation" />
-      <Association Name="ITM_Product_IV_BeginDCPReport" Member="IV_BeginDCPReports" ThisKey="ProductID" OtherKey="ProductID" Type="IV_BeginDCPReport" />
-      <Association Name="ITM_Product_IV_BeginMRP" Member="IV_BeginMRPs" ThisKey="ProductID" OtherKey="ProductID" Type="IV_BeginMRP" />
-      <Association Name="ITM_Product_IV_BinCache" Member="IV_BinCaches" ThisKey="ProductID" OtherKey="ProductID" Type="IV_BinCache" />
-      <Association Name="ITM_Product_IV_CostHistory" Member="IV_CostHistories" ThisKey="ProductID" OtherKey="ProductID" Type="IV_CostHistory" />
-      <Association Name="ITM_Product_IV_LocationCache" Member="IV_LocationCaches" ThisKey="ProductID" OtherKey="ProductID" Type="IV_LocationCache" />
-      <Association Name="ITM_Product_IV_MasLocCache" Member="IV_MasLocCaches" ThisKey="ProductID" OtherKey="ProductID" Type="IV_MasLocCache" />
-      <Association Name="ITM_Product_IV_StockTaking" Member="IV_StockTakings" ThisKey="ProductID" OtherKey="ProductID" Type="IV_StockTaking" />
-      <Association Name="ITM_Product_IV_StockTakingDifferent" Member="IV_StockTakingDifferents" ThisKey="ProductID" OtherKey="ProductID" Type="IV_StockTakingDifferent" />
-      <Association Name="ITM_Product_MST_TransactionHistory" Member="MST_TransactionHistories" ThisKey="ProductID" OtherKey="ProductID" Type="MST_TransactionHistory" />
-      <Association Name="ITM_Product_MTR_ACDSDetail" Member="MTR_ACDSDetails" ThisKey="ProductID" OtherKey="ProductID" Type="MTR_ACDSDetail" />
-      <Association Name="ITM_Product_MTR_CPO" Member="MTR_CPOs" ThisKey="ProductID" OtherKey="ProductID" Type="MTR_CPO" />
-      <Association Name="ITM_Product_MTR_ItemActualCost" Member="MTR_ItemActualCosts" ThisKey="ProductID" OtherKey="ProductID" Type="MTR_ItemActualCost" />
-      <Association Name="ITM_Product_PO_InvoiceDetail" Member="PO_InvoiceDetails" ThisKey="ProductID" OtherKey="ProductID" Type="PO_InvoiceDetail" />
-      <Association Name="ITM_Product_PO_ItemVendorReference" Member="PO_ItemVendorReferences" ThisKey="ProductID" OtherKey="ProductID" Type="PO_ItemVendorReference" />
-      <Association Name="ITM_Product_PO_PurchaseOrderDetail" Member="PO_PurchaseOrderDetails" ThisKey="ProductID" OtherKey="ProductID" Type="PO_PurchaseOrderDetail" />
-      <Association Name="ITM_Product_PO_PurchaseOrderReceiptDetail" Member="PO_PurchaseOrderReceiptDetails" ThisKey="ProductID" OtherKey="ProductID" Type="PO_PurchaseOrderReceiptDetail" />
-      <Association Name="ITM_Product_PO_ReturnToVendorDetail" Member="PO_ReturnToVendorDetails" ThisKey="ProductID" OtherKey="ProductID" Type="PO_ReturnToVendorDetail" />
-      <Association Name="ITM_Product_PO_VendorDeliverySchedule" Member="PO_VendorDeliverySchedules" ThisKey="ProductID" OtherKey="ProductID" Type="PO_VendorDeliverySchedule" />
-      <Association Name="ITM_Product_PRO_ChangeCategoryDetail" Member="PRO_ChangeCategoryDetails" ThisKey="ProductID" OtherKey="ProductID" Type="PRO_ChangeCategoryDetail" />
-      <Association Name="ITM_Product_PRO_ChangeCategoryMatrix" Member="PRO_ChangeCategoryMatrixes" ThisKey="ProductID" OtherKey="DestProductID" Type="PRO_ChangeCategoryMatrix" />
-      <Association Name="ITM_Product_PRO_ChangeCategoryMatrix1" Member="PRO_ChangeCategoryMatrixes1" ThisKey="ProductID" OtherKey="SourceProductID" Type="PRO_ChangeCategoryMatrix" />
-      <Association Name="ITM_Product_PRO_CheckPoint" Member="PRO_CheckPoints" ThisKey="ProductID" OtherKey="ProductID" Type="PRO_CheckPoint" />
-      <Association Name="ITM_Product_PRO_ComponentScrapDetail" Member="PRO_ComponentScrapDetails" ThisKey="ProductID" OtherKey="ComponentID" Type="PRO_ComponentScrapDetail" />
-      <Association Name="ITM_Product_PRO_ComponentScrapDetail1" Member="PRO_ComponentScrapDetails1" ThisKey="ProductID" OtherKey="ProductID" Type="PRO_ComponentScrapDetail" />
-      <Association Name="ITM_Product_PRO_DCPResultMaster" Member="PRO_DCPResultMasters" ThisKey="ProductID" OtherKey="ProductID" Type="PRO_DCPResultMaster" />
-      <Association Name="ITM_Product_PRO_IssueMaterialDetail" Member="PRO_IssueMaterialDetails" ThisKey="ProductID" OtherKey="ProductID" Type="PRO_IssueMaterialDetail" />
-      <Association Name="ITM_Product_PRO_IssueMaterialMaster" Member="PRO_IssueMaterialMasters" ThisKey="ProductID" OtherKey="ProductID" Type="PRO_IssueMaterialMaster" />
-      <Association Name="ITM_Product_PRO_PGProduct" Member="PRO_PGProducts" ThisKey="ProductID" OtherKey="ProductID" Type="PRO_PGProduct" />
-      <Association Name="ITM_Product_PRO_ProductProductionOrder" Member="PRO_ProductProductionOrders" ThisKey="ProductID" OtherKey="ProductID" Type="PRO_ProductProductionOrder" />
-      <Association Name="ITM_Product_PRO_WorkOrderCompletion" Member="PRO_WorkOrderCompletions" ThisKey="ProductID" OtherKey="ProductID" Type="PRO_WorkOrderCompletion" />
-      <Association Name="ITM_Product_PRO_WorkOrderDetail" Member="PRO_WorkOrderDetails" ThisKey="ProductID" OtherKey="ProductID" Type="PRO_WorkOrderDetail" />
-      <Association Name="ITM_Product_SO_CommitInventoryDetail" Member="SO_CommitInventoryDetails" ThisKey="ProductID" OtherKey="ProductID" Type="SO_CommitInventoryDetail" />
-      <Association Name="ITM_Product_SO_CustomerItemRefDetail" Member="SO_CustomerItemRefDetails" ThisKey="ProductID" OtherKey="ProductID" Type="SO_CustomerItemRefDetail" />
-      <Association Name="ITM_Product_SO_ReturnedGoodsDetail" Member="SO_ReturnedGoodsDetails" ThisKey="ProductID" OtherKey="ProductID" Type="SO_ReturnedGoodsDetail" />
-      <Association Name="ITM_Product_SO_SaleOrderDetail" Member="SO_SaleOrderDetails" ThisKey="ProductID" OtherKey="ProductID" Type="SO_SaleOrderDetail" />
-      <Association Name="ITM_Product_STD_CostCenterRateMaster" Member="STD_CostCenterRateMasters" ThisKey="ProductID" OtherKey="ProductID" Type="STD_CostCenterRateMaster" />
-      <Association Name="ITM_Product_sys_RoleProduct" Member="sys_RoleProducts" ThisKey="ProductID" OtherKey="ProductID" Type="sys_RoleProduct" />
-      <Association Name="ITM_Product_SO_ConfirmShipDetail" Member="SO_ConfirmShipDetails" ThisKey="ProductID" OtherKey="ProductID" Type="SO_ConfirmShipDetail" />
-      <Association Name="ITM_Product_SO_InvoiceDetail" Member="SO_InvoiceDetails" ThisKey="ProductID" OtherKey="ProductID" Type="SO_InvoiceDetail" />
-      <Association Name="ITM_Product_IV_MiscellaneousIssueDetail" Member="IV_MiscellaneousIssueDetails" ThisKey="ProductID" OtherKey="ProductID" Type="IV_MiscellaneousIssueDetail" />
-      <Association Name="cst_ACAdjustmentMaster_ITM_Product" Member="cst_ACAdjustmentMaster" ThisKey="ACAdjustmentMasterID" OtherKey="ACAdjustmentMasterID" Type="cst_ACAdjustmentMaster" IsForeignKey="true" />
-      <Association Name="ITM_Buyer_ITM_Product" Member="ITM_Buyer" ThisKey="BuyerID" OtherKey="BuyerID" Type="ITM_Buyer" IsForeignKey="true" />
-      <Association Name="ITM_Category_ITM_Product" Member="ITM_Category" ThisKey="CategoryID" OtherKey="CategoryID" Type="ITM_Category" IsForeignKey="true" />
-      <Association Name="ITM_CostCenter_ITM_Product" Member="ITM_CostCenter" ThisKey="CostCenterID" OtherKey="CostCenterID" Type="ITM_CostCenter" IsForeignKey="true" />
-      <Association Name="ITM_DeleteReason_ITM_Product" Member="ITM_DeleteReason" ThisKey="DeleteReasonID" OtherKey="DeleteReasonID" Type="ITM_DeleteReason" IsForeignKey="true" />
-      <Association Name="ITM_DeliveryPolicy_ITM_Product" Member="ITM_DeliveryPolicy" ThisKey="DeliveryPolicyID" OtherKey="DeliveryPolicyID" Type="ITM_DeliveryPolicy" IsForeignKey="true" />
-      <Association Name="ITM_FormatCode_ITM_Product" Member="ITM_FormatCode" ThisKey="FormatCodeID" OtherKey="FormatCodeID" Type="ITM_FormatCode" IsForeignKey="true" />
-      <Association Name="ITM_FreightClass_ITM_Product" Member="ITM_FreightClass" ThisKey="FreightClassID" OtherKey="FreightClassID" Type="ITM_FreightClass" IsForeignKey="true" />
-      <Association Name="ITM_Hazard_ITM_Product" Member="ITM_Hazard" ThisKey="HazardID" OtherKey="HazardID" Type="ITM_Hazard" IsForeignKey="true" />
-      <Association Name="ITM_OrderRule_ITM_Product" Member="ITM_OrderRule" ThisKey="OrderRuleID" OtherKey="OrderRuleID" Type="ITM_OrderRule" IsForeignKey="true" />
-      <Association Name="ITM_OrderPolicy_ITM_Product" Member="ITM_OrderPolicy" ThisKey="OrderPolicyID" OtherKey="OrderPolicyID" Type="ITM_OrderPolicy" IsForeignKey="true" />
-      <Association Name="CST_ProductGroup_ITM_Product" Member="CST_ProductGroup" ThisKey="ProductGroupID" OtherKey="ProductGroupID" Type="CST_ProductGroup" IsForeignKey="true" />
-      <Association Name="ITM_ProductType_ITM_Product" Member="ITM_ProductType" ThisKey="ProductTypeID" OtherKey="ProductTypeID" Type="ITM_ProductType" IsForeignKey="true" />
-      <Association Name="ITM_ShipTolerance_ITM_Product" Member="ITM_ShipTolerance" ThisKey="ShipToleranceID" OtherKey="ShipToleranceID" Type="ITM_ShipTolerance" IsForeignKey="true" />
-      <Association Name="ITM_Source_ITM_Product" Member="ITM_Source" ThisKey="SourceID" OtherKey="SourceID" Type="ITM_Source" IsForeignKey="true" />
-      <Association Name="MST_AGC_ITM_Product" Member="MST_AGC" ThisKey="AGCID" OtherKey="AGCID" Type="MST_AGC" IsForeignKey="true" />
-      <Association Name="MST_BIN_ITM_Product" Member="MST_BIN" ThisKey="BinID" OtherKey="BinID" Type="MST_BIN" IsForeignKey="true" />
-      <Association Name="MST_CCN_ITM_Product" Member="MST_CCN" ThisKey="CCNID" OtherKey="CCNID" Type="MST_CCN" IsForeignKey="true" />
-      <Association Name="MST_Currency_ITM_Product" Member="MST_Currency" ThisKey="VendorCurrencyID" OtherKey="CurrencyID" Type="MST_Currency" IsForeignKey="true" />
-      <Association Name="MST_Location_ITM_Product" Member="MST_Location" ThisKey="LocationID" OtherKey="LocationID" Type="MST_Location" IsForeignKey="true" />
-      <Association Name="MST_MasterLocation_ITM_Product" Member="MST_MasterLocation" ThisKey="MasterLocationID" OtherKey="MasterLocationID" Type="MST_MasterLocation" IsForeignKey="true" />
-      <Association Name="MST_Party_ITM_Product" Member="MST_Party" ThisKey="InventorID" OtherKey="PartyID" Type="MST_Party" IsForeignKey="true" />
-      <Association Name="MST_Party_ITM_Product1" Member="MST_Party1" ThisKey="PrimaryVendorID" OtherKey="PartyID" Type="MST_Party" IsForeignKey="true" />
-      <Association Name="MST_PartyLocation_ITM_Product" Member="MST_PartyLocation" ThisKey="VendorLocationID" OtherKey="PartyLocationID" Type="MST_PartyLocation" IsForeignKey="true" />
-      <Association Name="MST_UnitOfMeasure_ITM_Product" Member="MST_UnitOfMeasure" ThisKey="BuyingUMID" OtherKey="UnitOfMeasureID" Type="MST_UnitOfMeasure" IsForeignKey="true" />
-      <Association Name="MST_UnitOfMeasure_ITM_Product1" Member="MST_UnitOfMeasure1" ThisKey="HeightUMID" OtherKey="UnitOfMeasureID" Type="MST_UnitOfMeasure" IsForeignKey="true" />
-      <Association Name="MST_UnitOfMeasure_ITM_Product2" Member="MST_UnitOfMeasure2" ThisKey="LengthUMID" OtherKey="UnitOfMeasureID" Type="MST_UnitOfMeasure" IsForeignKey="true" />
-      <Association Name="MST_UnitOfMeasure_ITM_Product3" Member="MST_UnitOfMeasure3" ThisKey="SellingUMID" OtherKey="UnitOfMeasureID" Type="MST_UnitOfMeasure" IsForeignKey="true" />
-      <Association Name="MST_UnitOfMeasure_ITM_Product4" Member="MST_UnitOfMeasure4" ThisKey="StockUMID" OtherKey="UnitOfMeasureID" Type="MST_UnitOfMeasure" IsForeignKey="true" />
-      <Association Name="MST_UnitOfMeasure_ITM_Product5" Member="MST_UnitOfMeasure5" ThisKey="WeightUMID" OtherKey="UnitOfMeasureID" Type="MST_UnitOfMeasure" IsForeignKey="true" />
-      <Association Name="MST_UnitOfMeasure_ITM_Product6" Member="MST_UnitOfMeasure6" ThisKey="WidthUMID" OtherKey="UnitOfMeasureID" Type="MST_UnitOfMeasure" IsForeignKey="true" />
-      <Association Name="PRO_ProductionLine_ITM_Product" Member="PRO_ProductionLine" ThisKey="ProductionLineID" OtherKey="ProductionLineID" Type="PRO_ProductionLine" IsForeignKey="true" />
-      <Association Name="STD_CostCenterRateMaster_ITM_Product" Member="STD_CostCenterRateMaster" ThisKey="CostCenterRateMasterID" OtherKey="CostCenterRateMasterID" Type="STD_CostCenterRateMaster" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.ITM_ProductType" Member="ITM_ProductTypes">
     <Type Name="ITM_ProductType">
       <Column Name="ProductTypeID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -733,11 +538,11 @@
       <Association Name="ITM_Routing_PRO_DCPResultMaster" Member="PRO_DCPResultMasters" ThisKey="RoutingID" OtherKey="RoutingID" Type="PRO_DCPResultMaster" />
       <Association Name="ITM_CostCenter_ITM_Routing" Member="ITM_CostCenter" ThisKey="LaborCostCenterID" OtherKey="CostCenterID" Type="ITM_CostCenter" IsForeignKey="true" />
       <Association Name="ITM_CostCenter_ITM_Routing1" Member="ITM_CostCenter1" ThisKey="MachineCostCenterID" OtherKey="CostCenterID" Type="ITM_CostCenter" IsForeignKey="true" />
-      <Association Name="ITM_Product_ITM_Routing" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
       <Association Name="ITM_RoutingStatus_ITM_Routing" Member="ITM_RoutingStatus" ThisKey="RoutingStatusID" OtherKey="RoutingStatusID" Type="ITM_RoutingStatus" IsForeignKey="true" />
       <Association Name="MST_Function_ITM_Routing" Member="MST_Function" ThisKey="FunctionID" OtherKey="FunctionID" Type="MST_Function" IsForeignKey="true" />
       <Association Name="MST_Party_ITM_Routing" Member="MST_Party" ThisKey="PartyID" OtherKey="PartyID" Type="MST_Party" IsForeignKey="true" />
       <Association Name="MST_WorkCenter_ITM_Routing" Member="MST_WorkCenter" ThisKey="WorkCenterID" OtherKey="WorkCenterID" Type="MST_WorkCenter" IsForeignKey="true" />
+      <Association Name="ITM_Product_ITM_Routing" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.ITM_RoutingStatus" Member="ITM_RoutingStatus">
@@ -786,12 +591,12 @@
       <Column Name="LastChange" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="AvailableQty" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
       <Column Name="UsedByCosting" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Association Name="ITM_Product_IV_Adjustment" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
       <Association Name="MST_BIN_IV_Adjustment" Member="MST_BIN" ThisKey="BinID" OtherKey="BinID" Type="MST_BIN" IsForeignKey="true" />
       <Association Name="MST_CCN_IV_Adjustment" Member="MST_CCN" ThisKey="CCNID" OtherKey="CCNID" Type="MST_CCN" IsForeignKey="true" />
       <Association Name="MST_Location_IV_Adjustment" Member="MST_Location" ThisKey="LocationID" OtherKey="LocationID" Type="MST_Location" IsForeignKey="true" />
       <Association Name="MST_MasterLocation_IV_Adjustment" Member="MST_MasterLocation" ThisKey="MasterLocationID" OtherKey="MasterLocationID" Type="MST_MasterLocation" IsForeignKey="true" />
       <Association Name="MST_UnitOfMeasure_IV_Adjustment" Member="MST_UnitOfMeasure" ThisKey="StockUMID" OtherKey="UnitOfMeasureID" Type="MST_UnitOfMeasure" IsForeignKey="true" />
+      <Association Name="ITM_Product_IV_Adjustment" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.IV_BalanceBin" Member="IV_BalanceBins">
@@ -804,10 +609,10 @@
       <Column Name="LocationID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="BinID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="StockUMID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="ITM_Product_IV_BalanceBin" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
       <Association Name="MST_BIN_IV_BalanceBin" Member="MST_BIN" ThisKey="BinID" OtherKey="BinID" Type="MST_BIN" IsForeignKey="true" />
       <Association Name="MST_Location_IV_BalanceBin" Member="MST_Location" ThisKey="LocationID" OtherKey="LocationID" Type="MST_Location" IsForeignKey="true" />
       <Association Name="MST_UnitOfMeasure_IV_BalanceBin" Member="MST_UnitOfMeasure" ThisKey="StockUMID" OtherKey="UnitOfMeasureID" Type="MST_UnitOfMeasure" IsForeignKey="true" />
+      <Association Name="ITM_Product_IV_BalanceBin" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.IV_BalanceLocation" Member="IV_BalanceLocations">
@@ -820,10 +625,10 @@
       <Column Name="LocationID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="MasterLocationID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="StockUMID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="ITM_Product_IV_BalanceLocation" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
       <Association Name="MST_Location_IV_BalanceLocation" Member="MST_Location" ThisKey="LocationID" OtherKey="LocationID" Type="MST_Location" IsForeignKey="true" />
       <Association Name="MST_MasterLocation_IV_BalanceLocation" Member="MST_MasterLocation" ThisKey="MasterLocationID" OtherKey="MasterLocationID" Type="MST_MasterLocation" IsForeignKey="true" />
       <Association Name="MST_UnitOfMeasure_IV_BalanceLocation" Member="MST_UnitOfMeasure" ThisKey="StockUMID" OtherKey="UnitOfMeasureID" Type="MST_UnitOfMeasure" IsForeignKey="true" />
+      <Association Name="ITM_Product_IV_BalanceLocation" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.IV_BalanceMasterLocation" Member="IV_BalanceMasterLocations">
@@ -835,9 +640,9 @@
       <Column Name="ProductID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="MasterLocationID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="StockUMID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="ITM_Product_IV_BalanceMasterLocation" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
       <Association Name="MST_MasterLocation_IV_BalanceMasterLocation" Member="MST_MasterLocation" ThisKey="MasterLocationID" OtherKey="MasterLocationID" Type="MST_MasterLocation" IsForeignKey="true" />
       <Association Name="MST_UnitOfMeasure_IV_BalanceMasterLocation" Member="MST_UnitOfMeasure" ThisKey="StockUMID" OtherKey="UnitOfMeasureID" Type="MST_UnitOfMeasure" IsForeignKey="true" />
+      <Association Name="ITM_Product_IV_BalanceMasterLocation" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.IV_BeginDCPReport" Member="IV_BeginDCPReports">
@@ -859,8 +664,8 @@
       <Column Name="ProductID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="LocationID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="QuantityMAP" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
-      <Association Name="ITM_Product_IV_BeginMRP" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
       <Association Name="MST_Location_IV_BeginMRP" Member="MST_Location" ThisKey="LocationID" OtherKey="LocationID" Type="MST_Location" IsForeignKey="true" />
+      <Association Name="ITM_Product_IV_BeginMRP" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.IV_BinCache" Member="IV_BinCaches">
@@ -877,11 +682,11 @@
       <Column Name="LocationID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="MasterLocationID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="ProductID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="ITM_Product_IV_BinCache" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
       <Association Name="MST_BIN_IV_BinCache" Member="MST_BIN" ThisKey="BinID" OtherKey="BinID" Type="MST_BIN" IsForeignKey="true" />
       <Association Name="MST_CCN_IV_BinCache" Member="MST_CCN" ThisKey="CCNID" OtherKey="CCNID" Type="MST_CCN" IsForeignKey="true" />
       <Association Name="MST_Location_IV_BinCache" Member="MST_Location" ThisKey="LocationID" OtherKey="LocationID" Type="MST_Location" IsForeignKey="true" />
       <Association Name="MST_MasterLocation_IV_BinCache" Member="MST_MasterLocation" ThisKey="MasterLocationID" OtherKey="MasterLocationID" Type="MST_MasterLocation" IsForeignKey="true" />
+      <Association Name="ITM_Product_IV_BinCache" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.IV_CostHistory" Member="IV_CostHistories">
@@ -900,13 +705,13 @@
       <Column Name="CCNID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="StockUMID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="TranTypeID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="ITM_Product_IV_CostHistory" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
       <Association Name="MST_CCN_IV_CostHistory" Member="MST_CCN" ThisKey="CCNID" OtherKey="CCNID" Type="MST_CCN" IsForeignKey="true" />
       <Association Name="MST_MasterLocation_IV_CostHistory" Member="MST_MasterLocation" ThisKey="MasterLocationID" OtherKey="MasterLocationID" Type="MST_MasterLocation" IsForeignKey="true" />
       <Association Name="MST_Party_IV_CostHistory" Member="MST_Party" ThisKey="PartyID" OtherKey="PartyID" Type="MST_Party" IsForeignKey="true" />
       <Association Name="MST_PartyLocation_IV_CostHistory" Member="MST_PartyLocation" ThisKey="PartyLocationID" OtherKey="PartyLocationID" Type="MST_PartyLocation" IsForeignKey="true" />
       <Association Name="MST_TranType_IV_CostHistory" Member="MST_TranType" ThisKey="TranTypeID" OtherKey="TranTypeID" Type="MST_TranType" IsForeignKey="true" />
       <Association Name="MST_UnitOfMeasure_IV_CostHistory" Member="MST_UnitOfMeasure" ThisKey="StockUMID" OtherKey="UnitOfMeasureID" Type="MST_UnitOfMeasure" IsForeignKey="true" />
+      <Association Name="ITM_Product_IV_CostHistory" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.IV_CoutingMethod" Member="IV_CoutingMethods">
@@ -944,10 +749,10 @@
       <Column Name="ProductID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="LocationID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="MasterLocationID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="ITM_Product_IV_LocationCache" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
       <Association Name="MST_CCN_IV_LocationCache" Member="MST_CCN" ThisKey="CCNID" OtherKey="CCNID" Type="MST_CCN" IsForeignKey="true" />
       <Association Name="MST_Location_IV_LocationCache" Member="MST_Location" ThisKey="LocationID" OtherKey="LocationID" Type="MST_Location" IsForeignKey="true" />
       <Association Name="MST_MasterLocation_IV_LocationCache" Member="MST_MasterLocation" ThisKey="MasterLocationID" OtherKey="MasterLocationID" Type="MST_MasterLocation" IsForeignKey="true" />
+      <Association Name="ITM_Product_IV_LocationCache" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.IV_MasLocCache" Member="IV_MasLocCaches">
@@ -964,9 +769,9 @@
       <Column Name="AVGCost" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
       <Column Name="SummItemCost21" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
       <Column Name="ProductID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="ITM_Product_IV_MasLocCache" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
       <Association Name="MST_CCN_IV_MasLocCache" Member="MST_CCN" ThisKey="CCNID" OtherKey="CCNID" Type="MST_CCN" IsForeignKey="true" />
       <Association Name="MST_MasterLocation_IV_MasLocCache" Member="MST_MasterLocation" ThisKey="MasterLocationID" OtherKey="MasterLocationID" Type="MST_MasterLocation" IsForeignKey="true" />
+      <Association Name="ITM_Product_IV_MasLocCache" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.IV_MiscellaneousIssueMaster" Member="IV_MiscellaneousIssueMasters">
@@ -1018,9 +823,9 @@
       <Column Name="CountingMethodID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="StockTakingMasterID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="IV_CoutingMethod_IV_StockTaking" Member="IV_CoutingMethod" ThisKey="CountingMethodID" OtherKey="CountingMethodID" Type="IV_CoutingMethod" IsForeignKey="true" />
-      <Association Name="ITM_Product_IV_StockTaking" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
       <Association Name="IV_StockTakingMaster_IV_StockTaking" Member="IV_StockTakingMaster" ThisKey="StockTakingMasterID" OtherKey="StockTakingMasterID" Type="IV_StockTakingMaster" IsForeignKey="true" />
       <Association Name="MST_UnitOfMeasure_IV_StockTaking" Member="MST_UnitOfMeasure" ThisKey="StockUMID" OtherKey="UnitOfMeasureID" Type="MST_UnitOfMeasure" IsForeignKey="true" />
+      <Association Name="ITM_Product_IV_StockTaking" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.IV_StockTakingDifferent" Member="IV_StockTakingDifferents">
@@ -1035,10 +840,10 @@
       <Column Name="LocationID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="BinID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="HistoryQuantity" Type="System.Decimal" DbType="Decimal(18,5)" CanBeNull="true" />
-      <Association Name="ITM_Product_IV_StockTakingDifferent" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
       <Association Name="IV_StockTakingPeriod_IV_StockTakingDifferent" Member="IV_StockTakingPeriod" ThisKey="StockTakingPeriodID" OtherKey="StockTakingPeriodID" Type="IV_StockTakingPeriod" IsForeignKey="true" />
       <Association Name="MST_BIN_IV_StockTakingDifferent" Member="MST_BIN" ThisKey="BinID" OtherKey="BinID" Type="MST_BIN" IsForeignKey="true" />
       <Association Name="MST_Location_IV_StockTakingDifferent" Member="MST_Location" ThisKey="LocationID" OtherKey="LocationID" Type="MST_Location" IsForeignKey="true" />
+      <Association Name="ITM_Product_IV_StockTakingDifferent" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.IV_StockTakingMaster" Member="IV_StockTakingMasters">
@@ -1119,7 +924,6 @@
       <Column Name="BinTypeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="MST_BIN_CST_RecoverMaterialDetail" Member="CST_RecoverMaterialDetails" ThisKey="BinID" OtherKey="ToBinID" Type="CST_RecoverMaterialDetail" />
       <Association Name="MST_BIN_CST_RecoverMaterialMaster" Member="CST_RecoverMaterialMasters" ThisKey="BinID" OtherKey="FromBinID" Type="CST_RecoverMaterialMaster" />
-      <Association Name="MST_BIN_ITM_Product" Member="ITM_Products" ThisKey="BinID" OtherKey="BinID" Type="ITM_Product" />
       <Association Name="MST_BIN_IV_Adjustment" Member="IV_Adjustments" ThisKey="BinID" OtherKey="BinID" Type="IV_Adjustment" />
       <Association Name="MST_BIN_IV_BalanceBin" Member="IV_BalanceBins" ThisKey="BinID" OtherKey="BinID" Type="IV_BalanceBin" />
       <Association Name="MST_BIN_IV_BinCache" Member="IV_BinCaches" ThisKey="BinID" OtherKey="BinID" Type="IV_BinCache" />
@@ -1140,6 +944,7 @@
       <Association Name="MST_BIN_SO_ReturnedGoodsDetail" Member="SO_ReturnedGoodsDetails" ThisKey="BinID" OtherKey="BinID" Type="SO_ReturnedGoodsDetail" />
       <Association Name="MST_BIN_SO_InvoiceMaster" Member="SO_InvoiceMasters" ThisKey="BinID" OtherKey="BinID" Type="SO_InvoiceMaster" />
       <Association Name="MST_BIN_SO_ConfirmShipMaster" Member="SO_ConfirmShipMasters" ThisKey="BinID" OtherKey="BinID" Type="SO_ConfirmShipMaster" />
+      <Association Name="MST_BIN_ITM_Product" Member="ITM_Products" ThisKey="BinID" OtherKey="BinID" Type="ITM_Product" />
       <Association Name="enm_BINType_MST_BIN" Member="enm_BINType" ThisKey="BinTypeID" OtherKey="BINTypeID" Type="enm_BINType" IsForeignKey="true" />
       <Association Name="enm_LocationType_MST_BIN" Member="enm_LocationType" ThisKey="LocationTypeID" OtherKey="LocationTypeID" Type="enm_LocationType" IsForeignKey="true" />
       <Association Name="MST_Location_MST_BIN" Member="MST_Location" ThisKey="LocationID" OtherKey="LocationID" Type="MST_Location" IsForeignKey="true" />
@@ -1187,7 +992,6 @@
       <Association Name="MST_CCN_cst_ActCostAllocationMaster" Member="cst_ActCostAllocationMasters" ThisKey="CCNID" OtherKey="CCNID" Type="cst_ActCostAllocationMaster" />
       <Association Name="MST_CCN_cst_FreightMaster" Member="cst_FreightMasters" ThisKey="CCNID" OtherKey="CCNID" Type="cst_FreightMaster" />
       <Association Name="MST_CCN_CST_RecoverMaterialMaster" Member="CST_RecoverMaterialMasters" ThisKey="CCNID" OtherKey="CCNID" Type="CST_RecoverMaterialMaster" />
-      <Association Name="MST_CCN_ITM_Product" Member="ITM_Products" ThisKey="CCNID" OtherKey="CCNID" Type="ITM_Product" />
       <Association Name="MST_CCN_IV_Adjustment" Member="IV_Adjustments" ThisKey="CCNID" OtherKey="CCNID" Type="IV_Adjustment" />
       <Association Name="MST_CCN_IV_BinCache" Member="IV_BinCaches" ThisKey="CCNID" OtherKey="CCNID" Type="IV_BinCache" />
       <Association Name="MST_CCN_IV_CostHistory" Member="IV_CostHistories" ThisKey="CCNID" OtherKey="CCNID" Type="IV_CostHistory" />
@@ -1231,6 +1035,7 @@
       <Association Name="MST_CCN_Sys_User" Member="Sys_Users" ThisKey="CCNID" OtherKey="CCNID" Type="Sys_User" />
       <Association Name="MST_CCN_SO_InvoiceMaster" Member="SO_InvoiceMasters" ThisKey="CCNID" OtherKey="CCNID" Type="SO_InvoiceMaster" />
       <Association Name="MST_CCN_SO_ConfirmShipMaster" Member="SO_ConfirmShipMasters" ThisKey="CCNID" OtherKey="CCNID" Type="SO_ConfirmShipMaster" />
+      <Association Name="MST_CCN_ITM_Product" Member="ITM_Products" ThisKey="CCNID" OtherKey="CCNID" Type="ITM_Product" />
       <Association Name="MST_City_MST_CCN" Member="MST_City" ThisKey="CityID" OtherKey="CityID" Type="MST_City" IsForeignKey="true" />
       <Association Name="MST_Country_MST_CCN" Member="MST_Country" ThisKey="CountryID" OtherKey="CountryID" Type="MST_Country" IsForeignKey="true" />
       <Association Name="MST_Currency_MST_CCN" Member="MST_Currency" ThisKey="DefaultCurrencyID" OtherKey="CurrencyID" Type="MST_Currency" IsForeignKey="true" />
@@ -1270,7 +1075,6 @@
       <Column Name="Mask" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Association Name="MST_Currency_cst_ActCostAllocationMaster" Member="cst_ActCostAllocationMasters" ThisKey="CurrencyID" OtherKey="CurrencyID" Type="cst_ActCostAllocationMaster" />
       <Association Name="MST_Currency_cst_FreightMaster" Member="cst_FreightMasters" ThisKey="CurrencyID" OtherKey="CurrencyID" Type="cst_FreightMaster" />
-      <Association Name="MST_Currency_ITM_Product" Member="ITM_Products" ThisKey="CurrencyID" OtherKey="VendorCurrencyID" Type="ITM_Product" />
       <Association Name="MST_Currency_MST_CCN" Member="MST_CCNs" ThisKey="CurrencyID" OtherKey="DefaultCurrencyID" Type="MST_CCN" />
       <Association Name="MST_Currency_MST_CCN1" Member="MST_CCNs1" ThisKey="CurrencyID" OtherKey="HomeCurrencyID" Type="MST_CCN" />
       <Association Name="MST_Currency_MST_ExchangeRate" Member="MST_ExchangeRates" ThisKey="CurrencyID" OtherKey="CurrencyID" Type="MST_ExchangeRate" />
@@ -1283,6 +1087,7 @@
       <Association Name="MST_Currency_SO_SaleOrderMaster" Member="SO_SaleOrderMasters" ThisKey="CurrencyID" OtherKey="CurrencyID" Type="SO_SaleOrderMaster" />
       <Association Name="MST_Currency_SO_InvoiceMaster" Member="SO_InvoiceMasters" ThisKey="CurrencyID" OtherKey="CurrencyID" Type="SO_InvoiceMaster" />
       <Association Name="MST_Currency_SO_ConfirmShipMaster" Member="SO_ConfirmShipMasters" ThisKey="CurrencyID" OtherKey="CurrencyID" Type="SO_ConfirmShipMaster" />
+      <Association Name="MST_Currency_ITM_Product" Member="ITM_Products" ThisKey="CurrencyID" OtherKey="VendorCurrencyID" Type="ITM_Product" />
     </Type>
   </Table>
   <Table Name="dbo.MST_DeliveryTerm" Member="MST_DeliveryTerms">
@@ -1389,7 +1194,6 @@
       <Column Name="DepartmentID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="MST_Location_CST_RecoverMaterialDetail" Member="CST_RecoverMaterialDetails" ThisKey="LocationID" OtherKey="ToLocationID" Type="CST_RecoverMaterialDetail" />
       <Association Name="MST_Location_CST_RecoverMaterialMaster" Member="CST_RecoverMaterialMasters" ThisKey="LocationID" OtherKey="FromLocationID" Type="CST_RecoverMaterialMaster" />
-      <Association Name="MST_Location_ITM_Product" Member="ITM_Products" ThisKey="LocationID" OtherKey="LocationID" Type="ITM_Product" />
       <Association Name="MST_Location_IV_Adjustment" Member="IV_Adjustments" ThisKey="LocationID" OtherKey="LocationID" Type="IV_Adjustment" />
       <Association Name="MST_Location_IV_BalanceBin" Member="IV_BalanceBins" ThisKey="LocationID" OtherKey="LocationID" Type="IV_BalanceBin" />
       <Association Name="MST_Location_IV_BalanceLocation" Member="IV_BalanceLocations" ThisKey="LocationID" OtherKey="LocationID" Type="IV_BalanceLocation" />
@@ -1417,6 +1221,7 @@
       <Association Name="MST_Location_sys_RoleLocation" Member="sys_RoleLocations" ThisKey="LocationID" OtherKey="LocationID" Type="sys_RoleLocation" />
       <Association Name="MST_Location_SO_InvoiceMaster" Member="SO_InvoiceMasters" ThisKey="LocationID" OtherKey="LocationID" Type="SO_InvoiceMaster" />
       <Association Name="MST_Location_SO_ConfirmShipMaster" Member="SO_ConfirmShipMasters" ThisKey="LocationID" OtherKey="LocationID" Type="SO_ConfirmShipMaster" />
+      <Association Name="MST_Location_ITM_Product" Member="ITM_Products" ThisKey="LocationID" OtherKey="LocationID" Type="ITM_Product" />
       <Association Name="MST_Department_MST_Location" Member="MST_Department" ThisKey="DepartmentID" OtherKey="DepartmentID" Type="MST_Department" IsForeignKey="true" />
       <Association Name="enm_LocationType_MST_Location" Member="enm_LocationType" ThisKey="LocationTypeID" OtherKey="LocationTypeID" Type="enm_LocationType" IsForeignKey="true" />
       <Association Name="MST_MasterLocation_MST_Location" Member="MST_MasterLocation" ThisKey="MasterLocationID" OtherKey="MasterLocationID" Type="MST_MasterLocation" IsForeignKey="true" />
@@ -1433,7 +1238,6 @@
       <Column Name="CCNID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="CityID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="CountryID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="MST_MasterLocation_ITM_Product" Member="ITM_Products" ThisKey="MasterLocationID" OtherKey="MasterLocationID" Type="ITM_Product" />
       <Association Name="MST_MasterLocation_IV_Adjustment" Member="IV_Adjustments" ThisKey="MasterLocationID" OtherKey="MasterLocationID" Type="IV_Adjustment" />
       <Association Name="MST_MasterLocation_IV_BalanceLocation" Member="IV_BalanceLocations" ThisKey="MasterLocationID" OtherKey="MasterLocationID" Type="IV_BalanceLocation" />
       <Association Name="MST_MasterLocation_IV_BalanceMasterLocation" Member="IV_BalanceMasterLocations" ThisKey="MasterLocationID" OtherKey="MasterLocationID" Type="IV_BalanceMasterLocation" />
@@ -1468,6 +1272,7 @@
       <Association Name="MST_MasterLocation_Sys_User" Member="Sys_Users" ThisKey="MasterLocationID" OtherKey="MasterLocationID" Type="Sys_User" />
       <Association Name="MST_MasterLocation_SO_InvoiceMaster" Member="SO_InvoiceMasters" ThisKey="MasterLocationID" OtherKey="MasterLocationID" Type="SO_InvoiceMaster" />
       <Association Name="MST_MasterLocation_SO_ConfirmShipMaster" Member="SO_ConfirmShipMasters" ThisKey="MasterLocationID" OtherKey="MasterLocationID" Type="SO_ConfirmShipMaster" />
+      <Association Name="MST_MasterLocation_ITM_Product" Member="ITM_Products" ThisKey="MasterLocationID" OtherKey="MasterLocationID" Type="ITM_Product" />
       <Association Name="MST_CCN_MST_MasterLocation" Member="MST_CCN" ThisKey="CCNID" OtherKey="CCNID" Type="MST_CCN" IsForeignKey="true" />
       <Association Name="MST_City_MST_MasterLocation" Member="MST_City" ThisKey="CityID" OtherKey="CityID" Type="MST_City" IsForeignKey="true" />
       <Association Name="MST_Country_MST_MasterLocation" Member="MST_Country" ThisKey="CountryID" OtherKey="CountryID" Type="MST_Country" IsForeignKey="true" />
@@ -1498,8 +1303,6 @@
       <Association Name="MST_Party_cst_FreightMaster1" Member="cst_FreightMasters1" ThisKey="PartyID" OtherKey="TransporterID" Type="cst_FreightMaster" />
       <Association Name="MST_Party_cst_FreightMaster2" Member="cst_FreightMasters2" ThisKey="PartyID" OtherKey="VendorID" Type="cst_FreightMaster" />
       <Association Name="MST_Party_CST_RecoverMaterialDetail" Member="CST_RecoverMaterialDetails" ThisKey="PartyID" OtherKey="PartyID" Type="CST_RecoverMaterialDetail" />
-      <Association Name="MST_Party_ITM_Product" Member="ITM_Products" ThisKey="PartyID" OtherKey="InventorID" Type="ITM_Product" />
-      <Association Name="MST_Party_ITM_Product1" Member="ITM_Products1" ThisKey="PartyID" OtherKey="PrimaryVendorID" Type="ITM_Product" />
       <Association Name="MST_Party_ITM_Routing" Member="ITM_Routings" ThisKey="PartyID" OtherKey="PartyID" Type="ITM_Routing" />
       <Association Name="MST_Party_IV_CostHistory" Member="IV_CostHistories" ThisKey="PartyID" OtherKey="PartyID" Type="IV_CostHistory" />
       <Association Name="MST_Party_IV_MiscellaneousIssueMaster" Member="IV_MiscellaneousIssueMasters" ThisKey="PartyID" OtherKey="PartyID" Type="IV_MiscellaneousIssueMaster" />
@@ -1517,6 +1320,8 @@
       <Association Name="MST_Party_SO_ReturnedGoodsMaster" Member="SO_ReturnedGoodsMasters" ThisKey="PartyID" OtherKey="PartyID" Type="SO_ReturnedGoodsMaster" />
       <Association Name="MST_Party_SO_SaleOrderMaster" Member="SO_SaleOrderMasters" ThisKey="PartyID" OtherKey="PartyID" Type="SO_SaleOrderMaster" />
       <Association Name="MST_Party_sys_RoleParty" Member="sys_RoleParties" ThisKey="PartyID" OtherKey="PartyID" Type="sys_RoleParty" />
+      <Association Name="MST_Party_ITM_Product" Member="ITM_Products" ThisKey="PartyID" OtherKey="InventorID" Type="ITM_Product" />
+      <Association Name="MST_Party_ITM_Product1" Member="ITM_Products1" ThisKey="PartyID" OtherKey="PrimaryVendorID" Type="ITM_Product" />
       <Association Name="MST_City_MST_Party" Member="MST_City" ThisKey="CityID" OtherKey="CityID" Type="MST_City" IsForeignKey="true" />
       <Association Name="MST_Country_MST_Party" Member="MST_Country" ThisKey="CountryID" OtherKey="CountryID" Type="MST_Country" IsForeignKey="true" />
       <Association Name="MST_Currency_MST_Party" Member="MST_Currency" ThisKey="CurrencyID" OtherKey="CurrencyID" Type="MST_Currency" IsForeignKey="true" />
@@ -1555,7 +1360,6 @@
       <Column Name="PartyID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="CountryID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="CityID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="MST_PartyLocation_ITM_Product" Member="ITM_Products" ThisKey="PartyLocationID" OtherKey="VendorLocationID" Type="ITM_Product" />
       <Association Name="MST_PartyLocation_IV_CostHistory" Member="IV_CostHistories" ThisKey="PartyLocationID" OtherKey="PartyLocationID" Type="IV_CostHistory" />
       <Association Name="MST_PartyLocation_MST_PartyContact" Member="MST_PartyContacts" ThisKey="PartyLocationID" OtherKey="PartyLocationID" Type="MST_PartyContact" />
       <Association Name="MST_PartyLocation_MST_TransactionHistory" Member="MST_TransactionHistories" ThisKey="PartyLocationID" OtherKey="PartyLocationID" Type="MST_TransactionHistory" />
@@ -1567,6 +1371,7 @@
       <Association Name="MST_PartyLocation_SO_SaleOrderMaster" Member="SO_SaleOrderMasters" ThisKey="PartyLocationID" OtherKey="BillToLocID" Type="SO_SaleOrderMaster" />
       <Association Name="MST_PartyLocation_SO_SaleOrderMaster1" Member="SO_SaleOrderMasters1" ThisKey="PartyLocationID" OtherKey="BuyingLocID" Type="SO_SaleOrderMaster" />
       <Association Name="MST_PartyLocation_SO_SaleOrderMaster2" Member="SO_SaleOrderMasters2" ThisKey="PartyLocationID" OtherKey="ShipToLocID" Type="SO_SaleOrderMaster" />
+      <Association Name="MST_PartyLocation_ITM_Product" Member="ITM_Products" ThisKey="PartyLocationID" OtherKey="VendorLocationID" Type="ITM_Product" />
       <Association Name="MST_City_MST_PartyLocation" Member="MST_City" ThisKey="CityID" OtherKey="CityID" Type="MST_City" IsForeignKey="true" />
       <Association Name="MST_Country_MST_PartyLocation" Member="MST_Country" ThisKey="CountryID" OtherKey="CountryID" Type="MST_Country" IsForeignKey="true" />
       <Association Name="MST_Party_MST_PartyLocation" Member="MST_Party" ThisKey="PartyID" OtherKey="PartyID" Type="MST_Party" IsForeignKey="true" />
@@ -1652,7 +1457,6 @@
       <Association Name="MST_MasterLocation_MST_TransactionHistory" Member="MST_MasterLocation" ThisKey="MasterLocationID" OtherKey="MasterLocationID" Type="MST_MasterLocation" IsForeignKey="true" />
       <Association Name="MST_PartyLocation_MST_TransactionHistory" Member="MST_PartyLocation" ThisKey="PartyLocationID" OtherKey="PartyLocationID" Type="MST_PartyLocation" IsForeignKey="true" />
       <Association Name="MST_Party_MST_TransactionHistory" Member="MST_Party" ThisKey="PartyID" OtherKey="PartyID" Type="MST_Party" IsForeignKey="true" />
-      <Association Name="ITM_Product_MST_TransactionHistory" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
       <Association Name="MST_TranType_MST_TransactionHistory" Member="MST_TranType" ThisKey="TranTypeID" OtherKey="TranTypeID" Type="MST_TranType" IsForeignKey="true" />
       <Association Name="MST_UnitOfMeasure_MST_TransactionHistory" Member="MST_UnitOfMeasure" ThisKey="StockUMID" OtherKey="UnitOfMeasureID" Type="MST_UnitOfMeasure" IsForeignKey="true" />
       <Association Name="PRO_IssuePurpose_MST_TransactionHistory" Member="PRO_IssuePurpose" ThisKey="IssuePurposeID" OtherKey="IssuePurposeID" Type="PRO_IssuePurpose" IsForeignKey="true" />
@@ -1668,6 +1472,7 @@
       <Association Name="PRO_IssuePurpose_MST_TransactionHistory10" Member="PRO_IssuePurpose10" ThisKey="IssuePurposeID" OtherKey="IssuePurposeID" Type="PRO_IssuePurpose" IsForeignKey="true" />
       <Association Name="PRO_IssuePurpose_MST_TransactionHistory11" Member="PRO_IssuePurpose11" ThisKey="IssuePurposeID" OtherKey="IssuePurposeID" Type="PRO_IssuePurpose" IsForeignKey="true" />
       <Association Name="PRO_IssuePurpose_MST_TransactionHistory12" Member="PRO_IssuePurpose12" ThisKey="IssuePurposeID" OtherKey="IssuePurposeID" Type="PRO_IssuePurpose" IsForeignKey="true" />
+      <Association Name="ITM_Product_MST_TransactionHistory" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.MST_TranType" Member="MST_TranTypes">
@@ -1698,13 +1503,6 @@
       <Column Name="Description" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
       <Association Name="MST_UnitOfMeasure_cst_FreightDetail" Member="cst_FreightDetails" ThisKey="UnitOfMeasureID" OtherKey="BuyingUMID" Type="cst_FreightDetail" />
       <Association Name="MST_UnitOfMeasure_CST_RecoverMaterialDetail" Member="CST_RecoverMaterialDetails" ThisKey="UnitOfMeasureID" OtherKey="UnitOfMeasureID" Type="CST_RecoverMaterialDetail" />
-      <Association Name="MST_UnitOfMeasure_ITM_Product" Member="ITM_Products" ThisKey="UnitOfMeasureID" OtherKey="BuyingUMID" Type="ITM_Product" />
-      <Association Name="MST_UnitOfMeasure_ITM_Product1" Member="ITM_Products1" ThisKey="UnitOfMeasureID" OtherKey="HeightUMID" Type="ITM_Product" />
-      <Association Name="MST_UnitOfMeasure_ITM_Product2" Member="ITM_Products2" ThisKey="UnitOfMeasureID" OtherKey="LengthUMID" Type="ITM_Product" />
-      <Association Name="MST_UnitOfMeasure_ITM_Product3" Member="ITM_Products3" ThisKey="UnitOfMeasureID" OtherKey="SellingUMID" Type="ITM_Product" />
-      <Association Name="MST_UnitOfMeasure_ITM_Product4" Member="ITM_Products4" ThisKey="UnitOfMeasureID" OtherKey="StockUMID" Type="ITM_Product" />
-      <Association Name="MST_UnitOfMeasure_ITM_Product5" Member="ITM_Products5" ThisKey="UnitOfMeasureID" OtherKey="WeightUMID" Type="ITM_Product" />
-      <Association Name="MST_UnitOfMeasure_ITM_Product6" Member="ITM_Products6" ThisKey="UnitOfMeasureID" OtherKey="WidthUMID" Type="ITM_Product" />
       <Association Name="MST_UnitOfMeasure_IV_Adjustment" Member="IV_Adjustments" ThisKey="UnitOfMeasureID" OtherKey="StockUMID" Type="IV_Adjustment" />
       <Association Name="MST_UnitOfMeasure_IV_BalanceBin" Member="IV_BalanceBins" ThisKey="UnitOfMeasureID" OtherKey="StockUMID" Type="IV_BalanceBin" />
       <Association Name="MST_UnitOfMeasure_IV_BalanceLocation" Member="IV_BalanceLocations" ThisKey="UnitOfMeasureID" OtherKey="StockUMID" Type="IV_BalanceLocation" />
@@ -1736,6 +1534,13 @@
       <Association Name="MST_UnitOfMeasure_SO_SaleOrderDetail" Member="SO_SaleOrderDetails" ThisKey="UnitOfMeasureID" OtherKey="SellingUMID" Type="SO_SaleOrderDetail" />
       <Association Name="MST_UnitOfMeasure_SO_SaleOrderDetail1" Member="SO_SaleOrderDetails1" ThisKey="UnitOfMeasureID" OtherKey="StockUMID" Type="SO_SaleOrderDetail" />
       <Association Name="MST_UnitOfMeasure_IV_MiscellaneousIssueDetail" Member="IV_MiscellaneousIssueDetails" ThisKey="UnitOfMeasureID" OtherKey="StockUMID" Type="IV_MiscellaneousIssueDetail" />
+      <Association Name="MST_UnitOfMeasure_ITM_Product" Member="ITM_Products" ThisKey="UnitOfMeasureID" OtherKey="BuyingUMID" Type="ITM_Product" />
+      <Association Name="MST_UnitOfMeasure_ITM_Product1" Member="ITM_Products1" ThisKey="UnitOfMeasureID" OtherKey="HeightUMID" Type="ITM_Product" />
+      <Association Name="MST_UnitOfMeasure_ITM_Product2" Member="ITM_Products2" ThisKey="UnitOfMeasureID" OtherKey="LengthUMID" Type="ITM_Product" />
+      <Association Name="MST_UnitOfMeasure_ITM_Product3" Member="ITM_Products3" ThisKey="UnitOfMeasureID" OtherKey="SellingUMID" Type="ITM_Product" />
+      <Association Name="MST_UnitOfMeasure_ITM_Product4" Member="ITM_Products4" ThisKey="UnitOfMeasureID" OtherKey="StockUMID" Type="ITM_Product" />
+      <Association Name="MST_UnitOfMeasure_ITM_Product5" Member="ITM_Products5" ThisKey="UnitOfMeasureID" OtherKey="WeightUMID" Type="ITM_Product" />
+      <Association Name="MST_UnitOfMeasure_ITM_Product6" Member="ITM_Products6" ThisKey="UnitOfMeasureID" OtherKey="WidthUMID" Type="ITM_Product" />
     </Type>
   </Table>
   <Table Name="dbo.MST_WorkCenter" Member="MST_WorkCenters">
@@ -1811,8 +1616,8 @@
       <Column Name="ACDSOptionDetailID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="ProductID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="Percentage" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
-      <Association Name="ITM_Product_MTR_ACDSDetail" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
       <Association Name="MTR_ACDSOptionDetail_MTR_ACDSDetail" Member="MTR_ACDSOptionDetail" ThisKey="ACDSOptionDetailID" OtherKey="ACDSOptionDetailID" Type="MTR_ACDSOptionDetail" IsForeignKey="true" />
+      <Association Name="ITM_Product_MTR_ACDSDetail" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.MTR_ACDSOptionDetail" Member="MTR_ACDSOptionDetails">
@@ -1870,10 +1675,10 @@
       <Association Name="MTR_CPO_PRO_DCPResultMaster" Member="PRO_DCPResultMasters" ThisKey="CPOID" OtherKey="CPOID" Type="PRO_DCPResultMaster" />
       <Association Name="MST_CCN_MTR_CPO" Member="MST_CCN" ThisKey="CCNID" OtherKey="CCNID" Type="MST_CCN" IsForeignKey="true" />
       <Association Name="MST_MasterLocation_MTR_CPO" Member="MST_MasterLocation" ThisKey="MasterLocationID" OtherKey="MasterLocationID" Type="MST_MasterLocation" IsForeignKey="true" />
-      <Association Name="ITM_Product_MTR_CPO" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
       <Association Name="MST_UnitOfMeasure_MTR_CPO" Member="MST_UnitOfMeasure" ThisKey="StockUMID" OtherKey="UnitOfMeasureID" Type="MST_UnitOfMeasure" IsForeignKey="true" />
       <Association Name="MTR_MPSCycleOptionMaster_MTR_CPO" Member="MTR_MPSCycleOptionMaster" ThisKey="MPSCycleOptionMasterID" OtherKey="MPSCycleOptionMasterID" Type="MTR_MPSCycleOptionMaster" IsForeignKey="true" />
       <Association Name="MTR_MRPCycleOptionMaster_MTR_CPO" Member="MTR_MRPCycleOptionMaster" ThisKey="MRPCycleOptionMasterID" OtherKey="MRPCycleOptionMasterID" Type="MTR_MRPCycleOptionMaster" IsForeignKey="true" />
+      <Association Name="ITM_Product_MTR_CPO" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.MTR_ItemActualCost" Member="MTR_ItemActualCosts">
@@ -1885,8 +1690,8 @@
       <Column Name="MaterialCost" Type="System.Decimal" DbType="Decimal(20,5) NOT NULL" CanBeNull="false" />
       <Column Name="WorkCenterID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="MTR_ACDSOptionMaster_MTR_ItemActualCost" Member="MTR_ACDSOptionMaster" ThisKey="ACDSOptionMasterID" OtherKey="ACDSOptionMasterID" Type="MTR_ACDSOptionMaster" IsForeignKey="true" />
-      <Association Name="ITM_Product_MTR_ItemActualCost" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
       <Association Name="MST_WorkCenter_MTR_ItemActualCost" Member="MST_WorkCenter" ThisKey="WorkCenterID" OtherKey="WorkCenterID" Type="MST_WorkCenter" IsForeignKey="true" />
+      <Association Name="ITM_Product_MTR_ItemActualCost" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.MTR_MPSCycleOptionDetail" Member="MTR_MPSCycleOptionDetails">
@@ -1993,11 +1798,11 @@
       <Column Name="InvoiceUMID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Association Name="PO_InvoiceDetail_PO_PurchaseOrderReceiptDetail" Member="PO_PurchaseOrderReceiptDetails" ThisKey="InvoiceDetailID" OtherKey="InvoiceDetailID" Type="PO_PurchaseOrderReceiptDetail" />
       <Association Name="MST_UnitOfMeasure_PO_InvoiceDetail" Member="MST_UnitOfMeasure" ThisKey="InvoiceUMID" OtherKey="UnitOfMeasureID" Type="MST_UnitOfMeasure" IsForeignKey="true" />
-      <Association Name="ITM_Product_PO_InvoiceDetail" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
       <Association Name="PO_InvoiceMaster_PO_InvoiceDetail" Member="PO_InvoiceMaster" ThisKey="InvoiceMasterID" OtherKey="InvoiceMasterID" Type="PO_InvoiceMaster" IsForeignKey="true" />
       <Association Name="PO_PurchaseOrderDetail_PO_InvoiceDetail" Member="PO_PurchaseOrderDetail" ThisKey="PurchaseOrderDetailID" OtherKey="PurchaseOrderDetailID" Type="PO_PurchaseOrderDetail" IsForeignKey="true" />
       <Association Name="PO_PurchaseOrderMaster_PO_InvoiceDetail" Member="PO_PurchaseOrderMaster" ThisKey="PurchaseOrderMasterID" OtherKey="PurchaseOrderMasterID" Type="PO_PurchaseOrderMaster" IsForeignKey="true" />
       <Association Name="PO_DeliverySchedule_PO_InvoiceDetail" Member="PO_DeliverySchedule" ThisKey="DeliveryScheduleID" OtherKey="DeliveryScheduleID" Type="PO_DeliverySchedule" IsForeignKey="true" />
+      <Association Name="ITM_Product_PO_InvoiceDetail" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.PO_InvoiceMaster" Member="PO_InvoiceMasters">
@@ -2065,8 +1870,8 @@
       <Association Name="MST_CCN_PO_ItemVendorReference" Member="MST_CCN" ThisKey="CCNID" OtherKey="CCNID" Type="MST_CCN" IsForeignKey="true" />
       <Association Name="MST_Currency_PO_ItemVendorReference" Member="MST_Currency" ThisKey="CurrencyID" OtherKey="CurrencyID" Type="MST_Currency" IsForeignKey="true" />
       <Association Name="MST_Party_PO_ItemVendorReference" Member="MST_Party" ThisKey="PartyID" OtherKey="PartyID" Type="MST_Party" IsForeignKey="true" />
-      <Association Name="ITM_Product_PO_ItemVendorReference" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
       <Association Name="MST_PartyLocation_PO_ItemVendorReference" Member="MST_PartyLocation" ThisKey="VendorLocID" OtherKey="PartyLocationID" Type="MST_PartyLocation" IsForeignKey="true" />
+      <Association Name="ITM_Product_PO_ItemVendorReference" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.PO_PRDeliverySchedule" Member="PO_PRDeliverySchedules">
@@ -2114,9 +1919,9 @@
       <Association Name="PO_PurchaseOrderDetail_PO_DeliverySchedule" Member="PO_DeliverySchedules" ThisKey="PurchaseOrderDetailID" OtherKey="PurchaseOrderDetailID" Type="PO_DeliverySchedule" />
       <Association Name="MST_Employee_PO_PurchaseOrderDetail" Member="MST_Employee" ThisKey="ApproverID" OtherKey="EmployeeID" Type="MST_Employee" IsForeignKey="true" />
       <Association Name="MST_UnitOfMeasure_PO_PurchaseOrderDetail" Member="MST_UnitOfMeasure" ThisKey="BuyingUMID" OtherKey="UnitOfMeasureID" Type="MST_UnitOfMeasure" IsForeignKey="true" />
-      <Association Name="ITM_Product_PO_PurchaseOrderDetail" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
       <Association Name="MST_UnitOfMeasure_PO_PurchaseOrderDetail1" Member="MST_UnitOfMeasure1" ThisKey="StockUMID" OtherKey="UnitOfMeasureID" Type="MST_UnitOfMeasure" IsForeignKey="true" />
       <Association Name="PO_PurchaseOrderMaster_PO_PurchaseOrderDetail" Member="PO_PurchaseOrderMaster" ThisKey="PurchaseOrderMasterID" OtherKey="PurchaseOrderMasterID" Type="PO_PurchaseOrderMaster" IsForeignKey="true" />
+      <Association Name="ITM_Product_PO_PurchaseOrderDetail" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.PO_PurchaseOrderMaster" Member="PO_PurchaseOrderMasters">
@@ -2209,12 +2014,12 @@
       <Association Name="MST_UnitOfMeasure_PO_PurchaseOrderReceiptDetail" Member="MST_UnitOfMeasure" ThisKey="BuyingUMID" OtherKey="UnitOfMeasureID" Type="MST_UnitOfMeasure" IsForeignKey="true" />
       <Association Name="PO_InvoiceDetail_PO_PurchaseOrderReceiptDetail" Member="PO_InvoiceDetail" ThisKey="InvoiceDetailID" OtherKey="InvoiceDetailID" Type="PO_InvoiceDetail" IsForeignKey="true" />
       <Association Name="MST_Location_PO_PurchaseOrderReceiptDetail" Member="MST_Location" ThisKey="LocationID" OtherKey="LocationID" Type="MST_Location" IsForeignKey="true" />
-      <Association Name="ITM_Product_PO_PurchaseOrderReceiptDetail" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
       <Association Name="PO_PurchaseOrderDetail_PO_PurchaseOrderReceiptDetail" Member="PO_PurchaseOrderDetail" ThisKey="PurchaseOrderDetailID" OtherKey="PurchaseOrderDetailID" Type="PO_PurchaseOrderDetail" IsForeignKey="true" />
       <Association Name="PO_PurchaseOrderMaster_PO_PurchaseOrderReceiptDetail" Member="PO_PurchaseOrderMaster" ThisKey="PurchaseOrderMasterID" OtherKey="PurchaseOrderMasterID" Type="PO_PurchaseOrderMaster" IsForeignKey="true" />
       <Association Name="MST_UnitOfMeasure_PO_PurchaseOrderReceiptDetail1" Member="MST_UnitOfMeasure1" ThisKey="StockUMID" OtherKey="UnitOfMeasureID" Type="MST_UnitOfMeasure" IsForeignKey="true" />
       <Association Name="PO_PurchaseOrderReceiptMaster_PO_PurchaseOrderReceiptDetail" Member="PO_PurchaseOrderReceiptMaster" ThisKey="PurchaseOrderReceiptID" OtherKey="PurchaseOrderReceiptID" Type="PO_PurchaseOrderReceiptMaster" IsForeignKey="true" />
       <Association Name="PO_DeliverySchedule_PO_PurchaseOrderReceiptDetail" Member="PO_DeliverySchedule" ThisKey="DeliveryScheduleID" OtherKey="DeliveryScheduleID" Type="PO_DeliverySchedule" IsForeignKey="true" />
+      <Association Name="ITM_Product_PO_PurchaseOrderReceiptDetail" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.PO_PurchaseOrderReceiptMaster" Member="PO_PurchaseOrderReceiptMasters">
@@ -2275,9 +2080,9 @@
       <Association Name="MST_BIN_PO_ReturnToVendorDetail" Member="MST_BIN" ThisKey="BinID" OtherKey="BinID" Type="MST_BIN" IsForeignKey="true" />
       <Association Name="MST_UnitOfMeasure_PO_ReturnToVendorDetail" Member="MST_UnitOfMeasure" ThisKey="BuyingUMID" OtherKey="UnitOfMeasureID" Type="MST_UnitOfMeasure" IsForeignKey="true" />
       <Association Name="MST_Location_PO_ReturnToVendorDetail" Member="MST_Location" ThisKey="LocationID" OtherKey="LocationID" Type="MST_Location" IsForeignKey="true" />
-      <Association Name="ITM_Product_PO_ReturnToVendorDetail" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
       <Association Name="MST_UnitOfMeasure_PO_ReturnToVendorDetail1" Member="MST_UnitOfMeasure1" ThisKey="StockUMID" OtherKey="UnitOfMeasureID" Type="MST_UnitOfMeasure" IsForeignKey="true" />
       <Association Name="PO_ReturnToVendorMaster_PO_ReturnToVendorDetail" Member="PO_ReturnToVendorMaster" ThisKey="ReturnToVendorMasterID" OtherKey="ReturnToVendorMasterID" Type="PO_ReturnToVendorMaster" IsForeignKey="true" />
+      <Association Name="ITM_Product_PO_ReturnToVendorDetail" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.PO_ReturnToVendorMaster" Member="PO_ReturnToVendorMasters">
@@ -2329,8 +2134,8 @@
       <Column Name="ProductID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="ChangeCategoryMasterID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="ChangeCategoryDetailID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Association Name="ITM_Product_PRO_ChangeCategoryDetail" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
       <Association Name="PRO_ChangeCategoryMaster_PRO_ChangeCategoryDetail" Member="PRO_ChangeCategoryMaster" ThisKey="ChangeCategoryMasterID" OtherKey="ChangeCategoryMasterID" Type="PRO_ChangeCategoryMaster" IsForeignKey="true" />
+      <Association Name="ITM_Product_PRO_ChangeCategoryDetail" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.PRO_ChangeCategoryMaster" Member="PRO_ChangeCategoryMasters">
@@ -2366,8 +2171,8 @@
       <Column Name="DelayTime" Type="System.Decimal" DbType="Decimal(20,5) NOT NULL" CanBeNull="false" />
       <Column Name="CCNID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="MST_CCN_PRO_CheckPoint" Member="MST_CCN" ThisKey="CCNID" OtherKey="CCNID" Type="MST_CCN" IsForeignKey="true" />
-      <Association Name="ITM_Product_PRO_CheckPoint" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
       <Association Name="MST_WorkCenter_PRO_CheckPoint" Member="MST_WorkCenter" ThisKey="WorkCenterID" OtherKey="WorkCenterID" Type="MST_WorkCenter" IsForeignKey="true" />
+      <Association Name="ITM_Product_PRO_CheckPoint" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.PRO_ComponentScrapDetail" Member="PRO_ComponentScrapDetails">
@@ -2388,16 +2193,16 @@
       <Column Name="FromBinID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="ToLocationID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="ToBinID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="ITM_Product_PRO_ComponentScrapDetail" Member="ITM_Product" ThisKey="ComponentID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
       <Association Name="MST_BIN_PRO_ComponentScrapDetail" Member="MST_BIN" ThisKey="FromBinID" OtherKey="BinID" Type="MST_BIN" IsForeignKey="true" />
       <Association Name="MST_Location_PRO_ComponentScrapDetail" Member="MST_Location" ThisKey="FromLocationID" OtherKey="LocationID" Type="MST_Location" IsForeignKey="true" />
-      <Association Name="ITM_Product_PRO_ComponentScrapDetail1" Member="ITM_Product1" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
       <Association Name="MST_BIN_PRO_ComponentScrapDetail1" Member="MST_BIN1" ThisKey="ToBinID" OtherKey="BinID" Type="MST_BIN" IsForeignKey="true" />
       <Association Name="MST_Location_PRO_ComponentScrapDetail1" Member="MST_Location1" ThisKey="ToLocationID" OtherKey="LocationID" Type="MST_Location" IsForeignKey="true" />
       <Association Name="PRO_ComponentScrapMaster_PRO_ComponentScrapDetail" Member="PRO_ComponentScrapMaster" ThisKey="ComponentScrapMasterID" OtherKey="ComponentScrapMasterID" Type="PRO_ComponentScrapMaster" IsForeignKey="true" />
       <Association Name="PRO_ScrapReason_PRO_ComponentScrapDetail" Member="PRO_ScrapReason" ThisKey="ScrapReasonID" OtherKey="ScrapReasonID" Type="PRO_ScrapReason" IsForeignKey="true" />
       <Association Name="PRO_WorkOrderDetail_PRO_ComponentScrapDetail" Member="PRO_WorkOrderDetail" ThisKey="WorkOrderDetailID" OtherKey="WorkOrderDetailID" Type="PRO_WorkOrderDetail" IsForeignKey="true" />
       <Association Name="PRO_WorkOrderMaster_PRO_ComponentScrapDetail" Member="PRO_WorkOrderMaster" ThisKey="WorkOrderMasterID" OtherKey="WorkOrderMasterID" Type="PRO_WorkOrderMaster" IsForeignKey="true" />
+      <Association Name="ITM_Product_PRO_ComponentScrapDetail" Member="ITM_Product" ThisKey="ComponentID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
+      <Association Name="ITM_Product_PRO_ComponentScrapDetail1" Member="ITM_Product1" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.PRO_ComponentScrapMaster" Member="PRO_ComponentScrapMasters">
@@ -2521,11 +2326,11 @@
       <Association Name="PRO_DCPResultMaster_PRO_DCPResultDetail" Member="PRO_DCPResultDetails" ThisKey="DCPResultMasterID" OtherKey="DCPResultMasterID" Type="PRO_DCPResultDetail" />
       <Association Name="MTR_CPO_PRO_DCPResultMaster" Member="MTR_CPO" ThisKey="CPOID" OtherKey="CPOID" Type="MTR_CPO" IsForeignKey="true" />
       <Association Name="PRO_DCOptionMaster_PRO_DCPResultMaster" Member="PRO_DCOptionMaster" ThisKey="DCOptionMasterID" OtherKey="DCOptionMasterID" Type="PRO_DCOptionMaster" IsForeignKey="true" />
-      <Association Name="ITM_Product_PRO_DCPResultMaster" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
       <Association Name="ITM_Routing_PRO_DCPResultMaster" Member="ITM_Routing" ThisKey="RoutingID" OtherKey="RoutingID" Type="ITM_Routing" IsForeignKey="true" />
       <Association Name="MST_WorkCenter_PRO_DCPResultMaster" Member="MST_WorkCenter" ThisKey="WorkCenterID" OtherKey="WorkCenterID" Type="MST_WorkCenter" IsForeignKey="true" />
       <Association Name="PRO_Shift_PRO_DCPResultMaster" Member="PRO_Shift" ThisKey="MasterShiftID" OtherKey="ShiftID" Type="PRO_Shift" IsForeignKey="true" />
       <Association Name="PRO_WorkOrderDetail_PRO_DCPResultMaster" Member="PRO_WorkOrderDetail" ThisKey="WorkOrderDetailID" OtherKey="WorkOrderDetailID" Type="PRO_WorkOrderDetail" IsForeignKey="true" />
+      <Association Name="ITM_Product_PRO_DCPResultMaster" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.PRO_Function" Member="PRO_Functions">
@@ -2566,11 +2371,11 @@
       <Association Name="MST_BIN_PRO_IssueMaterialDetail" Member="MST_BIN" ThisKey="BinID" OtherKey="BinID" Type="MST_BIN" IsForeignKey="true" />
       <Association Name="MST_Location_PRO_IssueMaterialDetail" Member="MST_Location" ThisKey="LocationID" OtherKey="LocationID" Type="MST_Location" IsForeignKey="true" />
       <Association Name="MST_MasterLocation_PRO_IssueMaterialDetail" Member="MST_MasterLocation" ThisKey="MasterLocationID" OtherKey="MasterLocationID" Type="MST_MasterLocation" IsForeignKey="true" />
-      <Association Name="ITM_Product_PRO_IssueMaterialDetail" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
       <Association Name="MST_UnitOfMeasure_PRO_IssueMaterialDetail" Member="MST_UnitOfMeasure" ThisKey="StockUMID" OtherKey="UnitOfMeasureID" Type="MST_UnitOfMeasure" IsForeignKey="true" />
       <Association Name="PRO_IssueMaterialMaster_PRO_IssueMaterialDetail" Member="PRO_IssueMaterialMaster" ThisKey="IssueMaterialMasterID" OtherKey="IssueMaterialMasterID" Type="PRO_IssueMaterialMaster" IsForeignKey="true" />
       <Association Name="PRO_WorkOrderDetail_PRO_IssueMaterialDetail" Member="PRO_WorkOrderDetail" ThisKey="WorkOrderDetailID" OtherKey="WorkOrderDetailID" Type="PRO_WorkOrderDetail" IsForeignKey="true" />
       <Association Name="PRO_WorkOrderMaster_PRO_IssueMaterialDetail" Member="PRO_WorkOrderMaster" ThisKey="WorkOrderMasterID" OtherKey="WorkOrderMasterID" Type="PRO_WorkOrderMaster" IsForeignKey="true" />
+      <Association Name="ITM_Product_PRO_IssueMaterialDetail" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.PRO_IssueMaterialMaster" Member="PRO_IssueMaterialMasters">
@@ -2592,7 +2397,6 @@
       <Association Name="PRO_IssueMaterialMaster_PRO_IssueMaterialDetail" Member="PRO_IssueMaterialDetails" ThisKey="IssueMaterialMasterID" OtherKey="IssueMaterialMasterID" Type="PRO_IssueMaterialDetail" />
       <Association Name="MST_CCN_PRO_IssueMaterialMaster" Member="MST_CCN" ThisKey="CCNID" OtherKey="CCNID" Type="MST_CCN" IsForeignKey="true" />
       <Association Name="MST_MasterLocation_PRO_IssueMaterialMaster" Member="MST_MasterLocation" ThisKey="MasterLocationID" OtherKey="MasterLocationID" Type="MST_MasterLocation" IsForeignKey="true" />
-      <Association Name="ITM_Product_PRO_IssueMaterialMaster" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
       <Association Name="MST_BIN_PRO_IssueMaterialMaster" Member="MST_BIN" ThisKey="ToBinID" OtherKey="BinID" Type="MST_BIN" IsForeignKey="true" />
       <Association Name="MST_Location_PRO_IssueMaterialMaster" Member="MST_Location" ThisKey="ToLocationID" OtherKey="LocationID" Type="MST_Location" IsForeignKey="true" />
       <Association Name="PRO_IssuePurpose_PRO_IssueMaterialMaster" Member="PRO_IssuePurpose" ThisKey="IssuePurposeID" OtherKey="IssuePurposeID" Type="PRO_IssuePurpose" IsForeignKey="true" />
@@ -2600,6 +2404,7 @@
       <Association Name="PRO_WorkOrderDetail_PRO_IssueMaterialMaster" Member="PRO_WorkOrderDetail" ThisKey="WorkOrderDetailID" OtherKey="WorkOrderDetailID" Type="PRO_WorkOrderDetail" IsForeignKey="true" />
       <Association Name="PRO_WorkOrderDetail_PRO_IssueMaterialMaster1" Member="PRO_WorkOrderDetail1" ThisKey="WorkOrderDetailID" OtherKey="WorkOrderDetailID" Type="PRO_WorkOrderDetail" IsForeignKey="true" />
       <Association Name="PRO_WorkOrderMaster_PRO_IssueMaterialMaster" Member="PRO_WorkOrderMaster" ThisKey="WorkOrderMasterID" OtherKey="WorkOrderMasterID" Type="PRO_WorkOrderMaster" IsForeignKey="true" />
+      <Association Name="ITM_Product_PRO_IssueMaterialMaster" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.PRO_IssuePurpose" Member="PRO_IssuePurposes">
@@ -2662,8 +2467,8 @@
       <Column Name="PGProductID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="ProductionGroupID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="ProductID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="ITM_Product_PRO_PGProduct" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
       <Association Name="PRO_ProductionGroup_PRO_PGProduct" Member="PRO_ProductionGroup" ThisKey="ProductionGroupID" OtherKey="ProductionGroupID" Type="PRO_ProductionGroup" IsForeignKey="true" />
+      <Association Name="ITM_Product_PRO_PGProduct" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.PRO_PlanningOffset" Member="PRO_PlanningOffsets">
@@ -2709,7 +2514,6 @@
       <Association Name="PRO_ProductionLine_cst_ActCostAllocationDetail" Member="cst_ActCostAllocationDetails" ThisKey="ProductionLineID" OtherKey="ProductionLineID" Type="cst_ActCostAllocationDetail" />
       <Association Name="PRO_ProductionLine_cst_AllocationResult" Member="cst_AllocationResults" ThisKey="ProductionLineID" OtherKey="ProductionLineID" Type="cst_AllocationResult" />
       <Association Name="PRO_ProductionLine_CST_ProductGroup" Member="CST_ProductGroups" ThisKey="ProductionLineID" OtherKey="ProductionLineID" Type="CST_ProductGroup" />
-      <Association Name="PRO_ProductionLine_ITM_Product" Member="ITM_Products" ThisKey="ProductionLineID" OtherKey="ProductionLineID" Type="ITM_Product" />
       <Association Name="PRO_ProductionLine_IV_StockTakingMaster" Member="IV_StockTakingMasters" ThisKey="ProductionLineID" OtherKey="ProductionLineID" Type="IV_StockTakingMaster" />
       <Association Name="PRO_ProductionLine_MST_WorkCenter" Member="MST_WorkCenters" ThisKey="ProductionLineID" OtherKey="ProductionLineID" Type="MST_WorkCenter" />
       <Association Name="PRO_ProductionLine_PO_PurchaseOrderReceiptMaster" Member="PO_PurchaseOrderReceiptMasters" ThisKey="ProductionLineID" OtherKey="ProductionLineID" Type="PO_PurchaseOrderReceiptMaster" />
@@ -2719,6 +2523,7 @@
       <Association Name="PRO_ProductionLine_PRO_ProductionGroup" Member="PRO_ProductionGroups" ThisKey="ProductionLineID" OtherKey="ProductionLineID" Type="PRO_ProductionGroup" />
       <Association Name="PRO_ProductionLine_PRO_ProductProductionOrder" Member="PRO_ProductProductionOrders" ThisKey="ProductionLineID" OtherKey="ProductionLineID" Type="PRO_ProductProductionOrder" />
       <Association Name="PRO_ProductionLine_PRO_WorkOrderMaster" Member="PRO_WorkOrderMasters" ThisKey="ProductionLineID" OtherKey="ProductionLineID" Type="PRO_WorkOrderMaster" />
+      <Association Name="PRO_ProductionLine_ITM_Product" Member="ITM_Products" ThisKey="ProductionLineID" OtherKey="ProductionLineID" Type="ITM_Product" />
       <Association Name="MST_Department_PRO_ProductionLine" Member="MST_Department" ThisKey="DepartmentID" OtherKey="DepartmentID" Type="MST_Department" IsForeignKey="true" />
       <Association Name="MST_Location_PRO_ProductionLine" Member="MST_Location" ThisKey="LocationID" OtherKey="LocationID" Type="MST_Location" IsForeignKey="true" />
     </Type>
@@ -2729,8 +2534,8 @@
       <Column Name="ProductID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="ProductionLineID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="Seq" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="ITM_Product_PRO_ProductProductionOrder" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
       <Association Name="PRO_ProductionLine_PRO_ProductProductionOrder" Member="PRO_ProductionLine" ThisKey="ProductionLineID" OtherKey="ProductionLineID" Type="PRO_ProductionLine" IsForeignKey="true" />
+      <Association Name="ITM_Product_PRO_ProductProductionOrder" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.PRO_ScrapReason" Member="PRO_ScrapReasons">
@@ -2836,11 +2641,11 @@
       <Association Name="PRO_IssuePurpose_PRO_WorkOrderCompletion" Member="PRO_IssuePurpose" ThisKey="IssuePurposeID" OtherKey="IssuePurposeID" Type="PRO_IssuePurpose" IsForeignKey="true" />
       <Association Name="MST_Location_PRO_WorkOrderCompletion" Member="MST_Location" ThisKey="LocationID" OtherKey="LocationID" Type="MST_Location" IsForeignKey="true" />
       <Association Name="MST_MasterLocation_PRO_WorkOrderCompletion" Member="MST_MasterLocation" ThisKey="MasterLocationID" OtherKey="MasterLocationID" Type="MST_MasterLocation" IsForeignKey="true" />
-      <Association Name="ITM_Product_PRO_WorkOrderCompletion" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
       <Association Name="PRO_Shift_PRO_WorkOrderCompletion" Member="PRO_Shift" ThisKey="ShiftID" OtherKey="ShiftID" Type="PRO_Shift" IsForeignKey="true" />
       <Association Name="MST_UnitOfMeasure_PRO_WorkOrderCompletion" Member="MST_UnitOfMeasure" ThisKey="StockUMID" OtherKey="UnitOfMeasureID" Type="MST_UnitOfMeasure" IsForeignKey="true" />
       <Association Name="PRO_WorkOrderDetail_PRO_WorkOrderCompletion" Member="PRO_WorkOrderDetail" ThisKey="WorkOrderDetailID" OtherKey="WorkOrderDetailID" Type="PRO_WorkOrderDetail" IsForeignKey="true" />
       <Association Name="PRO_WorkOrderMaster_PRO_WorkOrderCompletion" Member="PRO_WorkOrderMaster" ThisKey="WorkOrderMasterID" OtherKey="WorkOrderMasterID" Type="PRO_WorkOrderMaster" IsForeignKey="true" />
+      <Association Name="ITM_Product_PRO_WorkOrderCompletion" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.PRO_WorkOrderDetail" Member="PRO_WorkOrderDetails">
@@ -2869,11 +2674,11 @@
       <Association Name="PRO_WorkOrderDetail_PRO_IssueMaterialMaster" Member="PRO_IssueMaterialMasters" ThisKey="WorkOrderDetailID" OtherKey="WorkOrderDetailID" Type="PRO_IssueMaterialMaster" />
       <Association Name="PRO_WorkOrderDetail_PRO_IssueMaterialMaster1" Member="PRO_IssueMaterialMasters1" ThisKey="WorkOrderDetailID" OtherKey="WorkOrderDetailID" Type="PRO_IssueMaterialMaster" />
       <Association Name="PRO_WorkOrderDetail_PRO_WorkOrderCompletion" Member="PRO_WorkOrderCompletions" ThisKey="WorkOrderDetailID" OtherKey="WorkOrderDetailID" Type="PRO_WorkOrderCompletion" />
-      <Association Name="ITM_Product_PRO_WorkOrderDetail" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
       <Association Name="MST_UnitOfMeasure_PRO_WorkOrderDetail" Member="MST_UnitOfMeasure" ThisKey="StockUMID" OtherKey="UnitOfMeasureID" Type="MST_UnitOfMeasure" IsForeignKey="true" />
       <Association Name="PRO_WorkOrderMaster_PRO_WorkOrderDetail" Member="PRO_WorkOrderMaster" ThisKey="WorkOrderMasterID" OtherKey="WorkOrderMasterID" Type="PRO_WorkOrderMaster" IsForeignKey="true" />
       <Association Name="SO_SaleOrderDetail_PRO_WorkOrderDetail" Member="SO_SaleOrderDetail" ThisKey="SaleOrderDetailID" OtherKey="SaleOrderDetailID" Type="SO_SaleOrderDetail" IsForeignKey="true" />
       <Association Name="SO_SaleOrderMaster_PRO_WorkOrderDetail" Member="SO_SaleOrderMaster" ThisKey="SaleOrderMasterID" OtherKey="SaleOrderMasterID" Type="SO_SaleOrderMaster" IsForeignKey="true" />
+      <Association Name="ITM_Product_PRO_WorkOrderDetail" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.PRO_WorkOrderMaster" Member="PRO_WorkOrderMasters">
@@ -2938,11 +2743,11 @@
       <Association Name="MST_BIN_SO_CommitInventoryDetail" Member="MST_BIN" ThisKey="BinID" OtherKey="BinID" Type="MST_BIN" IsForeignKey="true" />
       <Association Name="MST_Location_SO_CommitInventoryDetail" Member="MST_Location" ThisKey="LocationID" OtherKey="LocationID" Type="MST_Location" IsForeignKey="true" />
       <Association Name="MST_MasterLocation_SO_CommitInventoryDetail" Member="MST_MasterLocation" ThisKey="MasterLocationID" OtherKey="MasterLocationID" Type="MST_MasterLocation" IsForeignKey="true" />
-      <Association Name="ITM_Product_SO_CommitInventoryDetail" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
       <Association Name="MST_UnitOfMeasure_SO_CommitInventoryDetail" Member="MST_UnitOfMeasure" ThisKey="SellingUMID" OtherKey="UnitOfMeasureID" Type="MST_UnitOfMeasure" IsForeignKey="true" />
       <Association Name="MST_UnitOfMeasure_SO_CommitInventoryDetail1" Member="MST_UnitOfMeasure1" ThisKey="StockUMID" OtherKey="UnitOfMeasureID" Type="MST_UnitOfMeasure" IsForeignKey="true" />
       <Association Name="SO_CommitInventoryMaster_SO_CommitInventoryDetail" Member="SO_CommitInventoryMaster" ThisKey="CommitInventoryMasterID" OtherKey="CommitInventoryMasterID" Type="SO_CommitInventoryMaster" IsForeignKey="true" />
       <Association Name="SO_DeliverySchedule_SO_CommitInventoryDetail" Member="SO_DeliverySchedule" ThisKey="DeliveryScheduleID" OtherKey="DeliveryScheduleID" Type="SO_DeliverySchedule" IsForeignKey="true" />
+      <Association Name="ITM_Product_SO_CommitInventoryDetail" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.SO_CommitInventoryMaster" Member="SO_CommitInventoryMasters">
@@ -2967,9 +2772,9 @@
       <Column Name="CustomerItemRefMasterID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="UnitPrice" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
       <Column Name="UnitOfMeasureID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="ITM_Product_SO_CustomerItemRefDetail" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
       <Association Name="MST_UnitOfMeasure_SO_CustomerItemRefDetail" Member="MST_UnitOfMeasure" ThisKey="UnitOfMeasureID" OtherKey="UnitOfMeasureID" Type="MST_UnitOfMeasure" IsForeignKey="true" />
       <Association Name="SO_CustomerItemRefMaster_SO_CustomerItemRefDetail" Member="SO_CustomerItemRefMaster" ThisKey="CustomerItemRefMasterID" OtherKey="CustomerItemRefMasterID" Type="SO_CustomerItemRefMaster" IsForeignKey="true" />
+      <Association Name="ITM_Product_SO_CustomerItemRefDetail" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.SO_CustomerItemRefMaster" Member="SO_CustomerItemRefMasters">
@@ -3042,11 +2847,11 @@
       <Association Name="MST_BIN_SO_ReturnedGoodsDetail" Member="MST_BIN" ThisKey="BinID" OtherKey="BinID" Type="MST_BIN" IsForeignKey="true" />
       <Association Name="MST_Location_SO_ReturnedGoodsDetail" Member="MST_Location" ThisKey="LocationID" OtherKey="LocationID" Type="MST_Location" IsForeignKey="true" />
       <Association Name="MST_MasterLocation_SO_ReturnedGoodsDetail" Member="MST_MasterLocation" ThisKey="MasterLocationID" OtherKey="MasterLocationID" Type="MST_MasterLocation" IsForeignKey="true" />
-      <Association Name="ITM_Product_SO_ReturnedGoodsDetail" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
       <Association Name="MST_UnitOfMeasure_SO_ReturnedGoodsDetail" Member="MST_UnitOfMeasure" ThisKey="UnitID" OtherKey="UnitOfMeasureID" Type="MST_UnitOfMeasure" IsForeignKey="true" />
       <Association Name="SO_ReturnedGoodsMaster_SO_ReturnedGoodsDetail" Member="SO_ReturnedGoodsMaster" ThisKey="ReturnedGoodsMasterID" OtherKey="ReturnedGoodsMasterID" Type="SO_ReturnedGoodsMaster" IsForeignKey="true" />
       <Association Name="SO_SaleOrderDetail_SO_ReturnedGoodsDetail" Member="SO_SaleOrderDetail" ThisKey="SaleOrderDetailID" OtherKey="SaleOrderDetailID" Type="SO_SaleOrderDetail" IsForeignKey="true" />
       <Association Name="SO_ConfirmShipMaster_SO_ReturnedGoodsDetail" Member="SO_ConfirmShipMaster" ThisKey="ConfirmShipMasterID" OtherKey="ConfirmShipMasterID" Type="SO_ConfirmShipMaster" IsForeignKey="true" />
+      <Association Name="ITM_Product_SO_ReturnedGoodsDetail" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.SO_ReturnedGoodsMaster" Member="SO_ReturnedGoodsMasters">
@@ -3113,11 +2918,11 @@
       <Association Name="SO_SaleOrderDetail_SO_ConfirmShipDetail" Member="SO_ConfirmShipDetails" ThisKey="SaleOrderDetailID" OtherKey="SaleOrderDetailID" Type="SO_ConfirmShipDetail" />
       <Association Name="SO_SaleOrderDetail_SO_InvoiceDetail" Member="SO_InvoiceDetails" ThisKey="SaleOrderDetailID" OtherKey="SaleOrderDetailID" Type="SO_InvoiceDetail" />
       <Association Name="SO_CancelReason_SO_SaleOrderDetail" Member="SO_CancelReason" ThisKey="CancelReasonID" OtherKey="CancelReasonID" Type="SO_CancelReason" IsForeignKey="true" />
-      <Association Name="ITM_Product_SO_SaleOrderDetail" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
       <Association Name="MST_Reason_SO_SaleOrderDetail" Member="MST_Reason" ThisKey="ReasonID" OtherKey="ReasonID" Type="MST_Reason" IsForeignKey="true" />
       <Association Name="MST_UnitOfMeasure_SO_SaleOrderDetail" Member="MST_UnitOfMeasure" ThisKey="SellingUMID" OtherKey="UnitOfMeasureID" Type="MST_UnitOfMeasure" IsForeignKey="true" />
       <Association Name="MST_UnitOfMeasure_SO_SaleOrderDetail1" Member="MST_UnitOfMeasure1" ThisKey="StockUMID" OtherKey="UnitOfMeasureID" Type="MST_UnitOfMeasure" IsForeignKey="true" />
       <Association Name="SO_SaleOrderMaster_SO_SaleOrderDetail" Member="SO_SaleOrderMaster" ThisKey="SaleOrderMasterID" OtherKey="SaleOrderMasterID" Type="SO_SaleOrderMaster" IsForeignKey="true" />
+      <Association Name="ITM_Product_SO_SaleOrderDetail" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.SO_SaleOrderMaster" Member="SO_SaleOrderMasters">
@@ -3588,8 +3393,8 @@
       <Column Name="RoleProductID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
       <Column Name="RoleID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="ProductID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Association Name="ITM_Product_sys_RoleProduct" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
       <Association Name="Sys_Role_sys_RoleProduct" Member="Sys_Role" ThisKey="RoleID" OtherKey="RoleID" Type="Sys_Role" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="ITM_Product_sys_RoleProduct" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.sys_RoleWC" Member="sys_RoleWCs">
@@ -6234,9 +6039,9 @@
       <Column Name="NetAmount" Type="System.Decimal" DbType="Decimal(20,8)" CanBeNull="true" />
       <Column Name="PONumber" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
       <Association Name="SO_DeliverySchedule_SO_ConfirmShipDetail" Member="SO_DeliverySchedule" ThisKey="DeliveryScheduleID" OtherKey="DeliveryScheduleID" Type="SO_DeliverySchedule" IsForeignKey="true" />
-      <Association Name="ITM_Product_SO_ConfirmShipDetail" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
       <Association Name="SO_SaleOrderDetail_SO_ConfirmShipDetail" Member="SO_SaleOrderDetail" ThisKey="SaleOrderDetailID" OtherKey="SaleOrderDetailID" Type="SO_SaleOrderDetail" IsForeignKey="true" />
       <Association Name="SO_ConfirmShipMaster_SO_ConfirmShipDetail" Member="SO_ConfirmShipMaster" ThisKey="ConfirmShipMasterID" OtherKey="ConfirmShipMasterID" Type="SO_ConfirmShipMaster" IsForeignKey="true" />
+      <Association Name="ITM_Product_SO_ConfirmShipDetail" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.SO_InvoiceDetail" Member="SO_InvoiceDetails">
@@ -6253,9 +6058,9 @@
       <Column Name="NetAmount" Type="System.Decimal" DbType="Decimal(20,8)" CanBeNull="true" />
       <Column Name="PONumber" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
       <Association Name="SO_DeliverySchedule_SO_InvoiceDetail" Member="SO_DeliverySchedule" ThisKey="DeliveryScheduleID" OtherKey="DeliveryScheduleID" Type="SO_DeliverySchedule" IsForeignKey="true" />
-      <Association Name="ITM_Product_SO_InvoiceDetail" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
       <Association Name="SO_SaleOrderDetail_SO_InvoiceDetail" Member="SO_SaleOrderDetail" ThisKey="SaleOrderDetailID" OtherKey="SaleOrderDetailID" Type="SO_SaleOrderDetail" IsForeignKey="true" />
       <Association Name="SO_InvoiceMaster_SO_InvoiceDetail" Member="SO_InvoiceMaster" ThisKey="InvoiceMasterID" OtherKey="InvoiceMasterID" Type="SO_InvoiceMaster" IsForeignKey="true" />
+      <Association Name="ITM_Product_SO_InvoiceDetail" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.SO_InvoiceMaster" Member="SO_InvoiceMasters">
@@ -6353,10 +6158,225 @@
       <Column Name="DepartmentID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="ReasonID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="IV_MiscellaneousIssueMaster_IV_MiscellaneousIssueDetail" Member="IV_MiscellaneousIssueMaster" ThisKey="MiscellaneousIssueMasterID" OtherKey="MiscellaneousIssueMasterID" Type="IV_MiscellaneousIssueMaster" IsForeignKey="true" />
-      <Association Name="ITM_Product_IV_MiscellaneousIssueDetail" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
       <Association Name="MST_UnitOfMeasure_IV_MiscellaneousIssueDetail" Member="MST_UnitOfMeasure" ThisKey="StockUMID" OtherKey="UnitOfMeasureID" Type="MST_UnitOfMeasure" IsForeignKey="true" />
       <Association Name="MST_Department_IV_MiscellaneousIssueDetail" Member="MST_Department" ThisKey="DepartmentID" OtherKey="DepartmentID" Type="MST_Department" IsForeignKey="true" />
       <Association Name="MST_Reason_IV_MiscellaneousIssueDetail" Member="MST_Reason" ThisKey="ReasonID" OtherKey="ReasonID" Type="MST_Reason" IsForeignKey="true" />
+      <Association Name="ITM_Product_IV_MiscellaneousIssueDetail" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ITM_Product" Member="ITM_Products">
+    <Type Name="ITM_Product">
+      <Column Name="ProductID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Code" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Revision" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="SetupDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="VAT" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ImportTax" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ExportTax" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="SpecialTax" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="MakeItem" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="PartNumber" Type="System.String" DbType="NVarChar(40)" CanBeNull="true" />
+      <Column Name="OtherInfo1" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="OtherInfo2" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="Length" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Width" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Height" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Weight" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="FinishedGoods" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ShelfLife" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="LotControl" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="QAStatus" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="Stock" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="PlanType" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="AutoConversion" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="OrderQuantity" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="LTRequisition" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
+      <Column Name="LTSafetyStock" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
+      <Column Name="OrderQuantityMultiple" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="ScrapPercent" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="MinimumStock" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="MaximumStock" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="ConversionTolerance" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="VoucherTolerance" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="ReceiveTolerance" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="IssueSize" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="LTFixedTime" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
+      <Column Name="LTVariableTime" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
+      <Column Name="LTOrderPrepare" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
+      <Column Name="LTShippingPrepare" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
+      <Column Name="LTSalesATP" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
+      <Column Name="ShipToleranceID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BuyerID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BOMDescription" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="BomIncrement" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="RoutingDescription" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="CreateDateTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="UpdateDateTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CostMethod" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="RoutingIncrement" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="CCNID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CategoryID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CostCenterID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DeleteReasonID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DeliveryPolicyID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FormatCodeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="FreightClassID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="HazardID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="OrderPolicyID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="OrderRuleID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SourceID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="StockUMID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="SellingUMID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="HeightUMID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="WidthUMID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LengthUMID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BuyingUMID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="WeightUMID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LotSize" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MasterLocationID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LocationID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="BinID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="PrimaryVendorID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="VendorLocationID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="OrderPoint" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="SafetyStock" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
+      <Column Name="AGCID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ParentProductID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="LTDockToStock" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
+      <Column Name="PartNameVN" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="LicenseFee" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
+      <Column Name="InventorID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ProductTypeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="TaxCode" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
+      <Column Name="ListPrice" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
+      <Column Name="VendorCurrencyID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="QuantitySet" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
+      <Column Name="ProductionLineID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="CostCenterRateMasterID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ProductGroupID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="MaxProduce" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="MinProduce" Type="System.Decimal" DbType="Decimal(18,0)" CanBeNull="true" />
+      <Column Name="Picture" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="MaxRoundUpToMin" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
+      <Column Name="MaxRoundUpToMultiple" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
+      <Column Name="ACAdjustmentMasterID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RegisteredCode" Type="System.String" DbType="NVarChar(40)" CanBeNull="true" />
+      <Column Name="SetUpPair" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="AVEG" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="StockTakingCode" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="MassOrder" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="AllowNegativeQty" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ProductClassifiedID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ItemGroupID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="ITM_Product_cst_ActCostAllocationDetail" Member="cst_ActCostAllocationDetails" ThisKey="ProductID" OtherKey="ProductID" Type="cst_ActCostAllocationDetail" />
+      <Association Name="ITM_Product_CST_ActualCostHistory" Member="CST_ActualCostHistories" ThisKey="ProductID" OtherKey="ProductID" Type="CST_ActualCostHistory" />
+      <Association Name="ITM_Product_cst_AllocationResult" Member="cst_AllocationResults" ThisKey="ProductID" OtherKey="ProductID" Type="cst_AllocationResult" />
+      <Association Name="ITM_Product_CST_DSAndRecycleAllocation" Member="CST_DSAndRecycleAllocations" ThisKey="ProductID" OtherKey="ProductID" Type="CST_DSAndRecycleAllocation" />
+      <Association Name="ITM_Product_cst_FreightDetail" Member="cst_FreightDetails" ThisKey="ProductID" OtherKey="ProductID" Type="cst_FreightDetail" />
+      <Association Name="ITM_Product_CST_RecoverMaterialDetail" Member="CST_RecoverMaterialDetails" ThisKey="ProductID" OtherKey="ProductID" Type="CST_RecoverMaterialDetail" />
+      <Association Name="ITM_Product_CST_RecoverMaterialMaster" Member="CST_RecoverMaterialMasters" ThisKey="ProductID" OtherKey="ProductID" Type="CST_RecoverMaterialMaster" />
+      <Association Name="ITM_Product_CST_STDItemCost" Member="CST_STDItemCosts" ThisKey="ProductID" OtherKey="ProductID" Type="CST_STDItemCost" />
+      <Association Name="ITM_Product_DCP_BeginQuantity" Member="DCP_BeginQuantities" ThisKey="ProductID" OtherKey="ProductID" Type="DCP_BeginQuantity" />
+      <Association Name="ITM_Product_ITM_BOM" Member="ITM_BOMs" ThisKey="ProductID" OtherKey="ComponentID" Type="ITM_BOM" />
+      <Association Name="ITM_Product_ITM_BOM1" Member="ITM_BOMs1" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_BOM" />
+      <Association Name="ITM_Product_ITM_Picture" Member="ITM_Pictures" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Picture" />
+      <Association Name="ITM_Product_ITM_Routing" Member="ITM_Routings" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Routing" />
+      <Association Name="ITM_Product_IV_Adjustment" Member="IV_Adjustments" ThisKey="ProductID" OtherKey="ProductID" Type="IV_Adjustment" />
+      <Association Name="ITM_Product_IV_BalanceBin" Member="IV_BalanceBins" ThisKey="ProductID" OtherKey="ProductID" Type="IV_BalanceBin" />
+      <Association Name="ITM_Product_IV_BalanceLocation" Member="IV_BalanceLocations" ThisKey="ProductID" OtherKey="ProductID" Type="IV_BalanceLocation" />
+      <Association Name="ITM_Product_IV_BalanceMasterLocation" Member="IV_BalanceMasterLocations" ThisKey="ProductID" OtherKey="ProductID" Type="IV_BalanceMasterLocation" />
+      <Association Name="ITM_Product_IV_BeginDCPReport" Member="IV_BeginDCPReports" ThisKey="ProductID" OtherKey="ProductID" Type="IV_BeginDCPReport" />
+      <Association Name="ITM_Product_IV_BeginMRP" Member="IV_BeginMRPs" ThisKey="ProductID" OtherKey="ProductID" Type="IV_BeginMRP" />
+      <Association Name="ITM_Product_IV_BinCache" Member="IV_BinCaches" ThisKey="ProductID" OtherKey="ProductID" Type="IV_BinCache" />
+      <Association Name="ITM_Product_IV_CostHistory" Member="IV_CostHistories" ThisKey="ProductID" OtherKey="ProductID" Type="IV_CostHistory" />
+      <Association Name="ITM_Product_IV_LocationCache" Member="IV_LocationCaches" ThisKey="ProductID" OtherKey="ProductID" Type="IV_LocationCache" />
+      <Association Name="ITM_Product_IV_MasLocCache" Member="IV_MasLocCaches" ThisKey="ProductID" OtherKey="ProductID" Type="IV_MasLocCache" />
+      <Association Name="ITM_Product_IV_StockTaking" Member="IV_StockTakings" ThisKey="ProductID" OtherKey="ProductID" Type="IV_StockTaking" />
+      <Association Name="ITM_Product_IV_StockTakingDifferent" Member="IV_StockTakingDifferents" ThisKey="ProductID" OtherKey="ProductID" Type="IV_StockTakingDifferent" />
+      <Association Name="ITM_Product_MST_TransactionHistory" Member="MST_TransactionHistories" ThisKey="ProductID" OtherKey="ProductID" Type="MST_TransactionHistory" />
+      <Association Name="ITM_Product_MTR_ACDSDetail" Member="MTR_ACDSDetails" ThisKey="ProductID" OtherKey="ProductID" Type="MTR_ACDSDetail" />
+      <Association Name="ITM_Product_MTR_CPO" Member="MTR_CPOs" ThisKey="ProductID" OtherKey="ProductID" Type="MTR_CPO" />
+      <Association Name="ITM_Product_MTR_ItemActualCost" Member="MTR_ItemActualCosts" ThisKey="ProductID" OtherKey="ProductID" Type="MTR_ItemActualCost" />
+      <Association Name="ITM_Product_PO_InvoiceDetail" Member="PO_InvoiceDetails" ThisKey="ProductID" OtherKey="ProductID" Type="PO_InvoiceDetail" />
+      <Association Name="ITM_Product_PO_ItemVendorReference" Member="PO_ItemVendorReferences" ThisKey="ProductID" OtherKey="ProductID" Type="PO_ItemVendorReference" />
+      <Association Name="ITM_Product_PO_PurchaseOrderDetail" Member="PO_PurchaseOrderDetails" ThisKey="ProductID" OtherKey="ProductID" Type="PO_PurchaseOrderDetail" />
+      <Association Name="ITM_Product_PO_PurchaseOrderReceiptDetail" Member="PO_PurchaseOrderReceiptDetails" ThisKey="ProductID" OtherKey="ProductID" Type="PO_PurchaseOrderReceiptDetail" />
+      <Association Name="ITM_Product_PO_ReturnToVendorDetail" Member="PO_ReturnToVendorDetails" ThisKey="ProductID" OtherKey="ProductID" Type="PO_ReturnToVendorDetail" />
+      <Association Name="ITM_Product_PO_VendorDeliverySchedule" Member="PO_VendorDeliverySchedules" ThisKey="ProductID" OtherKey="ProductID" Type="PO_VendorDeliverySchedule" />
+      <Association Name="ITM_Product_PRO_ChangeCategoryDetail" Member="PRO_ChangeCategoryDetails" ThisKey="ProductID" OtherKey="ProductID" Type="PRO_ChangeCategoryDetail" />
+      <Association Name="ITM_Product_PRO_ChangeCategoryMatrix" Member="PRO_ChangeCategoryMatrixes" ThisKey="ProductID" OtherKey="DestProductID" Type="PRO_ChangeCategoryMatrix" />
+      <Association Name="ITM_Product_PRO_ChangeCategoryMatrix1" Member="PRO_ChangeCategoryMatrixes1" ThisKey="ProductID" OtherKey="SourceProductID" Type="PRO_ChangeCategoryMatrix" />
+      <Association Name="ITM_Product_PRO_CheckPoint" Member="PRO_CheckPoints" ThisKey="ProductID" OtherKey="ProductID" Type="PRO_CheckPoint" />
+      <Association Name="ITM_Product_PRO_ComponentScrapDetail" Member="PRO_ComponentScrapDetails" ThisKey="ProductID" OtherKey="ComponentID" Type="PRO_ComponentScrapDetail" />
+      <Association Name="ITM_Product_PRO_ComponentScrapDetail1" Member="PRO_ComponentScrapDetails1" ThisKey="ProductID" OtherKey="ProductID" Type="PRO_ComponentScrapDetail" />
+      <Association Name="ITM_Product_PRO_DCPResultMaster" Member="PRO_DCPResultMasters" ThisKey="ProductID" OtherKey="ProductID" Type="PRO_DCPResultMaster" />
+      <Association Name="ITM_Product_PRO_IssueMaterialDetail" Member="PRO_IssueMaterialDetails" ThisKey="ProductID" OtherKey="ProductID" Type="PRO_IssueMaterialDetail" />
+      <Association Name="ITM_Product_PRO_IssueMaterialMaster" Member="PRO_IssueMaterialMasters" ThisKey="ProductID" OtherKey="ProductID" Type="PRO_IssueMaterialMaster" />
+      <Association Name="ITM_Product_PRO_PGProduct" Member="PRO_PGProducts" ThisKey="ProductID" OtherKey="ProductID" Type="PRO_PGProduct" />
+      <Association Name="ITM_Product_PRO_ProductProductionOrder" Member="PRO_ProductProductionOrders" ThisKey="ProductID" OtherKey="ProductID" Type="PRO_ProductProductionOrder" />
+      <Association Name="ITM_Product_PRO_WorkOrderCompletion" Member="PRO_WorkOrderCompletions" ThisKey="ProductID" OtherKey="ProductID" Type="PRO_WorkOrderCompletion" />
+      <Association Name="ITM_Product_PRO_WorkOrderDetail" Member="PRO_WorkOrderDetails" ThisKey="ProductID" OtherKey="ProductID" Type="PRO_WorkOrderDetail" />
+      <Association Name="ITM_Product_SO_CommitInventoryDetail" Member="SO_CommitInventoryDetails" ThisKey="ProductID" OtherKey="ProductID" Type="SO_CommitInventoryDetail" />
+      <Association Name="ITM_Product_SO_CustomerItemRefDetail" Member="SO_CustomerItemRefDetails" ThisKey="ProductID" OtherKey="ProductID" Type="SO_CustomerItemRefDetail" />
+      <Association Name="ITM_Product_SO_ReturnedGoodsDetail" Member="SO_ReturnedGoodsDetails" ThisKey="ProductID" OtherKey="ProductID" Type="SO_ReturnedGoodsDetail" />
+      <Association Name="ITM_Product_SO_SaleOrderDetail" Member="SO_SaleOrderDetails" ThisKey="ProductID" OtherKey="ProductID" Type="SO_SaleOrderDetail" />
+      <Association Name="ITM_Product_STD_CostCenterRateMaster" Member="STD_CostCenterRateMasters" ThisKey="ProductID" OtherKey="ProductID" Type="STD_CostCenterRateMaster" />
+      <Association Name="ITM_Product_sys_RoleProduct" Member="sys_RoleProducts" ThisKey="ProductID" OtherKey="ProductID" Type="sys_RoleProduct" />
+      <Association Name="ITM_Product_SO_ConfirmShipDetail" Member="SO_ConfirmShipDetails" ThisKey="ProductID" OtherKey="ProductID" Type="SO_ConfirmShipDetail" />
+      <Association Name="ITM_Product_SO_InvoiceDetail" Member="SO_InvoiceDetails" ThisKey="ProductID" OtherKey="ProductID" Type="SO_InvoiceDetail" />
+      <Association Name="ITM_Product_IV_MiscellaneousIssueDetail" Member="IV_MiscellaneousIssueDetails" ThisKey="ProductID" OtherKey="ProductID" Type="IV_MiscellaneousIssueDetail" />
+      <Association Name="cst_ACAdjustmentMaster_ITM_Product" Member="cst_ACAdjustmentMaster" ThisKey="ACAdjustmentMasterID" OtherKey="ACAdjustmentMasterID" Type="cst_ACAdjustmentMaster" IsForeignKey="true" />
+      <Association Name="MST_AGC_ITM_Product" Member="MST_AGC" ThisKey="AGCID" OtherKey="AGCID" Type="MST_AGC" IsForeignKey="true" />
+      <Association Name="MST_BIN_ITM_Product" Member="MST_BIN" ThisKey="BinID" OtherKey="BinID" Type="MST_BIN" IsForeignKey="true" />
+      <Association Name="ITM_Buyer_ITM_Product" Member="ITM_Buyer" ThisKey="BuyerID" OtherKey="BuyerID" Type="ITM_Buyer" IsForeignKey="true" />
+      <Association Name="MST_UnitOfMeasure_ITM_Product" Member="MST_UnitOfMeasure" ThisKey="BuyingUMID" OtherKey="UnitOfMeasureID" Type="MST_UnitOfMeasure" IsForeignKey="true" />
+      <Association Name="ITM_Category_ITM_Product" Member="ITM_Category" ThisKey="CategoryID" OtherKey="CategoryID" Type="ITM_Category" IsForeignKey="true" />
+      <Association Name="MST_CCN_ITM_Product" Member="MST_CCN" ThisKey="CCNID" OtherKey="CCNID" Type="MST_CCN" IsForeignKey="true" />
+      <Association Name="ITM_CostCenter_ITM_Product" Member="ITM_CostCenter" ThisKey="CostCenterID" OtherKey="CostCenterID" Type="ITM_CostCenter" IsForeignKey="true" />
+      <Association Name="STD_CostCenterRateMaster_ITM_Product" Member="STD_CostCenterRateMaster" ThisKey="CostCenterRateMasterID" OtherKey="CostCenterRateMasterID" Type="STD_CostCenterRateMaster" IsForeignKey="true" />
+      <Association Name="ITM_DeleteReason_ITM_Product" Member="ITM_DeleteReason" ThisKey="DeleteReasonID" OtherKey="DeleteReasonID" Type="ITM_DeleteReason" IsForeignKey="true" />
+      <Association Name="ITM_DeliveryPolicy_ITM_Product" Member="ITM_DeliveryPolicy" ThisKey="DeliveryPolicyID" OtherKey="DeliveryPolicyID" Type="ITM_DeliveryPolicy" IsForeignKey="true" />
+      <Association Name="ITM_FormatCode_ITM_Product" Member="ITM_FormatCode" ThisKey="FormatCodeID" OtherKey="FormatCodeID" Type="ITM_FormatCode" IsForeignKey="true" />
+      <Association Name="ITM_FreightClass_ITM_Product" Member="ITM_FreightClass" ThisKey="FreightClassID" OtherKey="FreightClassID" Type="ITM_FreightClass" IsForeignKey="true" />
+      <Association Name="ITM_Hazard_ITM_Product" Member="ITM_Hazard" ThisKey="HazardID" OtherKey="HazardID" Type="ITM_Hazard" IsForeignKey="true" />
+      <Association Name="MST_UnitOfMeasure_ITM_Product1" Member="MST_UnitOfMeasure1" ThisKey="HeightUMID" OtherKey="UnitOfMeasureID" Type="MST_UnitOfMeasure" IsForeignKey="true" />
+      <Association Name="MST_Party_ITM_Product" Member="MST_Party" ThisKey="InventorID" OtherKey="PartyID" Type="MST_Party" IsForeignKey="true" />
+      <Association Name="MST_UnitOfMeasure_ITM_Product2" Member="MST_UnitOfMeasure2" ThisKey="LengthUMID" OtherKey="UnitOfMeasureID" Type="MST_UnitOfMeasure" IsForeignKey="true" />
+      <Association Name="MST_Location_ITM_Product" Member="MST_Location" ThisKey="LocationID" OtherKey="LocationID" Type="MST_Location" IsForeignKey="true" />
+      <Association Name="MST_MasterLocation_ITM_Product" Member="MST_MasterLocation" ThisKey="MasterLocationID" OtherKey="MasterLocationID" Type="MST_MasterLocation" IsForeignKey="true" />
+      <Association Name="ITM_OrderRule_ITM_Product" Member="ITM_OrderRule" ThisKey="OrderRuleID" OtherKey="OrderRuleID" Type="ITM_OrderRule" IsForeignKey="true" />
+      <Association Name="ITM_OrderPolicy_ITM_Product" Member="ITM_OrderPolicy" ThisKey="OrderPolicyID" OtherKey="OrderPolicyID" Type="ITM_OrderPolicy" IsForeignKey="true" />
+      <Association Name="MST_Party_ITM_Product1" Member="MST_Party1" ThisKey="PrimaryVendorID" OtherKey="PartyID" Type="MST_Party" IsForeignKey="true" />
+      <Association Name="PRO_ProductionLine_ITM_Product" Member="PRO_ProductionLine" ThisKey="ProductionLineID" OtherKey="ProductionLineID" Type="PRO_ProductionLine" IsForeignKey="true" />
+      <Association Name="CST_ProductGroup_ITM_Product" Member="CST_ProductGroup" ThisKey="ProductGroupID" OtherKey="ProductGroupID" Type="CST_ProductGroup" IsForeignKey="true" />
+      <Association Name="ITM_ProductType_ITM_Product" Member="ITM_ProductType" ThisKey="ProductTypeID" OtherKey="ProductTypeID" Type="ITM_ProductType" IsForeignKey="true" />
+      <Association Name="MST_UnitOfMeasure_ITM_Product3" Member="MST_UnitOfMeasure3" ThisKey="SellingUMID" OtherKey="UnitOfMeasureID" Type="MST_UnitOfMeasure" IsForeignKey="true" />
+      <Association Name="ITM_ShipTolerance_ITM_Product" Member="ITM_ShipTolerance" ThisKey="ShipToleranceID" OtherKey="ShipToleranceID" Type="ITM_ShipTolerance" IsForeignKey="true" />
+      <Association Name="ITM_Source_ITM_Product" Member="ITM_Source" ThisKey="SourceID" OtherKey="SourceID" Type="ITM_Source" IsForeignKey="true" />
+      <Association Name="MST_UnitOfMeasure_ITM_Product4" Member="MST_UnitOfMeasure4" ThisKey="StockUMID" OtherKey="UnitOfMeasureID" Type="MST_UnitOfMeasure" IsForeignKey="true" />
+      <Association Name="MST_PartyLocation_ITM_Product" Member="MST_PartyLocation" ThisKey="VendorLocationID" OtherKey="PartyLocationID" Type="MST_PartyLocation" IsForeignKey="true" />
+      <Association Name="MST_Currency_ITM_Product" Member="MST_Currency" ThisKey="VendorCurrencyID" OtherKey="CurrencyID" Type="MST_Currency" IsForeignKey="true" />
+      <Association Name="MST_UnitOfMeasure_ITM_Product5" Member="MST_UnitOfMeasure5" ThisKey="WeightUMID" OtherKey="UnitOfMeasureID" Type="MST_UnitOfMeasure" IsForeignKey="true" />
+      <Association Name="MST_UnitOfMeasure_ITM_Product6" Member="MST_UnitOfMeasure6" ThisKey="WidthUMID" OtherKey="UnitOfMeasureID" Type="MST_UnitOfMeasure" IsForeignKey="true" />
+      <Association Name="ITM_ProductClassified_ITM_Product" Member="ITM_ProductClassified" ThisKey="ProductClassifiedID" OtherKey="ProductClassifiedID" Type="ITM_ProductClassified" IsForeignKey="true" DeleteRule="CASCADE" />
+      <Association Name="ITM_ItemGroup_ITM_Product" Member="ITM_ItemGroup" ThisKey="ItemGroupID" OtherKey="ItemGroupID" Type="ITM_ItemGroup" IsForeignKey="true" DeleteRule="CASCADE" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ITM_ProductClassified" Member="ITM_ProductClassifieds">
+    <Type Name="ITM_ProductClassified">
+      <Column Name="ProductClassifiedID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Code" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Association Name="ITM_ProductClassified_ITM_Product" Member="ITM_Products" ThisKey="ProductClassifiedID" OtherKey="ProductClassifiedID" Type="ITM_Product" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ITM_ItemGroup" Member="ITM_ItemGroups">
+    <Type Name="ITM_ItemGroup">
+      <Column Name="ItemGroupID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Code" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="Description" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
+      <Association Name="ITM_ItemGroup_ITM_Product" Member="ITM_Products" ThisKey="ItemGroupID" OtherKey="ItemGroupID" Type="ITM_Product" />
     </Type>
   </Table>
   <Function Name="dbo.GetAvailableQtyByPostDate" Method="GetAvailableQtyByPostDate">

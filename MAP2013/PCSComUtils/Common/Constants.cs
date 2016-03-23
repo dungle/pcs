@@ -13611,6 +13611,23 @@ namespace PCSComUtils.Common
         public const string WIDTHUMID_FLD = "WidthUMID";
         public const string WORKCENTERID_FLD = "WorkCenterID";
         public const string MARKETING_CATEGORYID_FLD = "Marketing_CategoryID";
+        public const string ITEMGROUPID_FLD = "ItemGroupID";
+        public const string PRODUCTCLASSIFIEDID_FLD = "ProductClassifiedID";
+    }
+
+    public sealed class ITM_ItemGroupTable
+    {
+        public const string CODE_FLD = "Code";
+        public const string DESCRIPTION_FLD = "Description";
+        public const string ITEMGROUPID_FLD = "ItemGroupID";
+        public const string TABLE_NAME = "ITM_ItemGroup";
+    }
+    public sealed class ITM_ProductClassifiedTable
+    {
+        public const string CODE_FLD = "Code";
+        public const string DESCRIPTION_FLD = "Description";
+        public const string PRODUCTCLASSIFIEDID_FLD = "ProductClassifiedID";
+        public const string TABLE_NAME = "ITM_ProductClassified";
     }
 
     public sealed class ITM_ProductToGroupTable

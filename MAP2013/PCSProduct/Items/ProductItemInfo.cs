@@ -269,7 +269,10 @@ namespace PCSProduct.Items
         private System.Windows.Forms.CheckBox chkMassOrder;
         private CheckBox chkAllowNegativeQty;
         private Button btnViewImage;
-        
+        private Label lblClassified;
+        private C1Combo cboClassified;
+        private C1Combo cboItemGroup;
+        private Label lblItemGroup;
         private const string DECIMAL_NUMBERFORMAT_SMALL = "##############,0.0000";
 
         public ProductItemInfo()
@@ -307,222 +310,6 @@ namespace PCSProduct.Items
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ProductItemInfo));
-            C1.Win.C1List.Style style1 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style2 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style3 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style4 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style5 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style6 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style7 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style8 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style9 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style10 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style11 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style12 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style13 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style14 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style15 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style16 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style17 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style18 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style19 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style20 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style21 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style22 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style23 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style24 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style25 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style26 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style27 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style28 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style29 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style30 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style31 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style32 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style33 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style34 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style35 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style36 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style37 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style38 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style39 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style40 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style41 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style42 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style43 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style44 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style45 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style46 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style47 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style48 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style49 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style50 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style51 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style52 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style53 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style54 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style55 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style56 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style57 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style58 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style59 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style60 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style61 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style62 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style63 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style64 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style65 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style66 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style67 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style68 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style69 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style70 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style71 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style72 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style73 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style74 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style75 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style76 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style77 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style78 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style79 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style80 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style81 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style82 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style83 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style84 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style85 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style86 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style87 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style88 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style89 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style90 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style91 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style92 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style93 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style94 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style95 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style96 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style97 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style98 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style99 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style100 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style101 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style102 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style103 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style104 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style105 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style106 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style107 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style108 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style109 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style110 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style111 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style112 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style113 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style114 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style115 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style116 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style117 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style118 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style119 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style120 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style121 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style122 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style123 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style124 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style125 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style126 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style127 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style128 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style129 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style130 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style131 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style132 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style133 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style134 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style135 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style136 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style137 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style138 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style139 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style140 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style141 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style142 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style143 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style144 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style145 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style146 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style147 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style148 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style149 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style150 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style151 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style152 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style153 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style154 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style155 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style156 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style157 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style158 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style159 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style160 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style161 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style162 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style163 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style164 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style165 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style166 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style167 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style168 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style169 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style170 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style171 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style172 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style173 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style174 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style175 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style176 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style177 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style178 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style179 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style180 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style181 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style182 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style183 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style184 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style185 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style186 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style187 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style188 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style189 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style190 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style191 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style192 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style193 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style194 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style195 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style196 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style197 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style198 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style199 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style200 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style201 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style202 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style203 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style204 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style205 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style206 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style207 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style208 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style209 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style210 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style211 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style212 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style213 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style214 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style215 = new C1.Win.C1List.Style();
-            C1.Win.C1List.Style style216 = new C1.Win.C1List.Style();
             this.txtPartNumber = new C1.Win.C1Input.C1TextBox();
             this.txtPrimaryVendorID = new System.Windows.Forms.TextBox();
             this.txtLotSize = new C1.Win.C1Input.C1NumericEdit();
@@ -735,6 +522,10 @@ namespace PCSProduct.Items
             this.txtStockTakingCode = new System.Windows.Forms.TextBox();
             this.lblStockTakingCode = new System.Windows.Forms.Label();
             this.btnTakingCode = new System.Windows.Forms.Button();
+            this.lblItemGroup = new System.Windows.Forms.Label();
+            this.cboItemGroup = new C1.Win.C1List.C1Combo();
+            this.cboClassified = new C1.Win.C1List.C1Combo();
+            this.lblClassified = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.txtPartNumber)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLotSize)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboFormatCodeID)).BeginInit();
@@ -809,25 +600,31 @@ namespace PCSProduct.Items
             ((System.ComponentModel.ISupportInitialize)(this.txtImportTax)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtExportTax)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSpecialTax)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboItemGroup)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboClassified)).BeginInit();
             this.SuspendLayout();
             // 
             // txtPartNumber
             // 
             resources.ApplyResources(this.txtPartNumber, "txtPartNumber");
             this.txtPartNumber.Name = "txtPartNumber";
-            this.txtPartNumber.Tag = null;
-            this.txtPartNumber.Leave += new System.EventHandler(this.OnLeaveControl);
             this.txtPartNumber.Enter += new System.EventHandler(this.OnEnterControl);
+            this.txtPartNumber.Leave += new System.EventHandler(this.OnLeaveControl);
             // 
             // txtPrimaryVendorID
             // 
             resources.ApplyResources(this.txtPrimaryVendorID, "txtPrimaryVendorID");
             this.txtPrimaryVendorID.Name = "txtPrimaryVendorID";
-            this.txtPrimaryVendorID.Leave += new System.EventHandler(this.OnLeaveControl);
             this.txtPrimaryVendorID.Enter += new System.EventHandler(this.OnEnterControl);
+            this.txtPrimaryVendorID.Leave += new System.EventHandler(this.OnLeaveControl);
             // 
             // txtLotSize
             // 
+            // 
+            // 
+            // 
+            this.txtLotSize.Calculator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
+            this.txtLotSize.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.System;
             resources.ApplyResources(this.txtLotSize, "txtLotSize");
             this.txtLotSize.DisableOnNoData = false;
             this.txtLotSize.MaskInfo.ShowLiterals = ((C1.Win.C1Input.ShowLiteralsEnum)(resources.GetObject("txtLotSize.MaskInfo.ShowLiterals")));
@@ -835,50 +632,36 @@ namespace PCSProduct.Items
             this.txtLotSize.NumericInputKeys = C1.Win.C1Input.NumericInputKeyFlags.None;
             this.txtLotSize.PostValidation.Intervals.AddRange(new C1.Win.C1Input.ValueInterval[] {
             ((C1.Win.C1Input.ValueInterval)(resources.GetObject("txtLotSize.PostValidation.Intervals")))});
-            this.txtLotSize.Tag = null;
-            this.txtLotSize.Leave += new System.EventHandler(this.OnLeaveControl);
             this.txtLotSize.Enter += new System.EventHandler(this.OnEnterControl);
+            this.txtLotSize.Leave += new System.EventHandler(this.OnLeaveControl);
             // 
             // cboFormatCodeID
             // 
             this.cboFormatCodeID.AddItemSeparator = ';';
-            this.cboFormatCodeID.Caption = "";
+            resources.ApplyResources(this.cboFormatCodeID, "cboFormatCodeID");
             this.cboFormatCodeID.CaptionHeight = 17;
-            this.cboFormatCodeID.CaptionStyle = style1;
             this.cboFormatCodeID.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.cboFormatCodeID.ColumnCaptionHeight = 17;
             this.cboFormatCodeID.ColumnFooterHeight = 17;
             this.cboFormatCodeID.ComboStyle = C1.Win.C1List.ComboStyleEnum.DropdownList;
-            this.cboFormatCodeID.ContentHeight = 15;
             this.cboFormatCodeID.DeadAreaBackColor = System.Drawing.Color.Empty;
             this.cboFormatCodeID.DropdownPosition = C1.Win.C1List.DropdownPositionEnum.RightDown;
             this.cboFormatCodeID.DropDownWidth = 200;
             this.cboFormatCodeID.EditorBackColor = System.Drawing.SystemColors.Window;
             this.cboFormatCodeID.EditorFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboFormatCodeID.EditorForeColor = System.Drawing.SystemColors.WindowText;
-            this.cboFormatCodeID.EditorHeight = 15;
-            this.cboFormatCodeID.EvenRowStyle = style2;
-            this.cboFormatCodeID.FlatStyle = C1.Win.C1List.FlatModeEnum.System;
-            this.cboFormatCodeID.FooterStyle = style3;
-            this.cboFormatCodeID.GapHeight = 2;
-            this.cboFormatCodeID.HeadingStyle = style4;
-            this.cboFormatCodeID.HighLightRowStyle = style5;
+            this.cboFormatCodeID.Images.Add(((System.Drawing.Image)(resources.GetObject("cboFormatCodeID.Images"))));
             this.cboFormatCodeID.ItemHeight = 15;
-            resources.ApplyResources(this.cboFormatCodeID, "cboFormatCodeID");
             this.cboFormatCodeID.MatchEntryTimeout = ((long)(2000));
             this.cboFormatCodeID.MaxDropDownItems = ((short)(5));
             this.cboFormatCodeID.MaxLength = 32767;
             this.cboFormatCodeID.MouseCursor = System.Windows.Forms.Cursors.Default;
             this.cboFormatCodeID.Name = "cboFormatCodeID";
-            this.cboFormatCodeID.OddRowStyle = style6;
-            this.cboFormatCodeID.RowDivider.Color = System.Drawing.Color.DarkGray;
             this.cboFormatCodeID.RowDivider.Style = C1.Win.C1List.LineStyleEnum.None;
             this.cboFormatCodeID.RowSubDividerColor = System.Drawing.Color.DarkGray;
-            this.cboFormatCodeID.SelectedStyle = style7;
-            this.cboFormatCodeID.Style = style8;
-            this.cboFormatCodeID.Leave += new System.EventHandler(this.OnLeaveControl);
             this.cboFormatCodeID.SelectedValueChanged += new System.EventHandler(this.cboFormatCodeID_SelectedValueChanged);
             this.cboFormatCodeID.Enter += new System.EventHandler(this.OnEnterControl);
+            this.cboFormatCodeID.Leave += new System.EventHandler(this.OnLeaveControl);
             this.cboFormatCodeID.PropBag = resources.GetString("cboFormatCodeID.PropBag");
             // 
             // lblFormatCodeID
@@ -894,367 +677,258 @@ namespace PCSProduct.Items
             // cboBinID
             // 
             this.cboBinID.AddItemSeparator = ';';
-            this.cboBinID.Caption = "";
+            resources.ApplyResources(this.cboBinID, "cboBinID");
             this.cboBinID.CaptionHeight = 17;
-            this.cboBinID.CaptionStyle = style9;
             this.cboBinID.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.cboBinID.ColumnCaptionHeight = 17;
             this.cboBinID.ColumnFooterHeight = 17;
             this.cboBinID.ComboStyle = C1.Win.C1List.ComboStyleEnum.DropdownList;
-            this.cboBinID.ContentHeight = 15;
             this.cboBinID.DeadAreaBackColor = System.Drawing.Color.Empty;
             this.cboBinID.DropdownPosition = C1.Win.C1List.DropdownPositionEnum.LeftDown;
             this.cboBinID.DropDownWidth = 200;
             this.cboBinID.EditorBackColor = System.Drawing.SystemColors.Window;
             this.cboBinID.EditorFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboBinID.EditorForeColor = System.Drawing.SystemColors.WindowText;
-            this.cboBinID.EditorHeight = 15;
-            this.cboBinID.EvenRowStyle = style10;
-            this.cboBinID.FlatStyle = C1.Win.C1List.FlatModeEnum.System;
-            this.cboBinID.FooterStyle = style11;
-            this.cboBinID.GapHeight = 2;
-            this.cboBinID.HeadingStyle = style12;
-            this.cboBinID.HighLightRowStyle = style13;
+            this.cboBinID.Images.Add(((System.Drawing.Image)(resources.GetObject("cboBinID.Images"))));
             this.cboBinID.ItemHeight = 15;
-            resources.ApplyResources(this.cboBinID, "cboBinID");
             this.cboBinID.MatchEntryTimeout = ((long)(2000));
             this.cboBinID.MaxDropDownItems = ((short)(5));
             this.cboBinID.MaxLength = 32767;
             this.cboBinID.MouseCursor = System.Windows.Forms.Cursors.Default;
             this.cboBinID.Name = "cboBinID";
-            this.cboBinID.OddRowStyle = style14;
-            this.cboBinID.RowDivider.Color = System.Drawing.Color.DarkGray;
             this.cboBinID.RowDivider.Style = C1.Win.C1List.LineStyleEnum.None;
             this.cboBinID.RowSubDividerColor = System.Drawing.Color.DarkGray;
-            this.cboBinID.SelectedStyle = style15;
-            this.cboBinID.Style = style16;
-            this.cboBinID.Leave += new System.EventHandler(this.OnLeaveControl);
+            this.cboBinID.VisualStyle = C1.Win.C1List.VisualStyle.Office2010Blue;
             this.cboBinID.Enter += new System.EventHandler(this.OnEnterControl);
+            this.cboBinID.Leave += new System.EventHandler(this.OnLeaveControl);
             this.cboBinID.PropBag = resources.GetString("cboBinID.PropBag");
             // 
             // cboLocationID
             // 
             this.cboLocationID.AddItemSeparator = ';';
-            this.cboLocationID.Caption = "";
+            resources.ApplyResources(this.cboLocationID, "cboLocationID");
             this.cboLocationID.CaptionHeight = 17;
-            this.cboLocationID.CaptionStyle = style17;
             this.cboLocationID.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.cboLocationID.ColumnCaptionHeight = 17;
             this.cboLocationID.ColumnFooterHeight = 17;
             this.cboLocationID.ComboStyle = C1.Win.C1List.ComboStyleEnum.DropdownList;
-            this.cboLocationID.ContentHeight = 15;
             this.cboLocationID.DeadAreaBackColor = System.Drawing.Color.Empty;
             this.cboLocationID.DropdownPosition = C1.Win.C1List.DropdownPositionEnum.LeftDown;
             this.cboLocationID.DropDownWidth = 200;
             this.cboLocationID.EditorBackColor = System.Drawing.SystemColors.Window;
             this.cboLocationID.EditorFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboLocationID.EditorForeColor = System.Drawing.SystemColors.WindowText;
-            this.cboLocationID.EditorHeight = 15;
-            this.cboLocationID.EvenRowStyle = style18;
-            this.cboLocationID.FlatStyle = C1.Win.C1List.FlatModeEnum.System;
-            this.cboLocationID.FooterStyle = style19;
-            this.cboLocationID.GapHeight = 2;
-            this.cboLocationID.HeadingStyle = style20;
-            this.cboLocationID.HighLightRowStyle = style21;
+            this.cboLocationID.Images.Add(((System.Drawing.Image)(resources.GetObject("cboLocationID.Images"))));
             this.cboLocationID.ItemHeight = 15;
-            resources.ApplyResources(this.cboLocationID, "cboLocationID");
             this.cboLocationID.MatchEntryTimeout = ((long)(2000));
             this.cboLocationID.MaxDropDownItems = ((short)(5));
             this.cboLocationID.MaxLength = 32767;
             this.cboLocationID.MouseCursor = System.Windows.Forms.Cursors.Default;
             this.cboLocationID.Name = "cboLocationID";
-            this.cboLocationID.OddRowStyle = style22;
-            this.cboLocationID.RowDivider.Color = System.Drawing.Color.DarkGray;
             this.cboLocationID.RowDivider.Style = C1.Win.C1List.LineStyleEnum.None;
             this.cboLocationID.RowSubDividerColor = System.Drawing.Color.DarkGray;
-            this.cboLocationID.SelectedStyle = style23;
-            this.cboLocationID.Style = style24;
+            this.cboLocationID.VisualStyle = C1.Win.C1List.VisualStyle.Office2010Blue;
             this.cboLocationID.ItemChanged += new System.EventHandler(this.cboLocationID_ItemChanged);
-            this.cboLocationID.Leave += new System.EventHandler(this.OnLeaveControl);
             this.cboLocationID.SelectedValueChanged += new System.EventHandler(this.cboLocationID_SelectedValueChanged);
             this.cboLocationID.Enter += new System.EventHandler(this.OnEnterControl);
+            this.cboLocationID.Leave += new System.EventHandler(this.OnLeaveControl);
             this.cboLocationID.PropBag = resources.GetString("cboLocationID.PropBag");
             // 
             // cboMasterLocationID
             // 
             this.cboMasterLocationID.AddItemSeparator = ';';
-            this.cboMasterLocationID.Caption = "";
+            resources.ApplyResources(this.cboMasterLocationID, "cboMasterLocationID");
             this.cboMasterLocationID.CaptionHeight = 17;
-            this.cboMasterLocationID.CaptionStyle = style25;
             this.cboMasterLocationID.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.cboMasterLocationID.ColumnCaptionHeight = 17;
             this.cboMasterLocationID.ColumnFooterHeight = 17;
             this.cboMasterLocationID.ComboStyle = C1.Win.C1List.ComboStyleEnum.DropdownList;
-            this.cboMasterLocationID.ContentHeight = 15;
             this.cboMasterLocationID.DeadAreaBackColor = System.Drawing.Color.Empty;
             this.cboMasterLocationID.DropdownPosition = C1.Win.C1List.DropdownPositionEnum.LeftDown;
             this.cboMasterLocationID.DropDownWidth = 200;
             this.cboMasterLocationID.EditorBackColor = System.Drawing.SystemColors.Window;
             this.cboMasterLocationID.EditorFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboMasterLocationID.EditorForeColor = System.Drawing.SystemColors.WindowText;
-            this.cboMasterLocationID.EditorHeight = 15;
-            this.cboMasterLocationID.EvenRowStyle = style26;
-            this.cboMasterLocationID.FlatStyle = C1.Win.C1List.FlatModeEnum.System;
-            this.cboMasterLocationID.FooterStyle = style27;
-            this.cboMasterLocationID.GapHeight = 2;
-            this.cboMasterLocationID.HeadingStyle = style28;
-            this.cboMasterLocationID.HighLightRowStyle = style29;
+            this.cboMasterLocationID.Images.Add(((System.Drawing.Image)(resources.GetObject("cboMasterLocationID.Images"))));
             this.cboMasterLocationID.ItemHeight = 15;
-            resources.ApplyResources(this.cboMasterLocationID, "cboMasterLocationID");
             this.cboMasterLocationID.MatchEntryTimeout = ((long)(2000));
             this.cboMasterLocationID.MaxDropDownItems = ((short)(5));
             this.cboMasterLocationID.MaxLength = 32767;
             this.cboMasterLocationID.MouseCursor = System.Windows.Forms.Cursors.Default;
             this.cboMasterLocationID.Name = "cboMasterLocationID";
-            this.cboMasterLocationID.OddRowStyle = style30;
-            this.cboMasterLocationID.RowDivider.Color = System.Drawing.Color.DarkGray;
             this.cboMasterLocationID.RowDivider.Style = C1.Win.C1List.LineStyleEnum.None;
             this.cboMasterLocationID.RowSubDividerColor = System.Drawing.Color.DarkGray;
-            this.cboMasterLocationID.SelectedStyle = style31;
-            this.cboMasterLocationID.Style = style32;
+            this.cboMasterLocationID.VisualStyle = C1.Win.C1List.VisualStyle.Office2010Blue;
             this.cboMasterLocationID.ItemChanged += new System.EventHandler(this.cboMasterLocationID_ItemChanged);
-            this.cboMasterLocationID.Leave += new System.EventHandler(this.OnLeaveControl);
             this.cboMasterLocationID.SelectedValueChanged += new System.EventHandler(this.cboMasterLocationID_SelectedValueChanged);
             this.cboMasterLocationID.Enter += new System.EventHandler(this.OnEnterControl);
+            this.cboMasterLocationID.Leave += new System.EventHandler(this.OnLeaveControl);
             this.cboMasterLocationID.PropBag = resources.GetString("cboMasterLocationID.PropBag");
             // 
             // cboSellingUMID
             // 
             this.cboSellingUMID.AddItemSeparator = ';';
-            this.cboSellingUMID.Caption = "";
+            resources.ApplyResources(this.cboSellingUMID, "cboSellingUMID");
             this.cboSellingUMID.CaptionHeight = 17;
-            this.cboSellingUMID.CaptionStyle = style33;
             this.cboSellingUMID.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.cboSellingUMID.ColumnCaptionHeight = 17;
             this.cboSellingUMID.ColumnFooterHeight = 17;
             this.cboSellingUMID.ComboStyle = C1.Win.C1List.ComboStyleEnum.DropdownList;
-            this.cboSellingUMID.ContentHeight = 15;
             this.cboSellingUMID.DeadAreaBackColor = System.Drawing.Color.Empty;
             this.cboSellingUMID.DropdownPosition = C1.Win.C1List.DropdownPositionEnum.LeftDown;
             this.cboSellingUMID.DropDownWidth = 200;
             this.cboSellingUMID.EditorBackColor = System.Drawing.SystemColors.Window;
             this.cboSellingUMID.EditorFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboSellingUMID.EditorForeColor = System.Drawing.SystemColors.WindowText;
-            this.cboSellingUMID.EditorHeight = 15;
-            this.cboSellingUMID.EvenRowStyle = style34;
-            this.cboSellingUMID.FlatStyle = C1.Win.C1List.FlatModeEnum.System;
-            this.cboSellingUMID.FooterStyle = style35;
-            this.cboSellingUMID.GapHeight = 2;
-            this.cboSellingUMID.HeadingStyle = style36;
-            this.cboSellingUMID.HighLightRowStyle = style37;
+            this.cboSellingUMID.Images.Add(((System.Drawing.Image)(resources.GetObject("cboSellingUMID.Images"))));
             this.cboSellingUMID.ItemHeight = 15;
-            resources.ApplyResources(this.cboSellingUMID, "cboSellingUMID");
             this.cboSellingUMID.MatchEntryTimeout = ((long)(2000));
             this.cboSellingUMID.MaxDropDownItems = ((short)(5));
             this.cboSellingUMID.MaxLength = 32767;
             this.cboSellingUMID.MouseCursor = System.Windows.Forms.Cursors.Default;
             this.cboSellingUMID.Name = "cboSellingUMID";
-            this.cboSellingUMID.OddRowStyle = style38;
-            this.cboSellingUMID.RowDivider.Color = System.Drawing.Color.DarkGray;
             this.cboSellingUMID.RowDivider.Style = C1.Win.C1List.LineStyleEnum.None;
             this.cboSellingUMID.RowSubDividerColor = System.Drawing.Color.DarkGray;
-            this.cboSellingUMID.SelectedStyle = style39;
-            this.cboSellingUMID.Style = style40;
-            this.cboSellingUMID.Leave += new System.EventHandler(this.OnLeaveControl);
+            this.cboSellingUMID.VisualStyle = C1.Win.C1List.VisualStyle.Office2010Blue;
             this.cboSellingUMID.Enter += new System.EventHandler(this.OnEnterControl);
+            this.cboSellingUMID.Leave += new System.EventHandler(this.OnLeaveControl);
             this.cboSellingUMID.PropBag = resources.GetString("cboSellingUMID.PropBag");
             // 
             // cboBuyingUMID
             // 
             this.cboBuyingUMID.AddItemSeparator = ';';
-            this.cboBuyingUMID.Caption = "";
+            resources.ApplyResources(this.cboBuyingUMID, "cboBuyingUMID");
             this.cboBuyingUMID.CaptionHeight = 17;
-            this.cboBuyingUMID.CaptionStyle = style41;
             this.cboBuyingUMID.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.cboBuyingUMID.ColumnCaptionHeight = 17;
             this.cboBuyingUMID.ColumnFooterHeight = 17;
             this.cboBuyingUMID.ComboStyle = C1.Win.C1List.ComboStyleEnum.DropdownList;
-            this.cboBuyingUMID.ContentHeight = 15;
             this.cboBuyingUMID.DeadAreaBackColor = System.Drawing.Color.Empty;
             this.cboBuyingUMID.DropdownPosition = C1.Win.C1List.DropdownPositionEnum.LeftDown;
             this.cboBuyingUMID.DropDownWidth = 200;
             this.cboBuyingUMID.EditorBackColor = System.Drawing.SystemColors.Window;
             this.cboBuyingUMID.EditorFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboBuyingUMID.EditorForeColor = System.Drawing.SystemColors.WindowText;
-            this.cboBuyingUMID.EditorHeight = 15;
-            this.cboBuyingUMID.EvenRowStyle = style42;
-            this.cboBuyingUMID.FlatStyle = C1.Win.C1List.FlatModeEnum.System;
-            this.cboBuyingUMID.FooterStyle = style43;
-            this.cboBuyingUMID.GapHeight = 2;
-            this.cboBuyingUMID.HeadingStyle = style44;
-            this.cboBuyingUMID.HighLightRowStyle = style45;
+            this.cboBuyingUMID.Images.Add(((System.Drawing.Image)(resources.GetObject("cboBuyingUMID.Images"))));
             this.cboBuyingUMID.ItemHeight = 15;
-            resources.ApplyResources(this.cboBuyingUMID, "cboBuyingUMID");
             this.cboBuyingUMID.MatchEntryTimeout = ((long)(2000));
             this.cboBuyingUMID.MaxDropDownItems = ((short)(5));
             this.cboBuyingUMID.MaxLength = 32767;
             this.cboBuyingUMID.MouseCursor = System.Windows.Forms.Cursors.Default;
             this.cboBuyingUMID.Name = "cboBuyingUMID";
-            this.cboBuyingUMID.OddRowStyle = style46;
-            this.cboBuyingUMID.RowDivider.Color = System.Drawing.Color.DarkGray;
             this.cboBuyingUMID.RowDivider.Style = C1.Win.C1List.LineStyleEnum.None;
             this.cboBuyingUMID.RowSubDividerColor = System.Drawing.Color.DarkGray;
-            this.cboBuyingUMID.SelectedStyle = style47;
-            this.cboBuyingUMID.Style = style48;
+            this.cboBuyingUMID.VisualStyle = C1.Win.C1List.VisualStyle.Office2010Blue;
             this.cboBuyingUMID.TextChanged += new System.EventHandler(this.cboBuyingUMID_TextChanged);
-            this.cboBuyingUMID.Leave += new System.EventHandler(this.OnLeaveControl);
             this.cboBuyingUMID.Enter += new System.EventHandler(this.OnEnterControl);
+            this.cboBuyingUMID.Leave += new System.EventHandler(this.OnLeaveControl);
             this.cboBuyingUMID.PropBag = resources.GetString("cboBuyingUMID.PropBag");
             // 
             // cboStockUMID
             // 
             this.cboStockUMID.AddItemSeparator = ';';
-            this.cboStockUMID.Caption = "";
+            resources.ApplyResources(this.cboStockUMID, "cboStockUMID");
             this.cboStockUMID.CaptionHeight = 17;
-            this.cboStockUMID.CaptionStyle = style49;
             this.cboStockUMID.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.cboStockUMID.ColumnCaptionHeight = 17;
             this.cboStockUMID.ColumnFooterHeight = 17;
             this.cboStockUMID.ComboStyle = C1.Win.C1List.ComboStyleEnum.DropdownList;
-            this.cboStockUMID.ContentHeight = 15;
             this.cboStockUMID.DeadAreaBackColor = System.Drawing.Color.Empty;
             this.cboStockUMID.DropdownPosition = C1.Win.C1List.DropdownPositionEnum.LeftDown;
             this.cboStockUMID.DropDownWidth = 200;
             this.cboStockUMID.EditorBackColor = System.Drawing.SystemColors.Window;
             this.cboStockUMID.EditorFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboStockUMID.EditorForeColor = System.Drawing.SystemColors.WindowText;
-            this.cboStockUMID.EditorHeight = 15;
-            this.cboStockUMID.EvenRowStyle = style50;
-            this.cboStockUMID.FlatStyle = C1.Win.C1List.FlatModeEnum.System;
-            this.cboStockUMID.FooterStyle = style51;
-            this.cboStockUMID.GapHeight = 2;
-            this.cboStockUMID.HeadingStyle = style52;
-            this.cboStockUMID.HighLightRowStyle = style53;
+            this.cboStockUMID.Images.Add(((System.Drawing.Image)(resources.GetObject("cboStockUMID.Images"))));
             this.cboStockUMID.ItemHeight = 15;
-            resources.ApplyResources(this.cboStockUMID, "cboStockUMID");
             this.cboStockUMID.MatchEntryTimeout = ((long)(2000));
             this.cboStockUMID.MaxDropDownItems = ((short)(5));
             this.cboStockUMID.MaxLength = 32767;
             this.cboStockUMID.MouseCursor = System.Windows.Forms.Cursors.Default;
             this.cboStockUMID.Name = "cboStockUMID";
-            this.cboStockUMID.OddRowStyle = style54;
-            this.cboStockUMID.RowDivider.Color = System.Drawing.Color.DarkGray;
             this.cboStockUMID.RowDivider.Style = C1.Win.C1List.LineStyleEnum.None;
             this.cboStockUMID.RowSubDividerColor = System.Drawing.Color.DarkGray;
-            this.cboStockUMID.SelectedStyle = style55;
-            this.cboStockUMID.Style = style56;
+            this.cboStockUMID.VisualStyle = C1.Win.C1List.VisualStyle.Office2010Blue;
             this.cboStockUMID.TextChanged += new System.EventHandler(this.cboStockUMID_TextChanged);
-            this.cboStockUMID.Leave += new System.EventHandler(this.OnLeaveControl);
             this.cboStockUMID.Enter += new System.EventHandler(this.OnEnterControl);
+            this.cboStockUMID.Leave += new System.EventHandler(this.OnLeaveControl);
             this.cboStockUMID.PropBag = resources.GetString("cboStockUMID.PropBag");
             // 
             // cboReasonID
             // 
             this.cboReasonID.AddItemSeparator = ';';
-            this.cboReasonID.Caption = "";
+            resources.ApplyResources(this.cboReasonID, "cboReasonID");
             this.cboReasonID.CaptionHeight = 17;
-            this.cboReasonID.CaptionStyle = style57;
             this.cboReasonID.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.cboReasonID.ColumnCaptionHeight = 17;
             this.cboReasonID.ColumnFooterHeight = 17;
             this.cboReasonID.ComboStyle = C1.Win.C1List.ComboStyleEnum.DropdownList;
-            this.cboReasonID.ContentHeight = 15;
             this.cboReasonID.DeadAreaBackColor = System.Drawing.Color.Empty;
             this.cboReasonID.DropDownWidth = 200;
             this.cboReasonID.EditorBackColor = System.Drawing.SystemColors.Window;
             this.cboReasonID.EditorFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboReasonID.EditorForeColor = System.Drawing.SystemColors.WindowText;
-            this.cboReasonID.EditorHeight = 15;
-            this.cboReasonID.EvenRowStyle = style58;
-            this.cboReasonID.FlatStyle = C1.Win.C1List.FlatModeEnum.System;
-            this.cboReasonID.FooterStyle = style59;
-            this.cboReasonID.GapHeight = 2;
-            this.cboReasonID.HeadingStyle = style60;
-            this.cboReasonID.HighLightRowStyle = style61;
+            this.cboReasonID.Images.Add(((System.Drawing.Image)(resources.GetObject("cboReasonID.Images"))));
             this.cboReasonID.ItemHeight = 15;
-            resources.ApplyResources(this.cboReasonID, "cboReasonID");
             this.cboReasonID.MatchEntryTimeout = ((long)(2000));
             this.cboReasonID.MaxDropDownItems = ((short)(5));
             this.cboReasonID.MaxLength = 32767;
             this.cboReasonID.MouseCursor = System.Windows.Forms.Cursors.Default;
             this.cboReasonID.Name = "cboReasonID";
-            this.cboReasonID.OddRowStyle = style62;
-            this.cboReasonID.RowDivider.Color = System.Drawing.Color.DarkGray;
             this.cboReasonID.RowDivider.Style = C1.Win.C1List.LineStyleEnum.None;
             this.cboReasonID.RowSubDividerColor = System.Drawing.Color.DarkGray;
-            this.cboReasonID.SelectedStyle = style63;
-            this.cboReasonID.Style = style64;
+            this.cboReasonID.VisualStyle = C1.Win.C1List.VisualStyle.Office2010Blue;
             this.cboReasonID.PropBag = resources.GetString("cboReasonID.PropBag");
             // 
             // cboHazardID
             // 
             this.cboHazardID.AddItemSeparator = ';';
-            this.cboHazardID.Caption = "";
+            resources.ApplyResources(this.cboHazardID, "cboHazardID");
             this.cboHazardID.CaptionHeight = 17;
-            this.cboHazardID.CaptionStyle = style65;
             this.cboHazardID.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.cboHazardID.ColumnCaptionHeight = 17;
             this.cboHazardID.ColumnFooterHeight = 17;
             this.cboHazardID.ComboStyle = C1.Win.C1List.ComboStyleEnum.DropdownList;
-            this.cboHazardID.ContentHeight = 15;
             this.cboHazardID.DeadAreaBackColor = System.Drawing.Color.Empty;
             this.cboHazardID.DropDownWidth = 200;
             this.cboHazardID.EditorBackColor = System.Drawing.SystemColors.Window;
             this.cboHazardID.EditorFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboHazardID.EditorForeColor = System.Drawing.SystemColors.WindowText;
-            this.cboHazardID.EditorHeight = 15;
-            this.cboHazardID.EvenRowStyle = style66;
-            this.cboHazardID.FlatStyle = C1.Win.C1List.FlatModeEnum.System;
-            this.cboHazardID.FooterStyle = style67;
-            this.cboHazardID.GapHeight = 2;
-            this.cboHazardID.HeadingStyle = style68;
-            this.cboHazardID.HighLightRowStyle = style69;
+            this.cboHazardID.Images.Add(((System.Drawing.Image)(resources.GetObject("cboHazardID.Images"))));
             this.cboHazardID.ItemHeight = 15;
-            resources.ApplyResources(this.cboHazardID, "cboHazardID");
             this.cboHazardID.MatchEntryTimeout = ((long)(2000));
             this.cboHazardID.MaxDropDownItems = ((short)(5));
             this.cboHazardID.MaxLength = 32767;
             this.cboHazardID.MouseCursor = System.Windows.Forms.Cursors.Default;
             this.cboHazardID.Name = "cboHazardID";
-            this.cboHazardID.OddRowStyle = style70;
-            this.cboHazardID.RowDivider.Color = System.Drawing.Color.DarkGray;
             this.cboHazardID.RowDivider.Style = C1.Win.C1List.LineStyleEnum.None;
             this.cboHazardID.RowSubDividerColor = System.Drawing.Color.DarkGray;
-            this.cboHazardID.SelectedStyle = style71;
-            this.cboHazardID.Style = style72;
+            this.cboHazardID.VisualStyle = C1.Win.C1List.VisualStyle.Office2010Blue;
             this.cboHazardID.PropBag = resources.GetString("cboHazardID.PropBag");
             // 
             // cboFreightClassID
             // 
             this.cboFreightClassID.AddItemSeparator = ';';
-            this.cboFreightClassID.Caption = "";
+            resources.ApplyResources(this.cboFreightClassID, "cboFreightClassID");
             this.cboFreightClassID.CaptionHeight = 17;
-            this.cboFreightClassID.CaptionStyle = style73;
             this.cboFreightClassID.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.cboFreightClassID.ColumnCaptionHeight = 17;
             this.cboFreightClassID.ColumnFooterHeight = 17;
             this.cboFreightClassID.ComboStyle = C1.Win.C1List.ComboStyleEnum.DropdownList;
-            this.cboFreightClassID.ContentHeight = 15;
             this.cboFreightClassID.DeadAreaBackColor = System.Drawing.Color.Empty;
             this.cboFreightClassID.DropDownWidth = 200;
             this.cboFreightClassID.EditorBackColor = System.Drawing.SystemColors.Window;
             this.cboFreightClassID.EditorFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboFreightClassID.EditorForeColor = System.Drawing.SystemColors.WindowText;
-            this.cboFreightClassID.EditorHeight = 15;
-            this.cboFreightClassID.EvenRowStyle = style74;
-            this.cboFreightClassID.FlatStyle = C1.Win.C1List.FlatModeEnum.System;
-            this.cboFreightClassID.FooterStyle = style75;
-            this.cboFreightClassID.GapHeight = 2;
-            this.cboFreightClassID.HeadingStyle = style76;
-            this.cboFreightClassID.HighLightRowStyle = style77;
+            this.cboFreightClassID.Images.Add(((System.Drawing.Image)(resources.GetObject("cboFreightClassID.Images"))));
             this.cboFreightClassID.ItemHeight = 15;
-            resources.ApplyResources(this.cboFreightClassID, "cboFreightClassID");
             this.cboFreightClassID.MatchEntryTimeout = ((long)(2000));
             this.cboFreightClassID.MaxDropDownItems = ((short)(5));
             this.cboFreightClassID.MaxLength = 32767;
             this.cboFreightClassID.MouseCursor = System.Windows.Forms.Cursors.Default;
             this.cboFreightClassID.Name = "cboFreightClassID";
-            this.cboFreightClassID.OddRowStyle = style78;
-            this.cboFreightClassID.RowDivider.Color = System.Drawing.Color.DarkGray;
             this.cboFreightClassID.RowDivider.Style = C1.Win.C1List.LineStyleEnum.None;
             this.cboFreightClassID.RowSubDividerColor = System.Drawing.Color.DarkGray;
-            this.cboFreightClassID.SelectedStyle = style79;
-            this.cboFreightClassID.Style = style80;
             this.cboFreightClassID.PropBag = resources.GetString("cboFreightClassID.PropBag");
             // 
             // lblBinID
@@ -1296,91 +970,72 @@ namespace PCSProduct.Items
             // 
             // dtmSetupDate
             // 
-            // 
-            // 
-            // 
-            this.dtmSetupDate.Calendar.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("dtmSetupDate.Calendar.ImeMode")));
+            this.dtmSetupDate.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(177)))), ((int)(((byte)(187)))), ((int)(((byte)(214)))));
             resources.ApplyResources(this.dtmSetupDate, "dtmSetupDate");
+            // 
+            // 
+            // 
+            this.dtmSetupDate.Calendar.Font = ((System.Drawing.Font)(resources.GetObject("dtmSetupDate.Calendar.Font")));
+            this.dtmSetupDate.Calendar.ImeMode = ((System.Windows.Forms.ImeMode)(resources.GetObject("dtmSetupDate.Calendar.ImeMode")));
+            this.dtmSetupDate.Calendar.VisualStyle = C1.Win.C1Input.VisualStyle.Office2010Blue;
+            this.dtmSetupDate.Calendar.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue;
             this.dtmSetupDate.Name = "dtmSetupDate";
-            this.dtmSetupDate.Tag = null;
-            this.dtmSetupDate.Leave += new System.EventHandler(this.OnLeaveControl);
+            this.dtmSetupDate.VisualStyle = C1.Win.C1Input.VisualStyle.Office2010Blue;
+            this.dtmSetupDate.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue;
             this.dtmSetupDate.Enter += new System.EventHandler(this.OnEnterControl);
             this.dtmSetupDate.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dtmSetupDate_KeyDown);
+            this.dtmSetupDate.Leave += new System.EventHandler(this.OnLeaveControl);
             // 
             // cboSourceID
             // 
             this.cboSourceID.AddItemSeparator = ';';
-            this.cboSourceID.Caption = "";
+            resources.ApplyResources(this.cboSourceID, "cboSourceID");
             this.cboSourceID.CaptionHeight = 17;
-            this.cboSourceID.CaptionStyle = style81;
             this.cboSourceID.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.cboSourceID.ColumnCaptionHeight = 17;
             this.cboSourceID.ColumnFooterHeight = 17;
             this.cboSourceID.ComboStyle = C1.Win.C1List.ComboStyleEnum.DropdownList;
-            this.cboSourceID.ContentHeight = 15;
             this.cboSourceID.DeadAreaBackColor = System.Drawing.Color.Empty;
             this.cboSourceID.DropDownWidth = 200;
             this.cboSourceID.EditorBackColor = System.Drawing.SystemColors.Window;
             this.cboSourceID.EditorFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboSourceID.EditorForeColor = System.Drawing.SystemColors.WindowText;
-            this.cboSourceID.EditorHeight = 15;
-            this.cboSourceID.EvenRowStyle = style82;
-            this.cboSourceID.FlatStyle = C1.Win.C1List.FlatModeEnum.System;
-            this.cboSourceID.FooterStyle = style83;
-            this.cboSourceID.GapHeight = 2;
-            this.cboSourceID.HeadingStyle = style84;
-            this.cboSourceID.HighLightRowStyle = style85;
+            this.cboSourceID.Images.Add(((System.Drawing.Image)(resources.GetObject("cboSourceID.Images"))));
             this.cboSourceID.ItemHeight = 15;
-            resources.ApplyResources(this.cboSourceID, "cboSourceID");
             this.cboSourceID.MatchEntryTimeout = ((long)(2000));
             this.cboSourceID.MaxDropDownItems = ((short)(5));
             this.cboSourceID.MaxLength = 32767;
             this.cboSourceID.MouseCursor = System.Windows.Forms.Cursors.Default;
             this.cboSourceID.Name = "cboSourceID";
-            this.cboSourceID.OddRowStyle = style86;
-            this.cboSourceID.RowDivider.Color = System.Drawing.Color.DarkGray;
             this.cboSourceID.RowDivider.Style = C1.Win.C1List.LineStyleEnum.None;
             this.cboSourceID.RowSubDividerColor = System.Drawing.Color.DarkGray;
-            this.cboSourceID.SelectedStyle = style87;
-            this.cboSourceID.Style = style88;
+            this.cboSourceID.VisualStyle = C1.Win.C1List.VisualStyle.Office2010Blue;
             this.cboSourceID.PropBag = resources.GetString("cboSourceID.PropBag");
             // 
             // cboCategoryID
             // 
             this.cboCategoryID.AddItemSeparator = ';';
-            this.cboCategoryID.Caption = "";
+            resources.ApplyResources(this.cboCategoryID, "cboCategoryID");
             this.cboCategoryID.CaptionHeight = 17;
-            this.cboCategoryID.CaptionStyle = style89;
             this.cboCategoryID.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.cboCategoryID.ColumnCaptionHeight = 17;
             this.cboCategoryID.ColumnFooterHeight = 17;
             this.cboCategoryID.ComboStyle = C1.Win.C1List.ComboStyleEnum.DropdownList;
-            this.cboCategoryID.ContentHeight = 15;
             this.cboCategoryID.DeadAreaBackColor = System.Drawing.Color.Empty;
             this.cboCategoryID.DropDownWidth = 200;
             this.cboCategoryID.EditorBackColor = System.Drawing.SystemColors.Window;
             this.cboCategoryID.EditorFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboCategoryID.EditorForeColor = System.Drawing.SystemColors.WindowText;
-            this.cboCategoryID.EditorHeight = 15;
-            this.cboCategoryID.EvenRowStyle = style90;
-            this.cboCategoryID.FlatStyle = C1.Win.C1List.FlatModeEnum.System;
-            this.cboCategoryID.FooterStyle = style91;
-            this.cboCategoryID.GapHeight = 2;
-            this.cboCategoryID.HeadingStyle = style92;
-            this.cboCategoryID.HighLightRowStyle = style93;
+            this.cboCategoryID.Images.Add(((System.Drawing.Image)(resources.GetObject("cboCategoryID.Images"))));
             this.cboCategoryID.ItemHeight = 15;
-            resources.ApplyResources(this.cboCategoryID, "cboCategoryID");
             this.cboCategoryID.MatchEntryTimeout = ((long)(2000));
             this.cboCategoryID.MaxDropDownItems = ((short)(5));
             this.cboCategoryID.MaxLength = 32767;
             this.cboCategoryID.MouseCursor = System.Windows.Forms.Cursors.Default;
             this.cboCategoryID.Name = "cboCategoryID";
-            this.cboCategoryID.OddRowStyle = style94;
-            this.cboCategoryID.RowDivider.Color = System.Drawing.Color.DarkGray;
             this.cboCategoryID.RowDivider.Style = C1.Win.C1List.LineStyleEnum.None;
             this.cboCategoryID.RowSubDividerColor = System.Drawing.Color.DarkGray;
-            this.cboCategoryID.SelectedStyle = style95;
-            this.cboCategoryID.Style = style96;
+            this.cboCategoryID.VisualStyle = C1.Win.C1List.VisualStyle.Office2010Blue;
             this.cboCategoryID.PropBag = resources.GetString("cboCategoryID.PropBag");
             // 
             // lblSourceID
@@ -1421,8 +1076,8 @@ namespace PCSProduct.Items
             // 
             resources.ApplyResources(this.txtOtherInfo2, "txtOtherInfo2");
             this.txtOtherInfo2.Name = "txtOtherInfo2";
-            this.txtOtherInfo2.Leave += new System.EventHandler(this.OnLeaveControl);
             this.txtOtherInfo2.Enter += new System.EventHandler(this.OnEnterControl);
+            this.txtOtherInfo2.Leave += new System.EventHandler(this.OnLeaveControl);
             // 
             // lblOtherInfo2
             // 
@@ -1433,8 +1088,8 @@ namespace PCSProduct.Items
             // 
             resources.ApplyResources(this.txtOtherInfo1, "txtOtherInfo1");
             this.txtOtherInfo1.Name = "txtOtherInfo1";
-            this.txtOtherInfo1.Leave += new System.EventHandler(this.OnLeaveControl);
             this.txtOtherInfo1.Enter += new System.EventHandler(this.OnEnterControl);
+            this.txtOtherInfo1.Leave += new System.EventHandler(this.OnLeaveControl);
             // 
             // lblOtherInfo1
             // 
@@ -1472,6 +1127,11 @@ namespace PCSProduct.Items
             // 
             // txtLength
             // 
+            // 
+            // 
+            // 
+            this.txtLength.Calculator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
+            this.txtLength.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.System;
             this.txtLength.DisableOnNoData = false;
             resources.ApplyResources(this.txtLength, "txtLength");
             this.txtLength.MaskInfo.ShowLiterals = ((C1.Win.C1Input.ShowLiteralsEnum)(resources.GetObject("txtLength.MaskInfo.ShowLiterals")));
@@ -1479,131 +1139,94 @@ namespace PCSProduct.Items
             this.txtLength.NumericInputKeys = ((C1.Win.C1Input.NumericInputKeyFlags)((C1.Win.C1Input.NumericInputKeyFlags.F9 | C1.Win.C1Input.NumericInputKeyFlags.Decimal)));
             this.txtLength.PostValidation.Intervals.AddRange(new C1.Win.C1Input.ValueInterval[] {
             ((C1.Win.C1Input.ValueInterval)(resources.GetObject("txtLength.PostValidation.Intervals")))});
-            this.txtLength.Tag = null;
-            this.txtLength.Leave += new System.EventHandler(this.OnLeaveControl);
             this.txtLength.Enter += new System.EventHandler(this.OnEnterControl);
+            this.txtLength.Leave += new System.EventHandler(this.OnLeaveControl);
             // 
             // cboWidthUMID
             // 
             this.cboWidthUMID.AddItemSeparator = ';';
-            this.cboWidthUMID.Caption = "";
+            resources.ApplyResources(this.cboWidthUMID, "cboWidthUMID");
             this.cboWidthUMID.CaptionHeight = 17;
-            this.cboWidthUMID.CaptionStyle = style97;
             this.cboWidthUMID.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.cboWidthUMID.ColumnCaptionHeight = 17;
             this.cboWidthUMID.ColumnFooterHeight = 17;
             this.cboWidthUMID.ComboStyle = C1.Win.C1List.ComboStyleEnum.DropdownList;
-            this.cboWidthUMID.ContentHeight = 15;
             this.cboWidthUMID.DeadAreaBackColor = System.Drawing.Color.Empty;
             this.cboWidthUMID.DropdownPosition = C1.Win.C1List.DropdownPositionEnum.LeftUp;
             this.cboWidthUMID.DropDownWidth = 200;
             this.cboWidthUMID.EditorBackColor = System.Drawing.SystemColors.Window;
             this.cboWidthUMID.EditorFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboWidthUMID.EditorForeColor = System.Drawing.SystemColors.WindowText;
-            this.cboWidthUMID.EditorHeight = 15;
-            this.cboWidthUMID.EvenRowStyle = style98;
-            this.cboWidthUMID.FlatStyle = C1.Win.C1List.FlatModeEnum.System;
-            this.cboWidthUMID.FooterStyle = style99;
-            this.cboWidthUMID.GapHeight = 2;
-            this.cboWidthUMID.HeadingStyle = style100;
-            this.cboWidthUMID.HighLightRowStyle = style101;
+            this.cboWidthUMID.Images.Add(((System.Drawing.Image)(resources.GetObject("cboWidthUMID.Images"))));
             this.cboWidthUMID.ItemHeight = 15;
-            resources.ApplyResources(this.cboWidthUMID, "cboWidthUMID");
             this.cboWidthUMID.MatchEntryTimeout = ((long)(2000));
             this.cboWidthUMID.MaxDropDownItems = ((short)(5));
             this.cboWidthUMID.MaxLength = 32767;
             this.cboWidthUMID.MouseCursor = System.Windows.Forms.Cursors.Default;
             this.cboWidthUMID.Name = "cboWidthUMID";
-            this.cboWidthUMID.OddRowStyle = style102;
-            this.cboWidthUMID.RowDivider.Color = System.Drawing.Color.DarkGray;
             this.cboWidthUMID.RowDivider.Style = C1.Win.C1List.LineStyleEnum.None;
             this.cboWidthUMID.RowSubDividerColor = System.Drawing.Color.DarkGray;
-            this.cboWidthUMID.SelectedStyle = style103;
-            this.cboWidthUMID.Style = style104;
-            this.cboWidthUMID.Leave += new System.EventHandler(this.OnLeaveControl);
+            this.cboWidthUMID.VisualStyle = C1.Win.C1List.VisualStyle.Office2010Blue;
             this.cboWidthUMID.Enter += new System.EventHandler(this.OnEnterControl);
+            this.cboWidthUMID.Leave += new System.EventHandler(this.OnLeaveControl);
             this.cboWidthUMID.PropBag = resources.GetString("cboWidthUMID.PropBag");
             // 
             // cboHeightUMID
             // 
             this.cboHeightUMID.AddItemSeparator = ';';
-            this.cboHeightUMID.Caption = "";
+            resources.ApplyResources(this.cboHeightUMID, "cboHeightUMID");
             this.cboHeightUMID.CaptionHeight = 17;
-            this.cboHeightUMID.CaptionStyle = style105;
             this.cboHeightUMID.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.cboHeightUMID.ColumnCaptionHeight = 17;
             this.cboHeightUMID.ColumnFooterHeight = 17;
             this.cboHeightUMID.ComboStyle = C1.Win.C1List.ComboStyleEnum.DropdownList;
-            this.cboHeightUMID.ContentHeight = 15;
             this.cboHeightUMID.DeadAreaBackColor = System.Drawing.Color.Empty;
             this.cboHeightUMID.DropdownPosition = C1.Win.C1List.DropdownPositionEnum.LeftUp;
             this.cboHeightUMID.DropDownWidth = 200;
             this.cboHeightUMID.EditorBackColor = System.Drawing.SystemColors.Window;
             this.cboHeightUMID.EditorFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboHeightUMID.EditorForeColor = System.Drawing.SystemColors.WindowText;
-            this.cboHeightUMID.EditorHeight = 15;
-            this.cboHeightUMID.EvenRowStyle = style106;
-            this.cboHeightUMID.FlatStyle = C1.Win.C1List.FlatModeEnum.System;
-            this.cboHeightUMID.FooterStyle = style107;
-            this.cboHeightUMID.GapHeight = 2;
-            this.cboHeightUMID.HeadingStyle = style108;
-            this.cboHeightUMID.HighLightRowStyle = style109;
+            this.cboHeightUMID.Images.Add(((System.Drawing.Image)(resources.GetObject("cboHeightUMID.Images"))));
             this.cboHeightUMID.ItemHeight = 15;
-            resources.ApplyResources(this.cboHeightUMID, "cboHeightUMID");
             this.cboHeightUMID.MatchEntryTimeout = ((long)(2000));
             this.cboHeightUMID.MaxDropDownItems = ((short)(5));
             this.cboHeightUMID.MaxLength = 32767;
             this.cboHeightUMID.MouseCursor = System.Windows.Forms.Cursors.Default;
             this.cboHeightUMID.Name = "cboHeightUMID";
-            this.cboHeightUMID.OddRowStyle = style110;
-            this.cboHeightUMID.RowDivider.Color = System.Drawing.Color.DarkGray;
             this.cboHeightUMID.RowDivider.Style = C1.Win.C1List.LineStyleEnum.None;
             this.cboHeightUMID.RowSubDividerColor = System.Drawing.Color.DarkGray;
-            this.cboHeightUMID.SelectedStyle = style111;
-            this.cboHeightUMID.Style = style112;
-            this.cboHeightUMID.Leave += new System.EventHandler(this.OnLeaveControl);
+            this.cboHeightUMID.VisualStyle = C1.Win.C1List.VisualStyle.Office2010Blue;
             this.cboHeightUMID.Enter += new System.EventHandler(this.OnEnterControl);
+            this.cboHeightUMID.Leave += new System.EventHandler(this.OnLeaveControl);
             this.cboHeightUMID.PropBag = resources.GetString("cboHeightUMID.PropBag");
             // 
             // cboLengthUMID
             // 
             this.cboLengthUMID.AddItemSeparator = ';';
-            this.cboLengthUMID.Caption = "";
+            resources.ApplyResources(this.cboLengthUMID, "cboLengthUMID");
             this.cboLengthUMID.CaptionHeight = 17;
-            this.cboLengthUMID.CaptionStyle = style113;
             this.cboLengthUMID.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.cboLengthUMID.ColumnCaptionHeight = 17;
             this.cboLengthUMID.ColumnFooterHeight = 17;
             this.cboLengthUMID.ComboStyle = C1.Win.C1List.ComboStyleEnum.DropdownList;
-            this.cboLengthUMID.ContentHeight = 15;
             this.cboLengthUMID.DeadAreaBackColor = System.Drawing.Color.Empty;
             this.cboLengthUMID.DropdownPosition = C1.Win.C1List.DropdownPositionEnum.LeftUp;
             this.cboLengthUMID.DropDownWidth = 200;
             this.cboLengthUMID.EditorBackColor = System.Drawing.SystemColors.Window;
             this.cboLengthUMID.EditorFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboLengthUMID.EditorForeColor = System.Drawing.SystemColors.WindowText;
-            this.cboLengthUMID.EditorHeight = 15;
-            this.cboLengthUMID.EvenRowStyle = style114;
-            this.cboLengthUMID.FlatStyle = C1.Win.C1List.FlatModeEnum.System;
-            this.cboLengthUMID.FooterStyle = style115;
-            this.cboLengthUMID.GapHeight = 2;
-            this.cboLengthUMID.HeadingStyle = style116;
-            this.cboLengthUMID.HighLightRowStyle = style117;
+            this.cboLengthUMID.Images.Add(((System.Drawing.Image)(resources.GetObject("cboLengthUMID.Images"))));
             this.cboLengthUMID.ItemHeight = 15;
-            resources.ApplyResources(this.cboLengthUMID, "cboLengthUMID");
             this.cboLengthUMID.MatchEntryTimeout = ((long)(2000));
             this.cboLengthUMID.MaxDropDownItems = ((short)(5));
             this.cboLengthUMID.MaxLength = 32767;
             this.cboLengthUMID.MouseCursor = System.Windows.Forms.Cursors.Default;
             this.cboLengthUMID.Name = "cboLengthUMID";
-            this.cboLengthUMID.OddRowStyle = style118;
-            this.cboLengthUMID.RowDivider.Color = System.Drawing.Color.DarkGray;
             this.cboLengthUMID.RowDivider.Style = C1.Win.C1List.LineStyleEnum.None;
             this.cboLengthUMID.RowSubDividerColor = System.Drawing.Color.DarkGray;
-            this.cboLengthUMID.SelectedStyle = style119;
-            this.cboLengthUMID.Style = style120;
-            this.cboLengthUMID.Leave += new System.EventHandler(this.OnLeaveControl);
+            this.cboLengthUMID.VisualStyle = C1.Win.C1List.VisualStyle.Office2010Blue;
             this.cboLengthUMID.Enter += new System.EventHandler(this.OnEnterControl);
+            this.cboLengthUMID.Leave += new System.EventHandler(this.OnLeaveControl);
             this.cboLengthUMID.PropBag = resources.GetString("cboLengthUMID.PropBag");
             // 
             // lblWeight
@@ -1647,42 +1270,30 @@ namespace PCSProduct.Items
             // cboWeightUMID
             // 
             this.cboWeightUMID.AddItemSeparator = ';';
-            this.cboWeightUMID.Caption = "";
+            resources.ApplyResources(this.cboWeightUMID, "cboWeightUMID");
             this.cboWeightUMID.CaptionHeight = 17;
-            this.cboWeightUMID.CaptionStyle = style121;
             this.cboWeightUMID.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.cboWeightUMID.ColumnCaptionHeight = 17;
             this.cboWeightUMID.ColumnFooterHeight = 17;
             this.cboWeightUMID.ComboStyle = C1.Win.C1List.ComboStyleEnum.DropdownList;
-            this.cboWeightUMID.ContentHeight = 15;
             this.cboWeightUMID.DeadAreaBackColor = System.Drawing.Color.Empty;
             this.cboWeightUMID.DropdownPosition = C1.Win.C1List.DropdownPositionEnum.LeftUp;
             this.cboWeightUMID.DropDownWidth = 200;
             this.cboWeightUMID.EditorBackColor = System.Drawing.SystemColors.Window;
             this.cboWeightUMID.EditorFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboWeightUMID.EditorForeColor = System.Drawing.SystemColors.WindowText;
-            this.cboWeightUMID.EditorHeight = 15;
-            this.cboWeightUMID.EvenRowStyle = style122;
-            this.cboWeightUMID.FlatStyle = C1.Win.C1List.FlatModeEnum.System;
-            this.cboWeightUMID.FooterStyle = style123;
-            this.cboWeightUMID.GapHeight = 2;
-            this.cboWeightUMID.HeadingStyle = style124;
-            this.cboWeightUMID.HighLightRowStyle = style125;
+            this.cboWeightUMID.Images.Add(((System.Drawing.Image)(resources.GetObject("cboWeightUMID.Images"))));
             this.cboWeightUMID.ItemHeight = 15;
-            resources.ApplyResources(this.cboWeightUMID, "cboWeightUMID");
             this.cboWeightUMID.MatchEntryTimeout = ((long)(2000));
             this.cboWeightUMID.MaxDropDownItems = ((short)(5));
             this.cboWeightUMID.MaxLength = 32767;
             this.cboWeightUMID.MouseCursor = System.Windows.Forms.Cursors.Default;
             this.cboWeightUMID.Name = "cboWeightUMID";
-            this.cboWeightUMID.OddRowStyle = style126;
-            this.cboWeightUMID.RowDivider.Color = System.Drawing.Color.DarkGray;
             this.cboWeightUMID.RowDivider.Style = C1.Win.C1List.LineStyleEnum.None;
             this.cboWeightUMID.RowSubDividerColor = System.Drawing.Color.DarkGray;
-            this.cboWeightUMID.SelectedStyle = style127;
-            this.cboWeightUMID.Style = style128;
-            this.cboWeightUMID.Leave += new System.EventHandler(this.OnLeaveControl);
+            this.cboWeightUMID.VisualStyle = C1.Win.C1List.VisualStyle.Office2010Blue;
             this.cboWeightUMID.Enter += new System.EventHandler(this.OnEnterControl);
+            this.cboWeightUMID.Leave += new System.EventHandler(this.OnLeaveControl);
             this.cboWeightUMID.PropBag = resources.GetString("cboWeightUMID.PropBag");
             // 
             // lblWeightUMID
@@ -1693,6 +1304,11 @@ namespace PCSProduct.Items
             // 
             // txtHeight
             // 
+            // 
+            // 
+            // 
+            this.txtHeight.Calculator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
+            this.txtHeight.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.System;
             this.txtHeight.DisableOnNoData = false;
             resources.ApplyResources(this.txtHeight, "txtHeight");
             this.txtHeight.MaskInfo.ShowLiterals = ((C1.Win.C1Input.ShowLiteralsEnum)(resources.GetObject("txtHeight.MaskInfo.ShowLiterals")));
@@ -1700,12 +1316,16 @@ namespace PCSProduct.Items
             this.txtHeight.NumericInputKeys = ((C1.Win.C1Input.NumericInputKeyFlags)((C1.Win.C1Input.NumericInputKeyFlags.F9 | C1.Win.C1Input.NumericInputKeyFlags.Decimal)));
             this.txtHeight.PostValidation.Intervals.AddRange(new C1.Win.C1Input.ValueInterval[] {
             ((C1.Win.C1Input.ValueInterval)(resources.GetObject("txtHeight.PostValidation.Intervals")))});
-            this.txtHeight.Tag = null;
-            this.txtHeight.Leave += new System.EventHandler(this.OnLeaveControl);
             this.txtHeight.Enter += new System.EventHandler(this.OnEnterControl);
+            this.txtHeight.Leave += new System.EventHandler(this.OnLeaveControl);
             // 
             // txtWidth
             // 
+            // 
+            // 
+            // 
+            this.txtWidth.Calculator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
+            this.txtWidth.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.System;
             this.txtWidth.DisableOnNoData = false;
             resources.ApplyResources(this.txtWidth, "txtWidth");
             this.txtWidth.MaskInfo.ShowLiterals = ((C1.Win.C1Input.ShowLiteralsEnum)(resources.GetObject("txtWidth.MaskInfo.ShowLiterals")));
@@ -1713,12 +1333,16 @@ namespace PCSProduct.Items
             this.txtWidth.NumericInputKeys = ((C1.Win.C1Input.NumericInputKeyFlags)((C1.Win.C1Input.NumericInputKeyFlags.F9 | C1.Win.C1Input.NumericInputKeyFlags.Decimal)));
             this.txtWidth.PostValidation.Intervals.AddRange(new C1.Win.C1Input.ValueInterval[] {
             ((C1.Win.C1Input.ValueInterval)(resources.GetObject("txtWidth.PostValidation.Intervals")))});
-            this.txtWidth.Tag = null;
-            this.txtWidth.Leave += new System.EventHandler(this.OnLeaveControl);
             this.txtWidth.Enter += new System.EventHandler(this.OnEnterControl);
+            this.txtWidth.Leave += new System.EventHandler(this.OnLeaveControl);
             // 
             // txtWeight
             // 
+            // 
+            // 
+            // 
+            this.txtWeight.Calculator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
+            this.txtWeight.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.System;
             this.txtWeight.DisableOnNoData = false;
             resources.ApplyResources(this.txtWeight, "txtWeight");
             this.txtWeight.MaskInfo.ShowLiterals = ((C1.Win.C1Input.ShowLiteralsEnum)(resources.GetObject("txtWeight.MaskInfo.ShowLiterals")));
@@ -1726,9 +1350,8 @@ namespace PCSProduct.Items
             this.txtWeight.NumericInputKeys = ((C1.Win.C1Input.NumericInputKeyFlags)((C1.Win.C1Input.NumericInputKeyFlags.F9 | C1.Win.C1Input.NumericInputKeyFlags.Decimal)));
             this.txtWeight.PostValidation.Intervals.AddRange(new C1.Win.C1Input.ValueInterval[] {
             ((C1.Win.C1Input.ValueInterval)(resources.GetObject("txtWeight.PostValidation.Intervals")))});
-            this.txtWeight.Tag = null;
-            this.txtWeight.Leave += new System.EventHandler(this.OnLeaveControl);
             this.txtWeight.Enter += new System.EventHandler(this.OnEnterControl);
+            this.txtWeight.Leave += new System.EventHandler(this.OnLeaveControl);
             // 
             // lblHazardID
             // 
@@ -1757,214 +1380,157 @@ namespace PCSProduct.Items
             // 
             // txtShelfLife
             // 
+            // 
+            // 
+            // 
+            this.txtShelfLife.Calculator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
+            this.txtShelfLife.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.System;
             this.txtShelfLife.DisableOnNoData = false;
             resources.ApplyResources(this.txtShelfLife, "txtShelfLife");
             this.txtShelfLife.MaskInfo.ShowLiterals = ((C1.Win.C1Input.ShowLiteralsEnum)(resources.GetObject("txtShelfLife.MaskInfo.ShowLiterals")));
             this.txtShelfLife.Name = "txtShelfLife";
-            this.txtShelfLife.NumericInputKeys = ((C1.Win.C1Input.NumericInputKeyFlags)(((C1.Win.C1Input.NumericInputKeyFlags.F9 | C1.Win.C1Input.NumericInputKeyFlags.Decimal)
-                        | C1.Win.C1Input.NumericInputKeyFlags.X)));
-            this.txtShelfLife.Tag = null;
-            this.txtShelfLife.Leave += new System.EventHandler(this.OnLeaveControl);
+            this.txtShelfLife.NumericInputKeys = ((C1.Win.C1Input.NumericInputKeyFlags)(((C1.Win.C1Input.NumericInputKeyFlags.F9 | C1.Win.C1Input.NumericInputKeyFlags.Decimal) 
+            | C1.Win.C1Input.NumericInputKeyFlags.X)));
             this.txtShelfLife.Enter += new System.EventHandler(this.OnEnterControl);
+            this.txtShelfLife.Leave += new System.EventHandler(this.OnLeaveControl);
             // 
             // cboAccountCode
             // 
             this.cboAccountCode.AddItemSeparator = ';';
-            this.cboAccountCode.Caption = "";
+            resources.ApplyResources(this.cboAccountCode, "cboAccountCode");
             this.cboAccountCode.CaptionHeight = 17;
-            this.cboAccountCode.CaptionStyle = style129;
             this.cboAccountCode.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.cboAccountCode.ColumnCaptionHeight = 17;
             this.cboAccountCode.ColumnFooterHeight = 17;
             this.cboAccountCode.ComboStyle = C1.Win.C1List.ComboStyleEnum.DropdownList;
-            this.cboAccountCode.ContentHeight = 15;
             this.cboAccountCode.DeadAreaBackColor = System.Drawing.Color.Empty;
             this.cboAccountCode.DropdownPosition = C1.Win.C1List.DropdownPositionEnum.LeftDown;
             this.cboAccountCode.DropDownWidth = 200;
             this.cboAccountCode.EditorBackColor = System.Drawing.SystemColors.Window;
             this.cboAccountCode.EditorFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboAccountCode.EditorForeColor = System.Drawing.SystemColors.WindowText;
-            this.cboAccountCode.EditorHeight = 15;
-            this.cboAccountCode.EvenRowStyle = style130;
-            this.cboAccountCode.FlatStyle = C1.Win.C1List.FlatModeEnum.System;
-            this.cboAccountCode.FooterStyle = style131;
-            this.cboAccountCode.GapHeight = 2;
-            this.cboAccountCode.HeadingStyle = style132;
-            this.cboAccountCode.HighLightRowStyle = style133;
+            this.cboAccountCode.Images.Add(((System.Drawing.Image)(resources.GetObject("cboAccountCode.Images"))));
             this.cboAccountCode.ItemHeight = 15;
-            resources.ApplyResources(this.cboAccountCode, "cboAccountCode");
             this.cboAccountCode.MatchEntryTimeout = ((long)(2000));
             this.cboAccountCode.MaxDropDownItems = ((short)(5));
             this.cboAccountCode.MaxLength = 32767;
             this.cboAccountCode.MouseCursor = System.Windows.Forms.Cursors.Default;
             this.cboAccountCode.Name = "cboAccountCode";
-            this.cboAccountCode.OddRowStyle = style134;
-            this.cboAccountCode.RowDivider.Color = System.Drawing.Color.DarkGray;
             this.cboAccountCode.RowDivider.Style = C1.Win.C1List.LineStyleEnum.None;
             this.cboAccountCode.RowSubDividerColor = System.Drawing.Color.DarkGray;
-            this.cboAccountCode.SelectedStyle = style135;
-            this.cboAccountCode.Style = style136;
             this.cboAccountCode.PropBag = resources.GetString("cboAccountCode.PropBag");
             // 
             // cboQAStatus
             // 
             this.cboQAStatus.AddItemSeparator = ';';
-            this.cboQAStatus.Caption = "";
+            resources.ApplyResources(this.cboQAStatus, "cboQAStatus");
             this.cboQAStatus.CaptionHeight = 17;
-            this.cboQAStatus.CaptionStyle = style137;
             this.cboQAStatus.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.cboQAStatus.ColumnCaptionHeight = 17;
             this.cboQAStatus.ColumnFooterHeight = 17;
             this.cboQAStatus.ComboStyle = C1.Win.C1List.ComboStyleEnum.DropdownList;
-            this.cboQAStatus.ContentHeight = 15;
             this.cboQAStatus.DeadAreaBackColor = System.Drawing.Color.Empty;
             this.cboQAStatus.DropdownPosition = C1.Win.C1List.DropdownPositionEnum.LeftDown;
             this.cboQAStatus.DropDownWidth = 400;
             this.cboQAStatus.EditorBackColor = System.Drawing.SystemColors.Window;
             this.cboQAStatus.EditorFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboQAStatus.EditorForeColor = System.Drawing.SystemColors.WindowText;
-            this.cboQAStatus.EditorHeight = 15;
-            this.cboQAStatus.EvenRowStyle = style138;
-            this.cboQAStatus.FlatStyle = C1.Win.C1List.FlatModeEnum.System;
-            this.cboQAStatus.FooterStyle = style139;
-            this.cboQAStatus.GapHeight = 2;
-            this.cboQAStatus.HeadingStyle = style140;
-            this.cboQAStatus.HighLightRowStyle = style141;
+            this.cboQAStatus.Images.Add(((System.Drawing.Image)(resources.GetObject("cboQAStatus.Images"))));
             this.cboQAStatus.ItemHeight = 15;
-            resources.ApplyResources(this.cboQAStatus, "cboQAStatus");
             this.cboQAStatus.MatchEntryTimeout = ((long)(2000));
             this.cboQAStatus.MaxDropDownItems = ((short)(5));
             this.cboQAStatus.MaxLength = 32767;
             this.cboQAStatus.MouseCursor = System.Windows.Forms.Cursors.Default;
             this.cboQAStatus.Name = "cboQAStatus";
-            this.cboQAStatus.OddRowStyle = style142;
-            this.cboQAStatus.RowDivider.Color = System.Drawing.Color.DarkGray;
             this.cboQAStatus.RowDivider.Style = C1.Win.C1List.LineStyleEnum.None;
             this.cboQAStatus.RowSubDividerColor = System.Drawing.Color.DarkGray;
-            this.cboQAStatus.SelectedStyle = style143;
-            this.cboQAStatus.Style = style144;
-            this.cboQAStatus.Leave += new System.EventHandler(this.OnLeaveControl);
+            this.cboQAStatus.VisualStyle = C1.Win.C1List.VisualStyle.Office2010Blue;
             this.cboQAStatus.Enter += new System.EventHandler(this.OnEnterControl);
+            this.cboQAStatus.Leave += new System.EventHandler(this.OnLeaveControl);
             this.cboQAStatus.PropBag = resources.GetString("cboQAStatus.PropBag");
             // 
             // cboDeliveryPolicyID
             // 
             this.cboDeliveryPolicyID.AddItemSeparator = ';';
-            this.cboDeliveryPolicyID.Caption = "";
+            resources.ApplyResources(this.cboDeliveryPolicyID, "cboDeliveryPolicyID");
             this.cboDeliveryPolicyID.CaptionHeight = 17;
-            this.cboDeliveryPolicyID.CaptionStyle = style145;
             this.cboDeliveryPolicyID.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.cboDeliveryPolicyID.ColumnCaptionHeight = 17;
             this.cboDeliveryPolicyID.ColumnFooterHeight = 17;
             this.cboDeliveryPolicyID.ComboStyle = C1.Win.C1List.ComboStyleEnum.DropdownList;
-            this.cboDeliveryPolicyID.ContentHeight = 15;
             this.cboDeliveryPolicyID.DeadAreaBackColor = System.Drawing.Color.Empty;
             this.cboDeliveryPolicyID.DropDownWidth = 200;
             this.cboDeliveryPolicyID.EditorBackColor = System.Drawing.SystemColors.Window;
             this.cboDeliveryPolicyID.EditorFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboDeliveryPolicyID.EditorForeColor = System.Drawing.SystemColors.WindowText;
-            this.cboDeliveryPolicyID.EditorHeight = 15;
-            this.cboDeliveryPolicyID.EvenRowStyle = style146;
-            this.cboDeliveryPolicyID.FlatStyle = C1.Win.C1List.FlatModeEnum.System;
-            this.cboDeliveryPolicyID.FooterStyle = style147;
-            this.cboDeliveryPolicyID.GapHeight = 2;
-            this.cboDeliveryPolicyID.HeadingStyle = style148;
-            this.cboDeliveryPolicyID.HighLightRowStyle = style149;
+            this.cboDeliveryPolicyID.Images.Add(((System.Drawing.Image)(resources.GetObject("cboDeliveryPolicyID.Images"))));
             this.cboDeliveryPolicyID.ItemHeight = 15;
-            resources.ApplyResources(this.cboDeliveryPolicyID, "cboDeliveryPolicyID");
             this.cboDeliveryPolicyID.MatchEntryTimeout = ((long)(2000));
             this.cboDeliveryPolicyID.MaxDropDownItems = ((short)(5));
             this.cboDeliveryPolicyID.MaxLength = 32767;
             this.cboDeliveryPolicyID.MouseCursor = System.Windows.Forms.Cursors.Default;
             this.cboDeliveryPolicyID.Name = "cboDeliveryPolicyID";
-            this.cboDeliveryPolicyID.OddRowStyle = style150;
-            this.cboDeliveryPolicyID.RowDivider.Color = System.Drawing.Color.DarkGray;
             this.cboDeliveryPolicyID.RowDivider.Style = C1.Win.C1List.LineStyleEnum.None;
             this.cboDeliveryPolicyID.RowSubDividerColor = System.Drawing.Color.DarkGray;
-            this.cboDeliveryPolicyID.SelectedStyle = style151;
-            this.cboDeliveryPolicyID.Style = style152;
-            this.cboDeliveryPolicyID.Leave += new System.EventHandler(this.OnLeaveControl);
+            this.cboDeliveryPolicyID.VisualStyle = C1.Win.C1List.VisualStyle.Office2010Blue;
             this.cboDeliveryPolicyID.Enter += new System.EventHandler(this.OnEnterControl);
+            this.cboDeliveryPolicyID.Leave += new System.EventHandler(this.OnLeaveControl);
             this.cboDeliveryPolicyID.PropBag = resources.GetString("cboDeliveryPolicyID.PropBag");
             // 
             // cboShipToleranceID
             // 
             this.cboShipToleranceID.AddItemSeparator = ';';
-            this.cboShipToleranceID.Caption = "";
+            resources.ApplyResources(this.cboShipToleranceID, "cboShipToleranceID");
             this.cboShipToleranceID.CaptionHeight = 17;
-            this.cboShipToleranceID.CaptionStyle = style153;
             this.cboShipToleranceID.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.cboShipToleranceID.ColumnCaptionHeight = 17;
             this.cboShipToleranceID.ColumnFooterHeight = 17;
             this.cboShipToleranceID.ComboStyle = C1.Win.C1List.ComboStyleEnum.DropdownList;
-            this.cboShipToleranceID.ContentHeight = 15;
             this.cboShipToleranceID.DeadAreaBackColor = System.Drawing.Color.Empty;
             this.cboShipToleranceID.DropDownWidth = 200;
             this.cboShipToleranceID.EditorBackColor = System.Drawing.SystemColors.Window;
             this.cboShipToleranceID.EditorFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboShipToleranceID.EditorForeColor = System.Drawing.SystemColors.WindowText;
-            this.cboShipToleranceID.EditorHeight = 15;
-            this.cboShipToleranceID.EvenRowStyle = style154;
-            this.cboShipToleranceID.FlatStyle = C1.Win.C1List.FlatModeEnum.System;
-            this.cboShipToleranceID.FooterStyle = style155;
-            this.cboShipToleranceID.GapHeight = 2;
-            this.cboShipToleranceID.HeadingStyle = style156;
-            this.cboShipToleranceID.HighLightRowStyle = style157;
+            this.cboShipToleranceID.Images.Add(((System.Drawing.Image)(resources.GetObject("cboShipToleranceID.Images"))));
             this.cboShipToleranceID.ItemHeight = 15;
-            resources.ApplyResources(this.cboShipToleranceID, "cboShipToleranceID");
             this.cboShipToleranceID.MatchEntryTimeout = ((long)(2000));
             this.cboShipToleranceID.MaxDropDownItems = ((short)(5));
             this.cboShipToleranceID.MaxLength = 32767;
             this.cboShipToleranceID.MouseCursor = System.Windows.Forms.Cursors.Default;
             this.cboShipToleranceID.Name = "cboShipToleranceID";
-            this.cboShipToleranceID.OddRowStyle = style158;
-            this.cboShipToleranceID.RowDivider.Color = System.Drawing.Color.DarkGray;
             this.cboShipToleranceID.RowDivider.Style = C1.Win.C1List.LineStyleEnum.None;
             this.cboShipToleranceID.RowSubDividerColor = System.Drawing.Color.DarkGray;
-            this.cboShipToleranceID.SelectedStyle = style159;
-            this.cboShipToleranceID.Style = style160;
-            this.cboShipToleranceID.Leave += new System.EventHandler(this.OnLeaveControl);
+            this.cboShipToleranceID.VisualStyle = C1.Win.C1List.VisualStyle.Office2010Blue;
             this.cboShipToleranceID.Enter += new System.EventHandler(this.OnEnterControl);
+            this.cboShipToleranceID.Leave += new System.EventHandler(this.OnLeaveControl);
             this.cboShipToleranceID.PropBag = resources.GetString("cboShipToleranceID.PropBag");
             // 
             // cboOrderPolicyID
             // 
             this.cboOrderPolicyID.AddItemSeparator = ';';
-            this.cboOrderPolicyID.Caption = "";
+            resources.ApplyResources(this.cboOrderPolicyID, "cboOrderPolicyID");
             this.cboOrderPolicyID.CaptionHeight = 17;
-            this.cboOrderPolicyID.CaptionStyle = style161;
             this.cboOrderPolicyID.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.cboOrderPolicyID.ColumnCaptionHeight = 17;
             this.cboOrderPolicyID.ColumnFooterHeight = 17;
             this.cboOrderPolicyID.ComboStyle = C1.Win.C1List.ComboStyleEnum.DropdownList;
-            this.cboOrderPolicyID.ContentHeight = 15;
             this.cboOrderPolicyID.DeadAreaBackColor = System.Drawing.Color.Empty;
             this.cboOrderPolicyID.DropDownWidth = 200;
             this.cboOrderPolicyID.EditorBackColor = System.Drawing.SystemColors.Window;
             this.cboOrderPolicyID.EditorFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboOrderPolicyID.EditorForeColor = System.Drawing.SystemColors.WindowText;
-            this.cboOrderPolicyID.EditorHeight = 15;
-            this.cboOrderPolicyID.EvenRowStyle = style162;
-            this.cboOrderPolicyID.FlatStyle = C1.Win.C1List.FlatModeEnum.System;
-            this.cboOrderPolicyID.FooterStyle = style163;
-            this.cboOrderPolicyID.GapHeight = 2;
-            this.cboOrderPolicyID.HeadingStyle = style164;
-            this.cboOrderPolicyID.HighLightRowStyle = style165;
+            this.cboOrderPolicyID.Images.Add(((System.Drawing.Image)(resources.GetObject("cboOrderPolicyID.Images"))));
             this.cboOrderPolicyID.ItemHeight = 15;
-            resources.ApplyResources(this.cboOrderPolicyID, "cboOrderPolicyID");
             this.cboOrderPolicyID.MatchEntryTimeout = ((long)(2000));
             this.cboOrderPolicyID.MaxDropDownItems = ((short)(5));
             this.cboOrderPolicyID.MaxLength = 32767;
             this.cboOrderPolicyID.MouseCursor = System.Windows.Forms.Cursors.Default;
             this.cboOrderPolicyID.Name = "cboOrderPolicyID";
-            this.cboOrderPolicyID.OddRowStyle = style166;
-            this.cboOrderPolicyID.RowDivider.Color = System.Drawing.Color.DarkGray;
             this.cboOrderPolicyID.RowDivider.Style = C1.Win.C1List.LineStyleEnum.None;
             this.cboOrderPolicyID.RowSubDividerColor = System.Drawing.Color.DarkGray;
-            this.cboOrderPolicyID.SelectedStyle = style167;
-            this.cboOrderPolicyID.Style = style168;
-            this.cboOrderPolicyID.Leave += new System.EventHandler(this.OnLeaveControl);
+            this.cboOrderPolicyID.VisualStyle = C1.Win.C1List.VisualStyle.Office2010Blue;
             this.cboOrderPolicyID.Enter += new System.EventHandler(this.OnEnterControl);
+            this.cboOrderPolicyID.Leave += new System.EventHandler(this.OnLeaveControl);
             this.cboOrderPolicyID.PropBag = resources.GetString("cboOrderPolicyID.PropBag");
             // 
             // grpLeadTime
@@ -1992,17 +1558,21 @@ namespace PCSProduct.Items
             // 
             // txtLTFixedTime
             // 
+            // 
+            // 
+            // 
+            this.txtLTFixedTime.Calculator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
+            this.txtLTFixedTime.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.System;
             this.txtLTFixedTime.DisableOnNoData = false;
             resources.ApplyResources(this.txtLTFixedTime, "txtLTFixedTime");
             this.txtLTFixedTime.MaskInfo.ShowLiterals = ((C1.Win.C1Input.ShowLiteralsEnum)(resources.GetObject("txtLTFixedTime.MaskInfo.ShowLiterals")));
             this.txtLTFixedTime.Name = "txtLTFixedTime";
-            this.txtLTFixedTime.NumericInputKeys = ((C1.Win.C1Input.NumericInputKeyFlags)(((C1.Win.C1Input.NumericInputKeyFlags.F9 | C1.Win.C1Input.NumericInputKeyFlags.Decimal)
-                        | C1.Win.C1Input.NumericInputKeyFlags.X)));
+            this.txtLTFixedTime.NumericInputKeys = ((C1.Win.C1Input.NumericInputKeyFlags)(((C1.Win.C1Input.NumericInputKeyFlags.F9 | C1.Win.C1Input.NumericInputKeyFlags.Decimal) 
+            | C1.Win.C1Input.NumericInputKeyFlags.X)));
             this.txtLTFixedTime.PostValidation.Intervals.AddRange(new C1.Win.C1Input.ValueInterval[] {
             ((C1.Win.C1Input.ValueInterval)(resources.GetObject("txtLTFixedTime.PostValidation.Intervals")))});
-            this.txtLTFixedTime.Tag = null;
-            this.txtLTFixedTime.Leave += new System.EventHandler(this.OnLeaveControl);
             this.txtLTFixedTime.Enter += new System.EventHandler(this.OnEnterControl);
+            this.txtLTFixedTime.Leave += new System.EventHandler(this.OnLeaveControl);
             // 
             // lblLTSalesATP
             // 
@@ -2031,88 +1601,112 @@ namespace PCSProduct.Items
             // 
             // txtLTSafetyStock
             // 
+            // 
+            // 
+            // 
+            this.txtLTSafetyStock.Calculator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
+            this.txtLTSafetyStock.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.System;
             this.txtLTSafetyStock.DisableOnNoData = false;
             resources.ApplyResources(this.txtLTSafetyStock, "txtLTSafetyStock");
             this.txtLTSafetyStock.MaskInfo.ShowLiterals = ((C1.Win.C1Input.ShowLiteralsEnum)(resources.GetObject("txtLTSafetyStock.MaskInfo.ShowLiterals")));
             this.txtLTSafetyStock.Name = "txtLTSafetyStock";
-            this.txtLTSafetyStock.NumericInputKeys = ((C1.Win.C1Input.NumericInputKeyFlags)(((C1.Win.C1Input.NumericInputKeyFlags.F9 | C1.Win.C1Input.NumericInputKeyFlags.Decimal)
-                        | C1.Win.C1Input.NumericInputKeyFlags.X)));
+            this.txtLTSafetyStock.NumericInputKeys = ((C1.Win.C1Input.NumericInputKeyFlags)(((C1.Win.C1Input.NumericInputKeyFlags.F9 | C1.Win.C1Input.NumericInputKeyFlags.Decimal) 
+            | C1.Win.C1Input.NumericInputKeyFlags.X)));
             this.txtLTSafetyStock.PostValidation.Intervals.AddRange(new C1.Win.C1Input.ValueInterval[] {
             ((C1.Win.C1Input.ValueInterval)(resources.GetObject("txtLTSafetyStock.PostValidation.Intervals")))});
-            this.txtLTSafetyStock.Tag = null;
-            this.txtLTSafetyStock.Leave += new System.EventHandler(this.OnLeaveControl);
             this.txtLTSafetyStock.Enter += new System.EventHandler(this.OnEnterControl);
+            this.txtLTSafetyStock.Leave += new System.EventHandler(this.OnLeaveControl);
             // 
             // txtLTOrderPrepare
             // 
+            // 
+            // 
+            // 
+            this.txtLTOrderPrepare.Calculator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
+            this.txtLTOrderPrepare.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.System;
             this.txtLTOrderPrepare.DisableOnNoData = false;
             resources.ApplyResources(this.txtLTOrderPrepare, "txtLTOrderPrepare");
             this.txtLTOrderPrepare.MaskInfo.ShowLiterals = ((C1.Win.C1Input.ShowLiteralsEnum)(resources.GetObject("txtLTOrderPrepare.MaskInfo.ShowLiterals")));
             this.txtLTOrderPrepare.Name = "txtLTOrderPrepare";
-            this.txtLTOrderPrepare.NumericInputKeys = ((C1.Win.C1Input.NumericInputKeyFlags)(((C1.Win.C1Input.NumericInputKeyFlags.F9 | C1.Win.C1Input.NumericInputKeyFlags.Decimal)
-                        | C1.Win.C1Input.NumericInputKeyFlags.X)));
+            this.txtLTOrderPrepare.NumericInputKeys = ((C1.Win.C1Input.NumericInputKeyFlags)(((C1.Win.C1Input.NumericInputKeyFlags.F9 | C1.Win.C1Input.NumericInputKeyFlags.Decimal) 
+            | C1.Win.C1Input.NumericInputKeyFlags.X)));
             this.txtLTOrderPrepare.PostValidation.Intervals.AddRange(new C1.Win.C1Input.ValueInterval[] {
             ((C1.Win.C1Input.ValueInterval)(resources.GetObject("txtLTOrderPrepare.PostValidation.Intervals")))});
-            this.txtLTOrderPrepare.Tag = null;
-            this.txtLTOrderPrepare.Leave += new System.EventHandler(this.OnLeaveControl);
             this.txtLTOrderPrepare.Enter += new System.EventHandler(this.OnEnterControl);
+            this.txtLTOrderPrepare.Leave += new System.EventHandler(this.OnLeaveControl);
             // 
             // txtLTDockToStock
             // 
+            // 
+            // 
+            // 
+            this.txtLTDockToStock.Calculator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
+            this.txtLTDockToStock.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.System;
             this.txtLTDockToStock.DisableOnNoData = false;
             resources.ApplyResources(this.txtLTDockToStock, "txtLTDockToStock");
             this.txtLTDockToStock.MaskInfo.ShowLiterals = ((C1.Win.C1Input.ShowLiteralsEnum)(resources.GetObject("txtLTDockToStock.MaskInfo.ShowLiterals")));
             this.txtLTDockToStock.Name = "txtLTDockToStock";
-            this.txtLTDockToStock.NumericInputKeys = ((C1.Win.C1Input.NumericInputKeyFlags)(((C1.Win.C1Input.NumericInputKeyFlags.F9 | C1.Win.C1Input.NumericInputKeyFlags.Decimal)
-                        | C1.Win.C1Input.NumericInputKeyFlags.X)));
+            this.txtLTDockToStock.NumericInputKeys = ((C1.Win.C1Input.NumericInputKeyFlags)(((C1.Win.C1Input.NumericInputKeyFlags.F9 | C1.Win.C1Input.NumericInputKeyFlags.Decimal) 
+            | C1.Win.C1Input.NumericInputKeyFlags.X)));
             this.txtLTDockToStock.PostValidation.Intervals.AddRange(new C1.Win.C1Input.ValueInterval[] {
             ((C1.Win.C1Input.ValueInterval)(resources.GetObject("txtLTDockToStock.PostValidation.Intervals")))});
-            this.txtLTDockToStock.Tag = null;
-            this.txtLTDockToStock.Leave += new System.EventHandler(this.OnLeaveControl);
             this.txtLTDockToStock.Enter += new System.EventHandler(this.OnEnterControl);
+            this.txtLTDockToStock.Leave += new System.EventHandler(this.OnLeaveControl);
             // 
             // txtLTSalesATP
             // 
+            // 
+            // 
+            // 
+            this.txtLTSalesATP.Calculator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
+            this.txtLTSalesATP.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.System;
             this.txtLTSalesATP.DisableOnNoData = false;
             resources.ApplyResources(this.txtLTSalesATP, "txtLTSalesATP");
             this.txtLTSalesATP.MaskInfo.ShowLiterals = ((C1.Win.C1Input.ShowLiteralsEnum)(resources.GetObject("txtLTSalesATP.MaskInfo.ShowLiterals")));
             this.txtLTSalesATP.Name = "txtLTSalesATP";
-            this.txtLTSalesATP.NumericInputKeys = ((C1.Win.C1Input.NumericInputKeyFlags)(((C1.Win.C1Input.NumericInputKeyFlags.F9 | C1.Win.C1Input.NumericInputKeyFlags.Decimal)
-                        | C1.Win.C1Input.NumericInputKeyFlags.X)));
+            this.txtLTSalesATP.NumericInputKeys = ((C1.Win.C1Input.NumericInputKeyFlags)(((C1.Win.C1Input.NumericInputKeyFlags.F9 | C1.Win.C1Input.NumericInputKeyFlags.Decimal) 
+            | C1.Win.C1Input.NumericInputKeyFlags.X)));
             this.txtLTSalesATP.PostValidation.Intervals.AddRange(new C1.Win.C1Input.ValueInterval[] {
             ((C1.Win.C1Input.ValueInterval)(resources.GetObject("txtLTSalesATP.PostValidation.Intervals")))});
-            this.txtLTSalesATP.Tag = null;
-            this.txtLTSalesATP.Leave += new System.EventHandler(this.OnLeaveControl);
             this.txtLTSalesATP.Enter += new System.EventHandler(this.OnEnterControl);
+            this.txtLTSalesATP.Leave += new System.EventHandler(this.OnLeaveControl);
             // 
             // txtLTRequisition
             // 
+            // 
+            // 
+            // 
+            this.txtLTRequisition.Calculator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
+            this.txtLTRequisition.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.System;
             this.txtLTRequisition.DisableOnNoData = false;
             resources.ApplyResources(this.txtLTRequisition, "txtLTRequisition");
             this.txtLTRequisition.MaskInfo.ShowLiterals = ((C1.Win.C1Input.ShowLiteralsEnum)(resources.GetObject("txtLTRequisition.MaskInfo.ShowLiterals")));
             this.txtLTRequisition.Name = "txtLTRequisition";
-            this.txtLTRequisition.NumericInputKeys = ((C1.Win.C1Input.NumericInputKeyFlags)(((C1.Win.C1Input.NumericInputKeyFlags.F9 | C1.Win.C1Input.NumericInputKeyFlags.Decimal)
-                        | C1.Win.C1Input.NumericInputKeyFlags.X)));
+            this.txtLTRequisition.NumericInputKeys = ((C1.Win.C1Input.NumericInputKeyFlags)(((C1.Win.C1Input.NumericInputKeyFlags.F9 | C1.Win.C1Input.NumericInputKeyFlags.Decimal) 
+            | C1.Win.C1Input.NumericInputKeyFlags.X)));
             this.txtLTRequisition.PostValidation.Intervals.AddRange(new C1.Win.C1Input.ValueInterval[] {
             ((C1.Win.C1Input.ValueInterval)(resources.GetObject("txtLTRequisition.PostValidation.Intervals")))});
-            this.txtLTRequisition.Tag = null;
-            this.txtLTRequisition.Leave += new System.EventHandler(this.OnLeaveControl);
             this.txtLTRequisition.Enter += new System.EventHandler(this.OnEnterControl);
             this.txtLTRequisition.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtLTRequisition_KeyDown);
+            this.txtLTRequisition.Leave += new System.EventHandler(this.OnLeaveControl);
             // 
             // txtLTShippingPrepare
             // 
+            // 
+            // 
+            // 
+            this.txtLTShippingPrepare.Calculator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
+            this.txtLTShippingPrepare.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.System;
             this.txtLTShippingPrepare.DisableOnNoData = false;
             resources.ApplyResources(this.txtLTShippingPrepare, "txtLTShippingPrepare");
             this.txtLTShippingPrepare.MaskInfo.ShowLiterals = ((C1.Win.C1Input.ShowLiteralsEnum)(resources.GetObject("txtLTShippingPrepare.MaskInfo.ShowLiterals")));
             this.txtLTShippingPrepare.Name = "txtLTShippingPrepare";
-            this.txtLTShippingPrepare.NumericInputKeys = ((C1.Win.C1Input.NumericInputKeyFlags)(((C1.Win.C1Input.NumericInputKeyFlags.F9 | C1.Win.C1Input.NumericInputKeyFlags.Decimal)
-                        | C1.Win.C1Input.NumericInputKeyFlags.X)));
+            this.txtLTShippingPrepare.NumericInputKeys = ((C1.Win.C1Input.NumericInputKeyFlags)(((C1.Win.C1Input.NumericInputKeyFlags.F9 | C1.Win.C1Input.NumericInputKeyFlags.Decimal) 
+            | C1.Win.C1Input.NumericInputKeyFlags.X)));
             this.txtLTShippingPrepare.PostValidation.Intervals.AddRange(new C1.Win.C1Input.ValueInterval[] {
             ((C1.Win.C1Input.ValueInterval)(resources.GetObject("txtLTShippingPrepare.PostValidation.Intervals")))});
-            this.txtLTShippingPrepare.Tag = null;
-            this.txtLTShippingPrepare.Leave += new System.EventHandler(this.OnLeaveControl);
             this.txtLTShippingPrepare.Enter += new System.EventHandler(this.OnEnterControl);
+            this.txtLTShippingPrepare.Leave += new System.EventHandler(this.OnLeaveControl);
             // 
             // lblLTVariableTime
             // 
@@ -2121,17 +1715,21 @@ namespace PCSProduct.Items
             // 
             // txtLTVariableTime
             // 
+            // 
+            // 
+            // 
+            this.txtLTVariableTime.Calculator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
+            this.txtLTVariableTime.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.System;
             this.txtLTVariableTime.DisableOnNoData = false;
             resources.ApplyResources(this.txtLTVariableTime, "txtLTVariableTime");
             this.txtLTVariableTime.MaskInfo.ShowLiterals = ((C1.Win.C1Input.ShowLiteralsEnum)(resources.GetObject("txtLTVariableTime.MaskInfo.ShowLiterals")));
             this.txtLTVariableTime.Name = "txtLTVariableTime";
-            this.txtLTVariableTime.NumericInputKeys = ((C1.Win.C1Input.NumericInputKeyFlags)(((C1.Win.C1Input.NumericInputKeyFlags.F9 | C1.Win.C1Input.NumericInputKeyFlags.Decimal)
-                        | C1.Win.C1Input.NumericInputKeyFlags.X)));
+            this.txtLTVariableTime.NumericInputKeys = ((C1.Win.C1Input.NumericInputKeyFlags)(((C1.Win.C1Input.NumericInputKeyFlags.F9 | C1.Win.C1Input.NumericInputKeyFlags.Decimal) 
+            | C1.Win.C1Input.NumericInputKeyFlags.X)));
             this.txtLTVariableTime.PostValidation.Intervals.AddRange(new C1.Win.C1Input.ValueInterval[] {
             ((C1.Win.C1Input.ValueInterval)(resources.GetObject("txtLTVariableTime.PostValidation.Intervals")))});
-            this.txtLTVariableTime.Tag = null;
-            this.txtLTVariableTime.Leave += new System.EventHandler(this.OnLeaveControl);
             this.txtLTVariableTime.Enter += new System.EventHandler(this.OnEnterControl);
+            this.txtLTVariableTime.Leave += new System.EventHandler(this.OnLeaveControl);
             // 
             // lblLTOrderPrepare
             // 
@@ -2207,27 +1805,35 @@ namespace PCSProduct.Items
             // 
             // numRoundUpToMin
             // 
+            // 
+            // 
+            // 
+            this.numRoundUpToMin.Calculator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
+            this.numRoundUpToMin.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.System;
             this.numRoundUpToMin.DisableOnNoData = false;
             resources.ApplyResources(this.numRoundUpToMin, "numRoundUpToMin");
             this.numRoundUpToMin.MaskInfo.ShowLiterals = ((C1.Win.C1Input.ShowLiteralsEnum)(resources.GetObject("numRoundUpToMin.MaskInfo.ShowLiterals")));
             this.numRoundUpToMin.Name = "numRoundUpToMin";
-            this.numRoundUpToMin.NumericInputKeys = ((C1.Win.C1Input.NumericInputKeyFlags)(((C1.Win.C1Input.NumericInputKeyFlags.F9 | C1.Win.C1Input.NumericInputKeyFlags.Decimal)
-                        | C1.Win.C1Input.NumericInputKeyFlags.X)));
+            this.numRoundUpToMin.NumericInputKeys = ((C1.Win.C1Input.NumericInputKeyFlags)(((C1.Win.C1Input.NumericInputKeyFlags.F9 | C1.Win.C1Input.NumericInputKeyFlags.Decimal) 
+            | C1.Win.C1Input.NumericInputKeyFlags.X)));
             this.numRoundUpToMin.PostValidation.Intervals.AddRange(new C1.Win.C1Input.ValueInterval[] {
             ((C1.Win.C1Input.ValueInterval)(resources.GetObject("numRoundUpToMin.PostValidation.Intervals")))});
-            this.numRoundUpToMin.Tag = null;
             // 
             // numRoundUpToMultiple
             // 
+            // 
+            // 
+            // 
+            this.numRoundUpToMultiple.Calculator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
+            this.numRoundUpToMultiple.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.System;
             this.numRoundUpToMultiple.DisableOnNoData = false;
             resources.ApplyResources(this.numRoundUpToMultiple, "numRoundUpToMultiple");
             this.numRoundUpToMultiple.MaskInfo.ShowLiterals = ((C1.Win.C1Input.ShowLiteralsEnum)(resources.GetObject("numRoundUpToMultiple.MaskInfo.ShowLiterals")));
             this.numRoundUpToMultiple.Name = "numRoundUpToMultiple";
-            this.numRoundUpToMultiple.NumericInputKeys = ((C1.Win.C1Input.NumericInputKeyFlags)(((C1.Win.C1Input.NumericInputKeyFlags.F9 | C1.Win.C1Input.NumericInputKeyFlags.Decimal)
-                        | C1.Win.C1Input.NumericInputKeyFlags.X)));
+            this.numRoundUpToMultiple.NumericInputKeys = ((C1.Win.C1Input.NumericInputKeyFlags)(((C1.Win.C1Input.NumericInputKeyFlags.F9 | C1.Win.C1Input.NumericInputKeyFlags.Decimal) 
+            | C1.Win.C1Input.NumericInputKeyFlags.X)));
             this.numRoundUpToMultiple.PostValidation.Intervals.AddRange(new C1.Win.C1Input.ValueInterval[] {
             ((C1.Win.C1Input.ValueInterval)(resources.GetObject("numRoundUpToMultiple.PostValidation.Intervals")))});
-            this.numRoundUpToMultiple.Tag = null;
             // 
             // lblRoundUpToMultiple
             // 
@@ -2241,27 +1847,35 @@ namespace PCSProduct.Items
             // 
             // numMinProduce
             // 
+            // 
+            // 
+            // 
+            this.numMinProduce.Calculator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
+            this.numMinProduce.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.System;
             this.numMinProduce.DisableOnNoData = false;
             resources.ApplyResources(this.numMinProduce, "numMinProduce");
             this.numMinProduce.MaskInfo.ShowLiterals = ((C1.Win.C1Input.ShowLiteralsEnum)(resources.GetObject("numMinProduce.MaskInfo.ShowLiterals")));
             this.numMinProduce.Name = "numMinProduce";
-            this.numMinProduce.NumericInputKeys = ((C1.Win.C1Input.NumericInputKeyFlags)(((C1.Win.C1Input.NumericInputKeyFlags.F9 | C1.Win.C1Input.NumericInputKeyFlags.Decimal)
-                        | C1.Win.C1Input.NumericInputKeyFlags.X)));
+            this.numMinProduce.NumericInputKeys = ((C1.Win.C1Input.NumericInputKeyFlags)(((C1.Win.C1Input.NumericInputKeyFlags.F9 | C1.Win.C1Input.NumericInputKeyFlags.Decimal) 
+            | C1.Win.C1Input.NumericInputKeyFlags.X)));
             this.numMinProduce.PostValidation.Intervals.AddRange(new C1.Win.C1Input.ValueInterval[] {
             ((C1.Win.C1Input.ValueInterval)(resources.GetObject("numMinProduce.PostValidation.Intervals")))});
-            this.numMinProduce.Tag = null;
             // 
             // numMaxProduce
             // 
+            // 
+            // 
+            // 
+            this.numMaxProduce.Calculator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
+            this.numMaxProduce.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.System;
             this.numMaxProduce.DisableOnNoData = false;
             resources.ApplyResources(this.numMaxProduce, "numMaxProduce");
             this.numMaxProduce.MaskInfo.ShowLiterals = ((C1.Win.C1Input.ShowLiteralsEnum)(resources.GetObject("numMaxProduce.MaskInfo.ShowLiterals")));
             this.numMaxProduce.Name = "numMaxProduce";
-            this.numMaxProduce.NumericInputKeys = ((C1.Win.C1Input.NumericInputKeyFlags)(((C1.Win.C1Input.NumericInputKeyFlags.F9 | C1.Win.C1Input.NumericInputKeyFlags.Decimal)
-                        | C1.Win.C1Input.NumericInputKeyFlags.X)));
+            this.numMaxProduce.NumericInputKeys = ((C1.Win.C1Input.NumericInputKeyFlags)(((C1.Win.C1Input.NumericInputKeyFlags.F9 | C1.Win.C1Input.NumericInputKeyFlags.Decimal) 
+            | C1.Win.C1Input.NumericInputKeyFlags.X)));
             this.numMaxProduce.PostValidation.Intervals.AddRange(new C1.Win.C1Input.ValueInterval[] {
             ((C1.Win.C1Input.ValueInterval)(resources.GetObject("numMaxProduce.PostValidation.Intervals")))});
-            this.numMaxProduce.Tag = null;
             // 
             // lblMaxProduce
             // 
@@ -2275,15 +1889,19 @@ namespace PCSProduct.Items
             // 
             // numPurchasingPrice
             // 
+            // 
+            // 
+            // 
+            this.numPurchasingPrice.Calculator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
+            this.numPurchasingPrice.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.System;
             this.numPurchasingPrice.DisableOnNoData = false;
             resources.ApplyResources(this.numPurchasingPrice, "numPurchasingPrice");
             this.numPurchasingPrice.MaskInfo.ShowLiterals = ((C1.Win.C1Input.ShowLiteralsEnum)(resources.GetObject("numPurchasingPrice.MaskInfo.ShowLiterals")));
             this.numPurchasingPrice.Name = "numPurchasingPrice";
-            this.numPurchasingPrice.NumericInputKeys = ((C1.Win.C1Input.NumericInputKeyFlags)(((C1.Win.C1Input.NumericInputKeyFlags.F9 | C1.Win.C1Input.NumericInputKeyFlags.Decimal)
-                        | C1.Win.C1Input.NumericInputKeyFlags.X)));
+            this.numPurchasingPrice.NumericInputKeys = ((C1.Win.C1Input.NumericInputKeyFlags)(((C1.Win.C1Input.NumericInputKeyFlags.F9 | C1.Win.C1Input.NumericInputKeyFlags.Decimal) 
+            | C1.Win.C1Input.NumericInputKeyFlags.X)));
             this.numPurchasingPrice.PostValidation.Intervals.AddRange(new C1.Win.C1Input.ValueInterval[] {
             ((C1.Win.C1Input.ValueInterval)(resources.GetObject("numPurchasingPrice.PostValidation.Intervals")))});
-            this.numPurchasingPrice.Tag = null;
             this.numPurchasingPrice.Validating += new System.ComponentModel.CancelEventHandler(this.numPurchasingPrice_Validating);
             // 
             // txtVendorName
@@ -2379,116 +1997,153 @@ namespace PCSProduct.Items
             // 
             // txtSafetyStock
             // 
+            // 
+            // 
+            // 
+            this.txtSafetyStock.Calculator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
+            this.txtSafetyStock.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.System;
             this.txtSafetyStock.DisableOnNoData = false;
             resources.ApplyResources(this.txtSafetyStock, "txtSafetyStock");
             this.txtSafetyStock.MaskInfo.ShowLiterals = ((C1.Win.C1Input.ShowLiteralsEnum)(resources.GetObject("txtSafetyStock.MaskInfo.ShowLiterals")));
             this.txtSafetyStock.Name = "txtSafetyStock";
-            this.txtSafetyStock.NumericInputKeys = ((C1.Win.C1Input.NumericInputKeyFlags)(((C1.Win.C1Input.NumericInputKeyFlags.F9 | C1.Win.C1Input.NumericInputKeyFlags.Decimal)
-                        | C1.Win.C1Input.NumericInputKeyFlags.X)));
+            this.txtSafetyStock.NumericInputKeys = ((C1.Win.C1Input.NumericInputKeyFlags)(((C1.Win.C1Input.NumericInputKeyFlags.F9 | C1.Win.C1Input.NumericInputKeyFlags.Decimal) 
+            | C1.Win.C1Input.NumericInputKeyFlags.X)));
             this.txtSafetyStock.PostValidation.Intervals.AddRange(new C1.Win.C1Input.ValueInterval[] {
             ((C1.Win.C1Input.ValueInterval)(resources.GetObject("txtSafetyStock.PostValidation.Intervals")))});
-            this.txtSafetyStock.Tag = null;
-            this.txtSafetyStock.Leave += new System.EventHandler(this.OnLeaveControl);
             this.txtSafetyStock.Enter += new System.EventHandler(this.OnEnterControl);
+            this.txtSafetyStock.Leave += new System.EventHandler(this.OnLeaveControl);
             // 
             // txtMaximumStock
             // 
+            // 
+            // 
+            // 
+            this.txtMaximumStock.Calculator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
+            this.txtMaximumStock.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.System;
             this.txtMaximumStock.DisableOnNoData = false;
             resources.ApplyResources(this.txtMaximumStock, "txtMaximumStock");
             this.txtMaximumStock.MaskInfo.ShowLiterals = ((C1.Win.C1Input.ShowLiteralsEnum)(resources.GetObject("txtMaximumStock.MaskInfo.ShowLiterals")));
             this.txtMaximumStock.Name = "txtMaximumStock";
-            this.txtMaximumStock.NumericInputKeys = ((C1.Win.C1Input.NumericInputKeyFlags)(((C1.Win.C1Input.NumericInputKeyFlags.F9 | C1.Win.C1Input.NumericInputKeyFlags.Decimal)
-                        | C1.Win.C1Input.NumericInputKeyFlags.X)));
+            this.txtMaximumStock.NumericInputKeys = ((C1.Win.C1Input.NumericInputKeyFlags)(((C1.Win.C1Input.NumericInputKeyFlags.F9 | C1.Win.C1Input.NumericInputKeyFlags.Decimal) 
+            | C1.Win.C1Input.NumericInputKeyFlags.X)));
             this.txtMaximumStock.PostValidation.Intervals.AddRange(new C1.Win.C1Input.ValueInterval[] {
             ((C1.Win.C1Input.ValueInterval)(resources.GetObject("txtMaximumStock.PostValidation.Intervals")))});
-            this.txtMaximumStock.Tag = null;
-            this.txtMaximumStock.Leave += new System.EventHandler(this.OnLeaveControl);
             this.txtMaximumStock.Enter += new System.EventHandler(this.OnEnterControl);
+            this.txtMaximumStock.Leave += new System.EventHandler(this.OnLeaveControl);
             // 
             // txtScrapPercent
             // 
+            // 
+            // 
+            // 
+            this.txtScrapPercent.Calculator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
+            this.txtScrapPercent.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.System;
             this.txtScrapPercent.DisableOnNoData = false;
             resources.ApplyResources(this.txtScrapPercent, "txtScrapPercent");
             this.txtScrapPercent.MaskInfo.ShowLiterals = ((C1.Win.C1Input.ShowLiteralsEnum)(resources.GetObject("txtScrapPercent.MaskInfo.ShowLiterals")));
             this.txtScrapPercent.Name = "txtScrapPercent";
-            this.txtScrapPercent.NumericInputKeys = ((C1.Win.C1Input.NumericInputKeyFlags)(((C1.Win.C1Input.NumericInputKeyFlags.F9 | C1.Win.C1Input.NumericInputKeyFlags.Decimal)
-                        | C1.Win.C1Input.NumericInputKeyFlags.X)));
+            this.txtScrapPercent.NumericInputKeys = ((C1.Win.C1Input.NumericInputKeyFlags)(((C1.Win.C1Input.NumericInputKeyFlags.F9 | C1.Win.C1Input.NumericInputKeyFlags.Decimal) 
+            | C1.Win.C1Input.NumericInputKeyFlags.X)));
             this.txtScrapPercent.PostValidation.Intervals.AddRange(new C1.Win.C1Input.ValueInterval[] {
             ((C1.Win.C1Input.ValueInterval)(resources.GetObject("txtScrapPercent.PostValidation.Intervals")))});
-            this.txtScrapPercent.Tag = null;
-            this.txtScrapPercent.Leave += new System.EventHandler(this.OnLeaveControl);
             this.txtScrapPercent.Enter += new System.EventHandler(this.OnEnterControl);
+            this.txtScrapPercent.Leave += new System.EventHandler(this.OnLeaveControl);
             // 
             // txtVoucherTolerance
             // 
+            // 
+            // 
+            // 
+            this.txtVoucherTolerance.Calculator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
+            this.txtVoucherTolerance.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.System;
             this.txtVoucherTolerance.DisableOnNoData = false;
             resources.ApplyResources(this.txtVoucherTolerance, "txtVoucherTolerance");
             this.txtVoucherTolerance.MaskInfo.ShowLiterals = ((C1.Win.C1Input.ShowLiteralsEnum)(resources.GetObject("txtVoucherTolerance.MaskInfo.ShowLiterals")));
             this.txtVoucherTolerance.Name = "txtVoucherTolerance";
-            this.txtVoucherTolerance.NumericInputKeys = ((C1.Win.C1Input.NumericInputKeyFlags)(((C1.Win.C1Input.NumericInputKeyFlags.F9 | C1.Win.C1Input.NumericInputKeyFlags.Decimal)
-                        | C1.Win.C1Input.NumericInputKeyFlags.X)));
+            this.txtVoucherTolerance.NumericInputKeys = ((C1.Win.C1Input.NumericInputKeyFlags)(((C1.Win.C1Input.NumericInputKeyFlags.F9 | C1.Win.C1Input.NumericInputKeyFlags.Decimal) 
+            | C1.Win.C1Input.NumericInputKeyFlags.X)));
             this.txtVoucherTolerance.PostValidation.Intervals.AddRange(new C1.Win.C1Input.ValueInterval[] {
             ((C1.Win.C1Input.ValueInterval)(resources.GetObject("txtVoucherTolerance.PostValidation.Intervals")))});
-            this.txtVoucherTolerance.Tag = null;
-            this.txtVoucherTolerance.Leave += new System.EventHandler(this.OnLeaveControl);
             this.txtVoucherTolerance.Enter += new System.EventHandler(this.OnEnterControl);
+            this.txtVoucherTolerance.Leave += new System.EventHandler(this.OnLeaveControl);
             // 
             // txtIssueSize
             // 
+            // 
+            // 
+            // 
+            this.txtIssueSize.Calculator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
+            this.txtIssueSize.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.System;
             this.txtIssueSize.DisableOnNoData = false;
             resources.ApplyResources(this.txtIssueSize, "txtIssueSize");
             this.txtIssueSize.MaskInfo.ShowLiterals = ((C1.Win.C1Input.ShowLiteralsEnum)(resources.GetObject("txtIssueSize.MaskInfo.ShowLiterals")));
             this.txtIssueSize.Name = "txtIssueSize";
-            this.txtIssueSize.NumericInputKeys = ((C1.Win.C1Input.NumericInputKeyFlags)(((C1.Win.C1Input.NumericInputKeyFlags.F9 | C1.Win.C1Input.NumericInputKeyFlags.Decimal)
-                        | C1.Win.C1Input.NumericInputKeyFlags.X)));
+            this.txtIssueSize.NumericInputKeys = ((C1.Win.C1Input.NumericInputKeyFlags)(((C1.Win.C1Input.NumericInputKeyFlags.F9 | C1.Win.C1Input.NumericInputKeyFlags.Decimal) 
+            | C1.Win.C1Input.NumericInputKeyFlags.X)));
             this.txtIssueSize.PostValidation.Intervals.AddRange(new C1.Win.C1Input.ValueInterval[] {
             ((C1.Win.C1Input.ValueInterval)(resources.GetObject("txtIssueSize.PostValidation.Intervals")))});
-            this.txtIssueSize.Tag = null;
-            this.txtIssueSize.Leave += new System.EventHandler(this.OnLeaveControl);
             this.txtIssueSize.Enter += new System.EventHandler(this.OnEnterControl);
+            this.txtIssueSize.Leave += new System.EventHandler(this.OnLeaveControl);
             // 
             // txtMinimumStock
             // 
+            // 
+            // 
+            // 
+            this.txtMinimumStock.Calculator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
+            this.txtMinimumStock.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.System;
             this.txtMinimumStock.DisableOnNoData = false;
             resources.ApplyResources(this.txtMinimumStock, "txtMinimumStock");
             this.txtMinimumStock.MaskInfo.ShowLiterals = ((C1.Win.C1Input.ShowLiteralsEnum)(resources.GetObject("txtMinimumStock.MaskInfo.ShowLiterals")));
             this.txtMinimumStock.Name = "txtMinimumStock";
-            this.txtMinimumStock.NumericInputKeys = ((C1.Win.C1Input.NumericInputKeyFlags)(((C1.Win.C1Input.NumericInputKeyFlags.F9 | C1.Win.C1Input.NumericInputKeyFlags.Decimal)
-                        | C1.Win.C1Input.NumericInputKeyFlags.X)));
+            this.txtMinimumStock.NumericInputKeys = ((C1.Win.C1Input.NumericInputKeyFlags)(((C1.Win.C1Input.NumericInputKeyFlags.F9 | C1.Win.C1Input.NumericInputKeyFlags.Decimal) 
+            | C1.Win.C1Input.NumericInputKeyFlags.X)));
             this.txtMinimumStock.PostValidation.Intervals.AddRange(new C1.Win.C1Input.ValueInterval[] {
             ((C1.Win.C1Input.ValueInterval)(resources.GetObject("txtMinimumStock.PostValidation.Intervals")))});
-            this.txtMinimumStock.Tag = null;
-            this.txtMinimumStock.Leave += new System.EventHandler(this.OnLeaveControl);
             this.txtMinimumStock.Enter += new System.EventHandler(this.OnEnterControl);
+            this.txtMinimumStock.Leave += new System.EventHandler(this.OnLeaveControl);
             // 
             // txtConversionTolerance
             // 
+            // 
+            // 
+            // 
+            this.txtConversionTolerance.Calculator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
+            this.txtConversionTolerance.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.System;
             this.txtConversionTolerance.DisableOnNoData = false;
             resources.ApplyResources(this.txtConversionTolerance, "txtConversionTolerance");
             this.txtConversionTolerance.MaskInfo.ShowLiterals = ((C1.Win.C1Input.ShowLiteralsEnum)(resources.GetObject("txtConversionTolerance.MaskInfo.ShowLiterals")));
             this.txtConversionTolerance.Name = "txtConversionTolerance";
-            this.txtConversionTolerance.NumericInputKeys = ((C1.Win.C1Input.NumericInputKeyFlags)(((C1.Win.C1Input.NumericInputKeyFlags.F9 | C1.Win.C1Input.NumericInputKeyFlags.Decimal)
-                        | C1.Win.C1Input.NumericInputKeyFlags.X)));
+            this.txtConversionTolerance.NumericInputKeys = ((C1.Win.C1Input.NumericInputKeyFlags)(((C1.Win.C1Input.NumericInputKeyFlags.F9 | C1.Win.C1Input.NumericInputKeyFlags.Decimal) 
+            | C1.Win.C1Input.NumericInputKeyFlags.X)));
             this.txtConversionTolerance.PostValidation.Intervals.AddRange(new C1.Win.C1Input.ValueInterval[] {
             ((C1.Win.C1Input.ValueInterval)(resources.GetObject("txtConversionTolerance.PostValidation.Intervals")))});
-            this.txtConversionTolerance.Tag = null;
-            this.txtConversionTolerance.Leave += new System.EventHandler(this.OnLeaveControl);
             this.txtConversionTolerance.Enter += new System.EventHandler(this.OnEnterControl);
+            this.txtConversionTolerance.Leave += new System.EventHandler(this.OnLeaveControl);
             // 
             // txtOrderPoint
             // 
+            // 
+            // 
+            // 
+            this.txtOrderPoint.Calculator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
+            this.txtOrderPoint.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.System;
             this.txtOrderPoint.DisableOnNoData = false;
             resources.ApplyResources(this.txtOrderPoint, "txtOrderPoint");
             this.txtOrderPoint.MaskInfo.ShowLiterals = ((C1.Win.C1Input.ShowLiteralsEnum)(resources.GetObject("txtOrderPoint.MaskInfo.ShowLiterals")));
             this.txtOrderPoint.Name = "txtOrderPoint";
             this.txtOrderPoint.PostValidation.Intervals.AddRange(new C1.Win.C1Input.ValueInterval[] {
             ((C1.Win.C1Input.ValueInterval)(resources.GetObject("txtOrderPoint.PostValidation.Intervals")))});
-            this.txtOrderPoint.Tag = null;
-            this.txtOrderPoint.Leave += new System.EventHandler(this.OnLeaveControl);
             this.txtOrderPoint.Enter += new System.EventHandler(this.OnEnterControl);
+            this.txtOrderPoint.Leave += new System.EventHandler(this.OnLeaveControl);
             // 
             // txtOrderQuantityMultiple
             // 
+            // 
+            // 
+            // 
+            this.txtOrderQuantityMultiple.Calculator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
+            this.txtOrderQuantityMultiple.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.System;
             this.txtOrderQuantityMultiple.DisableOnNoData = false;
             resources.ApplyResources(this.txtOrderQuantityMultiple, "txtOrderQuantityMultiple");
             this.txtOrderQuantityMultiple.MaskInfo.ShowLiterals = ((C1.Win.C1Input.ShowLiteralsEnum)(resources.GetObject("txtOrderQuantityMultiple.MaskInfo.ShowLiterals")));
@@ -2496,12 +2151,16 @@ namespace PCSProduct.Items
             this.txtOrderQuantityMultiple.NumericInputKeys = C1.Win.C1Input.NumericInputKeyFlags.None;
             this.txtOrderQuantityMultiple.PostValidation.Intervals.AddRange(new C1.Win.C1Input.ValueInterval[] {
             ((C1.Win.C1Input.ValueInterval)(resources.GetObject("txtOrderQuantityMultiple.PostValidation.Intervals")))});
-            this.txtOrderQuantityMultiple.Tag = null;
-            this.txtOrderQuantityMultiple.Leave += new System.EventHandler(this.OnLeaveControl);
             this.txtOrderQuantityMultiple.Enter += new System.EventHandler(this.OnEnterControl);
+            this.txtOrderQuantityMultiple.Leave += new System.EventHandler(this.OnLeaveControl);
             // 
             // txtOrderQuantity
             // 
+            // 
+            // 
+            // 
+            this.txtOrderQuantity.Calculator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
+            this.txtOrderQuantity.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.System;
             this.txtOrderQuantity.DisableOnNoData = false;
             resources.ApplyResources(this.txtOrderQuantity, "txtOrderQuantity");
             this.txtOrderQuantity.MaskInfo.ShowLiterals = ((C1.Win.C1Input.ShowLiteralsEnum)(resources.GetObject("txtOrderQuantity.MaskInfo.ShowLiterals")));
@@ -2509,90 +2168,65 @@ namespace PCSProduct.Items
             this.txtOrderQuantity.NumericInputKeys = C1.Win.C1Input.NumericInputKeyFlags.None;
             this.txtOrderQuantity.PostValidation.Intervals.AddRange(new C1.Win.C1Input.ValueInterval[] {
             ((C1.Win.C1Input.ValueInterval)(resources.GetObject("txtOrderQuantity.PostValidation.Intervals")))});
-            this.txtOrderQuantity.Tag = null;
-            this.txtOrderQuantity.Leave += new System.EventHandler(this.OnLeaveControl);
             this.txtOrderQuantity.Enter += new System.EventHandler(this.OnEnterControl);
+            this.txtOrderQuantity.Leave += new System.EventHandler(this.OnLeaveControl);
             // 
             // cboVendorLocationID
             // 
             this.cboVendorLocationID.AddItemSeparator = ';';
-            this.cboVendorLocationID.Caption = "";
+            resources.ApplyResources(this.cboVendorLocationID, "cboVendorLocationID");
             this.cboVendorLocationID.CaptionHeight = 17;
-            this.cboVendorLocationID.CaptionStyle = style169;
             this.cboVendorLocationID.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.cboVendorLocationID.ColumnCaptionHeight = 17;
             this.cboVendorLocationID.ColumnFooterHeight = 17;
             this.cboVendorLocationID.ComboStyle = C1.Win.C1List.ComboStyleEnum.DropdownList;
-            this.cboVendorLocationID.ContentHeight = 15;
             this.cboVendorLocationID.DeadAreaBackColor = System.Drawing.Color.Empty;
             this.cboVendorLocationID.DropdownPosition = C1.Win.C1List.DropdownPositionEnum.LeftDown;
             this.cboVendorLocationID.DropDownWidth = 200;
             this.cboVendorLocationID.EditorBackColor = System.Drawing.SystemColors.Window;
             this.cboVendorLocationID.EditorFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboVendorLocationID.EditorForeColor = System.Drawing.SystemColors.WindowText;
-            this.cboVendorLocationID.EditorHeight = 15;
-            this.cboVendorLocationID.EvenRowStyle = style170;
-            this.cboVendorLocationID.FlatStyle = C1.Win.C1List.FlatModeEnum.System;
-            this.cboVendorLocationID.FooterStyle = style171;
-            this.cboVendorLocationID.GapHeight = 2;
-            this.cboVendorLocationID.HeadingStyle = style172;
-            this.cboVendorLocationID.HighLightRowStyle = style173;
+            this.cboVendorLocationID.Images.Add(((System.Drawing.Image)(resources.GetObject("cboVendorLocationID.Images"))));
             this.cboVendorLocationID.ItemHeight = 15;
-            resources.ApplyResources(this.cboVendorLocationID, "cboVendorLocationID");
             this.cboVendorLocationID.MatchEntryTimeout = ((long)(2000));
             this.cboVendorLocationID.MaxDropDownItems = ((short)(5));
             this.cboVendorLocationID.MaxLength = 32767;
             this.cboVendorLocationID.MouseCursor = System.Windows.Forms.Cursors.Default;
             this.cboVendorLocationID.Name = "cboVendorLocationID";
-            this.cboVendorLocationID.OddRowStyle = style174;
-            this.cboVendorLocationID.RowDivider.Color = System.Drawing.Color.DarkGray;
             this.cboVendorLocationID.RowDivider.Style = C1.Win.C1List.LineStyleEnum.None;
             this.cboVendorLocationID.RowSubDividerColor = System.Drawing.Color.DarkGray;
-            this.cboVendorLocationID.SelectedStyle = style175;
-            this.cboVendorLocationID.Style = style176;
-            this.cboVendorLocationID.Leave += new System.EventHandler(this.OnLeaveControl);
+            this.cboVendorLocationID.VisualStyle = C1.Win.C1List.VisualStyle.Office2010Blue;
             this.cboVendorLocationID.Enter += new System.EventHandler(this.OnEnterControl);
+            this.cboVendorLocationID.Leave += new System.EventHandler(this.OnLeaveControl);
             this.cboVendorLocationID.PropBag = resources.GetString("cboVendorLocationID.PropBag");
             // 
             // cboBuyerID
             // 
             this.cboBuyerID.AddItemSeparator = ';';
-            this.cboBuyerID.Caption = "";
+            resources.ApplyResources(this.cboBuyerID, "cboBuyerID");
             this.cboBuyerID.CaptionHeight = 17;
-            this.cboBuyerID.CaptionStyle = style177;
             this.cboBuyerID.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.cboBuyerID.ColumnCaptionHeight = 17;
             this.cboBuyerID.ColumnFooterHeight = 17;
             this.cboBuyerID.ComboStyle = C1.Win.C1List.ComboStyleEnum.DropdownList;
-            this.cboBuyerID.ContentHeight = 15;
             this.cboBuyerID.DeadAreaBackColor = System.Drawing.Color.Empty;
             this.cboBuyerID.DropdownPosition = C1.Win.C1List.DropdownPositionEnum.LeftDown;
             this.cboBuyerID.DropDownWidth = 200;
             this.cboBuyerID.EditorBackColor = System.Drawing.SystemColors.Window;
             this.cboBuyerID.EditorFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboBuyerID.EditorForeColor = System.Drawing.SystemColors.WindowText;
-            this.cboBuyerID.EditorHeight = 15;
-            this.cboBuyerID.EvenRowStyle = style178;
-            this.cboBuyerID.FlatStyle = C1.Win.C1List.FlatModeEnum.System;
-            this.cboBuyerID.FooterStyle = style179;
-            this.cboBuyerID.GapHeight = 2;
-            this.cboBuyerID.HeadingStyle = style180;
-            this.cboBuyerID.HighLightRowStyle = style181;
+            this.cboBuyerID.Images.Add(((System.Drawing.Image)(resources.GetObject("cboBuyerID.Images"))));
             this.cboBuyerID.ItemHeight = 15;
-            resources.ApplyResources(this.cboBuyerID, "cboBuyerID");
             this.cboBuyerID.MatchEntryTimeout = ((long)(2000));
             this.cboBuyerID.MaxDropDownItems = ((short)(5));
             this.cboBuyerID.MaxLength = 32767;
             this.cboBuyerID.MouseCursor = System.Windows.Forms.Cursors.Default;
             this.cboBuyerID.Name = "cboBuyerID";
-            this.cboBuyerID.OddRowStyle = style182;
-            this.cboBuyerID.RowDivider.Color = System.Drawing.Color.DarkGray;
             this.cboBuyerID.RowDivider.Style = C1.Win.C1List.LineStyleEnum.None;
             this.cboBuyerID.RowSubDividerColor = System.Drawing.Color.DarkGray;
-            this.cboBuyerID.SelectedStyle = style183;
-            this.cboBuyerID.Style = style184;
-            this.cboBuyerID.Leave += new System.EventHandler(this.OnLeaveControl);
+            this.cboBuyerID.VisualStyle = C1.Win.C1List.VisualStyle.Office2010Blue;
             this.cboBuyerID.Enter += new System.EventHandler(this.OnEnterControl);
+            this.cboBuyerID.Leave += new System.EventHandler(this.OnLeaveControl);
             this.cboBuyerID.PropBag = resources.GetString("cboBuyerID.PropBag");
             // 
             // lblOrderPoint
@@ -2657,42 +2291,30 @@ namespace PCSProduct.Items
             // cboOrderRuleID
             // 
             this.cboOrderRuleID.AddItemSeparator = ';';
-            this.cboOrderRuleID.Caption = "";
+            resources.ApplyResources(this.cboOrderRuleID, "cboOrderRuleID");
             this.cboOrderRuleID.CaptionHeight = 17;
-            this.cboOrderRuleID.CaptionStyle = style185;
             this.cboOrderRuleID.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.cboOrderRuleID.ColumnCaptionHeight = 17;
             this.cboOrderRuleID.ColumnFooterHeight = 17;
             this.cboOrderRuleID.ComboStyle = C1.Win.C1List.ComboStyleEnum.DropdownList;
-            this.cboOrderRuleID.ContentHeight = 15;
             this.cboOrderRuleID.DeadAreaBackColor = System.Drawing.Color.Empty;
             this.cboOrderRuleID.DropdownPosition = C1.Win.C1List.DropdownPositionEnum.LeftDown;
             this.cboOrderRuleID.DropDownWidth = 200;
             this.cboOrderRuleID.EditorBackColor = System.Drawing.SystemColors.Window;
             this.cboOrderRuleID.EditorFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboOrderRuleID.EditorForeColor = System.Drawing.SystemColors.WindowText;
-            this.cboOrderRuleID.EditorHeight = 15;
-            this.cboOrderRuleID.EvenRowStyle = style186;
-            this.cboOrderRuleID.FlatStyle = C1.Win.C1List.FlatModeEnum.System;
-            this.cboOrderRuleID.FooterStyle = style187;
-            this.cboOrderRuleID.GapHeight = 2;
-            this.cboOrderRuleID.HeadingStyle = style188;
-            this.cboOrderRuleID.HighLightRowStyle = style189;
+            this.cboOrderRuleID.Images.Add(((System.Drawing.Image)(resources.GetObject("cboOrderRuleID.Images"))));
             this.cboOrderRuleID.ItemHeight = 15;
-            resources.ApplyResources(this.cboOrderRuleID, "cboOrderRuleID");
             this.cboOrderRuleID.MatchEntryTimeout = ((long)(2000));
             this.cboOrderRuleID.MaxDropDownItems = ((short)(5));
             this.cboOrderRuleID.MaxLength = 32767;
             this.cboOrderRuleID.MouseCursor = System.Windows.Forms.Cursors.Default;
             this.cboOrderRuleID.Name = "cboOrderRuleID";
-            this.cboOrderRuleID.OddRowStyle = style190;
-            this.cboOrderRuleID.RowDivider.Color = System.Drawing.Color.DarkGray;
             this.cboOrderRuleID.RowDivider.Style = C1.Win.C1List.LineStyleEnum.None;
             this.cboOrderRuleID.RowSubDividerColor = System.Drawing.Color.DarkGray;
-            this.cboOrderRuleID.SelectedStyle = style191;
-            this.cboOrderRuleID.Style = style192;
-            this.cboOrderRuleID.Leave += new System.EventHandler(this.OnLeaveControl);
+            this.cboOrderRuleID.VisualStyle = C1.Win.C1List.VisualStyle.Office2010Blue;
             this.cboOrderRuleID.Enter += new System.EventHandler(this.OnEnterControl);
+            this.cboOrderRuleID.Leave += new System.EventHandler(this.OnLeaveControl);
             this.cboOrderRuleID.PropBag = resources.GetString("cboOrderRuleID.PropBag");
             // 
             // lblConversionTolerance
@@ -2820,46 +2442,34 @@ namespace PCSProduct.Items
             this.txtRevision.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             resources.ApplyResources(this.txtRevision, "txtRevision");
             this.txtRevision.Name = "txtRevision";
-            this.txtRevision.Leave += new System.EventHandler(this.OnLeaveControl);
             this.txtRevision.Enter += new System.EventHandler(this.OnEnterControl);
+            this.txtRevision.Leave += new System.EventHandler(this.OnLeaveControl);
             // 
             // cboCCN
             // 
             this.cboCCN.AddItemSeparator = ';';
-            this.cboCCN.Caption = "";
+            resources.ApplyResources(this.cboCCN, "cboCCN");
             this.cboCCN.CaptionHeight = 17;
-            this.cboCCN.CaptionStyle = style193;
             this.cboCCN.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.cboCCN.ColumnCaptionHeight = 17;
             this.cboCCN.ColumnFooterHeight = 17;
             this.cboCCN.ComboStyle = C1.Win.C1List.ComboStyleEnum.DropdownList;
-            this.cboCCN.ContentHeight = 15;
             this.cboCCN.DeadAreaBackColor = System.Drawing.Color.Empty;
             this.cboCCN.DropdownPosition = C1.Win.C1List.DropdownPositionEnum.RightDown;
             this.cboCCN.DropDownWidth = 200;
             this.cboCCN.EditorBackColor = System.Drawing.SystemColors.Window;
             this.cboCCN.EditorFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboCCN.EditorForeColor = System.Drawing.SystemColors.WindowText;
-            this.cboCCN.EditorHeight = 15;
-            this.cboCCN.EvenRowStyle = style194;
-            this.cboCCN.FlatStyle = C1.Win.C1List.FlatModeEnum.System;
-            this.cboCCN.FooterStyle = style195;
-            this.cboCCN.GapHeight = 2;
-            this.cboCCN.HeadingStyle = style196;
-            this.cboCCN.HighLightRowStyle = style197;
+            this.cboCCN.Images.Add(((System.Drawing.Image)(resources.GetObject("cboCCN.Images"))));
             this.cboCCN.ItemHeight = 15;
-            resources.ApplyResources(this.cboCCN, "cboCCN");
             this.cboCCN.MatchEntryTimeout = ((long)(2000));
             this.cboCCN.MaxDropDownItems = ((short)(5));
             this.cboCCN.MaxLength = 32767;
             this.cboCCN.MouseCursor = System.Windows.Forms.Cursors.Default;
             this.cboCCN.Name = "cboCCN";
-            this.cboCCN.OddRowStyle = style198;
-            this.cboCCN.RowDivider.Color = System.Drawing.Color.DarkGray;
             this.cboCCN.RowDivider.Style = C1.Win.C1List.LineStyleEnum.None;
             this.cboCCN.RowSubDividerColor = System.Drawing.Color.DarkGray;
-            this.cboCCN.SelectedStyle = style199;
-            this.cboCCN.Style = style200;
+            this.cboCCN.VisualStyle = C1.Win.C1List.VisualStyle.Office2010Blue;
             this.cboCCN.Enter += new System.EventHandler(this.OnEnterControl);
             this.cboCCN.PropBag = resources.GetString("cboCCN.PropBag");
             // 
@@ -2874,9 +2484,9 @@ namespace PCSProduct.Items
             this.txtDescription.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             resources.ApplyResources(this.txtDescription, "txtDescription");
             this.txtDescription.Name = "txtDescription";
+            this.txtDescription.Enter += new System.EventHandler(this.OnEnterControl);
             this.txtDescription.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtDescription_KeyDown);
             this.txtDescription.Leave += new System.EventHandler(this.txtDescription_Leave);
-            this.txtDescription.Enter += new System.EventHandler(this.OnEnterControl);
             // 
             // lblDescription
             // 
@@ -2901,9 +2511,9 @@ namespace PCSProduct.Items
             this.txtCode.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             resources.ApplyResources(this.txtCode, "txtCode");
             this.txtCode.Name = "txtCode";
+            this.txtCode.Enter += new System.EventHandler(this.OnEnterControl);
             this.txtCode.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCode_KeyDown);
             this.txtCode.Leave += new System.EventHandler(this.txtCode_Leave);
-            this.txtCode.Enter += new System.EventHandler(this.OnEnterControl);
             // 
             // lblCode
             // 
@@ -2931,7 +2541,9 @@ namespace PCSProduct.Items
             this.tabProductInfo.Controls.Add(this.tabPage3);
             resources.ApplyResources(this.tabProductInfo, "tabProductInfo");
             this.tabProductInfo.Name = "tabProductInfo";
-            this.tabProductInfo.SelectedIndex = 0;
+            this.tabProductInfo.TabStyle = C1.Win.C1Command.TabStyleEnum.WindowsXP;
+            this.tabProductInfo.VisualStyle = C1.Win.C1Command.VisualStyle.System;
+            this.tabProductInfo.VisualStyleBase = C1.Win.C1Command.VisualStyle.System;
             // 
             // tabPage1
             // 
@@ -2979,11 +2591,14 @@ namespace PCSProduct.Items
             this.tabPage1.Controls.Add(this.cboFormatCodeID);
             this.tabPage1.Controls.Add(this.lblFormatCodeID);
             this.tabPage1.Controls.Add(this.lblLotSize);
+            this.tabPage1.Controls.Add(this.lblClassified);
             this.tabPage1.Controls.Add(this.lblReasonID);
+            this.tabPage1.Controls.Add(this.cboClassified);
             this.tabPage1.Controls.Add(this.cboReasonID);
             this.tabPage1.Controls.Add(this.lblSourceID);
             this.tabPage1.Controls.Add(this.lblStockUMID);
             this.tabPage1.Controls.Add(this.lblCategoryID);
+            this.tabPage1.Controls.Add(this.cboItemGroup);
             this.tabPage1.Controls.Add(this.cboHazardID);
             this.tabPage1.Controls.Add(this.chkMakeItem);
             this.tabPage1.Controls.Add(this.cboAccountCode);
@@ -2994,6 +2609,7 @@ namespace PCSProduct.Items
             this.tabPage1.Controls.Add(this.cboSourceID);
             this.tabPage1.Controls.Add(this.cboCategoryID);
             this.tabPage1.Controls.Add(this.txtOtherInfo1);
+            this.tabPage1.Controls.Add(this.lblItemGroup);
             this.tabPage1.Controls.Add(this.lblHazardID);
             this.tabPage1.Controls.Add(this.lblQAStatus);
             this.tabPage1.Controls.Add(this.lblOtherInfo1);
@@ -3005,7 +2621,6 @@ namespace PCSProduct.Items
             this.tabPage1.Controls.Add(this.txtInventor);
             this.tabPage1.Controls.Add(this.btnInventor);
             this.tabPage1.Controls.Add(this.lblInventor);
-            this.tabPage1.ImageIndex = -1;
             this.tabPage1.Name = "tabPage1";
             // 
             // btnViewImage
@@ -3066,50 +2681,42 @@ namespace PCSProduct.Items
             // cboCostMethod
             // 
             this.cboCostMethod.AddItemSeparator = ';';
-            this.cboCostMethod.Caption = "";
+            resources.ApplyResources(this.cboCostMethod, "cboCostMethod");
             this.cboCostMethod.CaptionHeight = 17;
-            this.cboCostMethod.CaptionStyle = style201;
             this.cboCostMethod.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.cboCostMethod.ColumnCaptionHeight = 17;
             this.cboCostMethod.ColumnFooterHeight = 17;
             this.cboCostMethod.ComboStyle = C1.Win.C1List.ComboStyleEnum.DropdownList;
-            this.cboCostMethod.ContentHeight = 15;
             this.cboCostMethod.DeadAreaBackColor = System.Drawing.Color.Empty;
             this.cboCostMethod.DropdownPosition = C1.Win.C1List.DropdownPositionEnum.LeftDown;
             this.cboCostMethod.DropDownWidth = 200;
             this.cboCostMethod.EditorBackColor = System.Drawing.SystemColors.Window;
             this.cboCostMethod.EditorFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboCostMethod.EditorForeColor = System.Drawing.SystemColors.WindowText;
-            this.cboCostMethod.EditorHeight = 15;
-            this.cboCostMethod.EvenRowStyle = style202;
-            this.cboCostMethod.FlatStyle = C1.Win.C1List.FlatModeEnum.System;
-            this.cboCostMethod.FooterStyle = style203;
-            this.cboCostMethod.GapHeight = 2;
-            this.cboCostMethod.HeadingStyle = style204;
-            this.cboCostMethod.HighLightRowStyle = style205;
+            this.cboCostMethod.Images.Add(((System.Drawing.Image)(resources.GetObject("cboCostMethod.Images"))));
             this.cboCostMethod.ItemHeight = 15;
-            resources.ApplyResources(this.cboCostMethod, "cboCostMethod");
             this.cboCostMethod.MatchEntryTimeout = ((long)(2000));
             this.cboCostMethod.MaxDropDownItems = ((short)(5));
             this.cboCostMethod.MaxLength = 32767;
             this.cboCostMethod.MouseCursor = System.Windows.Forms.Cursors.Default;
             this.cboCostMethod.Name = "cboCostMethod";
-            this.cboCostMethod.OddRowStyle = style206;
-            this.cboCostMethod.RowDivider.Color = System.Drawing.Color.DarkGray;
             this.cboCostMethod.RowDivider.Style = C1.Win.C1List.LineStyleEnum.None;
             this.cboCostMethod.RowSubDividerColor = System.Drawing.Color.DarkGray;
-            this.cboCostMethod.SelectedStyle = style207;
-            this.cboCostMethod.Style = style208;
+            this.cboCostMethod.VisualStyle = C1.Win.C1List.VisualStyle.Office2010Blue;
             this.cboCostMethod.PropBag = resources.GetString("cboCostMethod.PropBag");
             // 
             // numQuantitySet
             // 
+            // 
+            // 
+            // 
+            this.numQuantitySet.Calculator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
+            this.numQuantitySet.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.System;
             resources.ApplyResources(this.numQuantitySet, "numQuantitySet");
             this.numQuantitySet.DisableOnNoData = false;
             this.numQuantitySet.MaskInfo.ShowLiterals = ((C1.Win.C1Input.ShowLiteralsEnum)(resources.GetObject("numQuantitySet.MaskInfo.ShowLiterals")));
             this.numQuantitySet.Name = "numQuantitySet";
             this.numQuantitySet.NumericInputKeys = C1.Win.C1Input.NumericInputKeyFlags.None;
-            this.numQuantitySet.Tag = null;
             // 
             // lblQuantitySet
             // 
@@ -3120,8 +2727,8 @@ namespace PCSProduct.Items
             // 
             resources.ApplyResources(this.txtTaxCode, "txtTaxCode");
             this.txtTaxCode.Name = "txtTaxCode";
-            this.txtTaxCode.Leave += new System.EventHandler(this.OnLeaveControl);
             this.txtTaxCode.Enter += new System.EventHandler(this.OnEnterControl);
+            this.txtTaxCode.Leave += new System.EventHandler(this.OnLeaveControl);
             // 
             // lblTaxCode
             // 
@@ -3136,51 +2743,43 @@ namespace PCSProduct.Items
             // cboProductType
             // 
             this.cboProductType.AddItemSeparator = ';';
-            this.cboProductType.Caption = "";
+            resources.ApplyResources(this.cboProductType, "cboProductType");
             this.cboProductType.CaptionHeight = 17;
-            this.cboProductType.CaptionStyle = style209;
             this.cboProductType.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
             this.cboProductType.ColumnCaptionHeight = 17;
             this.cboProductType.ColumnFooterHeight = 17;
             this.cboProductType.ComboStyle = C1.Win.C1List.ComboStyleEnum.DropdownList;
-            this.cboProductType.ContentHeight = 15;
             this.cboProductType.DeadAreaBackColor = System.Drawing.Color.Empty;
             this.cboProductType.DropDownWidth = 200;
             this.cboProductType.EditorBackColor = System.Drawing.SystemColors.Window;
             this.cboProductType.EditorFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboProductType.EditorForeColor = System.Drawing.SystemColors.WindowText;
-            this.cboProductType.EditorHeight = 15;
-            this.cboProductType.EvenRowStyle = style210;
-            this.cboProductType.FlatStyle = C1.Win.C1List.FlatModeEnum.System;
-            this.cboProductType.FooterStyle = style211;
-            this.cboProductType.GapHeight = 2;
-            this.cboProductType.HeadingStyle = style212;
-            this.cboProductType.HighLightRowStyle = style213;
+            this.cboProductType.Images.Add(((System.Drawing.Image)(resources.GetObject("cboProductType.Images"))));
             this.cboProductType.ItemHeight = 15;
-            resources.ApplyResources(this.cboProductType, "cboProductType");
             this.cboProductType.MatchEntryTimeout = ((long)(2000));
             this.cboProductType.MaxDropDownItems = ((short)(5));
             this.cboProductType.MaxLength = 32767;
             this.cboProductType.MouseCursor = System.Windows.Forms.Cursors.Default;
             this.cboProductType.Name = "cboProductType";
-            this.cboProductType.OddRowStyle = style214;
-            this.cboProductType.RowDivider.Color = System.Drawing.Color.DarkGray;
             this.cboProductType.RowDivider.Style = C1.Win.C1List.LineStyleEnum.None;
             this.cboProductType.RowSubDividerColor = System.Drawing.Color.DarkGray;
-            this.cboProductType.SelectedStyle = style215;
-            this.cboProductType.Style = style216;
+            this.cboProductType.VisualStyle = C1.Win.C1List.VisualStyle.Office2010Blue;
             this.cboProductType.PropBag = resources.GetString("cboProductType.PropBag");
             // 
             // numLicenseFee
             // 
+            // 
+            // 
+            // 
+            this.numLicenseFee.Calculator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
+            this.numLicenseFee.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.System;
             resources.ApplyResources(this.numLicenseFee, "numLicenseFee");
             this.numLicenseFee.DisableOnNoData = false;
             this.numLicenseFee.MaskInfo.ShowLiterals = ((C1.Win.C1Input.ShowLiteralsEnum)(resources.GetObject("numLicenseFee.MaskInfo.ShowLiterals")));
             this.numLicenseFee.Name = "numLicenseFee";
             this.numLicenseFee.NumericInputKeys = C1.Win.C1Input.NumericInputKeyFlags.None;
-            this.numLicenseFee.Tag = null;
-            this.numLicenseFee.Leave += new System.EventHandler(this.OnLeaveControl);
             this.numLicenseFee.Enter += new System.EventHandler(this.OnEnterControl);
+            this.numLicenseFee.Leave += new System.EventHandler(this.OnLeaveControl);
             // 
             // lblLicenseFee
             // 
@@ -3204,8 +2803,8 @@ namespace PCSProduct.Items
             resources.ApplyResources(this.txtInventor, "txtInventor");
             this.txtInventor.Name = "txtInventor";
             this.txtInventor.Tag = "0";
-            this.txtInventor.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtInventor_KeyDown);
             this.txtInventor.Enter += new System.EventHandler(this.OnEnterControl);
+            this.txtInventor.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtInventor_KeyDown);
             this.txtInventor.Validating += new System.ComponentModel.CancelEventHandler(this.txtInventor_Validating);
             // 
             // btnInventor
@@ -3235,7 +2834,6 @@ namespace PCSProduct.Items
             this.tabPage2.Controls.Add(this.lblDeliveryPolicyID);
             this.tabPage2.Controls.Add(this.lblOrderPolicyID);
             this.tabPage2.Controls.Add(this.lblShipToleranceID);
-            this.tabPage2.ImageIndex = -1;
             this.tabPage2.Name = "tabPage2";
             // 
             // chkMassOrder
@@ -3262,7 +2860,6 @@ namespace PCSProduct.Items
             this.tabPage3.Controls.Add(this.lblVAT);
             this.tabPage3.Controls.Add(this.lblSpecialTax);
             this.tabPage3.Controls.Add(this.lblImportTax);
-            this.tabPage3.ImageIndex = -1;
             this.tabPage3.Name = "tabPage3";
             // 
             // txtACAdjustment
@@ -3286,72 +2883,88 @@ namespace PCSProduct.Items
             // 
             // txtVAT
             // 
+            // 
+            // 
+            // 
+            this.txtVAT.Calculator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
+            this.txtVAT.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.System;
             this.txtVAT.DisableOnNoData = false;
             resources.ApplyResources(this.txtVAT, "txtVAT");
             this.txtVAT.ErrorInfo.BeepOnError = ((bool)(resources.GetObject("txtVAT.ErrorInfo.BeepOnError")));
             this.txtVAT.ErrorInfo.ErrorMessage = resources.GetString("txtVAT.ErrorInfo.ErrorMessage");
             this.txtVAT.ErrorInfo.ErrorMessageCaption = resources.GetString("txtVAT.ErrorInfo.ErrorMessageCaption");
             this.txtVAT.Name = "txtVAT";
-            this.txtVAT.NumericInputKeys = ((C1.Win.C1Input.NumericInputKeyFlags)(((C1.Win.C1Input.NumericInputKeyFlags.F9 | C1.Win.C1Input.NumericInputKeyFlags.Decimal)
-                        | C1.Win.C1Input.NumericInputKeyFlags.X)));
+            this.txtVAT.NumericInputKeys = ((C1.Win.C1Input.NumericInputKeyFlags)(((C1.Win.C1Input.NumericInputKeyFlags.F9 | C1.Win.C1Input.NumericInputKeyFlags.Decimal) 
+            | C1.Win.C1Input.NumericInputKeyFlags.X)));
             this.txtVAT.PostValidation.Intervals.AddRange(new C1.Win.C1Input.ValueInterval[] {
             ((C1.Win.C1Input.ValueInterval)(resources.GetObject("txtVAT.PostValidation.Intervals")))});
-            this.txtVAT.Tag = null;
             this.txtVAT.TextChanged += new System.EventHandler(this.txtVAT_TextChanged);
-            this.txtVAT.Validated += new System.EventHandler(this.OnLeaveControl);
-            this.txtVAT.Leave += new System.EventHandler(this.OnLeaveControl);
             this.txtVAT.Enter += new System.EventHandler(this.OnEnterControl);
+            this.txtVAT.Leave += new System.EventHandler(this.OnLeaveControl);
+            this.txtVAT.Validated += new System.EventHandler(this.OnLeaveControl);
             // 
             // txtImportTax
             // 
+            // 
+            // 
+            // 
+            this.txtImportTax.Calculator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
+            this.txtImportTax.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.System;
             this.txtImportTax.DisableOnNoData = false;
             resources.ApplyResources(this.txtImportTax, "txtImportTax");
             this.txtImportTax.ErrorInfo.BeepOnError = ((bool)(resources.GetObject("txtImportTax.ErrorInfo.BeepOnError")));
             this.txtImportTax.ErrorInfo.ErrorMessage = resources.GetString("txtImportTax.ErrorInfo.ErrorMessage");
             this.txtImportTax.ErrorInfo.ErrorMessageCaption = resources.GetString("txtImportTax.ErrorInfo.ErrorMessageCaption");
             this.txtImportTax.Name = "txtImportTax";
-            this.txtImportTax.NumericInputKeys = ((C1.Win.C1Input.NumericInputKeyFlags)(((C1.Win.C1Input.NumericInputKeyFlags.F9 | C1.Win.C1Input.NumericInputKeyFlags.Decimal)
-                        | C1.Win.C1Input.NumericInputKeyFlags.X)));
+            this.txtImportTax.NumericInputKeys = ((C1.Win.C1Input.NumericInputKeyFlags)(((C1.Win.C1Input.NumericInputKeyFlags.F9 | C1.Win.C1Input.NumericInputKeyFlags.Decimal) 
+            | C1.Win.C1Input.NumericInputKeyFlags.X)));
             this.txtImportTax.PostValidation.Intervals.AddRange(new C1.Win.C1Input.ValueInterval[] {
             ((C1.Win.C1Input.ValueInterval)(resources.GetObject("txtImportTax.PostValidation.Intervals")))});
-            this.txtImportTax.Tag = null;
-            this.txtImportTax.Validated += new System.EventHandler(this.OnLeaveControl);
-            this.txtImportTax.Leave += new System.EventHandler(this.OnLeaveControl);
             this.txtImportTax.Enter += new System.EventHandler(this.OnEnterControl);
+            this.txtImportTax.Leave += new System.EventHandler(this.OnLeaveControl);
+            this.txtImportTax.Validated += new System.EventHandler(this.OnLeaveControl);
             // 
             // txtExportTax
             // 
+            // 
+            // 
+            // 
+            this.txtExportTax.Calculator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
+            this.txtExportTax.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.System;
             this.txtExportTax.DisableOnNoData = false;
             resources.ApplyResources(this.txtExportTax, "txtExportTax");
             this.txtExportTax.ErrorInfo.ErrorMessage = resources.GetString("txtExportTax.ErrorInfo.ErrorMessage");
             this.txtExportTax.ErrorInfo.ErrorMessageCaption = resources.GetString("txtExportTax.ErrorInfo.ErrorMessageCaption");
             this.txtExportTax.Name = "txtExportTax";
-            this.txtExportTax.NumericInputKeys = ((C1.Win.C1Input.NumericInputKeyFlags)(((C1.Win.C1Input.NumericInputKeyFlags.F9 | C1.Win.C1Input.NumericInputKeyFlags.Decimal)
-                        | C1.Win.C1Input.NumericInputKeyFlags.X)));
+            this.txtExportTax.NumericInputKeys = ((C1.Win.C1Input.NumericInputKeyFlags)(((C1.Win.C1Input.NumericInputKeyFlags.F9 | C1.Win.C1Input.NumericInputKeyFlags.Decimal) 
+            | C1.Win.C1Input.NumericInputKeyFlags.X)));
             this.txtExportTax.PostValidation.Intervals.AddRange(new C1.Win.C1Input.ValueInterval[] {
             ((C1.Win.C1Input.ValueInterval)(resources.GetObject("txtExportTax.PostValidation.Intervals")))});
-            this.txtExportTax.Tag = null;
-            this.txtExportTax.Validated += new System.EventHandler(this.OnLeaveControl);
-            this.txtExportTax.Leave += new System.EventHandler(this.OnLeaveControl);
             this.txtExportTax.Enter += new System.EventHandler(this.OnEnterControl);
+            this.txtExportTax.Leave += new System.EventHandler(this.OnLeaveControl);
+            this.txtExportTax.Validated += new System.EventHandler(this.OnLeaveControl);
             // 
             // txtSpecialTax
             // 
+            // 
+            // 
+            // 
+            this.txtSpecialTax.Calculator.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(227)))), ((int)(((byte)(239)))), ((int)(((byte)(255)))));
+            this.txtSpecialTax.Calculator.VisualStyle = C1.Win.C1Input.VisualStyle.System;
             this.txtSpecialTax.DisableOnNoData = false;
             resources.ApplyResources(this.txtSpecialTax, "txtSpecialTax");
             this.txtSpecialTax.ErrorInfo.BeepOnError = ((bool)(resources.GetObject("txtSpecialTax.ErrorInfo.BeepOnError")));
             this.txtSpecialTax.ErrorInfo.ErrorMessage = resources.GetString("txtSpecialTax.ErrorInfo.ErrorMessage");
             this.txtSpecialTax.ErrorInfo.ErrorMessageCaption = resources.GetString("txtSpecialTax.ErrorInfo.ErrorMessageCaption");
             this.txtSpecialTax.Name = "txtSpecialTax";
-            this.txtSpecialTax.NumericInputKeys = ((C1.Win.C1Input.NumericInputKeyFlags)(((C1.Win.C1Input.NumericInputKeyFlags.F9 | C1.Win.C1Input.NumericInputKeyFlags.Decimal)
-                        | C1.Win.C1Input.NumericInputKeyFlags.X)));
+            this.txtSpecialTax.NumericInputKeys = ((C1.Win.C1Input.NumericInputKeyFlags)(((C1.Win.C1Input.NumericInputKeyFlags.F9 | C1.Win.C1Input.NumericInputKeyFlags.Decimal) 
+            | C1.Win.C1Input.NumericInputKeyFlags.X)));
             this.txtSpecialTax.PostValidation.Intervals.AddRange(new C1.Win.C1Input.ValueInterval[] {
             ((C1.Win.C1Input.ValueInterval)(resources.GetObject("txtSpecialTax.PostValidation.Intervals")))});
-            this.txtSpecialTax.Tag = null;
-            this.txtSpecialTax.Validated += new System.EventHandler(this.OnLeaveControl);
-            this.txtSpecialTax.Leave += new System.EventHandler(this.OnLeaveControl);
             this.txtSpecialTax.Enter += new System.EventHandler(this.OnEnterControl);
             this.txtSpecialTax.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSpecialTax_KeyDown);
+            this.txtSpecialTax.Leave += new System.EventHandler(this.OnLeaveControl);
+            this.txtSpecialTax.Validated += new System.EventHandler(this.OnLeaveControl);
             // 
             // lblExportTax
             // 
@@ -3384,8 +2997,8 @@ namespace PCSProduct.Items
             this.txtPartNameVN.CharacterCasing = System.Windows.Forms.CharacterCasing.Upper;
             resources.ApplyResources(this.txtPartNameVN, "txtPartNameVN");
             this.txtPartNameVN.Name = "txtPartNameVN";
-            this.txtPartNameVN.Leave += new System.EventHandler(this.OnLeaveControl);
             this.txtPartNameVN.Enter += new System.EventHandler(this.OnEnterControl);
+            this.txtPartNameVN.Leave += new System.EventHandler(this.OnLeaveControl);
             // 
             // lblPartNameVN
             // 
@@ -3419,6 +3032,68 @@ namespace PCSProduct.Items
             resources.ApplyResources(this.btnTakingCode, "btnTakingCode");
             this.btnTakingCode.Name = "btnTakingCode";
             this.btnTakingCode.Click += new System.EventHandler(this.btnTakingCode_Click);
+            // 
+            // lblItemGroup
+            // 
+            resources.ApplyResources(this.lblItemGroup, "lblItemGroup");
+            this.lblItemGroup.Name = "lblItemGroup";
+            // 
+            // cboItemGroup
+            // 
+            this.cboItemGroup.AddItemSeparator = ';';
+            resources.ApplyResources(this.cboItemGroup, "cboItemGroup");
+            this.cboItemGroup.CaptionHeight = 17;
+            this.cboItemGroup.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
+            this.cboItemGroup.ColumnCaptionHeight = 17;
+            this.cboItemGroup.ColumnFooterHeight = 17;
+            this.cboItemGroup.ComboStyle = C1.Win.C1List.ComboStyleEnum.DropdownList;
+            this.cboItemGroup.DeadAreaBackColor = System.Drawing.Color.Empty;
+            this.cboItemGroup.DropDownWidth = 200;
+            this.cboItemGroup.EditorBackColor = System.Drawing.SystemColors.Window;
+            this.cboItemGroup.EditorFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboItemGroup.EditorForeColor = System.Drawing.SystemColors.WindowText;
+            this.cboItemGroup.Images.Add(((System.Drawing.Image)(resources.GetObject("cboItemGroup.Images"))));
+            this.cboItemGroup.ItemHeight = 15;
+            this.cboItemGroup.MatchEntryTimeout = ((long)(2000));
+            this.cboItemGroup.MaxDropDownItems = ((short)(5));
+            this.cboItemGroup.MaxLength = 32767;
+            this.cboItemGroup.MouseCursor = System.Windows.Forms.Cursors.Default;
+            this.cboItemGroup.Name = "cboItemGroup";
+            this.cboItemGroup.RowDivider.Style = C1.Win.C1List.LineStyleEnum.None;
+            this.cboItemGroup.RowSubDividerColor = System.Drawing.Color.DarkGray;
+            this.cboItemGroup.VisualStyle = C1.Win.C1List.VisualStyle.Office2010Blue;
+            this.cboItemGroup.PropBag = resources.GetString("cboItemGroup.PropBag");
+            // 
+            // cboClassified
+            // 
+            this.cboClassified.AddItemSeparator = ';';
+            resources.ApplyResources(this.cboClassified, "cboClassified");
+            this.cboClassified.CaptionHeight = 17;
+            this.cboClassified.CharacterCasing = System.Windows.Forms.CharacterCasing.Normal;
+            this.cboClassified.ColumnCaptionHeight = 17;
+            this.cboClassified.ColumnFooterHeight = 17;
+            this.cboClassified.ComboStyle = C1.Win.C1List.ComboStyleEnum.DropdownList;
+            this.cboClassified.DeadAreaBackColor = System.Drawing.Color.Empty;
+            this.cboClassified.DropDownWidth = 200;
+            this.cboClassified.EditorBackColor = System.Drawing.SystemColors.Window;
+            this.cboClassified.EditorFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboClassified.EditorForeColor = System.Drawing.SystemColors.WindowText;
+            this.cboClassified.Images.Add(((System.Drawing.Image)(resources.GetObject("cboClassified.Images"))));
+            this.cboClassified.ItemHeight = 15;
+            this.cboClassified.MatchEntryTimeout = ((long)(2000));
+            this.cboClassified.MaxDropDownItems = ((short)(5));
+            this.cboClassified.MaxLength = 32767;
+            this.cboClassified.MouseCursor = System.Windows.Forms.Cursors.Default;
+            this.cboClassified.Name = "cboClassified";
+            this.cboClassified.RowDivider.Style = C1.Win.C1List.LineStyleEnum.None;
+            this.cboClassified.RowSubDividerColor = System.Drawing.Color.DarkGray;
+            this.cboClassified.VisualStyle = C1.Win.C1List.VisualStyle.Office2010Blue;
+            this.cboClassified.PropBag = resources.GetString("cboClassified.PropBag");
+            // 
+            // lblClassified
+            // 
+            resources.ApplyResources(this.lblClassified, "lblClassified");
+            this.lblClassified.Name = "lblClassified";
             // 
             // ProductItemInfo
             // 
@@ -3455,9 +3130,9 @@ namespace PCSProduct.Items
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.Name = "ProductItemInfo";
-            this.Load += new System.EventHandler(this.ProductItemInfo_Load);
             this.Activated += new System.EventHandler(this.ProductItemInfo_Activated);
             this.Closing += new System.ComponentModel.CancelEventHandler(this.ProductItemInfo_Closing);
+            this.Load += new System.EventHandler(this.ProductItemInfo_Load);
             ((System.ComponentModel.ISupportInitialize)(this.txtPartNumber)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtLotSize)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboFormatCodeID)).EndInit();
@@ -3474,6 +3149,7 @@ namespace PCSProduct.Items
             ((System.ComponentModel.ISupportInitialize)(this.cboSourceID)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboCategoryID)).EndInit();
             this.grpWeightAndSize.ResumeLayout(false);
+            this.grpWeightAndSize.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtLength)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboWidthUMID)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cboHeightUMID)).EndInit();
@@ -3529,12 +3205,15 @@ namespace PCSProduct.Items
             ((System.ComponentModel.ISupportInitialize)(this.cboProductType)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numLicenseFee)).EndInit();
             this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.tabPage3.ResumeLayout(false);
             this.tabPage3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.txtVAT)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtImportTax)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtExportTax)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.txtSpecialTax)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboItemGroup)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.cboClassified)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -3768,14 +3447,12 @@ namespace PCSProduct.Items
         }
         private void LoadDataForCombo()
         {
-            const string METHOD_NAME = THIS + ".LoadDataForCombo()";
             const string QASTATUS_CAPTION = "Status";
             const string QASTATUS_DESC = "Description";
             ProductItemInfoBO objProductItemInfoBO = new ProductItemInfoBO();
             DataTable dtTmp = new DataTable();
 
             //Load data for CNN combo box
-
             FormControlComponents.PutDataIntoC1ComboBox(cboCCN, objProductItemInfoBO.GetCCN(), MST_CCNTable.CODE_FLD, MST_CCNTable.CCNID_FLD, MST_CCNTable.TABLE_NAME);
 
             //Load Stock Unit of Measure

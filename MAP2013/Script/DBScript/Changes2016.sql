@@ -1,3 +1,59 @@
+/****** Object:  Table [dbo].[ITM_ItemGroup]    Script Date: 3/23/2016 9:09:13 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[ITM_ItemGroup]') AND type in (N'U'))
+BEGIN
+CREATE TABLE [dbo].[ITM_ItemGroup](
+	[ItemGroupID] [int] IDENTITY(1,1) NOT NULL,
+	[Code] [nvarchar](500) NULL,
+	[Description] [nvarchar](2000) NULL,
+ CONSTRAINT [PK_ITM_ItemGroup] PRIMARY KEY CLUSTERED 
+(
+	[ItemGroupID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+END
+GO
+/****** Object:  Table [dbo].[ITM_ProductClassified]    Script Date: 3/23/2016 9:09:13 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[ITM_ProductClassified]') AND type in (N'U'))
+BEGIN
+CREATE TABLE [dbo].[ITM_ProductClassified](
+	[ProductClassifiedID] [int] IDENTITY(1,1) NOT NULL,
+	[Code] [nvarchar](500) NULL,
+	[Description] [nvarchar](2000) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ProductClassifiedID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+END
+GO
+
+IF NOT EXISTS(SELECT Name FROM sys.columns  WHERE Name = N'ProductClassifiedID' AND Object_ID = Object_ID(N'ITM_Product'))
+BEGIN
+    ALTER TABLE ITM_Product ADD ProductClassifiedID INT NULL
+	ALTER TABLE ITM_Product
+    ADD CONSTRAINT [FK_ITM_Product_ITM_ProductClassified] FOREIGN KEY (ProductClassifiedID) REFERENCES [ITM_ProductClassified] (ProductClassifiedID);
+END
+GO
+
+IF NOT EXISTS(SELECT Name FROM sys.columns  WHERE Name = N'ItemGroupID' AND Object_ID = Object_ID(N'ITM_Product'))
+BEGIN
+    ALTER TABLE ITM_Product ADD ItemGroupID INT NULL
+	ALTER TABLE ITM_Product
+    ADD CONSTRAINT [FK_ITM_Product_ITM_ItemGroup] FOREIGN KEY (ItemGroupID) REFERENCES ITM_ItemGroup (ItemGroupID);
+END
+GO
+
+ALTER TABLE MST_PartyLocation
+ALTER COLUMN [Description] NVARCHAR(500) NULL
+
 IF NOT EXISTS(SELECT Name FROM sys.columns  WHERE Name = N'DepartmentID' AND Object_ID = Object_ID(N'IV_MiscellaneousIssueDetail'))
 BEGIN
     ALTER TABLE [IV_MiscellaneousIssueDetail] ADD [DepartmentID] INT NULL

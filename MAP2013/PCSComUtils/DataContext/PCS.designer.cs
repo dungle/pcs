@@ -147,9 +147,6 @@ namespace PCSComUtils.DataContext
     partial void InsertITM_Picture(ITM_Picture instance);
     partial void UpdateITM_Picture(ITM_Picture instance);
     partial void DeleteITM_Picture(ITM_Picture instance);
-    partial void InsertITM_Product(ITM_Product instance);
-    partial void UpdateITM_Product(ITM_Product instance);
-    partial void DeleteITM_Product(ITM_Product instance);
     partial void InsertITM_ProductType(ITM_ProductType instance);
     partial void UpdateITM_ProductType(ITM_ProductType instance);
     partial void DeleteITM_ProductType(ITM_ProductType instance);
@@ -660,6 +657,15 @@ namespace PCSComUtils.DataContext
     partial void InsertIV_MiscellaneousIssueDetail(IV_MiscellaneousIssueDetail instance);
     partial void UpdateIV_MiscellaneousIssueDetail(IV_MiscellaneousIssueDetail instance);
     partial void DeleteIV_MiscellaneousIssueDetail(IV_MiscellaneousIssueDetail instance);
+    partial void InsertITM_Product(ITM_Product instance);
+    partial void UpdateITM_Product(ITM_Product instance);
+    partial void DeleteITM_Product(ITM_Product instance);
+    partial void InsertITM_ProductClassified(ITM_ProductClassified instance);
+    partial void UpdateITM_ProductClassified(ITM_ProductClassified instance);
+    partial void DeleteITM_ProductClassified(ITM_ProductClassified instance);
+    partial void InsertITM_ItemGroup(ITM_ItemGroup instance);
+    partial void UpdateITM_ItemGroup(ITM_ItemGroup instance);
+    partial void DeleteITM_ItemGroup(ITM_ItemGroup instance);
     #endregion
 		
 		public PCSDataContext() : 
@@ -1001,14 +1007,6 @@ namespace PCSComUtils.DataContext
 			get
 			{
 				return this.GetTable<ITM_Picture>();
-			}
-		}
-		
-		public System.Data.Linq.Table<ITM_Product> ITM_Products
-		{
-			get
-			{
-				return this.GetTable<ITM_Product>();
 			}
 		}
 		
@@ -3500,6 +3498,30 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
+		public System.Data.Linq.Table<ITM_Product> ITM_Products
+		{
+			get
+			{
+				return this.GetTable<ITM_Product>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ITM_ProductClassified> ITM_ProductClassifieds
+		{
+			get
+			{
+				return this.GetTable<ITM_ProductClassified>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ITM_ItemGroup> ITM_ItemGroups
+		{
+			get
+			{
+				return this.GetTable<ITM_ItemGroup>();
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.GetAvailableQtyByPostDate")]
 		public ISingleResult<GetAvailableQtyByPostDateResult> GetAvailableQtyByPostDate([global::System.Data.Linq.Mapping.ParameterAttribute(DbType="DateTime")] System.Nullable<System.DateTime> postdate)
 		{
@@ -4203,13 +4225,13 @@ namespace PCSComUtils.DataContext
 		
 		private EntityRef<CST_ProductGroup> _CST_ProductGroup;
 		
-		private EntityRef<ITM_Product> _ITM_Product;
-		
 		private EntityRef<MST_Department> _MST_Department;
 		
 		private EntityRef<PRO_ProductionLine> _PRO_ProductionLine;
 		
 		private EntityRef<STD_CostElement> _STD_CostElement;
+		
+		private EntityRef<ITM_Product> _ITM_Product;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -4239,10 +4261,10 @@ namespace PCSComUtils.DataContext
 		{
 			this._cst_ActCostAllocationMaster = default(EntityRef<cst_ActCostAllocationMaster>);
 			this._CST_ProductGroup = default(EntityRef<CST_ProductGroup>);
-			this._ITM_Product = default(EntityRef<ITM_Product>);
 			this._MST_Department = default(EntityRef<MST_Department>);
 			this._PRO_ProductionLine = default(EntityRef<PRO_ProductionLine>);
 			this._STD_CostElement = default(EntityRef<STD_CostElement>);
+			this._ITM_Product = default(EntityRef<ITM_Product>);
 			OnCreated();
 		}
 		
@@ -4518,40 +4540,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_cst_ActCostAllocationDetail", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
-		public ITM_Product ITM_Product
-		{
-			get
-			{
-				return this._ITM_Product.Entity;
-			}
-			set
-			{
-				ITM_Product previousValue = this._ITM_Product.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_Product.Entity = null;
-						previousValue.cst_ActCostAllocationDetails.Remove(this);
-					}
-					this._ITM_Product.Entity = value;
-					if ((value != null))
-					{
-						value.cst_ActCostAllocationDetails.Add(this);
-						this._ProductID = value.ProductID;
-					}
-					else
-					{
-						this._ProductID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("ITM_Product");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_Department_cst_ActCostAllocationDetail", Storage="_MST_Department", ThisKey="DepartmentID", OtherKey="DepartmentID", IsForeignKey=true)]
 		public MST_Department MST_Department
 		{
@@ -4650,6 +4638,40 @@ namespace PCSComUtils.DataContext
 						this._CostElementID = default(int);
 					}
 					this.SendPropertyChanged("STD_CostElement");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_cst_ActCostAllocationDetail", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
+		public ITM_Product ITM_Product
+		{
+			get
+			{
+				return this._ITM_Product.Entity;
+			}
+			set
+			{
+				ITM_Product previousValue = this._ITM_Product.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_Product.Entity = null;
+						previousValue.cst_ActCostAllocationDetails.Remove(this);
+					}
+					this._ITM_Product.Entity = value;
+					if ((value != null))
+					{
+						value.cst_ActCostAllocationDetails.Add(this);
+						this._ProductID = value.ProductID;
+					}
+					else
+					{
+						this._ProductID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("ITM_Product");
 				}
 			}
 		}
@@ -5123,9 +5145,9 @@ namespace PCSComUtils.DataContext
 		
 		private EntityRef<cst_ActCostAllocationMaster> _cst_ActCostAllocationMaster;
 		
-		private EntityRef<ITM_Product> _ITM_Product;
-		
 		private EntityRef<STD_CostElement> _STD_CostElement;
+		
+		private EntityRef<ITM_Product> _ITM_Product;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -5176,8 +5198,8 @@ namespace PCSComUtils.DataContext
 		public CST_ActualCostHistory()
 		{
 			this._cst_ActCostAllocationMaster = default(EntityRef<cst_ActCostAllocationMaster>);
-			this._ITM_Product = default(EntityRef<ITM_Product>);
 			this._STD_CostElement = default(EntityRef<STD_CostElement>);
+			this._ITM_Product = default(EntityRef<ITM_Product>);
 			OnCreated();
 		}
 		
@@ -5627,40 +5649,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_CST_ActualCostHistory", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
-		public ITM_Product ITM_Product
-		{
-			get
-			{
-				return this._ITM_Product.Entity;
-			}
-			set
-			{
-				ITM_Product previousValue = this._ITM_Product.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_Product.Entity = null;
-						previousValue.CST_ActualCostHistories.Remove(this);
-					}
-					this._ITM_Product.Entity = value;
-					if ((value != null))
-					{
-						value.CST_ActualCostHistories.Add(this);
-						this._ProductID = value.ProductID;
-					}
-					else
-					{
-						this._ProductID = default(int);
-					}
-					this.SendPropertyChanged("ITM_Product");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="STD_CostElement_CST_ActualCostHistory", Storage="_STD_CostElement", ThisKey="CostElementID", OtherKey="CostElementID", IsForeignKey=true)]
 		public STD_CostElement STD_CostElement
 		{
@@ -5691,6 +5679,40 @@ namespace PCSComUtils.DataContext
 						this._CostElementID = default(int);
 					}
 					this.SendPropertyChanged("STD_CostElement");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_CST_ActualCostHistory", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
+		public ITM_Product ITM_Product
+		{
+			get
+			{
+				return this._ITM_Product.Entity;
+			}
+			set
+			{
+				ITM_Product previousValue = this._ITM_Product.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_Product.Entity = null;
+						previousValue.CST_ActualCostHistories.Remove(this);
+					}
+					this._ITM_Product.Entity = value;
+					if ((value != null))
+					{
+						value.CST_ActualCostHistories.Add(this);
+						this._ProductID = value.ProductID;
+					}
+					else
+					{
+						this._ProductID = default(int);
+					}
+					this.SendPropertyChanged("ITM_Product");
 				}
 			}
 		}
@@ -5746,13 +5768,13 @@ namespace PCSComUtils.DataContext
 		
 		private EntityRef<CST_ProductGroup> _CST_ProductGroup;
 		
-		private EntityRef<ITM_Product> _ITM_Product;
-		
 		private EntityRef<MST_Department> _MST_Department;
 		
 		private EntityRef<PRO_ProductionLine> _PRO_ProductionLine;
 		
 		private EntityRef<STD_CostElement> _STD_CostElement;
+		
+		private EntityRef<ITM_Product> _ITM_Product;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -5784,10 +5806,10 @@ namespace PCSComUtils.DataContext
 		{
 			this._cst_ActCostAllocationMaster = default(EntityRef<cst_ActCostAllocationMaster>);
 			this._CST_ProductGroup = default(EntityRef<CST_ProductGroup>);
-			this._ITM_Product = default(EntityRef<ITM_Product>);
 			this._MST_Department = default(EntityRef<MST_Department>);
 			this._PRO_ProductionLine = default(EntityRef<PRO_ProductionLine>);
 			this._STD_CostElement = default(EntityRef<STD_CostElement>);
+			this._ITM_Product = default(EntityRef<ITM_Product>);
 			OnCreated();
 		}
 		
@@ -6083,40 +6105,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_cst_AllocationResult", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
-		public ITM_Product ITM_Product
-		{
-			get
-			{
-				return this._ITM_Product.Entity;
-			}
-			set
-			{
-				ITM_Product previousValue = this._ITM_Product.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_Product.Entity = null;
-						previousValue.cst_AllocationResults.Remove(this);
-					}
-					this._ITM_Product.Entity = value;
-					if ((value != null))
-					{
-						value.cst_AllocationResults.Add(this);
-						this._ProductID = value.ProductID;
-					}
-					else
-					{
-						this._ProductID = default(int);
-					}
-					this.SendPropertyChanged("ITM_Product");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_Department_cst_AllocationResult", Storage="_MST_Department", ThisKey="DepartmentID", OtherKey="DepartmentID", IsForeignKey=true)]
 		public MST_Department MST_Department
 		{
@@ -6219,6 +6207,40 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_cst_AllocationResult", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
+		public ITM_Product ITM_Product
+		{
+			get
+			{
+				return this._ITM_Product.Entity;
+			}
+			set
+			{
+				ITM_Product previousValue = this._ITM_Product.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_Product.Entity = null;
+						previousValue.cst_AllocationResults.Remove(this);
+					}
+					this._ITM_Product.Entity = value;
+					if ((value != null))
+					{
+						value.cst_AllocationResults.Add(this);
+						this._ProductID = value.ProductID;
+					}
+					else
+					{
+						this._ProductID = default(int);
+					}
+					this.SendPropertyChanged("ITM_Product");
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -6276,9 +6298,9 @@ namespace PCSComUtils.DataContext
 		
 		private EntityRef<cst_ActCostAllocationMaster> _cst_ActCostAllocationMaster;
 		
-		private EntityRef<ITM_Product> _ITM_Product;
-		
 		private EntityRef<STD_CostElement> _STD_CostElement;
+		
+		private EntityRef<ITM_Product> _ITM_Product;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -6317,8 +6339,8 @@ namespace PCSComUtils.DataContext
 		public CST_DSAndRecycleAllocation()
 		{
 			this._cst_ActCostAllocationMaster = default(EntityRef<cst_ActCostAllocationMaster>);
-			this._ITM_Product = default(EntityRef<ITM_Product>);
 			this._STD_CostElement = default(EntityRef<STD_CostElement>);
+			this._ITM_Product = default(EntityRef<ITM_Product>);
 			OnCreated();
 		}
 		
@@ -6648,40 +6670,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_CST_DSAndRecycleAllocation", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
-		public ITM_Product ITM_Product
-		{
-			get
-			{
-				return this._ITM_Product.Entity;
-			}
-			set
-			{
-				ITM_Product previousValue = this._ITM_Product.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_Product.Entity = null;
-						previousValue.CST_DSAndRecycleAllocations.Remove(this);
-					}
-					this._ITM_Product.Entity = value;
-					if ((value != null))
-					{
-						value.CST_DSAndRecycleAllocations.Add(this);
-						this._ProductID = value.ProductID;
-					}
-					else
-					{
-						this._ProductID = default(int);
-					}
-					this.SendPropertyChanged("ITM_Product");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="STD_CostElement_CST_DSAndRecycleAllocation", Storage="_STD_CostElement", ThisKey="CostElementID", OtherKey="CostElementID", IsForeignKey=true)]
 		public STD_CostElement STD_CostElement
 		{
@@ -6712,6 +6700,40 @@ namespace PCSComUtils.DataContext
 						this._CostElementID = default(int);
 					}
 					this.SendPropertyChanged("STD_CostElement");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_CST_DSAndRecycleAllocation", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
+		public ITM_Product ITM_Product
+		{
+			get
+			{
+				return this._ITM_Product.Entity;
+			}
+			set
+			{
+				ITM_Product previousValue = this._ITM_Product.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_Product.Entity = null;
+						previousValue.CST_DSAndRecycleAllocations.Remove(this);
+					}
+					this._ITM_Product.Entity = value;
+					if ((value != null))
+					{
+						value.CST_DSAndRecycleAllocations.Add(this);
+						this._ProductID = value.ProductID;
+					}
+					else
+					{
+						this._ProductID = default(int);
+					}
+					this.SendPropertyChanged("ITM_Product");
 				}
 			}
 		}
@@ -6769,13 +6791,13 @@ namespace PCSComUtils.DataContext
 		
 		private EntityRef<cst_FreightMaster> _cst_FreightMaster;
 		
-		private EntityRef<ITM_Product> _ITM_Product;
-		
 		private EntityRef<MST_UnitOfMeasure> _MST_UnitOfMeasure;
 		
 		private EntityRef<PO_InvoiceMaster> _PO_InvoiceMaster;
 		
 		private EntityRef<PO_ReturnToVendorDetail> _PO_ReturnToVendorDetail;
+		
+		private EntityRef<ITM_Product> _ITM_Product;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -6810,10 +6832,10 @@ namespace PCSComUtils.DataContext
 		public cst_FreightDetail()
 		{
 			this._cst_FreightMaster = default(EntityRef<cst_FreightMaster>);
-			this._ITM_Product = default(EntityRef<ITM_Product>);
 			this._MST_UnitOfMeasure = default(EntityRef<MST_UnitOfMeasure>);
 			this._PO_InvoiceMaster = default(EntityRef<PO_InvoiceMaster>);
 			this._PO_ReturnToVendorDetail = default(EntityRef<PO_ReturnToVendorDetail>);
+			this._ITM_Product = default(EntityRef<ITM_Product>);
 			OnCreated();
 		}
 		
@@ -7111,40 +7133,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_cst_FreightDetail", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
-		public ITM_Product ITM_Product
-		{
-			get
-			{
-				return this._ITM_Product.Entity;
-			}
-			set
-			{
-				ITM_Product previousValue = this._ITM_Product.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_Product.Entity = null;
-						previousValue.cst_FreightDetails.Remove(this);
-					}
-					this._ITM_Product.Entity = value;
-					if ((value != null))
-					{
-						value.cst_FreightDetails.Add(this);
-						this._ProductID = value.ProductID;
-					}
-					else
-					{
-						this._ProductID = default(int);
-					}
-					this.SendPropertyChanged("ITM_Product");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_UnitOfMeasure_cst_FreightDetail", Storage="_MST_UnitOfMeasure", ThisKey="BuyingUMID", OtherKey="UnitOfMeasureID", IsForeignKey=true)]
 		public MST_UnitOfMeasure MST_UnitOfMeasure
 		{
@@ -7243,6 +7231,40 @@ namespace PCSComUtils.DataContext
 						this._ReturnToVendorDetailID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("PO_ReturnToVendorDetail");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_cst_FreightDetail", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
+		public ITM_Product ITM_Product
+		{
+			get
+			{
+				return this._ITM_Product.Entity;
+			}
+			set
+			{
+				ITM_Product previousValue = this._ITM_Product.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_Product.Entity = null;
+						previousValue.cst_FreightDetails.Remove(this);
+					}
+					this._ITM_Product.Entity = value;
+					if ((value != null))
+					{
+						value.cst_FreightDetails.Add(this);
+						this._ProductID = value.ProductID;
+					}
+					else
+					{
+						this._ProductID = default(int);
+					}
+					this.SendPropertyChanged("ITM_Product");
 				}
 			}
 		}
@@ -8490,8 +8512,6 @@ namespace PCSComUtils.DataContext
 		
 		private EntityRef<CST_RecoverMaterialMaster> _CST_RecoverMaterialMaster;
 		
-		private EntityRef<ITM_Product> _ITM_Product;
-		
 		private EntityRef<MST_BIN> _MST_BIN;
 		
 		private EntityRef<MST_Location> _MST_Location;
@@ -8499,6 +8519,8 @@ namespace PCSComUtils.DataContext
 		private EntityRef<MST_Party> _MST_Party;
 		
 		private EntityRef<MST_UnitOfMeasure> _MST_UnitOfMeasure;
+		
+		private EntityRef<ITM_Product> _ITM_Product;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -8525,11 +8547,11 @@ namespace PCSComUtils.DataContext
 		public CST_RecoverMaterialDetail()
 		{
 			this._CST_RecoverMaterialMaster = default(EntityRef<CST_RecoverMaterialMaster>);
-			this._ITM_Product = default(EntityRef<ITM_Product>);
 			this._MST_BIN = default(EntityRef<MST_BIN>);
 			this._MST_Location = default(EntityRef<MST_Location>);
 			this._MST_Party = default(EntityRef<MST_Party>);
 			this._MST_UnitOfMeasure = default(EntityRef<MST_UnitOfMeasure>);
+			this._ITM_Product = default(EntityRef<ITM_Product>);
 			OnCreated();
 		}
 		
@@ -8751,40 +8773,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_CST_RecoverMaterialDetail", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
-		public ITM_Product ITM_Product
-		{
-			get
-			{
-				return this._ITM_Product.Entity;
-			}
-			set
-			{
-				ITM_Product previousValue = this._ITM_Product.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_Product.Entity = null;
-						previousValue.CST_RecoverMaterialDetails.Remove(this);
-					}
-					this._ITM_Product.Entity = value;
-					if ((value != null))
-					{
-						value.CST_RecoverMaterialDetails.Add(this);
-						this._ProductID = value.ProductID;
-					}
-					else
-					{
-						this._ProductID = default(int);
-					}
-					this.SendPropertyChanged("ITM_Product");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_BIN_CST_RecoverMaterialDetail", Storage="_MST_BIN", ThisKey="ToBinID", OtherKey="BinID", IsForeignKey=true)]
 		public MST_BIN MST_BIN
 		{
@@ -8921,6 +8909,40 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_CST_RecoverMaterialDetail", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
+		public ITM_Product ITM_Product
+		{
+			get
+			{
+				return this._ITM_Product.Entity;
+			}
+			set
+			{
+				ITM_Product previousValue = this._ITM_Product.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_Product.Entity = null;
+						previousValue.CST_RecoverMaterialDetails.Remove(this);
+					}
+					this._ITM_Product.Entity = value;
+					if ((value != null))
+					{
+						value.CST_RecoverMaterialDetails.Add(this);
+						this._ProductID = value.ProductID;
+					}
+					else
+					{
+						this._ProductID = default(int);
+					}
+					this.SendPropertyChanged("ITM_Product");
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -8972,13 +8994,13 @@ namespace PCSComUtils.DataContext
 		
 		private EntitySet<CST_RecoverMaterialDetail> _CST_RecoverMaterialDetails;
 		
-		private EntityRef<ITM_Product> _ITM_Product;
-		
 		private EntityRef<MST_BIN> _MST_BIN;
 		
 		private EntityRef<MST_CCN> _MST_CCN;
 		
 		private EntityRef<MST_Location> _MST_Location;
+		
+		private EntityRef<ITM_Product> _ITM_Product;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -9011,10 +9033,10 @@ namespace PCSComUtils.DataContext
 		public CST_RecoverMaterialMaster()
 		{
 			this._CST_RecoverMaterialDetails = new EntitySet<CST_RecoverMaterialDetail>(new Action<CST_RecoverMaterialDetail>(this.attach_CST_RecoverMaterialDetails), new Action<CST_RecoverMaterialDetail>(this.detach_CST_RecoverMaterialDetails));
-			this._ITM_Product = default(EntityRef<ITM_Product>);
 			this._MST_BIN = default(EntityRef<MST_BIN>);
 			this._MST_CCN = default(EntityRef<MST_CCN>);
 			this._MST_Location = default(EntityRef<MST_Location>);
+			this._ITM_Product = default(EntityRef<ITM_Product>);
 			OnCreated();
 		}
 		
@@ -9267,40 +9289,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_CST_RecoverMaterialMaster", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
-		public ITM_Product ITM_Product
-		{
-			get
-			{
-				return this._ITM_Product.Entity;
-			}
-			set
-			{
-				ITM_Product previousValue = this._ITM_Product.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_Product.Entity = null;
-						previousValue.CST_RecoverMaterialMasters.Remove(this);
-					}
-					this._ITM_Product.Entity = value;
-					if ((value != null))
-					{
-						value.CST_RecoverMaterialMasters.Add(this);
-						this._ProductID = value.ProductID;
-					}
-					else
-					{
-						this._ProductID = default(int);
-					}
-					this.SendPropertyChanged("ITM_Product");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_BIN_CST_RecoverMaterialMaster", Storage="_MST_BIN", ThisKey="FromBinID", OtherKey="BinID", IsForeignKey=true)]
 		public MST_BIN MST_BIN
 		{
@@ -9403,6 +9391,40 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_CST_RecoverMaterialMaster", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
+		public ITM_Product ITM_Product
+		{
+			get
+			{
+				return this._ITM_Product.Entity;
+			}
+			set
+			{
+				ITM_Product previousValue = this._ITM_Product.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_Product.Entity = null;
+						previousValue.CST_RecoverMaterialMasters.Remove(this);
+					}
+					this._ITM_Product.Entity = value;
+					if ((value != null))
+					{
+						value.CST_RecoverMaterialMasters.Add(this);
+						this._ProductID = value.ProductID;
+					}
+					else
+					{
+						this._ProductID = default(int);
+					}
+					this.SendPropertyChanged("ITM_Product");
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -9452,9 +9474,9 @@ namespace PCSComUtils.DataContext
 		
 		private int _STDItemCostID;
 		
-		private EntityRef<ITM_Product> _ITM_Product;
-		
 		private EntityRef<STD_CostElement> _STD_CostElement;
+		
+		private EntityRef<ITM_Product> _ITM_Product;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -9474,8 +9496,8 @@ namespace PCSComUtils.DataContext
 		
 		public CST_STDItemCost()
 		{
-			this._ITM_Product = default(EntityRef<ITM_Product>);
 			this._STD_CostElement = default(EntityRef<STD_CostElement>);
+			this._ITM_Product = default(EntityRef<ITM_Product>);
 			OnCreated();
 		}
 		
@@ -9587,40 +9609,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_CST_STDItemCost", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
-		public ITM_Product ITM_Product
-		{
-			get
-			{
-				return this._ITM_Product.Entity;
-			}
-			set
-			{
-				ITM_Product previousValue = this._ITM_Product.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_Product.Entity = null;
-						previousValue.CST_STDItemCosts.Remove(this);
-					}
-					this._ITM_Product.Entity = value;
-					if ((value != null))
-					{
-						value.CST_STDItemCosts.Add(this);
-						this._ProductID = value.ProductID;
-					}
-					else
-					{
-						this._ProductID = default(int);
-					}
-					this.SendPropertyChanged("ITM_Product");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="STD_CostElement_CST_STDItemCost", Storage="_STD_CostElement", ThisKey="CostElementID", OtherKey="CostElementID", IsForeignKey=true)]
 		public STD_CostElement STD_CostElement
 		{
@@ -9651,6 +9639,40 @@ namespace PCSComUtils.DataContext
 						this._CostElementID = default(int);
 					}
 					this.SendPropertyChanged("STD_CostElement");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_CST_STDItemCost", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
+		public ITM_Product ITM_Product
+		{
+			get
+			{
+				return this._ITM_Product.Entity;
+			}
+			set
+			{
+				ITM_Product previousValue = this._ITM_Product.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_Product.Entity = null;
+						previousValue.CST_STDItemCosts.Remove(this);
+					}
+					this._ITM_Product.Entity = value;
+					if ((value != null))
+					{
+						value.CST_STDItemCosts.Add(this);
+						this._ProductID = value.ProductID;
+					}
+					else
+					{
+						this._ProductID = default(int);
+					}
+					this.SendPropertyChanged("ITM_Product");
 				}
 			}
 		}
@@ -9690,9 +9712,9 @@ namespace PCSComUtils.DataContext
 		
 		private System.Nullable<decimal> _Quantity;
 		
-		private EntityRef<ITM_Product> _ITM_Product;
-		
 		private EntityRef<PRO_DCOptionMaster> _PRO_DCOptionMaster;
+		
+		private EntityRef<ITM_Product> _ITM_Product;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -9710,8 +9732,8 @@ namespace PCSComUtils.DataContext
 		
 		public DCP_BeginQuantity()
 		{
-			this._ITM_Product = default(EntityRef<ITM_Product>);
 			this._PRO_DCOptionMaster = default(EntityRef<PRO_DCOptionMaster>);
+			this._ITM_Product = default(EntityRef<ITM_Product>);
 			OnCreated();
 		}
 		
@@ -9803,40 +9825,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_DCP_BeginQuantity", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
-		public ITM_Product ITM_Product
-		{
-			get
-			{
-				return this._ITM_Product.Entity;
-			}
-			set
-			{
-				ITM_Product previousValue = this._ITM_Product.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_Product.Entity = null;
-						previousValue.DCP_BeginQuantities.Remove(this);
-					}
-					this._ITM_Product.Entity = value;
-					if ((value != null))
-					{
-						value.DCP_BeginQuantities.Add(this);
-						this._ProductID = value.ProductID;
-					}
-					else
-					{
-						this._ProductID = default(int);
-					}
-					this.SendPropertyChanged("ITM_Product");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PRO_DCOptionMaster_DCP_BeginQuantity", Storage="_PRO_DCOptionMaster", ThisKey="DCOptionMasterID", OtherKey="DCOptionMasterID", IsForeignKey=true)]
 		public PRO_DCOptionMaster PRO_DCOptionMaster
 		{
@@ -9867,6 +9855,40 @@ namespace PCSComUtils.DataContext
 						this._DCOptionMasterID = default(int);
 					}
 					this.SendPropertyChanged("PRO_DCOptionMaster");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_DCP_BeginQuantity", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
+		public ITM_Product ITM_Product
+		{
+			get
+			{
+				return this._ITM_Product.Entity;
+			}
+			set
+			{
+				ITM_Product previousValue = this._ITM_Product.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_Product.Entity = null;
+						previousValue.DCP_BeginQuantities.Remove(this);
+					}
+					this._ITM_Product.Entity = value;
+					if ((value != null))
+					{
+						value.DCP_BeginQuantities.Add(this);
+						this._ProductID = value.ProductID;
+					}
+					else
+					{
+						this._ProductID = default(int);
+					}
+					this.SendPropertyChanged("ITM_Product");
 				}
 			}
 		}
@@ -11551,11 +11573,11 @@ namespace PCSComUtils.DataContext
 		
 		private System.Nullable<int> _Line;
 		
+		private EntityRef<ITM_Routing> _ITM_Routing;
+		
 		private EntityRef<ITM_Product> _ITM_Product;
 		
 		private EntityRef<ITM_Product> _ITM_Product1;
-		
-		private EntityRef<ITM_Routing> _ITM_Routing;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -11593,9 +11615,9 @@ namespace PCSComUtils.DataContext
 		
 		public ITM_BOM()
 		{
+			this._ITM_Routing = default(EntityRef<ITM_Routing>);
 			this._ITM_Product = default(EntityRef<ITM_Product>);
 			this._ITM_Product1 = default(EntityRef<ITM_Product>);
-			this._ITM_Routing = default(EntityRef<ITM_Routing>);
 			OnCreated();
 		}
 		
@@ -11891,6 +11913,40 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Routing_ITM_BOM", Storage="_ITM_Routing", ThisKey="RoutingID", OtherKey="RoutingID", IsForeignKey=true)]
+		public ITM_Routing ITM_Routing
+		{
+			get
+			{
+				return this._ITM_Routing.Entity;
+			}
+			set
+			{
+				ITM_Routing previousValue = this._ITM_Routing.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_Routing.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_Routing.Entity = null;
+						previousValue.ITM_BOMs.Remove(this);
+					}
+					this._ITM_Routing.Entity = value;
+					if ((value != null))
+					{
+						value.ITM_BOMs.Add(this);
+						this._RoutingID = value.RoutingID;
+					}
+					else
+					{
+						this._RoutingID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("ITM_Routing");
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_ITM_BOM", Storage="_ITM_Product", ThisKey="ComponentID", OtherKey="ProductID", IsForeignKey=true)]
 		public ITM_Product ITM_Product
 		{
@@ -11955,40 +12011,6 @@ namespace PCSComUtils.DataContext
 						this._ProductID = default(int);
 					}
 					this.SendPropertyChanged("ITM_Product1");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Routing_ITM_BOM", Storage="_ITM_Routing", ThisKey="RoutingID", OtherKey="RoutingID", IsForeignKey=true)]
-		public ITM_Routing ITM_Routing
-		{
-			get
-			{
-				return this._ITM_Routing.Entity;
-			}
-			set
-			{
-				ITM_Routing previousValue = this._ITM_Routing.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_Routing.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_Routing.Entity = null;
-						previousValue.ITM_BOMs.Remove(this);
-					}
-					this._ITM_Routing.Entity = value;
-					if ((value != null))
-					{
-						value.ITM_BOMs.Add(this);
-						this._RoutingID = value.RoutingID;
-					}
-					else
-					{
-						this._RoutingID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("ITM_Routing");
 				}
 			}
 		}
@@ -12378,7 +12400,7 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Picture", DbType="Image", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Picture", DbType="Image", UpdateCheck=UpdateCheck.Never)]
 		public System.Data.Linq.Binary Picture
 		{
 			get
@@ -12517,11 +12539,11 @@ namespace PCSComUtils.DataContext
 		
 		private string _Description;
 		
-		private EntitySet<ITM_Product> _ITM_Products;
-		
 		private EntitySet<ITM_Routing> _ITM_Routings;
 		
 		private EntitySet<ITM_Routing> _ITM_Routings1;
+		
+		private EntitySet<ITM_Product> _ITM_Products;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -12539,9 +12561,9 @@ namespace PCSComUtils.DataContext
 		
 		public ITM_CostCenter()
 		{
-			this._ITM_Products = new EntitySet<ITM_Product>(new Action<ITM_Product>(this.attach_ITM_Products), new Action<ITM_Product>(this.detach_ITM_Products));
 			this._ITM_Routings = new EntitySet<ITM_Routing>(new Action<ITM_Routing>(this.attach_ITM_Routings), new Action<ITM_Routing>(this.detach_ITM_Routings));
 			this._ITM_Routings1 = new EntitySet<ITM_Routing>(new Action<ITM_Routing>(this.attach_ITM_Routings1), new Action<ITM_Routing>(this.detach_ITM_Routings1));
+			this._ITM_Products = new EntitySet<ITM_Product>(new Action<ITM_Product>(this.attach_ITM_Products), new Action<ITM_Product>(this.detach_ITM_Products));
 			OnCreated();
 		}
 		
@@ -12625,19 +12647,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_CostCenter_ITM_Product", Storage="_ITM_Products", ThisKey="CostCenterID", OtherKey="CostCenterID")]
-		public EntitySet<ITM_Product> ITM_Products
-		{
-			get
-			{
-				return this._ITM_Products;
-			}
-			set
-			{
-				this._ITM_Products.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_CostCenter_ITM_Routing", Storage="_ITM_Routings", ThisKey="CostCenterID", OtherKey="LaborCostCenterID")]
 		public EntitySet<ITM_Routing> ITM_Routings
 		{
@@ -12664,6 +12673,19 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_CostCenter_ITM_Product", Storage="_ITM_Products", ThisKey="CostCenterID", OtherKey="CostCenterID")]
+		public EntitySet<ITM_Product> ITM_Products
+		{
+			get
+			{
+				return this._ITM_Products;
+			}
+			set
+			{
+				this._ITM_Products.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -12682,18 +12704,6 @@ namespace PCSComUtils.DataContext
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_ITM_Products(ITM_Product entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_CostCenter = this;
-		}
-		
-		private void detach_ITM_Products(ITM_Product entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_CostCenter = null;
 		}
 		
 		private void attach_ITM_Routings(ITM_Routing entity)
@@ -12718,6 +12728,18 @@ namespace PCSComUtils.DataContext
 		{
 			this.SendPropertyChanging();
 			entity.ITM_CostCenter1 = null;
+		}
+		
+		private void attach_ITM_Products(ITM_Product entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_CostCenter = this;
+		}
+		
+		private void detach_ITM_Products(ITM_Product entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_CostCenter = null;
 		}
 	}
 	
@@ -13901,7 +13923,7 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PictureImage", DbType="Image", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PictureImage", DbType="Image", UpdateCheck=UpdateCheck.Never)]
 		public System.Data.Linq.Binary PictureImage
 		{
 			get
@@ -14017,5417 +14039,6 @@ namespace PCSComUtils.DataContext
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ITM_Product")]
-	public partial class ITM_Product : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ProductID;
-		
-		private string _Code;
-		
-		private string _Revision;
-		
-		private string _Description;
-		
-		private System.DateTime _SetupDate;
-		
-		private System.Nullable<double> _VAT;
-		
-		private System.Nullable<double> _ImportTax;
-		
-		private System.Nullable<double> _ExportTax;
-		
-		private System.Nullable<double> _SpecialTax;
-		
-		private bool _MakeItem;
-		
-		private string _PartNumber;
-		
-		private string _OtherInfo1;
-		
-		private string _OtherInfo2;
-		
-		private System.Nullable<decimal> _Length;
-		
-		private System.Nullable<decimal> _Width;
-		
-		private System.Nullable<decimal> _Height;
-		
-		private System.Nullable<decimal> _Weight;
-		
-		private System.Nullable<bool> _FinishedGoods;
-		
-		private System.Nullable<decimal> _ShelfLife;
-		
-		private System.Nullable<bool> _LotControl;
-		
-		private System.Nullable<byte> _QAStatus;
-		
-		private System.Nullable<bool> _Stock;
-		
-		private byte _PlanType;
-		
-		private System.Nullable<bool> _AutoConversion;
-		
-		private System.Nullable<decimal> _OrderQuantity;
-		
-		private System.Nullable<decimal> _LTRequisition;
-		
-		private System.Nullable<decimal> _LTSafetyStock;
-		
-		private System.Nullable<decimal> _OrderQuantityMultiple;
-		
-		private System.Nullable<double> _ScrapPercent;
-		
-		private System.Nullable<decimal> _MinimumStock;
-		
-		private System.Nullable<decimal> _MaximumStock;
-		
-		private System.Nullable<decimal> _ConversionTolerance;
-		
-		private System.Nullable<decimal> _VoucherTolerance;
-		
-		private System.Nullable<decimal> _ReceiveTolerance;
-		
-		private System.Nullable<decimal> _IssueSize;
-		
-		private System.Nullable<decimal> _LTFixedTime;
-		
-		private System.Nullable<decimal> _LTVariableTime;
-		
-		private System.Nullable<decimal> _LTOrderPrepare;
-		
-		private System.Nullable<decimal> _LTShippingPrepare;
-		
-		private System.Nullable<decimal> _LTSalesATP;
-		
-		private System.Nullable<int> _ShipToleranceID;
-		
-		private System.Nullable<int> _BuyerID;
-		
-		private string _BOMDescription;
-		
-		private System.Nullable<byte> _BomIncrement;
-		
-		private string _RoutingDescription;
-		
-		private System.DateTime _CreateDateTime;
-		
-		private System.Nullable<System.DateTime> _UpdateDateTime;
-		
-		private System.Nullable<byte> _CostMethod;
-		
-		private System.Nullable<byte> _RoutingIncrement;
-		
-		private int _CCNID;
-		
-		private System.Nullable<int> _CategoryID;
-		
-		private System.Nullable<int> _CostCenterID;
-		
-		private System.Nullable<int> _DeleteReasonID;
-		
-		private System.Nullable<int> _DeliveryPolicyID;
-		
-		private System.Nullable<int> _FormatCodeID;
-		
-		private System.Nullable<int> _FreightClassID;
-		
-		private System.Nullable<int> _HazardID;
-		
-		private System.Nullable<int> _OrderPolicyID;
-		
-		private System.Nullable<int> _OrderRuleID;
-		
-		private System.Nullable<int> _SourceID;
-		
-		private int _StockUMID;
-		
-		private int _SellingUMID;
-		
-		private System.Nullable<int> _HeightUMID;
-		
-		private System.Nullable<int> _WidthUMID;
-		
-		private System.Nullable<int> _LengthUMID;
-		
-		private int _BuyingUMID;
-		
-		private System.Nullable<int> _WeightUMID;
-		
-		private System.Nullable<int> _LotSize;
-		
-		private System.Nullable<int> _MasterLocationID;
-		
-		private System.Nullable<int> _LocationID;
-		
-		private System.Nullable<int> _BinID;
-		
-		private System.Nullable<int> _PrimaryVendorID;
-		
-		private System.Nullable<int> _VendorLocationID;
-		
-		private System.Nullable<decimal> _OrderPoint;
-		
-		private System.Nullable<decimal> _SafetyStock;
-		
-		private System.Nullable<int> _AGCID;
-		
-		private System.Nullable<int> _ParentProductID;
-		
-		private System.Nullable<decimal> _LTDockToStock;
-		
-		private string _PartNameVN;
-		
-		private System.Nullable<decimal> _LicenseFee;
-		
-		private System.Nullable<int> _InventorID;
-		
-		private System.Nullable<int> _ProductTypeID;
-		
-		private string _TaxCode;
-		
-		private System.Nullable<decimal> _ListPrice;
-		
-		private System.Nullable<int> _VendorCurrencyID;
-		
-		private System.Nullable<decimal> _QuantitySet;
-		
-		private System.Nullable<int> _ProductionLineID;
-		
-		private System.Nullable<int> _CostCenterRateMasterID;
-		
-		private System.Nullable<int> _ProductGroupID;
-		
-		private System.Nullable<decimal> _MaxProduce;
-		
-		private System.Nullable<decimal> _MinProduce;
-		
-		private System.Data.Linq.Binary _Picture;
-		
-		private System.Nullable<decimal> _MaxRoundUpToMin;
-		
-		private System.Nullable<decimal> _MaxRoundUpToMultiple;
-		
-		private System.Nullable<int> _ACAdjustmentMasterID;
-		
-		private string _RegisteredCode;
-		
-		private string _SetUpPair;
-		
-		private System.Nullable<bool> _AVEG;
-		
-		private string _StockTakingCode;
-		
-		private System.Nullable<bool> _MassOrder;
-		
-		private System.Nullable<bool> _AllowNegativeQty;
-		
-		private EntitySet<cst_ActCostAllocationDetail> _cst_ActCostAllocationDetails;
-		
-		private EntitySet<CST_ActualCostHistory> _CST_ActualCostHistories;
-		
-		private EntitySet<cst_AllocationResult> _cst_AllocationResults;
-		
-		private EntitySet<CST_DSAndRecycleAllocation> _CST_DSAndRecycleAllocations;
-		
-		private EntitySet<cst_FreightDetail> _cst_FreightDetails;
-		
-		private EntitySet<CST_RecoverMaterialDetail> _CST_RecoverMaterialDetails;
-		
-		private EntitySet<CST_RecoverMaterialMaster> _CST_RecoverMaterialMasters;
-		
-		private EntitySet<CST_STDItemCost> _CST_STDItemCosts;
-		
-		private EntitySet<DCP_BeginQuantity> _DCP_BeginQuantities;
-		
-		private EntitySet<ITM_BOM> _ITM_BOMs;
-		
-		private EntitySet<ITM_BOM> _ITM_BOMs1;
-		
-		private EntitySet<ITM_Picture> _ITM_Pictures;
-		
-		private EntitySet<ITM_Routing> _ITM_Routings;
-		
-		private EntitySet<IV_Adjustment> _IV_Adjustments;
-		
-		private EntitySet<IV_BalanceBin> _IV_BalanceBins;
-		
-		private EntitySet<IV_BalanceLocation> _IV_BalanceLocations;
-		
-		private EntitySet<IV_BalanceMasterLocation> _IV_BalanceMasterLocations;
-		
-		private EntitySet<IV_BeginDCPReport> _IV_BeginDCPReports;
-		
-		private EntitySet<IV_BeginMRP> _IV_BeginMRPs;
-		
-		private EntitySet<IV_BinCache> _IV_BinCaches;
-		
-		private EntitySet<IV_CostHistory> _IV_CostHistories;
-		
-		private EntitySet<IV_LocationCache> _IV_LocationCaches;
-		
-		private EntitySet<IV_MasLocCache> _IV_MasLocCaches;
-		
-		private EntitySet<IV_StockTaking> _IV_StockTakings;
-		
-		private EntitySet<IV_StockTakingDifferent> _IV_StockTakingDifferents;
-		
-		private EntitySet<MST_TransactionHistory> _MST_TransactionHistories;
-		
-		private EntitySet<MTR_ACDSDetail> _MTR_ACDSDetails;
-		
-		private EntitySet<MTR_CPO> _MTR_CPOs;
-		
-		private EntitySet<MTR_ItemActualCost> _MTR_ItemActualCosts;
-		
-		private EntitySet<PO_InvoiceDetail> _PO_InvoiceDetails;
-		
-		private EntitySet<PO_ItemVendorReference> _PO_ItemVendorReferences;
-		
-		private EntitySet<PO_PurchaseOrderDetail> _PO_PurchaseOrderDetails;
-		
-		private EntitySet<PO_PurchaseOrderReceiptDetail> _PO_PurchaseOrderReceiptDetails;
-		
-		private EntitySet<PO_ReturnToVendorDetail> _PO_ReturnToVendorDetails;
-		
-		private EntitySet<PO_VendorDeliverySchedule> _PO_VendorDeliverySchedules;
-		
-		private EntitySet<PRO_ChangeCategoryDetail> _PRO_ChangeCategoryDetails;
-		
-		private EntitySet<PRO_ChangeCategoryMatrix> _PRO_ChangeCategoryMatrixes;
-		
-		private EntitySet<PRO_ChangeCategoryMatrix> _PRO_ChangeCategoryMatrixes1;
-		
-		private EntitySet<PRO_CheckPoint> _PRO_CheckPoints;
-		
-		private EntitySet<PRO_ComponentScrapDetail> _PRO_ComponentScrapDetails;
-		
-		private EntitySet<PRO_ComponentScrapDetail> _PRO_ComponentScrapDetails1;
-		
-		private EntitySet<PRO_DCPResultMaster> _PRO_DCPResultMasters;
-		
-		private EntitySet<PRO_IssueMaterialDetail> _PRO_IssueMaterialDetails;
-		
-		private EntitySet<PRO_IssueMaterialMaster> _PRO_IssueMaterialMasters;
-		
-		private EntitySet<PRO_PGProduct> _PRO_PGProducts;
-		
-		private EntitySet<PRO_ProductProductionOrder> _PRO_ProductProductionOrders;
-		
-		private EntitySet<PRO_WorkOrderCompletion> _PRO_WorkOrderCompletions;
-		
-		private EntitySet<PRO_WorkOrderDetail> _PRO_WorkOrderDetails;
-		
-		private EntitySet<SO_CommitInventoryDetail> _SO_CommitInventoryDetails;
-		
-		private EntitySet<SO_CustomerItemRefDetail> _SO_CustomerItemRefDetails;
-		
-		private EntitySet<SO_ReturnedGoodsDetail> _SO_ReturnedGoodsDetails;
-		
-		private EntitySet<SO_SaleOrderDetail> _SO_SaleOrderDetails;
-		
-		private EntitySet<STD_CostCenterRateMaster> _STD_CostCenterRateMasters;
-		
-		private EntitySet<sys_RoleProduct> _sys_RoleProducts;
-		
-		private EntitySet<SO_ConfirmShipDetail> _SO_ConfirmShipDetails;
-		
-		private EntitySet<SO_InvoiceDetail> _SO_InvoiceDetails;
-		
-		private EntitySet<IV_MiscellaneousIssueDetail> _IV_MiscellaneousIssueDetails;
-		
-		private EntityRef<cst_ACAdjustmentMaster> _cst_ACAdjustmentMaster;
-		
-		private EntityRef<ITM_Buyer> _ITM_Buyer;
-		
-		private EntityRef<ITM_Category> _ITM_Category;
-		
-		private EntityRef<ITM_CostCenter> _ITM_CostCenter;
-		
-		private EntityRef<ITM_DeleteReason> _ITM_DeleteReason;
-		
-		private EntityRef<ITM_DeliveryPolicy> _ITM_DeliveryPolicy;
-		
-		private EntityRef<ITM_FormatCode> _ITM_FormatCode;
-		
-		private EntityRef<ITM_FreightClass> _ITM_FreightClass;
-		
-		private EntityRef<ITM_Hazard> _ITM_Hazard;
-		
-		private EntityRef<ITM_OrderRule> _ITM_OrderRule;
-		
-		private EntityRef<ITM_OrderPolicy> _ITM_OrderPolicy;
-		
-		private EntityRef<CST_ProductGroup> _CST_ProductGroup;
-		
-		private EntityRef<ITM_ProductType> _ITM_ProductType;
-		
-		private EntityRef<ITM_ShipTolerance> _ITM_ShipTolerance;
-		
-		private EntityRef<ITM_Source> _ITM_Source;
-		
-		private EntityRef<MST_AGC> _MST_AGC;
-		
-		private EntityRef<MST_BIN> _MST_BIN;
-		
-		private EntityRef<MST_CCN> _MST_CCN;
-		
-		private EntityRef<MST_Currency> _MST_Currency;
-		
-		private EntityRef<MST_Location> _MST_Location;
-		
-		private EntityRef<MST_MasterLocation> _MST_MasterLocation;
-		
-		private EntityRef<MST_Party> _MST_Party;
-		
-		private EntityRef<MST_Party> _MST_Party1;
-		
-		private EntityRef<MST_PartyLocation> _MST_PartyLocation;
-		
-		private EntityRef<MST_UnitOfMeasure> _MST_UnitOfMeasure;
-		
-		private EntityRef<MST_UnitOfMeasure> _MST_UnitOfMeasure1;
-		
-		private EntityRef<MST_UnitOfMeasure> _MST_UnitOfMeasure2;
-		
-		private EntityRef<MST_UnitOfMeasure> _MST_UnitOfMeasure3;
-		
-		private EntityRef<MST_UnitOfMeasure> _MST_UnitOfMeasure4;
-		
-		private EntityRef<MST_UnitOfMeasure> _MST_UnitOfMeasure5;
-		
-		private EntityRef<MST_UnitOfMeasure> _MST_UnitOfMeasure6;
-		
-		private EntityRef<PRO_ProductionLine> _PRO_ProductionLine;
-		
-		private EntityRef<STD_CostCenterRateMaster> _STD_CostCenterRateMaster;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnProductIDChanging(int value);
-    partial void OnProductIDChanged();
-    partial void OnCodeChanging(string value);
-    partial void OnCodeChanged();
-    partial void OnRevisionChanging(string value);
-    partial void OnRevisionChanged();
-    partial void OnDescriptionChanging(string value);
-    partial void OnDescriptionChanged();
-    partial void OnSetupDateChanging(System.DateTime value);
-    partial void OnSetupDateChanged();
-    partial void OnVATChanging(System.Nullable<double> value);
-    partial void OnVATChanged();
-    partial void OnImportTaxChanging(System.Nullable<double> value);
-    partial void OnImportTaxChanged();
-    partial void OnExportTaxChanging(System.Nullable<double> value);
-    partial void OnExportTaxChanged();
-    partial void OnSpecialTaxChanging(System.Nullable<double> value);
-    partial void OnSpecialTaxChanged();
-    partial void OnMakeItemChanging(bool value);
-    partial void OnMakeItemChanged();
-    partial void OnPartNumberChanging(string value);
-    partial void OnPartNumberChanged();
-    partial void OnOtherInfo1Changing(string value);
-    partial void OnOtherInfo1Changed();
-    partial void OnOtherInfo2Changing(string value);
-    partial void OnOtherInfo2Changed();
-    partial void OnLengthChanging(System.Nullable<decimal> value);
-    partial void OnLengthChanged();
-    partial void OnWidthChanging(System.Nullable<decimal> value);
-    partial void OnWidthChanged();
-    partial void OnHeightChanging(System.Nullable<decimal> value);
-    partial void OnHeightChanged();
-    partial void OnWeightChanging(System.Nullable<decimal> value);
-    partial void OnWeightChanged();
-    partial void OnFinishedGoodsChanging(System.Nullable<bool> value);
-    partial void OnFinishedGoodsChanged();
-    partial void OnShelfLifeChanging(System.Nullable<decimal> value);
-    partial void OnShelfLifeChanged();
-    partial void OnLotControlChanging(System.Nullable<bool> value);
-    partial void OnLotControlChanged();
-    partial void OnQAStatusChanging(System.Nullable<byte> value);
-    partial void OnQAStatusChanged();
-    partial void OnStockChanging(System.Nullable<bool> value);
-    partial void OnStockChanged();
-    partial void OnPlanTypeChanging(byte value);
-    partial void OnPlanTypeChanged();
-    partial void OnAutoConversionChanging(System.Nullable<bool> value);
-    partial void OnAutoConversionChanged();
-    partial void OnOrderQuantityChanging(System.Nullable<decimal> value);
-    partial void OnOrderQuantityChanged();
-    partial void OnLTRequisitionChanging(System.Nullable<decimal> value);
-    partial void OnLTRequisitionChanged();
-    partial void OnLTSafetyStockChanging(System.Nullable<decimal> value);
-    partial void OnLTSafetyStockChanged();
-    partial void OnOrderQuantityMultipleChanging(System.Nullable<decimal> value);
-    partial void OnOrderQuantityMultipleChanged();
-    partial void OnScrapPercentChanging(System.Nullable<double> value);
-    partial void OnScrapPercentChanged();
-    partial void OnMinimumStockChanging(System.Nullable<decimal> value);
-    partial void OnMinimumStockChanged();
-    partial void OnMaximumStockChanging(System.Nullable<decimal> value);
-    partial void OnMaximumStockChanged();
-    partial void OnConversionToleranceChanging(System.Nullable<decimal> value);
-    partial void OnConversionToleranceChanged();
-    partial void OnVoucherToleranceChanging(System.Nullable<decimal> value);
-    partial void OnVoucherToleranceChanged();
-    partial void OnReceiveToleranceChanging(System.Nullable<decimal> value);
-    partial void OnReceiveToleranceChanged();
-    partial void OnIssueSizeChanging(System.Nullable<decimal> value);
-    partial void OnIssueSizeChanged();
-    partial void OnLTFixedTimeChanging(System.Nullable<decimal> value);
-    partial void OnLTFixedTimeChanged();
-    partial void OnLTVariableTimeChanging(System.Nullable<decimal> value);
-    partial void OnLTVariableTimeChanged();
-    partial void OnLTOrderPrepareChanging(System.Nullable<decimal> value);
-    partial void OnLTOrderPrepareChanged();
-    partial void OnLTShippingPrepareChanging(System.Nullable<decimal> value);
-    partial void OnLTShippingPrepareChanged();
-    partial void OnLTSalesATPChanging(System.Nullable<decimal> value);
-    partial void OnLTSalesATPChanged();
-    partial void OnShipToleranceIDChanging(System.Nullable<int> value);
-    partial void OnShipToleranceIDChanged();
-    partial void OnBuyerIDChanging(System.Nullable<int> value);
-    partial void OnBuyerIDChanged();
-    partial void OnBOMDescriptionChanging(string value);
-    partial void OnBOMDescriptionChanged();
-    partial void OnBomIncrementChanging(System.Nullable<byte> value);
-    partial void OnBomIncrementChanged();
-    partial void OnRoutingDescriptionChanging(string value);
-    partial void OnRoutingDescriptionChanged();
-    partial void OnCreateDateTimeChanging(System.DateTime value);
-    partial void OnCreateDateTimeChanged();
-    partial void OnUpdateDateTimeChanging(System.Nullable<System.DateTime> value);
-    partial void OnUpdateDateTimeChanged();
-    partial void OnCostMethodChanging(System.Nullable<byte> value);
-    partial void OnCostMethodChanged();
-    partial void OnRoutingIncrementChanging(System.Nullable<byte> value);
-    partial void OnRoutingIncrementChanged();
-    partial void OnCCNIDChanging(int value);
-    partial void OnCCNIDChanged();
-    partial void OnCategoryIDChanging(System.Nullable<int> value);
-    partial void OnCategoryIDChanged();
-    partial void OnCostCenterIDChanging(System.Nullable<int> value);
-    partial void OnCostCenterIDChanged();
-    partial void OnDeleteReasonIDChanging(System.Nullable<int> value);
-    partial void OnDeleteReasonIDChanged();
-    partial void OnDeliveryPolicyIDChanging(System.Nullable<int> value);
-    partial void OnDeliveryPolicyIDChanged();
-    partial void OnFormatCodeIDChanging(System.Nullable<int> value);
-    partial void OnFormatCodeIDChanged();
-    partial void OnFreightClassIDChanging(System.Nullable<int> value);
-    partial void OnFreightClassIDChanged();
-    partial void OnHazardIDChanging(System.Nullable<int> value);
-    partial void OnHazardIDChanged();
-    partial void OnOrderPolicyIDChanging(System.Nullable<int> value);
-    partial void OnOrderPolicyIDChanged();
-    partial void OnOrderRuleIDChanging(System.Nullable<int> value);
-    partial void OnOrderRuleIDChanged();
-    partial void OnSourceIDChanging(System.Nullable<int> value);
-    partial void OnSourceIDChanged();
-    partial void OnStockUMIDChanging(int value);
-    partial void OnStockUMIDChanged();
-    partial void OnSellingUMIDChanging(int value);
-    partial void OnSellingUMIDChanged();
-    partial void OnHeightUMIDChanging(System.Nullable<int> value);
-    partial void OnHeightUMIDChanged();
-    partial void OnWidthUMIDChanging(System.Nullable<int> value);
-    partial void OnWidthUMIDChanged();
-    partial void OnLengthUMIDChanging(System.Nullable<int> value);
-    partial void OnLengthUMIDChanged();
-    partial void OnBuyingUMIDChanging(int value);
-    partial void OnBuyingUMIDChanged();
-    partial void OnWeightUMIDChanging(System.Nullable<int> value);
-    partial void OnWeightUMIDChanged();
-    partial void OnLotSizeChanging(System.Nullable<int> value);
-    partial void OnLotSizeChanged();
-    partial void OnMasterLocationIDChanging(System.Nullable<int> value);
-    partial void OnMasterLocationIDChanged();
-    partial void OnLocationIDChanging(System.Nullable<int> value);
-    partial void OnLocationIDChanged();
-    partial void OnBinIDChanging(System.Nullable<int> value);
-    partial void OnBinIDChanged();
-    partial void OnPrimaryVendorIDChanging(System.Nullable<int> value);
-    partial void OnPrimaryVendorIDChanged();
-    partial void OnVendorLocationIDChanging(System.Nullable<int> value);
-    partial void OnVendorLocationIDChanged();
-    partial void OnOrderPointChanging(System.Nullable<decimal> value);
-    partial void OnOrderPointChanged();
-    partial void OnSafetyStockChanging(System.Nullable<decimal> value);
-    partial void OnSafetyStockChanged();
-    partial void OnAGCIDChanging(System.Nullable<int> value);
-    partial void OnAGCIDChanged();
-    partial void OnParentProductIDChanging(System.Nullable<int> value);
-    partial void OnParentProductIDChanged();
-    partial void OnLTDockToStockChanging(System.Nullable<decimal> value);
-    partial void OnLTDockToStockChanged();
-    partial void OnPartNameVNChanging(string value);
-    partial void OnPartNameVNChanged();
-    partial void OnLicenseFeeChanging(System.Nullable<decimal> value);
-    partial void OnLicenseFeeChanged();
-    partial void OnInventorIDChanging(System.Nullable<int> value);
-    partial void OnInventorIDChanged();
-    partial void OnProductTypeIDChanging(System.Nullable<int> value);
-    partial void OnProductTypeIDChanged();
-    partial void OnTaxCodeChanging(string value);
-    partial void OnTaxCodeChanged();
-    partial void OnListPriceChanging(System.Nullable<decimal> value);
-    partial void OnListPriceChanged();
-    partial void OnVendorCurrencyIDChanging(System.Nullable<int> value);
-    partial void OnVendorCurrencyIDChanged();
-    partial void OnQuantitySetChanging(System.Nullable<decimal> value);
-    partial void OnQuantitySetChanged();
-    partial void OnProductionLineIDChanging(System.Nullable<int> value);
-    partial void OnProductionLineIDChanged();
-    partial void OnCostCenterRateMasterIDChanging(System.Nullable<int> value);
-    partial void OnCostCenterRateMasterIDChanged();
-    partial void OnProductGroupIDChanging(System.Nullable<int> value);
-    partial void OnProductGroupIDChanged();
-    partial void OnMaxProduceChanging(System.Nullable<decimal> value);
-    partial void OnMaxProduceChanged();
-    partial void OnMinProduceChanging(System.Nullable<decimal> value);
-    partial void OnMinProduceChanged();
-    partial void OnPictureChanging(System.Data.Linq.Binary value);
-    partial void OnPictureChanged();
-    partial void OnMaxRoundUpToMinChanging(System.Nullable<decimal> value);
-    partial void OnMaxRoundUpToMinChanged();
-    partial void OnMaxRoundUpToMultipleChanging(System.Nullable<decimal> value);
-    partial void OnMaxRoundUpToMultipleChanged();
-    partial void OnACAdjustmentMasterIDChanging(System.Nullable<int> value);
-    partial void OnACAdjustmentMasterIDChanged();
-    partial void OnRegisteredCodeChanging(string value);
-    partial void OnRegisteredCodeChanged();
-    partial void OnSetUpPairChanging(string value);
-    partial void OnSetUpPairChanged();
-    partial void OnAVEGChanging(System.Nullable<bool> value);
-    partial void OnAVEGChanged();
-    partial void OnStockTakingCodeChanging(string value);
-    partial void OnStockTakingCodeChanged();
-    partial void OnMassOrderChanging(System.Nullable<bool> value);
-    partial void OnMassOrderChanged();
-    partial void OnAllowNegativeQtyChanging(System.Nullable<bool> value);
-    partial void OnAllowNegativeQtyChanged();
-    #endregion
-		
-		public ITM_Product()
-		{
-			this._cst_ActCostAllocationDetails = new EntitySet<cst_ActCostAllocationDetail>(new Action<cst_ActCostAllocationDetail>(this.attach_cst_ActCostAllocationDetails), new Action<cst_ActCostAllocationDetail>(this.detach_cst_ActCostAllocationDetails));
-			this._CST_ActualCostHistories = new EntitySet<CST_ActualCostHistory>(new Action<CST_ActualCostHistory>(this.attach_CST_ActualCostHistories), new Action<CST_ActualCostHistory>(this.detach_CST_ActualCostHistories));
-			this._cst_AllocationResults = new EntitySet<cst_AllocationResult>(new Action<cst_AllocationResult>(this.attach_cst_AllocationResults), new Action<cst_AllocationResult>(this.detach_cst_AllocationResults));
-			this._CST_DSAndRecycleAllocations = new EntitySet<CST_DSAndRecycleAllocation>(new Action<CST_DSAndRecycleAllocation>(this.attach_CST_DSAndRecycleAllocations), new Action<CST_DSAndRecycleAllocation>(this.detach_CST_DSAndRecycleAllocations));
-			this._cst_FreightDetails = new EntitySet<cst_FreightDetail>(new Action<cst_FreightDetail>(this.attach_cst_FreightDetails), new Action<cst_FreightDetail>(this.detach_cst_FreightDetails));
-			this._CST_RecoverMaterialDetails = new EntitySet<CST_RecoverMaterialDetail>(new Action<CST_RecoverMaterialDetail>(this.attach_CST_RecoverMaterialDetails), new Action<CST_RecoverMaterialDetail>(this.detach_CST_RecoverMaterialDetails));
-			this._CST_RecoverMaterialMasters = new EntitySet<CST_RecoverMaterialMaster>(new Action<CST_RecoverMaterialMaster>(this.attach_CST_RecoverMaterialMasters), new Action<CST_RecoverMaterialMaster>(this.detach_CST_RecoverMaterialMasters));
-			this._CST_STDItemCosts = new EntitySet<CST_STDItemCost>(new Action<CST_STDItemCost>(this.attach_CST_STDItemCosts), new Action<CST_STDItemCost>(this.detach_CST_STDItemCosts));
-			this._DCP_BeginQuantities = new EntitySet<DCP_BeginQuantity>(new Action<DCP_BeginQuantity>(this.attach_DCP_BeginQuantities), new Action<DCP_BeginQuantity>(this.detach_DCP_BeginQuantities));
-			this._ITM_BOMs = new EntitySet<ITM_BOM>(new Action<ITM_BOM>(this.attach_ITM_BOMs), new Action<ITM_BOM>(this.detach_ITM_BOMs));
-			this._ITM_BOMs1 = new EntitySet<ITM_BOM>(new Action<ITM_BOM>(this.attach_ITM_BOMs1), new Action<ITM_BOM>(this.detach_ITM_BOMs1));
-			this._ITM_Pictures = new EntitySet<ITM_Picture>(new Action<ITM_Picture>(this.attach_ITM_Pictures), new Action<ITM_Picture>(this.detach_ITM_Pictures));
-			this._ITM_Routings = new EntitySet<ITM_Routing>(new Action<ITM_Routing>(this.attach_ITM_Routings), new Action<ITM_Routing>(this.detach_ITM_Routings));
-			this._IV_Adjustments = new EntitySet<IV_Adjustment>(new Action<IV_Adjustment>(this.attach_IV_Adjustments), new Action<IV_Adjustment>(this.detach_IV_Adjustments));
-			this._IV_BalanceBins = new EntitySet<IV_BalanceBin>(new Action<IV_BalanceBin>(this.attach_IV_BalanceBins), new Action<IV_BalanceBin>(this.detach_IV_BalanceBins));
-			this._IV_BalanceLocations = new EntitySet<IV_BalanceLocation>(new Action<IV_BalanceLocation>(this.attach_IV_BalanceLocations), new Action<IV_BalanceLocation>(this.detach_IV_BalanceLocations));
-			this._IV_BalanceMasterLocations = new EntitySet<IV_BalanceMasterLocation>(new Action<IV_BalanceMasterLocation>(this.attach_IV_BalanceMasterLocations), new Action<IV_BalanceMasterLocation>(this.detach_IV_BalanceMasterLocations));
-			this._IV_BeginDCPReports = new EntitySet<IV_BeginDCPReport>(new Action<IV_BeginDCPReport>(this.attach_IV_BeginDCPReports), new Action<IV_BeginDCPReport>(this.detach_IV_BeginDCPReports));
-			this._IV_BeginMRPs = new EntitySet<IV_BeginMRP>(new Action<IV_BeginMRP>(this.attach_IV_BeginMRPs), new Action<IV_BeginMRP>(this.detach_IV_BeginMRPs));
-			this._IV_BinCaches = new EntitySet<IV_BinCache>(new Action<IV_BinCache>(this.attach_IV_BinCaches), new Action<IV_BinCache>(this.detach_IV_BinCaches));
-			this._IV_CostHistories = new EntitySet<IV_CostHistory>(new Action<IV_CostHistory>(this.attach_IV_CostHistories), new Action<IV_CostHistory>(this.detach_IV_CostHistories));
-			this._IV_LocationCaches = new EntitySet<IV_LocationCache>(new Action<IV_LocationCache>(this.attach_IV_LocationCaches), new Action<IV_LocationCache>(this.detach_IV_LocationCaches));
-			this._IV_MasLocCaches = new EntitySet<IV_MasLocCache>(new Action<IV_MasLocCache>(this.attach_IV_MasLocCaches), new Action<IV_MasLocCache>(this.detach_IV_MasLocCaches));
-			this._IV_StockTakings = new EntitySet<IV_StockTaking>(new Action<IV_StockTaking>(this.attach_IV_StockTakings), new Action<IV_StockTaking>(this.detach_IV_StockTakings));
-			this._IV_StockTakingDifferents = new EntitySet<IV_StockTakingDifferent>(new Action<IV_StockTakingDifferent>(this.attach_IV_StockTakingDifferents), new Action<IV_StockTakingDifferent>(this.detach_IV_StockTakingDifferents));
-			this._MST_TransactionHistories = new EntitySet<MST_TransactionHistory>(new Action<MST_TransactionHistory>(this.attach_MST_TransactionHistories), new Action<MST_TransactionHistory>(this.detach_MST_TransactionHistories));
-			this._MTR_ACDSDetails = new EntitySet<MTR_ACDSDetail>(new Action<MTR_ACDSDetail>(this.attach_MTR_ACDSDetails), new Action<MTR_ACDSDetail>(this.detach_MTR_ACDSDetails));
-			this._MTR_CPOs = new EntitySet<MTR_CPO>(new Action<MTR_CPO>(this.attach_MTR_CPOs), new Action<MTR_CPO>(this.detach_MTR_CPOs));
-			this._MTR_ItemActualCosts = new EntitySet<MTR_ItemActualCost>(new Action<MTR_ItemActualCost>(this.attach_MTR_ItemActualCosts), new Action<MTR_ItemActualCost>(this.detach_MTR_ItemActualCosts));
-			this._PO_InvoiceDetails = new EntitySet<PO_InvoiceDetail>(new Action<PO_InvoiceDetail>(this.attach_PO_InvoiceDetails), new Action<PO_InvoiceDetail>(this.detach_PO_InvoiceDetails));
-			this._PO_ItemVendorReferences = new EntitySet<PO_ItemVendorReference>(new Action<PO_ItemVendorReference>(this.attach_PO_ItemVendorReferences), new Action<PO_ItemVendorReference>(this.detach_PO_ItemVendorReferences));
-			this._PO_PurchaseOrderDetails = new EntitySet<PO_PurchaseOrderDetail>(new Action<PO_PurchaseOrderDetail>(this.attach_PO_PurchaseOrderDetails), new Action<PO_PurchaseOrderDetail>(this.detach_PO_PurchaseOrderDetails));
-			this._PO_PurchaseOrderReceiptDetails = new EntitySet<PO_PurchaseOrderReceiptDetail>(new Action<PO_PurchaseOrderReceiptDetail>(this.attach_PO_PurchaseOrderReceiptDetails), new Action<PO_PurchaseOrderReceiptDetail>(this.detach_PO_PurchaseOrderReceiptDetails));
-			this._PO_ReturnToVendorDetails = new EntitySet<PO_ReturnToVendorDetail>(new Action<PO_ReturnToVendorDetail>(this.attach_PO_ReturnToVendorDetails), new Action<PO_ReturnToVendorDetail>(this.detach_PO_ReturnToVendorDetails));
-			this._PO_VendorDeliverySchedules = new EntitySet<PO_VendorDeliverySchedule>(new Action<PO_VendorDeliverySchedule>(this.attach_PO_VendorDeliverySchedules), new Action<PO_VendorDeliverySchedule>(this.detach_PO_VendorDeliverySchedules));
-			this._PRO_ChangeCategoryDetails = new EntitySet<PRO_ChangeCategoryDetail>(new Action<PRO_ChangeCategoryDetail>(this.attach_PRO_ChangeCategoryDetails), new Action<PRO_ChangeCategoryDetail>(this.detach_PRO_ChangeCategoryDetails));
-			this._PRO_ChangeCategoryMatrixes = new EntitySet<PRO_ChangeCategoryMatrix>(new Action<PRO_ChangeCategoryMatrix>(this.attach_PRO_ChangeCategoryMatrixes), new Action<PRO_ChangeCategoryMatrix>(this.detach_PRO_ChangeCategoryMatrixes));
-			this._PRO_ChangeCategoryMatrixes1 = new EntitySet<PRO_ChangeCategoryMatrix>(new Action<PRO_ChangeCategoryMatrix>(this.attach_PRO_ChangeCategoryMatrixes1), new Action<PRO_ChangeCategoryMatrix>(this.detach_PRO_ChangeCategoryMatrixes1));
-			this._PRO_CheckPoints = new EntitySet<PRO_CheckPoint>(new Action<PRO_CheckPoint>(this.attach_PRO_CheckPoints), new Action<PRO_CheckPoint>(this.detach_PRO_CheckPoints));
-			this._PRO_ComponentScrapDetails = new EntitySet<PRO_ComponentScrapDetail>(new Action<PRO_ComponentScrapDetail>(this.attach_PRO_ComponentScrapDetails), new Action<PRO_ComponentScrapDetail>(this.detach_PRO_ComponentScrapDetails));
-			this._PRO_ComponentScrapDetails1 = new EntitySet<PRO_ComponentScrapDetail>(new Action<PRO_ComponentScrapDetail>(this.attach_PRO_ComponentScrapDetails1), new Action<PRO_ComponentScrapDetail>(this.detach_PRO_ComponentScrapDetails1));
-			this._PRO_DCPResultMasters = new EntitySet<PRO_DCPResultMaster>(new Action<PRO_DCPResultMaster>(this.attach_PRO_DCPResultMasters), new Action<PRO_DCPResultMaster>(this.detach_PRO_DCPResultMasters));
-			this._PRO_IssueMaterialDetails = new EntitySet<PRO_IssueMaterialDetail>(new Action<PRO_IssueMaterialDetail>(this.attach_PRO_IssueMaterialDetails), new Action<PRO_IssueMaterialDetail>(this.detach_PRO_IssueMaterialDetails));
-			this._PRO_IssueMaterialMasters = new EntitySet<PRO_IssueMaterialMaster>(new Action<PRO_IssueMaterialMaster>(this.attach_PRO_IssueMaterialMasters), new Action<PRO_IssueMaterialMaster>(this.detach_PRO_IssueMaterialMasters));
-			this._PRO_PGProducts = new EntitySet<PRO_PGProduct>(new Action<PRO_PGProduct>(this.attach_PRO_PGProducts), new Action<PRO_PGProduct>(this.detach_PRO_PGProducts));
-			this._PRO_ProductProductionOrders = new EntitySet<PRO_ProductProductionOrder>(new Action<PRO_ProductProductionOrder>(this.attach_PRO_ProductProductionOrders), new Action<PRO_ProductProductionOrder>(this.detach_PRO_ProductProductionOrders));
-			this._PRO_WorkOrderCompletions = new EntitySet<PRO_WorkOrderCompletion>(new Action<PRO_WorkOrderCompletion>(this.attach_PRO_WorkOrderCompletions), new Action<PRO_WorkOrderCompletion>(this.detach_PRO_WorkOrderCompletions));
-			this._PRO_WorkOrderDetails = new EntitySet<PRO_WorkOrderDetail>(new Action<PRO_WorkOrderDetail>(this.attach_PRO_WorkOrderDetails), new Action<PRO_WorkOrderDetail>(this.detach_PRO_WorkOrderDetails));
-			this._SO_CommitInventoryDetails = new EntitySet<SO_CommitInventoryDetail>(new Action<SO_CommitInventoryDetail>(this.attach_SO_CommitInventoryDetails), new Action<SO_CommitInventoryDetail>(this.detach_SO_CommitInventoryDetails));
-			this._SO_CustomerItemRefDetails = new EntitySet<SO_CustomerItemRefDetail>(new Action<SO_CustomerItemRefDetail>(this.attach_SO_CustomerItemRefDetails), new Action<SO_CustomerItemRefDetail>(this.detach_SO_CustomerItemRefDetails));
-			this._SO_ReturnedGoodsDetails = new EntitySet<SO_ReturnedGoodsDetail>(new Action<SO_ReturnedGoodsDetail>(this.attach_SO_ReturnedGoodsDetails), new Action<SO_ReturnedGoodsDetail>(this.detach_SO_ReturnedGoodsDetails));
-			this._SO_SaleOrderDetails = new EntitySet<SO_SaleOrderDetail>(new Action<SO_SaleOrderDetail>(this.attach_SO_SaleOrderDetails), new Action<SO_SaleOrderDetail>(this.detach_SO_SaleOrderDetails));
-			this._STD_CostCenterRateMasters = new EntitySet<STD_CostCenterRateMaster>(new Action<STD_CostCenterRateMaster>(this.attach_STD_CostCenterRateMasters), new Action<STD_CostCenterRateMaster>(this.detach_STD_CostCenterRateMasters));
-			this._sys_RoleProducts = new EntitySet<sys_RoleProduct>(new Action<sys_RoleProduct>(this.attach_sys_RoleProducts), new Action<sys_RoleProduct>(this.detach_sys_RoleProducts));
-			this._SO_ConfirmShipDetails = new EntitySet<SO_ConfirmShipDetail>(new Action<SO_ConfirmShipDetail>(this.attach_SO_ConfirmShipDetails), new Action<SO_ConfirmShipDetail>(this.detach_SO_ConfirmShipDetails));
-			this._SO_InvoiceDetails = new EntitySet<SO_InvoiceDetail>(new Action<SO_InvoiceDetail>(this.attach_SO_InvoiceDetails), new Action<SO_InvoiceDetail>(this.detach_SO_InvoiceDetails));
-			this._IV_MiscellaneousIssueDetails = new EntitySet<IV_MiscellaneousIssueDetail>(new Action<IV_MiscellaneousIssueDetail>(this.attach_IV_MiscellaneousIssueDetails), new Action<IV_MiscellaneousIssueDetail>(this.detach_IV_MiscellaneousIssueDetails));
-			this._cst_ACAdjustmentMaster = default(EntityRef<cst_ACAdjustmentMaster>);
-			this._ITM_Buyer = default(EntityRef<ITM_Buyer>);
-			this._ITM_Category = default(EntityRef<ITM_Category>);
-			this._ITM_CostCenter = default(EntityRef<ITM_CostCenter>);
-			this._ITM_DeleteReason = default(EntityRef<ITM_DeleteReason>);
-			this._ITM_DeliveryPolicy = default(EntityRef<ITM_DeliveryPolicy>);
-			this._ITM_FormatCode = default(EntityRef<ITM_FormatCode>);
-			this._ITM_FreightClass = default(EntityRef<ITM_FreightClass>);
-			this._ITM_Hazard = default(EntityRef<ITM_Hazard>);
-			this._ITM_OrderRule = default(EntityRef<ITM_OrderRule>);
-			this._ITM_OrderPolicy = default(EntityRef<ITM_OrderPolicy>);
-			this._CST_ProductGroup = default(EntityRef<CST_ProductGroup>);
-			this._ITM_ProductType = default(EntityRef<ITM_ProductType>);
-			this._ITM_ShipTolerance = default(EntityRef<ITM_ShipTolerance>);
-			this._ITM_Source = default(EntityRef<ITM_Source>);
-			this._MST_AGC = default(EntityRef<MST_AGC>);
-			this._MST_BIN = default(EntityRef<MST_BIN>);
-			this._MST_CCN = default(EntityRef<MST_CCN>);
-			this._MST_Currency = default(EntityRef<MST_Currency>);
-			this._MST_Location = default(EntityRef<MST_Location>);
-			this._MST_MasterLocation = default(EntityRef<MST_MasterLocation>);
-			this._MST_Party = default(EntityRef<MST_Party>);
-			this._MST_Party1 = default(EntityRef<MST_Party>);
-			this._MST_PartyLocation = default(EntityRef<MST_PartyLocation>);
-			this._MST_UnitOfMeasure = default(EntityRef<MST_UnitOfMeasure>);
-			this._MST_UnitOfMeasure1 = default(EntityRef<MST_UnitOfMeasure>);
-			this._MST_UnitOfMeasure2 = default(EntityRef<MST_UnitOfMeasure>);
-			this._MST_UnitOfMeasure3 = default(EntityRef<MST_UnitOfMeasure>);
-			this._MST_UnitOfMeasure4 = default(EntityRef<MST_UnitOfMeasure>);
-			this._MST_UnitOfMeasure5 = default(EntityRef<MST_UnitOfMeasure>);
-			this._MST_UnitOfMeasure6 = default(EntityRef<MST_UnitOfMeasure>);
-			this._PRO_ProductionLine = default(EntityRef<PRO_ProductionLine>);
-			this._STD_CostCenterRateMaster = default(EntityRef<STD_CostCenterRateMaster>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ProductID
-		{
-			get
-			{
-				return this._ProductID;
-			}
-			set
-			{
-				if ((this._ProductID != value))
-				{
-					this.OnProductIDChanging(value);
-					this.SendPropertyChanging();
-					this._ProductID = value;
-					this.SendPropertyChanged("ProductID");
-					this.OnProductIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Code", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
-		public string Code
-		{
-			get
-			{
-				return this._Code;
-			}
-			set
-			{
-				if ((this._Code != value))
-				{
-					this.OnCodeChanging(value);
-					this.SendPropertyChanging();
-					this._Code = value;
-					this.SendPropertyChanged("Code");
-					this.OnCodeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Revision", DbType="NVarChar(20) NOT NULL", CanBeNull=false)]
-		public string Revision
-		{
-			get
-			{
-				return this._Revision;
-			}
-			set
-			{
-				if ((this._Revision != value))
-				{
-					this.OnRevisionChanging(value);
-					this.SendPropertyChanging();
-					this._Revision = value;
-					this.SendPropertyChanged("Revision");
-					this.OnRevisionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NVarChar(200)")]
-		public string Description
-		{
-			get
-			{
-				return this._Description;
-			}
-			set
-			{
-				if ((this._Description != value))
-				{
-					this.OnDescriptionChanging(value);
-					this.SendPropertyChanging();
-					this._Description = value;
-					this.SendPropertyChanged("Description");
-					this.OnDescriptionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SetupDate", DbType="DateTime NOT NULL")]
-		public System.DateTime SetupDate
-		{
-			get
-			{
-				return this._SetupDate;
-			}
-			set
-			{
-				if ((this._SetupDate != value))
-				{
-					this.OnSetupDateChanging(value);
-					this.SendPropertyChanging();
-					this._SetupDate = value;
-					this.SendPropertyChanged("SetupDate");
-					this.OnSetupDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VAT", DbType="Float")]
-		public System.Nullable<double> VAT
-		{
-			get
-			{
-				return this._VAT;
-			}
-			set
-			{
-				if ((this._VAT != value))
-				{
-					this.OnVATChanging(value);
-					this.SendPropertyChanging();
-					this._VAT = value;
-					this.SendPropertyChanged("VAT");
-					this.OnVATChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ImportTax", DbType="Float")]
-		public System.Nullable<double> ImportTax
-		{
-			get
-			{
-				return this._ImportTax;
-			}
-			set
-			{
-				if ((this._ImportTax != value))
-				{
-					this.OnImportTaxChanging(value);
-					this.SendPropertyChanging();
-					this._ImportTax = value;
-					this.SendPropertyChanged("ImportTax");
-					this.OnImportTaxChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ExportTax", DbType="Float")]
-		public System.Nullable<double> ExportTax
-		{
-			get
-			{
-				return this._ExportTax;
-			}
-			set
-			{
-				if ((this._ExportTax != value))
-				{
-					this.OnExportTaxChanging(value);
-					this.SendPropertyChanging();
-					this._ExportTax = value;
-					this.SendPropertyChanged("ExportTax");
-					this.OnExportTaxChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SpecialTax", DbType="Float")]
-		public System.Nullable<double> SpecialTax
-		{
-			get
-			{
-				return this._SpecialTax;
-			}
-			set
-			{
-				if ((this._SpecialTax != value))
-				{
-					this.OnSpecialTaxChanging(value);
-					this.SendPropertyChanging();
-					this._SpecialTax = value;
-					this.SendPropertyChanged("SpecialTax");
-					this.OnSpecialTaxChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MakeItem", DbType="Bit NOT NULL")]
-		public bool MakeItem
-		{
-			get
-			{
-				return this._MakeItem;
-			}
-			set
-			{
-				if ((this._MakeItem != value))
-				{
-					this.OnMakeItemChanging(value);
-					this.SendPropertyChanging();
-					this._MakeItem = value;
-					this.SendPropertyChanged("MakeItem");
-					this.OnMakeItemChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PartNumber", DbType="NVarChar(40)")]
-		public string PartNumber
-		{
-			get
-			{
-				return this._PartNumber;
-			}
-			set
-			{
-				if ((this._PartNumber != value))
-				{
-					this.OnPartNumberChanging(value);
-					this.SendPropertyChanging();
-					this._PartNumber = value;
-					this.SendPropertyChanged("PartNumber");
-					this.OnPartNumberChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OtherInfo1", DbType="NVarChar(100)")]
-		public string OtherInfo1
-		{
-			get
-			{
-				return this._OtherInfo1;
-			}
-			set
-			{
-				if ((this._OtherInfo1 != value))
-				{
-					this.OnOtherInfo1Changing(value);
-					this.SendPropertyChanging();
-					this._OtherInfo1 = value;
-					this.SendPropertyChanged("OtherInfo1");
-					this.OnOtherInfo1Changed();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OtherInfo2", DbType="NVarChar(100)")]
-		public string OtherInfo2
-		{
-			get
-			{
-				return this._OtherInfo2;
-			}
-			set
-			{
-				if ((this._OtherInfo2 != value))
-				{
-					this.OnOtherInfo2Changing(value);
-					this.SendPropertyChanging();
-					this._OtherInfo2 = value;
-					this.SendPropertyChanged("OtherInfo2");
-					this.OnOtherInfo2Changed();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Length", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> Length
-		{
-			get
-			{
-				return this._Length;
-			}
-			set
-			{
-				if ((this._Length != value))
-				{
-					this.OnLengthChanging(value);
-					this.SendPropertyChanging();
-					this._Length = value;
-					this.SendPropertyChanged("Length");
-					this.OnLengthChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Width", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> Width
-		{
-			get
-			{
-				return this._Width;
-			}
-			set
-			{
-				if ((this._Width != value))
-				{
-					this.OnWidthChanging(value);
-					this.SendPropertyChanging();
-					this._Width = value;
-					this.SendPropertyChanged("Width");
-					this.OnWidthChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Height", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> Height
-		{
-			get
-			{
-				return this._Height;
-			}
-			set
-			{
-				if ((this._Height != value))
-				{
-					this.OnHeightChanging(value);
-					this.SendPropertyChanging();
-					this._Height = value;
-					this.SendPropertyChanged("Height");
-					this.OnHeightChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Weight", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> Weight
-		{
-			get
-			{
-				return this._Weight;
-			}
-			set
-			{
-				if ((this._Weight != value))
-				{
-					this.OnWeightChanging(value);
-					this.SendPropertyChanging();
-					this._Weight = value;
-					this.SendPropertyChanged("Weight");
-					this.OnWeightChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FinishedGoods", DbType="Bit")]
-		public System.Nullable<bool> FinishedGoods
-		{
-			get
-			{
-				return this._FinishedGoods;
-			}
-			set
-			{
-				if ((this._FinishedGoods != value))
-				{
-					this.OnFinishedGoodsChanging(value);
-					this.SendPropertyChanging();
-					this._FinishedGoods = value;
-					this.SendPropertyChanged("FinishedGoods");
-					this.OnFinishedGoodsChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ShelfLife", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> ShelfLife
-		{
-			get
-			{
-				return this._ShelfLife;
-			}
-			set
-			{
-				if ((this._ShelfLife != value))
-				{
-					this.OnShelfLifeChanging(value);
-					this.SendPropertyChanging();
-					this._ShelfLife = value;
-					this.SendPropertyChanged("ShelfLife");
-					this.OnShelfLifeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LotControl", DbType="Bit")]
-		public System.Nullable<bool> LotControl
-		{
-			get
-			{
-				return this._LotControl;
-			}
-			set
-			{
-				if ((this._LotControl != value))
-				{
-					this.OnLotControlChanging(value);
-					this.SendPropertyChanging();
-					this._LotControl = value;
-					this.SendPropertyChanged("LotControl");
-					this.OnLotControlChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QAStatus", DbType="TinyInt")]
-		public System.Nullable<byte> QAStatus
-		{
-			get
-			{
-				return this._QAStatus;
-			}
-			set
-			{
-				if ((this._QAStatus != value))
-				{
-					this.OnQAStatusChanging(value);
-					this.SendPropertyChanging();
-					this._QAStatus = value;
-					this.SendPropertyChanged("QAStatus");
-					this.OnQAStatusChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Stock", DbType="Bit")]
-		public System.Nullable<bool> Stock
-		{
-			get
-			{
-				return this._Stock;
-			}
-			set
-			{
-				if ((this._Stock != value))
-				{
-					this.OnStockChanging(value);
-					this.SendPropertyChanging();
-					this._Stock = value;
-					this.SendPropertyChanged("Stock");
-					this.OnStockChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PlanType", DbType="TinyInt NOT NULL")]
-		public byte PlanType
-		{
-			get
-			{
-				return this._PlanType;
-			}
-			set
-			{
-				if ((this._PlanType != value))
-				{
-					this.OnPlanTypeChanging(value);
-					this.SendPropertyChanging();
-					this._PlanType = value;
-					this.SendPropertyChanged("PlanType");
-					this.OnPlanTypeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AutoConversion", DbType="Bit")]
-		public System.Nullable<bool> AutoConversion
-		{
-			get
-			{
-				return this._AutoConversion;
-			}
-			set
-			{
-				if ((this._AutoConversion != value))
-				{
-					this.OnAutoConversionChanging(value);
-					this.SendPropertyChanging();
-					this._AutoConversion = value;
-					this.SendPropertyChanged("AutoConversion");
-					this.OnAutoConversionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OrderQuantity", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> OrderQuantity
-		{
-			get
-			{
-				return this._OrderQuantity;
-			}
-			set
-			{
-				if ((this._OrderQuantity != value))
-				{
-					this.OnOrderQuantityChanging(value);
-					this.SendPropertyChanging();
-					this._OrderQuantity = value;
-					this.SendPropertyChanged("OrderQuantity");
-					this.OnOrderQuantityChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LTRequisition", DbType="Decimal(20,5)")]
-		public System.Nullable<decimal> LTRequisition
-		{
-			get
-			{
-				return this._LTRequisition;
-			}
-			set
-			{
-				if ((this._LTRequisition != value))
-				{
-					this.OnLTRequisitionChanging(value);
-					this.SendPropertyChanging();
-					this._LTRequisition = value;
-					this.SendPropertyChanged("LTRequisition");
-					this.OnLTRequisitionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LTSafetyStock", DbType="Decimal(20,5)")]
-		public System.Nullable<decimal> LTSafetyStock
-		{
-			get
-			{
-				return this._LTSafetyStock;
-			}
-			set
-			{
-				if ((this._LTSafetyStock != value))
-				{
-					this.OnLTSafetyStockChanging(value);
-					this.SendPropertyChanging();
-					this._LTSafetyStock = value;
-					this.SendPropertyChanged("LTSafetyStock");
-					this.OnLTSafetyStockChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OrderQuantityMultiple", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> OrderQuantityMultiple
-		{
-			get
-			{
-				return this._OrderQuantityMultiple;
-			}
-			set
-			{
-				if ((this._OrderQuantityMultiple != value))
-				{
-					this.OnOrderQuantityMultipleChanging(value);
-					this.SendPropertyChanging();
-					this._OrderQuantityMultiple = value;
-					this.SendPropertyChanged("OrderQuantityMultiple");
-					this.OnOrderQuantityMultipleChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ScrapPercent", DbType="Float")]
-		public System.Nullable<double> ScrapPercent
-		{
-			get
-			{
-				return this._ScrapPercent;
-			}
-			set
-			{
-				if ((this._ScrapPercent != value))
-				{
-					this.OnScrapPercentChanging(value);
-					this.SendPropertyChanging();
-					this._ScrapPercent = value;
-					this.SendPropertyChanged("ScrapPercent");
-					this.OnScrapPercentChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MinimumStock", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> MinimumStock
-		{
-			get
-			{
-				return this._MinimumStock;
-			}
-			set
-			{
-				if ((this._MinimumStock != value))
-				{
-					this.OnMinimumStockChanging(value);
-					this.SendPropertyChanging();
-					this._MinimumStock = value;
-					this.SendPropertyChanged("MinimumStock");
-					this.OnMinimumStockChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaximumStock", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> MaximumStock
-		{
-			get
-			{
-				return this._MaximumStock;
-			}
-			set
-			{
-				if ((this._MaximumStock != value))
-				{
-					this.OnMaximumStockChanging(value);
-					this.SendPropertyChanging();
-					this._MaximumStock = value;
-					this.SendPropertyChanged("MaximumStock");
-					this.OnMaximumStockChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ConversionTolerance", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> ConversionTolerance
-		{
-			get
-			{
-				return this._ConversionTolerance;
-			}
-			set
-			{
-				if ((this._ConversionTolerance != value))
-				{
-					this.OnConversionToleranceChanging(value);
-					this.SendPropertyChanging();
-					this._ConversionTolerance = value;
-					this.SendPropertyChanged("ConversionTolerance");
-					this.OnConversionToleranceChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VoucherTolerance", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> VoucherTolerance
-		{
-			get
-			{
-				return this._VoucherTolerance;
-			}
-			set
-			{
-				if ((this._VoucherTolerance != value))
-				{
-					this.OnVoucherToleranceChanging(value);
-					this.SendPropertyChanging();
-					this._VoucherTolerance = value;
-					this.SendPropertyChanged("VoucherTolerance");
-					this.OnVoucherToleranceChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReceiveTolerance", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> ReceiveTolerance
-		{
-			get
-			{
-				return this._ReceiveTolerance;
-			}
-			set
-			{
-				if ((this._ReceiveTolerance != value))
-				{
-					this.OnReceiveToleranceChanging(value);
-					this.SendPropertyChanging();
-					this._ReceiveTolerance = value;
-					this.SendPropertyChanged("ReceiveTolerance");
-					this.OnReceiveToleranceChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IssueSize", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> IssueSize
-		{
-			get
-			{
-				return this._IssueSize;
-			}
-			set
-			{
-				if ((this._IssueSize != value))
-				{
-					this.OnIssueSizeChanging(value);
-					this.SendPropertyChanging();
-					this._IssueSize = value;
-					this.SendPropertyChanged("IssueSize");
-					this.OnIssueSizeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LTFixedTime", DbType="Decimal(20,5)")]
-		public System.Nullable<decimal> LTFixedTime
-		{
-			get
-			{
-				return this._LTFixedTime;
-			}
-			set
-			{
-				if ((this._LTFixedTime != value))
-				{
-					this.OnLTFixedTimeChanging(value);
-					this.SendPropertyChanging();
-					this._LTFixedTime = value;
-					this.SendPropertyChanged("LTFixedTime");
-					this.OnLTFixedTimeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LTVariableTime", DbType="Decimal(20,5)")]
-		public System.Nullable<decimal> LTVariableTime
-		{
-			get
-			{
-				return this._LTVariableTime;
-			}
-			set
-			{
-				if ((this._LTVariableTime != value))
-				{
-					this.OnLTVariableTimeChanging(value);
-					this.SendPropertyChanging();
-					this._LTVariableTime = value;
-					this.SendPropertyChanged("LTVariableTime");
-					this.OnLTVariableTimeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LTOrderPrepare", DbType="Decimal(20,5)")]
-		public System.Nullable<decimal> LTOrderPrepare
-		{
-			get
-			{
-				return this._LTOrderPrepare;
-			}
-			set
-			{
-				if ((this._LTOrderPrepare != value))
-				{
-					this.OnLTOrderPrepareChanging(value);
-					this.SendPropertyChanging();
-					this._LTOrderPrepare = value;
-					this.SendPropertyChanged("LTOrderPrepare");
-					this.OnLTOrderPrepareChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LTShippingPrepare", DbType="Decimal(20,5)")]
-		public System.Nullable<decimal> LTShippingPrepare
-		{
-			get
-			{
-				return this._LTShippingPrepare;
-			}
-			set
-			{
-				if ((this._LTShippingPrepare != value))
-				{
-					this.OnLTShippingPrepareChanging(value);
-					this.SendPropertyChanging();
-					this._LTShippingPrepare = value;
-					this.SendPropertyChanged("LTShippingPrepare");
-					this.OnLTShippingPrepareChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LTSalesATP", DbType="Decimal(20,5)")]
-		public System.Nullable<decimal> LTSalesATP
-		{
-			get
-			{
-				return this._LTSalesATP;
-			}
-			set
-			{
-				if ((this._LTSalesATP != value))
-				{
-					this.OnLTSalesATPChanging(value);
-					this.SendPropertyChanging();
-					this._LTSalesATP = value;
-					this.SendPropertyChanged("LTSalesATP");
-					this.OnLTSalesATPChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ShipToleranceID", DbType="Int")]
-		public System.Nullable<int> ShipToleranceID
-		{
-			get
-			{
-				return this._ShipToleranceID;
-			}
-			set
-			{
-				if ((this._ShipToleranceID != value))
-				{
-					if (this._ITM_ShipTolerance.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnShipToleranceIDChanging(value);
-					this.SendPropertyChanging();
-					this._ShipToleranceID = value;
-					this.SendPropertyChanged("ShipToleranceID");
-					this.OnShipToleranceIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BuyerID", DbType="Int")]
-		public System.Nullable<int> BuyerID
-		{
-			get
-			{
-				return this._BuyerID;
-			}
-			set
-			{
-				if ((this._BuyerID != value))
-				{
-					if (this._ITM_Buyer.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnBuyerIDChanging(value);
-					this.SendPropertyChanging();
-					this._BuyerID = value;
-					this.SendPropertyChanged("BuyerID");
-					this.OnBuyerIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BOMDescription", DbType="NVarChar(200)")]
-		public string BOMDescription
-		{
-			get
-			{
-				return this._BOMDescription;
-			}
-			set
-			{
-				if ((this._BOMDescription != value))
-				{
-					this.OnBOMDescriptionChanging(value);
-					this.SendPropertyChanging();
-					this._BOMDescription = value;
-					this.SendPropertyChanged("BOMDescription");
-					this.OnBOMDescriptionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BomIncrement", DbType="TinyInt")]
-		public System.Nullable<byte> BomIncrement
-		{
-			get
-			{
-				return this._BomIncrement;
-			}
-			set
-			{
-				if ((this._BomIncrement != value))
-				{
-					this.OnBomIncrementChanging(value);
-					this.SendPropertyChanging();
-					this._BomIncrement = value;
-					this.SendPropertyChanged("BomIncrement");
-					this.OnBomIncrementChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoutingDescription", DbType="NVarChar(200)")]
-		public string RoutingDescription
-		{
-			get
-			{
-				return this._RoutingDescription;
-			}
-			set
-			{
-				if ((this._RoutingDescription != value))
-				{
-					this.OnRoutingDescriptionChanging(value);
-					this.SendPropertyChanging();
-					this._RoutingDescription = value;
-					this.SendPropertyChanged("RoutingDescription");
-					this.OnRoutingDescriptionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreateDateTime", DbType="DateTime NOT NULL")]
-		public System.DateTime CreateDateTime
-		{
-			get
-			{
-				return this._CreateDateTime;
-			}
-			set
-			{
-				if ((this._CreateDateTime != value))
-				{
-					this.OnCreateDateTimeChanging(value);
-					this.SendPropertyChanging();
-					this._CreateDateTime = value;
-					this.SendPropertyChanged("CreateDateTime");
-					this.OnCreateDateTimeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdateDateTime", DbType="DateTime")]
-		public System.Nullable<System.DateTime> UpdateDateTime
-		{
-			get
-			{
-				return this._UpdateDateTime;
-			}
-			set
-			{
-				if ((this._UpdateDateTime != value))
-				{
-					this.OnUpdateDateTimeChanging(value);
-					this.SendPropertyChanging();
-					this._UpdateDateTime = value;
-					this.SendPropertyChanged("UpdateDateTime");
-					this.OnUpdateDateTimeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CostMethod", DbType="TinyInt")]
-		public System.Nullable<byte> CostMethod
-		{
-			get
-			{
-				return this._CostMethod;
-			}
-			set
-			{
-				if ((this._CostMethod != value))
-				{
-					this.OnCostMethodChanging(value);
-					this.SendPropertyChanging();
-					this._CostMethod = value;
-					this.SendPropertyChanged("CostMethod");
-					this.OnCostMethodChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoutingIncrement", DbType="TinyInt")]
-		public System.Nullable<byte> RoutingIncrement
-		{
-			get
-			{
-				return this._RoutingIncrement;
-			}
-			set
-			{
-				if ((this._RoutingIncrement != value))
-				{
-					this.OnRoutingIncrementChanging(value);
-					this.SendPropertyChanging();
-					this._RoutingIncrement = value;
-					this.SendPropertyChanged("RoutingIncrement");
-					this.OnRoutingIncrementChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CCNID", DbType="Int NOT NULL")]
-		public int CCNID
-		{
-			get
-			{
-				return this._CCNID;
-			}
-			set
-			{
-				if ((this._CCNID != value))
-				{
-					if (this._MST_CCN.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnCCNIDChanging(value);
-					this.SendPropertyChanging();
-					this._CCNID = value;
-					this.SendPropertyChanged("CCNID");
-					this.OnCCNIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CategoryID", DbType="Int")]
-		public System.Nullable<int> CategoryID
-		{
-			get
-			{
-				return this._CategoryID;
-			}
-			set
-			{
-				if ((this._CategoryID != value))
-				{
-					if (this._ITM_Category.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnCategoryIDChanging(value);
-					this.SendPropertyChanging();
-					this._CategoryID = value;
-					this.SendPropertyChanged("CategoryID");
-					this.OnCategoryIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CostCenterID", DbType="Int")]
-		public System.Nullable<int> CostCenterID
-		{
-			get
-			{
-				return this._CostCenterID;
-			}
-			set
-			{
-				if ((this._CostCenterID != value))
-				{
-					if (this._ITM_CostCenter.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnCostCenterIDChanging(value);
-					this.SendPropertyChanging();
-					this._CostCenterID = value;
-					this.SendPropertyChanged("CostCenterID");
-					this.OnCostCenterIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeleteReasonID", DbType="Int")]
-		public System.Nullable<int> DeleteReasonID
-		{
-			get
-			{
-				return this._DeleteReasonID;
-			}
-			set
-			{
-				if ((this._DeleteReasonID != value))
-				{
-					if (this._ITM_DeleteReason.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnDeleteReasonIDChanging(value);
-					this.SendPropertyChanging();
-					this._DeleteReasonID = value;
-					this.SendPropertyChanged("DeleteReasonID");
-					this.OnDeleteReasonIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeliveryPolicyID", DbType="Int")]
-		public System.Nullable<int> DeliveryPolicyID
-		{
-			get
-			{
-				return this._DeliveryPolicyID;
-			}
-			set
-			{
-				if ((this._DeliveryPolicyID != value))
-				{
-					if (this._ITM_DeliveryPolicy.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnDeliveryPolicyIDChanging(value);
-					this.SendPropertyChanging();
-					this._DeliveryPolicyID = value;
-					this.SendPropertyChanged("DeliveryPolicyID");
-					this.OnDeliveryPolicyIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FormatCodeID", DbType="Int")]
-		public System.Nullable<int> FormatCodeID
-		{
-			get
-			{
-				return this._FormatCodeID;
-			}
-			set
-			{
-				if ((this._FormatCodeID != value))
-				{
-					if (this._ITM_FormatCode.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnFormatCodeIDChanging(value);
-					this.SendPropertyChanging();
-					this._FormatCodeID = value;
-					this.SendPropertyChanged("FormatCodeID");
-					this.OnFormatCodeIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FreightClassID", DbType="Int")]
-		public System.Nullable<int> FreightClassID
-		{
-			get
-			{
-				return this._FreightClassID;
-			}
-			set
-			{
-				if ((this._FreightClassID != value))
-				{
-					if (this._ITM_FreightClass.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnFreightClassIDChanging(value);
-					this.SendPropertyChanging();
-					this._FreightClassID = value;
-					this.SendPropertyChanged("FreightClassID");
-					this.OnFreightClassIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HazardID", DbType="Int")]
-		public System.Nullable<int> HazardID
-		{
-			get
-			{
-				return this._HazardID;
-			}
-			set
-			{
-				if ((this._HazardID != value))
-				{
-					if (this._ITM_Hazard.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnHazardIDChanging(value);
-					this.SendPropertyChanging();
-					this._HazardID = value;
-					this.SendPropertyChanged("HazardID");
-					this.OnHazardIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OrderPolicyID", DbType="Int")]
-		public System.Nullable<int> OrderPolicyID
-		{
-			get
-			{
-				return this._OrderPolicyID;
-			}
-			set
-			{
-				if ((this._OrderPolicyID != value))
-				{
-					if (this._ITM_OrderPolicy.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnOrderPolicyIDChanging(value);
-					this.SendPropertyChanging();
-					this._OrderPolicyID = value;
-					this.SendPropertyChanged("OrderPolicyID");
-					this.OnOrderPolicyIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OrderRuleID", DbType="Int")]
-		public System.Nullable<int> OrderRuleID
-		{
-			get
-			{
-				return this._OrderRuleID;
-			}
-			set
-			{
-				if ((this._OrderRuleID != value))
-				{
-					if (this._ITM_OrderRule.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnOrderRuleIDChanging(value);
-					this.SendPropertyChanging();
-					this._OrderRuleID = value;
-					this.SendPropertyChanged("OrderRuleID");
-					this.OnOrderRuleIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SourceID", DbType="Int")]
-		public System.Nullable<int> SourceID
-		{
-			get
-			{
-				return this._SourceID;
-			}
-			set
-			{
-				if ((this._SourceID != value))
-				{
-					if (this._ITM_Source.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnSourceIDChanging(value);
-					this.SendPropertyChanging();
-					this._SourceID = value;
-					this.SendPropertyChanged("SourceID");
-					this.OnSourceIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StockUMID", DbType="Int NOT NULL")]
-		public int StockUMID
-		{
-			get
-			{
-				return this._StockUMID;
-			}
-			set
-			{
-				if ((this._StockUMID != value))
-				{
-					if (this._MST_UnitOfMeasure4.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnStockUMIDChanging(value);
-					this.SendPropertyChanging();
-					this._StockUMID = value;
-					this.SendPropertyChanged("StockUMID");
-					this.OnStockUMIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SellingUMID", DbType="Int NOT NULL")]
-		public int SellingUMID
-		{
-			get
-			{
-				return this._SellingUMID;
-			}
-			set
-			{
-				if ((this._SellingUMID != value))
-				{
-					if (this._MST_UnitOfMeasure3.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnSellingUMIDChanging(value);
-					this.SendPropertyChanging();
-					this._SellingUMID = value;
-					this.SendPropertyChanged("SellingUMID");
-					this.OnSellingUMIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HeightUMID", DbType="Int")]
-		public System.Nullable<int> HeightUMID
-		{
-			get
-			{
-				return this._HeightUMID;
-			}
-			set
-			{
-				if ((this._HeightUMID != value))
-				{
-					if (this._MST_UnitOfMeasure1.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnHeightUMIDChanging(value);
-					this.SendPropertyChanging();
-					this._HeightUMID = value;
-					this.SendPropertyChanged("HeightUMID");
-					this.OnHeightUMIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WidthUMID", DbType="Int")]
-		public System.Nullable<int> WidthUMID
-		{
-			get
-			{
-				return this._WidthUMID;
-			}
-			set
-			{
-				if ((this._WidthUMID != value))
-				{
-					if (this._MST_UnitOfMeasure6.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnWidthUMIDChanging(value);
-					this.SendPropertyChanging();
-					this._WidthUMID = value;
-					this.SendPropertyChanged("WidthUMID");
-					this.OnWidthUMIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LengthUMID", DbType="Int")]
-		public System.Nullable<int> LengthUMID
-		{
-			get
-			{
-				return this._LengthUMID;
-			}
-			set
-			{
-				if ((this._LengthUMID != value))
-				{
-					if (this._MST_UnitOfMeasure2.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnLengthUMIDChanging(value);
-					this.SendPropertyChanging();
-					this._LengthUMID = value;
-					this.SendPropertyChanged("LengthUMID");
-					this.OnLengthUMIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BuyingUMID", DbType="Int NOT NULL")]
-		public int BuyingUMID
-		{
-			get
-			{
-				return this._BuyingUMID;
-			}
-			set
-			{
-				if ((this._BuyingUMID != value))
-				{
-					if (this._MST_UnitOfMeasure.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnBuyingUMIDChanging(value);
-					this.SendPropertyChanging();
-					this._BuyingUMID = value;
-					this.SendPropertyChanged("BuyingUMID");
-					this.OnBuyingUMIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WeightUMID", DbType="Int")]
-		public System.Nullable<int> WeightUMID
-		{
-			get
-			{
-				return this._WeightUMID;
-			}
-			set
-			{
-				if ((this._WeightUMID != value))
-				{
-					if (this._MST_UnitOfMeasure5.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnWeightUMIDChanging(value);
-					this.SendPropertyChanging();
-					this._WeightUMID = value;
-					this.SendPropertyChanged("WeightUMID");
-					this.OnWeightUMIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LotSize", DbType="Int")]
-		public System.Nullable<int> LotSize
-		{
-			get
-			{
-				return this._LotSize;
-			}
-			set
-			{
-				if ((this._LotSize != value))
-				{
-					this.OnLotSizeChanging(value);
-					this.SendPropertyChanging();
-					this._LotSize = value;
-					this.SendPropertyChanged("LotSize");
-					this.OnLotSizeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MasterLocationID", DbType="Int")]
-		public System.Nullable<int> MasterLocationID
-		{
-			get
-			{
-				return this._MasterLocationID;
-			}
-			set
-			{
-				if ((this._MasterLocationID != value))
-				{
-					if (this._MST_MasterLocation.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnMasterLocationIDChanging(value);
-					this.SendPropertyChanging();
-					this._MasterLocationID = value;
-					this.SendPropertyChanged("MasterLocationID");
-					this.OnMasterLocationIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LocationID", DbType="Int")]
-		public System.Nullable<int> LocationID
-		{
-			get
-			{
-				return this._LocationID;
-			}
-			set
-			{
-				if ((this._LocationID != value))
-				{
-					if (this._MST_Location.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnLocationIDChanging(value);
-					this.SendPropertyChanging();
-					this._LocationID = value;
-					this.SendPropertyChanged("LocationID");
-					this.OnLocationIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BinID", DbType="Int")]
-		public System.Nullable<int> BinID
-		{
-			get
-			{
-				return this._BinID;
-			}
-			set
-			{
-				if ((this._BinID != value))
-				{
-					if (this._MST_BIN.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnBinIDChanging(value);
-					this.SendPropertyChanging();
-					this._BinID = value;
-					this.SendPropertyChanged("BinID");
-					this.OnBinIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrimaryVendorID", DbType="Int")]
-		public System.Nullable<int> PrimaryVendorID
-		{
-			get
-			{
-				return this._PrimaryVendorID;
-			}
-			set
-			{
-				if ((this._PrimaryVendorID != value))
-				{
-					if (this._MST_Party1.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnPrimaryVendorIDChanging(value);
-					this.SendPropertyChanging();
-					this._PrimaryVendorID = value;
-					this.SendPropertyChanged("PrimaryVendorID");
-					this.OnPrimaryVendorIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VendorLocationID", DbType="Int")]
-		public System.Nullable<int> VendorLocationID
-		{
-			get
-			{
-				return this._VendorLocationID;
-			}
-			set
-			{
-				if ((this._VendorLocationID != value))
-				{
-					if (this._MST_PartyLocation.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnVendorLocationIDChanging(value);
-					this.SendPropertyChanging();
-					this._VendorLocationID = value;
-					this.SendPropertyChanged("VendorLocationID");
-					this.OnVendorLocationIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OrderPoint", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> OrderPoint
-		{
-			get
-			{
-				return this._OrderPoint;
-			}
-			set
-			{
-				if ((this._OrderPoint != value))
-				{
-					this.OnOrderPointChanging(value);
-					this.SendPropertyChanging();
-					this._OrderPoint = value;
-					this.SendPropertyChanged("OrderPoint");
-					this.OnOrderPointChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SafetyStock", DbType="Decimal(20,5)")]
-		public System.Nullable<decimal> SafetyStock
-		{
-			get
-			{
-				return this._SafetyStock;
-			}
-			set
-			{
-				if ((this._SafetyStock != value))
-				{
-					this.OnSafetyStockChanging(value);
-					this.SendPropertyChanging();
-					this._SafetyStock = value;
-					this.SendPropertyChanged("SafetyStock");
-					this.OnSafetyStockChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AGCID", DbType="Int")]
-		public System.Nullable<int> AGCID
-		{
-			get
-			{
-				return this._AGCID;
-			}
-			set
-			{
-				if ((this._AGCID != value))
-				{
-					if (this._MST_AGC.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnAGCIDChanging(value);
-					this.SendPropertyChanging();
-					this._AGCID = value;
-					this.SendPropertyChanged("AGCID");
-					this.OnAGCIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParentProductID", DbType="Int")]
-		public System.Nullable<int> ParentProductID
-		{
-			get
-			{
-				return this._ParentProductID;
-			}
-			set
-			{
-				if ((this._ParentProductID != value))
-				{
-					this.OnParentProductIDChanging(value);
-					this.SendPropertyChanging();
-					this._ParentProductID = value;
-					this.SendPropertyChanged("ParentProductID");
-					this.OnParentProductIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LTDockToStock", DbType="Decimal(20,5)")]
-		public System.Nullable<decimal> LTDockToStock
-		{
-			get
-			{
-				return this._LTDockToStock;
-			}
-			set
-			{
-				if ((this._LTDockToStock != value))
-				{
-					this.OnLTDockToStockChanging(value);
-					this.SendPropertyChanging();
-					this._LTDockToStock = value;
-					this.SendPropertyChanged("LTDockToStock");
-					this.OnLTDockToStockChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PartNameVN", DbType="NVarChar(100)")]
-		public string PartNameVN
-		{
-			get
-			{
-				return this._PartNameVN;
-			}
-			set
-			{
-				if ((this._PartNameVN != value))
-				{
-					this.OnPartNameVNChanging(value);
-					this.SendPropertyChanging();
-					this._PartNameVN = value;
-					this.SendPropertyChanged("PartNameVN");
-					this.OnPartNameVNChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LicenseFee", DbType="Decimal(20,5)")]
-		public System.Nullable<decimal> LicenseFee
-		{
-			get
-			{
-				return this._LicenseFee;
-			}
-			set
-			{
-				if ((this._LicenseFee != value))
-				{
-					this.OnLicenseFeeChanging(value);
-					this.SendPropertyChanging();
-					this._LicenseFee = value;
-					this.SendPropertyChanged("LicenseFee");
-					this.OnLicenseFeeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InventorID", DbType="Int")]
-		public System.Nullable<int> InventorID
-		{
-			get
-			{
-				return this._InventorID;
-			}
-			set
-			{
-				if ((this._InventorID != value))
-				{
-					if (this._MST_Party.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnInventorIDChanging(value);
-					this.SendPropertyChanging();
-					this._InventorID = value;
-					this.SendPropertyChanged("InventorID");
-					this.OnInventorIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductTypeID", DbType="Int")]
-		public System.Nullable<int> ProductTypeID
-		{
-			get
-			{
-				return this._ProductTypeID;
-			}
-			set
-			{
-				if ((this._ProductTypeID != value))
-				{
-					if (this._ITM_ProductType.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnProductTypeIDChanging(value);
-					this.SendPropertyChanging();
-					this._ProductTypeID = value;
-					this.SendPropertyChanged("ProductTypeID");
-					this.OnProductTypeIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TaxCode", DbType="NVarChar(20)")]
-		public string TaxCode
-		{
-			get
-			{
-				return this._TaxCode;
-			}
-			set
-			{
-				if ((this._TaxCode != value))
-				{
-					this.OnTaxCodeChanging(value);
-					this.SendPropertyChanging();
-					this._TaxCode = value;
-					this.SendPropertyChanged("TaxCode");
-					this.OnTaxCodeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ListPrice", DbType="Decimal(20,5)")]
-		public System.Nullable<decimal> ListPrice
-		{
-			get
-			{
-				return this._ListPrice;
-			}
-			set
-			{
-				if ((this._ListPrice != value))
-				{
-					this.OnListPriceChanging(value);
-					this.SendPropertyChanging();
-					this._ListPrice = value;
-					this.SendPropertyChanged("ListPrice");
-					this.OnListPriceChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VendorCurrencyID", DbType="Int")]
-		public System.Nullable<int> VendorCurrencyID
-		{
-			get
-			{
-				return this._VendorCurrencyID;
-			}
-			set
-			{
-				if ((this._VendorCurrencyID != value))
-				{
-					if (this._MST_Currency.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnVendorCurrencyIDChanging(value);
-					this.SendPropertyChanging();
-					this._VendorCurrencyID = value;
-					this.SendPropertyChanged("VendorCurrencyID");
-					this.OnVendorCurrencyIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QuantitySet", DbType="Decimal(20,5)")]
-		public System.Nullable<decimal> QuantitySet
-		{
-			get
-			{
-				return this._QuantitySet;
-			}
-			set
-			{
-				if ((this._QuantitySet != value))
-				{
-					this.OnQuantitySetChanging(value);
-					this.SendPropertyChanging();
-					this._QuantitySet = value;
-					this.SendPropertyChanged("QuantitySet");
-					this.OnQuantitySetChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductionLineID", DbType="Int")]
-		public System.Nullable<int> ProductionLineID
-		{
-			get
-			{
-				return this._ProductionLineID;
-			}
-			set
-			{
-				if ((this._ProductionLineID != value))
-				{
-					if (this._PRO_ProductionLine.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnProductionLineIDChanging(value);
-					this.SendPropertyChanging();
-					this._ProductionLineID = value;
-					this.SendPropertyChanged("ProductionLineID");
-					this.OnProductionLineIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CostCenterRateMasterID", DbType="Int")]
-		public System.Nullable<int> CostCenterRateMasterID
-		{
-			get
-			{
-				return this._CostCenterRateMasterID;
-			}
-			set
-			{
-				if ((this._CostCenterRateMasterID != value))
-				{
-					if (this._STD_CostCenterRateMaster.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnCostCenterRateMasterIDChanging(value);
-					this.SendPropertyChanging();
-					this._CostCenterRateMasterID = value;
-					this.SendPropertyChanged("CostCenterRateMasterID");
-					this.OnCostCenterRateMasterIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductGroupID", DbType="Int")]
-		public System.Nullable<int> ProductGroupID
-		{
-			get
-			{
-				return this._ProductGroupID;
-			}
-			set
-			{
-				if ((this._ProductGroupID != value))
-				{
-					if (this._CST_ProductGroup.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnProductGroupIDChanging(value);
-					this.SendPropertyChanging();
-					this._ProductGroupID = value;
-					this.SendPropertyChanged("ProductGroupID");
-					this.OnProductGroupIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaxProduce", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> MaxProduce
-		{
-			get
-			{
-				return this._MaxProduce;
-			}
-			set
-			{
-				if ((this._MaxProduce != value))
-				{
-					this.OnMaxProduceChanging(value);
-					this.SendPropertyChanging();
-					this._MaxProduce = value;
-					this.SendPropertyChanged("MaxProduce");
-					this.OnMaxProduceChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MinProduce", DbType="Decimal(18,0)")]
-		public System.Nullable<decimal> MinProduce
-		{
-			get
-			{
-				return this._MinProduce;
-			}
-			set
-			{
-				if ((this._MinProduce != value))
-				{
-					this.OnMinProduceChanging(value);
-					this.SendPropertyChanging();
-					this._MinProduce = value;
-					this.SendPropertyChanged("MinProduce");
-					this.OnMinProduceChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Picture", DbType="Image", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
-		public System.Data.Linq.Binary Picture
-		{
-			get
-			{
-				return this._Picture;
-			}
-			set
-			{
-				if ((this._Picture != value))
-				{
-					this.OnPictureChanging(value);
-					this.SendPropertyChanging();
-					this._Picture = value;
-					this.SendPropertyChanged("Picture");
-					this.OnPictureChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaxRoundUpToMin", DbType="Decimal(20,5)")]
-		public System.Nullable<decimal> MaxRoundUpToMin
-		{
-			get
-			{
-				return this._MaxRoundUpToMin;
-			}
-			set
-			{
-				if ((this._MaxRoundUpToMin != value))
-				{
-					this.OnMaxRoundUpToMinChanging(value);
-					this.SendPropertyChanging();
-					this._MaxRoundUpToMin = value;
-					this.SendPropertyChanged("MaxRoundUpToMin");
-					this.OnMaxRoundUpToMinChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaxRoundUpToMultiple", DbType="Decimal(20,5)")]
-		public System.Nullable<decimal> MaxRoundUpToMultiple
-		{
-			get
-			{
-				return this._MaxRoundUpToMultiple;
-			}
-			set
-			{
-				if ((this._MaxRoundUpToMultiple != value))
-				{
-					this.OnMaxRoundUpToMultipleChanging(value);
-					this.SendPropertyChanging();
-					this._MaxRoundUpToMultiple = value;
-					this.SendPropertyChanged("MaxRoundUpToMultiple");
-					this.OnMaxRoundUpToMultipleChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ACAdjustmentMasterID", DbType="Int")]
-		public System.Nullable<int> ACAdjustmentMasterID
-		{
-			get
-			{
-				return this._ACAdjustmentMasterID;
-			}
-			set
-			{
-				if ((this._ACAdjustmentMasterID != value))
-				{
-					if (this._cst_ACAdjustmentMaster.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnACAdjustmentMasterIDChanging(value);
-					this.SendPropertyChanging();
-					this._ACAdjustmentMasterID = value;
-					this.SendPropertyChanged("ACAdjustmentMasterID");
-					this.OnACAdjustmentMasterIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RegisteredCode", DbType="NVarChar(40)")]
-		public string RegisteredCode
-		{
-			get
-			{
-				return this._RegisteredCode;
-			}
-			set
-			{
-				if ((this._RegisteredCode != value))
-				{
-					this.OnRegisteredCodeChanging(value);
-					this.SendPropertyChanging();
-					this._RegisteredCode = value;
-					this.SendPropertyChanged("RegisteredCode");
-					this.OnRegisteredCodeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SetUpPair", DbType="NVarChar(50)")]
-		public string SetUpPair
-		{
-			get
-			{
-				return this._SetUpPair;
-			}
-			set
-			{
-				if ((this._SetUpPair != value))
-				{
-					this.OnSetUpPairChanging(value);
-					this.SendPropertyChanging();
-					this._SetUpPair = value;
-					this.SendPropertyChanged("SetUpPair");
-					this.OnSetUpPairChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AVEG", DbType="Bit")]
-		public System.Nullable<bool> AVEG
-		{
-			get
-			{
-				return this._AVEG;
-			}
-			set
-			{
-				if ((this._AVEG != value))
-				{
-					this.OnAVEGChanging(value);
-					this.SendPropertyChanging();
-					this._AVEG = value;
-					this.SendPropertyChanged("AVEG");
-					this.OnAVEGChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StockTakingCode", DbType="NVarChar(100)")]
-		public string StockTakingCode
-		{
-			get
-			{
-				return this._StockTakingCode;
-			}
-			set
-			{
-				if ((this._StockTakingCode != value))
-				{
-					this.OnStockTakingCodeChanging(value);
-					this.SendPropertyChanging();
-					this._StockTakingCode = value;
-					this.SendPropertyChanged("StockTakingCode");
-					this.OnStockTakingCodeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MassOrder", DbType="Bit")]
-		public System.Nullable<bool> MassOrder
-		{
-			get
-			{
-				return this._MassOrder;
-			}
-			set
-			{
-				if ((this._MassOrder != value))
-				{
-					this.OnMassOrderChanging(value);
-					this.SendPropertyChanging();
-					this._MassOrder = value;
-					this.SendPropertyChanged("MassOrder");
-					this.OnMassOrderChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AllowNegativeQty", DbType="Bit")]
-		public System.Nullable<bool> AllowNegativeQty
-		{
-			get
-			{
-				return this._AllowNegativeQty;
-			}
-			set
-			{
-				if ((this._AllowNegativeQty != value))
-				{
-					this.OnAllowNegativeQtyChanging(value);
-					this.SendPropertyChanging();
-					this._AllowNegativeQty = value;
-					this.SendPropertyChanged("AllowNegativeQty");
-					this.OnAllowNegativeQtyChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_cst_ActCostAllocationDetail", Storage="_cst_ActCostAllocationDetails", ThisKey="ProductID", OtherKey="ProductID")]
-		public EntitySet<cst_ActCostAllocationDetail> cst_ActCostAllocationDetails
-		{
-			get
-			{
-				return this._cst_ActCostAllocationDetails;
-			}
-			set
-			{
-				this._cst_ActCostAllocationDetails.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_CST_ActualCostHistory", Storage="_CST_ActualCostHistories", ThisKey="ProductID", OtherKey="ProductID")]
-		public EntitySet<CST_ActualCostHistory> CST_ActualCostHistories
-		{
-			get
-			{
-				return this._CST_ActualCostHistories;
-			}
-			set
-			{
-				this._CST_ActualCostHistories.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_cst_AllocationResult", Storage="_cst_AllocationResults", ThisKey="ProductID", OtherKey="ProductID")]
-		public EntitySet<cst_AllocationResult> cst_AllocationResults
-		{
-			get
-			{
-				return this._cst_AllocationResults;
-			}
-			set
-			{
-				this._cst_AllocationResults.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_CST_DSAndRecycleAllocation", Storage="_CST_DSAndRecycleAllocations", ThisKey="ProductID", OtherKey="ProductID")]
-		public EntitySet<CST_DSAndRecycleAllocation> CST_DSAndRecycleAllocations
-		{
-			get
-			{
-				return this._CST_DSAndRecycleAllocations;
-			}
-			set
-			{
-				this._CST_DSAndRecycleAllocations.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_cst_FreightDetail", Storage="_cst_FreightDetails", ThisKey="ProductID", OtherKey="ProductID")]
-		public EntitySet<cst_FreightDetail> cst_FreightDetails
-		{
-			get
-			{
-				return this._cst_FreightDetails;
-			}
-			set
-			{
-				this._cst_FreightDetails.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_CST_RecoverMaterialDetail", Storage="_CST_RecoverMaterialDetails", ThisKey="ProductID", OtherKey="ProductID")]
-		public EntitySet<CST_RecoverMaterialDetail> CST_RecoverMaterialDetails
-		{
-			get
-			{
-				return this._CST_RecoverMaterialDetails;
-			}
-			set
-			{
-				this._CST_RecoverMaterialDetails.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_CST_RecoverMaterialMaster", Storage="_CST_RecoverMaterialMasters", ThisKey="ProductID", OtherKey="ProductID")]
-		public EntitySet<CST_RecoverMaterialMaster> CST_RecoverMaterialMasters
-		{
-			get
-			{
-				return this._CST_RecoverMaterialMasters;
-			}
-			set
-			{
-				this._CST_RecoverMaterialMasters.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_CST_STDItemCost", Storage="_CST_STDItemCosts", ThisKey="ProductID", OtherKey="ProductID")]
-		public EntitySet<CST_STDItemCost> CST_STDItemCosts
-		{
-			get
-			{
-				return this._CST_STDItemCosts;
-			}
-			set
-			{
-				this._CST_STDItemCosts.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_DCP_BeginQuantity", Storage="_DCP_BeginQuantities", ThisKey="ProductID", OtherKey="ProductID")]
-		public EntitySet<DCP_BeginQuantity> DCP_BeginQuantities
-		{
-			get
-			{
-				return this._DCP_BeginQuantities;
-			}
-			set
-			{
-				this._DCP_BeginQuantities.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_ITM_BOM", Storage="_ITM_BOMs", ThisKey="ProductID", OtherKey="ComponentID")]
-		public EntitySet<ITM_BOM> ITM_BOMs
-		{
-			get
-			{
-				return this._ITM_BOMs;
-			}
-			set
-			{
-				this._ITM_BOMs.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_ITM_BOM1", Storage="_ITM_BOMs1", ThisKey="ProductID", OtherKey="ProductID")]
-		public EntitySet<ITM_BOM> ITM_BOMs1
-		{
-			get
-			{
-				return this._ITM_BOMs1;
-			}
-			set
-			{
-				this._ITM_BOMs1.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_ITM_Picture", Storage="_ITM_Pictures", ThisKey="ProductID", OtherKey="ProductID")]
-		public EntitySet<ITM_Picture> ITM_Pictures
-		{
-			get
-			{
-				return this._ITM_Pictures;
-			}
-			set
-			{
-				this._ITM_Pictures.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_ITM_Routing", Storage="_ITM_Routings", ThisKey="ProductID", OtherKey="ProductID")]
-		public EntitySet<ITM_Routing> ITM_Routings
-		{
-			get
-			{
-				return this._ITM_Routings;
-			}
-			set
-			{
-				this._ITM_Routings.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_IV_Adjustment", Storage="_IV_Adjustments", ThisKey="ProductID", OtherKey="ProductID")]
-		public EntitySet<IV_Adjustment> IV_Adjustments
-		{
-			get
-			{
-				return this._IV_Adjustments;
-			}
-			set
-			{
-				this._IV_Adjustments.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_IV_BalanceBin", Storage="_IV_BalanceBins", ThisKey="ProductID", OtherKey="ProductID")]
-		public EntitySet<IV_BalanceBin> IV_BalanceBins
-		{
-			get
-			{
-				return this._IV_BalanceBins;
-			}
-			set
-			{
-				this._IV_BalanceBins.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_IV_BalanceLocation", Storage="_IV_BalanceLocations", ThisKey="ProductID", OtherKey="ProductID")]
-		public EntitySet<IV_BalanceLocation> IV_BalanceLocations
-		{
-			get
-			{
-				return this._IV_BalanceLocations;
-			}
-			set
-			{
-				this._IV_BalanceLocations.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_IV_BalanceMasterLocation", Storage="_IV_BalanceMasterLocations", ThisKey="ProductID", OtherKey="ProductID")]
-		public EntitySet<IV_BalanceMasterLocation> IV_BalanceMasterLocations
-		{
-			get
-			{
-				return this._IV_BalanceMasterLocations;
-			}
-			set
-			{
-				this._IV_BalanceMasterLocations.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_IV_BeginDCPReport", Storage="_IV_BeginDCPReports", ThisKey="ProductID", OtherKey="ProductID")]
-		public EntitySet<IV_BeginDCPReport> IV_BeginDCPReports
-		{
-			get
-			{
-				return this._IV_BeginDCPReports;
-			}
-			set
-			{
-				this._IV_BeginDCPReports.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_IV_BeginMRP", Storage="_IV_BeginMRPs", ThisKey="ProductID", OtherKey="ProductID")]
-		public EntitySet<IV_BeginMRP> IV_BeginMRPs
-		{
-			get
-			{
-				return this._IV_BeginMRPs;
-			}
-			set
-			{
-				this._IV_BeginMRPs.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_IV_BinCache", Storage="_IV_BinCaches", ThisKey="ProductID", OtherKey="ProductID")]
-		public EntitySet<IV_BinCache> IV_BinCaches
-		{
-			get
-			{
-				return this._IV_BinCaches;
-			}
-			set
-			{
-				this._IV_BinCaches.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_IV_CostHistory", Storage="_IV_CostHistories", ThisKey="ProductID", OtherKey="ProductID")]
-		public EntitySet<IV_CostHistory> IV_CostHistories
-		{
-			get
-			{
-				return this._IV_CostHistories;
-			}
-			set
-			{
-				this._IV_CostHistories.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_IV_LocationCache", Storage="_IV_LocationCaches", ThisKey="ProductID", OtherKey="ProductID")]
-		public EntitySet<IV_LocationCache> IV_LocationCaches
-		{
-			get
-			{
-				return this._IV_LocationCaches;
-			}
-			set
-			{
-				this._IV_LocationCaches.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_IV_MasLocCache", Storage="_IV_MasLocCaches", ThisKey="ProductID", OtherKey="ProductID")]
-		public EntitySet<IV_MasLocCache> IV_MasLocCaches
-		{
-			get
-			{
-				return this._IV_MasLocCaches;
-			}
-			set
-			{
-				this._IV_MasLocCaches.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_IV_StockTaking", Storage="_IV_StockTakings", ThisKey="ProductID", OtherKey="ProductID")]
-		public EntitySet<IV_StockTaking> IV_StockTakings
-		{
-			get
-			{
-				return this._IV_StockTakings;
-			}
-			set
-			{
-				this._IV_StockTakings.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_IV_StockTakingDifferent", Storage="_IV_StockTakingDifferents", ThisKey="ProductID", OtherKey="ProductID")]
-		public EntitySet<IV_StockTakingDifferent> IV_StockTakingDifferents
-		{
-			get
-			{
-				return this._IV_StockTakingDifferents;
-			}
-			set
-			{
-				this._IV_StockTakingDifferents.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_MST_TransactionHistory", Storage="_MST_TransactionHistories", ThisKey="ProductID", OtherKey="ProductID")]
-		public EntitySet<MST_TransactionHistory> MST_TransactionHistories
-		{
-			get
-			{
-				return this._MST_TransactionHistories;
-			}
-			set
-			{
-				this._MST_TransactionHistories.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_MTR_ACDSDetail", Storage="_MTR_ACDSDetails", ThisKey="ProductID", OtherKey="ProductID")]
-		public EntitySet<MTR_ACDSDetail> MTR_ACDSDetails
-		{
-			get
-			{
-				return this._MTR_ACDSDetails;
-			}
-			set
-			{
-				this._MTR_ACDSDetails.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_MTR_CPO", Storage="_MTR_CPOs", ThisKey="ProductID", OtherKey="ProductID")]
-		public EntitySet<MTR_CPO> MTR_CPOs
-		{
-			get
-			{
-				return this._MTR_CPOs;
-			}
-			set
-			{
-				this._MTR_CPOs.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_MTR_ItemActualCost", Storage="_MTR_ItemActualCosts", ThisKey="ProductID", OtherKey="ProductID")]
-		public EntitySet<MTR_ItemActualCost> MTR_ItemActualCosts
-		{
-			get
-			{
-				return this._MTR_ItemActualCosts;
-			}
-			set
-			{
-				this._MTR_ItemActualCosts.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PO_InvoiceDetail", Storage="_PO_InvoiceDetails", ThisKey="ProductID", OtherKey="ProductID")]
-		public EntitySet<PO_InvoiceDetail> PO_InvoiceDetails
-		{
-			get
-			{
-				return this._PO_InvoiceDetails;
-			}
-			set
-			{
-				this._PO_InvoiceDetails.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PO_ItemVendorReference", Storage="_PO_ItemVendorReferences", ThisKey="ProductID", OtherKey="ProductID")]
-		public EntitySet<PO_ItemVendorReference> PO_ItemVendorReferences
-		{
-			get
-			{
-				return this._PO_ItemVendorReferences;
-			}
-			set
-			{
-				this._PO_ItemVendorReferences.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PO_PurchaseOrderDetail", Storage="_PO_PurchaseOrderDetails", ThisKey="ProductID", OtherKey="ProductID")]
-		public EntitySet<PO_PurchaseOrderDetail> PO_PurchaseOrderDetails
-		{
-			get
-			{
-				return this._PO_PurchaseOrderDetails;
-			}
-			set
-			{
-				this._PO_PurchaseOrderDetails.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PO_PurchaseOrderReceiptDetail", Storage="_PO_PurchaseOrderReceiptDetails", ThisKey="ProductID", OtherKey="ProductID")]
-		public EntitySet<PO_PurchaseOrderReceiptDetail> PO_PurchaseOrderReceiptDetails
-		{
-			get
-			{
-				return this._PO_PurchaseOrderReceiptDetails;
-			}
-			set
-			{
-				this._PO_PurchaseOrderReceiptDetails.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PO_ReturnToVendorDetail", Storage="_PO_ReturnToVendorDetails", ThisKey="ProductID", OtherKey="ProductID")]
-		public EntitySet<PO_ReturnToVendorDetail> PO_ReturnToVendorDetails
-		{
-			get
-			{
-				return this._PO_ReturnToVendorDetails;
-			}
-			set
-			{
-				this._PO_ReturnToVendorDetails.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PO_VendorDeliverySchedule", Storage="_PO_VendorDeliverySchedules", ThisKey="ProductID", OtherKey="ProductID")]
-		public EntitySet<PO_VendorDeliverySchedule> PO_VendorDeliverySchedules
-		{
-			get
-			{
-				return this._PO_VendorDeliverySchedules;
-			}
-			set
-			{
-				this._PO_VendorDeliverySchedules.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PRO_ChangeCategoryDetail", Storage="_PRO_ChangeCategoryDetails", ThisKey="ProductID", OtherKey="ProductID")]
-		public EntitySet<PRO_ChangeCategoryDetail> PRO_ChangeCategoryDetails
-		{
-			get
-			{
-				return this._PRO_ChangeCategoryDetails;
-			}
-			set
-			{
-				this._PRO_ChangeCategoryDetails.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PRO_ChangeCategoryMatrix", Storage="_PRO_ChangeCategoryMatrixes", ThisKey="ProductID", OtherKey="DestProductID")]
-		public EntitySet<PRO_ChangeCategoryMatrix> PRO_ChangeCategoryMatrixes
-		{
-			get
-			{
-				return this._PRO_ChangeCategoryMatrixes;
-			}
-			set
-			{
-				this._PRO_ChangeCategoryMatrixes.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PRO_ChangeCategoryMatrix1", Storage="_PRO_ChangeCategoryMatrixes1", ThisKey="ProductID", OtherKey="SourceProductID")]
-		public EntitySet<PRO_ChangeCategoryMatrix> PRO_ChangeCategoryMatrixes1
-		{
-			get
-			{
-				return this._PRO_ChangeCategoryMatrixes1;
-			}
-			set
-			{
-				this._PRO_ChangeCategoryMatrixes1.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PRO_CheckPoint", Storage="_PRO_CheckPoints", ThisKey="ProductID", OtherKey="ProductID")]
-		public EntitySet<PRO_CheckPoint> PRO_CheckPoints
-		{
-			get
-			{
-				return this._PRO_CheckPoints;
-			}
-			set
-			{
-				this._PRO_CheckPoints.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PRO_ComponentScrapDetail", Storage="_PRO_ComponentScrapDetails", ThisKey="ProductID", OtherKey="ComponentID")]
-		public EntitySet<PRO_ComponentScrapDetail> PRO_ComponentScrapDetails
-		{
-			get
-			{
-				return this._PRO_ComponentScrapDetails;
-			}
-			set
-			{
-				this._PRO_ComponentScrapDetails.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PRO_ComponentScrapDetail1", Storage="_PRO_ComponentScrapDetails1", ThisKey="ProductID", OtherKey="ProductID")]
-		public EntitySet<PRO_ComponentScrapDetail> PRO_ComponentScrapDetails1
-		{
-			get
-			{
-				return this._PRO_ComponentScrapDetails1;
-			}
-			set
-			{
-				this._PRO_ComponentScrapDetails1.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PRO_DCPResultMaster", Storage="_PRO_DCPResultMasters", ThisKey="ProductID", OtherKey="ProductID")]
-		public EntitySet<PRO_DCPResultMaster> PRO_DCPResultMasters
-		{
-			get
-			{
-				return this._PRO_DCPResultMasters;
-			}
-			set
-			{
-				this._PRO_DCPResultMasters.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PRO_IssueMaterialDetail", Storage="_PRO_IssueMaterialDetails", ThisKey="ProductID", OtherKey="ProductID")]
-		public EntitySet<PRO_IssueMaterialDetail> PRO_IssueMaterialDetails
-		{
-			get
-			{
-				return this._PRO_IssueMaterialDetails;
-			}
-			set
-			{
-				this._PRO_IssueMaterialDetails.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PRO_IssueMaterialMaster", Storage="_PRO_IssueMaterialMasters", ThisKey="ProductID", OtherKey="ProductID")]
-		public EntitySet<PRO_IssueMaterialMaster> PRO_IssueMaterialMasters
-		{
-			get
-			{
-				return this._PRO_IssueMaterialMasters;
-			}
-			set
-			{
-				this._PRO_IssueMaterialMasters.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PRO_PGProduct", Storage="_PRO_PGProducts", ThisKey="ProductID", OtherKey="ProductID")]
-		public EntitySet<PRO_PGProduct> PRO_PGProducts
-		{
-			get
-			{
-				return this._PRO_PGProducts;
-			}
-			set
-			{
-				this._PRO_PGProducts.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PRO_ProductProductionOrder", Storage="_PRO_ProductProductionOrders", ThisKey="ProductID", OtherKey="ProductID")]
-		public EntitySet<PRO_ProductProductionOrder> PRO_ProductProductionOrders
-		{
-			get
-			{
-				return this._PRO_ProductProductionOrders;
-			}
-			set
-			{
-				this._PRO_ProductProductionOrders.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PRO_WorkOrderCompletion", Storage="_PRO_WorkOrderCompletions", ThisKey="ProductID", OtherKey="ProductID")]
-		public EntitySet<PRO_WorkOrderCompletion> PRO_WorkOrderCompletions
-		{
-			get
-			{
-				return this._PRO_WorkOrderCompletions;
-			}
-			set
-			{
-				this._PRO_WorkOrderCompletions.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PRO_WorkOrderDetail", Storage="_PRO_WorkOrderDetails", ThisKey="ProductID", OtherKey="ProductID")]
-		public EntitySet<PRO_WorkOrderDetail> PRO_WorkOrderDetails
-		{
-			get
-			{
-				return this._PRO_WorkOrderDetails;
-			}
-			set
-			{
-				this._PRO_WorkOrderDetails.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_SO_CommitInventoryDetail", Storage="_SO_CommitInventoryDetails", ThisKey="ProductID", OtherKey="ProductID")]
-		public EntitySet<SO_CommitInventoryDetail> SO_CommitInventoryDetails
-		{
-			get
-			{
-				return this._SO_CommitInventoryDetails;
-			}
-			set
-			{
-				this._SO_CommitInventoryDetails.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_SO_CustomerItemRefDetail", Storage="_SO_CustomerItemRefDetails", ThisKey="ProductID", OtherKey="ProductID")]
-		public EntitySet<SO_CustomerItemRefDetail> SO_CustomerItemRefDetails
-		{
-			get
-			{
-				return this._SO_CustomerItemRefDetails;
-			}
-			set
-			{
-				this._SO_CustomerItemRefDetails.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_SO_ReturnedGoodsDetail", Storage="_SO_ReturnedGoodsDetails", ThisKey="ProductID", OtherKey="ProductID")]
-		public EntitySet<SO_ReturnedGoodsDetail> SO_ReturnedGoodsDetails
-		{
-			get
-			{
-				return this._SO_ReturnedGoodsDetails;
-			}
-			set
-			{
-				this._SO_ReturnedGoodsDetails.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_SO_SaleOrderDetail", Storage="_SO_SaleOrderDetails", ThisKey="ProductID", OtherKey="ProductID")]
-		public EntitySet<SO_SaleOrderDetail> SO_SaleOrderDetails
-		{
-			get
-			{
-				return this._SO_SaleOrderDetails;
-			}
-			set
-			{
-				this._SO_SaleOrderDetails.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_STD_CostCenterRateMaster", Storage="_STD_CostCenterRateMasters", ThisKey="ProductID", OtherKey="ProductID")]
-		public EntitySet<STD_CostCenterRateMaster> STD_CostCenterRateMasters
-		{
-			get
-			{
-				return this._STD_CostCenterRateMasters;
-			}
-			set
-			{
-				this._STD_CostCenterRateMasters.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_sys_RoleProduct", Storage="_sys_RoleProducts", ThisKey="ProductID", OtherKey="ProductID")]
-		public EntitySet<sys_RoleProduct> sys_RoleProducts
-		{
-			get
-			{
-				return this._sys_RoleProducts;
-			}
-			set
-			{
-				this._sys_RoleProducts.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_SO_ConfirmShipDetail", Storage="_SO_ConfirmShipDetails", ThisKey="ProductID", OtherKey="ProductID")]
-		public EntitySet<SO_ConfirmShipDetail> SO_ConfirmShipDetails
-		{
-			get
-			{
-				return this._SO_ConfirmShipDetails;
-			}
-			set
-			{
-				this._SO_ConfirmShipDetails.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_SO_InvoiceDetail", Storage="_SO_InvoiceDetails", ThisKey="ProductID", OtherKey="ProductID")]
-		public EntitySet<SO_InvoiceDetail> SO_InvoiceDetails
-		{
-			get
-			{
-				return this._SO_InvoiceDetails;
-			}
-			set
-			{
-				this._SO_InvoiceDetails.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_IV_MiscellaneousIssueDetail", Storage="_IV_MiscellaneousIssueDetails", ThisKey="ProductID", OtherKey="ProductID")]
-		public EntitySet<IV_MiscellaneousIssueDetail> IV_MiscellaneousIssueDetails
-		{
-			get
-			{
-				return this._IV_MiscellaneousIssueDetails;
-			}
-			set
-			{
-				this._IV_MiscellaneousIssueDetails.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="cst_ACAdjustmentMaster_ITM_Product", Storage="_cst_ACAdjustmentMaster", ThisKey="ACAdjustmentMasterID", OtherKey="ACAdjustmentMasterID", IsForeignKey=true)]
-		public cst_ACAdjustmentMaster cst_ACAdjustmentMaster
-		{
-			get
-			{
-				return this._cst_ACAdjustmentMaster.Entity;
-			}
-			set
-			{
-				cst_ACAdjustmentMaster previousValue = this._cst_ACAdjustmentMaster.Entity;
-				if (((previousValue != value) 
-							|| (this._cst_ACAdjustmentMaster.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._cst_ACAdjustmentMaster.Entity = null;
-						previousValue.ITM_Products.Remove(this);
-					}
-					this._cst_ACAdjustmentMaster.Entity = value;
-					if ((value != null))
-					{
-						value.ITM_Products.Add(this);
-						this._ACAdjustmentMasterID = value.ACAdjustmentMasterID;
-					}
-					else
-					{
-						this._ACAdjustmentMasterID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("cst_ACAdjustmentMaster");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Buyer_ITM_Product", Storage="_ITM_Buyer", ThisKey="BuyerID", OtherKey="BuyerID", IsForeignKey=true)]
-		public ITM_Buyer ITM_Buyer
-		{
-			get
-			{
-				return this._ITM_Buyer.Entity;
-			}
-			set
-			{
-				ITM_Buyer previousValue = this._ITM_Buyer.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_Buyer.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_Buyer.Entity = null;
-						previousValue.ITM_Products.Remove(this);
-					}
-					this._ITM_Buyer.Entity = value;
-					if ((value != null))
-					{
-						value.ITM_Products.Add(this);
-						this._BuyerID = value.BuyerID;
-					}
-					else
-					{
-						this._BuyerID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("ITM_Buyer");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Category_ITM_Product", Storage="_ITM_Category", ThisKey="CategoryID", OtherKey="CategoryID", IsForeignKey=true)]
-		public ITM_Category ITM_Category
-		{
-			get
-			{
-				return this._ITM_Category.Entity;
-			}
-			set
-			{
-				ITM_Category previousValue = this._ITM_Category.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_Category.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_Category.Entity = null;
-						previousValue.ITM_Products.Remove(this);
-					}
-					this._ITM_Category.Entity = value;
-					if ((value != null))
-					{
-						value.ITM_Products.Add(this);
-						this._CategoryID = value.CategoryID;
-					}
-					else
-					{
-						this._CategoryID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("ITM_Category");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_CostCenter_ITM_Product", Storage="_ITM_CostCenter", ThisKey="CostCenterID", OtherKey="CostCenterID", IsForeignKey=true)]
-		public ITM_CostCenter ITM_CostCenter
-		{
-			get
-			{
-				return this._ITM_CostCenter.Entity;
-			}
-			set
-			{
-				ITM_CostCenter previousValue = this._ITM_CostCenter.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_CostCenter.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_CostCenter.Entity = null;
-						previousValue.ITM_Products.Remove(this);
-					}
-					this._ITM_CostCenter.Entity = value;
-					if ((value != null))
-					{
-						value.ITM_Products.Add(this);
-						this._CostCenterID = value.CostCenterID;
-					}
-					else
-					{
-						this._CostCenterID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("ITM_CostCenter");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_DeleteReason_ITM_Product", Storage="_ITM_DeleteReason", ThisKey="DeleteReasonID", OtherKey="DeleteReasonID", IsForeignKey=true)]
-		public ITM_DeleteReason ITM_DeleteReason
-		{
-			get
-			{
-				return this._ITM_DeleteReason.Entity;
-			}
-			set
-			{
-				ITM_DeleteReason previousValue = this._ITM_DeleteReason.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_DeleteReason.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_DeleteReason.Entity = null;
-						previousValue.ITM_Products.Remove(this);
-					}
-					this._ITM_DeleteReason.Entity = value;
-					if ((value != null))
-					{
-						value.ITM_Products.Add(this);
-						this._DeleteReasonID = value.DeleteReasonID;
-					}
-					else
-					{
-						this._DeleteReasonID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("ITM_DeleteReason");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_DeliveryPolicy_ITM_Product", Storage="_ITM_DeliveryPolicy", ThisKey="DeliveryPolicyID", OtherKey="DeliveryPolicyID", IsForeignKey=true)]
-		public ITM_DeliveryPolicy ITM_DeliveryPolicy
-		{
-			get
-			{
-				return this._ITM_DeliveryPolicy.Entity;
-			}
-			set
-			{
-				ITM_DeliveryPolicy previousValue = this._ITM_DeliveryPolicy.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_DeliveryPolicy.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_DeliveryPolicy.Entity = null;
-						previousValue.ITM_Products.Remove(this);
-					}
-					this._ITM_DeliveryPolicy.Entity = value;
-					if ((value != null))
-					{
-						value.ITM_Products.Add(this);
-						this._DeliveryPolicyID = value.DeliveryPolicyID;
-					}
-					else
-					{
-						this._DeliveryPolicyID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("ITM_DeliveryPolicy");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_FormatCode_ITM_Product", Storage="_ITM_FormatCode", ThisKey="FormatCodeID", OtherKey="FormatCodeID", IsForeignKey=true)]
-		public ITM_FormatCode ITM_FormatCode
-		{
-			get
-			{
-				return this._ITM_FormatCode.Entity;
-			}
-			set
-			{
-				ITM_FormatCode previousValue = this._ITM_FormatCode.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_FormatCode.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_FormatCode.Entity = null;
-						previousValue.ITM_Products.Remove(this);
-					}
-					this._ITM_FormatCode.Entity = value;
-					if ((value != null))
-					{
-						value.ITM_Products.Add(this);
-						this._FormatCodeID = value.FormatCodeID;
-					}
-					else
-					{
-						this._FormatCodeID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("ITM_FormatCode");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_FreightClass_ITM_Product", Storage="_ITM_FreightClass", ThisKey="FreightClassID", OtherKey="FreightClassID", IsForeignKey=true)]
-		public ITM_FreightClass ITM_FreightClass
-		{
-			get
-			{
-				return this._ITM_FreightClass.Entity;
-			}
-			set
-			{
-				ITM_FreightClass previousValue = this._ITM_FreightClass.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_FreightClass.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_FreightClass.Entity = null;
-						previousValue.ITM_Products.Remove(this);
-					}
-					this._ITM_FreightClass.Entity = value;
-					if ((value != null))
-					{
-						value.ITM_Products.Add(this);
-						this._FreightClassID = value.FreightClassID;
-					}
-					else
-					{
-						this._FreightClassID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("ITM_FreightClass");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Hazard_ITM_Product", Storage="_ITM_Hazard", ThisKey="HazardID", OtherKey="HazardID", IsForeignKey=true)]
-		public ITM_Hazard ITM_Hazard
-		{
-			get
-			{
-				return this._ITM_Hazard.Entity;
-			}
-			set
-			{
-				ITM_Hazard previousValue = this._ITM_Hazard.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_Hazard.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_Hazard.Entity = null;
-						previousValue.ITM_Products.Remove(this);
-					}
-					this._ITM_Hazard.Entity = value;
-					if ((value != null))
-					{
-						value.ITM_Products.Add(this);
-						this._HazardID = value.HazardID;
-					}
-					else
-					{
-						this._HazardID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("ITM_Hazard");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_OrderRule_ITM_Product", Storage="_ITM_OrderRule", ThisKey="OrderRuleID", OtherKey="OrderRuleID", IsForeignKey=true)]
-		public ITM_OrderRule ITM_OrderRule
-		{
-			get
-			{
-				return this._ITM_OrderRule.Entity;
-			}
-			set
-			{
-				ITM_OrderRule previousValue = this._ITM_OrderRule.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_OrderRule.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_OrderRule.Entity = null;
-						previousValue.ITM_Products.Remove(this);
-					}
-					this._ITM_OrderRule.Entity = value;
-					if ((value != null))
-					{
-						value.ITM_Products.Add(this);
-						this._OrderRuleID = value.OrderRuleID;
-					}
-					else
-					{
-						this._OrderRuleID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("ITM_OrderRule");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_OrderPolicy_ITM_Product", Storage="_ITM_OrderPolicy", ThisKey="OrderPolicyID", OtherKey="OrderPolicyID", IsForeignKey=true)]
-		public ITM_OrderPolicy ITM_OrderPolicy
-		{
-			get
-			{
-				return this._ITM_OrderPolicy.Entity;
-			}
-			set
-			{
-				ITM_OrderPolicy previousValue = this._ITM_OrderPolicy.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_OrderPolicy.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_OrderPolicy.Entity = null;
-						previousValue.ITM_Products.Remove(this);
-					}
-					this._ITM_OrderPolicy.Entity = value;
-					if ((value != null))
-					{
-						value.ITM_Products.Add(this);
-						this._OrderPolicyID = value.OrderPolicyID;
-					}
-					else
-					{
-						this._OrderPolicyID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("ITM_OrderPolicy");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CST_ProductGroup_ITM_Product", Storage="_CST_ProductGroup", ThisKey="ProductGroupID", OtherKey="ProductGroupID", IsForeignKey=true)]
-		public CST_ProductGroup CST_ProductGroup
-		{
-			get
-			{
-				return this._CST_ProductGroup.Entity;
-			}
-			set
-			{
-				CST_ProductGroup previousValue = this._CST_ProductGroup.Entity;
-				if (((previousValue != value) 
-							|| (this._CST_ProductGroup.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._CST_ProductGroup.Entity = null;
-						previousValue.ITM_Products.Remove(this);
-					}
-					this._CST_ProductGroup.Entity = value;
-					if ((value != null))
-					{
-						value.ITM_Products.Add(this);
-						this._ProductGroupID = value.ProductGroupID;
-					}
-					else
-					{
-						this._ProductGroupID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("CST_ProductGroup");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_ProductType_ITM_Product", Storage="_ITM_ProductType", ThisKey="ProductTypeID", OtherKey="ProductTypeID", IsForeignKey=true)]
-		public ITM_ProductType ITM_ProductType
-		{
-			get
-			{
-				return this._ITM_ProductType.Entity;
-			}
-			set
-			{
-				ITM_ProductType previousValue = this._ITM_ProductType.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_ProductType.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_ProductType.Entity = null;
-						previousValue.ITM_Products.Remove(this);
-					}
-					this._ITM_ProductType.Entity = value;
-					if ((value != null))
-					{
-						value.ITM_Products.Add(this);
-						this._ProductTypeID = value.ProductTypeID;
-					}
-					else
-					{
-						this._ProductTypeID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("ITM_ProductType");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_ShipTolerance_ITM_Product", Storage="_ITM_ShipTolerance", ThisKey="ShipToleranceID", OtherKey="ShipToleranceID", IsForeignKey=true)]
-		public ITM_ShipTolerance ITM_ShipTolerance
-		{
-			get
-			{
-				return this._ITM_ShipTolerance.Entity;
-			}
-			set
-			{
-				ITM_ShipTolerance previousValue = this._ITM_ShipTolerance.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_ShipTolerance.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_ShipTolerance.Entity = null;
-						previousValue.ITM_Products.Remove(this);
-					}
-					this._ITM_ShipTolerance.Entity = value;
-					if ((value != null))
-					{
-						value.ITM_Products.Add(this);
-						this._ShipToleranceID = value.ShipToleranceID;
-					}
-					else
-					{
-						this._ShipToleranceID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("ITM_ShipTolerance");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Source_ITM_Product", Storage="_ITM_Source", ThisKey="SourceID", OtherKey="SourceID", IsForeignKey=true)]
-		public ITM_Source ITM_Source
-		{
-			get
-			{
-				return this._ITM_Source.Entity;
-			}
-			set
-			{
-				ITM_Source previousValue = this._ITM_Source.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_Source.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_Source.Entity = null;
-						previousValue.ITM_Products.Remove(this);
-					}
-					this._ITM_Source.Entity = value;
-					if ((value != null))
-					{
-						value.ITM_Products.Add(this);
-						this._SourceID = value.SourceID;
-					}
-					else
-					{
-						this._SourceID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("ITM_Source");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_AGC_ITM_Product", Storage="_MST_AGC", ThisKey="AGCID", OtherKey="AGCID", IsForeignKey=true)]
-		public MST_AGC MST_AGC
-		{
-			get
-			{
-				return this._MST_AGC.Entity;
-			}
-			set
-			{
-				MST_AGC previousValue = this._MST_AGC.Entity;
-				if (((previousValue != value) 
-							|| (this._MST_AGC.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._MST_AGC.Entity = null;
-						previousValue.ITM_Products.Remove(this);
-					}
-					this._MST_AGC.Entity = value;
-					if ((value != null))
-					{
-						value.ITM_Products.Add(this);
-						this._AGCID = value.AGCID;
-					}
-					else
-					{
-						this._AGCID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("MST_AGC");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_BIN_ITM_Product", Storage="_MST_BIN", ThisKey="BinID", OtherKey="BinID", IsForeignKey=true)]
-		public MST_BIN MST_BIN
-		{
-			get
-			{
-				return this._MST_BIN.Entity;
-			}
-			set
-			{
-				MST_BIN previousValue = this._MST_BIN.Entity;
-				if (((previousValue != value) 
-							|| (this._MST_BIN.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._MST_BIN.Entity = null;
-						previousValue.ITM_Products.Remove(this);
-					}
-					this._MST_BIN.Entity = value;
-					if ((value != null))
-					{
-						value.ITM_Products.Add(this);
-						this._BinID = value.BinID;
-					}
-					else
-					{
-						this._BinID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("MST_BIN");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_CCN_ITM_Product", Storage="_MST_CCN", ThisKey="CCNID", OtherKey="CCNID", IsForeignKey=true)]
-		public MST_CCN MST_CCN
-		{
-			get
-			{
-				return this._MST_CCN.Entity;
-			}
-			set
-			{
-				MST_CCN previousValue = this._MST_CCN.Entity;
-				if (((previousValue != value) 
-							|| (this._MST_CCN.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._MST_CCN.Entity = null;
-						previousValue.ITM_Products.Remove(this);
-					}
-					this._MST_CCN.Entity = value;
-					if ((value != null))
-					{
-						value.ITM_Products.Add(this);
-						this._CCNID = value.CCNID;
-					}
-					else
-					{
-						this._CCNID = default(int);
-					}
-					this.SendPropertyChanged("MST_CCN");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_Currency_ITM_Product", Storage="_MST_Currency", ThisKey="VendorCurrencyID", OtherKey="CurrencyID", IsForeignKey=true)]
-		public MST_Currency MST_Currency
-		{
-			get
-			{
-				return this._MST_Currency.Entity;
-			}
-			set
-			{
-				MST_Currency previousValue = this._MST_Currency.Entity;
-				if (((previousValue != value) 
-							|| (this._MST_Currency.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._MST_Currency.Entity = null;
-						previousValue.ITM_Products.Remove(this);
-					}
-					this._MST_Currency.Entity = value;
-					if ((value != null))
-					{
-						value.ITM_Products.Add(this);
-						this._VendorCurrencyID = value.CurrencyID;
-					}
-					else
-					{
-						this._VendorCurrencyID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("MST_Currency");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_Location_ITM_Product", Storage="_MST_Location", ThisKey="LocationID", OtherKey="LocationID", IsForeignKey=true)]
-		public MST_Location MST_Location
-		{
-			get
-			{
-				return this._MST_Location.Entity;
-			}
-			set
-			{
-				MST_Location previousValue = this._MST_Location.Entity;
-				if (((previousValue != value) 
-							|| (this._MST_Location.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._MST_Location.Entity = null;
-						previousValue.ITM_Products.Remove(this);
-					}
-					this._MST_Location.Entity = value;
-					if ((value != null))
-					{
-						value.ITM_Products.Add(this);
-						this._LocationID = value.LocationID;
-					}
-					else
-					{
-						this._LocationID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("MST_Location");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_MasterLocation_ITM_Product", Storage="_MST_MasterLocation", ThisKey="MasterLocationID", OtherKey="MasterLocationID", IsForeignKey=true)]
-		public MST_MasterLocation MST_MasterLocation
-		{
-			get
-			{
-				return this._MST_MasterLocation.Entity;
-			}
-			set
-			{
-				MST_MasterLocation previousValue = this._MST_MasterLocation.Entity;
-				if (((previousValue != value) 
-							|| (this._MST_MasterLocation.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._MST_MasterLocation.Entity = null;
-						previousValue.ITM_Products.Remove(this);
-					}
-					this._MST_MasterLocation.Entity = value;
-					if ((value != null))
-					{
-						value.ITM_Products.Add(this);
-						this._MasterLocationID = value.MasterLocationID;
-					}
-					else
-					{
-						this._MasterLocationID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("MST_MasterLocation");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_Party_ITM_Product", Storage="_MST_Party", ThisKey="InventorID", OtherKey="PartyID", IsForeignKey=true)]
-		public MST_Party MST_Party
-		{
-			get
-			{
-				return this._MST_Party.Entity;
-			}
-			set
-			{
-				MST_Party previousValue = this._MST_Party.Entity;
-				if (((previousValue != value) 
-							|| (this._MST_Party.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._MST_Party.Entity = null;
-						previousValue.ITM_Products.Remove(this);
-					}
-					this._MST_Party.Entity = value;
-					if ((value != null))
-					{
-						value.ITM_Products.Add(this);
-						this._InventorID = value.PartyID;
-					}
-					else
-					{
-						this._InventorID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("MST_Party");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_Party_ITM_Product1", Storage="_MST_Party1", ThisKey="PrimaryVendorID", OtherKey="PartyID", IsForeignKey=true)]
-		public MST_Party MST_Party1
-		{
-			get
-			{
-				return this._MST_Party1.Entity;
-			}
-			set
-			{
-				MST_Party previousValue = this._MST_Party1.Entity;
-				if (((previousValue != value) 
-							|| (this._MST_Party1.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._MST_Party1.Entity = null;
-						previousValue.ITM_Products1.Remove(this);
-					}
-					this._MST_Party1.Entity = value;
-					if ((value != null))
-					{
-						value.ITM_Products1.Add(this);
-						this._PrimaryVendorID = value.PartyID;
-					}
-					else
-					{
-						this._PrimaryVendorID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("MST_Party1");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_PartyLocation_ITM_Product", Storage="_MST_PartyLocation", ThisKey="VendorLocationID", OtherKey="PartyLocationID", IsForeignKey=true)]
-		public MST_PartyLocation MST_PartyLocation
-		{
-			get
-			{
-				return this._MST_PartyLocation.Entity;
-			}
-			set
-			{
-				MST_PartyLocation previousValue = this._MST_PartyLocation.Entity;
-				if (((previousValue != value) 
-							|| (this._MST_PartyLocation.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._MST_PartyLocation.Entity = null;
-						previousValue.ITM_Products.Remove(this);
-					}
-					this._MST_PartyLocation.Entity = value;
-					if ((value != null))
-					{
-						value.ITM_Products.Add(this);
-						this._VendorLocationID = value.PartyLocationID;
-					}
-					else
-					{
-						this._VendorLocationID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("MST_PartyLocation");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_UnitOfMeasure_ITM_Product", Storage="_MST_UnitOfMeasure", ThisKey="BuyingUMID", OtherKey="UnitOfMeasureID", IsForeignKey=true)]
-		public MST_UnitOfMeasure MST_UnitOfMeasure
-		{
-			get
-			{
-				return this._MST_UnitOfMeasure.Entity;
-			}
-			set
-			{
-				MST_UnitOfMeasure previousValue = this._MST_UnitOfMeasure.Entity;
-				if (((previousValue != value) 
-							|| (this._MST_UnitOfMeasure.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._MST_UnitOfMeasure.Entity = null;
-						previousValue.ITM_Products.Remove(this);
-					}
-					this._MST_UnitOfMeasure.Entity = value;
-					if ((value != null))
-					{
-						value.ITM_Products.Add(this);
-						this._BuyingUMID = value.UnitOfMeasureID;
-					}
-					else
-					{
-						this._BuyingUMID = default(int);
-					}
-					this.SendPropertyChanged("MST_UnitOfMeasure");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_UnitOfMeasure_ITM_Product1", Storage="_MST_UnitOfMeasure1", ThisKey="HeightUMID", OtherKey="UnitOfMeasureID", IsForeignKey=true)]
-		public MST_UnitOfMeasure MST_UnitOfMeasure1
-		{
-			get
-			{
-				return this._MST_UnitOfMeasure1.Entity;
-			}
-			set
-			{
-				MST_UnitOfMeasure previousValue = this._MST_UnitOfMeasure1.Entity;
-				if (((previousValue != value) 
-							|| (this._MST_UnitOfMeasure1.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._MST_UnitOfMeasure1.Entity = null;
-						previousValue.ITM_Products1.Remove(this);
-					}
-					this._MST_UnitOfMeasure1.Entity = value;
-					if ((value != null))
-					{
-						value.ITM_Products1.Add(this);
-						this._HeightUMID = value.UnitOfMeasureID;
-					}
-					else
-					{
-						this._HeightUMID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("MST_UnitOfMeasure1");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_UnitOfMeasure_ITM_Product2", Storage="_MST_UnitOfMeasure2", ThisKey="LengthUMID", OtherKey="UnitOfMeasureID", IsForeignKey=true)]
-		public MST_UnitOfMeasure MST_UnitOfMeasure2
-		{
-			get
-			{
-				return this._MST_UnitOfMeasure2.Entity;
-			}
-			set
-			{
-				MST_UnitOfMeasure previousValue = this._MST_UnitOfMeasure2.Entity;
-				if (((previousValue != value) 
-							|| (this._MST_UnitOfMeasure2.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._MST_UnitOfMeasure2.Entity = null;
-						previousValue.ITM_Products2.Remove(this);
-					}
-					this._MST_UnitOfMeasure2.Entity = value;
-					if ((value != null))
-					{
-						value.ITM_Products2.Add(this);
-						this._LengthUMID = value.UnitOfMeasureID;
-					}
-					else
-					{
-						this._LengthUMID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("MST_UnitOfMeasure2");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_UnitOfMeasure_ITM_Product3", Storage="_MST_UnitOfMeasure3", ThisKey="SellingUMID", OtherKey="UnitOfMeasureID", IsForeignKey=true)]
-		public MST_UnitOfMeasure MST_UnitOfMeasure3
-		{
-			get
-			{
-				return this._MST_UnitOfMeasure3.Entity;
-			}
-			set
-			{
-				MST_UnitOfMeasure previousValue = this._MST_UnitOfMeasure3.Entity;
-				if (((previousValue != value) 
-							|| (this._MST_UnitOfMeasure3.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._MST_UnitOfMeasure3.Entity = null;
-						previousValue.ITM_Products3.Remove(this);
-					}
-					this._MST_UnitOfMeasure3.Entity = value;
-					if ((value != null))
-					{
-						value.ITM_Products3.Add(this);
-						this._SellingUMID = value.UnitOfMeasureID;
-					}
-					else
-					{
-						this._SellingUMID = default(int);
-					}
-					this.SendPropertyChanged("MST_UnitOfMeasure3");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_UnitOfMeasure_ITM_Product4", Storage="_MST_UnitOfMeasure4", ThisKey="StockUMID", OtherKey="UnitOfMeasureID", IsForeignKey=true)]
-		public MST_UnitOfMeasure MST_UnitOfMeasure4
-		{
-			get
-			{
-				return this._MST_UnitOfMeasure4.Entity;
-			}
-			set
-			{
-				MST_UnitOfMeasure previousValue = this._MST_UnitOfMeasure4.Entity;
-				if (((previousValue != value) 
-							|| (this._MST_UnitOfMeasure4.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._MST_UnitOfMeasure4.Entity = null;
-						previousValue.ITM_Products4.Remove(this);
-					}
-					this._MST_UnitOfMeasure4.Entity = value;
-					if ((value != null))
-					{
-						value.ITM_Products4.Add(this);
-						this._StockUMID = value.UnitOfMeasureID;
-					}
-					else
-					{
-						this._StockUMID = default(int);
-					}
-					this.SendPropertyChanged("MST_UnitOfMeasure4");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_UnitOfMeasure_ITM_Product5", Storage="_MST_UnitOfMeasure5", ThisKey="WeightUMID", OtherKey="UnitOfMeasureID", IsForeignKey=true)]
-		public MST_UnitOfMeasure MST_UnitOfMeasure5
-		{
-			get
-			{
-				return this._MST_UnitOfMeasure5.Entity;
-			}
-			set
-			{
-				MST_UnitOfMeasure previousValue = this._MST_UnitOfMeasure5.Entity;
-				if (((previousValue != value) 
-							|| (this._MST_UnitOfMeasure5.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._MST_UnitOfMeasure5.Entity = null;
-						previousValue.ITM_Products5.Remove(this);
-					}
-					this._MST_UnitOfMeasure5.Entity = value;
-					if ((value != null))
-					{
-						value.ITM_Products5.Add(this);
-						this._WeightUMID = value.UnitOfMeasureID;
-					}
-					else
-					{
-						this._WeightUMID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("MST_UnitOfMeasure5");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_UnitOfMeasure_ITM_Product6", Storage="_MST_UnitOfMeasure6", ThisKey="WidthUMID", OtherKey="UnitOfMeasureID", IsForeignKey=true)]
-		public MST_UnitOfMeasure MST_UnitOfMeasure6
-		{
-			get
-			{
-				return this._MST_UnitOfMeasure6.Entity;
-			}
-			set
-			{
-				MST_UnitOfMeasure previousValue = this._MST_UnitOfMeasure6.Entity;
-				if (((previousValue != value) 
-							|| (this._MST_UnitOfMeasure6.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._MST_UnitOfMeasure6.Entity = null;
-						previousValue.ITM_Products6.Remove(this);
-					}
-					this._MST_UnitOfMeasure6.Entity = value;
-					if ((value != null))
-					{
-						value.ITM_Products6.Add(this);
-						this._WidthUMID = value.UnitOfMeasureID;
-					}
-					else
-					{
-						this._WidthUMID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("MST_UnitOfMeasure6");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PRO_ProductionLine_ITM_Product", Storage="_PRO_ProductionLine", ThisKey="ProductionLineID", OtherKey="ProductionLineID", IsForeignKey=true)]
-		public PRO_ProductionLine PRO_ProductionLine
-		{
-			get
-			{
-				return this._PRO_ProductionLine.Entity;
-			}
-			set
-			{
-				PRO_ProductionLine previousValue = this._PRO_ProductionLine.Entity;
-				if (((previousValue != value) 
-							|| (this._PRO_ProductionLine.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._PRO_ProductionLine.Entity = null;
-						previousValue.ITM_Products.Remove(this);
-					}
-					this._PRO_ProductionLine.Entity = value;
-					if ((value != null))
-					{
-						value.ITM_Products.Add(this);
-						this._ProductionLineID = value.ProductionLineID;
-					}
-					else
-					{
-						this._ProductionLineID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("PRO_ProductionLine");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="STD_CostCenterRateMaster_ITM_Product", Storage="_STD_CostCenterRateMaster", ThisKey="CostCenterRateMasterID", OtherKey="CostCenterRateMasterID", IsForeignKey=true)]
-		public STD_CostCenterRateMaster STD_CostCenterRateMaster
-		{
-			get
-			{
-				return this._STD_CostCenterRateMaster.Entity;
-			}
-			set
-			{
-				STD_CostCenterRateMaster previousValue = this._STD_CostCenterRateMaster.Entity;
-				if (((previousValue != value) 
-							|| (this._STD_CostCenterRateMaster.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._STD_CostCenterRateMaster.Entity = null;
-						previousValue.ITM_Products.Remove(this);
-					}
-					this._STD_CostCenterRateMaster.Entity = value;
-					if ((value != null))
-					{
-						value.ITM_Products.Add(this);
-						this._CostCenterRateMasterID = value.CostCenterRateMasterID;
-					}
-					else
-					{
-						this._CostCenterRateMasterID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("STD_CostCenterRateMaster");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_cst_ActCostAllocationDetails(cst_ActCostAllocationDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = this;
-		}
-		
-		private void detach_cst_ActCostAllocationDetails(cst_ActCostAllocationDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = null;
-		}
-		
-		private void attach_CST_ActualCostHistories(CST_ActualCostHistory entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = this;
-		}
-		
-		private void detach_CST_ActualCostHistories(CST_ActualCostHistory entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = null;
-		}
-		
-		private void attach_cst_AllocationResults(cst_AllocationResult entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = this;
-		}
-		
-		private void detach_cst_AllocationResults(cst_AllocationResult entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = null;
-		}
-		
-		private void attach_CST_DSAndRecycleAllocations(CST_DSAndRecycleAllocation entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = this;
-		}
-		
-		private void detach_CST_DSAndRecycleAllocations(CST_DSAndRecycleAllocation entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = null;
-		}
-		
-		private void attach_cst_FreightDetails(cst_FreightDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = this;
-		}
-		
-		private void detach_cst_FreightDetails(cst_FreightDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = null;
-		}
-		
-		private void attach_CST_RecoverMaterialDetails(CST_RecoverMaterialDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = this;
-		}
-		
-		private void detach_CST_RecoverMaterialDetails(CST_RecoverMaterialDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = null;
-		}
-		
-		private void attach_CST_RecoverMaterialMasters(CST_RecoverMaterialMaster entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = this;
-		}
-		
-		private void detach_CST_RecoverMaterialMasters(CST_RecoverMaterialMaster entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = null;
-		}
-		
-		private void attach_CST_STDItemCosts(CST_STDItemCost entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = this;
-		}
-		
-		private void detach_CST_STDItemCosts(CST_STDItemCost entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = null;
-		}
-		
-		private void attach_DCP_BeginQuantities(DCP_BeginQuantity entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = this;
-		}
-		
-		private void detach_DCP_BeginQuantities(DCP_BeginQuantity entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = null;
-		}
-		
-		private void attach_ITM_BOMs(ITM_BOM entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = this;
-		}
-		
-		private void detach_ITM_BOMs(ITM_BOM entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = null;
-		}
-		
-		private void attach_ITM_BOMs1(ITM_BOM entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product1 = this;
-		}
-		
-		private void detach_ITM_BOMs1(ITM_BOM entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product1 = null;
-		}
-		
-		private void attach_ITM_Pictures(ITM_Picture entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = this;
-		}
-		
-		private void detach_ITM_Pictures(ITM_Picture entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = null;
-		}
-		
-		private void attach_ITM_Routings(ITM_Routing entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = this;
-		}
-		
-		private void detach_ITM_Routings(ITM_Routing entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = null;
-		}
-		
-		private void attach_IV_Adjustments(IV_Adjustment entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = this;
-		}
-		
-		private void detach_IV_Adjustments(IV_Adjustment entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = null;
-		}
-		
-		private void attach_IV_BalanceBins(IV_BalanceBin entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = this;
-		}
-		
-		private void detach_IV_BalanceBins(IV_BalanceBin entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = null;
-		}
-		
-		private void attach_IV_BalanceLocations(IV_BalanceLocation entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = this;
-		}
-		
-		private void detach_IV_BalanceLocations(IV_BalanceLocation entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = null;
-		}
-		
-		private void attach_IV_BalanceMasterLocations(IV_BalanceMasterLocation entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = this;
-		}
-		
-		private void detach_IV_BalanceMasterLocations(IV_BalanceMasterLocation entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = null;
-		}
-		
-		private void attach_IV_BeginDCPReports(IV_BeginDCPReport entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = this;
-		}
-		
-		private void detach_IV_BeginDCPReports(IV_BeginDCPReport entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = null;
-		}
-		
-		private void attach_IV_BeginMRPs(IV_BeginMRP entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = this;
-		}
-		
-		private void detach_IV_BeginMRPs(IV_BeginMRP entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = null;
-		}
-		
-		private void attach_IV_BinCaches(IV_BinCache entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = this;
-		}
-		
-		private void detach_IV_BinCaches(IV_BinCache entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = null;
-		}
-		
-		private void attach_IV_CostHistories(IV_CostHistory entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = this;
-		}
-		
-		private void detach_IV_CostHistories(IV_CostHistory entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = null;
-		}
-		
-		private void attach_IV_LocationCaches(IV_LocationCache entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = this;
-		}
-		
-		private void detach_IV_LocationCaches(IV_LocationCache entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = null;
-		}
-		
-		private void attach_IV_MasLocCaches(IV_MasLocCache entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = this;
-		}
-		
-		private void detach_IV_MasLocCaches(IV_MasLocCache entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = null;
-		}
-		
-		private void attach_IV_StockTakings(IV_StockTaking entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = this;
-		}
-		
-		private void detach_IV_StockTakings(IV_StockTaking entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = null;
-		}
-		
-		private void attach_IV_StockTakingDifferents(IV_StockTakingDifferent entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = this;
-		}
-		
-		private void detach_IV_StockTakingDifferents(IV_StockTakingDifferent entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = null;
-		}
-		
-		private void attach_MST_TransactionHistories(MST_TransactionHistory entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = this;
-		}
-		
-		private void detach_MST_TransactionHistories(MST_TransactionHistory entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = null;
-		}
-		
-		private void attach_MTR_ACDSDetails(MTR_ACDSDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = this;
-		}
-		
-		private void detach_MTR_ACDSDetails(MTR_ACDSDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = null;
-		}
-		
-		private void attach_MTR_CPOs(MTR_CPO entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = this;
-		}
-		
-		private void detach_MTR_CPOs(MTR_CPO entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = null;
-		}
-		
-		private void attach_MTR_ItemActualCosts(MTR_ItemActualCost entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = this;
-		}
-		
-		private void detach_MTR_ItemActualCosts(MTR_ItemActualCost entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = null;
-		}
-		
-		private void attach_PO_InvoiceDetails(PO_InvoiceDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = this;
-		}
-		
-		private void detach_PO_InvoiceDetails(PO_InvoiceDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = null;
-		}
-		
-		private void attach_PO_ItemVendorReferences(PO_ItemVendorReference entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = this;
-		}
-		
-		private void detach_PO_ItemVendorReferences(PO_ItemVendorReference entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = null;
-		}
-		
-		private void attach_PO_PurchaseOrderDetails(PO_PurchaseOrderDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = this;
-		}
-		
-		private void detach_PO_PurchaseOrderDetails(PO_PurchaseOrderDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = null;
-		}
-		
-		private void attach_PO_PurchaseOrderReceiptDetails(PO_PurchaseOrderReceiptDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = this;
-		}
-		
-		private void detach_PO_PurchaseOrderReceiptDetails(PO_PurchaseOrderReceiptDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = null;
-		}
-		
-		private void attach_PO_ReturnToVendorDetails(PO_ReturnToVendorDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = this;
-		}
-		
-		private void detach_PO_ReturnToVendorDetails(PO_ReturnToVendorDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = null;
-		}
-		
-		private void attach_PO_VendorDeliverySchedules(PO_VendorDeliverySchedule entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = this;
-		}
-		
-		private void detach_PO_VendorDeliverySchedules(PO_VendorDeliverySchedule entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = null;
-		}
-		
-		private void attach_PRO_ChangeCategoryDetails(PRO_ChangeCategoryDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = this;
-		}
-		
-		private void detach_PRO_ChangeCategoryDetails(PRO_ChangeCategoryDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = null;
-		}
-		
-		private void attach_PRO_ChangeCategoryMatrixes(PRO_ChangeCategoryMatrix entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = this;
-		}
-		
-		private void detach_PRO_ChangeCategoryMatrixes(PRO_ChangeCategoryMatrix entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = null;
-		}
-		
-		private void attach_PRO_ChangeCategoryMatrixes1(PRO_ChangeCategoryMatrix entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product1 = this;
-		}
-		
-		private void detach_PRO_ChangeCategoryMatrixes1(PRO_ChangeCategoryMatrix entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product1 = null;
-		}
-		
-		private void attach_PRO_CheckPoints(PRO_CheckPoint entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = this;
-		}
-		
-		private void detach_PRO_CheckPoints(PRO_CheckPoint entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = null;
-		}
-		
-		private void attach_PRO_ComponentScrapDetails(PRO_ComponentScrapDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = this;
-		}
-		
-		private void detach_PRO_ComponentScrapDetails(PRO_ComponentScrapDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = null;
-		}
-		
-		private void attach_PRO_ComponentScrapDetails1(PRO_ComponentScrapDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product1 = this;
-		}
-		
-		private void detach_PRO_ComponentScrapDetails1(PRO_ComponentScrapDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product1 = null;
-		}
-		
-		private void attach_PRO_DCPResultMasters(PRO_DCPResultMaster entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = this;
-		}
-		
-		private void detach_PRO_DCPResultMasters(PRO_DCPResultMaster entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = null;
-		}
-		
-		private void attach_PRO_IssueMaterialDetails(PRO_IssueMaterialDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = this;
-		}
-		
-		private void detach_PRO_IssueMaterialDetails(PRO_IssueMaterialDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = null;
-		}
-		
-		private void attach_PRO_IssueMaterialMasters(PRO_IssueMaterialMaster entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = this;
-		}
-		
-		private void detach_PRO_IssueMaterialMasters(PRO_IssueMaterialMaster entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = null;
-		}
-		
-		private void attach_PRO_PGProducts(PRO_PGProduct entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = this;
-		}
-		
-		private void detach_PRO_PGProducts(PRO_PGProduct entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = null;
-		}
-		
-		private void attach_PRO_ProductProductionOrders(PRO_ProductProductionOrder entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = this;
-		}
-		
-		private void detach_PRO_ProductProductionOrders(PRO_ProductProductionOrder entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = null;
-		}
-		
-		private void attach_PRO_WorkOrderCompletions(PRO_WorkOrderCompletion entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = this;
-		}
-		
-		private void detach_PRO_WorkOrderCompletions(PRO_WorkOrderCompletion entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = null;
-		}
-		
-		private void attach_PRO_WorkOrderDetails(PRO_WorkOrderDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = this;
-		}
-		
-		private void detach_PRO_WorkOrderDetails(PRO_WorkOrderDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = null;
-		}
-		
-		private void attach_SO_CommitInventoryDetails(SO_CommitInventoryDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = this;
-		}
-		
-		private void detach_SO_CommitInventoryDetails(SO_CommitInventoryDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = null;
-		}
-		
-		private void attach_SO_CustomerItemRefDetails(SO_CustomerItemRefDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = this;
-		}
-		
-		private void detach_SO_CustomerItemRefDetails(SO_CustomerItemRefDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = null;
-		}
-		
-		private void attach_SO_ReturnedGoodsDetails(SO_ReturnedGoodsDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = this;
-		}
-		
-		private void detach_SO_ReturnedGoodsDetails(SO_ReturnedGoodsDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = null;
-		}
-		
-		private void attach_SO_SaleOrderDetails(SO_SaleOrderDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = this;
-		}
-		
-		private void detach_SO_SaleOrderDetails(SO_SaleOrderDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = null;
-		}
-		
-		private void attach_STD_CostCenterRateMasters(STD_CostCenterRateMaster entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = this;
-		}
-		
-		private void detach_STD_CostCenterRateMasters(STD_CostCenterRateMaster entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = null;
-		}
-		
-		private void attach_sys_RoleProducts(sys_RoleProduct entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = this;
-		}
-		
-		private void detach_sys_RoleProducts(sys_RoleProduct entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = null;
-		}
-		
-		private void attach_SO_ConfirmShipDetails(SO_ConfirmShipDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = this;
-		}
-		
-		private void detach_SO_ConfirmShipDetails(SO_ConfirmShipDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = null;
-		}
-		
-		private void attach_SO_InvoiceDetails(SO_InvoiceDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = this;
-		}
-		
-		private void detach_SO_InvoiceDetails(SO_InvoiceDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = null;
-		}
-		
-		private void attach_IV_MiscellaneousIssueDetails(IV_MiscellaneousIssueDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = this;
-		}
-		
-		private void detach_IV_MiscellaneousIssueDetails(IV_MiscellaneousIssueDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.ITM_Product = null;
 		}
 	}
 	
@@ -19761,8 +14372,6 @@ namespace PCSComUtils.DataContext
 		
 		private EntityRef<ITM_CostCenter> _ITM_CostCenter1;
 		
-		private EntityRef<ITM_Product> _ITM_Product;
-		
 		private EntityRef<ITM_RoutingStatus> _ITM_RoutingStatus;
 		
 		private EntityRef<MST_Function> _MST_Function;
@@ -19770,6 +14379,8 @@ namespace PCSComUtils.DataContext
 		private EntityRef<MST_Party> _MST_Party;
 		
 		private EntityRef<MST_WorkCenter> _MST_WorkCenter;
+		
+		private EntityRef<ITM_Product> _ITM_Product;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -19851,11 +14462,11 @@ namespace PCSComUtils.DataContext
 			this._PRO_DCPResultMasters = new EntitySet<PRO_DCPResultMaster>(new Action<PRO_DCPResultMaster>(this.attach_PRO_DCPResultMasters), new Action<PRO_DCPResultMaster>(this.detach_PRO_DCPResultMasters));
 			this._ITM_CostCenter = default(EntityRef<ITM_CostCenter>);
 			this._ITM_CostCenter1 = default(EntityRef<ITM_CostCenter>);
-			this._ITM_Product = default(EntityRef<ITM_Product>);
 			this._ITM_RoutingStatus = default(EntityRef<ITM_RoutingStatus>);
 			this._MST_Function = default(EntityRef<MST_Function>);
 			this._MST_Party = default(EntityRef<MST_Party>);
 			this._MST_WorkCenter = default(EntityRef<MST_WorkCenter>);
+			this._ITM_Product = default(EntityRef<ITM_Product>);
 			OnCreated();
 		}
 		
@@ -20661,40 +15272,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_ITM_Routing", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
-		public ITM_Product ITM_Product
-		{
-			get
-			{
-				return this._ITM_Product.Entity;
-			}
-			set
-			{
-				ITM_Product previousValue = this._ITM_Product.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_Product.Entity = null;
-						previousValue.ITM_Routings.Remove(this);
-					}
-					this._ITM_Product.Entity = value;
-					if ((value != null))
-					{
-						value.ITM_Routings.Add(this);
-						this._ProductID = value.ProductID;
-					}
-					else
-					{
-						this._ProductID = default(int);
-					}
-					this.SendPropertyChanged("ITM_Product");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_RoutingStatus_ITM_Routing", Storage="_ITM_RoutingStatus", ThisKey="RoutingStatusID", OtherKey="RoutingStatusID", IsForeignKey=true)]
 		public ITM_RoutingStatus ITM_RoutingStatus
 		{
@@ -20827,6 +15404,40 @@ namespace PCSComUtils.DataContext
 						this._WorkCenterID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("MST_WorkCenter");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_ITM_Routing", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
+		public ITM_Product ITM_Product
+		{
+			get
+			{
+				return this._ITM_Product.Entity;
+			}
+			set
+			{
+				ITM_Product previousValue = this._ITM_Product.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_Product.Entity = null;
+						previousValue.ITM_Routings.Remove(this);
+					}
+					this._ITM_Product.Entity = value;
+					if ((value != null))
+					{
+						value.ITM_Routings.Add(this);
+						this._ProductID = value.ProductID;
+					}
+					else
+					{
+						this._ProductID = default(int);
+					}
+					this.SendPropertyChanged("ITM_Product");
 				}
 			}
 		}
@@ -21402,8 +16013,6 @@ namespace PCSComUtils.DataContext
 		
 		private System.Nullable<bool> _UsedByCosting;
 		
-		private EntityRef<ITM_Product> _ITM_Product;
-		
 		private EntityRef<MST_BIN> _MST_BIN;
 		
 		private EntityRef<MST_CCN> _MST_CCN;
@@ -21413,6 +16022,8 @@ namespace PCSComUtils.DataContext
 		private EntityRef<MST_MasterLocation> _MST_MasterLocation;
 		
 		private EntityRef<MST_UnitOfMeasure> _MST_UnitOfMeasure;
+		
+		private EntityRef<ITM_Product> _ITM_Product;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -21456,12 +16067,12 @@ namespace PCSComUtils.DataContext
 		
 		public IV_Adjustment()
 		{
-			this._ITM_Product = default(EntityRef<ITM_Product>);
 			this._MST_BIN = default(EntityRef<MST_BIN>);
 			this._MST_CCN = default(EntityRef<MST_CCN>);
 			this._MST_Location = default(EntityRef<MST_Location>);
 			this._MST_MasterLocation = default(EntityRef<MST_MasterLocation>);
 			this._MST_UnitOfMeasure = default(EntityRef<MST_UnitOfMeasure>);
+			this._ITM_Product = default(EntityRef<ITM_Product>);
 			OnCreated();
 		}
 		
@@ -21829,40 +16440,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_IV_Adjustment", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
-		public ITM_Product ITM_Product
-		{
-			get
-			{
-				return this._ITM_Product.Entity;
-			}
-			set
-			{
-				ITM_Product previousValue = this._ITM_Product.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_Product.Entity = null;
-						previousValue.IV_Adjustments.Remove(this);
-					}
-					this._ITM_Product.Entity = value;
-					if ((value != null))
-					{
-						value.IV_Adjustments.Add(this);
-						this._ProductID = value.ProductID;
-					}
-					else
-					{
-						this._ProductID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("ITM_Product");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_BIN_IV_Adjustment", Storage="_MST_BIN", ThisKey="BinID", OtherKey="BinID", IsForeignKey=true)]
 		public MST_BIN MST_BIN
 		{
@@ -22033,6 +16610,40 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_IV_Adjustment", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
+		public ITM_Product ITM_Product
+		{
+			get
+			{
+				return this._ITM_Product.Entity;
+			}
+			set
+			{
+				ITM_Product previousValue = this._ITM_Product.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_Product.Entity = null;
+						previousValue.IV_Adjustments.Remove(this);
+					}
+					this._ITM_Product.Entity = value;
+					if ((value != null))
+					{
+						value.IV_Adjustments.Add(this);
+						this._ProductID = value.ProductID;
+					}
+					else
+					{
+						this._ProductID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("ITM_Product");
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -22076,13 +16687,13 @@ namespace PCSComUtils.DataContext
 		
 		private System.Nullable<int> _StockUMID;
 		
-		private EntityRef<ITM_Product> _ITM_Product;
-		
 		private EntityRef<MST_BIN> _MST_BIN;
 		
 		private EntityRef<MST_Location> _MST_Location;
 		
 		private EntityRef<MST_UnitOfMeasure> _MST_UnitOfMeasure;
+		
+		private EntityRef<ITM_Product> _ITM_Product;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -22108,10 +16719,10 @@ namespace PCSComUtils.DataContext
 		
 		public IV_BalanceBin()
 		{
-			this._ITM_Product = default(EntityRef<ITM_Product>);
 			this._MST_BIN = default(EntityRef<MST_BIN>);
 			this._MST_Location = default(EntityRef<MST_Location>);
 			this._MST_UnitOfMeasure = default(EntityRef<MST_UnitOfMeasure>);
+			this._ITM_Product = default(EntityRef<ITM_Product>);
 			OnCreated();
 		}
 		
@@ -22291,40 +16902,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_IV_BalanceBin", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
-		public ITM_Product ITM_Product
-		{
-			get
-			{
-				return this._ITM_Product.Entity;
-			}
-			set
-			{
-				ITM_Product previousValue = this._ITM_Product.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_Product.Entity = null;
-						previousValue.IV_BalanceBins.Remove(this);
-					}
-					this._ITM_Product.Entity = value;
-					if ((value != null))
-					{
-						value.IV_BalanceBins.Add(this);
-						this._ProductID = value.ProductID;
-					}
-					else
-					{
-						this._ProductID = default(int);
-					}
-					this.SendPropertyChanged("ITM_Product");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_BIN_IV_BalanceBin", Storage="_MST_BIN", ThisKey="BinID", OtherKey="BinID", IsForeignKey=true)]
 		public MST_BIN MST_BIN
 		{
@@ -22427,6 +17004,40 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_IV_BalanceBin", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
+		public ITM_Product ITM_Product
+		{
+			get
+			{
+				return this._ITM_Product.Entity;
+			}
+			set
+			{
+				ITM_Product previousValue = this._ITM_Product.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_Product.Entity = null;
+						previousValue.IV_BalanceBins.Remove(this);
+					}
+					this._ITM_Product.Entity = value;
+					if ((value != null))
+					{
+						value.IV_BalanceBins.Add(this);
+						this._ProductID = value.ProductID;
+					}
+					else
+					{
+						this._ProductID = default(int);
+					}
+					this.SendPropertyChanged("ITM_Product");
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -22470,13 +17081,13 @@ namespace PCSComUtils.DataContext
 		
 		private System.Nullable<int> _StockUMID;
 		
-		private EntityRef<ITM_Product> _ITM_Product;
-		
 		private EntityRef<MST_Location> _MST_Location;
 		
 		private EntityRef<MST_MasterLocation> _MST_MasterLocation;
 		
 		private EntityRef<MST_UnitOfMeasure> _MST_UnitOfMeasure;
+		
+		private EntityRef<ITM_Product> _ITM_Product;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -22502,10 +17113,10 @@ namespace PCSComUtils.DataContext
 		
 		public IV_BalanceLocation()
 		{
-			this._ITM_Product = default(EntityRef<ITM_Product>);
 			this._MST_Location = default(EntityRef<MST_Location>);
 			this._MST_MasterLocation = default(EntityRef<MST_MasterLocation>);
 			this._MST_UnitOfMeasure = default(EntityRef<MST_UnitOfMeasure>);
+			this._ITM_Product = default(EntityRef<ITM_Product>);
 			OnCreated();
 		}
 		
@@ -22685,40 +17296,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_IV_BalanceLocation", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
-		public ITM_Product ITM_Product
-		{
-			get
-			{
-				return this._ITM_Product.Entity;
-			}
-			set
-			{
-				ITM_Product previousValue = this._ITM_Product.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_Product.Entity = null;
-						previousValue.IV_BalanceLocations.Remove(this);
-					}
-					this._ITM_Product.Entity = value;
-					if ((value != null))
-					{
-						value.IV_BalanceLocations.Add(this);
-						this._ProductID = value.ProductID;
-					}
-					else
-					{
-						this._ProductID = default(int);
-					}
-					this.SendPropertyChanged("ITM_Product");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_Location_IV_BalanceLocation", Storage="_MST_Location", ThisKey="LocationID", OtherKey="LocationID", IsForeignKey=true)]
 		public MST_Location MST_Location
 		{
@@ -22821,6 +17398,40 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_IV_BalanceLocation", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
+		public ITM_Product ITM_Product
+		{
+			get
+			{
+				return this._ITM_Product.Entity;
+			}
+			set
+			{
+				ITM_Product previousValue = this._ITM_Product.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_Product.Entity = null;
+						previousValue.IV_BalanceLocations.Remove(this);
+					}
+					this._ITM_Product.Entity = value;
+					if ((value != null))
+					{
+						value.IV_BalanceLocations.Add(this);
+						this._ProductID = value.ProductID;
+					}
+					else
+					{
+						this._ProductID = default(int);
+					}
+					this.SendPropertyChanged("ITM_Product");
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -22862,11 +17473,11 @@ namespace PCSComUtils.DataContext
 		
 		private System.Nullable<int> _StockUMID;
 		
-		private EntityRef<ITM_Product> _ITM_Product;
-		
 		private EntityRef<MST_MasterLocation> _MST_MasterLocation;
 		
 		private EntityRef<MST_UnitOfMeasure> _MST_UnitOfMeasure;
+		
+		private EntityRef<ITM_Product> _ITM_Product;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -22890,9 +17501,9 @@ namespace PCSComUtils.DataContext
 		
 		public IV_BalanceMasterLocation()
 		{
-			this._ITM_Product = default(EntityRef<ITM_Product>);
 			this._MST_MasterLocation = default(EntityRef<MST_MasterLocation>);
 			this._MST_UnitOfMeasure = default(EntityRef<MST_UnitOfMeasure>);
+			this._ITM_Product = default(EntityRef<ITM_Product>);
 			OnCreated();
 		}
 		
@@ -23048,40 +17659,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_IV_BalanceMasterLocation", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
-		public ITM_Product ITM_Product
-		{
-			get
-			{
-				return this._ITM_Product.Entity;
-			}
-			set
-			{
-				ITM_Product previousValue = this._ITM_Product.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_Product.Entity = null;
-						previousValue.IV_BalanceMasterLocations.Remove(this);
-					}
-					this._ITM_Product.Entity = value;
-					if ((value != null))
-					{
-						value.IV_BalanceMasterLocations.Add(this);
-						this._ProductID = value.ProductID;
-					}
-					else
-					{
-						this._ProductID = default(int);
-					}
-					this.SendPropertyChanged("ITM_Product");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_MasterLocation_IV_BalanceMasterLocation", Storage="_MST_MasterLocation", ThisKey="MasterLocationID", OtherKey="MasterLocationID", IsForeignKey=true)]
 		public MST_MasterLocation MST_MasterLocation
 		{
@@ -23146,6 +17723,40 @@ namespace PCSComUtils.DataContext
 						this._StockUMID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("MST_UnitOfMeasure");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_IV_BalanceMasterLocation", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
+		public ITM_Product ITM_Product
+		{
+			get
+			{
+				return this._ITM_Product.Entity;
+			}
+			set
+			{
+				ITM_Product previousValue = this._ITM_Product.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_Product.Entity = null;
+						previousValue.IV_BalanceMasterLocations.Remove(this);
+					}
+					this._ITM_Product.Entity = value;
+					if ((value != null))
+					{
+						value.IV_BalanceMasterLocations.Add(this);
+						this._ProductID = value.ProductID;
+					}
+					else
+					{
+						this._ProductID = default(int);
+					}
+					this.SendPropertyChanged("ITM_Product");
 				}
 			}
 		}
@@ -23412,9 +18023,9 @@ namespace PCSComUtils.DataContext
 		
 		private System.Nullable<decimal> _QuantityMAP;
 		
-		private EntityRef<ITM_Product> _ITM_Product;
-		
 		private EntityRef<MST_Location> _MST_Location;
+		
+		private EntityRef<ITM_Product> _ITM_Product;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -23436,8 +18047,8 @@ namespace PCSComUtils.DataContext
 		
 		public IV_BeginMRP()
 		{
-			this._ITM_Product = default(EntityRef<ITM_Product>);
 			this._MST_Location = default(EntityRef<MST_Location>);
+			this._ITM_Product = default(EntityRef<ITM_Product>);
 			OnCreated();
 		}
 		
@@ -23569,40 +18180,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_IV_BeginMRP", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
-		public ITM_Product ITM_Product
-		{
-			get
-			{
-				return this._ITM_Product.Entity;
-			}
-			set
-			{
-				ITM_Product previousValue = this._ITM_Product.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_Product.Entity = null;
-						previousValue.IV_BeginMRPs.Remove(this);
-					}
-					this._ITM_Product.Entity = value;
-					if ((value != null))
-					{
-						value.IV_BeginMRPs.Add(this);
-						this._ProductID = value.ProductID;
-					}
-					else
-					{
-						this._ProductID = default(int);
-					}
-					this.SendPropertyChanged("ITM_Product");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_Location_IV_BeginMRP", Storage="_MST_Location", ThisKey="LocationID", OtherKey="LocationID", IsForeignKey=true)]
 		public MST_Location MST_Location
 		{
@@ -23633,6 +18210,40 @@ namespace PCSComUtils.DataContext
 						this._LocationID = default(int);
 					}
 					this.SendPropertyChanged("MST_Location");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_IV_BeginMRP", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
+		public ITM_Product ITM_Product
+		{
+			get
+			{
+				return this._ITM_Product.Entity;
+			}
+			set
+			{
+				ITM_Product previousValue = this._ITM_Product.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_Product.Entity = null;
+						previousValue.IV_BeginMRPs.Remove(this);
+					}
+					this._ITM_Product.Entity = value;
+					if ((value != null))
+					{
+						value.IV_BeginMRPs.Add(this);
+						this._ProductID = value.ProductID;
+					}
+					else
+					{
+						this._ProductID = default(int);
+					}
+					this.SendPropertyChanged("ITM_Product");
 				}
 			}
 		}
@@ -23688,8 +18299,6 @@ namespace PCSComUtils.DataContext
 		
 		private int _ProductID;
 		
-		private EntityRef<ITM_Product> _ITM_Product;
-		
 		private EntityRef<MST_BIN> _MST_BIN;
 		
 		private EntityRef<MST_CCN> _MST_CCN;
@@ -23697,6 +18306,8 @@ namespace PCSComUtils.DataContext
 		private EntityRef<MST_Location> _MST_Location;
 		
 		private EntityRef<MST_MasterLocation> _MST_MasterLocation;
+		
+		private EntityRef<ITM_Product> _ITM_Product;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -23730,11 +18341,11 @@ namespace PCSComUtils.DataContext
 		
 		public IV_BinCache()
 		{
-			this._ITM_Product = default(EntityRef<ITM_Product>);
 			this._MST_BIN = default(EntityRef<MST_BIN>);
 			this._MST_CCN = default(EntityRef<MST_CCN>);
 			this._MST_Location = default(EntityRef<MST_Location>);
 			this._MST_MasterLocation = default(EntityRef<MST_MasterLocation>);
+			this._ITM_Product = default(EntityRef<ITM_Product>);
 			OnCreated();
 		}
 		
@@ -23998,40 +18609,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_IV_BinCache", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
-		public ITM_Product ITM_Product
-		{
-			get
-			{
-				return this._ITM_Product.Entity;
-			}
-			set
-			{
-				ITM_Product previousValue = this._ITM_Product.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_Product.Entity = null;
-						previousValue.IV_BinCaches.Remove(this);
-					}
-					this._ITM_Product.Entity = value;
-					if ((value != null))
-					{
-						value.IV_BinCaches.Add(this);
-						this._ProductID = value.ProductID;
-					}
-					else
-					{
-						this._ProductID = default(int);
-					}
-					this.SendPropertyChanged("ITM_Product");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_BIN_IV_BinCache", Storage="_MST_BIN", ThisKey="BinID", OtherKey="BinID", IsForeignKey=true)]
 		public MST_BIN MST_BIN
 		{
@@ -24168,6 +18745,40 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_IV_BinCache", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
+		public ITM_Product ITM_Product
+		{
+			get
+			{
+				return this._ITM_Product.Entity;
+			}
+			set
+			{
+				ITM_Product previousValue = this._ITM_Product.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_Product.Entity = null;
+						previousValue.IV_BinCaches.Remove(this);
+					}
+					this._ITM_Product.Entity = value;
+					if ((value != null))
+					{
+						value.IV_BinCaches.Add(this);
+						this._ProductID = value.ProductID;
+					}
+					else
+					{
+						this._ProductID = default(int);
+					}
+					this.SendPropertyChanged("ITM_Product");
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -24223,8 +18834,6 @@ namespace PCSComUtils.DataContext
 		
 		private int _TranTypeID;
 		
-		private EntityRef<ITM_Product> _ITM_Product;
-		
 		private EntityRef<MST_CCN> _MST_CCN;
 		
 		private EntityRef<MST_MasterLocation> _MST_MasterLocation;
@@ -24236,6 +18845,8 @@ namespace PCSComUtils.DataContext
 		private EntityRef<MST_TranType> _MST_TranType;
 		
 		private EntityRef<MST_UnitOfMeasure> _MST_UnitOfMeasure;
+		
+		private EntityRef<ITM_Product> _ITM_Product;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -24273,13 +18884,13 @@ namespace PCSComUtils.DataContext
 		
 		public IV_CostHistory()
 		{
-			this._ITM_Product = default(EntityRef<ITM_Product>);
 			this._MST_CCN = default(EntityRef<MST_CCN>);
 			this._MST_MasterLocation = default(EntityRef<MST_MasterLocation>);
 			this._MST_Party = default(EntityRef<MST_Party>);
 			this._MST_PartyLocation = default(EntityRef<MST_PartyLocation>);
 			this._MST_TranType = default(EntityRef<MST_TranType>);
 			this._MST_UnitOfMeasure = default(EntityRef<MST_UnitOfMeasure>);
+			this._ITM_Product = default(EntityRef<ITM_Product>);
 			OnCreated();
 		}
 		
@@ -24591,40 +19202,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_IV_CostHistory", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
-		public ITM_Product ITM_Product
-		{
-			get
-			{
-				return this._ITM_Product.Entity;
-			}
-			set
-			{
-				ITM_Product previousValue = this._ITM_Product.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_Product.Entity = null;
-						previousValue.IV_CostHistories.Remove(this);
-					}
-					this._ITM_Product.Entity = value;
-					if ((value != null))
-					{
-						value.IV_CostHistories.Add(this);
-						this._ProductID = value.ProductID;
-					}
-					else
-					{
-						this._ProductID = default(int);
-					}
-					this.SendPropertyChanged("ITM_Product");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_CCN_IV_CostHistory", Storage="_MST_CCN", ThisKey="CCNID", OtherKey="CCNID", IsForeignKey=true)]
 		public MST_CCN MST_CCN
 		{
@@ -24825,6 +19402,40 @@ namespace PCSComUtils.DataContext
 						this._StockUMID = default(int);
 					}
 					this.SendPropertyChanged("MST_UnitOfMeasure");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_IV_CostHistory", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
+		public ITM_Product ITM_Product
+		{
+			get
+			{
+				return this._ITM_Product.Entity;
+			}
+			set
+			{
+				ITM_Product previousValue = this._ITM_Product.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_Product.Entity = null;
+						previousValue.IV_CostHistories.Remove(this);
+					}
+					this._ITM_Product.Entity = value;
+					if ((value != null))
+					{
+						value.IV_CostHistories.Add(this);
+						this._ProductID = value.ProductID;
+					}
+					else
+					{
+						this._ProductID = default(int);
+					}
+					this.SendPropertyChanged("ITM_Product");
 				}
 			}
 		}
@@ -25362,13 +19973,13 @@ namespace PCSComUtils.DataContext
 		
 		private int _MasterLocationID;
 		
-		private EntityRef<ITM_Product> _ITM_Product;
-		
 		private EntityRef<MST_CCN> _MST_CCN;
 		
 		private EntityRef<MST_Location> _MST_Location;
 		
 		private EntityRef<MST_MasterLocation> _MST_MasterLocation;
+		
+		private EntityRef<ITM_Product> _ITM_Product;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -25400,10 +20011,10 @@ namespace PCSComUtils.DataContext
 		
 		public IV_LocationCache()
 		{
-			this._ITM_Product = default(EntityRef<ITM_Product>);
 			this._MST_CCN = default(EntityRef<MST_CCN>);
 			this._MST_Location = default(EntityRef<MST_Location>);
 			this._MST_MasterLocation = default(EntityRef<MST_MasterLocation>);
+			this._ITM_Product = default(EntityRef<ITM_Product>);
 			OnCreated();
 		}
 		
@@ -25643,40 +20254,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_IV_LocationCache", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
-		public ITM_Product ITM_Product
-		{
-			get
-			{
-				return this._ITM_Product.Entity;
-			}
-			set
-			{
-				ITM_Product previousValue = this._ITM_Product.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_Product.Entity = null;
-						previousValue.IV_LocationCaches.Remove(this);
-					}
-					this._ITM_Product.Entity = value;
-					if ((value != null))
-					{
-						value.IV_LocationCaches.Add(this);
-						this._ProductID = value.ProductID;
-					}
-					else
-					{
-						this._ProductID = default(int);
-					}
-					this.SendPropertyChanged("ITM_Product");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_CCN_IV_LocationCache", Storage="_MST_CCN", ThisKey="CCNID", OtherKey="CCNID", IsForeignKey=true)]
 		public MST_CCN MST_CCN
 		{
@@ -25779,6 +20356,40 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_IV_LocationCache", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
+		public ITM_Product ITM_Product
+		{
+			get
+			{
+				return this._ITM_Product.Entity;
+			}
+			set
+			{
+				ITM_Product previousValue = this._ITM_Product.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_Product.Entity = null;
+						previousValue.IV_LocationCaches.Remove(this);
+					}
+					this._ITM_Product.Entity = value;
+					if ((value != null))
+					{
+						value.IV_LocationCaches.Add(this);
+						this._ProductID = value.ProductID;
+					}
+					else
+					{
+						this._ProductID = default(int);
+					}
+					this.SendPropertyChanged("ITM_Product");
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -25830,11 +20441,11 @@ namespace PCSComUtils.DataContext
 		
 		private int _ProductID;
 		
-		private EntityRef<ITM_Product> _ITM_Product;
-		
 		private EntityRef<MST_CCN> _MST_CCN;
 		
 		private EntityRef<MST_MasterLocation> _MST_MasterLocation;
+		
+		private EntityRef<ITM_Product> _ITM_Product;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -25868,9 +20479,9 @@ namespace PCSComUtils.DataContext
 		
 		public IV_MasLocCache()
 		{
-			this._ITM_Product = default(EntityRef<ITM_Product>);
 			this._MST_CCN = default(EntityRef<MST_CCN>);
 			this._MST_MasterLocation = default(EntityRef<MST_MasterLocation>);
+			this._ITM_Product = default(EntityRef<ITM_Product>);
 			OnCreated();
 		}
 		
@@ -26126,40 +20737,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_IV_MasLocCache", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
-		public ITM_Product ITM_Product
-		{
-			get
-			{
-				return this._ITM_Product.Entity;
-			}
-			set
-			{
-				ITM_Product previousValue = this._ITM_Product.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_Product.Entity = null;
-						previousValue.IV_MasLocCaches.Remove(this);
-					}
-					this._ITM_Product.Entity = value;
-					if ((value != null))
-					{
-						value.IV_MasLocCaches.Add(this);
-						this._ProductID = value.ProductID;
-					}
-					else
-					{
-						this._ProductID = default(int);
-					}
-					this.SendPropertyChanged("ITM_Product");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_CCN_IV_MasLocCache", Storage="_MST_CCN", ThisKey="CCNID", OtherKey="CCNID", IsForeignKey=true)]
 		public MST_CCN MST_CCN
 		{
@@ -26224,6 +20801,40 @@ namespace PCSComUtils.DataContext
 						this._MasterLocationID = default(int);
 					}
 					this.SendPropertyChanged("MST_MasterLocation");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_IV_MasLocCache", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
+		public ITM_Product ITM_Product
+		{
+			get
+			{
+				return this._ITM_Product.Entity;
+			}
+			set
+			{
+				ITM_Product previousValue = this._ITM_Product.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_Product.Entity = null;
+						previousValue.IV_MasLocCaches.Remove(this);
+					}
+					this._ITM_Product.Entity = value;
+					if ((value != null))
+					{
+						value.IV_MasLocCaches.Add(this);
+						this._ProductID = value.ProductID;
+					}
+					else
+					{
+						this._ProductID = default(int);
+					}
+					this.SendPropertyChanged("ITM_Product");
 				}
 			}
 		}
@@ -27204,11 +21815,11 @@ namespace PCSComUtils.DataContext
 		
 		private EntityRef<IV_CoutingMethod> _IV_CoutingMethod;
 		
-		private EntityRef<ITM_Product> _ITM_Product;
-		
 		private EntityRef<IV_StockTakingMaster> _IV_StockTakingMaster;
 		
 		private EntityRef<MST_UnitOfMeasure> _MST_UnitOfMeasure;
+		
+		private EntityRef<ITM_Product> _ITM_Product;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -27237,9 +21848,9 @@ namespace PCSComUtils.DataContext
 		public IV_StockTaking()
 		{
 			this._IV_CoutingMethod = default(EntityRef<IV_CoutingMethod>);
-			this._ITM_Product = default(EntityRef<ITM_Product>);
 			this._IV_StockTakingMaster = default(EntityRef<IV_StockTakingMaster>);
 			this._MST_UnitOfMeasure = default(EntityRef<MST_UnitOfMeasure>);
+			this._ITM_Product = default(EntityRef<ITM_Product>);
 			OnCreated();
 		}
 		
@@ -27473,40 +22084,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_IV_StockTaking", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
-		public ITM_Product ITM_Product
-		{
-			get
-			{
-				return this._ITM_Product.Entity;
-			}
-			set
-			{
-				ITM_Product previousValue = this._ITM_Product.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_Product.Entity = null;
-						previousValue.IV_StockTakings.Remove(this);
-					}
-					this._ITM_Product.Entity = value;
-					if ((value != null))
-					{
-						value.IV_StockTakings.Add(this);
-						this._ProductID = value.ProductID;
-					}
-					else
-					{
-						this._ProductID = default(int);
-					}
-					this.SendPropertyChanged("ITM_Product");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="IV_StockTakingMaster_IV_StockTaking", Storage="_IV_StockTakingMaster", ThisKey="StockTakingMasterID", OtherKey="StockTakingMasterID", IsForeignKey=true)]
 		public IV_StockTakingMaster IV_StockTakingMaster
 		{
@@ -27575,6 +22152,40 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_IV_StockTaking", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
+		public ITM_Product ITM_Product
+		{
+			get
+			{
+				return this._ITM_Product.Entity;
+			}
+			set
+			{
+				ITM_Product previousValue = this._ITM_Product.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_Product.Entity = null;
+						previousValue.IV_StockTakings.Remove(this);
+					}
+					this._ITM_Product.Entity = value;
+					if ((value != null))
+					{
+						value.IV_StockTakings.Add(this);
+						this._ProductID = value.ProductID;
+					}
+					else
+					{
+						this._ProductID = default(int);
+					}
+					this.SendPropertyChanged("ITM_Product");
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -27622,13 +22233,13 @@ namespace PCSComUtils.DataContext
 		
 		private System.Nullable<decimal> _HistoryQuantity;
 		
-		private EntityRef<ITM_Product> _ITM_Product;
-		
 		private EntityRef<IV_StockTakingPeriod> _IV_StockTakingPeriod;
 		
 		private EntityRef<MST_BIN> _MST_BIN;
 		
 		private EntityRef<MST_Location> _MST_Location;
+		
+		private EntityRef<ITM_Product> _ITM_Product;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -27658,10 +22269,10 @@ namespace PCSComUtils.DataContext
 		
 		public IV_StockTakingDifferent()
 		{
-			this._ITM_Product = default(EntityRef<ITM_Product>);
 			this._IV_StockTakingPeriod = default(EntityRef<IV_StockTakingPeriod>);
 			this._MST_BIN = default(EntityRef<MST_BIN>);
 			this._MST_Location = default(EntityRef<MST_Location>);
+			this._ITM_Product = default(EntityRef<ITM_Product>);
 			OnCreated();
 		}
 		
@@ -27881,40 +22492,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_IV_StockTakingDifferent", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
-		public ITM_Product ITM_Product
-		{
-			get
-			{
-				return this._ITM_Product.Entity;
-			}
-			set
-			{
-				ITM_Product previousValue = this._ITM_Product.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_Product.Entity = null;
-						previousValue.IV_StockTakingDifferents.Remove(this);
-					}
-					this._ITM_Product.Entity = value;
-					if ((value != null))
-					{
-						value.IV_StockTakingDifferents.Add(this);
-						this._ProductID = value.ProductID;
-					}
-					else
-					{
-						this._ProductID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("ITM_Product");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="IV_StockTakingPeriod_IV_StockTakingDifferent", Storage="_IV_StockTakingPeriod", ThisKey="StockTakingPeriodID", OtherKey="StockTakingPeriodID", IsForeignKey=true)]
 		public IV_StockTakingPeriod IV_StockTakingPeriod
 		{
@@ -28013,6 +22590,40 @@ namespace PCSComUtils.DataContext
 						this._LocationID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("MST_Location");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_IV_StockTakingDifferent", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
+		public ITM_Product ITM_Product
+		{
+			get
+			{
+				return this._ITM_Product.Entity;
+			}
+			set
+			{
+				ITM_Product previousValue = this._ITM_Product.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_Product.Entity = null;
+						previousValue.IV_StockTakingDifferents.Remove(this);
+					}
+					this._ITM_Product.Entity = value;
+					if ((value != null))
+					{
+						value.IV_StockTakingDifferents.Add(this);
+						this._ProductID = value.ProductID;
+					}
+					else
+					{
+						this._ProductID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("ITM_Product");
 				}
 			}
 		}
@@ -29430,8 +24041,6 @@ namespace PCSComUtils.DataContext
 		
 		private EntitySet<CST_RecoverMaterialMaster> _CST_RecoverMaterialMasters;
 		
-		private EntitySet<ITM_Product> _ITM_Products;
-		
 		private EntitySet<IV_Adjustment> _IV_Adjustments;
 		
 		private EntitySet<IV_BalanceBin> _IV_BalanceBins;
@@ -29471,6 +24080,8 @@ namespace PCSComUtils.DataContext
 		private EntitySet<SO_InvoiceMaster> _SO_InvoiceMasters;
 		
 		private EntitySet<SO_ConfirmShipMaster> _SO_ConfirmShipMasters;
+		
+		private EntitySet<ITM_Product> _ITM_Products;
 		
 		private EntityRef<enm_BINType> _enm_BINType;
 		
@@ -29518,7 +24129,6 @@ namespace PCSComUtils.DataContext
 		{
 			this._CST_RecoverMaterialDetails = new EntitySet<CST_RecoverMaterialDetail>(new Action<CST_RecoverMaterialDetail>(this.attach_CST_RecoverMaterialDetails), new Action<CST_RecoverMaterialDetail>(this.detach_CST_RecoverMaterialDetails));
 			this._CST_RecoverMaterialMasters = new EntitySet<CST_RecoverMaterialMaster>(new Action<CST_RecoverMaterialMaster>(this.attach_CST_RecoverMaterialMasters), new Action<CST_RecoverMaterialMaster>(this.detach_CST_RecoverMaterialMasters));
-			this._ITM_Products = new EntitySet<ITM_Product>(new Action<ITM_Product>(this.attach_ITM_Products), new Action<ITM_Product>(this.detach_ITM_Products));
 			this._IV_Adjustments = new EntitySet<IV_Adjustment>(new Action<IV_Adjustment>(this.attach_IV_Adjustments), new Action<IV_Adjustment>(this.detach_IV_Adjustments));
 			this._IV_BalanceBins = new EntitySet<IV_BalanceBin>(new Action<IV_BalanceBin>(this.attach_IV_BalanceBins), new Action<IV_BalanceBin>(this.detach_IV_BalanceBins));
 			this._IV_BinCaches = new EntitySet<IV_BinCache>(new Action<IV_BinCache>(this.attach_IV_BinCaches), new Action<IV_BinCache>(this.detach_IV_BinCaches));
@@ -29539,6 +24149,7 @@ namespace PCSComUtils.DataContext
 			this._SO_ReturnedGoodsDetails = new EntitySet<SO_ReturnedGoodsDetail>(new Action<SO_ReturnedGoodsDetail>(this.attach_SO_ReturnedGoodsDetails), new Action<SO_ReturnedGoodsDetail>(this.detach_SO_ReturnedGoodsDetails));
 			this._SO_InvoiceMasters = new EntitySet<SO_InvoiceMaster>(new Action<SO_InvoiceMaster>(this.attach_SO_InvoiceMasters), new Action<SO_InvoiceMaster>(this.detach_SO_InvoiceMasters));
 			this._SO_ConfirmShipMasters = new EntitySet<SO_ConfirmShipMaster>(new Action<SO_ConfirmShipMaster>(this.attach_SO_ConfirmShipMasters), new Action<SO_ConfirmShipMaster>(this.detach_SO_ConfirmShipMasters));
+			this._ITM_Products = new EntitySet<ITM_Product>(new Action<ITM_Product>(this.attach_ITM_Products), new Action<ITM_Product>(this.detach_ITM_Products));
 			this._enm_BINType = default(EntityRef<enm_BINType>);
 			this._enm_LocationType = default(EntityRef<enm_LocationType>);
 			this._MST_Location = default(EntityRef<MST_Location>);
@@ -29838,19 +24449,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_BIN_ITM_Product", Storage="_ITM_Products", ThisKey="BinID", OtherKey="BinID")]
-		public EntitySet<ITM_Product> ITM_Products
-		{
-			get
-			{
-				return this._ITM_Products;
-			}
-			set
-			{
-				this._ITM_Products.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_BIN_IV_Adjustment", Storage="_IV_Adjustments", ThisKey="BinID", OtherKey="BinID")]
 		public EntitySet<IV_Adjustment> IV_Adjustments
 		{
@@ -30111,6 +24709,19 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_BIN_ITM_Product", Storage="_ITM_Products", ThisKey="BinID", OtherKey="BinID")]
+		public EntitySet<ITM_Product> ITM_Products
+		{
+			get
+			{
+				return this._ITM_Products;
+			}
+			set
+			{
+				this._ITM_Products.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="enm_BINType_MST_BIN", Storage="_enm_BINType", ThisKey="BinTypeID", OtherKey="BINTypeID", IsForeignKey=true)]
 		public enm_BINType enm_BINType
 		{
@@ -30359,18 +24970,6 @@ namespace PCSComUtils.DataContext
 			entity.MST_BIN = null;
 		}
 		
-		private void attach_ITM_Products(ITM_Product entity)
-		{
-			this.SendPropertyChanging();
-			entity.MST_BIN = this;
-		}
-		
-		private void detach_ITM_Products(ITM_Product entity)
-		{
-			this.SendPropertyChanging();
-			entity.MST_BIN = null;
-		}
-		
 		private void attach_IV_Adjustments(IV_Adjustment entity)
 		{
 			this.SendPropertyChanging();
@@ -30606,6 +25205,18 @@ namespace PCSComUtils.DataContext
 		}
 		
 		private void detach_SO_ConfirmShipMasters(SO_ConfirmShipMaster entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_BIN = null;
+		}
+		
+		private void attach_ITM_Products(ITM_Product entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_BIN = this;
+		}
+		
+		private void detach_ITM_Products(ITM_Product entity)
 		{
 			this.SendPropertyChanging();
 			entity.MST_BIN = null;
@@ -31002,8 +25613,6 @@ namespace PCSComUtils.DataContext
 		
 		private EntitySet<CST_RecoverMaterialMaster> _CST_RecoverMaterialMasters;
 		
-		private EntitySet<ITM_Product> _ITM_Products;
-		
 		private EntitySet<IV_Adjustment> _IV_Adjustments;
 		
 		private EntitySet<IV_BinCache> _IV_BinCaches;
@@ -31090,6 +25699,8 @@ namespace PCSComUtils.DataContext
 		
 		private EntitySet<SO_ConfirmShipMaster> _SO_ConfirmShipMasters;
 		
+		private EntitySet<ITM_Product> _ITM_Products;
+		
 		private EntityRef<MST_City> _MST_City;
 		
 		private EntityRef<MST_Country> _MST_Country;
@@ -31144,7 +25755,6 @@ namespace PCSComUtils.DataContext
 			this._cst_ActCostAllocationMasters = new EntitySet<cst_ActCostAllocationMaster>(new Action<cst_ActCostAllocationMaster>(this.attach_cst_ActCostAllocationMasters), new Action<cst_ActCostAllocationMaster>(this.detach_cst_ActCostAllocationMasters));
 			this._cst_FreightMasters = new EntitySet<cst_FreightMaster>(new Action<cst_FreightMaster>(this.attach_cst_FreightMasters), new Action<cst_FreightMaster>(this.detach_cst_FreightMasters));
 			this._CST_RecoverMaterialMasters = new EntitySet<CST_RecoverMaterialMaster>(new Action<CST_RecoverMaterialMaster>(this.attach_CST_RecoverMaterialMasters), new Action<CST_RecoverMaterialMaster>(this.detach_CST_RecoverMaterialMasters));
-			this._ITM_Products = new EntitySet<ITM_Product>(new Action<ITM_Product>(this.attach_ITM_Products), new Action<ITM_Product>(this.detach_ITM_Products));
 			this._IV_Adjustments = new EntitySet<IV_Adjustment>(new Action<IV_Adjustment>(this.attach_IV_Adjustments), new Action<IV_Adjustment>(this.detach_IV_Adjustments));
 			this._IV_BinCaches = new EntitySet<IV_BinCache>(new Action<IV_BinCache>(this.attach_IV_BinCaches), new Action<IV_BinCache>(this.detach_IV_BinCaches));
 			this._IV_CostHistories = new EntitySet<IV_CostHistory>(new Action<IV_CostHistory>(this.attach_IV_CostHistories), new Action<IV_CostHistory>(this.detach_IV_CostHistories));
@@ -31188,6 +25798,7 @@ namespace PCSComUtils.DataContext
 			this._Sys_Users = new EntitySet<Sys_User>(new Action<Sys_User>(this.attach_Sys_Users), new Action<Sys_User>(this.detach_Sys_Users));
 			this._SO_InvoiceMasters = new EntitySet<SO_InvoiceMaster>(new Action<SO_InvoiceMaster>(this.attach_SO_InvoiceMasters), new Action<SO_InvoiceMaster>(this.detach_SO_InvoiceMasters));
 			this._SO_ConfirmShipMasters = new EntitySet<SO_ConfirmShipMaster>(new Action<SO_ConfirmShipMaster>(this.attach_SO_ConfirmShipMasters), new Action<SO_ConfirmShipMaster>(this.detach_SO_ConfirmShipMasters));
+			this._ITM_Products = new EntitySet<ITM_Product>(new Action<ITM_Product>(this.attach_ITM_Products), new Action<ITM_Product>(this.detach_ITM_Products));
 			this._MST_City = default(EntityRef<MST_City>);
 			this._MST_Country = default(EntityRef<MST_Country>);
 			this._MST_Currency = default(EntityRef<MST_Currency>);
@@ -31600,19 +26211,6 @@ namespace PCSComUtils.DataContext
 			set
 			{
 				this._CST_RecoverMaterialMasters.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_CCN_ITM_Product", Storage="_ITM_Products", ThisKey="CCNID", OtherKey="CCNID")]
-		public EntitySet<ITM_Product> ITM_Products
-		{
-			get
-			{
-				return this._ITM_Products;
-			}
-			set
-			{
-				this._ITM_Products.Assign(value);
 			}
 		}
 		
@@ -32175,6 +26773,19 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_CCN_ITM_Product", Storage="_ITM_Products", ThisKey="CCNID", OtherKey="CCNID")]
+		public EntitySet<ITM_Product> ITM_Products
+		{
+			get
+			{
+				return this._ITM_Products;
+			}
+			set
+			{
+				this._ITM_Products.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_City_MST_CCN", Storage="_MST_City", ThisKey="CityID", OtherKey="CityID", IsForeignKey=true)]
 		public MST_City MST_City
 		{
@@ -32374,18 +26985,6 @@ namespace PCSComUtils.DataContext
 		}
 		
 		private void detach_CST_RecoverMaterialMasters(CST_RecoverMaterialMaster entity)
-		{
-			this.SendPropertyChanging();
-			entity.MST_CCN = null;
-		}
-		
-		private void attach_ITM_Products(ITM_Product entity)
-		{
-			this.SendPropertyChanging();
-			entity.MST_CCN = this;
-		}
-		
-		private void detach_ITM_Products(ITM_Product entity)
 		{
 			this.SendPropertyChanging();
 			entity.MST_CCN = null;
@@ -32902,6 +27501,18 @@ namespace PCSComUtils.DataContext
 		}
 		
 		private void detach_SO_ConfirmShipMasters(SO_ConfirmShipMaster entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_CCN = null;
+		}
+		
+		private void attach_ITM_Products(ITM_Product entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_CCN = this;
+		}
+		
+		private void detach_ITM_Products(ITM_Product entity)
 		{
 			this.SendPropertyChanging();
 			entity.MST_CCN = null;
@@ -33463,8 +28074,6 @@ namespace PCSComUtils.DataContext
 		
 		private EntitySet<cst_FreightMaster> _cst_FreightMasters;
 		
-		private EntitySet<ITM_Product> _ITM_Products;
-		
 		private EntitySet<MST_CCN> _MST_CCNs;
 		
 		private EntitySet<MST_CCN> _MST_CCNs1;
@@ -33489,6 +28098,8 @@ namespace PCSComUtils.DataContext
 		
 		private EntitySet<SO_ConfirmShipMaster> _SO_ConfirmShipMasters;
 		
+		private EntitySet<ITM_Product> _ITM_Products;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -33507,7 +28118,6 @@ namespace PCSComUtils.DataContext
 		{
 			this._cst_ActCostAllocationMasters = new EntitySet<cst_ActCostAllocationMaster>(new Action<cst_ActCostAllocationMaster>(this.attach_cst_ActCostAllocationMasters), new Action<cst_ActCostAllocationMaster>(this.detach_cst_ActCostAllocationMasters));
 			this._cst_FreightMasters = new EntitySet<cst_FreightMaster>(new Action<cst_FreightMaster>(this.attach_cst_FreightMasters), new Action<cst_FreightMaster>(this.detach_cst_FreightMasters));
-			this._ITM_Products = new EntitySet<ITM_Product>(new Action<ITM_Product>(this.attach_ITM_Products), new Action<ITM_Product>(this.detach_ITM_Products));
 			this._MST_CCNs = new EntitySet<MST_CCN>(new Action<MST_CCN>(this.attach_MST_CCNs), new Action<MST_CCN>(this.detach_MST_CCNs));
 			this._MST_CCNs1 = new EntitySet<MST_CCN>(new Action<MST_CCN>(this.attach_MST_CCNs1), new Action<MST_CCN>(this.detach_MST_CCNs1));
 			this._MST_ExchangeRates = new EntitySet<MST_ExchangeRate>(new Action<MST_ExchangeRate>(this.attach_MST_ExchangeRates), new Action<MST_ExchangeRate>(this.detach_MST_ExchangeRates));
@@ -33520,6 +28130,7 @@ namespace PCSComUtils.DataContext
 			this._SO_SaleOrderMasters = new EntitySet<SO_SaleOrderMaster>(new Action<SO_SaleOrderMaster>(this.attach_SO_SaleOrderMasters), new Action<SO_SaleOrderMaster>(this.detach_SO_SaleOrderMasters));
 			this._SO_InvoiceMasters = new EntitySet<SO_InvoiceMaster>(new Action<SO_InvoiceMaster>(this.attach_SO_InvoiceMasters), new Action<SO_InvoiceMaster>(this.detach_SO_InvoiceMasters));
 			this._SO_ConfirmShipMasters = new EntitySet<SO_ConfirmShipMaster>(new Action<SO_ConfirmShipMaster>(this.attach_SO_ConfirmShipMasters), new Action<SO_ConfirmShipMaster>(this.detach_SO_ConfirmShipMasters));
+			this._ITM_Products = new EntitySet<ITM_Product>(new Action<ITM_Product>(this.attach_ITM_Products), new Action<ITM_Product>(this.detach_ITM_Products));
 			OnCreated();
 		}
 		
@@ -33626,19 +28237,6 @@ namespace PCSComUtils.DataContext
 			set
 			{
 				this._cst_FreightMasters.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_Currency_ITM_Product", Storage="_ITM_Products", ThisKey="CurrencyID", OtherKey="VendorCurrencyID")]
-		public EntitySet<ITM_Product> ITM_Products
-		{
-			get
-			{
-				return this._ITM_Products;
-			}
-			set
-			{
-				this._ITM_Products.Assign(value);
 			}
 		}
 		
@@ -33798,6 +28396,19 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_Currency_ITM_Product", Storage="_ITM_Products", ThisKey="CurrencyID", OtherKey="VendorCurrencyID")]
+		public EntitySet<ITM_Product> ITM_Products
+		{
+			get
+			{
+				return this._ITM_Products;
+			}
+			set
+			{
+				this._ITM_Products.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -33837,18 +28448,6 @@ namespace PCSComUtils.DataContext
 		}
 		
 		private void detach_cst_FreightMasters(cst_FreightMaster entity)
-		{
-			this.SendPropertyChanging();
-			entity.MST_Currency = null;
-		}
-		
-		private void attach_ITM_Products(ITM_Product entity)
-		{
-			this.SendPropertyChanging();
-			entity.MST_Currency = this;
-		}
-		
-		private void detach_ITM_Products(ITM_Product entity)
 		{
 			this.SendPropertyChanging();
 			entity.MST_Currency = null;
@@ -33993,6 +28592,18 @@ namespace PCSComUtils.DataContext
 		}
 		
 		private void detach_SO_ConfirmShipMasters(SO_ConfirmShipMaster entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_Currency = null;
+		}
+		
+		private void attach_ITM_Products(ITM_Product entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_Currency = this;
+		}
+		
+		private void detach_ITM_Products(ITM_Product entity)
 		{
 			this.SendPropertyChanging();
 			entity.MST_Currency = null;
@@ -35982,8 +30593,6 @@ namespace PCSComUtils.DataContext
 		
 		private EntitySet<CST_RecoverMaterialMaster> _CST_RecoverMaterialMasters;
 		
-		private EntitySet<ITM_Product> _ITM_Products;
-		
 		private EntitySet<IV_Adjustment> _IV_Adjustments;
 		
 		private EntitySet<IV_BalanceBin> _IV_BalanceBins;
@@ -36038,6 +30647,8 @@ namespace PCSComUtils.DataContext
 		
 		private EntitySet<SO_ConfirmShipMaster> _SO_ConfirmShipMasters;
 		
+		private EntitySet<ITM_Product> _ITM_Products;
+		
 		private EntityRef<MST_Department> _MST_Department;
 		
 		private EntityRef<enm_LocationType> _enm_LocationType;
@@ -36074,7 +30685,6 @@ namespace PCSComUtils.DataContext
 		{
 			this._CST_RecoverMaterialDetails = new EntitySet<CST_RecoverMaterialDetail>(new Action<CST_RecoverMaterialDetail>(this.attach_CST_RecoverMaterialDetails), new Action<CST_RecoverMaterialDetail>(this.detach_CST_RecoverMaterialDetails));
 			this._CST_RecoverMaterialMasters = new EntitySet<CST_RecoverMaterialMaster>(new Action<CST_RecoverMaterialMaster>(this.attach_CST_RecoverMaterialMasters), new Action<CST_RecoverMaterialMaster>(this.detach_CST_RecoverMaterialMasters));
-			this._ITM_Products = new EntitySet<ITM_Product>(new Action<ITM_Product>(this.attach_ITM_Products), new Action<ITM_Product>(this.detach_ITM_Products));
 			this._IV_Adjustments = new EntitySet<IV_Adjustment>(new Action<IV_Adjustment>(this.attach_IV_Adjustments), new Action<IV_Adjustment>(this.detach_IV_Adjustments));
 			this._IV_BalanceBins = new EntitySet<IV_BalanceBin>(new Action<IV_BalanceBin>(this.attach_IV_BalanceBins), new Action<IV_BalanceBin>(this.detach_IV_BalanceBins));
 			this._IV_BalanceLocations = new EntitySet<IV_BalanceLocation>(new Action<IV_BalanceLocation>(this.attach_IV_BalanceLocations), new Action<IV_BalanceLocation>(this.detach_IV_BalanceLocations));
@@ -36102,6 +30712,7 @@ namespace PCSComUtils.DataContext
 			this._sys_RoleLocations = new EntitySet<sys_RoleLocation>(new Action<sys_RoleLocation>(this.attach_sys_RoleLocations), new Action<sys_RoleLocation>(this.detach_sys_RoleLocations));
 			this._SO_InvoiceMasters = new EntitySet<SO_InvoiceMaster>(new Action<SO_InvoiceMaster>(this.attach_SO_InvoiceMasters), new Action<SO_InvoiceMaster>(this.detach_SO_InvoiceMasters));
 			this._SO_ConfirmShipMasters = new EntitySet<SO_ConfirmShipMaster>(new Action<SO_ConfirmShipMaster>(this.attach_SO_ConfirmShipMasters), new Action<SO_ConfirmShipMaster>(this.detach_SO_ConfirmShipMasters));
+			this._ITM_Products = new EntitySet<ITM_Product>(new Action<ITM_Product>(this.attach_ITM_Products), new Action<ITM_Product>(this.detach_ITM_Products));
 			this._MST_Department = default(EntityRef<MST_Department>);
 			this._enm_LocationType = default(EntityRef<enm_LocationType>);
 			this._MST_MasterLocation = default(EntityRef<MST_MasterLocation>);
@@ -36343,19 +30954,6 @@ namespace PCSComUtils.DataContext
 			set
 			{
 				this._CST_RecoverMaterialMasters.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_Location_ITM_Product", Storage="_ITM_Products", ThisKey="LocationID", OtherKey="LocationID")]
-		public EntitySet<ITM_Product> ITM_Products
-		{
-			get
-			{
-				return this._ITM_Products;
-			}
-			set
-			{
-				this._ITM_Products.Assign(value);
 			}
 		}
 		
@@ -36710,6 +31308,19 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_Location_ITM_Product", Storage="_ITM_Products", ThisKey="LocationID", OtherKey="LocationID")]
+		public EntitySet<ITM_Product> ITM_Products
+		{
+			get
+			{
+				return this._ITM_Products;
+			}
+			set
+			{
+				this._ITM_Products.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_Department_MST_Location", Storage="_MST_Department", ThisKey="DepartmentID", OtherKey="DepartmentID", IsForeignKey=true)]
 		public MST_Department MST_Department
 		{
@@ -36851,18 +31462,6 @@ namespace PCSComUtils.DataContext
 		}
 		
 		private void detach_CST_RecoverMaterialMasters(CST_RecoverMaterialMaster entity)
-		{
-			this.SendPropertyChanging();
-			entity.MST_Location = null;
-		}
-		
-		private void attach_ITM_Products(ITM_Product entity)
-		{
-			this.SendPropertyChanging();
-			entity.MST_Location = this;
-		}
-		
-		private void detach_ITM_Products(ITM_Product entity)
 		{
 			this.SendPropertyChanging();
 			entity.MST_Location = null;
@@ -37191,6 +31790,18 @@ namespace PCSComUtils.DataContext
 			this.SendPropertyChanging();
 			entity.MST_Location = null;
 		}
+		
+		private void attach_ITM_Products(ITM_Product entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_Location = this;
+		}
+		
+		private void detach_ITM_Products(ITM_Product entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_Location = null;
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MST_MasterLocation")]
@@ -37216,8 +31827,6 @@ namespace PCSComUtils.DataContext
 		private System.Nullable<int> _CityID;
 		
 		private System.Nullable<int> _CountryID;
-		
-		private EntitySet<ITM_Product> _ITM_Products;
 		
 		private EntitySet<IV_Adjustment> _IV_Adjustments;
 		
@@ -37287,6 +31896,8 @@ namespace PCSComUtils.DataContext
 		
 		private EntitySet<SO_ConfirmShipMaster> _SO_ConfirmShipMasters;
 		
+		private EntitySet<ITM_Product> _ITM_Products;
+		
 		private EntityRef<MST_CCN> _MST_CCN;
 		
 		private EntityRef<MST_City> _MST_City;
@@ -37319,7 +31930,6 @@ namespace PCSComUtils.DataContext
 		
 		public MST_MasterLocation()
 		{
-			this._ITM_Products = new EntitySet<ITM_Product>(new Action<ITM_Product>(this.attach_ITM_Products), new Action<ITM_Product>(this.detach_ITM_Products));
 			this._IV_Adjustments = new EntitySet<IV_Adjustment>(new Action<IV_Adjustment>(this.attach_IV_Adjustments), new Action<IV_Adjustment>(this.detach_IV_Adjustments));
 			this._IV_BalanceLocations = new EntitySet<IV_BalanceLocation>(new Action<IV_BalanceLocation>(this.attach_IV_BalanceLocations), new Action<IV_BalanceLocation>(this.detach_IV_BalanceLocations));
 			this._IV_BalanceMasterLocations = new EntitySet<IV_BalanceMasterLocation>(new Action<IV_BalanceMasterLocation>(this.attach_IV_BalanceMasterLocations), new Action<IV_BalanceMasterLocation>(this.detach_IV_BalanceMasterLocations));
@@ -37354,6 +31964,7 @@ namespace PCSComUtils.DataContext
 			this._Sys_Users = new EntitySet<Sys_User>(new Action<Sys_User>(this.attach_Sys_Users), new Action<Sys_User>(this.detach_Sys_Users));
 			this._SO_InvoiceMasters = new EntitySet<SO_InvoiceMaster>(new Action<SO_InvoiceMaster>(this.attach_SO_InvoiceMasters), new Action<SO_InvoiceMaster>(this.detach_SO_InvoiceMasters));
 			this._SO_ConfirmShipMasters = new EntitySet<SO_ConfirmShipMaster>(new Action<SO_ConfirmShipMaster>(this.attach_SO_ConfirmShipMasters), new Action<SO_ConfirmShipMaster>(this.detach_SO_ConfirmShipMasters));
+			this._ITM_Products = new EntitySet<ITM_Product>(new Action<ITM_Product>(this.attach_ITM_Products), new Action<ITM_Product>(this.detach_ITM_Products));
 			this._MST_CCN = default(EntityRef<MST_CCN>);
 			this._MST_City = default(EntityRef<MST_City>);
 			this._MST_Country = default(EntityRef<MST_Country>);
@@ -37549,19 +32160,6 @@ namespace PCSComUtils.DataContext
 					this.SendPropertyChanged("CountryID");
 					this.OnCountryIDChanged();
 				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_MasterLocation_ITM_Product", Storage="_ITM_Products", ThisKey="MasterLocationID", OtherKey="MasterLocationID")]
-		public EntitySet<ITM_Product> ITM_Products
-		{
-			get
-			{
-				return this._ITM_Products;
-			}
-			set
-			{
-				this._ITM_Products.Assign(value);
 			}
 		}
 		
@@ -38007,6 +32605,19 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_MasterLocation_ITM_Product", Storage="_ITM_Products", ThisKey="MasterLocationID", OtherKey="MasterLocationID")]
+		public EntitySet<ITM_Product> ITM_Products
+		{
+			get
+			{
+				return this._ITM_Products;
+			}
+			set
+			{
+				this._ITM_Products.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_CCN_MST_MasterLocation", Storage="_MST_CCN", ThisKey="CCNID", OtherKey="CCNID", IsForeignKey=true)]
 		public MST_CCN MST_CCN
 		{
@@ -38127,18 +32738,6 @@ namespace PCSComUtils.DataContext
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_ITM_Products(ITM_Product entity)
-		{
-			this.SendPropertyChanging();
-			entity.MST_MasterLocation = this;
-		}
-		
-		private void detach_ITM_Products(ITM_Product entity)
-		{
-			this.SendPropertyChanging();
-			entity.MST_MasterLocation = null;
 		}
 		
 		private void attach_IV_Adjustments(IV_Adjustment entity)
@@ -38548,6 +33147,18 @@ namespace PCSComUtils.DataContext
 			this.SendPropertyChanging();
 			entity.MST_MasterLocation = null;
 		}
+		
+		private void attach_ITM_Products(ITM_Product entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_MasterLocation = this;
+		}
+		
+		private void detach_ITM_Products(ITM_Product entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_MasterLocation = null;
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MST_Party")]
@@ -38602,10 +33213,6 @@ namespace PCSComUtils.DataContext
 		
 		private EntitySet<CST_RecoverMaterialDetail> _CST_RecoverMaterialDetails;
 		
-		private EntitySet<ITM_Product> _ITM_Products;
-		
-		private EntitySet<ITM_Product> _ITM_Products1;
-		
 		private EntitySet<ITM_Routing> _ITM_Routings;
 		
 		private EntitySet<IV_CostHistory> _IV_CostHistories;
@@ -38639,6 +33246,10 @@ namespace PCSComUtils.DataContext
 		private EntitySet<SO_SaleOrderMaster> _SO_SaleOrderMasters;
 		
 		private EntitySet<sys_RoleParty> _sys_RoleParties;
+		
+		private EntitySet<ITM_Product> _ITM_Products;
+		
+		private EntitySet<ITM_Product> _ITM_Products1;
 		
 		private EntityRef<MST_City> _MST_City;
 		
@@ -38698,8 +33309,6 @@ namespace PCSComUtils.DataContext
 			this._cst_FreightMasters1 = new EntitySet<cst_FreightMaster>(new Action<cst_FreightMaster>(this.attach_cst_FreightMasters1), new Action<cst_FreightMaster>(this.detach_cst_FreightMasters1));
 			this._cst_FreightMasters2 = new EntitySet<cst_FreightMaster>(new Action<cst_FreightMaster>(this.attach_cst_FreightMasters2), new Action<cst_FreightMaster>(this.detach_cst_FreightMasters2));
 			this._CST_RecoverMaterialDetails = new EntitySet<CST_RecoverMaterialDetail>(new Action<CST_RecoverMaterialDetail>(this.attach_CST_RecoverMaterialDetails), new Action<CST_RecoverMaterialDetail>(this.detach_CST_RecoverMaterialDetails));
-			this._ITM_Products = new EntitySet<ITM_Product>(new Action<ITM_Product>(this.attach_ITM_Products), new Action<ITM_Product>(this.detach_ITM_Products));
-			this._ITM_Products1 = new EntitySet<ITM_Product>(new Action<ITM_Product>(this.attach_ITM_Products1), new Action<ITM_Product>(this.detach_ITM_Products1));
 			this._ITM_Routings = new EntitySet<ITM_Routing>(new Action<ITM_Routing>(this.attach_ITM_Routings), new Action<ITM_Routing>(this.detach_ITM_Routings));
 			this._IV_CostHistories = new EntitySet<IV_CostHistory>(new Action<IV_CostHistory>(this.attach_IV_CostHistories), new Action<IV_CostHistory>(this.detach_IV_CostHistories));
 			this._IV_MiscellaneousIssueMasters = new EntitySet<IV_MiscellaneousIssueMaster>(new Action<IV_MiscellaneousIssueMaster>(this.attach_IV_MiscellaneousIssueMasters), new Action<IV_MiscellaneousIssueMaster>(this.detach_IV_MiscellaneousIssueMasters));
@@ -38717,6 +33326,8 @@ namespace PCSComUtils.DataContext
 			this._SO_ReturnedGoodsMasters = new EntitySet<SO_ReturnedGoodsMaster>(new Action<SO_ReturnedGoodsMaster>(this.attach_SO_ReturnedGoodsMasters), new Action<SO_ReturnedGoodsMaster>(this.detach_SO_ReturnedGoodsMasters));
 			this._SO_SaleOrderMasters = new EntitySet<SO_SaleOrderMaster>(new Action<SO_SaleOrderMaster>(this.attach_SO_SaleOrderMasters), new Action<SO_SaleOrderMaster>(this.detach_SO_SaleOrderMasters));
 			this._sys_RoleParties = new EntitySet<sys_RoleParty>(new Action<sys_RoleParty>(this.attach_sys_RoleParties), new Action<sys_RoleParty>(this.detach_sys_RoleParties));
+			this._ITM_Products = new EntitySet<ITM_Product>(new Action<ITM_Product>(this.attach_ITM_Products), new Action<ITM_Product>(this.detach_ITM_Products));
+			this._ITM_Products1 = new EntitySet<ITM_Product>(new Action<ITM_Product>(this.attach_ITM_Products1), new Action<ITM_Product>(this.detach_ITM_Products1));
 			this._MST_City = default(EntityRef<MST_City>);
 			this._MST_Country = default(EntityRef<MST_Country>);
 			this._MST_Currency = default(EntityRef<MST_Currency>);
@@ -39172,32 +33783,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_Party_ITM_Product", Storage="_ITM_Products", ThisKey="PartyID", OtherKey="InventorID")]
-		public EntitySet<ITM_Product> ITM_Products
-		{
-			get
-			{
-				return this._ITM_Products;
-			}
-			set
-			{
-				this._ITM_Products.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_Party_ITM_Product1", Storage="_ITM_Products1", ThisKey="PartyID", OtherKey="PrimaryVendorID")]
-		public EntitySet<ITM_Product> ITM_Products1
-		{
-			get
-			{
-				return this._ITM_Products1;
-			}
-			set
-			{
-				this._ITM_Products1.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_Party_ITM_Routing", Storage="_ITM_Routings", ThisKey="PartyID", OtherKey="PartyID")]
 		public EntitySet<ITM_Routing> ITM_Routings
 		{
@@ -39419,6 +34004,32 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_Party_ITM_Product", Storage="_ITM_Products", ThisKey="PartyID", OtherKey="InventorID")]
+		public EntitySet<ITM_Product> ITM_Products
+		{
+			get
+			{
+				return this._ITM_Products;
+			}
+			set
+			{
+				this._ITM_Products.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_Party_ITM_Product1", Storage="_ITM_Products1", ThisKey="PartyID", OtherKey="PrimaryVendorID")]
+		public EntitySet<ITM_Product> ITM_Products1
+		{
+			get
+			{
+				return this._ITM_Products1;
+			}
+			set
+			{
+				this._ITM_Products1.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_City_MST_Party", Storage="_MST_City", ThisKey="CityID", OtherKey="CityID", IsForeignKey=true)]
 		public MST_City MST_City
 		{
@@ -39623,30 +34234,6 @@ namespace PCSComUtils.DataContext
 			entity.MST_Party = null;
 		}
 		
-		private void attach_ITM_Products(ITM_Product entity)
-		{
-			this.SendPropertyChanging();
-			entity.MST_Party = this;
-		}
-		
-		private void detach_ITM_Products(ITM_Product entity)
-		{
-			this.SendPropertyChanging();
-			entity.MST_Party = null;
-		}
-		
-		private void attach_ITM_Products1(ITM_Product entity)
-		{
-			this.SendPropertyChanging();
-			entity.MST_Party1 = this;
-		}
-		
-		private void detach_ITM_Products1(ITM_Product entity)
-		{
-			this.SendPropertyChanging();
-			entity.MST_Party1 = null;
-		}
-		
 		private void attach_ITM_Routings(ITM_Routing entity)
 		{
 			this.SendPropertyChanging();
@@ -39849,6 +34436,30 @@ namespace PCSComUtils.DataContext
 		{
 			this.SendPropertyChanging();
 			entity.MST_Party = null;
+		}
+		
+		private void attach_ITM_Products(ITM_Product entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_Party = this;
+		}
+		
+		private void detach_ITM_Products(ITM_Product entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_Party = null;
+		}
+		
+		private void attach_ITM_Products1(ITM_Product entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_Party1 = this;
+		}
+		
+		private void detach_ITM_Products1(ITM_Product entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_Party1 = null;
 		}
 	}
 	
@@ -40346,8 +34957,6 @@ namespace PCSComUtils.DataContext
 		
 		private System.Nullable<int> _CityID;
 		
-		private EntitySet<ITM_Product> _ITM_Products;
-		
 		private EntitySet<IV_CostHistory> _IV_CostHistories;
 		
 		private EntitySet<MST_PartyContact> _MST_PartyContacts;
@@ -40369,6 +34978,8 @@ namespace PCSComUtils.DataContext
 		private EntitySet<SO_SaleOrderMaster> _SO_SaleOrderMasters1;
 		
 		private EntitySet<SO_SaleOrderMaster> _SO_SaleOrderMasters2;
+		
+		private EntitySet<ITM_Product> _ITM_Products;
 		
 		private EntityRef<MST_City> _MST_City;
 		
@@ -40404,7 +35015,6 @@ namespace PCSComUtils.DataContext
 		
 		public MST_PartyLocation()
 		{
-			this._ITM_Products = new EntitySet<ITM_Product>(new Action<ITM_Product>(this.attach_ITM_Products), new Action<ITM_Product>(this.detach_ITM_Products));
 			this._IV_CostHistories = new EntitySet<IV_CostHistory>(new Action<IV_CostHistory>(this.attach_IV_CostHistories), new Action<IV_CostHistory>(this.detach_IV_CostHistories));
 			this._MST_PartyContacts = new EntitySet<MST_PartyContact>(new Action<MST_PartyContact>(this.attach_MST_PartyContacts), new Action<MST_PartyContact>(this.detach_MST_PartyContacts));
 			this._MST_TransactionHistories = new EntitySet<MST_TransactionHistory>(new Action<MST_TransactionHistory>(this.attach_MST_TransactionHistories), new Action<MST_TransactionHistory>(this.detach_MST_TransactionHistories));
@@ -40416,6 +35026,7 @@ namespace PCSComUtils.DataContext
 			this._SO_SaleOrderMasters = new EntitySet<SO_SaleOrderMaster>(new Action<SO_SaleOrderMaster>(this.attach_SO_SaleOrderMasters), new Action<SO_SaleOrderMaster>(this.detach_SO_SaleOrderMasters));
 			this._SO_SaleOrderMasters1 = new EntitySet<SO_SaleOrderMaster>(new Action<SO_SaleOrderMaster>(this.attach_SO_SaleOrderMasters1), new Action<SO_SaleOrderMaster>(this.detach_SO_SaleOrderMasters1));
 			this._SO_SaleOrderMasters2 = new EntitySet<SO_SaleOrderMaster>(new Action<SO_SaleOrderMaster>(this.attach_SO_SaleOrderMasters2), new Action<SO_SaleOrderMaster>(this.detach_SO_SaleOrderMasters2));
+			this._ITM_Products = new EntitySet<ITM_Product>(new Action<ITM_Product>(this.attach_ITM_Products), new Action<ITM_Product>(this.detach_ITM_Products));
 			this._MST_City = default(EntityRef<MST_City>);
 			this._MST_Country = default(EntityRef<MST_Country>);
 			this._MST_Party = default(EntityRef<MST_Party>);
@@ -40634,19 +35245,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_PartyLocation_ITM_Product", Storage="_ITM_Products", ThisKey="PartyLocationID", OtherKey="VendorLocationID")]
-		public EntitySet<ITM_Product> ITM_Products
-		{
-			get
-			{
-				return this._ITM_Products;
-			}
-			set
-			{
-				this._ITM_Products.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_PartyLocation_IV_CostHistory", Storage="_IV_CostHistories", ThisKey="PartyLocationID", OtherKey="PartyLocationID")]
 		public EntitySet<IV_CostHistory> IV_CostHistories
 		{
@@ -40790,6 +35388,19 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_PartyLocation_ITM_Product", Storage="_ITM_Products", ThisKey="PartyLocationID", OtherKey="VendorLocationID")]
+		public EntitySet<ITM_Product> ITM_Products
+		{
+			get
+			{
+				return this._ITM_Products;
+			}
+			set
+			{
+				this._ITM_Products.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_City_MST_PartyLocation", Storage="_MST_City", ThisKey="CityID", OtherKey="CityID", IsForeignKey=true)]
 		public MST_City MST_City
 		{
@@ -40910,18 +35521,6 @@ namespace PCSComUtils.DataContext
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_ITM_Products(ITM_Product entity)
-		{
-			this.SendPropertyChanging();
-			entity.MST_PartyLocation = this;
-		}
-		
-		private void detach_ITM_Products(ITM_Product entity)
-		{
-			this.SendPropertyChanging();
-			entity.MST_PartyLocation = null;
 		}
 		
 		private void attach_IV_CostHistories(IV_CostHistory entity)
@@ -41054,6 +35653,18 @@ namespace PCSComUtils.DataContext
 		{
 			this.SendPropertyChanging();
 			entity.MST_PartyLocation2 = null;
+		}
+		
+		private void attach_ITM_Products(ITM_Product entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_PartyLocation = this;
+		}
+		
+		private void detach_ITM_Products(ITM_Product entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_PartyLocation = null;
 		}
 	}
 	
@@ -41951,8 +36562,6 @@ namespace PCSComUtils.DataContext
 		
 		private EntityRef<MST_Party> _MST_Party;
 		
-		private EntityRef<ITM_Product> _ITM_Product;
-		
 		private EntityRef<MST_TranType> _MST_TranType;
 		
 		private EntityRef<MST_UnitOfMeasure> _MST_UnitOfMeasure;
@@ -41982,6 +36591,8 @@ namespace PCSComUtils.DataContext
 		private EntityRef<PRO_IssuePurpose> _PRO_IssuePurpose11;
 		
 		private EntityRef<PRO_IssuePurpose> _PRO_IssuePurpose12;
+		
+		private EntityRef<ITM_Product> _ITM_Product;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -42064,7 +36675,6 @@ namespace PCSComUtils.DataContext
 			this._MST_MasterLocation = default(EntityRef<MST_MasterLocation>);
 			this._MST_PartyLocation = default(EntityRef<MST_PartyLocation>);
 			this._MST_Party = default(EntityRef<MST_Party>);
-			this._ITM_Product = default(EntityRef<ITM_Product>);
 			this._MST_TranType = default(EntityRef<MST_TranType>);
 			this._MST_UnitOfMeasure = default(EntityRef<MST_UnitOfMeasure>);
 			this._PRO_IssuePurpose = default(EntityRef<PRO_IssuePurpose>);
@@ -42080,6 +36690,7 @@ namespace PCSComUtils.DataContext
 			this._PRO_IssuePurpose10 = default(EntityRef<PRO_IssuePurpose>);
 			this._PRO_IssuePurpose11 = default(EntityRef<PRO_IssuePurpose>);
 			this._PRO_IssuePurpose12 = default(EntityRef<PRO_IssuePurpose>);
+			this._ITM_Product = default(EntityRef<ITM_Product>);
 			OnCreated();
 		}
 		
@@ -43036,40 +37647,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_MST_TransactionHistory", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
-		public ITM_Product ITM_Product
-		{
-			get
-			{
-				return this._ITM_Product.Entity;
-			}
-			set
-			{
-				ITM_Product previousValue = this._ITM_Product.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_Product.Entity = null;
-						previousValue.MST_TransactionHistories.Remove(this);
-					}
-					this._ITM_Product.Entity = value;
-					if ((value != null))
-					{
-						value.MST_TransactionHistories.Add(this);
-						this._ProductID = value.ProductID;
-					}
-					else
-					{
-						this._ProductID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("ITM_Product");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_TranType_MST_TransactionHistory", Storage="_MST_TranType", ThisKey="TranTypeID", OtherKey="TranTypeID", IsForeignKey=true)]
 		public MST_TranType MST_TranType
 		{
@@ -43580,6 +38157,40 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_MST_TransactionHistory", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
+		public ITM_Product ITM_Product
+		{
+			get
+			{
+				return this._ITM_Product.Entity;
+			}
+			set
+			{
+				ITM_Product previousValue = this._ITM_Product.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_Product.Entity = null;
+						previousValue.MST_TransactionHistories.Remove(this);
+					}
+					this._ITM_Product.Entity = value;
+					if ((value != null))
+					{
+						value.MST_TransactionHistories.Add(this);
+						this._ProductID = value.ProductID;
+					}
+					else
+					{
+						this._ProductID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("ITM_Product");
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -44047,20 +38658,6 @@ namespace PCSComUtils.DataContext
 		
 		private EntitySet<CST_RecoverMaterialDetail> _CST_RecoverMaterialDetails;
 		
-		private EntitySet<ITM_Product> _ITM_Products;
-		
-		private EntitySet<ITM_Product> _ITM_Products1;
-		
-		private EntitySet<ITM_Product> _ITM_Products2;
-		
-		private EntitySet<ITM_Product> _ITM_Products3;
-		
-		private EntitySet<ITM_Product> _ITM_Products4;
-		
-		private EntitySet<ITM_Product> _ITM_Products5;
-		
-		private EntitySet<ITM_Product> _ITM_Products6;
-		
 		private EntitySet<IV_Adjustment> _IV_Adjustments;
 		
 		private EntitySet<IV_BalanceBin> _IV_BalanceBins;
@@ -44123,6 +38720,20 @@ namespace PCSComUtils.DataContext
 		
 		private EntitySet<IV_MiscellaneousIssueDetail> _IV_MiscellaneousIssueDetails;
 		
+		private EntitySet<ITM_Product> _ITM_Products;
+		
+		private EntitySet<ITM_Product> _ITM_Products1;
+		
+		private EntitySet<ITM_Product> _ITM_Products2;
+		
+		private EntitySet<ITM_Product> _ITM_Products3;
+		
+		private EntitySet<ITM_Product> _ITM_Products4;
+		
+		private EntitySet<ITM_Product> _ITM_Products5;
+		
+		private EntitySet<ITM_Product> _ITM_Products6;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -44139,13 +38750,6 @@ namespace PCSComUtils.DataContext
 		{
 			this._cst_FreightDetails = new EntitySet<cst_FreightDetail>(new Action<cst_FreightDetail>(this.attach_cst_FreightDetails), new Action<cst_FreightDetail>(this.detach_cst_FreightDetails));
 			this._CST_RecoverMaterialDetails = new EntitySet<CST_RecoverMaterialDetail>(new Action<CST_RecoverMaterialDetail>(this.attach_CST_RecoverMaterialDetails), new Action<CST_RecoverMaterialDetail>(this.detach_CST_RecoverMaterialDetails));
-			this._ITM_Products = new EntitySet<ITM_Product>(new Action<ITM_Product>(this.attach_ITM_Products), new Action<ITM_Product>(this.detach_ITM_Products));
-			this._ITM_Products1 = new EntitySet<ITM_Product>(new Action<ITM_Product>(this.attach_ITM_Products1), new Action<ITM_Product>(this.detach_ITM_Products1));
-			this._ITM_Products2 = new EntitySet<ITM_Product>(new Action<ITM_Product>(this.attach_ITM_Products2), new Action<ITM_Product>(this.detach_ITM_Products2));
-			this._ITM_Products3 = new EntitySet<ITM_Product>(new Action<ITM_Product>(this.attach_ITM_Products3), new Action<ITM_Product>(this.detach_ITM_Products3));
-			this._ITM_Products4 = new EntitySet<ITM_Product>(new Action<ITM_Product>(this.attach_ITM_Products4), new Action<ITM_Product>(this.detach_ITM_Products4));
-			this._ITM_Products5 = new EntitySet<ITM_Product>(new Action<ITM_Product>(this.attach_ITM_Products5), new Action<ITM_Product>(this.detach_ITM_Products5));
-			this._ITM_Products6 = new EntitySet<ITM_Product>(new Action<ITM_Product>(this.attach_ITM_Products6), new Action<ITM_Product>(this.detach_ITM_Products6));
 			this._IV_Adjustments = new EntitySet<IV_Adjustment>(new Action<IV_Adjustment>(this.attach_IV_Adjustments), new Action<IV_Adjustment>(this.detach_IV_Adjustments));
 			this._IV_BalanceBins = new EntitySet<IV_BalanceBin>(new Action<IV_BalanceBin>(this.attach_IV_BalanceBins), new Action<IV_BalanceBin>(this.detach_IV_BalanceBins));
 			this._IV_BalanceLocations = new EntitySet<IV_BalanceLocation>(new Action<IV_BalanceLocation>(this.attach_IV_BalanceLocations), new Action<IV_BalanceLocation>(this.detach_IV_BalanceLocations));
@@ -44177,6 +38781,13 @@ namespace PCSComUtils.DataContext
 			this._SO_SaleOrderDetails = new EntitySet<SO_SaleOrderDetail>(new Action<SO_SaleOrderDetail>(this.attach_SO_SaleOrderDetails), new Action<SO_SaleOrderDetail>(this.detach_SO_SaleOrderDetails));
 			this._SO_SaleOrderDetails1 = new EntitySet<SO_SaleOrderDetail>(new Action<SO_SaleOrderDetail>(this.attach_SO_SaleOrderDetails1), new Action<SO_SaleOrderDetail>(this.detach_SO_SaleOrderDetails1));
 			this._IV_MiscellaneousIssueDetails = new EntitySet<IV_MiscellaneousIssueDetail>(new Action<IV_MiscellaneousIssueDetail>(this.attach_IV_MiscellaneousIssueDetails), new Action<IV_MiscellaneousIssueDetail>(this.detach_IV_MiscellaneousIssueDetails));
+			this._ITM_Products = new EntitySet<ITM_Product>(new Action<ITM_Product>(this.attach_ITM_Products), new Action<ITM_Product>(this.detach_ITM_Products));
+			this._ITM_Products1 = new EntitySet<ITM_Product>(new Action<ITM_Product>(this.attach_ITM_Products1), new Action<ITM_Product>(this.detach_ITM_Products1));
+			this._ITM_Products2 = new EntitySet<ITM_Product>(new Action<ITM_Product>(this.attach_ITM_Products2), new Action<ITM_Product>(this.detach_ITM_Products2));
+			this._ITM_Products3 = new EntitySet<ITM_Product>(new Action<ITM_Product>(this.attach_ITM_Products3), new Action<ITM_Product>(this.detach_ITM_Products3));
+			this._ITM_Products4 = new EntitySet<ITM_Product>(new Action<ITM_Product>(this.attach_ITM_Products4), new Action<ITM_Product>(this.detach_ITM_Products4));
+			this._ITM_Products5 = new EntitySet<ITM_Product>(new Action<ITM_Product>(this.attach_ITM_Products5), new Action<ITM_Product>(this.detach_ITM_Products5));
+			this._ITM_Products6 = new EntitySet<ITM_Product>(new Action<ITM_Product>(this.attach_ITM_Products6), new Action<ITM_Product>(this.detach_ITM_Products6));
 			OnCreated();
 		}
 		
@@ -44263,97 +38874,6 @@ namespace PCSComUtils.DataContext
 			set
 			{
 				this._CST_RecoverMaterialDetails.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_UnitOfMeasure_ITM_Product", Storage="_ITM_Products", ThisKey="UnitOfMeasureID", OtherKey="BuyingUMID")]
-		public EntitySet<ITM_Product> ITM_Products
-		{
-			get
-			{
-				return this._ITM_Products;
-			}
-			set
-			{
-				this._ITM_Products.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_UnitOfMeasure_ITM_Product1", Storage="_ITM_Products1", ThisKey="UnitOfMeasureID", OtherKey="HeightUMID")]
-		public EntitySet<ITM_Product> ITM_Products1
-		{
-			get
-			{
-				return this._ITM_Products1;
-			}
-			set
-			{
-				this._ITM_Products1.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_UnitOfMeasure_ITM_Product2", Storage="_ITM_Products2", ThisKey="UnitOfMeasureID", OtherKey="LengthUMID")]
-		public EntitySet<ITM_Product> ITM_Products2
-		{
-			get
-			{
-				return this._ITM_Products2;
-			}
-			set
-			{
-				this._ITM_Products2.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_UnitOfMeasure_ITM_Product3", Storage="_ITM_Products3", ThisKey="UnitOfMeasureID", OtherKey="SellingUMID")]
-		public EntitySet<ITM_Product> ITM_Products3
-		{
-			get
-			{
-				return this._ITM_Products3;
-			}
-			set
-			{
-				this._ITM_Products3.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_UnitOfMeasure_ITM_Product4", Storage="_ITM_Products4", ThisKey="UnitOfMeasureID", OtherKey="StockUMID")]
-		public EntitySet<ITM_Product> ITM_Products4
-		{
-			get
-			{
-				return this._ITM_Products4;
-			}
-			set
-			{
-				this._ITM_Products4.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_UnitOfMeasure_ITM_Product5", Storage="_ITM_Products5", ThisKey="UnitOfMeasureID", OtherKey="WeightUMID")]
-		public EntitySet<ITM_Product> ITM_Products5
-		{
-			get
-			{
-				return this._ITM_Products5;
-			}
-			set
-			{
-				this._ITM_Products5.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_UnitOfMeasure_ITM_Product6", Storage="_ITM_Products6", ThisKey="UnitOfMeasureID", OtherKey="WidthUMID")]
-		public EntitySet<ITM_Product> ITM_Products6
-		{
-			get
-			{
-				return this._ITM_Products6;
-			}
-			set
-			{
-				this._ITM_Products6.Assign(value);
 			}
 		}
 		
@@ -44760,6 +39280,97 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_UnitOfMeasure_ITM_Product", Storage="_ITM_Products", ThisKey="UnitOfMeasureID", OtherKey="BuyingUMID")]
+		public EntitySet<ITM_Product> ITM_Products
+		{
+			get
+			{
+				return this._ITM_Products;
+			}
+			set
+			{
+				this._ITM_Products.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_UnitOfMeasure_ITM_Product1", Storage="_ITM_Products1", ThisKey="UnitOfMeasureID", OtherKey="HeightUMID")]
+		public EntitySet<ITM_Product> ITM_Products1
+		{
+			get
+			{
+				return this._ITM_Products1;
+			}
+			set
+			{
+				this._ITM_Products1.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_UnitOfMeasure_ITM_Product2", Storage="_ITM_Products2", ThisKey="UnitOfMeasureID", OtherKey="LengthUMID")]
+		public EntitySet<ITM_Product> ITM_Products2
+		{
+			get
+			{
+				return this._ITM_Products2;
+			}
+			set
+			{
+				this._ITM_Products2.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_UnitOfMeasure_ITM_Product3", Storage="_ITM_Products3", ThisKey="UnitOfMeasureID", OtherKey="SellingUMID")]
+		public EntitySet<ITM_Product> ITM_Products3
+		{
+			get
+			{
+				return this._ITM_Products3;
+			}
+			set
+			{
+				this._ITM_Products3.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_UnitOfMeasure_ITM_Product4", Storage="_ITM_Products4", ThisKey="UnitOfMeasureID", OtherKey="StockUMID")]
+		public EntitySet<ITM_Product> ITM_Products4
+		{
+			get
+			{
+				return this._ITM_Products4;
+			}
+			set
+			{
+				this._ITM_Products4.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_UnitOfMeasure_ITM_Product5", Storage="_ITM_Products5", ThisKey="UnitOfMeasureID", OtherKey="WeightUMID")]
+		public EntitySet<ITM_Product> ITM_Products5
+		{
+			get
+			{
+				return this._ITM_Products5;
+			}
+			set
+			{
+				this._ITM_Products5.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_UnitOfMeasure_ITM_Product6", Storage="_ITM_Products6", ThisKey="UnitOfMeasureID", OtherKey="WidthUMID")]
+		public EntitySet<ITM_Product> ITM_Products6
+		{
+			get
+			{
+				return this._ITM_Products6;
+			}
+			set
+			{
+				this._ITM_Products6.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -44802,90 +39413,6 @@ namespace PCSComUtils.DataContext
 		{
 			this.SendPropertyChanging();
 			entity.MST_UnitOfMeasure = null;
-		}
-		
-		private void attach_ITM_Products(ITM_Product entity)
-		{
-			this.SendPropertyChanging();
-			entity.MST_UnitOfMeasure = this;
-		}
-		
-		private void detach_ITM_Products(ITM_Product entity)
-		{
-			this.SendPropertyChanging();
-			entity.MST_UnitOfMeasure = null;
-		}
-		
-		private void attach_ITM_Products1(ITM_Product entity)
-		{
-			this.SendPropertyChanging();
-			entity.MST_UnitOfMeasure1 = this;
-		}
-		
-		private void detach_ITM_Products1(ITM_Product entity)
-		{
-			this.SendPropertyChanging();
-			entity.MST_UnitOfMeasure1 = null;
-		}
-		
-		private void attach_ITM_Products2(ITM_Product entity)
-		{
-			this.SendPropertyChanging();
-			entity.MST_UnitOfMeasure2 = this;
-		}
-		
-		private void detach_ITM_Products2(ITM_Product entity)
-		{
-			this.SendPropertyChanging();
-			entity.MST_UnitOfMeasure2 = null;
-		}
-		
-		private void attach_ITM_Products3(ITM_Product entity)
-		{
-			this.SendPropertyChanging();
-			entity.MST_UnitOfMeasure3 = this;
-		}
-		
-		private void detach_ITM_Products3(ITM_Product entity)
-		{
-			this.SendPropertyChanging();
-			entity.MST_UnitOfMeasure3 = null;
-		}
-		
-		private void attach_ITM_Products4(ITM_Product entity)
-		{
-			this.SendPropertyChanging();
-			entity.MST_UnitOfMeasure4 = this;
-		}
-		
-		private void detach_ITM_Products4(ITM_Product entity)
-		{
-			this.SendPropertyChanging();
-			entity.MST_UnitOfMeasure4 = null;
-		}
-		
-		private void attach_ITM_Products5(ITM_Product entity)
-		{
-			this.SendPropertyChanging();
-			entity.MST_UnitOfMeasure5 = this;
-		}
-		
-		private void detach_ITM_Products5(ITM_Product entity)
-		{
-			this.SendPropertyChanging();
-			entity.MST_UnitOfMeasure5 = null;
-		}
-		
-		private void attach_ITM_Products6(ITM_Product entity)
-		{
-			this.SendPropertyChanging();
-			entity.MST_UnitOfMeasure6 = this;
-		}
-		
-		private void detach_ITM_Products6(ITM_Product entity)
-		{
-			this.SendPropertyChanging();
-			entity.MST_UnitOfMeasure6 = null;
 		}
 		
 		private void attach_IV_Adjustments(IV_Adjustment entity)
@@ -45258,6 +39785,90 @@ namespace PCSComUtils.DataContext
 		{
 			this.SendPropertyChanging();
 			entity.MST_UnitOfMeasure = null;
+		}
+		
+		private void attach_ITM_Products(ITM_Product entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_UnitOfMeasure = this;
+		}
+		
+		private void detach_ITM_Products(ITM_Product entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_UnitOfMeasure = null;
+		}
+		
+		private void attach_ITM_Products1(ITM_Product entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_UnitOfMeasure1 = this;
+		}
+		
+		private void detach_ITM_Products1(ITM_Product entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_UnitOfMeasure1 = null;
+		}
+		
+		private void attach_ITM_Products2(ITM_Product entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_UnitOfMeasure2 = this;
+		}
+		
+		private void detach_ITM_Products2(ITM_Product entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_UnitOfMeasure2 = null;
+		}
+		
+		private void attach_ITM_Products3(ITM_Product entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_UnitOfMeasure3 = this;
+		}
+		
+		private void detach_ITM_Products3(ITM_Product entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_UnitOfMeasure3 = null;
+		}
+		
+		private void attach_ITM_Products4(ITM_Product entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_UnitOfMeasure4 = this;
+		}
+		
+		private void detach_ITM_Products4(ITM_Product entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_UnitOfMeasure4 = null;
+		}
+		
+		private void attach_ITM_Products5(ITM_Product entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_UnitOfMeasure5 = this;
+		}
+		
+		private void detach_ITM_Products5(ITM_Product entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_UnitOfMeasure5 = null;
+		}
+		
+		private void attach_ITM_Products6(ITM_Product entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_UnitOfMeasure6 = this;
+		}
+		
+		private void detach_ITM_Products6(ITM_Product entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_UnitOfMeasure6 = null;
 		}
 	}
 	
@@ -46788,9 +41399,9 @@ namespace PCSComUtils.DataContext
 		
 		private System.Nullable<decimal> _Percentage;
 		
-		private EntityRef<ITM_Product> _ITM_Product;
-		
 		private EntityRef<MTR_ACDSOptionDetail> _MTR_ACDSOptionDetail;
+		
+		private EntityRef<ITM_Product> _ITM_Product;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -46808,8 +41419,8 @@ namespace PCSComUtils.DataContext
 		
 		public MTR_ACDSDetail()
 		{
-			this._ITM_Product = default(EntityRef<ITM_Product>);
 			this._MTR_ACDSOptionDetail = default(EntityRef<MTR_ACDSOptionDetail>);
+			this._ITM_Product = default(EntityRef<ITM_Product>);
 			OnCreated();
 		}
 		
@@ -46901,40 +41512,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_MTR_ACDSDetail", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
-		public ITM_Product ITM_Product
-		{
-			get
-			{
-				return this._ITM_Product.Entity;
-			}
-			set
-			{
-				ITM_Product previousValue = this._ITM_Product.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_Product.Entity = null;
-						previousValue.MTR_ACDSDetails.Remove(this);
-					}
-					this._ITM_Product.Entity = value;
-					if ((value != null))
-					{
-						value.MTR_ACDSDetails.Add(this);
-						this._ProductID = value.ProductID;
-					}
-					else
-					{
-						this._ProductID = default(int);
-					}
-					this.SendPropertyChanged("ITM_Product");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MTR_ACDSOptionDetail_MTR_ACDSDetail", Storage="_MTR_ACDSOptionDetail", ThisKey="ACDSOptionDetailID", OtherKey="ACDSOptionDetailID", IsForeignKey=true)]
 		public MTR_ACDSOptionDetail MTR_ACDSOptionDetail
 		{
@@ -46965,6 +41542,40 @@ namespace PCSComUtils.DataContext
 						this._ACDSOptionDetailID = default(int);
 					}
 					this.SendPropertyChanged("MTR_ACDSOptionDetail");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_MTR_ACDSDetail", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
+		public ITM_Product ITM_Product
+		{
+			get
+			{
+				return this._ITM_Product.Entity;
+			}
+			set
+			{
+				ITM_Product previousValue = this._ITM_Product.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_Product.Entity = null;
+						previousValue.MTR_ACDSDetails.Remove(this);
+					}
+					this._ITM_Product.Entity = value;
+					if ((value != null))
+					{
+						value.MTR_ACDSDetails.Add(this);
+						this._ProductID = value.ProductID;
+					}
+					else
+					{
+						this._ProductID = default(int);
+					}
+					this.SendPropertyChanged("ITM_Product");
 				}
 			}
 		}
@@ -47660,13 +42271,13 @@ namespace PCSComUtils.DataContext
 		
 		private EntityRef<MST_MasterLocation> _MST_MasterLocation;
 		
-		private EntityRef<ITM_Product> _ITM_Product;
-		
 		private EntityRef<MST_UnitOfMeasure> _MST_UnitOfMeasure;
 		
 		private EntityRef<MTR_MPSCycleOptionMaster> _MTR_MPSCycleOptionMaster;
 		
 		private EntityRef<MTR_MRPCycleOptionMaster> _MTR_MRPCycleOptionMaster;
+		
+		private EntityRef<ITM_Product> _ITM_Product;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -47725,10 +42336,10 @@ namespace PCSComUtils.DataContext
 			this._PRO_DCPResultMasters = new EntitySet<PRO_DCPResultMaster>(new Action<PRO_DCPResultMaster>(this.attach_PRO_DCPResultMasters), new Action<PRO_DCPResultMaster>(this.detach_PRO_DCPResultMasters));
 			this._MST_CCN = default(EntityRef<MST_CCN>);
 			this._MST_MasterLocation = default(EntityRef<MST_MasterLocation>);
-			this._ITM_Product = default(EntityRef<ITM_Product>);
 			this._MST_UnitOfMeasure = default(EntityRef<MST_UnitOfMeasure>);
 			this._MTR_MPSCycleOptionMaster = default(EntityRef<MTR_MPSCycleOptionMaster>);
 			this._MTR_MRPCycleOptionMaster = default(EntityRef<MTR_MRPCycleOptionMaster>);
+			this._ITM_Product = default(EntityRef<ITM_Product>);
 			OnCreated();
 		}
 		
@@ -48297,40 +42908,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_MTR_CPO", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
-		public ITM_Product ITM_Product
-		{
-			get
-			{
-				return this._ITM_Product.Entity;
-			}
-			set
-			{
-				ITM_Product previousValue = this._ITM_Product.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_Product.Entity = null;
-						previousValue.MTR_CPOs.Remove(this);
-					}
-					this._ITM_Product.Entity = value;
-					if ((value != null))
-					{
-						value.MTR_CPOs.Add(this);
-						this._ProductID = value.ProductID;
-					}
-					else
-					{
-						this._ProductID = default(int);
-					}
-					this.SendPropertyChanged("ITM_Product");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_UnitOfMeasure_MTR_CPO", Storage="_MST_UnitOfMeasure", ThisKey="StockUMID", OtherKey="UnitOfMeasureID", IsForeignKey=true)]
 		public MST_UnitOfMeasure MST_UnitOfMeasure
 		{
@@ -48433,6 +43010,40 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_MTR_CPO", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
+		public ITM_Product ITM_Product
+		{
+			get
+			{
+				return this._ITM_Product.Entity;
+			}
+			set
+			{
+				ITM_Product previousValue = this._ITM_Product.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_Product.Entity = null;
+						previousValue.MTR_CPOs.Remove(this);
+					}
+					this._ITM_Product.Entity = value;
+					if ((value != null))
+					{
+						value.MTR_CPOs.Add(this);
+						this._ProductID = value.ProductID;
+					}
+					else
+					{
+						this._ProductID = default(int);
+					}
+					this.SendPropertyChanged("ITM_Product");
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -48486,9 +43097,9 @@ namespace PCSComUtils.DataContext
 		
 		private EntityRef<MTR_ACDSOptionMaster> _MTR_ACDSOptionMaster;
 		
-		private EntityRef<ITM_Product> _ITM_Product;
-		
 		private EntityRef<MST_WorkCenter> _MST_WorkCenter;
+		
+		private EntityRef<ITM_Product> _ITM_Product;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -48511,8 +43122,8 @@ namespace PCSComUtils.DataContext
 		public MTR_ItemActualCost()
 		{
 			this._MTR_ACDSOptionMaster = default(EntityRef<MTR_ACDSOptionMaster>);
-			this._ITM_Product = default(EntityRef<ITM_Product>);
 			this._MST_WorkCenter = default(EntityRef<MST_WorkCenter>);
+			this._ITM_Product = default(EntityRef<ITM_Product>);
 			OnCreated();
 		}
 		
@@ -48682,40 +43293,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_MTR_ItemActualCost", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
-		public ITM_Product ITM_Product
-		{
-			get
-			{
-				return this._ITM_Product.Entity;
-			}
-			set
-			{
-				ITM_Product previousValue = this._ITM_Product.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_Product.Entity = null;
-						previousValue.MTR_ItemActualCosts.Remove(this);
-					}
-					this._ITM_Product.Entity = value;
-					if ((value != null))
-					{
-						value.MTR_ItemActualCosts.Add(this);
-						this._ProductID = value.ProductID;
-					}
-					else
-					{
-						this._ProductID = default(int);
-					}
-					this.SendPropertyChanged("ITM_Product");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_WorkCenter_MTR_ItemActualCost", Storage="_MST_WorkCenter", ThisKey="WorkCenterID", OtherKey="WorkCenterID", IsForeignKey=true)]
 		public MST_WorkCenter MST_WorkCenter
 		{
@@ -48746,6 +43323,40 @@ namespace PCSComUtils.DataContext
 						this._WorkCenterID = default(int);
 					}
 					this.SendPropertyChanged("MST_WorkCenter");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_MTR_ItemActualCost", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
+		public ITM_Product ITM_Product
+		{
+			get
+			{
+				return this._ITM_Product.Entity;
+			}
+			set
+			{
+				ITM_Product previousValue = this._ITM_Product.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_Product.Entity = null;
+						previousValue.MTR_ItemActualCosts.Remove(this);
+					}
+					this._ITM_Product.Entity = value;
+					if ((value != null))
+					{
+						value.MTR_ItemActualCosts.Add(this);
+						this._ProductID = value.ProductID;
+					}
+					else
+					{
+						this._ProductID = default(int);
+					}
+					this.SendPropertyChanged("ITM_Product");
 				}
 			}
 		}
@@ -50680,8 +45291,6 @@ namespace PCSComUtils.DataContext
 		
 		private EntityRef<MST_UnitOfMeasure> _MST_UnitOfMeasure;
 		
-		private EntityRef<ITM_Product> _ITM_Product;
-		
 		private EntityRef<PO_InvoiceMaster> _PO_InvoiceMaster;
 		
 		private EntityRef<PO_PurchaseOrderDetail> _PO_PurchaseOrderDetail;
@@ -50689,6 +45298,8 @@ namespace PCSComUtils.DataContext
 		private EntityRef<PO_PurchaseOrderMaster> _PO_PurchaseOrderMaster;
 		
 		private EntityRef<PO_DeliverySchedule> _PO_DeliverySchedule;
+		
+		private EntityRef<ITM_Product> _ITM_Product;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -50738,11 +45349,11 @@ namespace PCSComUtils.DataContext
 		{
 			this._PO_PurchaseOrderReceiptDetails = new EntitySet<PO_PurchaseOrderReceiptDetail>(new Action<PO_PurchaseOrderReceiptDetail>(this.attach_PO_PurchaseOrderReceiptDetails), new Action<PO_PurchaseOrderReceiptDetail>(this.detach_PO_PurchaseOrderReceiptDetails));
 			this._MST_UnitOfMeasure = default(EntityRef<MST_UnitOfMeasure>);
-			this._ITM_Product = default(EntityRef<ITM_Product>);
 			this._PO_InvoiceMaster = default(EntityRef<PO_InvoiceMaster>);
 			this._PO_PurchaseOrderDetail = default(EntityRef<PO_PurchaseOrderDetail>);
 			this._PO_PurchaseOrderMaster = default(EntityRef<PO_PurchaseOrderMaster>);
 			this._PO_DeliverySchedule = default(EntityRef<PO_DeliverySchedule>);
+			this._ITM_Product = default(EntityRef<ITM_Product>);
 			OnCreated();
 		}
 		
@@ -51197,40 +45808,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PO_InvoiceDetail", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
-		public ITM_Product ITM_Product
-		{
-			get
-			{
-				return this._ITM_Product.Entity;
-			}
-			set
-			{
-				ITM_Product previousValue = this._ITM_Product.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_Product.Entity = null;
-						previousValue.PO_InvoiceDetails.Remove(this);
-					}
-					this._ITM_Product.Entity = value;
-					if ((value != null))
-					{
-						value.PO_InvoiceDetails.Add(this);
-						this._ProductID = value.ProductID;
-					}
-					else
-					{
-						this._ProductID = default(int);
-					}
-					this.SendPropertyChanged("ITM_Product");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PO_InvoiceMaster_PO_InvoiceDetail", Storage="_PO_InvoiceMaster", ThisKey="InvoiceMasterID", OtherKey="InvoiceMasterID", IsForeignKey=true)]
 		public PO_InvoiceMaster PO_InvoiceMaster
 		{
@@ -51363,6 +45940,40 @@ namespace PCSComUtils.DataContext
 						this._DeliveryScheduleID = default(int);
 					}
 					this.SendPropertyChanged("PO_DeliverySchedule");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PO_InvoiceDetail", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
+		public ITM_Product ITM_Product
+		{
+			get
+			{
+				return this._ITM_Product.Entity;
+			}
+			set
+			{
+				ITM_Product previousValue = this._ITM_Product.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_Product.Entity = null;
+						previousValue.PO_InvoiceDetails.Remove(this);
+					}
+					this._ITM_Product.Entity = value;
+					if ((value != null))
+					{
+						value.PO_InvoiceDetails.Add(this);
+						this._ProductID = value.ProductID;
+					}
+					else
+					{
+						this._ProductID = default(int);
+					}
+					this.SendPropertyChanged("ITM_Product");
 				}
 			}
 		}
@@ -52428,9 +47039,9 @@ namespace PCSComUtils.DataContext
 		
 		private EntityRef<MST_Party> _MST_Party;
 		
-		private EntityRef<ITM_Product> _ITM_Product;
-		
 		private EntityRef<MST_PartyLocation> _MST_PartyLocation;
+		
+		private EntityRef<ITM_Product> _ITM_Product;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -52485,8 +47096,8 @@ namespace PCSComUtils.DataContext
 			this._MST_CCN = default(EntityRef<MST_CCN>);
 			this._MST_Currency = default(EntityRef<MST_Currency>);
 			this._MST_Party = default(EntityRef<MST_Party>);
-			this._ITM_Product = default(EntityRef<ITM_Product>);
 			this._MST_PartyLocation = default(EntityRef<MST_PartyLocation>);
+			this._ITM_Product = default(EntityRef<ITM_Product>);
 			OnCreated();
 		}
 		
@@ -53088,40 +47699,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PO_ItemVendorReference", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
-		public ITM_Product ITM_Product
-		{
-			get
-			{
-				return this._ITM_Product.Entity;
-			}
-			set
-			{
-				ITM_Product previousValue = this._ITM_Product.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_Product.Entity = null;
-						previousValue.PO_ItemVendorReferences.Remove(this);
-					}
-					this._ITM_Product.Entity = value;
-					if ((value != null))
-					{
-						value.PO_ItemVendorReferences.Add(this);
-						this._ProductID = value.ProductID;
-					}
-					else
-					{
-						this._ProductID = default(int);
-					}
-					this.SendPropertyChanged("ITM_Product");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_PartyLocation_PO_ItemVendorReference", Storage="_MST_PartyLocation", ThisKey="VendorLocID", OtherKey="PartyLocationID", IsForeignKey=true)]
 		public MST_PartyLocation MST_PartyLocation
 		{
@@ -53152,6 +47729,40 @@ namespace PCSComUtils.DataContext
 						this._VendorLocID = default(int);
 					}
 					this.SendPropertyChanged("MST_PartyLocation");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PO_ItemVendorReference", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
+		public ITM_Product ITM_Product
+		{
+			get
+			{
+				return this._ITM_Product.Entity;
+			}
+			set
+			{
+				ITM_Product previousValue = this._ITM_Product.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_Product.Entity = null;
+						previousValue.PO_ItemVendorReferences.Remove(this);
+					}
+					this._ITM_Product.Entity = value;
+					if ((value != null))
+					{
+						value.PO_ItemVendorReferences.Add(this);
+						this._ProductID = value.ProductID;
+					}
+					else
+					{
+						this._ProductID = default(int);
+					}
+					this.SendPropertyChanged("ITM_Product");
 				}
 			}
 		}
@@ -53409,11 +48020,11 @@ namespace PCSComUtils.DataContext
 		
 		private EntityRef<MST_UnitOfMeasure> _MST_UnitOfMeasure;
 		
-		private EntityRef<ITM_Product> _ITM_Product;
-		
 		private EntityRef<MST_UnitOfMeasure> _MST_UnitOfMeasure1;
 		
 		private EntityRef<PO_PurchaseOrderMaster> _PO_PurchaseOrderMaster;
+		
+		private EntityRef<ITM_Product> _ITM_Product;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -53485,9 +48096,9 @@ namespace PCSComUtils.DataContext
 			this._PO_DeliverySchedules = new EntitySet<PO_DeliverySchedule>(new Action<PO_DeliverySchedule>(this.attach_PO_DeliverySchedules), new Action<PO_DeliverySchedule>(this.detach_PO_DeliverySchedules));
 			this._MST_Employee = default(EntityRef<MST_Employee>);
 			this._MST_UnitOfMeasure = default(EntityRef<MST_UnitOfMeasure>);
-			this._ITM_Product = default(EntityRef<ITM_Product>);
 			this._MST_UnitOfMeasure1 = default(EntityRef<MST_UnitOfMeasure>);
 			this._PO_PurchaseOrderMaster = default(EntityRef<PO_PurchaseOrderMaster>);
+			this._ITM_Product = default(EntityRef<ITM_Product>);
 			OnCreated();
 		}
 		
@@ -54191,40 +48802,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PO_PurchaseOrderDetail", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
-		public ITM_Product ITM_Product
-		{
-			get
-			{
-				return this._ITM_Product.Entity;
-			}
-			set
-			{
-				ITM_Product previousValue = this._ITM_Product.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_Product.Entity = null;
-						previousValue.PO_PurchaseOrderDetails.Remove(this);
-					}
-					this._ITM_Product.Entity = value;
-					if ((value != null))
-					{
-						value.PO_PurchaseOrderDetails.Add(this);
-						this._ProductID = value.ProductID;
-					}
-					else
-					{
-						this._ProductID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("ITM_Product");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_UnitOfMeasure_PO_PurchaseOrderDetail1", Storage="_MST_UnitOfMeasure1", ThisKey="StockUMID", OtherKey="UnitOfMeasureID", IsForeignKey=true)]
 		public MST_UnitOfMeasure MST_UnitOfMeasure1
 		{
@@ -54289,6 +48866,40 @@ namespace PCSComUtils.DataContext
 						this._PurchaseOrderMasterID = default(int);
 					}
 					this.SendPropertyChanged("PO_PurchaseOrderMaster");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PO_PurchaseOrderDetail", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
+		public ITM_Product ITM_Product
+		{
+			get
+			{
+				return this._ITM_Product.Entity;
+			}
+			set
+			{
+				ITM_Product previousValue = this._ITM_Product.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_Product.Entity = null;
+						previousValue.PO_PurchaseOrderDetails.Remove(this);
+					}
+					this._ITM_Product.Entity = value;
+					if ((value != null))
+					{
+						value.PO_PurchaseOrderDetails.Add(this);
+						this._ProductID = value.ProductID;
+					}
+					else
+					{
+						this._ProductID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("ITM_Product");
 				}
 			}
 		}
@@ -56312,8 +50923,6 @@ namespace PCSComUtils.DataContext
 		
 		private EntityRef<MST_Location> _MST_Location;
 		
-		private EntityRef<ITM_Product> _ITM_Product;
-		
 		private EntityRef<PO_PurchaseOrderDetail> _PO_PurchaseOrderDetail;
 		
 		private EntityRef<PO_PurchaseOrderMaster> _PO_PurchaseOrderMaster;
@@ -56323,6 +50932,8 @@ namespace PCSComUtils.DataContext
 		private EntityRef<PO_PurchaseOrderReceiptMaster> _PO_PurchaseOrderReceiptMaster;
 		
 		private EntityRef<PO_DeliverySchedule> _PO_DeliverySchedule;
+		
+		private EntityRef<ITM_Product> _ITM_Product;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -56368,12 +50979,12 @@ namespace PCSComUtils.DataContext
 			this._MST_UnitOfMeasure = default(EntityRef<MST_UnitOfMeasure>);
 			this._PO_InvoiceDetail = default(EntityRef<PO_InvoiceDetail>);
 			this._MST_Location = default(EntityRef<MST_Location>);
-			this._ITM_Product = default(EntityRef<ITM_Product>);
 			this._PO_PurchaseOrderDetail = default(EntityRef<PO_PurchaseOrderDetail>);
 			this._PO_PurchaseOrderMaster = default(EntityRef<PO_PurchaseOrderMaster>);
 			this._MST_UnitOfMeasure1 = default(EntityRef<MST_UnitOfMeasure>);
 			this._PO_PurchaseOrderReceiptMaster = default(EntityRef<PO_PurchaseOrderReceiptMaster>);
 			this._PO_DeliverySchedule = default(EntityRef<PO_DeliverySchedule>);
+			this._ITM_Product = default(EntityRef<ITM_Product>);
 			OnCreated();
 		}
 		
@@ -56873,40 +51484,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PO_PurchaseOrderReceiptDetail", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
-		public ITM_Product ITM_Product
-		{
-			get
-			{
-				return this._ITM_Product.Entity;
-			}
-			set
-			{
-				ITM_Product previousValue = this._ITM_Product.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_Product.Entity = null;
-						previousValue.PO_PurchaseOrderReceiptDetails.Remove(this);
-					}
-					this._ITM_Product.Entity = value;
-					if ((value != null))
-					{
-						value.PO_PurchaseOrderReceiptDetails.Add(this);
-						this._ProductID = value.ProductID;
-					}
-					else
-					{
-						this._ProductID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("ITM_Product");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PO_PurchaseOrderDetail_PO_PurchaseOrderReceiptDetail", Storage="_PO_PurchaseOrderDetail", ThisKey="PurchaseOrderDetailID", OtherKey="PurchaseOrderDetailID", IsForeignKey=true)]
 		public PO_PurchaseOrderDetail PO_PurchaseOrderDetail
 		{
@@ -57073,6 +51650,40 @@ namespace PCSComUtils.DataContext
 						this._DeliveryScheduleID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("PO_DeliverySchedule");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PO_PurchaseOrderReceiptDetail", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
+		public ITM_Product ITM_Product
+		{
+			get
+			{
+				return this._ITM_Product.Entity;
+			}
+			set
+			{
+				ITM_Product previousValue = this._ITM_Product.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_Product.Entity = null;
+						previousValue.PO_PurchaseOrderReceiptDetails.Remove(this);
+					}
+					this._ITM_Product.Entity = value;
+					if ((value != null))
+					{
+						value.PO_PurchaseOrderReceiptDetails.Add(this);
+						this._ProductID = value.ProductID;
+					}
+					else
+					{
+						this._ProductID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("ITM_Product");
 				}
 			}
 		}
@@ -57923,11 +52534,11 @@ namespace PCSComUtils.DataContext
 		
 		private EntityRef<MST_Location> _MST_Location;
 		
-		private EntityRef<ITM_Product> _ITM_Product;
-		
 		private EntityRef<MST_UnitOfMeasure> _MST_UnitOfMeasure1;
 		
 		private EntityRef<PO_ReturnToVendorMaster> _PO_ReturnToVendorMaster;
+		
+		private EntityRef<ITM_Product> _ITM_Product;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -57979,9 +52590,9 @@ namespace PCSComUtils.DataContext
 			this._MST_BIN = default(EntityRef<MST_BIN>);
 			this._MST_UnitOfMeasure = default(EntityRef<MST_UnitOfMeasure>);
 			this._MST_Location = default(EntityRef<MST_Location>);
-			this._ITM_Product = default(EntityRef<ITM_Product>);
 			this._MST_UnitOfMeasure1 = default(EntityRef<MST_UnitOfMeasure>);
 			this._PO_ReturnToVendorMaster = default(EntityRef<PO_ReturnToVendorMaster>);
+			this._ITM_Product = default(EntityRef<ITM_Product>);
 			OnCreated();
 		}
 		
@@ -58504,40 +53115,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PO_ReturnToVendorDetail", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
-		public ITM_Product ITM_Product
-		{
-			get
-			{
-				return this._ITM_Product.Entity;
-			}
-			set
-			{
-				ITM_Product previousValue = this._ITM_Product.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_Product.Entity = null;
-						previousValue.PO_ReturnToVendorDetails.Remove(this);
-					}
-					this._ITM_Product.Entity = value;
-					if ((value != null))
-					{
-						value.PO_ReturnToVendorDetails.Add(this);
-						this._ProductID = value.ProductID;
-					}
-					else
-					{
-						this._ProductID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("ITM_Product");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_UnitOfMeasure_PO_ReturnToVendorDetail1", Storage="_MST_UnitOfMeasure1", ThisKey="StockUMID", OtherKey="UnitOfMeasureID", IsForeignKey=true)]
 		public MST_UnitOfMeasure MST_UnitOfMeasure1
 		{
@@ -58602,6 +53179,40 @@ namespace PCSComUtils.DataContext
 						this._ReturnToVendorMasterID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("PO_ReturnToVendorMaster");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PO_ReturnToVendorDetail", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
+		public ITM_Product ITM_Product
+		{
+			get
+			{
+				return this._ITM_Product.Entity;
+			}
+			set
+			{
+				ITM_Product previousValue = this._ITM_Product.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_Product.Entity = null;
+						previousValue.PO_ReturnToVendorDetails.Remove(this);
+					}
+					this._ITM_Product.Entity = value;
+					if ((value != null))
+					{
+						value.PO_ReturnToVendorDetails.Add(this);
+						this._ProductID = value.ProductID;
+					}
+					else
+					{
+						this._ProductID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("ITM_Product");
 				}
 			}
 		}
@@ -59769,9 +54380,9 @@ namespace PCSComUtils.DataContext
 		
 		private int _ChangeCategoryDetailID;
 		
-		private EntityRef<ITM_Product> _ITM_Product;
-		
 		private EntityRef<PRO_ChangeCategoryMaster> _PRO_ChangeCategoryMaster;
+		
+		private EntityRef<ITM_Product> _ITM_Product;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -59787,8 +54398,8 @@ namespace PCSComUtils.DataContext
 		
 		public PRO_ChangeCategoryDetail()
 		{
-			this._ITM_Product = default(EntityRef<ITM_Product>);
 			this._PRO_ChangeCategoryMaster = default(EntityRef<PRO_ChangeCategoryMaster>);
+			this._ITM_Product = default(EntityRef<ITM_Product>);
 			OnCreated();
 		}
 		
@@ -59860,40 +54471,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PRO_ChangeCategoryDetail", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
-		public ITM_Product ITM_Product
-		{
-			get
-			{
-				return this._ITM_Product.Entity;
-			}
-			set
-			{
-				ITM_Product previousValue = this._ITM_Product.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_Product.Entity = null;
-						previousValue.PRO_ChangeCategoryDetails.Remove(this);
-					}
-					this._ITM_Product.Entity = value;
-					if ((value != null))
-					{
-						value.PRO_ChangeCategoryDetails.Add(this);
-						this._ProductID = value.ProductID;
-					}
-					else
-					{
-						this._ProductID = default(int);
-					}
-					this.SendPropertyChanged("ITM_Product");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PRO_ChangeCategoryMaster_PRO_ChangeCategoryDetail", Storage="_PRO_ChangeCategoryMaster", ThisKey="ChangeCategoryMasterID", OtherKey="ChangeCategoryMasterID", IsForeignKey=true)]
 		public PRO_ChangeCategoryMaster PRO_ChangeCategoryMaster
 		{
@@ -59924,6 +54501,40 @@ namespace PCSComUtils.DataContext
 						this._ChangeCategoryMasterID = default(int);
 					}
 					this.SendPropertyChanged("PRO_ChangeCategoryMaster");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PRO_ChangeCategoryDetail", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
+		public ITM_Product ITM_Product
+		{
+			get
+			{
+				return this._ITM_Product.Entity;
+			}
+			set
+			{
+				ITM_Product previousValue = this._ITM_Product.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_Product.Entity = null;
+						previousValue.PRO_ChangeCategoryDetails.Remove(this);
+					}
+					this._ITM_Product.Entity = value;
+					if ((value != null))
+					{
+						value.PRO_ChangeCategoryDetails.Add(this);
+						this._ProductID = value.ProductID;
+					}
+					else
+					{
+						this._ProductID = default(int);
+					}
+					this.SendPropertyChanged("ITM_Product");
 				}
 			}
 		}
@@ -60500,9 +55111,9 @@ namespace PCSComUtils.DataContext
 		
 		private EntityRef<MST_CCN> _MST_CCN;
 		
-		private EntityRef<ITM_Product> _ITM_Product;
-		
 		private EntityRef<MST_WorkCenter> _MST_WorkCenter;
+		
+		private EntityRef<ITM_Product> _ITM_Product;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -60527,8 +55138,8 @@ namespace PCSComUtils.DataContext
 		public PRO_CheckPoint()
 		{
 			this._MST_CCN = default(EntityRef<MST_CCN>);
-			this._ITM_Product = default(EntityRef<ITM_Product>);
 			this._MST_WorkCenter = default(EntityRef<MST_WorkCenter>);
+			this._ITM_Product = default(EntityRef<ITM_Product>);
 			OnCreated();
 		}
 		
@@ -60718,40 +55329,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PRO_CheckPoint", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
-		public ITM_Product ITM_Product
-		{
-			get
-			{
-				return this._ITM_Product.Entity;
-			}
-			set
-			{
-				ITM_Product previousValue = this._ITM_Product.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_Product.Entity = null;
-						previousValue.PRO_CheckPoints.Remove(this);
-					}
-					this._ITM_Product.Entity = value;
-					if ((value != null))
-					{
-						value.PRO_CheckPoints.Add(this);
-						this._ProductID = value.ProductID;
-					}
-					else
-					{
-						this._ProductID = default(int);
-					}
-					this.SendPropertyChanged("ITM_Product");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_WorkCenter_PRO_CheckPoint", Storage="_MST_WorkCenter", ThisKey="WorkCenterID", OtherKey="WorkCenterID", IsForeignKey=true)]
 		public MST_WorkCenter MST_WorkCenter
 		{
@@ -60782,6 +55359,40 @@ namespace PCSComUtils.DataContext
 						this._WorkCenterID = default(int);
 					}
 					this.SendPropertyChanged("MST_WorkCenter");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PRO_CheckPoint", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
+		public ITM_Product ITM_Product
+		{
+			get
+			{
+				return this._ITM_Product.Entity;
+			}
+			set
+			{
+				ITM_Product previousValue = this._ITM_Product.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_Product.Entity = null;
+						previousValue.PRO_CheckPoints.Remove(this);
+					}
+					this._ITM_Product.Entity = value;
+					if ((value != null))
+					{
+						value.PRO_CheckPoints.Add(this);
+						this._ProductID = value.ProductID;
+					}
+					else
+					{
+						this._ProductID = default(int);
+					}
+					this.SendPropertyChanged("ITM_Product");
 				}
 			}
 		}
@@ -60845,13 +55456,9 @@ namespace PCSComUtils.DataContext
 		
 		private int _ToBinID;
 		
-		private EntityRef<ITM_Product> _ITM_Product;
-		
 		private EntityRef<MST_BIN> _MST_BIN;
 		
 		private EntityRef<MST_Location> _MST_Location;
-		
-		private EntityRef<ITM_Product> _ITM_Product1;
 		
 		private EntityRef<MST_BIN> _MST_BIN1;
 		
@@ -60864,6 +55471,10 @@ namespace PCSComUtils.DataContext
 		private EntityRef<PRO_WorkOrderDetail> _PRO_WorkOrderDetail;
 		
 		private EntityRef<PRO_WorkOrderMaster> _PRO_WorkOrderMaster;
+		
+		private EntityRef<ITM_Product> _ITM_Product;
+		
+		private EntityRef<ITM_Product> _ITM_Product1;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -60905,16 +55516,16 @@ namespace PCSComUtils.DataContext
 		
 		public PRO_ComponentScrapDetail()
 		{
-			this._ITM_Product = default(EntityRef<ITM_Product>);
 			this._MST_BIN = default(EntityRef<MST_BIN>);
 			this._MST_Location = default(EntityRef<MST_Location>);
-			this._ITM_Product1 = default(EntityRef<ITM_Product>);
 			this._MST_BIN1 = default(EntityRef<MST_BIN>);
 			this._MST_Location1 = default(EntityRef<MST_Location>);
 			this._PRO_ComponentScrapMaster = default(EntityRef<PRO_ComponentScrapMaster>);
 			this._PRO_ScrapReason = default(EntityRef<PRO_ScrapReason>);
 			this._PRO_WorkOrderDetail = default(EntityRef<PRO_WorkOrderDetail>);
 			this._PRO_WorkOrderMaster = default(EntityRef<PRO_WorkOrderMaster>);
+			this._ITM_Product = default(EntityRef<ITM_Product>);
+			this._ITM_Product1 = default(EntityRef<ITM_Product>);
 			OnCreated();
 		}
 		
@@ -61278,40 +55889,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PRO_ComponentScrapDetail", Storage="_ITM_Product", ThisKey="ComponentID", OtherKey="ProductID", IsForeignKey=true)]
-		public ITM_Product ITM_Product
-		{
-			get
-			{
-				return this._ITM_Product.Entity;
-			}
-			set
-			{
-				ITM_Product previousValue = this._ITM_Product.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_Product.Entity = null;
-						previousValue.PRO_ComponentScrapDetails.Remove(this);
-					}
-					this._ITM_Product.Entity = value;
-					if ((value != null))
-					{
-						value.PRO_ComponentScrapDetails.Add(this);
-						this._ComponentID = value.ProductID;
-					}
-					else
-					{
-						this._ComponentID = default(int);
-					}
-					this.SendPropertyChanged("ITM_Product");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_BIN_PRO_ComponentScrapDetail", Storage="_MST_BIN", ThisKey="FromBinID", OtherKey="BinID", IsForeignKey=true)]
 		public MST_BIN MST_BIN
 		{
@@ -61376,40 +55953,6 @@ namespace PCSComUtils.DataContext
 						this._FromLocationID = default(int);
 					}
 					this.SendPropertyChanged("MST_Location");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PRO_ComponentScrapDetail1", Storage="_ITM_Product1", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
-		public ITM_Product ITM_Product1
-		{
-			get
-			{
-				return this._ITM_Product1.Entity;
-			}
-			set
-			{
-				ITM_Product previousValue = this._ITM_Product1.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_Product1.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_Product1.Entity = null;
-						previousValue.PRO_ComponentScrapDetails1.Remove(this);
-					}
-					this._ITM_Product1.Entity = value;
-					if ((value != null))
-					{
-						value.PRO_ComponentScrapDetails1.Add(this);
-						this._ProductID = value.ProductID;
-					}
-					else
-					{
-						this._ProductID = default(int);
-					}
-					this.SendPropertyChanged("ITM_Product1");
 				}
 			}
 		}
@@ -61614,6 +56157,74 @@ namespace PCSComUtils.DataContext
 						this._WorkOrderMasterID = default(int);
 					}
 					this.SendPropertyChanged("PRO_WorkOrderMaster");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PRO_ComponentScrapDetail", Storage="_ITM_Product", ThisKey="ComponentID", OtherKey="ProductID", IsForeignKey=true)]
+		public ITM_Product ITM_Product
+		{
+			get
+			{
+				return this._ITM_Product.Entity;
+			}
+			set
+			{
+				ITM_Product previousValue = this._ITM_Product.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_Product.Entity = null;
+						previousValue.PRO_ComponentScrapDetails.Remove(this);
+					}
+					this._ITM_Product.Entity = value;
+					if ((value != null))
+					{
+						value.PRO_ComponentScrapDetails.Add(this);
+						this._ComponentID = value.ProductID;
+					}
+					else
+					{
+						this._ComponentID = default(int);
+					}
+					this.SendPropertyChanged("ITM_Product");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PRO_ComponentScrapDetail1", Storage="_ITM_Product1", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
+		public ITM_Product ITM_Product1
+		{
+			get
+			{
+				return this._ITM_Product1.Entity;
+			}
+			set
+			{
+				ITM_Product previousValue = this._ITM_Product1.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_Product1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_Product1.Entity = null;
+						previousValue.PRO_ComponentScrapDetails1.Remove(this);
+					}
+					this._ITM_Product1.Entity = value;
+					if ((value != null))
+					{
+						value.PRO_ComponentScrapDetails1.Add(this);
+						this._ProductID = value.ProductID;
+					}
+					else
+					{
+						this._ProductID = default(int);
+					}
+					this.SendPropertyChanged("ITM_Product1");
 				}
 			}
 		}
@@ -63994,8 +58605,6 @@ namespace PCSComUtils.DataContext
 		
 		private EntityRef<PRO_DCOptionMaster> _PRO_DCOptionMaster;
 		
-		private EntityRef<ITM_Product> _ITM_Product;
-		
 		private EntityRef<ITM_Routing> _ITM_Routing;
 		
 		private EntityRef<MST_WorkCenter> _MST_WorkCenter;
@@ -64003,6 +58612,8 @@ namespace PCSComUtils.DataContext
 		private EntityRef<PRO_Shift> _PRO_Shift;
 		
 		private EntityRef<PRO_WorkOrderDetail> _PRO_WorkOrderDetail;
+		
+		private EntityRef<ITM_Product> _ITM_Product;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -64043,11 +58654,11 @@ namespace PCSComUtils.DataContext
 			this._PRO_DCPResultDetails = new EntitySet<PRO_DCPResultDetail>(new Action<PRO_DCPResultDetail>(this.attach_PRO_DCPResultDetails), new Action<PRO_DCPResultDetail>(this.detach_PRO_DCPResultDetails));
 			this._MTR_CPO = default(EntityRef<MTR_CPO>);
 			this._PRO_DCOptionMaster = default(EntityRef<PRO_DCOptionMaster>);
-			this._ITM_Product = default(EntityRef<ITM_Product>);
 			this._ITM_Routing = default(EntityRef<ITM_Routing>);
 			this._MST_WorkCenter = default(EntityRef<MST_WorkCenter>);
 			this._PRO_Shift = default(EntityRef<PRO_Shift>);
 			this._PRO_WorkOrderDetail = default(EntityRef<PRO_WorkOrderDetail>);
+			this._ITM_Product = default(EntityRef<ITM_Product>);
 			OnCreated();
 		}
 		
@@ -64440,40 +59051,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PRO_DCPResultMaster", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
-		public ITM_Product ITM_Product
-		{
-			get
-			{
-				return this._ITM_Product.Entity;
-			}
-			set
-			{
-				ITM_Product previousValue = this._ITM_Product.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_Product.Entity = null;
-						previousValue.PRO_DCPResultMasters.Remove(this);
-					}
-					this._ITM_Product.Entity = value;
-					if ((value != null))
-					{
-						value.PRO_DCPResultMasters.Add(this);
-						this._ProductID = value.ProductID;
-					}
-					else
-					{
-						this._ProductID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("ITM_Product");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Routing_PRO_DCPResultMaster", Storage="_ITM_Routing", ThisKey="RoutingID", OtherKey="RoutingID", IsForeignKey=true)]
 		public ITM_Routing ITM_Routing
 		{
@@ -64606,6 +59183,40 @@ namespace PCSComUtils.DataContext
 						this._WorkOrderDetailID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("PRO_WorkOrderDetail");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PRO_DCPResultMaster", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
+		public ITM_Product ITM_Product
+		{
+			get
+			{
+				return this._ITM_Product.Entity;
+			}
+			set
+			{
+				ITM_Product previousValue = this._ITM_Product.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_Product.Entity = null;
+						previousValue.PRO_DCPResultMasters.Remove(this);
+					}
+					this._ITM_Product.Entity = value;
+					if ((value != null))
+					{
+						value.PRO_DCPResultMasters.Add(this);
+						this._ProductID = value.ProductID;
+					}
+					else
+					{
+						this._ProductID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("ITM_Product");
 				}
 			}
 		}
@@ -64882,8 +59493,6 @@ namespace PCSComUtils.DataContext
 		
 		private EntityRef<MST_MasterLocation> _MST_MasterLocation;
 		
-		private EntityRef<ITM_Product> _ITM_Product;
-		
 		private EntityRef<MST_UnitOfMeasure> _MST_UnitOfMeasure;
 		
 		private EntityRef<PRO_IssueMaterialMaster> _PRO_IssueMaterialMaster;
@@ -64891,6 +59500,8 @@ namespace PCSComUtils.DataContext
 		private EntityRef<PRO_WorkOrderDetail> _PRO_WorkOrderDetail;
 		
 		private EntityRef<PRO_WorkOrderMaster> _PRO_WorkOrderMaster;
+		
+		private EntityRef<ITM_Product> _ITM_Product;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -64938,11 +59549,11 @@ namespace PCSComUtils.DataContext
 			this._MST_BIN = default(EntityRef<MST_BIN>);
 			this._MST_Location = default(EntityRef<MST_Location>);
 			this._MST_MasterLocation = default(EntityRef<MST_MasterLocation>);
-			this._ITM_Product = default(EntityRef<ITM_Product>);
 			this._MST_UnitOfMeasure = default(EntityRef<MST_UnitOfMeasure>);
 			this._PRO_IssueMaterialMaster = default(EntityRef<PRO_IssueMaterialMaster>);
 			this._PRO_WorkOrderDetail = default(EntityRef<PRO_WorkOrderDetail>);
 			this._PRO_WorkOrderMaster = default(EntityRef<PRO_WorkOrderMaster>);
+			this._ITM_Product = default(EntityRef<ITM_Product>);
 			OnCreated();
 		}
 		
@@ -65433,40 +60044,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PRO_IssueMaterialDetail", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
-		public ITM_Product ITM_Product
-		{
-			get
-			{
-				return this._ITM_Product.Entity;
-			}
-			set
-			{
-				ITM_Product previousValue = this._ITM_Product.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_Product.Entity = null;
-						previousValue.PRO_IssueMaterialDetails.Remove(this);
-					}
-					this._ITM_Product.Entity = value;
-					if ((value != null))
-					{
-						value.PRO_IssueMaterialDetails.Add(this);
-						this._ProductID = value.ProductID;
-					}
-					else
-					{
-						this._ProductID = default(int);
-					}
-					this.SendPropertyChanged("ITM_Product");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_UnitOfMeasure_PRO_IssueMaterialDetail", Storage="_MST_UnitOfMeasure", ThisKey="StockUMID", OtherKey="UnitOfMeasureID", IsForeignKey=true)]
 		public MST_UnitOfMeasure MST_UnitOfMeasure
 		{
@@ -65603,6 +60180,40 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PRO_IssueMaterialDetail", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
+		public ITM_Product ITM_Product
+		{
+			get
+			{
+				return this._ITM_Product.Entity;
+			}
+			set
+			{
+				ITM_Product previousValue = this._ITM_Product.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_Product.Entity = null;
+						previousValue.PRO_IssueMaterialDetails.Remove(this);
+					}
+					this._ITM_Product.Entity = value;
+					if ((value != null))
+					{
+						value.PRO_IssueMaterialDetails.Add(this);
+						this._ProductID = value.ProductID;
+					}
+					else
+					{
+						this._ProductID = default(int);
+					}
+					this.SendPropertyChanged("ITM_Product");
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -65676,8 +60287,6 @@ namespace PCSComUtils.DataContext
 		
 		private EntityRef<MST_MasterLocation> _MST_MasterLocation;
 		
-		private EntityRef<ITM_Product> _ITM_Product;
-		
 		private EntityRef<MST_BIN> _MST_BIN;
 		
 		private EntityRef<MST_Location> _MST_Location;
@@ -65691,6 +60300,8 @@ namespace PCSComUtils.DataContext
 		private EntityRef<PRO_WorkOrderDetail> _PRO_WorkOrderDetail1;
 		
 		private EntityRef<PRO_WorkOrderMaster> _PRO_WorkOrderMaster;
+		
+		private EntityRef<ITM_Product> _ITM_Product;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -65731,7 +60342,6 @@ namespace PCSComUtils.DataContext
 			this._PRO_IssueMaterialDetails = new EntitySet<PRO_IssueMaterialDetail>(new Action<PRO_IssueMaterialDetail>(this.attach_PRO_IssueMaterialDetails), new Action<PRO_IssueMaterialDetail>(this.detach_PRO_IssueMaterialDetails));
 			this._MST_CCN = default(EntityRef<MST_CCN>);
 			this._MST_MasterLocation = default(EntityRef<MST_MasterLocation>);
-			this._ITM_Product = default(EntityRef<ITM_Product>);
 			this._MST_BIN = default(EntityRef<MST_BIN>);
 			this._MST_Location = default(EntityRef<MST_Location>);
 			this._PRO_IssuePurpose = default(EntityRef<PRO_IssuePurpose>);
@@ -65739,6 +60349,7 @@ namespace PCSComUtils.DataContext
 			this._PRO_WorkOrderDetail = default(EntityRef<PRO_WorkOrderDetail>);
 			this._PRO_WorkOrderDetail1 = default(EntityRef<PRO_WorkOrderDetail>);
 			this._PRO_WorkOrderMaster = default(EntityRef<PRO_WorkOrderMaster>);
+			this._ITM_Product = default(EntityRef<ITM_Product>);
 			OnCreated();
 		}
 		
@@ -66139,40 +60750,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PRO_IssueMaterialMaster", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
-		public ITM_Product ITM_Product
-		{
-			get
-			{
-				return this._ITM_Product.Entity;
-			}
-			set
-			{
-				ITM_Product previousValue = this._ITM_Product.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_Product.Entity = null;
-						previousValue.PRO_IssueMaterialMasters.Remove(this);
-					}
-					this._ITM_Product.Entity = value;
-					if ((value != null))
-					{
-						value.PRO_IssueMaterialMasters.Add(this);
-						this._ProductID = value.ProductID;
-					}
-					else
-					{
-						this._ProductID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("ITM_Product");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_BIN_PRO_IssueMaterialMaster", Storage="_MST_BIN", ThisKey="ToBinID", OtherKey="BinID", IsForeignKey=true)]
 		public MST_BIN MST_BIN
 		{
@@ -66407,6 +60984,40 @@ namespace PCSComUtils.DataContext
 						this._WorkOrderMasterID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("PRO_WorkOrderMaster");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PRO_IssueMaterialMaster", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
+		public ITM_Product ITM_Product
+		{
+			get
+			{
+				return this._ITM_Product.Entity;
+			}
+			set
+			{
+				ITM_Product previousValue = this._ITM_Product.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_Product.Entity = null;
+						previousValue.PRO_IssueMaterialMasters.Remove(this);
+					}
+					this._ITM_Product.Entity = value;
+					if ((value != null))
+					{
+						value.PRO_IssueMaterialMasters.Add(this);
+						this._ProductID = value.ProductID;
+					}
+					else
+					{
+						this._ProductID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("ITM_Product");
 				}
 			}
 		}
@@ -67741,9 +62352,9 @@ namespace PCSComUtils.DataContext
 		
 		private int _ProductID;
 		
-		private EntityRef<ITM_Product> _ITM_Product;
-		
 		private EntityRef<PRO_ProductionGroup> _PRO_ProductionGroup;
+		
+		private EntityRef<ITM_Product> _ITM_Product;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -67759,8 +62370,8 @@ namespace PCSComUtils.DataContext
 		
 		public PRO_PGProduct()
 		{
-			this._ITM_Product = default(EntityRef<ITM_Product>);
 			this._PRO_ProductionGroup = default(EntityRef<PRO_ProductionGroup>);
+			this._ITM_Product = default(EntityRef<ITM_Product>);
 			OnCreated();
 		}
 		
@@ -67832,40 +62443,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PRO_PGProduct", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
-		public ITM_Product ITM_Product
-		{
-			get
-			{
-				return this._ITM_Product.Entity;
-			}
-			set
-			{
-				ITM_Product previousValue = this._ITM_Product.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_Product.Entity = null;
-						previousValue.PRO_PGProducts.Remove(this);
-					}
-					this._ITM_Product.Entity = value;
-					if ((value != null))
-					{
-						value.PRO_PGProducts.Add(this);
-						this._ProductID = value.ProductID;
-					}
-					else
-					{
-						this._ProductID = default(int);
-					}
-					this.SendPropertyChanged("ITM_Product");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PRO_ProductionGroup_PRO_PGProduct", Storage="_PRO_ProductionGroup", ThisKey="ProductionGroupID", OtherKey="ProductionGroupID", IsForeignKey=true)]
 		public PRO_ProductionGroup PRO_ProductionGroup
 		{
@@ -67896,6 +62473,40 @@ namespace PCSComUtils.DataContext
 						this._ProductionGroupID = default(int);
 					}
 					this.SendPropertyChanged("PRO_ProductionGroup");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PRO_PGProduct", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
+		public ITM_Product ITM_Product
+		{
+			get
+			{
+				return this._ITM_Product.Entity;
+			}
+			set
+			{
+				ITM_Product previousValue = this._ITM_Product.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_Product.Entity = null;
+						previousValue.PRO_PGProducts.Remove(this);
+					}
+					this._ITM_Product.Entity = value;
+					if ((value != null))
+					{
+						value.PRO_PGProducts.Add(this);
+						this._ProductID = value.ProductID;
+					}
+					else
+					{
+						this._ProductID = default(int);
+					}
+					this.SendPropertyChanged("ITM_Product");
 				}
 			}
 		}
@@ -68576,8 +63187,6 @@ namespace PCSComUtils.DataContext
 		
 		private EntitySet<CST_ProductGroup> _CST_ProductGroups;
 		
-		private EntitySet<ITM_Product> _ITM_Products;
-		
 		private EntitySet<IV_StockTakingMaster> _IV_StockTakingMasters;
 		
 		private EntitySet<MST_WorkCenter> _MST_WorkCenters;
@@ -68595,6 +63204,8 @@ namespace PCSComUtils.DataContext
 		private EntitySet<PRO_ProductProductionOrder> _PRO_ProductProductionOrders;
 		
 		private EntitySet<PRO_WorkOrderMaster> _PRO_WorkOrderMasters;
+		
+		private EntitySet<ITM_Product> _ITM_Products;
 		
 		private EntityRef<MST_Department> _MST_Department;
 		
@@ -68625,7 +63236,6 @@ namespace PCSComUtils.DataContext
 			this._cst_ActCostAllocationDetails = new EntitySet<cst_ActCostAllocationDetail>(new Action<cst_ActCostAllocationDetail>(this.attach_cst_ActCostAllocationDetails), new Action<cst_ActCostAllocationDetail>(this.detach_cst_ActCostAllocationDetails));
 			this._cst_AllocationResults = new EntitySet<cst_AllocationResult>(new Action<cst_AllocationResult>(this.attach_cst_AllocationResults), new Action<cst_AllocationResult>(this.detach_cst_AllocationResults));
 			this._CST_ProductGroups = new EntitySet<CST_ProductGroup>(new Action<CST_ProductGroup>(this.attach_CST_ProductGroups), new Action<CST_ProductGroup>(this.detach_CST_ProductGroups));
-			this._ITM_Products = new EntitySet<ITM_Product>(new Action<ITM_Product>(this.attach_ITM_Products), new Action<ITM_Product>(this.detach_ITM_Products));
 			this._IV_StockTakingMasters = new EntitySet<IV_StockTakingMaster>(new Action<IV_StockTakingMaster>(this.attach_IV_StockTakingMasters), new Action<IV_StockTakingMaster>(this.detach_IV_StockTakingMasters));
 			this._MST_WorkCenters = new EntitySet<MST_WorkCenter>(new Action<MST_WorkCenter>(this.attach_MST_WorkCenters), new Action<MST_WorkCenter>(this.detach_MST_WorkCenters));
 			this._PO_PurchaseOrderReceiptMasters = new EntitySet<PO_PurchaseOrderReceiptMaster>(new Action<PO_PurchaseOrderReceiptMaster>(this.attach_PO_PurchaseOrderReceiptMasters), new Action<PO_PurchaseOrderReceiptMaster>(this.detach_PO_PurchaseOrderReceiptMasters));
@@ -68635,6 +63245,7 @@ namespace PCSComUtils.DataContext
 			this._PRO_ProductionGroups = new EntitySet<PRO_ProductionGroup>(new Action<PRO_ProductionGroup>(this.attach_PRO_ProductionGroups), new Action<PRO_ProductionGroup>(this.detach_PRO_ProductionGroups));
 			this._PRO_ProductProductionOrders = new EntitySet<PRO_ProductProductionOrder>(new Action<PRO_ProductProductionOrder>(this.attach_PRO_ProductProductionOrders), new Action<PRO_ProductProductionOrder>(this.detach_PRO_ProductProductionOrders));
 			this._PRO_WorkOrderMasters = new EntitySet<PRO_WorkOrderMaster>(new Action<PRO_WorkOrderMaster>(this.attach_PRO_WorkOrderMasters), new Action<PRO_WorkOrderMaster>(this.detach_PRO_WorkOrderMasters));
+			this._ITM_Products = new EntitySet<ITM_Product>(new Action<ITM_Product>(this.attach_ITM_Products), new Action<ITM_Product>(this.detach_ITM_Products));
 			this._MST_Department = default(EntityRef<MST_Department>);
 			this._MST_Location = default(EntityRef<MST_Location>);
 			OnCreated();
@@ -68827,19 +63438,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PRO_ProductionLine_ITM_Product", Storage="_ITM_Products", ThisKey="ProductionLineID", OtherKey="ProductionLineID")]
-		public EntitySet<ITM_Product> ITM_Products
-		{
-			get
-			{
-				return this._ITM_Products;
-			}
-			set
-			{
-				this._ITM_Products.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PRO_ProductionLine_IV_StockTakingMaster", Storage="_IV_StockTakingMasters", ThisKey="ProductionLineID", OtherKey="ProductionLineID")]
 		public EntitySet<IV_StockTakingMaster> IV_StockTakingMasters
 		{
@@ -68954,6 +63552,19 @@ namespace PCSComUtils.DataContext
 			set
 			{
 				this._PRO_WorkOrderMasters.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PRO_ProductionLine_ITM_Product", Storage="_ITM_Products", ThisKey="ProductionLineID", OtherKey="ProductionLineID")]
+		public EntitySet<ITM_Product> ITM_Products
+		{
+			get
+			{
+				return this._ITM_Products;
+			}
+			set
+			{
+				this._ITM_Products.Assign(value);
 			}
 		}
 		
@@ -69081,18 +63692,6 @@ namespace PCSComUtils.DataContext
 			entity.PRO_ProductionLine = null;
 		}
 		
-		private void attach_ITM_Products(ITM_Product entity)
-		{
-			this.SendPropertyChanging();
-			entity.PRO_ProductionLine = this;
-		}
-		
-		private void detach_ITM_Products(ITM_Product entity)
-		{
-			this.SendPropertyChanging();
-			entity.PRO_ProductionLine = null;
-		}
-		
 		private void attach_IV_StockTakingMasters(IV_StockTakingMaster entity)
 		{
 			this.SendPropertyChanging();
@@ -69200,6 +63799,18 @@ namespace PCSComUtils.DataContext
 			this.SendPropertyChanging();
 			entity.PRO_ProductionLine = null;
 		}
+		
+		private void attach_ITM_Products(ITM_Product entity)
+		{
+			this.SendPropertyChanging();
+			entity.PRO_ProductionLine = this;
+		}
+		
+		private void detach_ITM_Products(ITM_Product entity)
+		{
+			this.SendPropertyChanging();
+			entity.PRO_ProductionLine = null;
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PRO_ProductProductionOrder")]
@@ -69216,9 +63827,9 @@ namespace PCSComUtils.DataContext
 		
 		private System.Nullable<int> _Seq;
 		
-		private EntityRef<ITM_Product> _ITM_Product;
-		
 		private EntityRef<PRO_ProductionLine> _PRO_ProductionLine;
+		
+		private EntityRef<ITM_Product> _ITM_Product;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -69236,8 +63847,8 @@ namespace PCSComUtils.DataContext
 		
 		public PRO_ProductProductionOrder()
 		{
-			this._ITM_Product = default(EntityRef<ITM_Product>);
 			this._PRO_ProductionLine = default(EntityRef<PRO_ProductionLine>);
+			this._ITM_Product = default(EntityRef<ITM_Product>);
 			OnCreated();
 		}
 		
@@ -69329,40 +63940,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PRO_ProductProductionOrder", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
-		public ITM_Product ITM_Product
-		{
-			get
-			{
-				return this._ITM_Product.Entity;
-			}
-			set
-			{
-				ITM_Product previousValue = this._ITM_Product.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_Product.Entity = null;
-						previousValue.PRO_ProductProductionOrders.Remove(this);
-					}
-					this._ITM_Product.Entity = value;
-					if ((value != null))
-					{
-						value.PRO_ProductProductionOrders.Add(this);
-						this._ProductID = value.ProductID;
-					}
-					else
-					{
-						this._ProductID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("ITM_Product");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PRO_ProductionLine_PRO_ProductProductionOrder", Storage="_PRO_ProductionLine", ThisKey="ProductionLineID", OtherKey="ProductionLineID", IsForeignKey=true)]
 		public PRO_ProductionLine PRO_ProductionLine
 		{
@@ -69393,6 +63970,40 @@ namespace PCSComUtils.DataContext
 						this._ProductionLineID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("PRO_ProductionLine");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PRO_ProductProductionOrder", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
+		public ITM_Product ITM_Product
+		{
+			get
+			{
+				return this._ITM_Product.Entity;
+			}
+			set
+			{
+				ITM_Product previousValue = this._ITM_Product.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_Product.Entity = null;
+						previousValue.PRO_ProductProductionOrders.Remove(this);
+					}
+					this._ITM_Product.Entity = value;
+					if ((value != null))
+					{
+						value.PRO_ProductProductionOrders.Add(this);
+						this._ProductID = value.ProductID;
+					}
+					else
+					{
+						this._ProductID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("ITM_Product");
 				}
 			}
 		}
@@ -71006,8 +65617,6 @@ namespace PCSComUtils.DataContext
 		
 		private EntityRef<MST_MasterLocation> _MST_MasterLocation;
 		
-		private EntityRef<ITM_Product> _ITM_Product;
-		
 		private EntityRef<PRO_Shift> _PRO_Shift;
 		
 		private EntityRef<MST_UnitOfMeasure> _MST_UnitOfMeasure;
@@ -71015,6 +65624,8 @@ namespace PCSComUtils.DataContext
 		private EntityRef<PRO_WorkOrderDetail> _PRO_WorkOrderDetail;
 		
 		private EntityRef<PRO_WorkOrderMaster> _PRO_WorkOrderMaster;
+		
+		private EntityRef<ITM_Product> _ITM_Product;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -71073,11 +65684,11 @@ namespace PCSComUtils.DataContext
 			this._PRO_IssuePurpose = default(EntityRef<PRO_IssuePurpose>);
 			this._MST_Location = default(EntityRef<MST_Location>);
 			this._MST_MasterLocation = default(EntityRef<MST_MasterLocation>);
-			this._ITM_Product = default(EntityRef<ITM_Product>);
 			this._PRO_Shift = default(EntityRef<PRO_Shift>);
 			this._MST_UnitOfMeasure = default(EntityRef<MST_UnitOfMeasure>);
 			this._PRO_WorkOrderDetail = default(EntityRef<PRO_WorkOrderDetail>);
 			this._PRO_WorkOrderMaster = default(EntityRef<PRO_WorkOrderMaster>);
+			this._ITM_Product = default(EntityRef<ITM_Product>);
 			OnCreated();
 		}
 		
@@ -71731,40 +66342,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PRO_WorkOrderCompletion", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
-		public ITM_Product ITM_Product
-		{
-			get
-			{
-				return this._ITM_Product.Entity;
-			}
-			set
-			{
-				ITM_Product previousValue = this._ITM_Product.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_Product.Entity = null;
-						previousValue.PRO_WorkOrderCompletions.Remove(this);
-					}
-					this._ITM_Product.Entity = value;
-					if ((value != null))
-					{
-						value.PRO_WorkOrderCompletions.Add(this);
-						this._ProductID = value.ProductID;
-					}
-					else
-					{
-						this._ProductID = default(int);
-					}
-					this.SendPropertyChanged("ITM_Product");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PRO_Shift_PRO_WorkOrderCompletion", Storage="_PRO_Shift", ThisKey="ShiftID", OtherKey="ShiftID", IsForeignKey=true)]
 		public PRO_Shift PRO_Shift
 		{
@@ -71901,6 +66478,40 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PRO_WorkOrderCompletion", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
+		public ITM_Product ITM_Product
+		{
+			get
+			{
+				return this._ITM_Product.Entity;
+			}
+			set
+			{
+				ITM_Product previousValue = this._ITM_Product.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_Product.Entity = null;
+						previousValue.PRO_WorkOrderCompletions.Remove(this);
+					}
+					this._ITM_Product.Entity = value;
+					if ((value != null))
+					{
+						value.PRO_WorkOrderCompletions.Add(this);
+						this._ProductID = value.ProductID;
+					}
+					else
+					{
+						this._ProductID = default(int);
+					}
+					this.SendPropertyChanged("ITM_Product");
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -71976,8 +66587,6 @@ namespace PCSComUtils.DataContext
 		
 		private EntitySet<PRO_WorkOrderCompletion> _PRO_WorkOrderCompletions;
 		
-		private EntityRef<ITM_Product> _ITM_Product;
-		
 		private EntityRef<MST_UnitOfMeasure> _MST_UnitOfMeasure;
 		
 		private EntityRef<PRO_WorkOrderMaster> _PRO_WorkOrderMaster;
@@ -71985,6 +66594,8 @@ namespace PCSComUtils.DataContext
 		private EntityRef<SO_SaleOrderDetail> _SO_SaleOrderDetail;
 		
 		private EntityRef<SO_SaleOrderMaster> _SO_SaleOrderMaster;
+		
+		private EntityRef<ITM_Product> _ITM_Product;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -72036,11 +66647,11 @@ namespace PCSComUtils.DataContext
 			this._PRO_IssueMaterialMasters = new EntitySet<PRO_IssueMaterialMaster>(new Action<PRO_IssueMaterialMaster>(this.attach_PRO_IssueMaterialMasters), new Action<PRO_IssueMaterialMaster>(this.detach_PRO_IssueMaterialMasters));
 			this._PRO_IssueMaterialMasters1 = new EntitySet<PRO_IssueMaterialMaster>(new Action<PRO_IssueMaterialMaster>(this.attach_PRO_IssueMaterialMasters1), new Action<PRO_IssueMaterialMaster>(this.detach_PRO_IssueMaterialMasters1));
 			this._PRO_WorkOrderCompletions = new EntitySet<PRO_WorkOrderCompletion>(new Action<PRO_WorkOrderCompletion>(this.attach_PRO_WorkOrderCompletions), new Action<PRO_WorkOrderCompletion>(this.detach_PRO_WorkOrderCompletions));
-			this._ITM_Product = default(EntityRef<ITM_Product>);
 			this._MST_UnitOfMeasure = default(EntityRef<MST_UnitOfMeasure>);
 			this._PRO_WorkOrderMaster = default(EntityRef<PRO_WorkOrderMaster>);
 			this._SO_SaleOrderDetail = default(EntityRef<SO_SaleOrderDetail>);
 			this._SO_SaleOrderMaster = default(EntityRef<SO_SaleOrderMaster>);
+			this._ITM_Product = default(EntityRef<ITM_Product>);
 			OnCreated();
 		}
 		
@@ -72502,40 +67113,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PRO_WorkOrderDetail", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
-		public ITM_Product ITM_Product
-		{
-			get
-			{
-				return this._ITM_Product.Entity;
-			}
-			set
-			{
-				ITM_Product previousValue = this._ITM_Product.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_Product.Entity = null;
-						previousValue.PRO_WorkOrderDetails.Remove(this);
-					}
-					this._ITM_Product.Entity = value;
-					if ((value != null))
-					{
-						value.PRO_WorkOrderDetails.Add(this);
-						this._ProductID = value.ProductID;
-					}
-					else
-					{
-						this._ProductID = default(int);
-					}
-					this.SendPropertyChanged("ITM_Product");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_UnitOfMeasure_PRO_WorkOrderDetail", Storage="_MST_UnitOfMeasure", ThisKey="StockUMID", OtherKey="UnitOfMeasureID", IsForeignKey=true)]
 		public MST_UnitOfMeasure MST_UnitOfMeasure
 		{
@@ -72668,6 +67245,40 @@ namespace PCSComUtils.DataContext
 						this._SaleOrderMasterID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("SO_SaleOrderMaster");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PRO_WorkOrderDetail", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
+		public ITM_Product ITM_Product
+		{
+			get
+			{
+				return this._ITM_Product.Entity;
+			}
+			set
+			{
+				ITM_Product previousValue = this._ITM_Product.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_Product.Entity = null;
+						previousValue.PRO_WorkOrderDetails.Remove(this);
+					}
+					this._ITM_Product.Entity = value;
+					if ((value != null))
+					{
+						value.PRO_WorkOrderDetails.Add(this);
+						this._ProductID = value.ProductID;
+					}
+					else
+					{
+						this._ProductID = default(int);
+					}
+					this.SendPropertyChanged("ITM_Product");
 				}
 			}
 		}
@@ -73684,8 +68295,6 @@ namespace PCSComUtils.DataContext
 		
 		private EntityRef<MST_MasterLocation> _MST_MasterLocation;
 		
-		private EntityRef<ITM_Product> _ITM_Product;
-		
 		private EntityRef<MST_UnitOfMeasure> _MST_UnitOfMeasure;
 		
 		private EntityRef<MST_UnitOfMeasure> _MST_UnitOfMeasure1;
@@ -73693,6 +68302,8 @@ namespace PCSComUtils.DataContext
 		private EntityRef<SO_CommitInventoryMaster> _SO_CommitInventoryMaster;
 		
 		private EntityRef<SO_DeliverySchedule> _SO_DeliverySchedule;
+		
+		private EntityRef<ITM_Product> _ITM_Product;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -73747,11 +68358,11 @@ namespace PCSComUtils.DataContext
 			this._MST_BIN = default(EntityRef<MST_BIN>);
 			this._MST_Location = default(EntityRef<MST_Location>);
 			this._MST_MasterLocation = default(EntityRef<MST_MasterLocation>);
-			this._ITM_Product = default(EntityRef<ITM_Product>);
 			this._MST_UnitOfMeasure = default(EntityRef<MST_UnitOfMeasure>);
 			this._MST_UnitOfMeasure1 = default(EntityRef<MST_UnitOfMeasure>);
 			this._SO_CommitInventoryMaster = default(EntityRef<SO_CommitInventoryMaster>);
 			this._SO_DeliverySchedule = default(EntityRef<SO_DeliverySchedule>);
+			this._ITM_Product = default(EntityRef<ITM_Product>);
 			OnCreated();
 		}
 		
@@ -74309,40 +68920,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_SO_CommitInventoryDetail", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
-		public ITM_Product ITM_Product
-		{
-			get
-			{
-				return this._ITM_Product.Entity;
-			}
-			set
-			{
-				ITM_Product previousValue = this._ITM_Product.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_Product.Entity = null;
-						previousValue.SO_CommitInventoryDetails.Remove(this);
-					}
-					this._ITM_Product.Entity = value;
-					if ((value != null))
-					{
-						value.SO_CommitInventoryDetails.Add(this);
-						this._ProductID = value.ProductID;
-					}
-					else
-					{
-						this._ProductID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("ITM_Product");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_UnitOfMeasure_SO_CommitInventoryDetail", Storage="_MST_UnitOfMeasure", ThisKey="SellingUMID", OtherKey="UnitOfMeasureID", IsForeignKey=true)]
 		public MST_UnitOfMeasure MST_UnitOfMeasure
 		{
@@ -74475,6 +69052,40 @@ namespace PCSComUtils.DataContext
 						this._DeliveryScheduleID = default(int);
 					}
 					this.SendPropertyChanged("SO_DeliverySchedule");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_SO_CommitInventoryDetail", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
+		public ITM_Product ITM_Product
+		{
+			get
+			{
+				return this._ITM_Product.Entity;
+			}
+			set
+			{
+				ITM_Product previousValue = this._ITM_Product.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_Product.Entity = null;
+						previousValue.SO_CommitInventoryDetails.Remove(this);
+					}
+					this._ITM_Product.Entity = value;
+					if ((value != null))
+					{
+						value.SO_CommitInventoryDetails.Add(this);
+						this._ProductID = value.ProductID;
+					}
+					else
+					{
+						this._ProductID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("ITM_Product");
 				}
 			}
 		}
@@ -74812,11 +69423,11 @@ namespace PCSComUtils.DataContext
 		
 		private int _UnitOfMeasureID;
 		
-		private EntityRef<ITM_Product> _ITM_Product;
-		
 		private EntityRef<MST_UnitOfMeasure> _MST_UnitOfMeasure;
 		
 		private EntityRef<SO_CustomerItemRefMaster> _SO_CustomerItemRefMaster;
+		
+		private EntityRef<ITM_Product> _ITM_Product;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -74840,9 +69451,9 @@ namespace PCSComUtils.DataContext
 		
 		public SO_CustomerItemRefDetail()
 		{
-			this._ITM_Product = default(EntityRef<ITM_Product>);
 			this._MST_UnitOfMeasure = default(EntityRef<MST_UnitOfMeasure>);
 			this._SO_CustomerItemRefMaster = default(EntityRef<SO_CustomerItemRefMaster>);
+			this._ITM_Product = default(EntityRef<ITM_Product>);
 			OnCreated();
 		}
 		
@@ -74998,40 +69609,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_SO_CustomerItemRefDetail", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
-		public ITM_Product ITM_Product
-		{
-			get
-			{
-				return this._ITM_Product.Entity;
-			}
-			set
-			{
-				ITM_Product previousValue = this._ITM_Product.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_Product.Entity = null;
-						previousValue.SO_CustomerItemRefDetails.Remove(this);
-					}
-					this._ITM_Product.Entity = value;
-					if ((value != null))
-					{
-						value.SO_CustomerItemRefDetails.Add(this);
-						this._ProductID = value.ProductID;
-					}
-					else
-					{
-						this._ProductID = default(int);
-					}
-					this.SendPropertyChanged("ITM_Product");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_UnitOfMeasure_SO_CustomerItemRefDetail", Storage="_MST_UnitOfMeasure", ThisKey="UnitOfMeasureID", OtherKey="UnitOfMeasureID", IsForeignKey=true)]
 		public MST_UnitOfMeasure MST_UnitOfMeasure
 		{
@@ -75096,6 +69673,40 @@ namespace PCSComUtils.DataContext
 						this._CustomerItemRefMasterID = default(int);
 					}
 					this.SendPropertyChanged("SO_CustomerItemRefMaster");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_SO_CustomerItemRefDetail", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
+		public ITM_Product ITM_Product
+		{
+			get
+			{
+				return this._ITM_Product.Entity;
+			}
+			set
+			{
+				ITM_Product previousValue = this._ITM_Product.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_Product.Entity = null;
+						previousValue.SO_CustomerItemRefDetails.Remove(this);
+					}
+					this._ITM_Product.Entity = value;
+					if ((value != null))
+					{
+						value.SO_CustomerItemRefDetails.Add(this);
+						this._ProductID = value.ProductID;
+					}
+					else
+					{
+						this._ProductID = default(int);
+					}
+					this.SendPropertyChanged("ITM_Product");
 				}
 			}
 		}
@@ -76204,8 +70815,6 @@ namespace PCSComUtils.DataContext
 		
 		private EntityRef<MST_MasterLocation> _MST_MasterLocation;
 		
-		private EntityRef<ITM_Product> _ITM_Product;
-		
 		private EntityRef<MST_UnitOfMeasure> _MST_UnitOfMeasure;
 		
 		private EntityRef<SO_ReturnedGoodsMaster> _SO_ReturnedGoodsMaster;
@@ -76213,6 +70822,8 @@ namespace PCSComUtils.DataContext
 		private EntityRef<SO_SaleOrderDetail> _SO_SaleOrderDetail;
 		
 		private EntityRef<SO_ConfirmShipMaster> _SO_ConfirmShipMaster;
+		
+		private EntityRef<ITM_Product> _ITM_Product;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -76259,11 +70870,11 @@ namespace PCSComUtils.DataContext
 			this._MST_BIN = default(EntityRef<MST_BIN>);
 			this._MST_Location = default(EntityRef<MST_Location>);
 			this._MST_MasterLocation = default(EntityRef<MST_MasterLocation>);
-			this._ITM_Product = default(EntityRef<ITM_Product>);
 			this._MST_UnitOfMeasure = default(EntityRef<MST_UnitOfMeasure>);
 			this._SO_ReturnedGoodsMaster = default(EntityRef<SO_ReturnedGoodsMaster>);
 			this._SO_SaleOrderDetail = default(EntityRef<SO_SaleOrderDetail>);
 			this._SO_ConfirmShipMaster = default(EntityRef<SO_ConfirmShipMaster>);
+			this._ITM_Product = default(EntityRef<ITM_Product>);
 			OnCreated();
 		}
 		
@@ -76741,40 +71352,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_SO_ReturnedGoodsDetail", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
-		public ITM_Product ITM_Product
-		{
-			get
-			{
-				return this._ITM_Product.Entity;
-			}
-			set
-			{
-				ITM_Product previousValue = this._ITM_Product.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_Product.Entity = null;
-						previousValue.SO_ReturnedGoodsDetails.Remove(this);
-					}
-					this._ITM_Product.Entity = value;
-					if ((value != null))
-					{
-						value.SO_ReturnedGoodsDetails.Add(this);
-						this._ProductID = value.ProductID;
-					}
-					else
-					{
-						this._ProductID = default(int);
-					}
-					this.SendPropertyChanged("ITM_Product");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_UnitOfMeasure_SO_ReturnedGoodsDetail", Storage="_MST_UnitOfMeasure", ThisKey="UnitID", OtherKey="UnitOfMeasureID", IsForeignKey=true)]
 		public MST_UnitOfMeasure MST_UnitOfMeasure
 		{
@@ -76907,6 +71484,40 @@ namespace PCSComUtils.DataContext
 						this._ConfirmShipMasterID = default(Nullable<int>);
 					}
 					this.SendPropertyChanged("SO_ConfirmShipMaster");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_SO_ReturnedGoodsDetail", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
+		public ITM_Product ITM_Product
+		{
+			get
+			{
+				return this._ITM_Product.Entity;
+			}
+			set
+			{
+				ITM_Product previousValue = this._ITM_Product.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_Product.Entity = null;
+						previousValue.SO_ReturnedGoodsDetails.Remove(this);
+					}
+					this._ITM_Product.Entity = value;
+					if ((value != null))
+					{
+						value.SO_ReturnedGoodsDetails.Add(this);
+						this._ProductID = value.ProductID;
+					}
+					else
+					{
+						this._ProductID = default(int);
+					}
+					this.SendPropertyChanged("ITM_Product");
 				}
 			}
 		}
@@ -77782,8 +72393,6 @@ namespace PCSComUtils.DataContext
 		
 		private EntityRef<SO_CancelReason> _SO_CancelReason;
 		
-		private EntityRef<ITM_Product> _ITM_Product;
-		
 		private EntityRef<MST_Reason> _MST_Reason;
 		
 		private EntityRef<MST_UnitOfMeasure> _MST_UnitOfMeasure;
@@ -77791,6 +72400,8 @@ namespace PCSComUtils.DataContext
 		private EntityRef<MST_UnitOfMeasure> _MST_UnitOfMeasure1;
 		
 		private EntityRef<SO_SaleOrderMaster> _SO_SaleOrderMaster;
+		
+		private EntityRef<ITM_Product> _ITM_Product;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -77860,11 +72471,11 @@ namespace PCSComUtils.DataContext
 			this._SO_ConfirmShipDetails = new EntitySet<SO_ConfirmShipDetail>(new Action<SO_ConfirmShipDetail>(this.attach_SO_ConfirmShipDetails), new Action<SO_ConfirmShipDetail>(this.detach_SO_ConfirmShipDetails));
 			this._SO_InvoiceDetails = new EntitySet<SO_InvoiceDetail>(new Action<SO_InvoiceDetail>(this.attach_SO_InvoiceDetails), new Action<SO_InvoiceDetail>(this.detach_SO_InvoiceDetails));
 			this._SO_CancelReason = default(EntityRef<SO_CancelReason>);
-			this._ITM_Product = default(EntityRef<ITM_Product>);
 			this._MST_Reason = default(EntityRef<MST_Reason>);
 			this._MST_UnitOfMeasure = default(EntityRef<MST_UnitOfMeasure>);
 			this._MST_UnitOfMeasure1 = default(EntityRef<MST_UnitOfMeasure>);
 			this._SO_SaleOrderMaster = default(EntityRef<SO_SaleOrderMaster>);
+			this._ITM_Product = default(EntityRef<ITM_Product>);
 			OnCreated();
 		}
 		
@@ -78531,40 +73142,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_SO_SaleOrderDetail", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
-		public ITM_Product ITM_Product
-		{
-			get
-			{
-				return this._ITM_Product.Entity;
-			}
-			set
-			{
-				ITM_Product previousValue = this._ITM_Product.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_Product.Entity = null;
-						previousValue.SO_SaleOrderDetails.Remove(this);
-					}
-					this._ITM_Product.Entity = value;
-					if ((value != null))
-					{
-						value.SO_SaleOrderDetails.Add(this);
-						this._ProductID = value.ProductID;
-					}
-					else
-					{
-						this._ProductID = default(int);
-					}
-					this.SendPropertyChanged("ITM_Product");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_Reason_SO_SaleOrderDetail", Storage="_MST_Reason", ThisKey="ReasonID", OtherKey="ReasonID", IsForeignKey=true)]
 		public MST_Reason MST_Reason
 		{
@@ -78697,6 +73274,40 @@ namespace PCSComUtils.DataContext
 						this._SaleOrderMasterID = default(int);
 					}
 					this.SendPropertyChanged("SO_SaleOrderMaster");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_SO_SaleOrderDetail", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
+		public ITM_Product ITM_Product
+		{
+			get
+			{
+				return this._ITM_Product.Entity;
+			}
+			set
+			{
+				ITM_Product previousValue = this._ITM_Product.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_Product.Entity = null;
+						previousValue.SO_SaleOrderDetails.Remove(this);
+					}
+					this._ITM_Product.Entity = value;
+					if ((value != null))
+					{
+						value.SO_SaleOrderDetails.Add(this);
+						this._ProductID = value.ProductID;
+					}
+					else
+					{
+						this._ProductID = default(int);
+					}
+					this.SendPropertyChanged("ITM_Product");
 				}
 			}
 		}
@@ -88774,9 +83385,9 @@ namespace PCSComUtils.DataContext
 		
 		private int _ProductID;
 		
-		private EntityRef<ITM_Product> _ITM_Product;
-		
 		private EntityRef<Sys_Role> _Sys_Role;
+		
+		private EntityRef<ITM_Product> _ITM_Product;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -88792,8 +83403,8 @@ namespace PCSComUtils.DataContext
 		
 		public sys_RoleProduct()
 		{
-			this._ITM_Product = default(EntityRef<ITM_Product>);
 			this._Sys_Role = default(EntityRef<Sys_Role>);
+			this._ITM_Product = default(EntityRef<ITM_Product>);
 			OnCreated();
 		}
 		
@@ -88865,40 +83476,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_sys_RoleProduct", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
-		public ITM_Product ITM_Product
-		{
-			get
-			{
-				return this._ITM_Product.Entity;
-			}
-			set
-			{
-				ITM_Product previousValue = this._ITM_Product.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_Product.Entity = null;
-						previousValue.sys_RoleProducts.Remove(this);
-					}
-					this._ITM_Product.Entity = value;
-					if ((value != null))
-					{
-						value.sys_RoleProducts.Add(this);
-						this._ProductID = value.ProductID;
-					}
-					else
-					{
-						this._ProductID = default(int);
-					}
-					this.SendPropertyChanged("ITM_Product");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Sys_Role_sys_RoleProduct", Storage="_Sys_Role", ThisKey="RoleID", OtherKey="RoleID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
 		public Sys_Role Sys_Role
 		{
@@ -88929,6 +83506,40 @@ namespace PCSComUtils.DataContext
 						this._RoleID = default(int);
 					}
 					this.SendPropertyChanged("Sys_Role");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_sys_RoleProduct", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		public ITM_Product ITM_Product
+		{
+			get
+			{
+				return this._ITM_Product.Entity;
+			}
+			set
+			{
+				ITM_Product previousValue = this._ITM_Product.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_Product.Entity = null;
+						previousValue.sys_RoleProducts.Remove(this);
+					}
+					this._ITM_Product.Entity = value;
+					if ((value != null))
+					{
+						value.sys_RoleProducts.Add(this);
+						this._ProductID = value.ProductID;
+					}
+					else
+					{
+						this._ProductID = default(int);
+					}
+					this.SendPropertyChanged("ITM_Product");
 				}
 			}
 		}
@@ -128141,11 +122752,11 @@ namespace PCSComUtils.DataContext
 		
 		private EntityRef<SO_DeliverySchedule> _SO_DeliverySchedule;
 		
-		private EntityRef<ITM_Product> _ITM_Product;
-		
 		private EntityRef<SO_SaleOrderDetail> _SO_SaleOrderDetail;
 		
 		private EntityRef<SO_ConfirmShipMaster> _SO_ConfirmShipMaster;
+		
+		private EntityRef<ITM_Product> _ITM_Product;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -128178,9 +122789,9 @@ namespace PCSComUtils.DataContext
 		public SO_ConfirmShipDetail()
 		{
 			this._SO_DeliverySchedule = default(EntityRef<SO_DeliverySchedule>);
-			this._ITM_Product = default(EntityRef<ITM_Product>);
 			this._SO_SaleOrderDetail = default(EntityRef<SO_SaleOrderDetail>);
 			this._SO_ConfirmShipMaster = default(EntityRef<SO_ConfirmShipMaster>);
+			this._ITM_Product = default(EntityRef<ITM_Product>);
 			OnCreated();
 		}
 		
@@ -128454,40 +123065,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_SO_ConfirmShipDetail", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
-		public ITM_Product ITM_Product
-		{
-			get
-			{
-				return this._ITM_Product.Entity;
-			}
-			set
-			{
-				ITM_Product previousValue = this._ITM_Product.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_Product.Entity = null;
-						previousValue.SO_ConfirmShipDetails.Remove(this);
-					}
-					this._ITM_Product.Entity = value;
-					if ((value != null))
-					{
-						value.SO_ConfirmShipDetails.Add(this);
-						this._ProductID = value.ProductID;
-					}
-					else
-					{
-						this._ProductID = default(int);
-					}
-					this.SendPropertyChanged("ITM_Product");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SO_SaleOrderDetail_SO_ConfirmShipDetail", Storage="_SO_SaleOrderDetail", ThisKey="SaleOrderDetailID", OtherKey="SaleOrderDetailID", IsForeignKey=true)]
 		public SO_SaleOrderDetail SO_SaleOrderDetail
 		{
@@ -128556,6 +123133,40 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_SO_ConfirmShipDetail", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
+		public ITM_Product ITM_Product
+		{
+			get
+			{
+				return this._ITM_Product.Entity;
+			}
+			set
+			{
+				ITM_Product previousValue = this._ITM_Product.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_Product.Entity = null;
+						previousValue.SO_ConfirmShipDetails.Remove(this);
+					}
+					this._ITM_Product.Entity = value;
+					if ((value != null))
+					{
+						value.SO_ConfirmShipDetails.Add(this);
+						this._ProductID = value.ProductID;
+					}
+					else
+					{
+						this._ProductID = default(int);
+					}
+					this.SendPropertyChanged("ITM_Product");
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -128607,11 +123218,11 @@ namespace PCSComUtils.DataContext
 		
 		private EntityRef<SO_DeliverySchedule> _SO_DeliverySchedule;
 		
-		private EntityRef<ITM_Product> _ITM_Product;
-		
 		private EntityRef<SO_SaleOrderDetail> _SO_SaleOrderDetail;
 		
 		private EntityRef<SO_InvoiceMaster> _SO_InvoiceMaster;
+		
+		private EntityRef<ITM_Product> _ITM_Product;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -128644,9 +123255,9 @@ namespace PCSComUtils.DataContext
 		public SO_InvoiceDetail()
 		{
 			this._SO_DeliverySchedule = default(EntityRef<SO_DeliverySchedule>);
-			this._ITM_Product = default(EntityRef<ITM_Product>);
 			this._SO_SaleOrderDetail = default(EntityRef<SO_SaleOrderDetail>);
 			this._SO_InvoiceMaster = default(EntityRef<SO_InvoiceMaster>);
+			this._ITM_Product = default(EntityRef<ITM_Product>);
 			OnCreated();
 		}
 		
@@ -128920,40 +123531,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_SO_InvoiceDetail", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
-		public ITM_Product ITM_Product
-		{
-			get
-			{
-				return this._ITM_Product.Entity;
-			}
-			set
-			{
-				ITM_Product previousValue = this._ITM_Product.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_Product.Entity = null;
-						previousValue.SO_InvoiceDetails.Remove(this);
-					}
-					this._ITM_Product.Entity = value;
-					if ((value != null))
-					{
-						value.SO_InvoiceDetails.Add(this);
-						this._ProductID = value.ProductID;
-					}
-					else
-					{
-						this._ProductID = default(int);
-					}
-					this.SendPropertyChanged("ITM_Product");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="SO_SaleOrderDetail_SO_InvoiceDetail", Storage="_SO_SaleOrderDetail", ThisKey="SaleOrderDetailID", OtherKey="SaleOrderDetailID", IsForeignKey=true)]
 		public SO_SaleOrderDetail SO_SaleOrderDetail
 		{
@@ -129018,6 +123595,40 @@ namespace PCSComUtils.DataContext
 						this._InvoiceMasterID = default(int);
 					}
 					this.SendPropertyChanged("SO_InvoiceMaster");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_SO_InvoiceDetail", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
+		public ITM_Product ITM_Product
+		{
+			get
+			{
+				return this._ITM_Product.Entity;
+			}
+			set
+			{
+				ITM_Product previousValue = this._ITM_Product.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_Product.Entity = null;
+						previousValue.SO_InvoiceDetails.Remove(this);
+					}
+					this._ITM_Product.Entity = value;
+					if ((value != null))
+					{
+						value.SO_InvoiceDetails.Add(this);
+						this._ProductID = value.ProductID;
+					}
+					else
+					{
+						this._ProductID = default(int);
+					}
+					this.SendPropertyChanged("ITM_Product");
 				}
 			}
 		}
@@ -131195,13 +125806,13 @@ namespace PCSComUtils.DataContext
 		
 		private EntityRef<IV_MiscellaneousIssueMaster> _IV_MiscellaneousIssueMaster;
 		
-		private EntityRef<ITM_Product> _ITM_Product;
-		
 		private EntityRef<MST_UnitOfMeasure> _MST_UnitOfMeasure;
 		
 		private EntityRef<MST_Department> _MST_Department;
 		
 		private EntityRef<MST_Reason> _MST_Reason;
+		
+		private EntityRef<ITM_Product> _ITM_Product;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -131230,10 +125841,10 @@ namespace PCSComUtils.DataContext
 		public IV_MiscellaneousIssueDetail()
 		{
 			this._IV_MiscellaneousIssueMaster = default(EntityRef<IV_MiscellaneousIssueMaster>);
-			this._ITM_Product = default(EntityRef<ITM_Product>);
 			this._MST_UnitOfMeasure = default(EntityRef<MST_UnitOfMeasure>);
 			this._MST_Department = default(EntityRef<MST_Department>);
 			this._MST_Reason = default(EntityRef<MST_Reason>);
+			this._ITM_Product = default(EntityRef<ITM_Product>);
 			OnCreated();
 		}
 		
@@ -131471,40 +126082,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_IV_MiscellaneousIssueDetail", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
-		public ITM_Product ITM_Product
-		{
-			get
-			{
-				return this._ITM_Product.Entity;
-			}
-			set
-			{
-				ITM_Product previousValue = this._ITM_Product.Entity;
-				if (((previousValue != value) 
-							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._ITM_Product.Entity = null;
-						previousValue.IV_MiscellaneousIssueDetails.Remove(this);
-					}
-					this._ITM_Product.Entity = value;
-					if ((value != null))
-					{
-						value.IV_MiscellaneousIssueDetails.Add(this);
-						this._ProductID = value.ProductID;
-					}
-					else
-					{
-						this._ProductID = default(int);
-					}
-					this.SendPropertyChanged("ITM_Product");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_UnitOfMeasure_IV_MiscellaneousIssueDetail", Storage="_MST_UnitOfMeasure", ThisKey="StockUMID", OtherKey="UnitOfMeasureID", IsForeignKey=true)]
 		public MST_UnitOfMeasure MST_UnitOfMeasure
 		{
@@ -131607,6 +126184,40 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_IV_MiscellaneousIssueDetail", Storage="_ITM_Product", ThisKey="ProductID", OtherKey="ProductID", IsForeignKey=true)]
+		public ITM_Product ITM_Product
+		{
+			get
+			{
+				return this._ITM_Product.Entity;
+			}
+			set
+			{
+				ITM_Product previousValue = this._ITM_Product.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_Product.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_Product.Entity = null;
+						previousValue.IV_MiscellaneousIssueDetails.Remove(this);
+					}
+					this._ITM_Product.Entity = value;
+					if ((value != null))
+					{
+						value.IV_MiscellaneousIssueDetails.Add(this);
+						this._ProductID = value.ProductID;
+					}
+					else
+					{
+						this._ProductID = default(int);
+					}
+					this.SendPropertyChanged("ITM_Product");
+				}
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -131625,6 +126236,5823 @@ namespace PCSComUtils.DataContext
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ITM_Product")]
+	public partial class ITM_Product : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ProductID;
+		
+		private string _Code;
+		
+		private string _Revision;
+		
+		private string _Description;
+		
+		private System.DateTime _SetupDate;
+		
+		private System.Nullable<double> _VAT;
+		
+		private System.Nullable<double> _ImportTax;
+		
+		private System.Nullable<double> _ExportTax;
+		
+		private System.Nullable<double> _SpecialTax;
+		
+		private bool _MakeItem;
+		
+		private string _PartNumber;
+		
+		private string _OtherInfo1;
+		
+		private string _OtherInfo2;
+		
+		private System.Nullable<decimal> _Length;
+		
+		private System.Nullable<decimal> _Width;
+		
+		private System.Nullable<decimal> _Height;
+		
+		private System.Nullable<decimal> _Weight;
+		
+		private System.Nullable<bool> _FinishedGoods;
+		
+		private System.Nullable<decimal> _ShelfLife;
+		
+		private System.Nullable<bool> _LotControl;
+		
+		private System.Nullable<byte> _QAStatus;
+		
+		private System.Nullable<bool> _Stock;
+		
+		private byte _PlanType;
+		
+		private System.Nullable<bool> _AutoConversion;
+		
+		private System.Nullable<decimal> _OrderQuantity;
+		
+		private System.Nullable<decimal> _LTRequisition;
+		
+		private System.Nullable<decimal> _LTSafetyStock;
+		
+		private System.Nullable<decimal> _OrderQuantityMultiple;
+		
+		private System.Nullable<double> _ScrapPercent;
+		
+		private System.Nullable<decimal> _MinimumStock;
+		
+		private System.Nullable<decimal> _MaximumStock;
+		
+		private System.Nullable<decimal> _ConversionTolerance;
+		
+		private System.Nullable<decimal> _VoucherTolerance;
+		
+		private System.Nullable<decimal> _ReceiveTolerance;
+		
+		private System.Nullable<decimal> _IssueSize;
+		
+		private System.Nullable<decimal> _LTFixedTime;
+		
+		private System.Nullable<decimal> _LTVariableTime;
+		
+		private System.Nullable<decimal> _LTOrderPrepare;
+		
+		private System.Nullable<decimal> _LTShippingPrepare;
+		
+		private System.Nullable<decimal> _LTSalesATP;
+		
+		private System.Nullable<int> _ShipToleranceID;
+		
+		private System.Nullable<int> _BuyerID;
+		
+		private string _BOMDescription;
+		
+		private System.Nullable<byte> _BomIncrement;
+		
+		private string _RoutingDescription;
+		
+		private System.DateTime _CreateDateTime;
+		
+		private System.Nullable<System.DateTime> _UpdateDateTime;
+		
+		private System.Nullable<byte> _CostMethod;
+		
+		private System.Nullable<byte> _RoutingIncrement;
+		
+		private int _CCNID;
+		
+		private System.Nullable<int> _CategoryID;
+		
+		private System.Nullable<int> _CostCenterID;
+		
+		private System.Nullable<int> _DeleteReasonID;
+		
+		private System.Nullable<int> _DeliveryPolicyID;
+		
+		private System.Nullable<int> _FormatCodeID;
+		
+		private System.Nullable<int> _FreightClassID;
+		
+		private System.Nullable<int> _HazardID;
+		
+		private System.Nullable<int> _OrderPolicyID;
+		
+		private System.Nullable<int> _OrderRuleID;
+		
+		private System.Nullable<int> _SourceID;
+		
+		private int _StockUMID;
+		
+		private int _SellingUMID;
+		
+		private System.Nullable<int> _HeightUMID;
+		
+		private System.Nullable<int> _WidthUMID;
+		
+		private System.Nullable<int> _LengthUMID;
+		
+		private int _BuyingUMID;
+		
+		private System.Nullable<int> _WeightUMID;
+		
+		private System.Nullable<int> _LotSize;
+		
+		private System.Nullable<int> _MasterLocationID;
+		
+		private System.Nullable<int> _LocationID;
+		
+		private System.Nullable<int> _BinID;
+		
+		private System.Nullable<int> _PrimaryVendorID;
+		
+		private System.Nullable<int> _VendorLocationID;
+		
+		private System.Nullable<decimal> _OrderPoint;
+		
+		private System.Nullable<decimal> _SafetyStock;
+		
+		private System.Nullable<int> _AGCID;
+		
+		private System.Nullable<int> _ParentProductID;
+		
+		private System.Nullable<decimal> _LTDockToStock;
+		
+		private string _PartNameVN;
+		
+		private System.Nullable<decimal> _LicenseFee;
+		
+		private System.Nullable<int> _InventorID;
+		
+		private System.Nullable<int> _ProductTypeID;
+		
+		private string _TaxCode;
+		
+		private System.Nullable<decimal> _ListPrice;
+		
+		private System.Nullable<int> _VendorCurrencyID;
+		
+		private System.Nullable<decimal> _QuantitySet;
+		
+		private System.Nullable<int> _ProductionLineID;
+		
+		private System.Nullable<int> _CostCenterRateMasterID;
+		
+		private System.Nullable<int> _ProductGroupID;
+		
+		private System.Nullable<decimal> _MaxProduce;
+		
+		private System.Nullable<decimal> _MinProduce;
+		
+		private System.Data.Linq.Binary _Picture;
+		
+		private System.Nullable<decimal> _MaxRoundUpToMin;
+		
+		private System.Nullable<decimal> _MaxRoundUpToMultiple;
+		
+		private System.Nullable<int> _ACAdjustmentMasterID;
+		
+		private string _RegisteredCode;
+		
+		private string _SetUpPair;
+		
+		private System.Nullable<bool> _AVEG;
+		
+		private string _StockTakingCode;
+		
+		private System.Nullable<bool> _MassOrder;
+		
+		private System.Nullable<bool> _AllowNegativeQty;
+		
+		private System.Nullable<int> _ProductClassifiedID;
+		
+		private System.Nullable<int> _ItemGroupID;
+		
+		private EntitySet<cst_ActCostAllocationDetail> _cst_ActCostAllocationDetails;
+		
+		private EntitySet<CST_ActualCostHistory> _CST_ActualCostHistories;
+		
+		private EntitySet<cst_AllocationResult> _cst_AllocationResults;
+		
+		private EntitySet<CST_DSAndRecycleAllocation> _CST_DSAndRecycleAllocations;
+		
+		private EntitySet<cst_FreightDetail> _cst_FreightDetails;
+		
+		private EntitySet<CST_RecoverMaterialDetail> _CST_RecoverMaterialDetails;
+		
+		private EntitySet<CST_RecoverMaterialMaster> _CST_RecoverMaterialMasters;
+		
+		private EntitySet<CST_STDItemCost> _CST_STDItemCosts;
+		
+		private EntitySet<DCP_BeginQuantity> _DCP_BeginQuantities;
+		
+		private EntitySet<ITM_BOM> _ITM_BOMs;
+		
+		private EntitySet<ITM_BOM> _ITM_BOMs1;
+		
+		private EntitySet<ITM_Picture> _ITM_Pictures;
+		
+		private EntitySet<ITM_Routing> _ITM_Routings;
+		
+		private EntitySet<IV_Adjustment> _IV_Adjustments;
+		
+		private EntitySet<IV_BalanceBin> _IV_BalanceBins;
+		
+		private EntitySet<IV_BalanceLocation> _IV_BalanceLocations;
+		
+		private EntitySet<IV_BalanceMasterLocation> _IV_BalanceMasterLocations;
+		
+		private EntitySet<IV_BeginDCPReport> _IV_BeginDCPReports;
+		
+		private EntitySet<IV_BeginMRP> _IV_BeginMRPs;
+		
+		private EntitySet<IV_BinCache> _IV_BinCaches;
+		
+		private EntitySet<IV_CostHistory> _IV_CostHistories;
+		
+		private EntitySet<IV_LocationCache> _IV_LocationCaches;
+		
+		private EntitySet<IV_MasLocCache> _IV_MasLocCaches;
+		
+		private EntitySet<IV_StockTaking> _IV_StockTakings;
+		
+		private EntitySet<IV_StockTakingDifferent> _IV_StockTakingDifferents;
+		
+		private EntitySet<MST_TransactionHistory> _MST_TransactionHistories;
+		
+		private EntitySet<MTR_ACDSDetail> _MTR_ACDSDetails;
+		
+		private EntitySet<MTR_CPO> _MTR_CPOs;
+		
+		private EntitySet<MTR_ItemActualCost> _MTR_ItemActualCosts;
+		
+		private EntitySet<PO_InvoiceDetail> _PO_InvoiceDetails;
+		
+		private EntitySet<PO_ItemVendorReference> _PO_ItemVendorReferences;
+		
+		private EntitySet<PO_PurchaseOrderDetail> _PO_PurchaseOrderDetails;
+		
+		private EntitySet<PO_PurchaseOrderReceiptDetail> _PO_PurchaseOrderReceiptDetails;
+		
+		private EntitySet<PO_ReturnToVendorDetail> _PO_ReturnToVendorDetails;
+		
+		private EntitySet<PO_VendorDeliverySchedule> _PO_VendorDeliverySchedules;
+		
+		private EntitySet<PRO_ChangeCategoryDetail> _PRO_ChangeCategoryDetails;
+		
+		private EntitySet<PRO_ChangeCategoryMatrix> _PRO_ChangeCategoryMatrixes;
+		
+		private EntitySet<PRO_ChangeCategoryMatrix> _PRO_ChangeCategoryMatrixes1;
+		
+		private EntitySet<PRO_CheckPoint> _PRO_CheckPoints;
+		
+		private EntitySet<PRO_ComponentScrapDetail> _PRO_ComponentScrapDetails;
+		
+		private EntitySet<PRO_ComponentScrapDetail> _PRO_ComponentScrapDetails1;
+		
+		private EntitySet<PRO_DCPResultMaster> _PRO_DCPResultMasters;
+		
+		private EntitySet<PRO_IssueMaterialDetail> _PRO_IssueMaterialDetails;
+		
+		private EntitySet<PRO_IssueMaterialMaster> _PRO_IssueMaterialMasters;
+		
+		private EntitySet<PRO_PGProduct> _PRO_PGProducts;
+		
+		private EntitySet<PRO_ProductProductionOrder> _PRO_ProductProductionOrders;
+		
+		private EntitySet<PRO_WorkOrderCompletion> _PRO_WorkOrderCompletions;
+		
+		private EntitySet<PRO_WorkOrderDetail> _PRO_WorkOrderDetails;
+		
+		private EntitySet<SO_CommitInventoryDetail> _SO_CommitInventoryDetails;
+		
+		private EntitySet<SO_CustomerItemRefDetail> _SO_CustomerItemRefDetails;
+		
+		private EntitySet<SO_ReturnedGoodsDetail> _SO_ReturnedGoodsDetails;
+		
+		private EntitySet<SO_SaleOrderDetail> _SO_SaleOrderDetails;
+		
+		private EntitySet<STD_CostCenterRateMaster> _STD_CostCenterRateMasters;
+		
+		private EntitySet<sys_RoleProduct> _sys_RoleProducts;
+		
+		private EntitySet<SO_ConfirmShipDetail> _SO_ConfirmShipDetails;
+		
+		private EntitySet<SO_InvoiceDetail> _SO_InvoiceDetails;
+		
+		private EntitySet<IV_MiscellaneousIssueDetail> _IV_MiscellaneousIssueDetails;
+		
+		private EntityRef<cst_ACAdjustmentMaster> _cst_ACAdjustmentMaster;
+		
+		private EntityRef<MST_AGC> _MST_AGC;
+		
+		private EntityRef<MST_BIN> _MST_BIN;
+		
+		private EntityRef<ITM_Buyer> _ITM_Buyer;
+		
+		private EntityRef<MST_UnitOfMeasure> _MST_UnitOfMeasure;
+		
+		private EntityRef<ITM_Category> _ITM_Category;
+		
+		private EntityRef<MST_CCN> _MST_CCN;
+		
+		private EntityRef<ITM_CostCenter> _ITM_CostCenter;
+		
+		private EntityRef<STD_CostCenterRateMaster> _STD_CostCenterRateMaster;
+		
+		private EntityRef<ITM_DeleteReason> _ITM_DeleteReason;
+		
+		private EntityRef<ITM_DeliveryPolicy> _ITM_DeliveryPolicy;
+		
+		private EntityRef<ITM_FormatCode> _ITM_FormatCode;
+		
+		private EntityRef<ITM_FreightClass> _ITM_FreightClass;
+		
+		private EntityRef<ITM_Hazard> _ITM_Hazard;
+		
+		private EntityRef<MST_UnitOfMeasure> _MST_UnitOfMeasure1;
+		
+		private EntityRef<MST_Party> _MST_Party;
+		
+		private EntityRef<MST_UnitOfMeasure> _MST_UnitOfMeasure2;
+		
+		private EntityRef<MST_Location> _MST_Location;
+		
+		private EntityRef<MST_MasterLocation> _MST_MasterLocation;
+		
+		private EntityRef<ITM_OrderRule> _ITM_OrderRule;
+		
+		private EntityRef<ITM_OrderPolicy> _ITM_OrderPolicy;
+		
+		private EntityRef<MST_Party> _MST_Party1;
+		
+		private EntityRef<PRO_ProductionLine> _PRO_ProductionLine;
+		
+		private EntityRef<CST_ProductGroup> _CST_ProductGroup;
+		
+		private EntityRef<ITM_ProductType> _ITM_ProductType;
+		
+		private EntityRef<MST_UnitOfMeasure> _MST_UnitOfMeasure3;
+		
+		private EntityRef<ITM_ShipTolerance> _ITM_ShipTolerance;
+		
+		private EntityRef<ITM_Source> _ITM_Source;
+		
+		private EntityRef<MST_UnitOfMeasure> _MST_UnitOfMeasure4;
+		
+		private EntityRef<MST_PartyLocation> _MST_PartyLocation;
+		
+		private EntityRef<MST_Currency> _MST_Currency;
+		
+		private EntityRef<MST_UnitOfMeasure> _MST_UnitOfMeasure5;
+		
+		private EntityRef<MST_UnitOfMeasure> _MST_UnitOfMeasure6;
+		
+		private EntityRef<ITM_ProductClassified> _ITM_ProductClassified;
+		
+		private EntityRef<ITM_ItemGroup> _ITM_ItemGroup;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnProductIDChanging(int value);
+    partial void OnProductIDChanged();
+    partial void OnCodeChanging(string value);
+    partial void OnCodeChanged();
+    partial void OnRevisionChanging(string value);
+    partial void OnRevisionChanged();
+    partial void OnDescriptionChanging(string value);
+    partial void OnDescriptionChanged();
+    partial void OnSetupDateChanging(System.DateTime value);
+    partial void OnSetupDateChanged();
+    partial void OnVATChanging(System.Nullable<double> value);
+    partial void OnVATChanged();
+    partial void OnImportTaxChanging(System.Nullable<double> value);
+    partial void OnImportTaxChanged();
+    partial void OnExportTaxChanging(System.Nullable<double> value);
+    partial void OnExportTaxChanged();
+    partial void OnSpecialTaxChanging(System.Nullable<double> value);
+    partial void OnSpecialTaxChanged();
+    partial void OnMakeItemChanging(bool value);
+    partial void OnMakeItemChanged();
+    partial void OnPartNumberChanging(string value);
+    partial void OnPartNumberChanged();
+    partial void OnOtherInfo1Changing(string value);
+    partial void OnOtherInfo1Changed();
+    partial void OnOtherInfo2Changing(string value);
+    partial void OnOtherInfo2Changed();
+    partial void OnLengthChanging(System.Nullable<decimal> value);
+    partial void OnLengthChanged();
+    partial void OnWidthChanging(System.Nullable<decimal> value);
+    partial void OnWidthChanged();
+    partial void OnHeightChanging(System.Nullable<decimal> value);
+    partial void OnHeightChanged();
+    partial void OnWeightChanging(System.Nullable<decimal> value);
+    partial void OnWeightChanged();
+    partial void OnFinishedGoodsChanging(System.Nullable<bool> value);
+    partial void OnFinishedGoodsChanged();
+    partial void OnShelfLifeChanging(System.Nullable<decimal> value);
+    partial void OnShelfLifeChanged();
+    partial void OnLotControlChanging(System.Nullable<bool> value);
+    partial void OnLotControlChanged();
+    partial void OnQAStatusChanging(System.Nullable<byte> value);
+    partial void OnQAStatusChanged();
+    partial void OnStockChanging(System.Nullable<bool> value);
+    partial void OnStockChanged();
+    partial void OnPlanTypeChanging(byte value);
+    partial void OnPlanTypeChanged();
+    partial void OnAutoConversionChanging(System.Nullable<bool> value);
+    partial void OnAutoConversionChanged();
+    partial void OnOrderQuantityChanging(System.Nullable<decimal> value);
+    partial void OnOrderQuantityChanged();
+    partial void OnLTRequisitionChanging(System.Nullable<decimal> value);
+    partial void OnLTRequisitionChanged();
+    partial void OnLTSafetyStockChanging(System.Nullable<decimal> value);
+    partial void OnLTSafetyStockChanged();
+    partial void OnOrderQuantityMultipleChanging(System.Nullable<decimal> value);
+    partial void OnOrderQuantityMultipleChanged();
+    partial void OnScrapPercentChanging(System.Nullable<double> value);
+    partial void OnScrapPercentChanged();
+    partial void OnMinimumStockChanging(System.Nullable<decimal> value);
+    partial void OnMinimumStockChanged();
+    partial void OnMaximumStockChanging(System.Nullable<decimal> value);
+    partial void OnMaximumStockChanged();
+    partial void OnConversionToleranceChanging(System.Nullable<decimal> value);
+    partial void OnConversionToleranceChanged();
+    partial void OnVoucherToleranceChanging(System.Nullable<decimal> value);
+    partial void OnVoucherToleranceChanged();
+    partial void OnReceiveToleranceChanging(System.Nullable<decimal> value);
+    partial void OnReceiveToleranceChanged();
+    partial void OnIssueSizeChanging(System.Nullable<decimal> value);
+    partial void OnIssueSizeChanged();
+    partial void OnLTFixedTimeChanging(System.Nullable<decimal> value);
+    partial void OnLTFixedTimeChanged();
+    partial void OnLTVariableTimeChanging(System.Nullable<decimal> value);
+    partial void OnLTVariableTimeChanged();
+    partial void OnLTOrderPrepareChanging(System.Nullable<decimal> value);
+    partial void OnLTOrderPrepareChanged();
+    partial void OnLTShippingPrepareChanging(System.Nullable<decimal> value);
+    partial void OnLTShippingPrepareChanged();
+    partial void OnLTSalesATPChanging(System.Nullable<decimal> value);
+    partial void OnLTSalesATPChanged();
+    partial void OnShipToleranceIDChanging(System.Nullable<int> value);
+    partial void OnShipToleranceIDChanged();
+    partial void OnBuyerIDChanging(System.Nullable<int> value);
+    partial void OnBuyerIDChanged();
+    partial void OnBOMDescriptionChanging(string value);
+    partial void OnBOMDescriptionChanged();
+    partial void OnBomIncrementChanging(System.Nullable<byte> value);
+    partial void OnBomIncrementChanged();
+    partial void OnRoutingDescriptionChanging(string value);
+    partial void OnRoutingDescriptionChanged();
+    partial void OnCreateDateTimeChanging(System.DateTime value);
+    partial void OnCreateDateTimeChanged();
+    partial void OnUpdateDateTimeChanging(System.Nullable<System.DateTime> value);
+    partial void OnUpdateDateTimeChanged();
+    partial void OnCostMethodChanging(System.Nullable<byte> value);
+    partial void OnCostMethodChanged();
+    partial void OnRoutingIncrementChanging(System.Nullable<byte> value);
+    partial void OnRoutingIncrementChanged();
+    partial void OnCCNIDChanging(int value);
+    partial void OnCCNIDChanged();
+    partial void OnCategoryIDChanging(System.Nullable<int> value);
+    partial void OnCategoryIDChanged();
+    partial void OnCostCenterIDChanging(System.Nullable<int> value);
+    partial void OnCostCenterIDChanged();
+    partial void OnDeleteReasonIDChanging(System.Nullable<int> value);
+    partial void OnDeleteReasonIDChanged();
+    partial void OnDeliveryPolicyIDChanging(System.Nullable<int> value);
+    partial void OnDeliveryPolicyIDChanged();
+    partial void OnFormatCodeIDChanging(System.Nullable<int> value);
+    partial void OnFormatCodeIDChanged();
+    partial void OnFreightClassIDChanging(System.Nullable<int> value);
+    partial void OnFreightClassIDChanged();
+    partial void OnHazardIDChanging(System.Nullable<int> value);
+    partial void OnHazardIDChanged();
+    partial void OnOrderPolicyIDChanging(System.Nullable<int> value);
+    partial void OnOrderPolicyIDChanged();
+    partial void OnOrderRuleIDChanging(System.Nullable<int> value);
+    partial void OnOrderRuleIDChanged();
+    partial void OnSourceIDChanging(System.Nullable<int> value);
+    partial void OnSourceIDChanged();
+    partial void OnStockUMIDChanging(int value);
+    partial void OnStockUMIDChanged();
+    partial void OnSellingUMIDChanging(int value);
+    partial void OnSellingUMIDChanged();
+    partial void OnHeightUMIDChanging(System.Nullable<int> value);
+    partial void OnHeightUMIDChanged();
+    partial void OnWidthUMIDChanging(System.Nullable<int> value);
+    partial void OnWidthUMIDChanged();
+    partial void OnLengthUMIDChanging(System.Nullable<int> value);
+    partial void OnLengthUMIDChanged();
+    partial void OnBuyingUMIDChanging(int value);
+    partial void OnBuyingUMIDChanged();
+    partial void OnWeightUMIDChanging(System.Nullable<int> value);
+    partial void OnWeightUMIDChanged();
+    partial void OnLotSizeChanging(System.Nullable<int> value);
+    partial void OnLotSizeChanged();
+    partial void OnMasterLocationIDChanging(System.Nullable<int> value);
+    partial void OnMasterLocationIDChanged();
+    partial void OnLocationIDChanging(System.Nullable<int> value);
+    partial void OnLocationIDChanged();
+    partial void OnBinIDChanging(System.Nullable<int> value);
+    partial void OnBinIDChanged();
+    partial void OnPrimaryVendorIDChanging(System.Nullable<int> value);
+    partial void OnPrimaryVendorIDChanged();
+    partial void OnVendorLocationIDChanging(System.Nullable<int> value);
+    partial void OnVendorLocationIDChanged();
+    partial void OnOrderPointChanging(System.Nullable<decimal> value);
+    partial void OnOrderPointChanged();
+    partial void OnSafetyStockChanging(System.Nullable<decimal> value);
+    partial void OnSafetyStockChanged();
+    partial void OnAGCIDChanging(System.Nullable<int> value);
+    partial void OnAGCIDChanged();
+    partial void OnParentProductIDChanging(System.Nullable<int> value);
+    partial void OnParentProductIDChanged();
+    partial void OnLTDockToStockChanging(System.Nullable<decimal> value);
+    partial void OnLTDockToStockChanged();
+    partial void OnPartNameVNChanging(string value);
+    partial void OnPartNameVNChanged();
+    partial void OnLicenseFeeChanging(System.Nullable<decimal> value);
+    partial void OnLicenseFeeChanged();
+    partial void OnInventorIDChanging(System.Nullable<int> value);
+    partial void OnInventorIDChanged();
+    partial void OnProductTypeIDChanging(System.Nullable<int> value);
+    partial void OnProductTypeIDChanged();
+    partial void OnTaxCodeChanging(string value);
+    partial void OnTaxCodeChanged();
+    partial void OnListPriceChanging(System.Nullable<decimal> value);
+    partial void OnListPriceChanged();
+    partial void OnVendorCurrencyIDChanging(System.Nullable<int> value);
+    partial void OnVendorCurrencyIDChanged();
+    partial void OnQuantitySetChanging(System.Nullable<decimal> value);
+    partial void OnQuantitySetChanged();
+    partial void OnProductionLineIDChanging(System.Nullable<int> value);
+    partial void OnProductionLineIDChanged();
+    partial void OnCostCenterRateMasterIDChanging(System.Nullable<int> value);
+    partial void OnCostCenterRateMasterIDChanged();
+    partial void OnProductGroupIDChanging(System.Nullable<int> value);
+    partial void OnProductGroupIDChanged();
+    partial void OnMaxProduceChanging(System.Nullable<decimal> value);
+    partial void OnMaxProduceChanged();
+    partial void OnMinProduceChanging(System.Nullable<decimal> value);
+    partial void OnMinProduceChanged();
+    partial void OnPictureChanging(System.Data.Linq.Binary value);
+    partial void OnPictureChanged();
+    partial void OnMaxRoundUpToMinChanging(System.Nullable<decimal> value);
+    partial void OnMaxRoundUpToMinChanged();
+    partial void OnMaxRoundUpToMultipleChanging(System.Nullable<decimal> value);
+    partial void OnMaxRoundUpToMultipleChanged();
+    partial void OnACAdjustmentMasterIDChanging(System.Nullable<int> value);
+    partial void OnACAdjustmentMasterIDChanged();
+    partial void OnRegisteredCodeChanging(string value);
+    partial void OnRegisteredCodeChanged();
+    partial void OnSetUpPairChanging(string value);
+    partial void OnSetUpPairChanged();
+    partial void OnAVEGChanging(System.Nullable<bool> value);
+    partial void OnAVEGChanged();
+    partial void OnStockTakingCodeChanging(string value);
+    partial void OnStockTakingCodeChanged();
+    partial void OnMassOrderChanging(System.Nullable<bool> value);
+    partial void OnMassOrderChanged();
+    partial void OnAllowNegativeQtyChanging(System.Nullable<bool> value);
+    partial void OnAllowNegativeQtyChanged();
+    partial void OnProductClassifiedIDChanging(System.Nullable<int> value);
+    partial void OnProductClassifiedIDChanged();
+    partial void OnItemGroupIDChanging(System.Nullable<int> value);
+    partial void OnItemGroupIDChanged();
+    #endregion
+		
+		public ITM_Product()
+		{
+			this._cst_ActCostAllocationDetails = new EntitySet<cst_ActCostAllocationDetail>(new Action<cst_ActCostAllocationDetail>(this.attach_cst_ActCostAllocationDetails), new Action<cst_ActCostAllocationDetail>(this.detach_cst_ActCostAllocationDetails));
+			this._CST_ActualCostHistories = new EntitySet<CST_ActualCostHistory>(new Action<CST_ActualCostHistory>(this.attach_CST_ActualCostHistories), new Action<CST_ActualCostHistory>(this.detach_CST_ActualCostHistories));
+			this._cst_AllocationResults = new EntitySet<cst_AllocationResult>(new Action<cst_AllocationResult>(this.attach_cst_AllocationResults), new Action<cst_AllocationResult>(this.detach_cst_AllocationResults));
+			this._CST_DSAndRecycleAllocations = new EntitySet<CST_DSAndRecycleAllocation>(new Action<CST_DSAndRecycleAllocation>(this.attach_CST_DSAndRecycleAllocations), new Action<CST_DSAndRecycleAllocation>(this.detach_CST_DSAndRecycleAllocations));
+			this._cst_FreightDetails = new EntitySet<cst_FreightDetail>(new Action<cst_FreightDetail>(this.attach_cst_FreightDetails), new Action<cst_FreightDetail>(this.detach_cst_FreightDetails));
+			this._CST_RecoverMaterialDetails = new EntitySet<CST_RecoverMaterialDetail>(new Action<CST_RecoverMaterialDetail>(this.attach_CST_RecoverMaterialDetails), new Action<CST_RecoverMaterialDetail>(this.detach_CST_RecoverMaterialDetails));
+			this._CST_RecoverMaterialMasters = new EntitySet<CST_RecoverMaterialMaster>(new Action<CST_RecoverMaterialMaster>(this.attach_CST_RecoverMaterialMasters), new Action<CST_RecoverMaterialMaster>(this.detach_CST_RecoverMaterialMasters));
+			this._CST_STDItemCosts = new EntitySet<CST_STDItemCost>(new Action<CST_STDItemCost>(this.attach_CST_STDItemCosts), new Action<CST_STDItemCost>(this.detach_CST_STDItemCosts));
+			this._DCP_BeginQuantities = new EntitySet<DCP_BeginQuantity>(new Action<DCP_BeginQuantity>(this.attach_DCP_BeginQuantities), new Action<DCP_BeginQuantity>(this.detach_DCP_BeginQuantities));
+			this._ITM_BOMs = new EntitySet<ITM_BOM>(new Action<ITM_BOM>(this.attach_ITM_BOMs), new Action<ITM_BOM>(this.detach_ITM_BOMs));
+			this._ITM_BOMs1 = new EntitySet<ITM_BOM>(new Action<ITM_BOM>(this.attach_ITM_BOMs1), new Action<ITM_BOM>(this.detach_ITM_BOMs1));
+			this._ITM_Pictures = new EntitySet<ITM_Picture>(new Action<ITM_Picture>(this.attach_ITM_Pictures), new Action<ITM_Picture>(this.detach_ITM_Pictures));
+			this._ITM_Routings = new EntitySet<ITM_Routing>(new Action<ITM_Routing>(this.attach_ITM_Routings), new Action<ITM_Routing>(this.detach_ITM_Routings));
+			this._IV_Adjustments = new EntitySet<IV_Adjustment>(new Action<IV_Adjustment>(this.attach_IV_Adjustments), new Action<IV_Adjustment>(this.detach_IV_Adjustments));
+			this._IV_BalanceBins = new EntitySet<IV_BalanceBin>(new Action<IV_BalanceBin>(this.attach_IV_BalanceBins), new Action<IV_BalanceBin>(this.detach_IV_BalanceBins));
+			this._IV_BalanceLocations = new EntitySet<IV_BalanceLocation>(new Action<IV_BalanceLocation>(this.attach_IV_BalanceLocations), new Action<IV_BalanceLocation>(this.detach_IV_BalanceLocations));
+			this._IV_BalanceMasterLocations = new EntitySet<IV_BalanceMasterLocation>(new Action<IV_BalanceMasterLocation>(this.attach_IV_BalanceMasterLocations), new Action<IV_BalanceMasterLocation>(this.detach_IV_BalanceMasterLocations));
+			this._IV_BeginDCPReports = new EntitySet<IV_BeginDCPReport>(new Action<IV_BeginDCPReport>(this.attach_IV_BeginDCPReports), new Action<IV_BeginDCPReport>(this.detach_IV_BeginDCPReports));
+			this._IV_BeginMRPs = new EntitySet<IV_BeginMRP>(new Action<IV_BeginMRP>(this.attach_IV_BeginMRPs), new Action<IV_BeginMRP>(this.detach_IV_BeginMRPs));
+			this._IV_BinCaches = new EntitySet<IV_BinCache>(new Action<IV_BinCache>(this.attach_IV_BinCaches), new Action<IV_BinCache>(this.detach_IV_BinCaches));
+			this._IV_CostHistories = new EntitySet<IV_CostHistory>(new Action<IV_CostHistory>(this.attach_IV_CostHistories), new Action<IV_CostHistory>(this.detach_IV_CostHistories));
+			this._IV_LocationCaches = new EntitySet<IV_LocationCache>(new Action<IV_LocationCache>(this.attach_IV_LocationCaches), new Action<IV_LocationCache>(this.detach_IV_LocationCaches));
+			this._IV_MasLocCaches = new EntitySet<IV_MasLocCache>(new Action<IV_MasLocCache>(this.attach_IV_MasLocCaches), new Action<IV_MasLocCache>(this.detach_IV_MasLocCaches));
+			this._IV_StockTakings = new EntitySet<IV_StockTaking>(new Action<IV_StockTaking>(this.attach_IV_StockTakings), new Action<IV_StockTaking>(this.detach_IV_StockTakings));
+			this._IV_StockTakingDifferents = new EntitySet<IV_StockTakingDifferent>(new Action<IV_StockTakingDifferent>(this.attach_IV_StockTakingDifferents), new Action<IV_StockTakingDifferent>(this.detach_IV_StockTakingDifferents));
+			this._MST_TransactionHistories = new EntitySet<MST_TransactionHistory>(new Action<MST_TransactionHistory>(this.attach_MST_TransactionHistories), new Action<MST_TransactionHistory>(this.detach_MST_TransactionHistories));
+			this._MTR_ACDSDetails = new EntitySet<MTR_ACDSDetail>(new Action<MTR_ACDSDetail>(this.attach_MTR_ACDSDetails), new Action<MTR_ACDSDetail>(this.detach_MTR_ACDSDetails));
+			this._MTR_CPOs = new EntitySet<MTR_CPO>(new Action<MTR_CPO>(this.attach_MTR_CPOs), new Action<MTR_CPO>(this.detach_MTR_CPOs));
+			this._MTR_ItemActualCosts = new EntitySet<MTR_ItemActualCost>(new Action<MTR_ItemActualCost>(this.attach_MTR_ItemActualCosts), new Action<MTR_ItemActualCost>(this.detach_MTR_ItemActualCosts));
+			this._PO_InvoiceDetails = new EntitySet<PO_InvoiceDetail>(new Action<PO_InvoiceDetail>(this.attach_PO_InvoiceDetails), new Action<PO_InvoiceDetail>(this.detach_PO_InvoiceDetails));
+			this._PO_ItemVendorReferences = new EntitySet<PO_ItemVendorReference>(new Action<PO_ItemVendorReference>(this.attach_PO_ItemVendorReferences), new Action<PO_ItemVendorReference>(this.detach_PO_ItemVendorReferences));
+			this._PO_PurchaseOrderDetails = new EntitySet<PO_PurchaseOrderDetail>(new Action<PO_PurchaseOrderDetail>(this.attach_PO_PurchaseOrderDetails), new Action<PO_PurchaseOrderDetail>(this.detach_PO_PurchaseOrderDetails));
+			this._PO_PurchaseOrderReceiptDetails = new EntitySet<PO_PurchaseOrderReceiptDetail>(new Action<PO_PurchaseOrderReceiptDetail>(this.attach_PO_PurchaseOrderReceiptDetails), new Action<PO_PurchaseOrderReceiptDetail>(this.detach_PO_PurchaseOrderReceiptDetails));
+			this._PO_ReturnToVendorDetails = new EntitySet<PO_ReturnToVendorDetail>(new Action<PO_ReturnToVendorDetail>(this.attach_PO_ReturnToVendorDetails), new Action<PO_ReturnToVendorDetail>(this.detach_PO_ReturnToVendorDetails));
+			this._PO_VendorDeliverySchedules = new EntitySet<PO_VendorDeliverySchedule>(new Action<PO_VendorDeliverySchedule>(this.attach_PO_VendorDeliverySchedules), new Action<PO_VendorDeliverySchedule>(this.detach_PO_VendorDeliverySchedules));
+			this._PRO_ChangeCategoryDetails = new EntitySet<PRO_ChangeCategoryDetail>(new Action<PRO_ChangeCategoryDetail>(this.attach_PRO_ChangeCategoryDetails), new Action<PRO_ChangeCategoryDetail>(this.detach_PRO_ChangeCategoryDetails));
+			this._PRO_ChangeCategoryMatrixes = new EntitySet<PRO_ChangeCategoryMatrix>(new Action<PRO_ChangeCategoryMatrix>(this.attach_PRO_ChangeCategoryMatrixes), new Action<PRO_ChangeCategoryMatrix>(this.detach_PRO_ChangeCategoryMatrixes));
+			this._PRO_ChangeCategoryMatrixes1 = new EntitySet<PRO_ChangeCategoryMatrix>(new Action<PRO_ChangeCategoryMatrix>(this.attach_PRO_ChangeCategoryMatrixes1), new Action<PRO_ChangeCategoryMatrix>(this.detach_PRO_ChangeCategoryMatrixes1));
+			this._PRO_CheckPoints = new EntitySet<PRO_CheckPoint>(new Action<PRO_CheckPoint>(this.attach_PRO_CheckPoints), new Action<PRO_CheckPoint>(this.detach_PRO_CheckPoints));
+			this._PRO_ComponentScrapDetails = new EntitySet<PRO_ComponentScrapDetail>(new Action<PRO_ComponentScrapDetail>(this.attach_PRO_ComponentScrapDetails), new Action<PRO_ComponentScrapDetail>(this.detach_PRO_ComponentScrapDetails));
+			this._PRO_ComponentScrapDetails1 = new EntitySet<PRO_ComponentScrapDetail>(new Action<PRO_ComponentScrapDetail>(this.attach_PRO_ComponentScrapDetails1), new Action<PRO_ComponentScrapDetail>(this.detach_PRO_ComponentScrapDetails1));
+			this._PRO_DCPResultMasters = new EntitySet<PRO_DCPResultMaster>(new Action<PRO_DCPResultMaster>(this.attach_PRO_DCPResultMasters), new Action<PRO_DCPResultMaster>(this.detach_PRO_DCPResultMasters));
+			this._PRO_IssueMaterialDetails = new EntitySet<PRO_IssueMaterialDetail>(new Action<PRO_IssueMaterialDetail>(this.attach_PRO_IssueMaterialDetails), new Action<PRO_IssueMaterialDetail>(this.detach_PRO_IssueMaterialDetails));
+			this._PRO_IssueMaterialMasters = new EntitySet<PRO_IssueMaterialMaster>(new Action<PRO_IssueMaterialMaster>(this.attach_PRO_IssueMaterialMasters), new Action<PRO_IssueMaterialMaster>(this.detach_PRO_IssueMaterialMasters));
+			this._PRO_PGProducts = new EntitySet<PRO_PGProduct>(new Action<PRO_PGProduct>(this.attach_PRO_PGProducts), new Action<PRO_PGProduct>(this.detach_PRO_PGProducts));
+			this._PRO_ProductProductionOrders = new EntitySet<PRO_ProductProductionOrder>(new Action<PRO_ProductProductionOrder>(this.attach_PRO_ProductProductionOrders), new Action<PRO_ProductProductionOrder>(this.detach_PRO_ProductProductionOrders));
+			this._PRO_WorkOrderCompletions = new EntitySet<PRO_WorkOrderCompletion>(new Action<PRO_WorkOrderCompletion>(this.attach_PRO_WorkOrderCompletions), new Action<PRO_WorkOrderCompletion>(this.detach_PRO_WorkOrderCompletions));
+			this._PRO_WorkOrderDetails = new EntitySet<PRO_WorkOrderDetail>(new Action<PRO_WorkOrderDetail>(this.attach_PRO_WorkOrderDetails), new Action<PRO_WorkOrderDetail>(this.detach_PRO_WorkOrderDetails));
+			this._SO_CommitInventoryDetails = new EntitySet<SO_CommitInventoryDetail>(new Action<SO_CommitInventoryDetail>(this.attach_SO_CommitInventoryDetails), new Action<SO_CommitInventoryDetail>(this.detach_SO_CommitInventoryDetails));
+			this._SO_CustomerItemRefDetails = new EntitySet<SO_CustomerItemRefDetail>(new Action<SO_CustomerItemRefDetail>(this.attach_SO_CustomerItemRefDetails), new Action<SO_CustomerItemRefDetail>(this.detach_SO_CustomerItemRefDetails));
+			this._SO_ReturnedGoodsDetails = new EntitySet<SO_ReturnedGoodsDetail>(new Action<SO_ReturnedGoodsDetail>(this.attach_SO_ReturnedGoodsDetails), new Action<SO_ReturnedGoodsDetail>(this.detach_SO_ReturnedGoodsDetails));
+			this._SO_SaleOrderDetails = new EntitySet<SO_SaleOrderDetail>(new Action<SO_SaleOrderDetail>(this.attach_SO_SaleOrderDetails), new Action<SO_SaleOrderDetail>(this.detach_SO_SaleOrderDetails));
+			this._STD_CostCenterRateMasters = new EntitySet<STD_CostCenterRateMaster>(new Action<STD_CostCenterRateMaster>(this.attach_STD_CostCenterRateMasters), new Action<STD_CostCenterRateMaster>(this.detach_STD_CostCenterRateMasters));
+			this._sys_RoleProducts = new EntitySet<sys_RoleProduct>(new Action<sys_RoleProduct>(this.attach_sys_RoleProducts), new Action<sys_RoleProduct>(this.detach_sys_RoleProducts));
+			this._SO_ConfirmShipDetails = new EntitySet<SO_ConfirmShipDetail>(new Action<SO_ConfirmShipDetail>(this.attach_SO_ConfirmShipDetails), new Action<SO_ConfirmShipDetail>(this.detach_SO_ConfirmShipDetails));
+			this._SO_InvoiceDetails = new EntitySet<SO_InvoiceDetail>(new Action<SO_InvoiceDetail>(this.attach_SO_InvoiceDetails), new Action<SO_InvoiceDetail>(this.detach_SO_InvoiceDetails));
+			this._IV_MiscellaneousIssueDetails = new EntitySet<IV_MiscellaneousIssueDetail>(new Action<IV_MiscellaneousIssueDetail>(this.attach_IV_MiscellaneousIssueDetails), new Action<IV_MiscellaneousIssueDetail>(this.detach_IV_MiscellaneousIssueDetails));
+			this._cst_ACAdjustmentMaster = default(EntityRef<cst_ACAdjustmentMaster>);
+			this._MST_AGC = default(EntityRef<MST_AGC>);
+			this._MST_BIN = default(EntityRef<MST_BIN>);
+			this._ITM_Buyer = default(EntityRef<ITM_Buyer>);
+			this._MST_UnitOfMeasure = default(EntityRef<MST_UnitOfMeasure>);
+			this._ITM_Category = default(EntityRef<ITM_Category>);
+			this._MST_CCN = default(EntityRef<MST_CCN>);
+			this._ITM_CostCenter = default(EntityRef<ITM_CostCenter>);
+			this._STD_CostCenterRateMaster = default(EntityRef<STD_CostCenterRateMaster>);
+			this._ITM_DeleteReason = default(EntityRef<ITM_DeleteReason>);
+			this._ITM_DeliveryPolicy = default(EntityRef<ITM_DeliveryPolicy>);
+			this._ITM_FormatCode = default(EntityRef<ITM_FormatCode>);
+			this._ITM_FreightClass = default(EntityRef<ITM_FreightClass>);
+			this._ITM_Hazard = default(EntityRef<ITM_Hazard>);
+			this._MST_UnitOfMeasure1 = default(EntityRef<MST_UnitOfMeasure>);
+			this._MST_Party = default(EntityRef<MST_Party>);
+			this._MST_UnitOfMeasure2 = default(EntityRef<MST_UnitOfMeasure>);
+			this._MST_Location = default(EntityRef<MST_Location>);
+			this._MST_MasterLocation = default(EntityRef<MST_MasterLocation>);
+			this._ITM_OrderRule = default(EntityRef<ITM_OrderRule>);
+			this._ITM_OrderPolicy = default(EntityRef<ITM_OrderPolicy>);
+			this._MST_Party1 = default(EntityRef<MST_Party>);
+			this._PRO_ProductionLine = default(EntityRef<PRO_ProductionLine>);
+			this._CST_ProductGroup = default(EntityRef<CST_ProductGroup>);
+			this._ITM_ProductType = default(EntityRef<ITM_ProductType>);
+			this._MST_UnitOfMeasure3 = default(EntityRef<MST_UnitOfMeasure>);
+			this._ITM_ShipTolerance = default(EntityRef<ITM_ShipTolerance>);
+			this._ITM_Source = default(EntityRef<ITM_Source>);
+			this._MST_UnitOfMeasure4 = default(EntityRef<MST_UnitOfMeasure>);
+			this._MST_PartyLocation = default(EntityRef<MST_PartyLocation>);
+			this._MST_Currency = default(EntityRef<MST_Currency>);
+			this._MST_UnitOfMeasure5 = default(EntityRef<MST_UnitOfMeasure>);
+			this._MST_UnitOfMeasure6 = default(EntityRef<MST_UnitOfMeasure>);
+			this._ITM_ProductClassified = default(EntityRef<ITM_ProductClassified>);
+			this._ITM_ItemGroup = default(EntityRef<ITM_ItemGroup>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ProductID
+		{
+			get
+			{
+				return this._ProductID;
+			}
+			set
+			{
+				if ((this._ProductID != value))
+				{
+					this.OnProductIDChanging(value);
+					this.SendPropertyChanging();
+					this._ProductID = value;
+					this.SendPropertyChanged("ProductID");
+					this.OnProductIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Code", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Code
+		{
+			get
+			{
+				return this._Code;
+			}
+			set
+			{
+				if ((this._Code != value))
+				{
+					this.OnCodeChanging(value);
+					this.SendPropertyChanging();
+					this._Code = value;
+					this.SendPropertyChanged("Code");
+					this.OnCodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Revision", DbType="NVarChar(20) NOT NULL", CanBeNull=false)]
+		public string Revision
+		{
+			get
+			{
+				return this._Revision;
+			}
+			set
+			{
+				if ((this._Revision != value))
+				{
+					this.OnRevisionChanging(value);
+					this.SendPropertyChanging();
+					this._Revision = value;
+					this.SendPropertyChanged("Revision");
+					this.OnRevisionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NVarChar(200)")]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this.OnDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._Description = value;
+					this.SendPropertyChanged("Description");
+					this.OnDescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SetupDate", DbType="DateTime NOT NULL")]
+		public System.DateTime SetupDate
+		{
+			get
+			{
+				return this._SetupDate;
+			}
+			set
+			{
+				if ((this._SetupDate != value))
+				{
+					this.OnSetupDateChanging(value);
+					this.SendPropertyChanging();
+					this._SetupDate = value;
+					this.SendPropertyChanged("SetupDate");
+					this.OnSetupDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VAT", DbType="Float")]
+		public System.Nullable<double> VAT
+		{
+			get
+			{
+				return this._VAT;
+			}
+			set
+			{
+				if ((this._VAT != value))
+				{
+					this.OnVATChanging(value);
+					this.SendPropertyChanging();
+					this._VAT = value;
+					this.SendPropertyChanged("VAT");
+					this.OnVATChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ImportTax", DbType="Float")]
+		public System.Nullable<double> ImportTax
+		{
+			get
+			{
+				return this._ImportTax;
+			}
+			set
+			{
+				if ((this._ImportTax != value))
+				{
+					this.OnImportTaxChanging(value);
+					this.SendPropertyChanging();
+					this._ImportTax = value;
+					this.SendPropertyChanged("ImportTax");
+					this.OnImportTaxChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ExportTax", DbType="Float")]
+		public System.Nullable<double> ExportTax
+		{
+			get
+			{
+				return this._ExportTax;
+			}
+			set
+			{
+				if ((this._ExportTax != value))
+				{
+					this.OnExportTaxChanging(value);
+					this.SendPropertyChanging();
+					this._ExportTax = value;
+					this.SendPropertyChanged("ExportTax");
+					this.OnExportTaxChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SpecialTax", DbType="Float")]
+		public System.Nullable<double> SpecialTax
+		{
+			get
+			{
+				return this._SpecialTax;
+			}
+			set
+			{
+				if ((this._SpecialTax != value))
+				{
+					this.OnSpecialTaxChanging(value);
+					this.SendPropertyChanging();
+					this._SpecialTax = value;
+					this.SendPropertyChanged("SpecialTax");
+					this.OnSpecialTaxChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MakeItem", DbType="Bit NOT NULL")]
+		public bool MakeItem
+		{
+			get
+			{
+				return this._MakeItem;
+			}
+			set
+			{
+				if ((this._MakeItem != value))
+				{
+					this.OnMakeItemChanging(value);
+					this.SendPropertyChanging();
+					this._MakeItem = value;
+					this.SendPropertyChanged("MakeItem");
+					this.OnMakeItemChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PartNumber", DbType="NVarChar(40)")]
+		public string PartNumber
+		{
+			get
+			{
+				return this._PartNumber;
+			}
+			set
+			{
+				if ((this._PartNumber != value))
+				{
+					this.OnPartNumberChanging(value);
+					this.SendPropertyChanging();
+					this._PartNumber = value;
+					this.SendPropertyChanged("PartNumber");
+					this.OnPartNumberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OtherInfo1", DbType="NVarChar(100)")]
+		public string OtherInfo1
+		{
+			get
+			{
+				return this._OtherInfo1;
+			}
+			set
+			{
+				if ((this._OtherInfo1 != value))
+				{
+					this.OnOtherInfo1Changing(value);
+					this.SendPropertyChanging();
+					this._OtherInfo1 = value;
+					this.SendPropertyChanged("OtherInfo1");
+					this.OnOtherInfo1Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OtherInfo2", DbType="NVarChar(100)")]
+		public string OtherInfo2
+		{
+			get
+			{
+				return this._OtherInfo2;
+			}
+			set
+			{
+				if ((this._OtherInfo2 != value))
+				{
+					this.OnOtherInfo2Changing(value);
+					this.SendPropertyChanging();
+					this._OtherInfo2 = value;
+					this.SendPropertyChanged("OtherInfo2");
+					this.OnOtherInfo2Changed();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Length", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> Length
+		{
+			get
+			{
+				return this._Length;
+			}
+			set
+			{
+				if ((this._Length != value))
+				{
+					this.OnLengthChanging(value);
+					this.SendPropertyChanging();
+					this._Length = value;
+					this.SendPropertyChanged("Length");
+					this.OnLengthChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Width", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> Width
+		{
+			get
+			{
+				return this._Width;
+			}
+			set
+			{
+				if ((this._Width != value))
+				{
+					this.OnWidthChanging(value);
+					this.SendPropertyChanging();
+					this._Width = value;
+					this.SendPropertyChanged("Width");
+					this.OnWidthChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Height", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> Height
+		{
+			get
+			{
+				return this._Height;
+			}
+			set
+			{
+				if ((this._Height != value))
+				{
+					this.OnHeightChanging(value);
+					this.SendPropertyChanging();
+					this._Height = value;
+					this.SendPropertyChanged("Height");
+					this.OnHeightChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Weight", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> Weight
+		{
+			get
+			{
+				return this._Weight;
+			}
+			set
+			{
+				if ((this._Weight != value))
+				{
+					this.OnWeightChanging(value);
+					this.SendPropertyChanging();
+					this._Weight = value;
+					this.SendPropertyChanged("Weight");
+					this.OnWeightChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FinishedGoods", DbType="Bit")]
+		public System.Nullable<bool> FinishedGoods
+		{
+			get
+			{
+				return this._FinishedGoods;
+			}
+			set
+			{
+				if ((this._FinishedGoods != value))
+				{
+					this.OnFinishedGoodsChanging(value);
+					this.SendPropertyChanging();
+					this._FinishedGoods = value;
+					this.SendPropertyChanged("FinishedGoods");
+					this.OnFinishedGoodsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ShelfLife", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> ShelfLife
+		{
+			get
+			{
+				return this._ShelfLife;
+			}
+			set
+			{
+				if ((this._ShelfLife != value))
+				{
+					this.OnShelfLifeChanging(value);
+					this.SendPropertyChanging();
+					this._ShelfLife = value;
+					this.SendPropertyChanged("ShelfLife");
+					this.OnShelfLifeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LotControl", DbType="Bit")]
+		public System.Nullable<bool> LotControl
+		{
+			get
+			{
+				return this._LotControl;
+			}
+			set
+			{
+				if ((this._LotControl != value))
+				{
+					this.OnLotControlChanging(value);
+					this.SendPropertyChanging();
+					this._LotControl = value;
+					this.SendPropertyChanged("LotControl");
+					this.OnLotControlChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QAStatus", DbType="TinyInt")]
+		public System.Nullable<byte> QAStatus
+		{
+			get
+			{
+				return this._QAStatus;
+			}
+			set
+			{
+				if ((this._QAStatus != value))
+				{
+					this.OnQAStatusChanging(value);
+					this.SendPropertyChanging();
+					this._QAStatus = value;
+					this.SendPropertyChanged("QAStatus");
+					this.OnQAStatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Stock", DbType="Bit")]
+		public System.Nullable<bool> Stock
+		{
+			get
+			{
+				return this._Stock;
+			}
+			set
+			{
+				if ((this._Stock != value))
+				{
+					this.OnStockChanging(value);
+					this.SendPropertyChanging();
+					this._Stock = value;
+					this.SendPropertyChanged("Stock");
+					this.OnStockChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PlanType", DbType="TinyInt NOT NULL")]
+		public byte PlanType
+		{
+			get
+			{
+				return this._PlanType;
+			}
+			set
+			{
+				if ((this._PlanType != value))
+				{
+					this.OnPlanTypeChanging(value);
+					this.SendPropertyChanging();
+					this._PlanType = value;
+					this.SendPropertyChanged("PlanType");
+					this.OnPlanTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AutoConversion", DbType="Bit")]
+		public System.Nullable<bool> AutoConversion
+		{
+			get
+			{
+				return this._AutoConversion;
+			}
+			set
+			{
+				if ((this._AutoConversion != value))
+				{
+					this.OnAutoConversionChanging(value);
+					this.SendPropertyChanging();
+					this._AutoConversion = value;
+					this.SendPropertyChanged("AutoConversion");
+					this.OnAutoConversionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OrderQuantity", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> OrderQuantity
+		{
+			get
+			{
+				return this._OrderQuantity;
+			}
+			set
+			{
+				if ((this._OrderQuantity != value))
+				{
+					this.OnOrderQuantityChanging(value);
+					this.SendPropertyChanging();
+					this._OrderQuantity = value;
+					this.SendPropertyChanged("OrderQuantity");
+					this.OnOrderQuantityChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LTRequisition", DbType="Decimal(20,5)")]
+		public System.Nullable<decimal> LTRequisition
+		{
+			get
+			{
+				return this._LTRequisition;
+			}
+			set
+			{
+				if ((this._LTRequisition != value))
+				{
+					this.OnLTRequisitionChanging(value);
+					this.SendPropertyChanging();
+					this._LTRequisition = value;
+					this.SendPropertyChanged("LTRequisition");
+					this.OnLTRequisitionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LTSafetyStock", DbType="Decimal(20,5)")]
+		public System.Nullable<decimal> LTSafetyStock
+		{
+			get
+			{
+				return this._LTSafetyStock;
+			}
+			set
+			{
+				if ((this._LTSafetyStock != value))
+				{
+					this.OnLTSafetyStockChanging(value);
+					this.SendPropertyChanging();
+					this._LTSafetyStock = value;
+					this.SendPropertyChanged("LTSafetyStock");
+					this.OnLTSafetyStockChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OrderQuantityMultiple", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> OrderQuantityMultiple
+		{
+			get
+			{
+				return this._OrderQuantityMultiple;
+			}
+			set
+			{
+				if ((this._OrderQuantityMultiple != value))
+				{
+					this.OnOrderQuantityMultipleChanging(value);
+					this.SendPropertyChanging();
+					this._OrderQuantityMultiple = value;
+					this.SendPropertyChanged("OrderQuantityMultiple");
+					this.OnOrderQuantityMultipleChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ScrapPercent", DbType="Float")]
+		public System.Nullable<double> ScrapPercent
+		{
+			get
+			{
+				return this._ScrapPercent;
+			}
+			set
+			{
+				if ((this._ScrapPercent != value))
+				{
+					this.OnScrapPercentChanging(value);
+					this.SendPropertyChanging();
+					this._ScrapPercent = value;
+					this.SendPropertyChanged("ScrapPercent");
+					this.OnScrapPercentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MinimumStock", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> MinimumStock
+		{
+			get
+			{
+				return this._MinimumStock;
+			}
+			set
+			{
+				if ((this._MinimumStock != value))
+				{
+					this.OnMinimumStockChanging(value);
+					this.SendPropertyChanging();
+					this._MinimumStock = value;
+					this.SendPropertyChanged("MinimumStock");
+					this.OnMinimumStockChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaximumStock", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> MaximumStock
+		{
+			get
+			{
+				return this._MaximumStock;
+			}
+			set
+			{
+				if ((this._MaximumStock != value))
+				{
+					this.OnMaximumStockChanging(value);
+					this.SendPropertyChanging();
+					this._MaximumStock = value;
+					this.SendPropertyChanged("MaximumStock");
+					this.OnMaximumStockChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ConversionTolerance", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> ConversionTolerance
+		{
+			get
+			{
+				return this._ConversionTolerance;
+			}
+			set
+			{
+				if ((this._ConversionTolerance != value))
+				{
+					this.OnConversionToleranceChanging(value);
+					this.SendPropertyChanging();
+					this._ConversionTolerance = value;
+					this.SendPropertyChanged("ConversionTolerance");
+					this.OnConversionToleranceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VoucherTolerance", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> VoucherTolerance
+		{
+			get
+			{
+				return this._VoucherTolerance;
+			}
+			set
+			{
+				if ((this._VoucherTolerance != value))
+				{
+					this.OnVoucherToleranceChanging(value);
+					this.SendPropertyChanging();
+					this._VoucherTolerance = value;
+					this.SendPropertyChanged("VoucherTolerance");
+					this.OnVoucherToleranceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ReceiveTolerance", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> ReceiveTolerance
+		{
+			get
+			{
+				return this._ReceiveTolerance;
+			}
+			set
+			{
+				if ((this._ReceiveTolerance != value))
+				{
+					this.OnReceiveToleranceChanging(value);
+					this.SendPropertyChanging();
+					this._ReceiveTolerance = value;
+					this.SendPropertyChanged("ReceiveTolerance");
+					this.OnReceiveToleranceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IssueSize", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> IssueSize
+		{
+			get
+			{
+				return this._IssueSize;
+			}
+			set
+			{
+				if ((this._IssueSize != value))
+				{
+					this.OnIssueSizeChanging(value);
+					this.SendPropertyChanging();
+					this._IssueSize = value;
+					this.SendPropertyChanged("IssueSize");
+					this.OnIssueSizeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LTFixedTime", DbType="Decimal(20,5)")]
+		public System.Nullable<decimal> LTFixedTime
+		{
+			get
+			{
+				return this._LTFixedTime;
+			}
+			set
+			{
+				if ((this._LTFixedTime != value))
+				{
+					this.OnLTFixedTimeChanging(value);
+					this.SendPropertyChanging();
+					this._LTFixedTime = value;
+					this.SendPropertyChanged("LTFixedTime");
+					this.OnLTFixedTimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LTVariableTime", DbType="Decimal(20,5)")]
+		public System.Nullable<decimal> LTVariableTime
+		{
+			get
+			{
+				return this._LTVariableTime;
+			}
+			set
+			{
+				if ((this._LTVariableTime != value))
+				{
+					this.OnLTVariableTimeChanging(value);
+					this.SendPropertyChanging();
+					this._LTVariableTime = value;
+					this.SendPropertyChanged("LTVariableTime");
+					this.OnLTVariableTimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LTOrderPrepare", DbType="Decimal(20,5)")]
+		public System.Nullable<decimal> LTOrderPrepare
+		{
+			get
+			{
+				return this._LTOrderPrepare;
+			}
+			set
+			{
+				if ((this._LTOrderPrepare != value))
+				{
+					this.OnLTOrderPrepareChanging(value);
+					this.SendPropertyChanging();
+					this._LTOrderPrepare = value;
+					this.SendPropertyChanged("LTOrderPrepare");
+					this.OnLTOrderPrepareChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LTShippingPrepare", DbType="Decimal(20,5)")]
+		public System.Nullable<decimal> LTShippingPrepare
+		{
+			get
+			{
+				return this._LTShippingPrepare;
+			}
+			set
+			{
+				if ((this._LTShippingPrepare != value))
+				{
+					this.OnLTShippingPrepareChanging(value);
+					this.SendPropertyChanging();
+					this._LTShippingPrepare = value;
+					this.SendPropertyChanged("LTShippingPrepare");
+					this.OnLTShippingPrepareChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LTSalesATP", DbType="Decimal(20,5)")]
+		public System.Nullable<decimal> LTSalesATP
+		{
+			get
+			{
+				return this._LTSalesATP;
+			}
+			set
+			{
+				if ((this._LTSalesATP != value))
+				{
+					this.OnLTSalesATPChanging(value);
+					this.SendPropertyChanging();
+					this._LTSalesATP = value;
+					this.SendPropertyChanged("LTSalesATP");
+					this.OnLTSalesATPChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ShipToleranceID", DbType="Int")]
+		public System.Nullable<int> ShipToleranceID
+		{
+			get
+			{
+				return this._ShipToleranceID;
+			}
+			set
+			{
+				if ((this._ShipToleranceID != value))
+				{
+					if (this._ITM_ShipTolerance.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnShipToleranceIDChanging(value);
+					this.SendPropertyChanging();
+					this._ShipToleranceID = value;
+					this.SendPropertyChanged("ShipToleranceID");
+					this.OnShipToleranceIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BuyerID", DbType="Int")]
+		public System.Nullable<int> BuyerID
+		{
+			get
+			{
+				return this._BuyerID;
+			}
+			set
+			{
+				if ((this._BuyerID != value))
+				{
+					if (this._ITM_Buyer.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnBuyerIDChanging(value);
+					this.SendPropertyChanging();
+					this._BuyerID = value;
+					this.SendPropertyChanged("BuyerID");
+					this.OnBuyerIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BOMDescription", DbType="NVarChar(200)")]
+		public string BOMDescription
+		{
+			get
+			{
+				return this._BOMDescription;
+			}
+			set
+			{
+				if ((this._BOMDescription != value))
+				{
+					this.OnBOMDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._BOMDescription = value;
+					this.SendPropertyChanged("BOMDescription");
+					this.OnBOMDescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BomIncrement", DbType="TinyInt")]
+		public System.Nullable<byte> BomIncrement
+		{
+			get
+			{
+				return this._BomIncrement;
+			}
+			set
+			{
+				if ((this._BomIncrement != value))
+				{
+					this.OnBomIncrementChanging(value);
+					this.SendPropertyChanging();
+					this._BomIncrement = value;
+					this.SendPropertyChanged("BomIncrement");
+					this.OnBomIncrementChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoutingDescription", DbType="NVarChar(200)")]
+		public string RoutingDescription
+		{
+			get
+			{
+				return this._RoutingDescription;
+			}
+			set
+			{
+				if ((this._RoutingDescription != value))
+				{
+					this.OnRoutingDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._RoutingDescription = value;
+					this.SendPropertyChanged("RoutingDescription");
+					this.OnRoutingDescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreateDateTime", DbType="DateTime NOT NULL")]
+		public System.DateTime CreateDateTime
+		{
+			get
+			{
+				return this._CreateDateTime;
+			}
+			set
+			{
+				if ((this._CreateDateTime != value))
+				{
+					this.OnCreateDateTimeChanging(value);
+					this.SendPropertyChanging();
+					this._CreateDateTime = value;
+					this.SendPropertyChanged("CreateDateTime");
+					this.OnCreateDateTimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdateDateTime", DbType="DateTime")]
+		public System.Nullable<System.DateTime> UpdateDateTime
+		{
+			get
+			{
+				return this._UpdateDateTime;
+			}
+			set
+			{
+				if ((this._UpdateDateTime != value))
+				{
+					this.OnUpdateDateTimeChanging(value);
+					this.SendPropertyChanging();
+					this._UpdateDateTime = value;
+					this.SendPropertyChanged("UpdateDateTime");
+					this.OnUpdateDateTimeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CostMethod", DbType="TinyInt")]
+		public System.Nullable<byte> CostMethod
+		{
+			get
+			{
+				return this._CostMethod;
+			}
+			set
+			{
+				if ((this._CostMethod != value))
+				{
+					this.OnCostMethodChanging(value);
+					this.SendPropertyChanging();
+					this._CostMethod = value;
+					this.SendPropertyChanged("CostMethod");
+					this.OnCostMethodChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RoutingIncrement", DbType="TinyInt")]
+		public System.Nullable<byte> RoutingIncrement
+		{
+			get
+			{
+				return this._RoutingIncrement;
+			}
+			set
+			{
+				if ((this._RoutingIncrement != value))
+				{
+					this.OnRoutingIncrementChanging(value);
+					this.SendPropertyChanging();
+					this._RoutingIncrement = value;
+					this.SendPropertyChanged("RoutingIncrement");
+					this.OnRoutingIncrementChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CCNID", DbType="Int NOT NULL")]
+		public int CCNID
+		{
+			get
+			{
+				return this._CCNID;
+			}
+			set
+			{
+				if ((this._CCNID != value))
+				{
+					if (this._MST_CCN.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnCCNIDChanging(value);
+					this.SendPropertyChanging();
+					this._CCNID = value;
+					this.SendPropertyChanged("CCNID");
+					this.OnCCNIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CategoryID", DbType="Int")]
+		public System.Nullable<int> CategoryID
+		{
+			get
+			{
+				return this._CategoryID;
+			}
+			set
+			{
+				if ((this._CategoryID != value))
+				{
+					if (this._ITM_Category.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnCategoryIDChanging(value);
+					this.SendPropertyChanging();
+					this._CategoryID = value;
+					this.SendPropertyChanged("CategoryID");
+					this.OnCategoryIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CostCenterID", DbType="Int")]
+		public System.Nullable<int> CostCenterID
+		{
+			get
+			{
+				return this._CostCenterID;
+			}
+			set
+			{
+				if ((this._CostCenterID != value))
+				{
+					if (this._ITM_CostCenter.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnCostCenterIDChanging(value);
+					this.SendPropertyChanging();
+					this._CostCenterID = value;
+					this.SendPropertyChanged("CostCenterID");
+					this.OnCostCenterIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeleteReasonID", DbType="Int")]
+		public System.Nullable<int> DeleteReasonID
+		{
+			get
+			{
+				return this._DeleteReasonID;
+			}
+			set
+			{
+				if ((this._DeleteReasonID != value))
+				{
+					if (this._ITM_DeleteReason.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnDeleteReasonIDChanging(value);
+					this.SendPropertyChanging();
+					this._DeleteReasonID = value;
+					this.SendPropertyChanged("DeleteReasonID");
+					this.OnDeleteReasonIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeliveryPolicyID", DbType="Int")]
+		public System.Nullable<int> DeliveryPolicyID
+		{
+			get
+			{
+				return this._DeliveryPolicyID;
+			}
+			set
+			{
+				if ((this._DeliveryPolicyID != value))
+				{
+					if (this._ITM_DeliveryPolicy.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnDeliveryPolicyIDChanging(value);
+					this.SendPropertyChanging();
+					this._DeliveryPolicyID = value;
+					this.SendPropertyChanged("DeliveryPolicyID");
+					this.OnDeliveryPolicyIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FormatCodeID", DbType="Int")]
+		public System.Nullable<int> FormatCodeID
+		{
+			get
+			{
+				return this._FormatCodeID;
+			}
+			set
+			{
+				if ((this._FormatCodeID != value))
+				{
+					if (this._ITM_FormatCode.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnFormatCodeIDChanging(value);
+					this.SendPropertyChanging();
+					this._FormatCodeID = value;
+					this.SendPropertyChanged("FormatCodeID");
+					this.OnFormatCodeIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FreightClassID", DbType="Int")]
+		public System.Nullable<int> FreightClassID
+		{
+			get
+			{
+				return this._FreightClassID;
+			}
+			set
+			{
+				if ((this._FreightClassID != value))
+				{
+					if (this._ITM_FreightClass.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnFreightClassIDChanging(value);
+					this.SendPropertyChanging();
+					this._FreightClassID = value;
+					this.SendPropertyChanged("FreightClassID");
+					this.OnFreightClassIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HazardID", DbType="Int")]
+		public System.Nullable<int> HazardID
+		{
+			get
+			{
+				return this._HazardID;
+			}
+			set
+			{
+				if ((this._HazardID != value))
+				{
+					if (this._ITM_Hazard.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnHazardIDChanging(value);
+					this.SendPropertyChanging();
+					this._HazardID = value;
+					this.SendPropertyChanged("HazardID");
+					this.OnHazardIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OrderPolicyID", DbType="Int")]
+		public System.Nullable<int> OrderPolicyID
+		{
+			get
+			{
+				return this._OrderPolicyID;
+			}
+			set
+			{
+				if ((this._OrderPolicyID != value))
+				{
+					if (this._ITM_OrderPolicy.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnOrderPolicyIDChanging(value);
+					this.SendPropertyChanging();
+					this._OrderPolicyID = value;
+					this.SendPropertyChanged("OrderPolicyID");
+					this.OnOrderPolicyIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OrderRuleID", DbType="Int")]
+		public System.Nullable<int> OrderRuleID
+		{
+			get
+			{
+				return this._OrderRuleID;
+			}
+			set
+			{
+				if ((this._OrderRuleID != value))
+				{
+					if (this._ITM_OrderRule.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnOrderRuleIDChanging(value);
+					this.SendPropertyChanging();
+					this._OrderRuleID = value;
+					this.SendPropertyChanged("OrderRuleID");
+					this.OnOrderRuleIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SourceID", DbType="Int")]
+		public System.Nullable<int> SourceID
+		{
+			get
+			{
+				return this._SourceID;
+			}
+			set
+			{
+				if ((this._SourceID != value))
+				{
+					if (this._ITM_Source.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnSourceIDChanging(value);
+					this.SendPropertyChanging();
+					this._SourceID = value;
+					this.SendPropertyChanged("SourceID");
+					this.OnSourceIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StockUMID", DbType="Int NOT NULL")]
+		public int StockUMID
+		{
+			get
+			{
+				return this._StockUMID;
+			}
+			set
+			{
+				if ((this._StockUMID != value))
+				{
+					if (this._MST_UnitOfMeasure4.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnStockUMIDChanging(value);
+					this.SendPropertyChanging();
+					this._StockUMID = value;
+					this.SendPropertyChanged("StockUMID");
+					this.OnStockUMIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SellingUMID", DbType="Int NOT NULL")]
+		public int SellingUMID
+		{
+			get
+			{
+				return this._SellingUMID;
+			}
+			set
+			{
+				if ((this._SellingUMID != value))
+				{
+					if (this._MST_UnitOfMeasure3.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnSellingUMIDChanging(value);
+					this.SendPropertyChanging();
+					this._SellingUMID = value;
+					this.SendPropertyChanged("SellingUMID");
+					this.OnSellingUMIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_HeightUMID", DbType="Int")]
+		public System.Nullable<int> HeightUMID
+		{
+			get
+			{
+				return this._HeightUMID;
+			}
+			set
+			{
+				if ((this._HeightUMID != value))
+				{
+					if (this._MST_UnitOfMeasure1.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnHeightUMIDChanging(value);
+					this.SendPropertyChanging();
+					this._HeightUMID = value;
+					this.SendPropertyChanged("HeightUMID");
+					this.OnHeightUMIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WidthUMID", DbType="Int")]
+		public System.Nullable<int> WidthUMID
+		{
+			get
+			{
+				return this._WidthUMID;
+			}
+			set
+			{
+				if ((this._WidthUMID != value))
+				{
+					if (this._MST_UnitOfMeasure6.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnWidthUMIDChanging(value);
+					this.SendPropertyChanging();
+					this._WidthUMID = value;
+					this.SendPropertyChanged("WidthUMID");
+					this.OnWidthUMIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LengthUMID", DbType="Int")]
+		public System.Nullable<int> LengthUMID
+		{
+			get
+			{
+				return this._LengthUMID;
+			}
+			set
+			{
+				if ((this._LengthUMID != value))
+				{
+					if (this._MST_UnitOfMeasure2.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnLengthUMIDChanging(value);
+					this.SendPropertyChanging();
+					this._LengthUMID = value;
+					this.SendPropertyChanged("LengthUMID");
+					this.OnLengthUMIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BuyingUMID", DbType="Int NOT NULL")]
+		public int BuyingUMID
+		{
+			get
+			{
+				return this._BuyingUMID;
+			}
+			set
+			{
+				if ((this._BuyingUMID != value))
+				{
+					if (this._MST_UnitOfMeasure.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnBuyingUMIDChanging(value);
+					this.SendPropertyChanging();
+					this._BuyingUMID = value;
+					this.SendPropertyChanged("BuyingUMID");
+					this.OnBuyingUMIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WeightUMID", DbType="Int")]
+		public System.Nullable<int> WeightUMID
+		{
+			get
+			{
+				return this._WeightUMID;
+			}
+			set
+			{
+				if ((this._WeightUMID != value))
+				{
+					if (this._MST_UnitOfMeasure5.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnWeightUMIDChanging(value);
+					this.SendPropertyChanging();
+					this._WeightUMID = value;
+					this.SendPropertyChanged("WeightUMID");
+					this.OnWeightUMIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LotSize", DbType="Int")]
+		public System.Nullable<int> LotSize
+		{
+			get
+			{
+				return this._LotSize;
+			}
+			set
+			{
+				if ((this._LotSize != value))
+				{
+					this.OnLotSizeChanging(value);
+					this.SendPropertyChanging();
+					this._LotSize = value;
+					this.SendPropertyChanged("LotSize");
+					this.OnLotSizeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MasterLocationID", DbType="Int")]
+		public System.Nullable<int> MasterLocationID
+		{
+			get
+			{
+				return this._MasterLocationID;
+			}
+			set
+			{
+				if ((this._MasterLocationID != value))
+				{
+					if (this._MST_MasterLocation.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnMasterLocationIDChanging(value);
+					this.SendPropertyChanging();
+					this._MasterLocationID = value;
+					this.SendPropertyChanged("MasterLocationID");
+					this.OnMasterLocationIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LocationID", DbType="Int")]
+		public System.Nullable<int> LocationID
+		{
+			get
+			{
+				return this._LocationID;
+			}
+			set
+			{
+				if ((this._LocationID != value))
+				{
+					if (this._MST_Location.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnLocationIDChanging(value);
+					this.SendPropertyChanging();
+					this._LocationID = value;
+					this.SendPropertyChanged("LocationID");
+					this.OnLocationIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_BinID", DbType="Int")]
+		public System.Nullable<int> BinID
+		{
+			get
+			{
+				return this._BinID;
+			}
+			set
+			{
+				if ((this._BinID != value))
+				{
+					if (this._MST_BIN.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnBinIDChanging(value);
+					this.SendPropertyChanging();
+					this._BinID = value;
+					this.SendPropertyChanged("BinID");
+					this.OnBinIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrimaryVendorID", DbType="Int")]
+		public System.Nullable<int> PrimaryVendorID
+		{
+			get
+			{
+				return this._PrimaryVendorID;
+			}
+			set
+			{
+				if ((this._PrimaryVendorID != value))
+				{
+					if (this._MST_Party1.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnPrimaryVendorIDChanging(value);
+					this.SendPropertyChanging();
+					this._PrimaryVendorID = value;
+					this.SendPropertyChanged("PrimaryVendorID");
+					this.OnPrimaryVendorIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VendorLocationID", DbType="Int")]
+		public System.Nullable<int> VendorLocationID
+		{
+			get
+			{
+				return this._VendorLocationID;
+			}
+			set
+			{
+				if ((this._VendorLocationID != value))
+				{
+					if (this._MST_PartyLocation.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnVendorLocationIDChanging(value);
+					this.SendPropertyChanging();
+					this._VendorLocationID = value;
+					this.SendPropertyChanged("VendorLocationID");
+					this.OnVendorLocationIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_OrderPoint", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> OrderPoint
+		{
+			get
+			{
+				return this._OrderPoint;
+			}
+			set
+			{
+				if ((this._OrderPoint != value))
+				{
+					this.OnOrderPointChanging(value);
+					this.SendPropertyChanging();
+					this._OrderPoint = value;
+					this.SendPropertyChanged("OrderPoint");
+					this.OnOrderPointChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SafetyStock", DbType="Decimal(20,5)")]
+		public System.Nullable<decimal> SafetyStock
+		{
+			get
+			{
+				return this._SafetyStock;
+			}
+			set
+			{
+				if ((this._SafetyStock != value))
+				{
+					this.OnSafetyStockChanging(value);
+					this.SendPropertyChanging();
+					this._SafetyStock = value;
+					this.SendPropertyChanged("SafetyStock");
+					this.OnSafetyStockChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AGCID", DbType="Int")]
+		public System.Nullable<int> AGCID
+		{
+			get
+			{
+				return this._AGCID;
+			}
+			set
+			{
+				if ((this._AGCID != value))
+				{
+					if (this._MST_AGC.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnAGCIDChanging(value);
+					this.SendPropertyChanging();
+					this._AGCID = value;
+					this.SendPropertyChanged("AGCID");
+					this.OnAGCIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParentProductID", DbType="Int")]
+		public System.Nullable<int> ParentProductID
+		{
+			get
+			{
+				return this._ParentProductID;
+			}
+			set
+			{
+				if ((this._ParentProductID != value))
+				{
+					this.OnParentProductIDChanging(value);
+					this.SendPropertyChanging();
+					this._ParentProductID = value;
+					this.SendPropertyChanged("ParentProductID");
+					this.OnParentProductIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LTDockToStock", DbType="Decimal(20,5)")]
+		public System.Nullable<decimal> LTDockToStock
+		{
+			get
+			{
+				return this._LTDockToStock;
+			}
+			set
+			{
+				if ((this._LTDockToStock != value))
+				{
+					this.OnLTDockToStockChanging(value);
+					this.SendPropertyChanging();
+					this._LTDockToStock = value;
+					this.SendPropertyChanged("LTDockToStock");
+					this.OnLTDockToStockChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PartNameVN", DbType="NVarChar(100)")]
+		public string PartNameVN
+		{
+			get
+			{
+				return this._PartNameVN;
+			}
+			set
+			{
+				if ((this._PartNameVN != value))
+				{
+					this.OnPartNameVNChanging(value);
+					this.SendPropertyChanging();
+					this._PartNameVN = value;
+					this.SendPropertyChanged("PartNameVN");
+					this.OnPartNameVNChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LicenseFee", DbType="Decimal(20,5)")]
+		public System.Nullable<decimal> LicenseFee
+		{
+			get
+			{
+				return this._LicenseFee;
+			}
+			set
+			{
+				if ((this._LicenseFee != value))
+				{
+					this.OnLicenseFeeChanging(value);
+					this.SendPropertyChanging();
+					this._LicenseFee = value;
+					this.SendPropertyChanged("LicenseFee");
+					this.OnLicenseFeeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InventorID", DbType="Int")]
+		public System.Nullable<int> InventorID
+		{
+			get
+			{
+				return this._InventorID;
+			}
+			set
+			{
+				if ((this._InventorID != value))
+				{
+					if (this._MST_Party.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnInventorIDChanging(value);
+					this.SendPropertyChanging();
+					this._InventorID = value;
+					this.SendPropertyChanged("InventorID");
+					this.OnInventorIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductTypeID", DbType="Int")]
+		public System.Nullable<int> ProductTypeID
+		{
+			get
+			{
+				return this._ProductTypeID;
+			}
+			set
+			{
+				if ((this._ProductTypeID != value))
+				{
+					if (this._ITM_ProductType.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnProductTypeIDChanging(value);
+					this.SendPropertyChanging();
+					this._ProductTypeID = value;
+					this.SendPropertyChanged("ProductTypeID");
+					this.OnProductTypeIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TaxCode", DbType="NVarChar(20)")]
+		public string TaxCode
+		{
+			get
+			{
+				return this._TaxCode;
+			}
+			set
+			{
+				if ((this._TaxCode != value))
+				{
+					this.OnTaxCodeChanging(value);
+					this.SendPropertyChanging();
+					this._TaxCode = value;
+					this.SendPropertyChanged("TaxCode");
+					this.OnTaxCodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ListPrice", DbType="Decimal(20,5)")]
+		public System.Nullable<decimal> ListPrice
+		{
+			get
+			{
+				return this._ListPrice;
+			}
+			set
+			{
+				if ((this._ListPrice != value))
+				{
+					this.OnListPriceChanging(value);
+					this.SendPropertyChanging();
+					this._ListPrice = value;
+					this.SendPropertyChanged("ListPrice");
+					this.OnListPriceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_VendorCurrencyID", DbType="Int")]
+		public System.Nullable<int> VendorCurrencyID
+		{
+			get
+			{
+				return this._VendorCurrencyID;
+			}
+			set
+			{
+				if ((this._VendorCurrencyID != value))
+				{
+					if (this._MST_Currency.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnVendorCurrencyIDChanging(value);
+					this.SendPropertyChanging();
+					this._VendorCurrencyID = value;
+					this.SendPropertyChanged("VendorCurrencyID");
+					this.OnVendorCurrencyIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_QuantitySet", DbType="Decimal(20,5)")]
+		public System.Nullable<decimal> QuantitySet
+		{
+			get
+			{
+				return this._QuantitySet;
+			}
+			set
+			{
+				if ((this._QuantitySet != value))
+				{
+					this.OnQuantitySetChanging(value);
+					this.SendPropertyChanging();
+					this._QuantitySet = value;
+					this.SendPropertyChanged("QuantitySet");
+					this.OnQuantitySetChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductionLineID", DbType="Int")]
+		public System.Nullable<int> ProductionLineID
+		{
+			get
+			{
+				return this._ProductionLineID;
+			}
+			set
+			{
+				if ((this._ProductionLineID != value))
+				{
+					if (this._PRO_ProductionLine.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnProductionLineIDChanging(value);
+					this.SendPropertyChanging();
+					this._ProductionLineID = value;
+					this.SendPropertyChanged("ProductionLineID");
+					this.OnProductionLineIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CostCenterRateMasterID", DbType="Int")]
+		public System.Nullable<int> CostCenterRateMasterID
+		{
+			get
+			{
+				return this._CostCenterRateMasterID;
+			}
+			set
+			{
+				if ((this._CostCenterRateMasterID != value))
+				{
+					if (this._STD_CostCenterRateMaster.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnCostCenterRateMasterIDChanging(value);
+					this.SendPropertyChanging();
+					this._CostCenterRateMasterID = value;
+					this.SendPropertyChanged("CostCenterRateMasterID");
+					this.OnCostCenterRateMasterIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductGroupID", DbType="Int")]
+		public System.Nullable<int> ProductGroupID
+		{
+			get
+			{
+				return this._ProductGroupID;
+			}
+			set
+			{
+				if ((this._ProductGroupID != value))
+				{
+					if (this._CST_ProductGroup.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnProductGroupIDChanging(value);
+					this.SendPropertyChanging();
+					this._ProductGroupID = value;
+					this.SendPropertyChanged("ProductGroupID");
+					this.OnProductGroupIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaxProduce", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> MaxProduce
+		{
+			get
+			{
+				return this._MaxProduce;
+			}
+			set
+			{
+				if ((this._MaxProduce != value))
+				{
+					this.OnMaxProduceChanging(value);
+					this.SendPropertyChanging();
+					this._MaxProduce = value;
+					this.SendPropertyChanged("MaxProduce");
+					this.OnMaxProduceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MinProduce", DbType="Decimal(18,0)")]
+		public System.Nullable<decimal> MinProduce
+		{
+			get
+			{
+				return this._MinProduce;
+			}
+			set
+			{
+				if ((this._MinProduce != value))
+				{
+					this.OnMinProduceChanging(value);
+					this.SendPropertyChanging();
+					this._MinProduce = value;
+					this.SendPropertyChanged("MinProduce");
+					this.OnMinProduceChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Picture", DbType="Image", UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary Picture
+		{
+			get
+			{
+				return this._Picture;
+			}
+			set
+			{
+				if ((this._Picture != value))
+				{
+					this.OnPictureChanging(value);
+					this.SendPropertyChanging();
+					this._Picture = value;
+					this.SendPropertyChanged("Picture");
+					this.OnPictureChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaxRoundUpToMin", DbType="Decimal(20,5)")]
+		public System.Nullable<decimal> MaxRoundUpToMin
+		{
+			get
+			{
+				return this._MaxRoundUpToMin;
+			}
+			set
+			{
+				if ((this._MaxRoundUpToMin != value))
+				{
+					this.OnMaxRoundUpToMinChanging(value);
+					this.SendPropertyChanging();
+					this._MaxRoundUpToMin = value;
+					this.SendPropertyChanged("MaxRoundUpToMin");
+					this.OnMaxRoundUpToMinChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaxRoundUpToMultiple", DbType="Decimal(20,5)")]
+		public System.Nullable<decimal> MaxRoundUpToMultiple
+		{
+			get
+			{
+				return this._MaxRoundUpToMultiple;
+			}
+			set
+			{
+				if ((this._MaxRoundUpToMultiple != value))
+				{
+					this.OnMaxRoundUpToMultipleChanging(value);
+					this.SendPropertyChanging();
+					this._MaxRoundUpToMultiple = value;
+					this.SendPropertyChanged("MaxRoundUpToMultiple");
+					this.OnMaxRoundUpToMultipleChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ACAdjustmentMasterID", DbType="Int")]
+		public System.Nullable<int> ACAdjustmentMasterID
+		{
+			get
+			{
+				return this._ACAdjustmentMasterID;
+			}
+			set
+			{
+				if ((this._ACAdjustmentMasterID != value))
+				{
+					if (this._cst_ACAdjustmentMaster.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnACAdjustmentMasterIDChanging(value);
+					this.SendPropertyChanging();
+					this._ACAdjustmentMasterID = value;
+					this.SendPropertyChanged("ACAdjustmentMasterID");
+					this.OnACAdjustmentMasterIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RegisteredCode", DbType="NVarChar(40)")]
+		public string RegisteredCode
+		{
+			get
+			{
+				return this._RegisteredCode;
+			}
+			set
+			{
+				if ((this._RegisteredCode != value))
+				{
+					this.OnRegisteredCodeChanging(value);
+					this.SendPropertyChanging();
+					this._RegisteredCode = value;
+					this.SendPropertyChanged("RegisteredCode");
+					this.OnRegisteredCodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SetUpPair", DbType="NVarChar(50)")]
+		public string SetUpPair
+		{
+			get
+			{
+				return this._SetUpPair;
+			}
+			set
+			{
+				if ((this._SetUpPair != value))
+				{
+					this.OnSetUpPairChanging(value);
+					this.SendPropertyChanging();
+					this._SetUpPair = value;
+					this.SendPropertyChanged("SetUpPair");
+					this.OnSetUpPairChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AVEG", DbType="Bit")]
+		public System.Nullable<bool> AVEG
+		{
+			get
+			{
+				return this._AVEG;
+			}
+			set
+			{
+				if ((this._AVEG != value))
+				{
+					this.OnAVEGChanging(value);
+					this.SendPropertyChanging();
+					this._AVEG = value;
+					this.SendPropertyChanged("AVEG");
+					this.OnAVEGChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StockTakingCode", DbType="NVarChar(100)")]
+		public string StockTakingCode
+		{
+			get
+			{
+				return this._StockTakingCode;
+			}
+			set
+			{
+				if ((this._StockTakingCode != value))
+				{
+					this.OnStockTakingCodeChanging(value);
+					this.SendPropertyChanging();
+					this._StockTakingCode = value;
+					this.SendPropertyChanged("StockTakingCode");
+					this.OnStockTakingCodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MassOrder", DbType="Bit")]
+		public System.Nullable<bool> MassOrder
+		{
+			get
+			{
+				return this._MassOrder;
+			}
+			set
+			{
+				if ((this._MassOrder != value))
+				{
+					this.OnMassOrderChanging(value);
+					this.SendPropertyChanging();
+					this._MassOrder = value;
+					this.SendPropertyChanged("MassOrder");
+					this.OnMassOrderChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AllowNegativeQty", DbType="Bit")]
+		public System.Nullable<bool> AllowNegativeQty
+		{
+			get
+			{
+				return this._AllowNegativeQty;
+			}
+			set
+			{
+				if ((this._AllowNegativeQty != value))
+				{
+					this.OnAllowNegativeQtyChanging(value);
+					this.SendPropertyChanging();
+					this._AllowNegativeQty = value;
+					this.SendPropertyChanged("AllowNegativeQty");
+					this.OnAllowNegativeQtyChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductClassifiedID", DbType="Int")]
+		public System.Nullable<int> ProductClassifiedID
+		{
+			get
+			{
+				return this._ProductClassifiedID;
+			}
+			set
+			{
+				if ((this._ProductClassifiedID != value))
+				{
+					if (this._ITM_ProductClassified.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnProductClassifiedIDChanging(value);
+					this.SendPropertyChanging();
+					this._ProductClassifiedID = value;
+					this.SendPropertyChanged("ProductClassifiedID");
+					this.OnProductClassifiedIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemGroupID", DbType="Int")]
+		public System.Nullable<int> ItemGroupID
+		{
+			get
+			{
+				return this._ItemGroupID;
+			}
+			set
+			{
+				if ((this._ItemGroupID != value))
+				{
+					if (this._ITM_ItemGroup.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnItemGroupIDChanging(value);
+					this.SendPropertyChanging();
+					this._ItemGroupID = value;
+					this.SendPropertyChanged("ItemGroupID");
+					this.OnItemGroupIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_cst_ActCostAllocationDetail", Storage="_cst_ActCostAllocationDetails", ThisKey="ProductID", OtherKey="ProductID")]
+		public EntitySet<cst_ActCostAllocationDetail> cst_ActCostAllocationDetails
+		{
+			get
+			{
+				return this._cst_ActCostAllocationDetails;
+			}
+			set
+			{
+				this._cst_ActCostAllocationDetails.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_CST_ActualCostHistory", Storage="_CST_ActualCostHistories", ThisKey="ProductID", OtherKey="ProductID")]
+		public EntitySet<CST_ActualCostHistory> CST_ActualCostHistories
+		{
+			get
+			{
+				return this._CST_ActualCostHistories;
+			}
+			set
+			{
+				this._CST_ActualCostHistories.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_cst_AllocationResult", Storage="_cst_AllocationResults", ThisKey="ProductID", OtherKey="ProductID")]
+		public EntitySet<cst_AllocationResult> cst_AllocationResults
+		{
+			get
+			{
+				return this._cst_AllocationResults;
+			}
+			set
+			{
+				this._cst_AllocationResults.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_CST_DSAndRecycleAllocation", Storage="_CST_DSAndRecycleAllocations", ThisKey="ProductID", OtherKey="ProductID")]
+		public EntitySet<CST_DSAndRecycleAllocation> CST_DSAndRecycleAllocations
+		{
+			get
+			{
+				return this._CST_DSAndRecycleAllocations;
+			}
+			set
+			{
+				this._CST_DSAndRecycleAllocations.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_cst_FreightDetail", Storage="_cst_FreightDetails", ThisKey="ProductID", OtherKey="ProductID")]
+		public EntitySet<cst_FreightDetail> cst_FreightDetails
+		{
+			get
+			{
+				return this._cst_FreightDetails;
+			}
+			set
+			{
+				this._cst_FreightDetails.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_CST_RecoverMaterialDetail", Storage="_CST_RecoverMaterialDetails", ThisKey="ProductID", OtherKey="ProductID")]
+		public EntitySet<CST_RecoverMaterialDetail> CST_RecoverMaterialDetails
+		{
+			get
+			{
+				return this._CST_RecoverMaterialDetails;
+			}
+			set
+			{
+				this._CST_RecoverMaterialDetails.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_CST_RecoverMaterialMaster", Storage="_CST_RecoverMaterialMasters", ThisKey="ProductID", OtherKey="ProductID")]
+		public EntitySet<CST_RecoverMaterialMaster> CST_RecoverMaterialMasters
+		{
+			get
+			{
+				return this._CST_RecoverMaterialMasters;
+			}
+			set
+			{
+				this._CST_RecoverMaterialMasters.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_CST_STDItemCost", Storage="_CST_STDItemCosts", ThisKey="ProductID", OtherKey="ProductID")]
+		public EntitySet<CST_STDItemCost> CST_STDItemCosts
+		{
+			get
+			{
+				return this._CST_STDItemCosts;
+			}
+			set
+			{
+				this._CST_STDItemCosts.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_DCP_BeginQuantity", Storage="_DCP_BeginQuantities", ThisKey="ProductID", OtherKey="ProductID")]
+		public EntitySet<DCP_BeginQuantity> DCP_BeginQuantities
+		{
+			get
+			{
+				return this._DCP_BeginQuantities;
+			}
+			set
+			{
+				this._DCP_BeginQuantities.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_ITM_BOM", Storage="_ITM_BOMs", ThisKey="ProductID", OtherKey="ComponentID")]
+		public EntitySet<ITM_BOM> ITM_BOMs
+		{
+			get
+			{
+				return this._ITM_BOMs;
+			}
+			set
+			{
+				this._ITM_BOMs.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_ITM_BOM1", Storage="_ITM_BOMs1", ThisKey="ProductID", OtherKey="ProductID")]
+		public EntitySet<ITM_BOM> ITM_BOMs1
+		{
+			get
+			{
+				return this._ITM_BOMs1;
+			}
+			set
+			{
+				this._ITM_BOMs1.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_ITM_Picture", Storage="_ITM_Pictures", ThisKey="ProductID", OtherKey="ProductID")]
+		public EntitySet<ITM_Picture> ITM_Pictures
+		{
+			get
+			{
+				return this._ITM_Pictures;
+			}
+			set
+			{
+				this._ITM_Pictures.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_ITM_Routing", Storage="_ITM_Routings", ThisKey="ProductID", OtherKey="ProductID")]
+		public EntitySet<ITM_Routing> ITM_Routings
+		{
+			get
+			{
+				return this._ITM_Routings;
+			}
+			set
+			{
+				this._ITM_Routings.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_IV_Adjustment", Storage="_IV_Adjustments", ThisKey="ProductID", OtherKey="ProductID")]
+		public EntitySet<IV_Adjustment> IV_Adjustments
+		{
+			get
+			{
+				return this._IV_Adjustments;
+			}
+			set
+			{
+				this._IV_Adjustments.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_IV_BalanceBin", Storage="_IV_BalanceBins", ThisKey="ProductID", OtherKey="ProductID")]
+		public EntitySet<IV_BalanceBin> IV_BalanceBins
+		{
+			get
+			{
+				return this._IV_BalanceBins;
+			}
+			set
+			{
+				this._IV_BalanceBins.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_IV_BalanceLocation", Storage="_IV_BalanceLocations", ThisKey="ProductID", OtherKey="ProductID")]
+		public EntitySet<IV_BalanceLocation> IV_BalanceLocations
+		{
+			get
+			{
+				return this._IV_BalanceLocations;
+			}
+			set
+			{
+				this._IV_BalanceLocations.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_IV_BalanceMasterLocation", Storage="_IV_BalanceMasterLocations", ThisKey="ProductID", OtherKey="ProductID")]
+		public EntitySet<IV_BalanceMasterLocation> IV_BalanceMasterLocations
+		{
+			get
+			{
+				return this._IV_BalanceMasterLocations;
+			}
+			set
+			{
+				this._IV_BalanceMasterLocations.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_IV_BeginDCPReport", Storage="_IV_BeginDCPReports", ThisKey="ProductID", OtherKey="ProductID")]
+		public EntitySet<IV_BeginDCPReport> IV_BeginDCPReports
+		{
+			get
+			{
+				return this._IV_BeginDCPReports;
+			}
+			set
+			{
+				this._IV_BeginDCPReports.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_IV_BeginMRP", Storage="_IV_BeginMRPs", ThisKey="ProductID", OtherKey="ProductID")]
+		public EntitySet<IV_BeginMRP> IV_BeginMRPs
+		{
+			get
+			{
+				return this._IV_BeginMRPs;
+			}
+			set
+			{
+				this._IV_BeginMRPs.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_IV_BinCache", Storage="_IV_BinCaches", ThisKey="ProductID", OtherKey="ProductID")]
+		public EntitySet<IV_BinCache> IV_BinCaches
+		{
+			get
+			{
+				return this._IV_BinCaches;
+			}
+			set
+			{
+				this._IV_BinCaches.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_IV_CostHistory", Storage="_IV_CostHistories", ThisKey="ProductID", OtherKey="ProductID")]
+		public EntitySet<IV_CostHistory> IV_CostHistories
+		{
+			get
+			{
+				return this._IV_CostHistories;
+			}
+			set
+			{
+				this._IV_CostHistories.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_IV_LocationCache", Storage="_IV_LocationCaches", ThisKey="ProductID", OtherKey="ProductID")]
+		public EntitySet<IV_LocationCache> IV_LocationCaches
+		{
+			get
+			{
+				return this._IV_LocationCaches;
+			}
+			set
+			{
+				this._IV_LocationCaches.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_IV_MasLocCache", Storage="_IV_MasLocCaches", ThisKey="ProductID", OtherKey="ProductID")]
+		public EntitySet<IV_MasLocCache> IV_MasLocCaches
+		{
+			get
+			{
+				return this._IV_MasLocCaches;
+			}
+			set
+			{
+				this._IV_MasLocCaches.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_IV_StockTaking", Storage="_IV_StockTakings", ThisKey="ProductID", OtherKey="ProductID")]
+		public EntitySet<IV_StockTaking> IV_StockTakings
+		{
+			get
+			{
+				return this._IV_StockTakings;
+			}
+			set
+			{
+				this._IV_StockTakings.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_IV_StockTakingDifferent", Storage="_IV_StockTakingDifferents", ThisKey="ProductID", OtherKey="ProductID")]
+		public EntitySet<IV_StockTakingDifferent> IV_StockTakingDifferents
+		{
+			get
+			{
+				return this._IV_StockTakingDifferents;
+			}
+			set
+			{
+				this._IV_StockTakingDifferents.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_MST_TransactionHistory", Storage="_MST_TransactionHistories", ThisKey="ProductID", OtherKey="ProductID")]
+		public EntitySet<MST_TransactionHistory> MST_TransactionHistories
+		{
+			get
+			{
+				return this._MST_TransactionHistories;
+			}
+			set
+			{
+				this._MST_TransactionHistories.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_MTR_ACDSDetail", Storage="_MTR_ACDSDetails", ThisKey="ProductID", OtherKey="ProductID")]
+		public EntitySet<MTR_ACDSDetail> MTR_ACDSDetails
+		{
+			get
+			{
+				return this._MTR_ACDSDetails;
+			}
+			set
+			{
+				this._MTR_ACDSDetails.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_MTR_CPO", Storage="_MTR_CPOs", ThisKey="ProductID", OtherKey="ProductID")]
+		public EntitySet<MTR_CPO> MTR_CPOs
+		{
+			get
+			{
+				return this._MTR_CPOs;
+			}
+			set
+			{
+				this._MTR_CPOs.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_MTR_ItemActualCost", Storage="_MTR_ItemActualCosts", ThisKey="ProductID", OtherKey="ProductID")]
+		public EntitySet<MTR_ItemActualCost> MTR_ItemActualCosts
+		{
+			get
+			{
+				return this._MTR_ItemActualCosts;
+			}
+			set
+			{
+				this._MTR_ItemActualCosts.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PO_InvoiceDetail", Storage="_PO_InvoiceDetails", ThisKey="ProductID", OtherKey="ProductID")]
+		public EntitySet<PO_InvoiceDetail> PO_InvoiceDetails
+		{
+			get
+			{
+				return this._PO_InvoiceDetails;
+			}
+			set
+			{
+				this._PO_InvoiceDetails.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PO_ItemVendorReference", Storage="_PO_ItemVendorReferences", ThisKey="ProductID", OtherKey="ProductID")]
+		public EntitySet<PO_ItemVendorReference> PO_ItemVendorReferences
+		{
+			get
+			{
+				return this._PO_ItemVendorReferences;
+			}
+			set
+			{
+				this._PO_ItemVendorReferences.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PO_PurchaseOrderDetail", Storage="_PO_PurchaseOrderDetails", ThisKey="ProductID", OtherKey="ProductID")]
+		public EntitySet<PO_PurchaseOrderDetail> PO_PurchaseOrderDetails
+		{
+			get
+			{
+				return this._PO_PurchaseOrderDetails;
+			}
+			set
+			{
+				this._PO_PurchaseOrderDetails.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PO_PurchaseOrderReceiptDetail", Storage="_PO_PurchaseOrderReceiptDetails", ThisKey="ProductID", OtherKey="ProductID")]
+		public EntitySet<PO_PurchaseOrderReceiptDetail> PO_PurchaseOrderReceiptDetails
+		{
+			get
+			{
+				return this._PO_PurchaseOrderReceiptDetails;
+			}
+			set
+			{
+				this._PO_PurchaseOrderReceiptDetails.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PO_ReturnToVendorDetail", Storage="_PO_ReturnToVendorDetails", ThisKey="ProductID", OtherKey="ProductID")]
+		public EntitySet<PO_ReturnToVendorDetail> PO_ReturnToVendorDetails
+		{
+			get
+			{
+				return this._PO_ReturnToVendorDetails;
+			}
+			set
+			{
+				this._PO_ReturnToVendorDetails.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PO_VendorDeliverySchedule", Storage="_PO_VendorDeliverySchedules", ThisKey="ProductID", OtherKey="ProductID")]
+		public EntitySet<PO_VendorDeliverySchedule> PO_VendorDeliverySchedules
+		{
+			get
+			{
+				return this._PO_VendorDeliverySchedules;
+			}
+			set
+			{
+				this._PO_VendorDeliverySchedules.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PRO_ChangeCategoryDetail", Storage="_PRO_ChangeCategoryDetails", ThisKey="ProductID", OtherKey="ProductID")]
+		public EntitySet<PRO_ChangeCategoryDetail> PRO_ChangeCategoryDetails
+		{
+			get
+			{
+				return this._PRO_ChangeCategoryDetails;
+			}
+			set
+			{
+				this._PRO_ChangeCategoryDetails.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PRO_ChangeCategoryMatrix", Storage="_PRO_ChangeCategoryMatrixes", ThisKey="ProductID", OtherKey="DestProductID")]
+		public EntitySet<PRO_ChangeCategoryMatrix> PRO_ChangeCategoryMatrixes
+		{
+			get
+			{
+				return this._PRO_ChangeCategoryMatrixes;
+			}
+			set
+			{
+				this._PRO_ChangeCategoryMatrixes.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PRO_ChangeCategoryMatrix1", Storage="_PRO_ChangeCategoryMatrixes1", ThisKey="ProductID", OtherKey="SourceProductID")]
+		public EntitySet<PRO_ChangeCategoryMatrix> PRO_ChangeCategoryMatrixes1
+		{
+			get
+			{
+				return this._PRO_ChangeCategoryMatrixes1;
+			}
+			set
+			{
+				this._PRO_ChangeCategoryMatrixes1.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PRO_CheckPoint", Storage="_PRO_CheckPoints", ThisKey="ProductID", OtherKey="ProductID")]
+		public EntitySet<PRO_CheckPoint> PRO_CheckPoints
+		{
+			get
+			{
+				return this._PRO_CheckPoints;
+			}
+			set
+			{
+				this._PRO_CheckPoints.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PRO_ComponentScrapDetail", Storage="_PRO_ComponentScrapDetails", ThisKey="ProductID", OtherKey="ComponentID")]
+		public EntitySet<PRO_ComponentScrapDetail> PRO_ComponentScrapDetails
+		{
+			get
+			{
+				return this._PRO_ComponentScrapDetails;
+			}
+			set
+			{
+				this._PRO_ComponentScrapDetails.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PRO_ComponentScrapDetail1", Storage="_PRO_ComponentScrapDetails1", ThisKey="ProductID", OtherKey="ProductID")]
+		public EntitySet<PRO_ComponentScrapDetail> PRO_ComponentScrapDetails1
+		{
+			get
+			{
+				return this._PRO_ComponentScrapDetails1;
+			}
+			set
+			{
+				this._PRO_ComponentScrapDetails1.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PRO_DCPResultMaster", Storage="_PRO_DCPResultMasters", ThisKey="ProductID", OtherKey="ProductID")]
+		public EntitySet<PRO_DCPResultMaster> PRO_DCPResultMasters
+		{
+			get
+			{
+				return this._PRO_DCPResultMasters;
+			}
+			set
+			{
+				this._PRO_DCPResultMasters.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PRO_IssueMaterialDetail", Storage="_PRO_IssueMaterialDetails", ThisKey="ProductID", OtherKey="ProductID")]
+		public EntitySet<PRO_IssueMaterialDetail> PRO_IssueMaterialDetails
+		{
+			get
+			{
+				return this._PRO_IssueMaterialDetails;
+			}
+			set
+			{
+				this._PRO_IssueMaterialDetails.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PRO_IssueMaterialMaster", Storage="_PRO_IssueMaterialMasters", ThisKey="ProductID", OtherKey="ProductID")]
+		public EntitySet<PRO_IssueMaterialMaster> PRO_IssueMaterialMasters
+		{
+			get
+			{
+				return this._PRO_IssueMaterialMasters;
+			}
+			set
+			{
+				this._PRO_IssueMaterialMasters.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PRO_PGProduct", Storage="_PRO_PGProducts", ThisKey="ProductID", OtherKey="ProductID")]
+		public EntitySet<PRO_PGProduct> PRO_PGProducts
+		{
+			get
+			{
+				return this._PRO_PGProducts;
+			}
+			set
+			{
+				this._PRO_PGProducts.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PRO_ProductProductionOrder", Storage="_PRO_ProductProductionOrders", ThisKey="ProductID", OtherKey="ProductID")]
+		public EntitySet<PRO_ProductProductionOrder> PRO_ProductProductionOrders
+		{
+			get
+			{
+				return this._PRO_ProductProductionOrders;
+			}
+			set
+			{
+				this._PRO_ProductProductionOrders.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PRO_WorkOrderCompletion", Storage="_PRO_WorkOrderCompletions", ThisKey="ProductID", OtherKey="ProductID")]
+		public EntitySet<PRO_WorkOrderCompletion> PRO_WorkOrderCompletions
+		{
+			get
+			{
+				return this._PRO_WorkOrderCompletions;
+			}
+			set
+			{
+				this._PRO_WorkOrderCompletions.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_PRO_WorkOrderDetail", Storage="_PRO_WorkOrderDetails", ThisKey="ProductID", OtherKey="ProductID")]
+		public EntitySet<PRO_WorkOrderDetail> PRO_WorkOrderDetails
+		{
+			get
+			{
+				return this._PRO_WorkOrderDetails;
+			}
+			set
+			{
+				this._PRO_WorkOrderDetails.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_SO_CommitInventoryDetail", Storage="_SO_CommitInventoryDetails", ThisKey="ProductID", OtherKey="ProductID")]
+		public EntitySet<SO_CommitInventoryDetail> SO_CommitInventoryDetails
+		{
+			get
+			{
+				return this._SO_CommitInventoryDetails;
+			}
+			set
+			{
+				this._SO_CommitInventoryDetails.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_SO_CustomerItemRefDetail", Storage="_SO_CustomerItemRefDetails", ThisKey="ProductID", OtherKey="ProductID")]
+		public EntitySet<SO_CustomerItemRefDetail> SO_CustomerItemRefDetails
+		{
+			get
+			{
+				return this._SO_CustomerItemRefDetails;
+			}
+			set
+			{
+				this._SO_CustomerItemRefDetails.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_SO_ReturnedGoodsDetail", Storage="_SO_ReturnedGoodsDetails", ThisKey="ProductID", OtherKey="ProductID")]
+		public EntitySet<SO_ReturnedGoodsDetail> SO_ReturnedGoodsDetails
+		{
+			get
+			{
+				return this._SO_ReturnedGoodsDetails;
+			}
+			set
+			{
+				this._SO_ReturnedGoodsDetails.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_SO_SaleOrderDetail", Storage="_SO_SaleOrderDetails", ThisKey="ProductID", OtherKey="ProductID")]
+		public EntitySet<SO_SaleOrderDetail> SO_SaleOrderDetails
+		{
+			get
+			{
+				return this._SO_SaleOrderDetails;
+			}
+			set
+			{
+				this._SO_SaleOrderDetails.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_STD_CostCenterRateMaster", Storage="_STD_CostCenterRateMasters", ThisKey="ProductID", OtherKey="ProductID")]
+		public EntitySet<STD_CostCenterRateMaster> STD_CostCenterRateMasters
+		{
+			get
+			{
+				return this._STD_CostCenterRateMasters;
+			}
+			set
+			{
+				this._STD_CostCenterRateMasters.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_sys_RoleProduct", Storage="_sys_RoleProducts", ThisKey="ProductID", OtherKey="ProductID")]
+		public EntitySet<sys_RoleProduct> sys_RoleProducts
+		{
+			get
+			{
+				return this._sys_RoleProducts;
+			}
+			set
+			{
+				this._sys_RoleProducts.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_SO_ConfirmShipDetail", Storage="_SO_ConfirmShipDetails", ThisKey="ProductID", OtherKey="ProductID")]
+		public EntitySet<SO_ConfirmShipDetail> SO_ConfirmShipDetails
+		{
+			get
+			{
+				return this._SO_ConfirmShipDetails;
+			}
+			set
+			{
+				this._SO_ConfirmShipDetails.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_SO_InvoiceDetail", Storage="_SO_InvoiceDetails", ThisKey="ProductID", OtherKey="ProductID")]
+		public EntitySet<SO_InvoiceDetail> SO_InvoiceDetails
+		{
+			get
+			{
+				return this._SO_InvoiceDetails;
+			}
+			set
+			{
+				this._SO_InvoiceDetails.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Product_IV_MiscellaneousIssueDetail", Storage="_IV_MiscellaneousIssueDetails", ThisKey="ProductID", OtherKey="ProductID")]
+		public EntitySet<IV_MiscellaneousIssueDetail> IV_MiscellaneousIssueDetails
+		{
+			get
+			{
+				return this._IV_MiscellaneousIssueDetails;
+			}
+			set
+			{
+				this._IV_MiscellaneousIssueDetails.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="cst_ACAdjustmentMaster_ITM_Product", Storage="_cst_ACAdjustmentMaster", ThisKey="ACAdjustmentMasterID", OtherKey="ACAdjustmentMasterID", IsForeignKey=true)]
+		public cst_ACAdjustmentMaster cst_ACAdjustmentMaster
+		{
+			get
+			{
+				return this._cst_ACAdjustmentMaster.Entity;
+			}
+			set
+			{
+				cst_ACAdjustmentMaster previousValue = this._cst_ACAdjustmentMaster.Entity;
+				if (((previousValue != value) 
+							|| (this._cst_ACAdjustmentMaster.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._cst_ACAdjustmentMaster.Entity = null;
+						previousValue.ITM_Products.Remove(this);
+					}
+					this._cst_ACAdjustmentMaster.Entity = value;
+					if ((value != null))
+					{
+						value.ITM_Products.Add(this);
+						this._ACAdjustmentMasterID = value.ACAdjustmentMasterID;
+					}
+					else
+					{
+						this._ACAdjustmentMasterID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("cst_ACAdjustmentMaster");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_AGC_ITM_Product", Storage="_MST_AGC", ThisKey="AGCID", OtherKey="AGCID", IsForeignKey=true)]
+		public MST_AGC MST_AGC
+		{
+			get
+			{
+				return this._MST_AGC.Entity;
+			}
+			set
+			{
+				MST_AGC previousValue = this._MST_AGC.Entity;
+				if (((previousValue != value) 
+							|| (this._MST_AGC.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._MST_AGC.Entity = null;
+						previousValue.ITM_Products.Remove(this);
+					}
+					this._MST_AGC.Entity = value;
+					if ((value != null))
+					{
+						value.ITM_Products.Add(this);
+						this._AGCID = value.AGCID;
+					}
+					else
+					{
+						this._AGCID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("MST_AGC");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_BIN_ITM_Product", Storage="_MST_BIN", ThisKey="BinID", OtherKey="BinID", IsForeignKey=true)]
+		public MST_BIN MST_BIN
+		{
+			get
+			{
+				return this._MST_BIN.Entity;
+			}
+			set
+			{
+				MST_BIN previousValue = this._MST_BIN.Entity;
+				if (((previousValue != value) 
+							|| (this._MST_BIN.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._MST_BIN.Entity = null;
+						previousValue.ITM_Products.Remove(this);
+					}
+					this._MST_BIN.Entity = value;
+					if ((value != null))
+					{
+						value.ITM_Products.Add(this);
+						this._BinID = value.BinID;
+					}
+					else
+					{
+						this._BinID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("MST_BIN");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Buyer_ITM_Product", Storage="_ITM_Buyer", ThisKey="BuyerID", OtherKey="BuyerID", IsForeignKey=true)]
+		public ITM_Buyer ITM_Buyer
+		{
+			get
+			{
+				return this._ITM_Buyer.Entity;
+			}
+			set
+			{
+				ITM_Buyer previousValue = this._ITM_Buyer.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_Buyer.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_Buyer.Entity = null;
+						previousValue.ITM_Products.Remove(this);
+					}
+					this._ITM_Buyer.Entity = value;
+					if ((value != null))
+					{
+						value.ITM_Products.Add(this);
+						this._BuyerID = value.BuyerID;
+					}
+					else
+					{
+						this._BuyerID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("ITM_Buyer");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_UnitOfMeasure_ITM_Product", Storage="_MST_UnitOfMeasure", ThisKey="BuyingUMID", OtherKey="UnitOfMeasureID", IsForeignKey=true)]
+		public MST_UnitOfMeasure MST_UnitOfMeasure
+		{
+			get
+			{
+				return this._MST_UnitOfMeasure.Entity;
+			}
+			set
+			{
+				MST_UnitOfMeasure previousValue = this._MST_UnitOfMeasure.Entity;
+				if (((previousValue != value) 
+							|| (this._MST_UnitOfMeasure.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._MST_UnitOfMeasure.Entity = null;
+						previousValue.ITM_Products.Remove(this);
+					}
+					this._MST_UnitOfMeasure.Entity = value;
+					if ((value != null))
+					{
+						value.ITM_Products.Add(this);
+						this._BuyingUMID = value.UnitOfMeasureID;
+					}
+					else
+					{
+						this._BuyingUMID = default(int);
+					}
+					this.SendPropertyChanged("MST_UnitOfMeasure");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Category_ITM_Product", Storage="_ITM_Category", ThisKey="CategoryID", OtherKey="CategoryID", IsForeignKey=true)]
+		public ITM_Category ITM_Category
+		{
+			get
+			{
+				return this._ITM_Category.Entity;
+			}
+			set
+			{
+				ITM_Category previousValue = this._ITM_Category.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_Category.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_Category.Entity = null;
+						previousValue.ITM_Products.Remove(this);
+					}
+					this._ITM_Category.Entity = value;
+					if ((value != null))
+					{
+						value.ITM_Products.Add(this);
+						this._CategoryID = value.CategoryID;
+					}
+					else
+					{
+						this._CategoryID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("ITM_Category");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_CCN_ITM_Product", Storage="_MST_CCN", ThisKey="CCNID", OtherKey="CCNID", IsForeignKey=true)]
+		public MST_CCN MST_CCN
+		{
+			get
+			{
+				return this._MST_CCN.Entity;
+			}
+			set
+			{
+				MST_CCN previousValue = this._MST_CCN.Entity;
+				if (((previousValue != value) 
+							|| (this._MST_CCN.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._MST_CCN.Entity = null;
+						previousValue.ITM_Products.Remove(this);
+					}
+					this._MST_CCN.Entity = value;
+					if ((value != null))
+					{
+						value.ITM_Products.Add(this);
+						this._CCNID = value.CCNID;
+					}
+					else
+					{
+						this._CCNID = default(int);
+					}
+					this.SendPropertyChanged("MST_CCN");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_CostCenter_ITM_Product", Storage="_ITM_CostCenter", ThisKey="CostCenterID", OtherKey="CostCenterID", IsForeignKey=true)]
+		public ITM_CostCenter ITM_CostCenter
+		{
+			get
+			{
+				return this._ITM_CostCenter.Entity;
+			}
+			set
+			{
+				ITM_CostCenter previousValue = this._ITM_CostCenter.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_CostCenter.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_CostCenter.Entity = null;
+						previousValue.ITM_Products.Remove(this);
+					}
+					this._ITM_CostCenter.Entity = value;
+					if ((value != null))
+					{
+						value.ITM_Products.Add(this);
+						this._CostCenterID = value.CostCenterID;
+					}
+					else
+					{
+						this._CostCenterID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("ITM_CostCenter");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="STD_CostCenterRateMaster_ITM_Product", Storage="_STD_CostCenterRateMaster", ThisKey="CostCenterRateMasterID", OtherKey="CostCenterRateMasterID", IsForeignKey=true)]
+		public STD_CostCenterRateMaster STD_CostCenterRateMaster
+		{
+			get
+			{
+				return this._STD_CostCenterRateMaster.Entity;
+			}
+			set
+			{
+				STD_CostCenterRateMaster previousValue = this._STD_CostCenterRateMaster.Entity;
+				if (((previousValue != value) 
+							|| (this._STD_CostCenterRateMaster.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._STD_CostCenterRateMaster.Entity = null;
+						previousValue.ITM_Products.Remove(this);
+					}
+					this._STD_CostCenterRateMaster.Entity = value;
+					if ((value != null))
+					{
+						value.ITM_Products.Add(this);
+						this._CostCenterRateMasterID = value.CostCenterRateMasterID;
+					}
+					else
+					{
+						this._CostCenterRateMasterID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("STD_CostCenterRateMaster");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_DeleteReason_ITM_Product", Storage="_ITM_DeleteReason", ThisKey="DeleteReasonID", OtherKey="DeleteReasonID", IsForeignKey=true)]
+		public ITM_DeleteReason ITM_DeleteReason
+		{
+			get
+			{
+				return this._ITM_DeleteReason.Entity;
+			}
+			set
+			{
+				ITM_DeleteReason previousValue = this._ITM_DeleteReason.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_DeleteReason.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_DeleteReason.Entity = null;
+						previousValue.ITM_Products.Remove(this);
+					}
+					this._ITM_DeleteReason.Entity = value;
+					if ((value != null))
+					{
+						value.ITM_Products.Add(this);
+						this._DeleteReasonID = value.DeleteReasonID;
+					}
+					else
+					{
+						this._DeleteReasonID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("ITM_DeleteReason");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_DeliveryPolicy_ITM_Product", Storage="_ITM_DeliveryPolicy", ThisKey="DeliveryPolicyID", OtherKey="DeliveryPolicyID", IsForeignKey=true)]
+		public ITM_DeliveryPolicy ITM_DeliveryPolicy
+		{
+			get
+			{
+				return this._ITM_DeliveryPolicy.Entity;
+			}
+			set
+			{
+				ITM_DeliveryPolicy previousValue = this._ITM_DeliveryPolicy.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_DeliveryPolicy.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_DeliveryPolicy.Entity = null;
+						previousValue.ITM_Products.Remove(this);
+					}
+					this._ITM_DeliveryPolicy.Entity = value;
+					if ((value != null))
+					{
+						value.ITM_Products.Add(this);
+						this._DeliveryPolicyID = value.DeliveryPolicyID;
+					}
+					else
+					{
+						this._DeliveryPolicyID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("ITM_DeliveryPolicy");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_FormatCode_ITM_Product", Storage="_ITM_FormatCode", ThisKey="FormatCodeID", OtherKey="FormatCodeID", IsForeignKey=true)]
+		public ITM_FormatCode ITM_FormatCode
+		{
+			get
+			{
+				return this._ITM_FormatCode.Entity;
+			}
+			set
+			{
+				ITM_FormatCode previousValue = this._ITM_FormatCode.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_FormatCode.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_FormatCode.Entity = null;
+						previousValue.ITM_Products.Remove(this);
+					}
+					this._ITM_FormatCode.Entity = value;
+					if ((value != null))
+					{
+						value.ITM_Products.Add(this);
+						this._FormatCodeID = value.FormatCodeID;
+					}
+					else
+					{
+						this._FormatCodeID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("ITM_FormatCode");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_FreightClass_ITM_Product", Storage="_ITM_FreightClass", ThisKey="FreightClassID", OtherKey="FreightClassID", IsForeignKey=true)]
+		public ITM_FreightClass ITM_FreightClass
+		{
+			get
+			{
+				return this._ITM_FreightClass.Entity;
+			}
+			set
+			{
+				ITM_FreightClass previousValue = this._ITM_FreightClass.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_FreightClass.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_FreightClass.Entity = null;
+						previousValue.ITM_Products.Remove(this);
+					}
+					this._ITM_FreightClass.Entity = value;
+					if ((value != null))
+					{
+						value.ITM_Products.Add(this);
+						this._FreightClassID = value.FreightClassID;
+					}
+					else
+					{
+						this._FreightClassID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("ITM_FreightClass");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Hazard_ITM_Product", Storage="_ITM_Hazard", ThisKey="HazardID", OtherKey="HazardID", IsForeignKey=true)]
+		public ITM_Hazard ITM_Hazard
+		{
+			get
+			{
+				return this._ITM_Hazard.Entity;
+			}
+			set
+			{
+				ITM_Hazard previousValue = this._ITM_Hazard.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_Hazard.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_Hazard.Entity = null;
+						previousValue.ITM_Products.Remove(this);
+					}
+					this._ITM_Hazard.Entity = value;
+					if ((value != null))
+					{
+						value.ITM_Products.Add(this);
+						this._HazardID = value.HazardID;
+					}
+					else
+					{
+						this._HazardID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("ITM_Hazard");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_UnitOfMeasure_ITM_Product1", Storage="_MST_UnitOfMeasure1", ThisKey="HeightUMID", OtherKey="UnitOfMeasureID", IsForeignKey=true)]
+		public MST_UnitOfMeasure MST_UnitOfMeasure1
+		{
+			get
+			{
+				return this._MST_UnitOfMeasure1.Entity;
+			}
+			set
+			{
+				MST_UnitOfMeasure previousValue = this._MST_UnitOfMeasure1.Entity;
+				if (((previousValue != value) 
+							|| (this._MST_UnitOfMeasure1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._MST_UnitOfMeasure1.Entity = null;
+						previousValue.ITM_Products1.Remove(this);
+					}
+					this._MST_UnitOfMeasure1.Entity = value;
+					if ((value != null))
+					{
+						value.ITM_Products1.Add(this);
+						this._HeightUMID = value.UnitOfMeasureID;
+					}
+					else
+					{
+						this._HeightUMID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("MST_UnitOfMeasure1");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_Party_ITM_Product", Storage="_MST_Party", ThisKey="InventorID", OtherKey="PartyID", IsForeignKey=true)]
+		public MST_Party MST_Party
+		{
+			get
+			{
+				return this._MST_Party.Entity;
+			}
+			set
+			{
+				MST_Party previousValue = this._MST_Party.Entity;
+				if (((previousValue != value) 
+							|| (this._MST_Party.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._MST_Party.Entity = null;
+						previousValue.ITM_Products.Remove(this);
+					}
+					this._MST_Party.Entity = value;
+					if ((value != null))
+					{
+						value.ITM_Products.Add(this);
+						this._InventorID = value.PartyID;
+					}
+					else
+					{
+						this._InventorID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("MST_Party");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_UnitOfMeasure_ITM_Product2", Storage="_MST_UnitOfMeasure2", ThisKey="LengthUMID", OtherKey="UnitOfMeasureID", IsForeignKey=true)]
+		public MST_UnitOfMeasure MST_UnitOfMeasure2
+		{
+			get
+			{
+				return this._MST_UnitOfMeasure2.Entity;
+			}
+			set
+			{
+				MST_UnitOfMeasure previousValue = this._MST_UnitOfMeasure2.Entity;
+				if (((previousValue != value) 
+							|| (this._MST_UnitOfMeasure2.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._MST_UnitOfMeasure2.Entity = null;
+						previousValue.ITM_Products2.Remove(this);
+					}
+					this._MST_UnitOfMeasure2.Entity = value;
+					if ((value != null))
+					{
+						value.ITM_Products2.Add(this);
+						this._LengthUMID = value.UnitOfMeasureID;
+					}
+					else
+					{
+						this._LengthUMID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("MST_UnitOfMeasure2");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_Location_ITM_Product", Storage="_MST_Location", ThisKey="LocationID", OtherKey="LocationID", IsForeignKey=true)]
+		public MST_Location MST_Location
+		{
+			get
+			{
+				return this._MST_Location.Entity;
+			}
+			set
+			{
+				MST_Location previousValue = this._MST_Location.Entity;
+				if (((previousValue != value) 
+							|| (this._MST_Location.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._MST_Location.Entity = null;
+						previousValue.ITM_Products.Remove(this);
+					}
+					this._MST_Location.Entity = value;
+					if ((value != null))
+					{
+						value.ITM_Products.Add(this);
+						this._LocationID = value.LocationID;
+					}
+					else
+					{
+						this._LocationID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("MST_Location");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_MasterLocation_ITM_Product", Storage="_MST_MasterLocation", ThisKey="MasterLocationID", OtherKey="MasterLocationID", IsForeignKey=true)]
+		public MST_MasterLocation MST_MasterLocation
+		{
+			get
+			{
+				return this._MST_MasterLocation.Entity;
+			}
+			set
+			{
+				MST_MasterLocation previousValue = this._MST_MasterLocation.Entity;
+				if (((previousValue != value) 
+							|| (this._MST_MasterLocation.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._MST_MasterLocation.Entity = null;
+						previousValue.ITM_Products.Remove(this);
+					}
+					this._MST_MasterLocation.Entity = value;
+					if ((value != null))
+					{
+						value.ITM_Products.Add(this);
+						this._MasterLocationID = value.MasterLocationID;
+					}
+					else
+					{
+						this._MasterLocationID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("MST_MasterLocation");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_OrderRule_ITM_Product", Storage="_ITM_OrderRule", ThisKey="OrderRuleID", OtherKey="OrderRuleID", IsForeignKey=true)]
+		public ITM_OrderRule ITM_OrderRule
+		{
+			get
+			{
+				return this._ITM_OrderRule.Entity;
+			}
+			set
+			{
+				ITM_OrderRule previousValue = this._ITM_OrderRule.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_OrderRule.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_OrderRule.Entity = null;
+						previousValue.ITM_Products.Remove(this);
+					}
+					this._ITM_OrderRule.Entity = value;
+					if ((value != null))
+					{
+						value.ITM_Products.Add(this);
+						this._OrderRuleID = value.OrderRuleID;
+					}
+					else
+					{
+						this._OrderRuleID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("ITM_OrderRule");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_OrderPolicy_ITM_Product", Storage="_ITM_OrderPolicy", ThisKey="OrderPolicyID", OtherKey="OrderPolicyID", IsForeignKey=true)]
+		public ITM_OrderPolicy ITM_OrderPolicy
+		{
+			get
+			{
+				return this._ITM_OrderPolicy.Entity;
+			}
+			set
+			{
+				ITM_OrderPolicy previousValue = this._ITM_OrderPolicy.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_OrderPolicy.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_OrderPolicy.Entity = null;
+						previousValue.ITM_Products.Remove(this);
+					}
+					this._ITM_OrderPolicy.Entity = value;
+					if ((value != null))
+					{
+						value.ITM_Products.Add(this);
+						this._OrderPolicyID = value.OrderPolicyID;
+					}
+					else
+					{
+						this._OrderPolicyID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("ITM_OrderPolicy");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_Party_ITM_Product1", Storage="_MST_Party1", ThisKey="PrimaryVendorID", OtherKey="PartyID", IsForeignKey=true)]
+		public MST_Party MST_Party1
+		{
+			get
+			{
+				return this._MST_Party1.Entity;
+			}
+			set
+			{
+				MST_Party previousValue = this._MST_Party1.Entity;
+				if (((previousValue != value) 
+							|| (this._MST_Party1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._MST_Party1.Entity = null;
+						previousValue.ITM_Products1.Remove(this);
+					}
+					this._MST_Party1.Entity = value;
+					if ((value != null))
+					{
+						value.ITM_Products1.Add(this);
+						this._PrimaryVendorID = value.PartyID;
+					}
+					else
+					{
+						this._PrimaryVendorID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("MST_Party1");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PRO_ProductionLine_ITM_Product", Storage="_PRO_ProductionLine", ThisKey="ProductionLineID", OtherKey="ProductionLineID", IsForeignKey=true)]
+		public PRO_ProductionLine PRO_ProductionLine
+		{
+			get
+			{
+				return this._PRO_ProductionLine.Entity;
+			}
+			set
+			{
+				PRO_ProductionLine previousValue = this._PRO_ProductionLine.Entity;
+				if (((previousValue != value) 
+							|| (this._PRO_ProductionLine.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._PRO_ProductionLine.Entity = null;
+						previousValue.ITM_Products.Remove(this);
+					}
+					this._PRO_ProductionLine.Entity = value;
+					if ((value != null))
+					{
+						value.ITM_Products.Add(this);
+						this._ProductionLineID = value.ProductionLineID;
+					}
+					else
+					{
+						this._ProductionLineID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("PRO_ProductionLine");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="CST_ProductGroup_ITM_Product", Storage="_CST_ProductGroup", ThisKey="ProductGroupID", OtherKey="ProductGroupID", IsForeignKey=true)]
+		public CST_ProductGroup CST_ProductGroup
+		{
+			get
+			{
+				return this._CST_ProductGroup.Entity;
+			}
+			set
+			{
+				CST_ProductGroup previousValue = this._CST_ProductGroup.Entity;
+				if (((previousValue != value) 
+							|| (this._CST_ProductGroup.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._CST_ProductGroup.Entity = null;
+						previousValue.ITM_Products.Remove(this);
+					}
+					this._CST_ProductGroup.Entity = value;
+					if ((value != null))
+					{
+						value.ITM_Products.Add(this);
+						this._ProductGroupID = value.ProductGroupID;
+					}
+					else
+					{
+						this._ProductGroupID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("CST_ProductGroup");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_ProductType_ITM_Product", Storage="_ITM_ProductType", ThisKey="ProductTypeID", OtherKey="ProductTypeID", IsForeignKey=true)]
+		public ITM_ProductType ITM_ProductType
+		{
+			get
+			{
+				return this._ITM_ProductType.Entity;
+			}
+			set
+			{
+				ITM_ProductType previousValue = this._ITM_ProductType.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_ProductType.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_ProductType.Entity = null;
+						previousValue.ITM_Products.Remove(this);
+					}
+					this._ITM_ProductType.Entity = value;
+					if ((value != null))
+					{
+						value.ITM_Products.Add(this);
+						this._ProductTypeID = value.ProductTypeID;
+					}
+					else
+					{
+						this._ProductTypeID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("ITM_ProductType");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_UnitOfMeasure_ITM_Product3", Storage="_MST_UnitOfMeasure3", ThisKey="SellingUMID", OtherKey="UnitOfMeasureID", IsForeignKey=true)]
+		public MST_UnitOfMeasure MST_UnitOfMeasure3
+		{
+			get
+			{
+				return this._MST_UnitOfMeasure3.Entity;
+			}
+			set
+			{
+				MST_UnitOfMeasure previousValue = this._MST_UnitOfMeasure3.Entity;
+				if (((previousValue != value) 
+							|| (this._MST_UnitOfMeasure3.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._MST_UnitOfMeasure3.Entity = null;
+						previousValue.ITM_Products3.Remove(this);
+					}
+					this._MST_UnitOfMeasure3.Entity = value;
+					if ((value != null))
+					{
+						value.ITM_Products3.Add(this);
+						this._SellingUMID = value.UnitOfMeasureID;
+					}
+					else
+					{
+						this._SellingUMID = default(int);
+					}
+					this.SendPropertyChanged("MST_UnitOfMeasure3");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_ShipTolerance_ITM_Product", Storage="_ITM_ShipTolerance", ThisKey="ShipToleranceID", OtherKey="ShipToleranceID", IsForeignKey=true)]
+		public ITM_ShipTolerance ITM_ShipTolerance
+		{
+			get
+			{
+				return this._ITM_ShipTolerance.Entity;
+			}
+			set
+			{
+				ITM_ShipTolerance previousValue = this._ITM_ShipTolerance.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_ShipTolerance.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_ShipTolerance.Entity = null;
+						previousValue.ITM_Products.Remove(this);
+					}
+					this._ITM_ShipTolerance.Entity = value;
+					if ((value != null))
+					{
+						value.ITM_Products.Add(this);
+						this._ShipToleranceID = value.ShipToleranceID;
+					}
+					else
+					{
+						this._ShipToleranceID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("ITM_ShipTolerance");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_Source_ITM_Product", Storage="_ITM_Source", ThisKey="SourceID", OtherKey="SourceID", IsForeignKey=true)]
+		public ITM_Source ITM_Source
+		{
+			get
+			{
+				return this._ITM_Source.Entity;
+			}
+			set
+			{
+				ITM_Source previousValue = this._ITM_Source.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_Source.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_Source.Entity = null;
+						previousValue.ITM_Products.Remove(this);
+					}
+					this._ITM_Source.Entity = value;
+					if ((value != null))
+					{
+						value.ITM_Products.Add(this);
+						this._SourceID = value.SourceID;
+					}
+					else
+					{
+						this._SourceID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("ITM_Source");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_UnitOfMeasure_ITM_Product4", Storage="_MST_UnitOfMeasure4", ThisKey="StockUMID", OtherKey="UnitOfMeasureID", IsForeignKey=true)]
+		public MST_UnitOfMeasure MST_UnitOfMeasure4
+		{
+			get
+			{
+				return this._MST_UnitOfMeasure4.Entity;
+			}
+			set
+			{
+				MST_UnitOfMeasure previousValue = this._MST_UnitOfMeasure4.Entity;
+				if (((previousValue != value) 
+							|| (this._MST_UnitOfMeasure4.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._MST_UnitOfMeasure4.Entity = null;
+						previousValue.ITM_Products4.Remove(this);
+					}
+					this._MST_UnitOfMeasure4.Entity = value;
+					if ((value != null))
+					{
+						value.ITM_Products4.Add(this);
+						this._StockUMID = value.UnitOfMeasureID;
+					}
+					else
+					{
+						this._StockUMID = default(int);
+					}
+					this.SendPropertyChanged("MST_UnitOfMeasure4");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_PartyLocation_ITM_Product", Storage="_MST_PartyLocation", ThisKey="VendorLocationID", OtherKey="PartyLocationID", IsForeignKey=true)]
+		public MST_PartyLocation MST_PartyLocation
+		{
+			get
+			{
+				return this._MST_PartyLocation.Entity;
+			}
+			set
+			{
+				MST_PartyLocation previousValue = this._MST_PartyLocation.Entity;
+				if (((previousValue != value) 
+							|| (this._MST_PartyLocation.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._MST_PartyLocation.Entity = null;
+						previousValue.ITM_Products.Remove(this);
+					}
+					this._MST_PartyLocation.Entity = value;
+					if ((value != null))
+					{
+						value.ITM_Products.Add(this);
+						this._VendorLocationID = value.PartyLocationID;
+					}
+					else
+					{
+						this._VendorLocationID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("MST_PartyLocation");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_Currency_ITM_Product", Storage="_MST_Currency", ThisKey="VendorCurrencyID", OtherKey="CurrencyID", IsForeignKey=true)]
+		public MST_Currency MST_Currency
+		{
+			get
+			{
+				return this._MST_Currency.Entity;
+			}
+			set
+			{
+				MST_Currency previousValue = this._MST_Currency.Entity;
+				if (((previousValue != value) 
+							|| (this._MST_Currency.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._MST_Currency.Entity = null;
+						previousValue.ITM_Products.Remove(this);
+					}
+					this._MST_Currency.Entity = value;
+					if ((value != null))
+					{
+						value.ITM_Products.Add(this);
+						this._VendorCurrencyID = value.CurrencyID;
+					}
+					else
+					{
+						this._VendorCurrencyID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("MST_Currency");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_UnitOfMeasure_ITM_Product5", Storage="_MST_UnitOfMeasure5", ThisKey="WeightUMID", OtherKey="UnitOfMeasureID", IsForeignKey=true)]
+		public MST_UnitOfMeasure MST_UnitOfMeasure5
+		{
+			get
+			{
+				return this._MST_UnitOfMeasure5.Entity;
+			}
+			set
+			{
+				MST_UnitOfMeasure previousValue = this._MST_UnitOfMeasure5.Entity;
+				if (((previousValue != value) 
+							|| (this._MST_UnitOfMeasure5.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._MST_UnitOfMeasure5.Entity = null;
+						previousValue.ITM_Products5.Remove(this);
+					}
+					this._MST_UnitOfMeasure5.Entity = value;
+					if ((value != null))
+					{
+						value.ITM_Products5.Add(this);
+						this._WeightUMID = value.UnitOfMeasureID;
+					}
+					else
+					{
+						this._WeightUMID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("MST_UnitOfMeasure5");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_UnitOfMeasure_ITM_Product6", Storage="_MST_UnitOfMeasure6", ThisKey="WidthUMID", OtherKey="UnitOfMeasureID", IsForeignKey=true)]
+		public MST_UnitOfMeasure MST_UnitOfMeasure6
+		{
+			get
+			{
+				return this._MST_UnitOfMeasure6.Entity;
+			}
+			set
+			{
+				MST_UnitOfMeasure previousValue = this._MST_UnitOfMeasure6.Entity;
+				if (((previousValue != value) 
+							|| (this._MST_UnitOfMeasure6.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._MST_UnitOfMeasure6.Entity = null;
+						previousValue.ITM_Products6.Remove(this);
+					}
+					this._MST_UnitOfMeasure6.Entity = value;
+					if ((value != null))
+					{
+						value.ITM_Products6.Add(this);
+						this._WidthUMID = value.UnitOfMeasureID;
+					}
+					else
+					{
+						this._WidthUMID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("MST_UnitOfMeasure6");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_ProductClassified_ITM_Product", Storage="_ITM_ProductClassified", ThisKey="ProductClassifiedID", OtherKey="ProductClassifiedID", IsForeignKey=true, DeleteRule="CASCADE")]
+		public ITM_ProductClassified ITM_ProductClassified
+		{
+			get
+			{
+				return this._ITM_ProductClassified.Entity;
+			}
+			set
+			{
+				ITM_ProductClassified previousValue = this._ITM_ProductClassified.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_ProductClassified.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_ProductClassified.Entity = null;
+						previousValue.ITM_Products.Remove(this);
+					}
+					this._ITM_ProductClassified.Entity = value;
+					if ((value != null))
+					{
+						value.ITM_Products.Add(this);
+						this._ProductClassifiedID = value.ProductClassifiedID;
+					}
+					else
+					{
+						this._ProductClassifiedID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("ITM_ProductClassified");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_ItemGroup_ITM_Product", Storage="_ITM_ItemGroup", ThisKey="ItemGroupID", OtherKey="ItemGroupID", IsForeignKey=true, DeleteRule="CASCADE")]
+		public ITM_ItemGroup ITM_ItemGroup
+		{
+			get
+			{
+				return this._ITM_ItemGroup.Entity;
+			}
+			set
+			{
+				ITM_ItemGroup previousValue = this._ITM_ItemGroup.Entity;
+				if (((previousValue != value) 
+							|| (this._ITM_ItemGroup.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ITM_ItemGroup.Entity = null;
+						previousValue.ITM_Products.Remove(this);
+					}
+					this._ITM_ItemGroup.Entity = value;
+					if ((value != null))
+					{
+						value.ITM_Products.Add(this);
+						this._ItemGroupID = value.ItemGroupID;
+					}
+					else
+					{
+						this._ItemGroupID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("ITM_ItemGroup");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_cst_ActCostAllocationDetails(cst_ActCostAllocationDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = this;
+		}
+		
+		private void detach_cst_ActCostAllocationDetails(cst_ActCostAllocationDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = null;
+		}
+		
+		private void attach_CST_ActualCostHistories(CST_ActualCostHistory entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = this;
+		}
+		
+		private void detach_CST_ActualCostHistories(CST_ActualCostHistory entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = null;
+		}
+		
+		private void attach_cst_AllocationResults(cst_AllocationResult entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = this;
+		}
+		
+		private void detach_cst_AllocationResults(cst_AllocationResult entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = null;
+		}
+		
+		private void attach_CST_DSAndRecycleAllocations(CST_DSAndRecycleAllocation entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = this;
+		}
+		
+		private void detach_CST_DSAndRecycleAllocations(CST_DSAndRecycleAllocation entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = null;
+		}
+		
+		private void attach_cst_FreightDetails(cst_FreightDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = this;
+		}
+		
+		private void detach_cst_FreightDetails(cst_FreightDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = null;
+		}
+		
+		private void attach_CST_RecoverMaterialDetails(CST_RecoverMaterialDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = this;
+		}
+		
+		private void detach_CST_RecoverMaterialDetails(CST_RecoverMaterialDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = null;
+		}
+		
+		private void attach_CST_RecoverMaterialMasters(CST_RecoverMaterialMaster entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = this;
+		}
+		
+		private void detach_CST_RecoverMaterialMasters(CST_RecoverMaterialMaster entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = null;
+		}
+		
+		private void attach_CST_STDItemCosts(CST_STDItemCost entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = this;
+		}
+		
+		private void detach_CST_STDItemCosts(CST_STDItemCost entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = null;
+		}
+		
+		private void attach_DCP_BeginQuantities(DCP_BeginQuantity entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = this;
+		}
+		
+		private void detach_DCP_BeginQuantities(DCP_BeginQuantity entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = null;
+		}
+		
+		private void attach_ITM_BOMs(ITM_BOM entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = this;
+		}
+		
+		private void detach_ITM_BOMs(ITM_BOM entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = null;
+		}
+		
+		private void attach_ITM_BOMs1(ITM_BOM entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product1 = this;
+		}
+		
+		private void detach_ITM_BOMs1(ITM_BOM entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product1 = null;
+		}
+		
+		private void attach_ITM_Pictures(ITM_Picture entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = this;
+		}
+		
+		private void detach_ITM_Pictures(ITM_Picture entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = null;
+		}
+		
+		private void attach_ITM_Routings(ITM_Routing entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = this;
+		}
+		
+		private void detach_ITM_Routings(ITM_Routing entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = null;
+		}
+		
+		private void attach_IV_Adjustments(IV_Adjustment entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = this;
+		}
+		
+		private void detach_IV_Adjustments(IV_Adjustment entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = null;
+		}
+		
+		private void attach_IV_BalanceBins(IV_BalanceBin entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = this;
+		}
+		
+		private void detach_IV_BalanceBins(IV_BalanceBin entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = null;
+		}
+		
+		private void attach_IV_BalanceLocations(IV_BalanceLocation entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = this;
+		}
+		
+		private void detach_IV_BalanceLocations(IV_BalanceLocation entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = null;
+		}
+		
+		private void attach_IV_BalanceMasterLocations(IV_BalanceMasterLocation entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = this;
+		}
+		
+		private void detach_IV_BalanceMasterLocations(IV_BalanceMasterLocation entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = null;
+		}
+		
+		private void attach_IV_BeginDCPReports(IV_BeginDCPReport entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = this;
+		}
+		
+		private void detach_IV_BeginDCPReports(IV_BeginDCPReport entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = null;
+		}
+		
+		private void attach_IV_BeginMRPs(IV_BeginMRP entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = this;
+		}
+		
+		private void detach_IV_BeginMRPs(IV_BeginMRP entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = null;
+		}
+		
+		private void attach_IV_BinCaches(IV_BinCache entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = this;
+		}
+		
+		private void detach_IV_BinCaches(IV_BinCache entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = null;
+		}
+		
+		private void attach_IV_CostHistories(IV_CostHistory entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = this;
+		}
+		
+		private void detach_IV_CostHistories(IV_CostHistory entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = null;
+		}
+		
+		private void attach_IV_LocationCaches(IV_LocationCache entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = this;
+		}
+		
+		private void detach_IV_LocationCaches(IV_LocationCache entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = null;
+		}
+		
+		private void attach_IV_MasLocCaches(IV_MasLocCache entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = this;
+		}
+		
+		private void detach_IV_MasLocCaches(IV_MasLocCache entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = null;
+		}
+		
+		private void attach_IV_StockTakings(IV_StockTaking entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = this;
+		}
+		
+		private void detach_IV_StockTakings(IV_StockTaking entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = null;
+		}
+		
+		private void attach_IV_StockTakingDifferents(IV_StockTakingDifferent entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = this;
+		}
+		
+		private void detach_IV_StockTakingDifferents(IV_StockTakingDifferent entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = null;
+		}
+		
+		private void attach_MST_TransactionHistories(MST_TransactionHistory entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = this;
+		}
+		
+		private void detach_MST_TransactionHistories(MST_TransactionHistory entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = null;
+		}
+		
+		private void attach_MTR_ACDSDetails(MTR_ACDSDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = this;
+		}
+		
+		private void detach_MTR_ACDSDetails(MTR_ACDSDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = null;
+		}
+		
+		private void attach_MTR_CPOs(MTR_CPO entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = this;
+		}
+		
+		private void detach_MTR_CPOs(MTR_CPO entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = null;
+		}
+		
+		private void attach_MTR_ItemActualCosts(MTR_ItemActualCost entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = this;
+		}
+		
+		private void detach_MTR_ItemActualCosts(MTR_ItemActualCost entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = null;
+		}
+		
+		private void attach_PO_InvoiceDetails(PO_InvoiceDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = this;
+		}
+		
+		private void detach_PO_InvoiceDetails(PO_InvoiceDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = null;
+		}
+		
+		private void attach_PO_ItemVendorReferences(PO_ItemVendorReference entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = this;
+		}
+		
+		private void detach_PO_ItemVendorReferences(PO_ItemVendorReference entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = null;
+		}
+		
+		private void attach_PO_PurchaseOrderDetails(PO_PurchaseOrderDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = this;
+		}
+		
+		private void detach_PO_PurchaseOrderDetails(PO_PurchaseOrderDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = null;
+		}
+		
+		private void attach_PO_PurchaseOrderReceiptDetails(PO_PurchaseOrderReceiptDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = this;
+		}
+		
+		private void detach_PO_PurchaseOrderReceiptDetails(PO_PurchaseOrderReceiptDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = null;
+		}
+		
+		private void attach_PO_ReturnToVendorDetails(PO_ReturnToVendorDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = this;
+		}
+		
+		private void detach_PO_ReturnToVendorDetails(PO_ReturnToVendorDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = null;
+		}
+		
+		private void attach_PO_VendorDeliverySchedules(PO_VendorDeliverySchedule entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = this;
+		}
+		
+		private void detach_PO_VendorDeliverySchedules(PO_VendorDeliverySchedule entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = null;
+		}
+		
+		private void attach_PRO_ChangeCategoryDetails(PRO_ChangeCategoryDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = this;
+		}
+		
+		private void detach_PRO_ChangeCategoryDetails(PRO_ChangeCategoryDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = null;
+		}
+		
+		private void attach_PRO_ChangeCategoryMatrixes(PRO_ChangeCategoryMatrix entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = this;
+		}
+		
+		private void detach_PRO_ChangeCategoryMatrixes(PRO_ChangeCategoryMatrix entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = null;
+		}
+		
+		private void attach_PRO_ChangeCategoryMatrixes1(PRO_ChangeCategoryMatrix entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product1 = this;
+		}
+		
+		private void detach_PRO_ChangeCategoryMatrixes1(PRO_ChangeCategoryMatrix entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product1 = null;
+		}
+		
+		private void attach_PRO_CheckPoints(PRO_CheckPoint entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = this;
+		}
+		
+		private void detach_PRO_CheckPoints(PRO_CheckPoint entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = null;
+		}
+		
+		private void attach_PRO_ComponentScrapDetails(PRO_ComponentScrapDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = this;
+		}
+		
+		private void detach_PRO_ComponentScrapDetails(PRO_ComponentScrapDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = null;
+		}
+		
+		private void attach_PRO_ComponentScrapDetails1(PRO_ComponentScrapDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product1 = this;
+		}
+		
+		private void detach_PRO_ComponentScrapDetails1(PRO_ComponentScrapDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product1 = null;
+		}
+		
+		private void attach_PRO_DCPResultMasters(PRO_DCPResultMaster entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = this;
+		}
+		
+		private void detach_PRO_DCPResultMasters(PRO_DCPResultMaster entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = null;
+		}
+		
+		private void attach_PRO_IssueMaterialDetails(PRO_IssueMaterialDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = this;
+		}
+		
+		private void detach_PRO_IssueMaterialDetails(PRO_IssueMaterialDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = null;
+		}
+		
+		private void attach_PRO_IssueMaterialMasters(PRO_IssueMaterialMaster entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = this;
+		}
+		
+		private void detach_PRO_IssueMaterialMasters(PRO_IssueMaterialMaster entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = null;
+		}
+		
+		private void attach_PRO_PGProducts(PRO_PGProduct entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = this;
+		}
+		
+		private void detach_PRO_PGProducts(PRO_PGProduct entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = null;
+		}
+		
+		private void attach_PRO_ProductProductionOrders(PRO_ProductProductionOrder entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = this;
+		}
+		
+		private void detach_PRO_ProductProductionOrders(PRO_ProductProductionOrder entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = null;
+		}
+		
+		private void attach_PRO_WorkOrderCompletions(PRO_WorkOrderCompletion entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = this;
+		}
+		
+		private void detach_PRO_WorkOrderCompletions(PRO_WorkOrderCompletion entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = null;
+		}
+		
+		private void attach_PRO_WorkOrderDetails(PRO_WorkOrderDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = this;
+		}
+		
+		private void detach_PRO_WorkOrderDetails(PRO_WorkOrderDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = null;
+		}
+		
+		private void attach_SO_CommitInventoryDetails(SO_CommitInventoryDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = this;
+		}
+		
+		private void detach_SO_CommitInventoryDetails(SO_CommitInventoryDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = null;
+		}
+		
+		private void attach_SO_CustomerItemRefDetails(SO_CustomerItemRefDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = this;
+		}
+		
+		private void detach_SO_CustomerItemRefDetails(SO_CustomerItemRefDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = null;
+		}
+		
+		private void attach_SO_ReturnedGoodsDetails(SO_ReturnedGoodsDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = this;
+		}
+		
+		private void detach_SO_ReturnedGoodsDetails(SO_ReturnedGoodsDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = null;
+		}
+		
+		private void attach_SO_SaleOrderDetails(SO_SaleOrderDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = this;
+		}
+		
+		private void detach_SO_SaleOrderDetails(SO_SaleOrderDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = null;
+		}
+		
+		private void attach_STD_CostCenterRateMasters(STD_CostCenterRateMaster entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = this;
+		}
+		
+		private void detach_STD_CostCenterRateMasters(STD_CostCenterRateMaster entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = null;
+		}
+		
+		private void attach_sys_RoleProducts(sys_RoleProduct entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = this;
+		}
+		
+		private void detach_sys_RoleProducts(sys_RoleProduct entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = null;
+		}
+		
+		private void attach_SO_ConfirmShipDetails(SO_ConfirmShipDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = this;
+		}
+		
+		private void detach_SO_ConfirmShipDetails(SO_ConfirmShipDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = null;
+		}
+		
+		private void attach_SO_InvoiceDetails(SO_InvoiceDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = this;
+		}
+		
+		private void detach_SO_InvoiceDetails(SO_InvoiceDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = null;
+		}
+		
+		private void attach_IV_MiscellaneousIssueDetails(IV_MiscellaneousIssueDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = this;
+		}
+		
+		private void detach_IV_MiscellaneousIssueDetails(IV_MiscellaneousIssueDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_Product = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ITM_ProductClassified")]
+	public partial class ITM_ProductClassified : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ProductClassifiedID;
+		
+		private string _Code;
+		
+		private string _Description;
+		
+		private EntitySet<ITM_Product> _ITM_Products;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnProductClassifiedIDChanging(int value);
+    partial void OnProductClassifiedIDChanged();
+    partial void OnCodeChanging(string value);
+    partial void OnCodeChanged();
+    partial void OnDescriptionChanging(string value);
+    partial void OnDescriptionChanged();
+    #endregion
+		
+		public ITM_ProductClassified()
+		{
+			this._ITM_Products = new EntitySet<ITM_Product>(new Action<ITM_Product>(this.attach_ITM_Products), new Action<ITM_Product>(this.detach_ITM_Products));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ProductClassifiedID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ProductClassifiedID
+		{
+			get
+			{
+				return this._ProductClassifiedID;
+			}
+			set
+			{
+				if ((this._ProductClassifiedID != value))
+				{
+					this.OnProductClassifiedIDChanging(value);
+					this.SendPropertyChanging();
+					this._ProductClassifiedID = value;
+					this.SendPropertyChanged("ProductClassifiedID");
+					this.OnProductClassifiedIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Code", DbType="NVarChar(500)")]
+		public string Code
+		{
+			get
+			{
+				return this._Code;
+			}
+			set
+			{
+				if ((this._Code != value))
+				{
+					this.OnCodeChanging(value);
+					this.SendPropertyChanging();
+					this._Code = value;
+					this.SendPropertyChanged("Code");
+					this.OnCodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NVarChar(2000)")]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this.OnDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._Description = value;
+					this.SendPropertyChanged("Description");
+					this.OnDescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_ProductClassified_ITM_Product", Storage="_ITM_Products", ThisKey="ProductClassifiedID", OtherKey="ProductClassifiedID")]
+		public EntitySet<ITM_Product> ITM_Products
+		{
+			get
+			{
+				return this._ITM_Products;
+			}
+			set
+			{
+				this._ITM_Products.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_ITM_Products(ITM_Product entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_ProductClassified = this;
+		}
+		
+		private void detach_ITM_Products(ITM_Product entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_ProductClassified = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ITM_ItemGroup")]
+	public partial class ITM_ItemGroup : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ItemGroupID;
+		
+		private string _Code;
+		
+		private string _Description;
+		
+		private EntitySet<ITM_Product> _ITM_Products;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnItemGroupIDChanging(int value);
+    partial void OnItemGroupIDChanged();
+    partial void OnCodeChanging(string value);
+    partial void OnCodeChanged();
+    partial void OnDescriptionChanging(string value);
+    partial void OnDescriptionChanged();
+    #endregion
+		
+		public ITM_ItemGroup()
+		{
+			this._ITM_Products = new EntitySet<ITM_Product>(new Action<ITM_Product>(this.attach_ITM_Products), new Action<ITM_Product>(this.detach_ITM_Products));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ItemGroupID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ItemGroupID
+		{
+			get
+			{
+				return this._ItemGroupID;
+			}
+			set
+			{
+				if ((this._ItemGroupID != value))
+				{
+					this.OnItemGroupIDChanging(value);
+					this.SendPropertyChanging();
+					this._ItemGroupID = value;
+					this.SendPropertyChanged("ItemGroupID");
+					this.OnItemGroupIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Code", DbType="NVarChar(500)")]
+		public string Code
+		{
+			get
+			{
+				return this._Code;
+			}
+			set
+			{
+				if ((this._Code != value))
+				{
+					this.OnCodeChanging(value);
+					this.SendPropertyChanging();
+					this._Code = value;
+					this.SendPropertyChanged("Code");
+					this.OnCodeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NVarChar(2000)")]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this.OnDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._Description = value;
+					this.SendPropertyChanged("Description");
+					this.OnDescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="ITM_ItemGroup_ITM_Product", Storage="_ITM_Products", ThisKey="ItemGroupID", OtherKey="ItemGroupID")]
+		public EntitySet<ITM_Product> ITM_Products
+		{
+			get
+			{
+				return this._ITM_Products;
+			}
+			set
+			{
+				this._ITM_Products.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_ITM_Products(ITM_Product entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_ItemGroup = this;
+		}
+		
+		private void detach_ITM_Products(ITM_Product entity)
+		{
+			this.SendPropertyChanging();
+			entity.ITM_ItemGroup = null;
 		}
 	}
 	

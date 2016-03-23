@@ -673,5 +673,8 @@ namespace PCSComProduct.Items.DS
 			set { mSetUpPair = value; }
 			get { return mSetUpPair; }
 		}
+
+        public int ItemGroupID { get; set; }
+        public int ProductClassifiedID { get; set; }
 	}
 }
