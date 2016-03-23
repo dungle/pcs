@@ -175,6 +175,8 @@ namespace InvoiceForSaleOrderReport
             rptReport.DataSource.Recordset = reportData;
             // render report
             rptReport.Render();
+	        var reportDocument = rptReport.Document;
+            reportDocument.DefaultPageSettings.Margins = new Margins(20, 0, 20, 0);
 
             // render the report into the PrintPreviewControl
 	        C1PrintPreviewDialog ppvViewer = new C1PrintPreviewDialog
@@ -184,7 +186,7 @@ namespace InvoiceForSaleOrderReport
                 HandlePrintEvent = true
 	        };
 	        ppvViewer.ReportViewer.PreviewNavigationPanel.Visible = false;
-	        ppvViewer.ReportViewer.Document = rptReport.Document;
+	        ppvViewer.ReportViewer.Document = reportDocument;
 
 	        ppvViewer.Show();
 
@@ -218,11 +220,11 @@ namespace InvoiceForSaleOrderReport
                          + " MST_UnitOfMeasure.Code AS MST_UnitOfMeasureCode,"
                          + " ITM_Product.Revision AS ITM_ProductRevision,"
 
-                         + " SO_ConfirmShipDetail.InvoiceQty as DeliveryQuantity,"
+                         + " SO_InvoiceDetail.InvoiceQty as DeliveryQuantity,"
 
                          + " ((SELECT SUM( detail.Price * detail.InvoiceQty)"
-                         + " FROM SO_ConfirmShipDetail detail"
-                         + " WHERE detail.ConfirmShipMasterID = SO_ConfirmShipMaster.ConfirmShipMasterID"
+                         + " FROM SO_InvoiceDetail detail"
+                         + " WHERE detail.InvoiceMasterID = SO_InvoiceMaster.InvoiceMasterID"
                          + " AND detail.ProductID = ITM_Product.ProductID"
                          + " )	"
                          + " /"
@@ -232,16 +234,16 @@ namespace InvoiceForSaleOrderReport
                          + " Case  "
                          + " When ( "
                          + " SELECT SUM(detail.InvoiceQty) "
-                         + " FROM SO_ConfirmShipDetail detail "
-                         + " WHERE detail.ConfirmShipMasterID = SO_ConfirmShipMaster.ConfirmShipMasterID "
+                         + " FROM SO_InvoiceDetail detail "
+                         + " WHERE detail.InvoiceMasterID = SO_InvoiceMaster.InvoiceMasterID "
                          + " AND detail.ProductID = ITM_Product.ProductID "
                          + "    ) = 0  "
                          + " then 1 "
                          + "     else   "
                          + " ( "
                          + " SELECT SUM(detail.InvoiceQty) "
-                         + " FROM SO_ConfirmShipDetail detail "
-                         + " WHERE detail.ConfirmShipMasterID = SO_ConfirmShipMaster.ConfirmShipMasterID "
+                         + " FROM SO_InvoiceDetail detail "
+                         + " WHERE detail.InvoiceMasterID = SO_InvoiceMaster.InvoiceMasterID "
                          + " AND detail.ProductID = ITM_Product.ProductID "
                          + "    ) "
                          + " end      "
@@ -251,16 +253,16 @@ namespace InvoiceForSaleOrderReport
                          + " )	"
                          + " as AVGPrice,"
 
-                         + " SO_ConfirmShipDetail.Price as UnitPrice,"
-                         + " (SO_ConfirmShipDetail.InvoiceQty * SO_ConfirmShipDetail.Price) AS NetAmount,"
+                         + " SO_InvoiceDetail.Price as UnitPrice,"
+                         + " (SO_InvoiceDetail.InvoiceQty * SO_InvoiceDetail.Price) AS NetAmount,"
 
-                         + " ISNULL(SO_ConfirmShipDetail.VATPercent, 0) As VATPercent,"
-                         + " ISNULL(SO_ConfirmShipDetail.VatAmount, 0) as VatAmount, "
+                         + " ISNULL(SO_InvoiceDetail.VATPercent, 0) As VATPercent,"
+                         + " ISNULL(SO_InvoiceDetail.VatAmount, 0) as VatAmount, "
 
-                         + " SO_ConfirmShipMaster.InvoiceNo,"
-                         + " SO_ConfirmShipMaster.ConfirmShipNo,"
+                         + " SO_InvoiceMaster.InvoiceNo,"
+                         + " SO_InvoiceMaster.ConfirmShipNo,"
 
-                         + " SO_ConfirmShipMaster.InvoiceDate as ShippedDate,"
+                         + " SO_InvoiceMaster.InvoiceDate as ShippedDate,"
 
                          + " MST_Party.Name AS MST_PartyName,"
                          + " MST_Party.Address AS MST_PartyAddress,"
@@ -290,31 +292,31 @@ namespace InvoiceForSaleOrderReport
                          + " FROM SO_DeliverySchedule"
                          + " LEFT JOIN SO_Gate ON SO_DeliverySchedule.GateID = SO_Gate.GateID"
                          + " LEFT JOIN enm_GateType ON enm_GateType.GateTypeID = SO_Gate.GateTypeID"
-                         + " WHERE SO_DeliverySchedule.DeliveryScheduleID = SO_ConfirmShipDetail.DeliveryScheduleID"
+                         + " WHERE SO_DeliverySchedule.DeliveryScheduleID = SO_InvoiceDetail.DeliveryScheduleID"
                          + " )AS SaleType,"
                          + " GA.Code SOGate,"
-                         + " SO_ConfirmShipMaster.DocumentNumber AS CustomerPurchaseOrderNo,"
-                         + " SO_ConfirmShipDetail.ConfirmShipDetailID, MST_PartyLocation.[Description] AS ShipToLocation, ST.Code AS SaleType1"
-                         + " FROM    SO_ConfirmShipDetail "
-                         + " INNER JOIN SO_ConfirmShipMaster ON SO_ConfirmShipDetail.ConfirmShipMasterID = SO_ConfirmShipMaster.ConfirmShipMasterID "
-                         + " INNER JOIN SO_SaleOrderMaster ON SO_ConfirmShipMaster.SaleOrderMasterID = SO_SaleOrderMaster.SaleOrderMasterID "
+                         + " SO_InvoiceMaster.DocumentNumber AS CustomerPurchaseOrderNo,"
+                         + " SO_InvoiceDetail.InvoiceDetailID, MST_PartyLocation.[Description] AS ShipToLocation, ST.Code AS SaleType1"
+                         + " FROM    SO_InvoiceDetail "
+                         + " INNER JOIN SO_InvoiceMaster ON SO_InvoiceDetail.InvoiceMasterID = SO_InvoiceMaster.InvoiceMasterID "
+                         + " INNER JOIN SO_SaleOrderMaster ON SO_InvoiceMaster.SaleOrderMasterID = SO_SaleOrderMaster.SaleOrderMasterID "
                          + " INNER JOIN MST_Party ON SO_SaleOrderMaster.PartyID = MST_Party.PartyID "
                          + " INNER JOIN MST_PartyLocation ON SO_SaleOrderMaster.ShipToLocID = MST_PartyLocation.PartyLocationID "
-                         + " INNER JOIN SO_SaleOrderDetail ON SO_ConfirmShipDetail.SaleOrderDetailID = SO_SaleOrderDetail.SaleOrderDetailID "
-                         + " INNER JOIN ITM_Product ON SO_ConfirmShipDetail.ProductID = ITM_Product.ProductID "
+                         + " INNER JOIN SO_SaleOrderDetail ON SO_InvoiceDetail.SaleOrderDetailID = SO_SaleOrderDetail.SaleOrderDetailID "
+                         + " INNER JOIN ITM_Product ON SO_InvoiceDetail.ProductID = ITM_Product.ProductID "
                          + " INNER JOIN ITM_Category ON ITM_Product.CategoryID = ITM_Category.CategoryID"
-                         + " INNER JOIN SO_DeliverySchedule E ON E.DeliveryScheduleID = SO_ConfirmShipDetail.DeliveryScheduleID"
+                         + " INNER JOIN SO_DeliverySchedule E ON E.DeliveryScheduleID = SO_InvoiceDetail.DeliveryScheduleID"
                          + " LEFT JOIN MST_UnitOfMeasure ON SO_SaleOrderDetail.SellingUMID = MST_UnitOfMeasure.UnitOfMeasureID "
                          + " LEFT JOIN SO_CustomerItemRefMaster refMaster ON refMaster.PartyID = MST_Party.PartyID"
                          + " LEFT JOIN SO_CustomerItemRefDetail refDetail ON refMaster.CustomerItemRefMasterID = refDetail.CustomerItemRefMasterID"
                          + " AND refDetail.ProductID = ITM_Product.ProductID"
                          + " LEFT JOIN SO_Gate GA ON E.GateID = GA.GateID"
                          + " LEFT JOIN SO_SaleType ST ON SO_SaleOrderMaster.SaleTypeID = ST.SaleTypeID"
-                         + " WHERE SO_ConfirmShipDetail.InvoiceQty > 0"
+                         + " WHERE SO_InvoiceDetail.InvoiceQty > 0"
                          + " AND SO_SaleOrderMaster.TypeID = 1"; // domestic only
                 if (masterId > 0)
                 {
-                    strSql += " AND SO_ConfirmShipMaster.ConfirmShipMasterID = " + masterId;
+                    strSql += " AND SO_InvoiceMaster.InvoiceMasterID = " + masterId;
                 }
                 if (partyId > 0)
                 {
@@ -330,7 +332,7 @@ namespace InvoiceForSaleOrderReport
                 }
                 if (!string.IsNullOrEmpty(documentNumber))
                 {
-                    strSql += " AND SO_ConfirmShipMaster.DocumentNumber = '" + documentNumber + "'";
+                    strSql += " AND SO_InvoiceMaster.DocumentNumber = '" + documentNumber + "'";
                 }
                 switch (type)
                 {

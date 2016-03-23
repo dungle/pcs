@@ -26,7 +26,7 @@ namespace PCSTestReport
                 var startupPath = Application.StartupPath;
                 startupPath = startupPath.Replace(@"bin\Debug", "ReportDefinition");
                 report.ReportDefinitionFolder = startupPath;
-                DateTime month = new DateTime(2016, 2, 27);
+                DateTime month = new DateTime(2016, 1, 12);
                 var data = report.ExecuteReport(month.ToString(), "", "", "", "", "", "");
                 GridView.DataSource = data;
             }
