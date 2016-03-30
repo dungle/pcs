@@ -80,3 +80,9 @@ BEGIN
 
 END
 GO
+
+IF NOT EXISTS (SELECT Menu_EntryID FROM Sys_Menu_Entry  WHERE [ReportID] = '20160323004452780')
+BEGIN
+	INSERT INTO [dbo].[Sys_Menu_Entry] ([Parent_Shortcut], [Shortcut], [Button_Caption], [Text_CaptionDefault], [Text_Caption_VI_VN], [Text_Caption_EN_US], [Text_Caption_JA_JP], [Text_Caption_Language_Default], [Parent_Child], [FormLoad], [Description], [Type], [CollapsedImage], [ExpandedImage], [Prefix], [TransFormat], [IsTransaction], [IsUserCreated], [TableName], [TransNoFieldName], [ReportID] )
+	 VALUES ( 'SRPT', 'RPSOIBD', 51, 'Sale Order Invoice By Date', 'Sale Order Invoice By Date (vn)', 'Sale Order Invoice By Date (en)', 'Sale Order Invoice By Date (jp)', 'en_US', 3, 'PCSUtils.Framework.ReportFrame.ViewReport', NULL, 0, NULL, NULL, NULL, NULL, 0, 0, NULL, NULL, '20160318104829290' )
+END
