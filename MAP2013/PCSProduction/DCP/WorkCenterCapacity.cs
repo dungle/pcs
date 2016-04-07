@@ -1550,21 +1550,18 @@ namespace PCSProduction.DCP
 		/// </summary>
 		/// <param name="pintWCCapacityId"></param>
 		private void CheckShiftGrid(int pintWCCapacityId)
-		{			
-			try
-			{
-				DataRow[] arrRows = dtbShiftCapacity.Select(PRO_ShiftCapacityTable.WCCAPACITYID_FLD + "=" + pintWCCapacityId);
+        {
+		    if (dtbShiftCapacity == null)
+		    {
+		        return;
+		    }
+            DataRow[] arrRows = dtbShiftCapacity.Select(PRO_ShiftCapacityTable.WCCAPACITYID_FLD + "=" + pintWCCapacityId);
 
-				for(int i =0; i < dgrdShift.RowCount; i++)
-				{
-					dgrdShift[i, SELECT_COLUMN] = IsChecked(dgrdShift[i, PRO_ShiftTable.SHIFTID_FLD], pintWCCapacityId, arrRows);
-				}
-			}
-			catch (Exception ex)
-			{
-				throw new Exception(ex.Message, ex);
-			}
-		}
+            for (int i = 0; i < dgrdShift.RowCount; i++)
+            {
+                dgrdShift[i, SELECT_COLUMN] = IsChecked(dgrdShift[i, PRO_ShiftTable.SHIFTID_FLD], pintWCCapacityId, arrRows);
+            }
+        }
 		
 		/// <summary>
 		/// Load data to Shift grid
