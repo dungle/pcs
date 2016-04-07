@@ -525,7 +525,8 @@ namespace PCSComProcurement.Purchase.DS
 				strSql += " OrderDate,";
 				strSql += " DeliveryLine,";
 				strSql += " ScheduleDate,";
-				strSql += " ITM_ProductCode,";
+                strSql += " ProductID,";
+                strSql += " ITM_ProductCode,";
 				strSql += " ITM_ProductRevision,";
 				strSql += " ITM_ProductDescription,";
 				strSql += " TaxCode,";
@@ -543,7 +544,6 @@ namespace PCSComProcurement.Purchase.DS
 				strSql += " MST_UnitOfMeasureCode,";
 				strSql += " OtherInfo1,";
 				strSql += " PartNameVN,";
-				strSql += " ProductID,";
 				strSql += " CCNID,";
 				strSql += " PartyID,";
 				strSql += " Closed,";
