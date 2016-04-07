@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.OleDb;
 using System.Drawing.Printing;
 using System.Reflection;
+using System.Text;
 using PCSComUtils.Common;
 using PCSUtils.Utils;
 using C1.Win.C1Preview;
@@ -160,7 +161,7 @@ namespace InvoiceForSaleOrderReport
             C1Report rptReport = new C1Report();
 
             rptReport.Load(mReportFolder + "\\" + mLayoutFile, rptReport.GetReportInfo(mReportFolder + "\\" + mLayoutFile)[0]);
-            rptReport.Layout.PaperSize = PaperKind.A3;
+            rptReport.Layout.PaperSize = PaperKind.Letter;
             try
 	        {
                 string totalAmountInWord = ConvertNumberToWord.ChuyenSoThanhChu(decimal.Round(totalAmount, 0));
@@ -211,147 +212,74 @@ namespace InvoiceForSaleOrderReport
 
             try
             {
-                string strSql = string.Empty;
-
-                strSql = "SELECT  DISTINCT ITM_Product.ProductID, "
-                         + " refDetail.CustomerItemCode AS ITM_ProductCode,"
-                         + " ITM_Product.Description AS ITM_ProductDescription,"
-                         + " ITM_Product.PartNameVN AS ITM_ProductDescriptionVN,"
-                         + " MST_UnitOfMeasure.Code AS MST_UnitOfMeasureCode,"
-                         + " ITM_Product.Revision AS ITM_ProductRevision,"
-
-                         + " SO_InvoiceDetail.InvoiceQty as DeliveryQuantity,"
-
-                         + " ((SELECT SUM( detail.Price * detail.InvoiceQty)"
-                         + " FROM SO_InvoiceDetail detail"
-                         + " WHERE detail.InvoiceMasterID = SO_InvoiceMaster.InvoiceMasterID"
-                         + " AND detail.ProductID = ITM_Product.ProductID"
-                         + " )	"
-                         + " /"
-
-                    //validate data to avoid division by zero error 
-                         + " ( "
-                         + " Case  "
-                         + " When ( "
-                         + " SELECT SUM(detail.InvoiceQty) "
-                         + " FROM SO_InvoiceDetail detail "
-                         + " WHERE detail.InvoiceMasterID = SO_InvoiceMaster.InvoiceMasterID "
-                         + " AND detail.ProductID = ITM_Product.ProductID "
-                         + "    ) = 0  "
-                         + " then 1 "
-                         + "     else   "
-                         + " ( "
-                         + " SELECT SUM(detail.InvoiceQty) "
-                         + " FROM SO_InvoiceDetail detail "
-                         + " WHERE detail.InvoiceMasterID = SO_InvoiceMaster.InvoiceMasterID "
-                         + " AND detail.ProductID = ITM_Product.ProductID "
-                         + "    ) "
-                         + " end      "
-                         + " ) "
-                    //end validate
-
-                         + " )	"
-                         + " as AVGPrice,"
-
-                         + " SO_InvoiceDetail.Price as UnitPrice,"
-                         + " (SO_InvoiceDetail.InvoiceQty * SO_InvoiceDetail.Price) AS NetAmount,"
-
-                         + " ISNULL(SO_InvoiceDetail.VATPercent, 0) As VATPercent,"
-                         + " ISNULL(SO_InvoiceDetail.VatAmount, 0) as VatAmount, "
-
-                         + " SO_InvoiceMaster.InvoiceNo,"
-                         + " SO_InvoiceMaster.ConfirmShipNo,"
-
-                         + " SO_InvoiceMaster.InvoiceDate as ShippedDate,"
-
-                         + " MST_Party.Name AS MST_PartyName,"
-                         + " MST_Party.Address AS MST_PartyAddress,"
-                         + " Case when CharIndex('" + DemiliterChar + "', MST_Party.BankAccount) > 0 then"
-                         + "    Substring(MST_Party.BankAccount, 1, CharIndex('" + DemiliterChar +
-                         "', MST_Party.BankAccount) - 1) "
-                         + " else MST_Party.BankAccount	"
-                         + " End As MST_PartyBankAccount,"
-
-                         + " Case when CharIndex('" + DemiliterChar + "', MST_Party.BankAccount) > 0 then"
-                         + " Substring(MST_Party.BankAccount, CharIndex('" + DemiliterChar +
-                         "', MST_Party.BankAccount) + 1, Len(MST_Party.BankAccount))"
-                         + " Else ''"
-                         + " End As MST_PartyBankName,"
-
-                         + " MST_Party.VATCode AS MST_PartyTaxCode,"
-
-                         + " MST_Party.MAPBankAccountNo as BankAccountNo,"
-                         + " Case when CharIndex('" + DemiliterChar + "', MST_Party.MAPBankAccountName) > 0 then"
-                         + " Substring(MST_Party.MAPBankAccountName, 1, CharIndex('" + DemiliterChar +
-                         "', MST_Party.MAPBankAccountName) - 1) "
-                         + " else MST_Party.MAPBankAccountName"
-                         + " End As BankAccountName,"
-
-                         + " ("
-                         + " SELECT TOP 1 enm_GateType.Description"
-                         + " FROM SO_DeliverySchedule"
-                         + " LEFT JOIN SO_Gate ON SO_DeliverySchedule.GateID = SO_Gate.GateID"
-                         + " LEFT JOIN enm_GateType ON enm_GateType.GateTypeID = SO_Gate.GateTypeID"
-                         + " WHERE SO_DeliverySchedule.DeliveryScheduleID = SO_InvoiceDetail.DeliveryScheduleID"
-                         + " )AS SaleType,"
-                         + " GA.Code SOGate,"
-                         + " SO_InvoiceMaster.DocumentNumber AS CustomerPurchaseOrderNo,"
-                         + " SO_InvoiceDetail.InvoiceDetailID, MST_PartyLocation.[Description] AS ShipToLocation, ST.Code AS SaleType1"
-                         + " FROM    SO_InvoiceDetail "
-                         + " INNER JOIN SO_InvoiceMaster ON SO_InvoiceDetail.InvoiceMasterID = SO_InvoiceMaster.InvoiceMasterID "
-                         + " INNER JOIN SO_SaleOrderMaster ON SO_InvoiceMaster.SaleOrderMasterID = SO_SaleOrderMaster.SaleOrderMasterID "
-                         + " INNER JOIN MST_Party ON SO_SaleOrderMaster.PartyID = MST_Party.PartyID "
-                         + " INNER JOIN MST_PartyLocation ON SO_SaleOrderMaster.ShipToLocID = MST_PartyLocation.PartyLocationID "
-                         + " INNER JOIN SO_SaleOrderDetail ON SO_InvoiceDetail.SaleOrderDetailID = SO_SaleOrderDetail.SaleOrderDetailID "
-                         + " INNER JOIN ITM_Product ON SO_InvoiceDetail.ProductID = ITM_Product.ProductID "
-                         + " INNER JOIN ITM_Category ON ITM_Product.CategoryID = ITM_Category.CategoryID"
-                         + " INNER JOIN SO_DeliverySchedule E ON E.DeliveryScheduleID = SO_InvoiceDetail.DeliveryScheduleID"
-                         + " LEFT JOIN MST_UnitOfMeasure ON SO_SaleOrderDetail.SellingUMID = MST_UnitOfMeasure.UnitOfMeasureID "
-                         + " LEFT JOIN SO_CustomerItemRefMaster refMaster ON refMaster.PartyID = MST_Party.PartyID"
-                         + " LEFT JOIN SO_CustomerItemRefDetail refDetail ON refMaster.CustomerItemRefMasterID = refDetail.CustomerItemRefMasterID"
-                         + " AND refDetail.ProductID = ITM_Product.ProductID"
-                         + " LEFT JOIN SO_Gate GA ON E.GateID = GA.GateID"
-                         + " LEFT JOIN SO_SaleType ST ON SO_SaleOrderMaster.SaleTypeID = ST.SaleTypeID"
-                         + " WHERE SO_InvoiceDetail.InvoiceQty > 0"
-                         + " AND SO_SaleOrderMaster.TypeID = 1"; // domestic only
+                var sqlText = new StringBuilder();
+                sqlText.AppendLine("SELECT  DISTINCT ROW_NUMBER() OVER(ORDER BY ITM_Product.Revision) AS Seq, ITM_Product.ProductID,  refDetail.CustomerItemCode AS ITM_ProductCode, ITM_Product.Description AS ITM_ProductDescription, ");
+                sqlText.AppendLine("ITM_Product.PartNameVN AS ITM_ProductDescriptionVN, MST_UnitOfMeasure.Code AS MST_UnitOfMeasureCode, ITM_Product.Revision AS ITM_ProductRevision,");
+                sqlText.AppendLine("SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as AVGPrice,");
+                sqlText.AppendLine("SUM(SO_InvoiceDetail.InvoiceQty) * SO_InvoiceDetail.Price AS NetAmount, ISNULL(SO_InvoiceDetail.VATPercent, 0) As VATPercent,");
+                sqlText.AppendLine("SUM(ISNULL(SO_InvoiceDetail.VatAmount, 0)) as VatAmount,  SO_InvoiceMaster.InvoiceNo,  CAST(CAST(SO_InvoiceMaster.InvoiceDate AS DATE) AS DATETIME) as ShippedDate,");
+                sqlText.AppendLine("MST_Party.Name AS MST_PartyName, MST_Party.Address AS MST_PartyAddress, Case when CharIndex('#', MST_Party.BankAccount) > 0 then");
+                sqlText.AppendLine("Substring(MST_Party.BankAccount, 1, CharIndex('#', MST_Party.BankAccount) - 1)  else MST_Party.BankAccount	 End As MST_PartyBankAccount, Case when CharIndex('#', MST_Party.BankAccount) > 0");
+                sqlText.AppendLine("then Substring(MST_Party.BankAccount, CharIndex('#', MST_Party.BankAccount) + 1, Len(MST_Party.BankAccount)) Else '' End As MST_PartyBankName, MST_Party.VATCode AS MST_PartyTaxCode,");
+                sqlText.AppendLine("MST_Party.MAPBankAccountNo as BankAccountNo, Case when CharIndex('#', MST_Party.MAPBankAccountName) > 0 then Substring(MST_Party.MAPBankAccountName, 1,");
+                sqlText.AppendLine("CharIndex('#', MST_Party.MAPBankAccountName) - 1)  else MST_Party.MAPBankAccountName End As BankAccountName, SO_InvoiceMaster.DocumentNumber CustomerPurchaseOrderNo, MST_PartyLocation.[Description] AS ShipToLocation, ST.Code AS SaleType1");
+                sqlText.AppendLine("FROM    SO_InvoiceDetail  INNER JOIN SO_InvoiceMaster ON SO_InvoiceDetail.InvoiceMasterID = SO_InvoiceMaster.InvoiceMasterID");
+                sqlText.AppendLine("INNER JOIN SO_SaleOrderMaster ON SO_InvoiceMaster.SaleOrderMasterID = SO_SaleOrderMaster.SaleOrderMasterID  ");
+                sqlText.AppendLine("INNER JOIN MST_Party ON SO_SaleOrderMaster.PartyID = MST_Party.PartyID  ");
+                sqlText.AppendLine("INNER JOIN MST_PartyLocation ON SO_SaleOrderMaster.ShipToLocID = MST_PartyLocation.PartyLocationID  ");
+                sqlText.AppendLine("INNER JOIN SO_SaleOrderDetail ON SO_InvoiceDetail.SaleOrderDetailID = SO_SaleOrderDetail.SaleOrderDetailID  ");
+                sqlText.AppendLine("INNER JOIN ITM_Product ON SO_InvoiceDetail.ProductID = ITM_Product.ProductID  ");
+                sqlText.AppendLine("INNER JOIN ITM_Category ON ITM_Product.CategoryID = ITM_Category.CategoryID ");
+                sqlText.AppendLine("INNER JOIN SO_DeliverySchedule E ON E.DeliveryScheduleID = SO_InvoiceDetail.DeliveryScheduleID ");
+                sqlText.AppendLine("LEFT JOIN MST_UnitOfMeasure ON SO_SaleOrderDetail.SellingUMID = MST_UnitOfMeasure.UnitOfMeasureID  ");
+                sqlText.AppendLine("LEFT JOIN SO_CustomerItemRefMaster refMaster ON refMaster.PartyID = MST_Party.PartyID ");
+                sqlText.AppendLine("LEFT JOIN SO_CustomerItemRefDetail refDetail ON refMaster.CustomerItemRefMasterID = refDetail.CustomerItemRefMasterID AND refDetail.ProductID = ITM_Product.ProductID ");
+                sqlText.AppendLine("LEFT JOIN SO_SaleType ST ON SO_SaleOrderMaster.SaleTypeID = ST.SaleTypeID");
+                sqlText.AppendLine("WHERE SO_InvoiceDetail.InvoiceQty > 0 ");
+                sqlText.AppendLine("AND SO_SaleOrderMaster.TypeID = 1");
                 if (masterId > 0)
                 {
-                    strSql += " AND SO_InvoiceMaster.InvoiceMasterID = " + masterId;
+                    sqlText.AppendLine(" AND SO_InvoiceMaster.InvoiceMasterID = " + masterId);
                 }
                 if (partyId > 0)
                 {
-                    strSql += " AND SO_SaleOrderMaster.PartyID = " + partyId;
+                    sqlText.AppendLine(" AND SO_SaleOrderMaster.PartyID = " + partyId);
                 }
                 if (saleTypeId > 0)
                 {
-                    strSql += " AND SO_SaleOrderMaster.SaleTypeID = " + saleTypeId;
+                    sqlText.AppendLine(" AND SO_SaleOrderMaster.SaleTypeID = " + saleTypeId);
                 }
                 if (partyLocId > 0)
                 {
-                    strSql += " AND SO_SaleOrderMaster.ShipToLocID = " + partyLocId;
+                    sqlText.AppendLine(" AND SO_SaleOrderMaster.ShipToLocID = " + partyLocId);
                 }
                 if (!string.IsNullOrEmpty(documentNumber))
                 {
-                    strSql += " AND SO_InvoiceMaster.DocumentNumber = '" + documentNumber + "'";
+                    sqlText.AppendLine(" AND SO_InvoiceMaster.DocumentNumber = '" + documentNumber + "'");
                 }
                 switch (type)
                 {
                     case "Car":
-                        strSql += " AND ITM_Category.Code LIKE 'A%'";
+                        sqlText.AppendLine(" AND ITM_Category.Code LIKE 'A%'");
                         break;
                     case "Motorbike":
-                        strSql += " AND ITM_Category.Code LIKE 'M%'";
+                        sqlText.AppendLine(" AND ITM_Category.Code LIKE 'M%'");
                         break;
                 }
                 
                 if (day > DateTime.MinValue)
                 {
-                    strSql += string.Format(" AND E.ScheduleDate BETWEEN '{0:yyyy-MM-dd}' AND '{1:yyyy-MM-dd}'", day, day.AddDays(1));
+                    sqlText.AppendLine(string.Format(" AND E.ScheduleDate BETWEEN '{0:yyyy-MM-dd}' AND '{1:yyyy-MM-dd}'", day, day.AddDays(1)));
                 }
-                strSql += " ORDER BY ITM_Product.Revision";
-
+                sqlText.AppendLine("GROUP BY SO_InvoiceDetail.Price, CAST(SO_InvoiceMaster.InvoiceDate AS Date),");
+                sqlText.AppendLine("ITM_Product.ProductID, refDetail.CustomerItemCode, ITM_Product.Description, ITM_Product.PartNameVN, MST_UnitOfMeasure.Code,");
+                sqlText.AppendLine("ITM_Product.Revision, SO_InvoiceDetail.VATPercent, SO_InvoiceMaster.InvoiceNo,");
+                sqlText.AppendLine("MST_Party.Name, MST_Party.Address, MST_Party.BankAccount, MST_Party.VATCode, MST_Party.MAPBankAccountNo, MST_Party.MAPBankAccountName, ");
+                sqlText.AppendLine("SO_InvoiceMaster.DocumentNumber, MST_PartyLocation.Description, ST.Code, CAST(E.ScheduleDate as DATE)");
+                sqlText.AppendLine("ORDER BY ITM_Product.Revision");
+                
                 oconPcs = new OleDbConnection(mConnectionString);
-                var ocmdPcs = new OleDbCommand(strSql, oconPcs) { CommandTimeout = 3600 };
+                var ocmdPcs = new OleDbCommand(sqlText.ToString(), oconPcs) { CommandTimeout = 3600 };
 
                 ocmdPcs.Connection.Open();
                 var odadPcs = new OleDbDataAdapter(ocmdPcs);

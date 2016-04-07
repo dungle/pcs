@@ -6,49 +6,44 @@
     <ReportInfo />
     <DataSource>
       <ConnectionString>Provider=SQLOLEDB.1;Password=Niteco@123;Persist Security Info=True;User ID=sa;Initial Catalog=map;Data Source=.</ConnectionString>
-      <RecordSource>SELECT  DISTINCT ITM_Product.ProductID,  refDetail.CustomerItemCode AS ITM_ProductCode, ITM_Product.Description AS ITM_ProductDescription, 
+      <RecordSource>SELECT  DISTINCT ROW_NUMBER() OVER(ORDER BY ITM_Product.Revision) AS Seq,  ITM_Product.ProductID,  refDetail.CustomerItemCode AS ITM_ProductCode, ITM_Product.Description AS ITM_ProductDescription, 
 ITM_Product.PartNameVN AS ITM_ProductDescriptionVN, MST_UnitOfMeasure.Code AS MST_UnitOfMeasureCode, ITM_Product.Revision AS ITM_ProductRevision, 
-SO_ConfirmShipDetail.InvoiceQty as DeliveryQuantity, ((SELECT SUM( detail.Price * detail.InvoiceQty) 
-FROM SO_ConfirmShipDetail detail WHERE detail.ConfirmShipMasterID = SO_ConfirmShipMaster.ConfirmShipMasterID AND detail.ProductID = ITM_Product.ProductID )	 
-/ (  Case   When (  SELECT SUM(detail.InvoiceQty)  FROM SO_ConfirmShipDetail detail  WHERE detail.ConfirmShipMasterID = SO_ConfirmShipMaster.ConfirmShipMasterID 
- AND detail.ProductID = ITM_Product.ProductID     ) = 0   then 1      else    (  SELECT SUM(detail.InvoiceQty)  
- FROM SO_ConfirmShipDetail detail  
- WHERE detail.ConfirmShipMasterID = SO_ConfirmShipMaster.ConfirmShipMasterID  
- AND detail.ProductID = ITM_Product.ProductID     )  end       )  )	 as AVGPrice, SO_ConfirmShipDetail.Price as UnitPrice, 
- (SO_ConfirmShipDetail.InvoiceQty * SO_ConfirmShipDetail.Price) AS NetAmount, ISNULL(SO_ConfirmShipDetail.VATPercent, 0) As VATPercent, 
- ISNULL(SO_ConfirmShipDetail.VatAmount, 0) as VatAmount,  SO_ConfirmShipMaster.InvoiceNo, SO_ConfirmShipMaster.ConfirmShipNo, SO_ConfirmShipMaster.InvoiceDate as ShippedDate, 
+SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as AVGPrice, 
+ SUM(SO_InvoiceDetail.InvoiceQty) * SO_InvoiceDetail.Price AS NetAmount, ISNULL(SO_InvoiceDetail.VATPercent, 0) As VATPercent, 
+ SUM(ISNULL(SO_InvoiceDetail.VatAmount, 0)) as VatAmount,  SO_InvoiceMaster.InvoiceNo,  CAST(CAST(SO_InvoiceMaster.InvoiceDate AS DATE) AS DATETIME) as ShippedDate, 
  MST_Party.Name AS MST_PartyName, MST_Party.Address AS MST_PartyAddress, Case when CharIndex('#', MST_Party.BankAccount) &gt; 0 then    
  Substring(MST_Party.BankAccount, 1, CharIndex('#', MST_Party.BankAccount) - 1)  else MST_Party.BankAccount	 End As MST_PartyBankAccount, Case when CharIndex('#', MST_Party.BankAccount) &gt; 0 
  then Substring(MST_Party.BankAccount, CharIndex('#', MST_Party.BankAccount) + 1, Len(MST_Party.BankAccount)) Else '' End As MST_PartyBankName, MST_Party.VATCode AS MST_PartyTaxCode,
   MST_Party.MAPBankAccountNo as BankAccountNo, Case when CharIndex('#', MST_Party.MAPBankAccountName) &gt; 0 then Substring(MST_Party.MAPBankAccountName, 1, 
-  CharIndex('#', MST_Party.MAPBankAccountName) - 1)  else MST_Party.MAPBankAccountName End As BankAccountName, ( SELECT TOP 1 enm_GateType.Description 
-  
-  FROM SO_DeliverySchedule LEFT JOIN SO_Gate ON SO_DeliverySchedule.GateID = SO_Gate.GateID 
-  LEFT JOIN enm_GateType ON enm_GateType.GateTypeID = SO_Gate.GateTypeID WHERE SO_DeliverySchedule.DeliveryScheduleID = SO_ConfirmShipDetail.DeliveryScheduleID )AS SaleType, 
-  GA.Code SOGate, SO_ConfirmShipMaster.DocumentNumber CustomerPurchaseOrderNo, SO_ConfirmShipDetail.ConfirmShipDetailID, MST_PartyLocation.[Description] AS ShipToLocation, ST.Code AS SaleType1,
+  CharIndex('#', MST_Party.MAPBankAccountName) - 1)  else MST_Party.MAPBankAccountName End As BankAccountName, SO_InvoiceMaster.DocumentNumber CustomerPurchaseOrderNo, MST_PartyLocation.[Description] AS ShipToLocation, ST.Code AS SaleType1,
   SO_SaleOrderMaster.TypeID
   
-  FROM    SO_ConfirmShipDetail  INNER JOIN SO_ConfirmShipMaster ON SO_ConfirmShipDetail.ConfirmShipMasterID = SO_ConfirmShipMaster.ConfirmShipMasterID  
-  INNER JOIN SO_SaleOrderMaster ON SO_ConfirmShipMaster.SaleOrderMasterID = SO_SaleOrderMaster.SaleOrderMasterID  
+  FROM    SO_InvoiceDetail  INNER JOIN SO_InvoiceMaster ON SO_InvoiceDetail.InvoiceMasterID = SO_InvoiceMaster.InvoiceMasterID  
+  INNER JOIN SO_SaleOrderMaster ON SO_InvoiceMaster.SaleOrderMasterID = SO_SaleOrderMaster.SaleOrderMasterID  
   INNER JOIN MST_Party ON SO_SaleOrderMaster.PartyID = MST_Party.PartyID  
   INNER JOIN MST_PartyLocation ON SO_SaleOrderMaster.ShipToLocID = MST_PartyLocation.PartyLocationID  
-  INNER JOIN SO_SaleOrderDetail ON SO_ConfirmShipDetail.SaleOrderDetailID = SO_SaleOrderDetail.SaleOrderDetailID  
-  INNER JOIN ITM_Product ON SO_ConfirmShipDetail.ProductID = ITM_Product.ProductID  
+  INNER JOIN SO_SaleOrderDetail ON SO_InvoiceDetail.SaleOrderDetailID = SO_SaleOrderDetail.SaleOrderDetailID  
+  INNER JOIN ITM_Product ON SO_InvoiceDetail.ProductID = ITM_Product.ProductID  
   INNER JOIN ITM_Category ON ITM_Product.CategoryID = ITM_Category.CategoryID 
-  INNER JOIN SO_DeliverySchedule E ON E.DeliveryScheduleID = SO_ConfirmShipDetail.DeliveryScheduleID 
+  INNER JOIN SO_DeliverySchedule E ON E.DeliveryScheduleID = SO_InvoiceDetail.DeliveryScheduleID 
   LEFT JOIN MST_UnitOfMeasure ON SO_SaleOrderDetail.SellingUMID = MST_UnitOfMeasure.UnitOfMeasureID  
   LEFT JOIN SO_CustomerItemRefMaster refMaster ON refMaster.PartyID = MST_Party.PartyID 
   LEFT JOIN SO_CustomerItemRefDetail refDetail ON refMaster.CustomerItemRefMasterID = refDetail.CustomerItemRefMasterID AND refDetail.ProductID = ITM_Product.ProductID 
-  LEFT JOIN SO_Gate GA ON E.GateID = GA.GateID 
-  LEFT JOIN SO_SaleType ST ON SO_SaleOrderMaster.SaleTypeID = ST.SaleTypeID 
-  WHERE SO_ConfirmShipDetail.InvoiceQty &gt; 0 
+  LEFT JOIN SO_SaleType ST ON SO_SaleOrderMaster.SaleTypeID = ST.SaleTypeID
+  WHERE SO_InvoiceDetail.InvoiceQty &gt; 0 
   AND SO_SaleOrderMaster.TypeID = 1
   AND E.ScheduleDate BETWEEN '2016-02-27' AND '2016-02-28'
-   ORDER BY ITM_Product.Revision</RecordSource>
+  GROUP BY SO_InvoiceDetail.Price, CAST(SO_InvoiceMaster.InvoiceDate AS Date),
+  ITM_Product.ProductID, refDetail.CustomerItemCode, ITM_Product.Description, ITM_Product.PartNameVN, MST_UnitOfMeasure.Code,
+  ITM_Product.Revision, SO_InvoiceDetail.VATPercent, SO_InvoiceMaster.InvoiceNo,
+  MST_Party.Name, MST_Party.Address, MST_Party.BankAccount, MST_Party.VATCode, MST_Party.MAPBankAccountNo, MST_Party.MAPBankAccountName, 
+  SO_InvoiceMaster.DocumentNumber, MST_PartyLocation.Description, ST.Code, SO_SaleOrderMaster.TypeID,
+  CAST(E.ScheduleDate as DATE)
+  ORDER BY Seq</RecordSource>
       <DataProvider>1</DataProvider>
     </DataSource>
     <Layout>
-      <Width>12030</Width>
+      <Width>12420</Width>
       <MarginLeft>0</MarginLeft>
       <MarginTop>0</MarginTop>
       <MarginRight>0</MarginRight>
@@ -62,21 +57,13 @@ FROM SO_ConfirmShipDetail detail WHERE detail.ConfirmShipMasterID = SO_ConfirmSh
       <Name>Times New Roman</Name>
       <Size>9</Size>
     </Font>
-    <OnOpen>stt = 0</OnOpen>
     <CompatibilityOptions />
-    <Groups>
-      <Group>
-        <Name>ITM_ProductRevision</Name>
-        <GroupBy>ITM_ProductRevision</GroupBy>
-        <Sort>1</Sort>
-      </Group>
-    </Groups>
+    <Groups />
     <Sections>
       <Section>
         <Name>Detail</Name>
         <Type>0</Type>
         <Height>315</Height>
-        <OnPrint>stt = stt +1</OnPrint>
       </Section>
       <Section>
         <Name>Header</Name>
@@ -99,22 +86,12 @@ FROM SO_ConfirmShipDetail detail WHERE detail.ConfirmShipMasterID = SO_ConfirmSh
         <Type>4</Type>
         <Visible>0</Visible>
       </Section>
-      <Section>
-        <Name>ITM_ProductRevision_Header</Name>
-        <Type>5</Type>
-        <Visible>0</Visible>
-      </Section>
-      <Section>
-        <Name>ITM_ProductRevision_Footer</Name>
-        <Type>6</Type>
-        <Visible>0</Visible>
-      </Section>
     </Sections>
     <Fields>
       <Field>
-        <Name>stt_field</Name>
+        <Name>STTFld</Name>
         <Section>0</Section>
-        <Text>stt</Text>
+        <Text>Seq</Text>
         <Calculated>-1</Calculated>
         <Left>240</Left>
         <Width>400</Width>

@@ -592,7 +592,7 @@ namespace PCSUtils.Utils
 		/// <date>Monday, May 15 2006</date>
 		private static string ChuyenSoNguyenThanhChu(string pstrInput)
 		{
-			string[] _DigitPlace = { "-", "nghìn", "triệu", "tỉ", "nghìn", "trăm", "triệu", "quá lớn" };
+			string[] _DigitPlace = { "-", "nghìn", "triệu", "tỷ", "nghìn", "trăm", "triệu", "quá lớn" };
 			string[] _Digits = { "không", "một", "hai", "ba", "bốn", "năm", "sáu", "bảy", "tám", "chín", "lăm" };
 				string[] _FromTenToTwenty = {"mười", "mười một", "mười hai", "mười ba", "mười bốn", "mười lăm", "mười sáu", "mười bảy", "mười tám", "mười chín" };
 				string[] _Tens = {"-", "mười", "hai mươi", "ba mươi", "bốn mươi", "năm mươi", "sáu mươi", "bảy mươi", "tám mươi", "chín mươi"};
