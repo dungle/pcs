@@ -246,6 +246,9 @@
     <Compile Include="Mps\CPODataViewer.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Mps\CPODataViewer.Designer.cs">
+      <DependentUpon>CPODataViewer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Mps\CPOReport.cs">
       <SubType>Form</SubType>
     </Compile>

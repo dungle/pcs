@@ -35,152 +35,50 @@ namespace PCSComProduction.WorkOrder.BO
 			dsWorkOrderDetail = new PRO_WorkOrderDetailDS();
 			dsWorkOrderDetail.UpdateDataSet(pdstData);
 
-			//copy BOM and Routing
-			//DataSet dsNewDataSetForBOM = GetWODetailByMaster(voWOMaster.WorkOrderMasterID);
-			//CopyBOMData(dsNewDataSetForBOM, voWOMaster.CCNID, voWOMaster.MasterLocationID);
-				
-			//CopyRoutingDataToConvertWO(voWOMaster.WorkOrderMasterID);
-
 			//return ID
 			return voWOMaster.WorkOrderMasterID;
 		}
 		public int AddNewWO(object pobjObjectDetail, DataSet pdstData, DataSet pdstCPOs)
 		{
-//			try
-//			{
-				int intWOMasterID = 0;
-				//add Master
-				intWOMasterID = AddAndReturnID(pobjObjectDetail, pdstData);
+            int intWOMasterID = 0;
+            //add Master
+            intWOMasterID = AddAndReturnID(pobjObjectDetail, pdstData);
 
-				//assign GenerateID
-//				new MTR_CPODS().SetWOMasterID(pdstCPOs, intWOMasterID);
-				return intWOMasterID;
-//			}
-//			catch (PCSDBException ex)
-//			{
-//				throw ex;
-//			}
-//			catch (Exception ex)
-//			{
-//				throw new Exception(ex.Message, ex);
-//			}
-		}
+            //assign GenerateID
+            return intWOMasterID;
+        }
 		public int AddNewWOImmediately(object pobjObjectDetail, DataSet pdstData, ArrayList parlCPOIDs)
 		{
-//			try
-//			{
-				int intWOMasterID = 0;
-				//add Master
-				intWOMasterID = AddAndReturnID(pobjObjectDetail, pdstData);
+            int intWOMasterID = 0;
+            //add Master
+            intWOMasterID = AddAndReturnID(pobjObjectDetail, pdstData);
 
-				//assign GenerateID
-				new MTR_CPODS().SetWOMasterID(parlCPOIDs, intWOMasterID);
-				return intWOMasterID;
-//			}
-//			catch (PCSDBException ex)
-//			{
-//				throw ex;
-//			}
-//			catch (Exception ex)
-//			{
-//				throw new Exception(ex.Message, ex);
-//			}
-		}
+            //assign GenerateID
+            new MTR_CPODS().SetWOMasterID(parlCPOIDs, intWOMasterID);
+            return intWOMasterID;
+        }
 		public int AddNewWOImmediately(object pobjObjectDetail, DataSet pdstData, ArrayList parlCPOIDs, string pType)
 		{
-//			try
-//			{
-				int intWOMasterID = 0;
-				//add Master
-				intWOMasterID = AddAndReturnID(pobjObjectDetail, pdstData);
+            int intWOMasterID = 0;
+            //add Master
+            intWOMasterID = AddAndReturnID(pobjObjectDetail, pdstData);
 
-				//assign GenerateID
-				if (pType == PlanTypeEnum.MPS.ToString())
-					new MTR_CPODS().SetWOMasterID(parlCPOIDs, intWOMasterID);
-				else
-					new MTR_CPODS().SetWOMasterIDForDCP(parlCPOIDs, intWOMasterID);
-				return intWOMasterID;
-//			}
-//			catch (PCSDBException ex)
-//			{
-//				throw ex;
-//			}
-//			catch (Exception ex)
-//			{
-//				throw new Exception(ex.Message, ex);
-//			}
-		}
-		public object GetObjectUM(int pintUMID)
-		{
-//			try
-//			{
-				return new MST_UnitOfMeasureDS().GetObjectVO(pintUMID);	
-//			}
-//			catch (PCSDBException ex)
-//			{
-//				throw ex;
-//			}
-//			catch (Exception ex)
-//			{
-//				throw new Exception(ex.Message, ex);
-//			}
-
-		}
-		public void Delete(object pObjectVO)
-		{
-		}
-		public object GetItemInfo(int pintProductID)
-		{
-			return null;
-		}
-		public object GetObjectVO(int pintID, string VOclass)
-		{
-			return null;
-		}
+            //assign GenerateID
+            if (pType == PlanTypeEnum.MPS.ToString())
+                new MTR_CPODS().SetWOMasterID(parlCPOIDs, intWOMasterID);
+            else
+                new MTR_CPODS().SetWOMasterIDForDCP(parlCPOIDs, intWOMasterID);
+            return intWOMasterID;
+        }
 		public object GetObjectWOMasterVO(int pintWOMasterID)
 		{
-//			try
-//			{
-				dsWorkOrderMaster = new PRO_WorkOrderMasterDS();
-				return dsWorkOrderMaster.GetObjectVO(pintWOMasterID);
-//			}
-//			catch (PCSDBException ex)
-//			{
-//				throw ex;
-//			}
-//			catch (Exception ex)
-//			{
-//				throw new Exception(ex.Message, ex);
-//			}
-
-		}
-		public object GetSaleOrderDetail(int pintSaleOrderDetailID)
-		{
-			return null;
-		}
-		public object GetSaleOrderMaster(int pintSaleOrderMasterID)
-		{
-			return null;
-		}
+            dsWorkOrderMaster = new PRO_WorkOrderMasterDS();
+            return dsWorkOrderMaster.GetObjectVO(pintWOMasterID);
+        }
 		public DataSet GetWODetailByMaster(int pintWOMasterID)
 		{
-//			try
-//			{
-				return new PRO_WorkOrderDetailDS().GetWODetailByMaster(pintWOMasterID);
-//			}
-//			catch (PCSDBException ex)
-//			{
-//				throw ex;
-//			}
-//			catch (Exception ex)
-//			{
-//				throw new Exception(ex.Message, ex);
-//			}
-
-		}
-		public void Update(object pObjectDetail)
-		{
-		}
+            return new PRO_WorkOrderDetailDS().GetWODetailByMaster(pintWOMasterID);
+        }
 		public void UpdateWOAndWOLines(object pObjectDetail, DataSet pdstData, ArrayList parlWOLineDeleted)
 		{
 			//update Master
@@ -234,9 +132,6 @@ namespace PCSComProduction.WorkOrder.BO
             //delete detail
             dsWorkOrderDetail.DeleteByWOMasterID(voWOMaster.WorkOrderMasterID);
         }
-		public void UpdateDataSet(DataSet dstData)
-		{
-		}
 		
 		/// <summary>
 		/// Get UMCode, CostMethod, AGCCode, EstCode
@@ -271,79 +166,18 @@ namespace PCSComProduction.WorkOrder.BO
 			}
 			return strProductionLine;
 		}
-		/// <summary>
-		/// Get Work Order Detail object by ID
-		/// </summary>
-	
-		public object GetWODetailVO(int pintWODetailID)
-		{
-			return null;
-		}
-		public void UpdateExistedWO(DataSet pdstData, object pobjObjectDetail, ArrayList parlWOLineDeleted, DataSet pdstCPOs)    
-		{
-//			try
-//			{
-				//update WO
-				UpdateWOAndWOLines(pobjObjectDetail, pdstData, parlWOLineDeleted);
 
-				//update CPO
-//				new MTR_CPODS().SetWOMasterID(pdstCPOs, ((PRO_WorkOrderMasterVO) pobjObjectDetail).WorkOrderMasterID);
-//			}
-//			catch (PCSDBException ex)
-//			{
-//				throw ex;
-//			}
-//			catch (Exception ex)
-//			{
-//				throw new Exception(ex.Message, ex);
-//			}
-
-		}
-		
-		public void UpdateExistedWOImmediately(DataSet pdstData, object pobjObjectDetail, ArrayList parlWOLineDeleted, ArrayList parlCPOIDs)    
-		{
-//			try
-//			{
-				//update WO
-				UpdateWOAndWOLines(pobjObjectDetail, pdstData, parlWOLineDeleted);
-
-				//update CPO
-				new MTR_CPODS().SetWOMasterID(parlCPOIDs, ((PRO_WorkOrderMasterVO) pobjObjectDetail).WorkOrderMasterID);
-//			}
-//			catch (PCSDBException ex)
-//			{
-//				throw ex;
-//			}
-//			catch (Exception ex)
-//			{
-//				throw new Exception(ex.Message, ex);
-//			}
-
-		}
-		
 		public void UpdateExistedWOImmediately(DataSet pdstData, object pobjObjectDetail, ArrayList parlWOLineDeleted, ArrayList parlCPOIDs, string pType)    
 		{
-//			try
-//			{
-				//update WO
-				UpdateWOAndWOLines(pobjObjectDetail, pdstData, parlWOLineDeleted);
+            //update WO
+            UpdateWOAndWOLines(pobjObjectDetail, pdstData, parlWOLineDeleted);
 
-				//assign GenerateID
-				if (pType == PlanTypeEnum.MPS.ToString())
-					new MTR_CPODS().SetWOMasterID(parlCPOIDs, ((PRO_WorkOrderMasterVO) pobjObjectDetail).WorkOrderMasterID);
-				else
-					new MTR_CPODS().SetWOMasterIDForDCP(parlCPOIDs, ((PRO_WorkOrderMasterVO) pobjObjectDetail).WorkOrderMasterID);
-//			}
-//			catch (PCSDBException ex)
-//			{
-//				throw ex;
-//			}
-//			catch (Exception ex)
-//			{
-//				throw new Exception(ex.Message, ex);
-//			}
-
-		}
+            //assign GenerateID
+            if (pType == PlanTypeEnum.MPS.ToString())
+                new MTR_CPODS().SetWOMasterID(parlCPOIDs, ((PRO_WorkOrderMasterVO)pobjObjectDetail).WorkOrderMasterID);
+            else
+                new MTR_CPODS().SetWOMasterIDForDCP(parlCPOIDs, ((PRO_WorkOrderMasterVO)pobjObjectDetail).WorkOrderMasterID);
+        }
 		
 		/// <summary>
 		/// 
@@ -353,20 +187,8 @@ namespace PCSComProduction.WorkOrder.BO
 	
 		public MST_MasterLocationVO GetMasterLocByID(int pintMasterLocID)
 		{
-//			try
-//			{
-				return (MST_MasterLocationVO) new MST_MasterLocationDS().GetObjectVO(pintMasterLocID);	
-//			}
-//			catch (PCSDBException ex)
-//			{
-//				throw ex;
-//			}
-//			catch (Exception ex)
-//			{
-//				throw new Exception(ex.Message, ex);
-//			}
-
-		}
+            return (MST_MasterLocationVO)new MST_MasterLocationDS().GetObjectVO(pintMasterLocID);
+        }
 
 		/// <summary>
 		/// GetWorkOrderNo

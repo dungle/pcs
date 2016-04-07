@@ -30,6 +30,17 @@ namespace PCSUtils.Utils
             return date <= currentPeriod.ToDate.AddDays(1).AddMilliseconds(-1);
         }
 
+        /// <summary>
+        /// Truncate part of date time
+        /// </summary>
+        /// <param name="dateTime"></param>
+        /// <param name="timeSpan"></param>
+        /// <returns></returns>
+        public static DateTime Truncate(this DateTime dateTime, TimeSpan timeSpan)
+        {
+            return timeSpan == TimeSpan.Zero ? dateTime : dateTime.AddTicks(-(dateTime.Ticks % timeSpan.Ticks));
+        }
+
         #endregion
 
         #region C1TrueDBGrid extensions

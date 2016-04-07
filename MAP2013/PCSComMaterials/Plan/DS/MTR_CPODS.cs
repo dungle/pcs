@@ -989,6 +989,7 @@ namespace PCSComMaterials.Plan.DS
                     + ", WC." + MST_WorkCenterTable.TABLE_NAME + MST_WorkCenterTable.CODE_FLD
                     + ", WC." + MST_WorkCenterTable.WORKCENTERID_FLD
                     + ", WC." + ITM_RoutingTable.ROUTINGID_FLD
+                    + ", " + PRO_WorkOrderMasterTable.TABLE_NAME + "." + PRO_WorkOrderMasterTable.WORKORDERNO_FLD + " as " + PRO_WorkOrderMasterTable.TABLE_NAME + PRO_WorkOrderMasterTable.WORKORDERNO_FLD
                     + ", " + PRO_DCPResultDetailTable.TABLE_NAME + "." + PRO_DCPResultDetailTable.QUANTITY_FLD
                     + ", " + PRO_DCPResultDetailTable.TABLE_NAME + "." + PRO_DCPResultDetailTable.STARTTIME_FLD + " as " + MTR_CPOTable.STARTDATE_FLD
                     + ", " + PRO_DCPResultDetailTable.TABLE_NAME + "." + PRO_DCPResultDetailTable.ENDTIME_FLD + " as " + MTR_CPOTable.DUEDATE_FLD
@@ -996,7 +997,6 @@ namespace PCSComMaterials.Plan.DS
                     + ", " + PRO_DCPResultDetailTable.TABLE_NAME + "." + PRO_DCPResultDetailTable.TOTALSECOND_FLD
                     + ", " + PRO_DCPResultDetailTable.TABLE_NAME + "." + PRO_DCPResultDetailTable.STARTTIME_FLD
                     + ", " + PRO_DCPResultDetailTable.TABLE_NAME + "." + PRO_DCPResultDetailTable.ENDTIME_FLD
-                    + ", " + PRO_WorkOrderMasterTable.TABLE_NAME + "." + PRO_WorkOrderMasterTable.WORKORDERNO_FLD + " as " + PRO_WorkOrderMasterTable.TABLE_NAME + PRO_WorkOrderMasterTable.WORKORDERNO_FLD
                     + ", " + PRO_WorkOrderMasterTable.TABLE_NAME + "." + PRO_WorkOrderMasterTable.WORKORDERMASTERID_FLD
                     + ", " + PO_PurchaseOrderMasterTable.TABLE_NAME + "." + PO_PurchaseOrderMasterTable.CODE_FLD + " as " + PO_PurchaseOrderMasterTable.TABLE_NAME + PO_PurchaseOrderMasterTable.CODE_FLD
                     + ", " + PO_PurchaseOrderMasterTable.TABLE_NAME + "." + PO_PurchaseOrderMasterTable.PURCHASEORDERMASTERID_FLD
@@ -1082,7 +1082,6 @@ namespace PCSComMaterials.Plan.DS
                     + ", " + ITM_ProductTable.TABLE_NAME + "." + ITM_ProductTable.REVISION_FLD
                     + ", " + ITM_ProductTable.TABLE_NAME + "." + ITM_ProductTable.CODE_FLD;
 
-                Utils utils = new Utils();
                 oconPCS = new OleDbConnection(Utils.Instance.OleDbConnectionString);
                 ocmdPCS = new OleDbCommand(strSql, oconPCS);
                 ocmdPCS.Connection.Open();
@@ -1788,7 +1787,6 @@ namespace PCSComMaterials.Plan.DS
                 }
                 strDCPDetails.Append(")");
                 string strSql = String.Empty;
-                Utils utils = new Utils();
                 oconPCS = new OleDbConnection(Utils.Instance.OleDbConnectionString);
                 ocmdPCS = new OleDbCommand(strSql, oconPCS);
                 ocmdPCS.Connection.Open();
