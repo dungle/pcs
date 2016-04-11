@@ -3,6 +3,7 @@ using System.Data;
 using System.Drawing;
 using System.Collections;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows.Forms;
 using C1.Win.C1TrueDBGrid;
 using PCSComUtils.Admin.DS;
@@ -471,7 +472,6 @@ this.Cursor = Cursors.Default;
 					//Get data by cboRole
 					if((cboRoles.SelectedIndex != -1) && (cboType.SelectedIndex != -1))
 					{
-						
 						RightByRecordBO boRightByRecord = new RightByRecordBO();
 						dstSecurityTable = boRightByRecord.GetRightByRecord(int.Parse(cboRoles.SelectedValue.ToString()), strSecurityTableName, cboType.SelectedValue.ToString());
 					}
@@ -488,16 +488,19 @@ this.Cursor = Cursors.Default;
 					{
 						PCSMessageBox.Show(ErrorCode.ERROR_DB, MessageBoxIcon.Error);
 					}
-					foreach (DataRow drowSecurityTable in dstSecurityTable.Tables[0].Rows)
-					{
-						foreach (DataRow drowData in dstData.Tables[0].Rows)
-						{
-							if (drowData[strFKColumnName].ToString() == drowSecurityTable[strFKColumnName].ToString())
-							{
-								drowData[SELECT] = false;
-							}
-						}
-					}
+				    var securityTableView = dstSecurityTable.Tables[0].DefaultView;
+                    foreach (DataRow drowData in dstData.Tables[0].Rows)
+                    {
+                        securityTableView.RowFilter = string.Format("{0} = {1}", strFKColumnName, drowData[strFKColumnName]);
+                        if (securityTableView.Count > 0)
+                        {
+                            drowData[SELECT] = false;
+                        }
+                        else
+                        {
+                            drowData[SELECT] = true;
+                        }
+                    }
 
 					//Bind Data to Grid
 					dgrdData.DataSource = dstData.Tables[0];
@@ -506,9 +509,7 @@ this.Cursor = Cursors.Default;
 						dgrdData.Splits[0].DisplayColumns[i].Locked = true;
 						dgrdData.Splits[0].DisplayColumns[i].Style.BackColor = this.BackColor;
 					}
-					//dgrdData.Splits[0].DisplayColumns[SELECT].DataColumn.ValueItems.Presentation = PresentationEnum.CheckBox;
 					dgrdData.Splits[0].DisplayColumns[SELECT].HeadingStyle.HorizontalAlignment = AlignHorzEnum.Center;
-					//dgrdData.Splits[0].DisplayColumns[SELECT].DataColumn.ValueItems.Translate = true;
 					dgrdData.Splits[0].DisplayColumns[SELECT].Style.HorizontalAlignment =  AlignHorzEnum.Center;
 					dgrdData.Splits[0].DisplayColumns[SELECT].Locked = false;
 					dgrdData.Splits[0].DisplayColumns[SELECT].Style.BackColor = Color.White;

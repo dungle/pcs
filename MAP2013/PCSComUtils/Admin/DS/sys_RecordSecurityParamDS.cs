@@ -14,31 +14,6 @@ namespace PCSComUtils.Admin.DS
 		}
 		private const string THIS = "PCSComUtils.Admin.DS.sys_RecordSecurityParamDS";
 
-	
-		//**************************************************************************              
-		///    <Description>
-		///       This method uses to add data to sys_RecordSecurityParam
-		///    </Description>
-		///    <Inputs>
-		///        sys_RecordSecurityParamVO       
-		///    </Inputs>
-		///    <Outputs>
-		///       newly inserted primarkey value
-		///    </Outputs>
-		///    <Returns>
-		///       void
-		///    </Returns>
-		///    <Authors>
-		///       HungLa
-		///    </Authors>
-		///    <History>
-		///       Wednesday, November 16, 2005
-		///    </History>
-		///    <Notes>
-		///    </Notes>
-		//**************************************************************************
-
-
 		public void Add(object pobjObjectVO)
 		{
 			const string METHOD_NAME = THIS + ".Add()";
@@ -111,32 +86,6 @@ namespace PCSComUtils.Admin.DS
 				}
 			}
 		}
-	
-
-	
-
-		//**************************************************************************              
-		///    <Description>
-		///       This method uses to delete data from sys_RecordSecurityParam
-		///    </Description>
-		///    <Inputs>
-		///        ID       
-		///    </Inputs>
-		///    <Outputs>
-		///       void
-		///    </Outputs>
-		///    <Returns>
-		///       
-		///    </Returns>
-		///    <Authors>
-		///       HungLa
-		///    </Authors>
-		///    <History>
-		///       09-Dec-2004
-		///    </History>
-		///    <Notes>
-		///    </Notes>
-		//**************************************************************************
 
 		public void Delete(int pintID)
 		{
@@ -186,32 +135,6 @@ namespace PCSComUtils.Admin.DS
 			}
 		}
 	
-
-	
-
-		//**************************************************************************              
-		///    <Description>
-		///       This method uses to get data from sys_RecordSecurityParam
-		///    </Description>
-		///    <Inputs>
-		///        ID       
-		///    </Inputs>
-		///    <Outputs>
-		///       sys_RecordSecurityParamVO
-		///    </Outputs>
-		///    <Returns>
-		///       sys_RecordSecurityParamVO
-		///    </Returns>
-		///    <Authors>
-		///       HungLa
-		///    </Authors>
-		///    <History>
-		///       Wednesday, November 16, 2005
-		///    </History>
-		///    <Notes>
-		///    </Notes>
-		//**************************************************************************
-
 		public object GetObjectVO(int pintID)
 		{
 			const string METHOD_NAME = THIS + ".GetObjectVO()";
@@ -270,31 +193,6 @@ namespace PCSComUtils.Admin.DS
 				}
 			}
 		}
-
-
-		//**************************************************************************              
-		///    <Description>
-		///       This method uses to update data to sys_RecordSecurityParam
-		///    </Description>
-		///    <Inputs>
-		///       sys_RecordSecurityParamVO       
-		///    </Inputs>
-		///    <Outputs>
-		///       
-		///    </Outputs>
-		///    <Returns>
-		///       
-		///    </Returns>
-		///    <Authors>
-		///       HungLa
-		///    </Authors>
-		///    <History>
-		///       09-Dec-2004
-		///    </History>
-		///    <Notes>
-		///    </Notes>
-		//**************************************************************************
-		
 	
 		public void Update(object pobjObjecVO)
 		{
@@ -373,30 +271,6 @@ namespace PCSComUtils.Admin.DS
 
 		}
 
-
-		//**************************************************************************              
-		///    <Description>
-		///       This method uses to get all data from sys_RecordSecurityParam
-		///    </Description>
-		///    <Inputs>
-		///               
-		///    </Inputs>
-		///    <Outputs>
-		///       DataSet
-		///    </Outputs>
-		///    <Returns>
-		///       DataSet
-		///    </Returns>
-		///    <Authors>
-		///       HungLa
-		///    </Authors>
-		///    <History>
-		///       Wednesday, November 16, 2005
-		///    </History>
-		///    <Notes>
-		///    </Notes>
-		//**************************************************************************
-
 		public DataSet List()
 		{
 			const string METHOD_NAME = THIS + ".List()";
@@ -407,14 +281,13 @@ namespace PCSComUtils.Admin.DS
 			try 
 			{
 				string strSql = String.Empty;
-				
-				strSql=	"SELECT "
-				+ sys_RecordSecurityParamTable.RECORDSECURITYPARAMID_FLD + ","
-				+ sys_RecordSecurityParamTable.SOURCETABLENAME_FLD + ","
-				+ sys_RecordSecurityParamTable.MENUNAME_FLD + ","
-				+ sys_RecordSecurityParamTable.SECURITYTABLENAME_FLD
-					+ " FROM " + sys_RecordSecurityParamTable.TABLE_NAME;
-				Utils utils = new Utils();
+
+			    strSql = "SELECT " + sys_RecordSecurityParamTable.RECORDSECURITYPARAMID_FLD + ","
+			             + sys_RecordSecurityParamTable.SOURCETABLENAME_FLD + ","
+			             + sys_RecordSecurityParamTable.MENUNAME_FLD + ","
+			             + sys_RecordSecurityParamTable.SECURITYTABLENAME_FLD
+			             + " FROM " + sys_RecordSecurityParamTable.TABLE_NAME
+			             + " ORDER BY " + sys_RecordSecurityParamTable.RECORDSECURITYPARAMID_FLD;
 				oconPCS = new OleDbConnection(Utils.Instance.OleDbConnectionString);
 				ocmdPCS = new OleDbCommand(strSql, oconPCS);
 				ocmdPCS.Connection.Open();
@@ -445,30 +318,6 @@ namespace PCSComUtils.Admin.DS
 
 
 		}
-
-
-		//**************************************************************************              
-		///    <Description>
-		///       This method uses to update a DataSet
-		///    </Description>
-		///    <Inputs>
-		///        DataSet       
-		///    </Inputs>
-		///    <Outputs>
-		///       
-		///    </Outputs>
-		///    <Returns>
-		///       
-		///    </Returns>
-		///    <Authors>
-		///       HungLa
-		///    </Authors>
-		///    <History>
-		///       Wednesday, November 16, 2005
-		///    </History>
-		///    <Notes>
-		///    </Notes>
-		//**************************************************************************
 		
 		public void UpdateDataSet(DataSet pData)
 		{

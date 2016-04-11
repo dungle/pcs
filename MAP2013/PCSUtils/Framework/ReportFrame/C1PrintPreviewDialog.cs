@@ -267,11 +267,14 @@ namespace PCSUtils.Framework.ReportFrame
             #region Group Header section
 
             script = new StringBuilder();
-            foreach (Field field in Report.Groups[0].SectionHeader.Fields.Cast<Field>().Where(field => field.Tag == null))
+            if (Report.Groups.Count > 0)
             {
-                script.AppendLine(string.Format("{0}.Visible = False", field.Name));
+                foreach (Field field in Report.Groups[0].SectionHeader.Fields.Cast<Field>().Where(field => field.Tag == null))
+                {
+                    script.AppendLine(string.Format("{0}.Visible = False", field.Name));
+                }
+                Report.Groups[0].SectionHeader.OnPrint = script.ToString();
             }
-            Report.Groups[0].SectionHeader.OnPrint = script.ToString();
 
             #endregion
 
