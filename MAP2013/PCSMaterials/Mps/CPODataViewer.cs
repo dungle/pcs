@@ -1922,48 +1922,45 @@ namespace PCSMaterials.Mps
                 return;
             }
 
-            var blnSelected = false;
-			for (int i =0; i <dgrdData.RowCount; i++)
-			{
-				if (dgrdData[i, MTR_CPODS.SELECT_COLUMN].ToString() == true.ToString())
-				{
-					blnSelected = true;
-					break;
-				}
-			}
-			if (!blnSelected)
-			{
-				PCSMessageBox.Show(ErrorCode.MESSAGE_SELECT_ROW_TO_CONVERT, MessageBoxIcon.Warning);
-				return;
-			}
-
-            // get list of selected CPO item
-			DataView dtwAllCpoAffterSort = (dtbCPODetail.Copy()).DefaultView;
-			dtwAllCpoAffterSort.RowFilter = string.Format("{0} = 1 AND {1} IS NOT NULL", MTR_CPODS.SELECT_COLUMN, MTR_CPOTable.WOGENERATEDID_FLD);
-			dtwAllCpoAffterSort.Sort = string.Format("{0}, {1}, {2}", MTR_CPOTable.WOGENERATEDID_FLD, MTR_CPOTable.PRODUCTID_FLD, MTR_CPOTable.DUEDATE_FLD);
-		    foreach (DataRowView rowView in dtwAllCpoAffterSort)
+            // get list of generated WO ID
+		    var dvGeneratedId = new DataView(dtbCPODetail.Copy())
 		    {
-		        if (rowView[MTR_CPOTable.WOGENERATEDID_FLD] == DBNull.Value)
+		        RowFilter = string.Format("{0} IS NOT NULL", MTR_CPOTable.WOGENERATEDID_FLD),
+		        Sort = MTR_CPOTable.WOGENERATEDID_FLD
+		    };
+		    // distinct generated id
+		    var distinctGeneratedWO = dvGeneratedId.ToTable(true, MTR_CPOTable.WOGENERATEDID_FLD);
+            DataView dtwAllCpoAffterSort = (dtbCPODetail.Copy()).DefaultView;
+            // filter with items are generated to WO
+            dtwAllCpoAffterSort.RowFilter = string.Format("{0} IS NOT NULL", MTR_CPOTable.WOGENERATEDID_FLD);
+            dtwAllCpoAffterSort.Sort = string.Format("{0}, {1}, {2}", MTR_CPOTable.WOGENERATEDID_FLD, MTR_CPOTable.PRODUCTID_FLD, MTR_CPOTable.DUEDATE_FLD);
+            foreach (DataRow woRow in distinctGeneratedWO.Rows)
+		    {
+                int workOrderId;
+                int.TryParse(woRow[MTR_CPOTable.WOGENERATEDID_FLD].ToString(), out workOrderId);
+                if (workOrderId <= 0)
+                {
+                    continue;
+                }
+                // get list of item belong to generated work order
+		        var workOrderView = new DataView(dtbCPODetail.Copy())
 		        {
-		            continue;
-		        }
-
-		        int workOrderId;
-		        int.TryParse(rowView[MTR_CPOTable.WOGENERATEDID_FLD].ToString(), out workOrderId);
-		        if (workOrderId <= 0)
+		            RowFilter = string.Format("{0} IS NOT NULL AND {0} = {1}", MTR_CPOTable.WOGENERATEDID_FLD, workOrderId),
+		            Sort = string.Format("{0}, {1}, {2}", MTR_CPOTable.WOGENERATEDID_FLD, MTR_CPOTable.PRODUCTID_FLD, MTR_CPOTable.DUEDATE_FLD)
+		        };
+                // update work order detail
+		        foreach (DataRowView rowView in workOrderView)
 		        {
-		            continue;
-		        }
+                    var productId = Convert.ToInt32(rowView[MTR_CPOTable.PRODUCTID_FLD]);
+                    var quantity = Convert.ToDecimal(rowView[MTR_CPOTable.QUANTITY_FLD]);
+                    var startDate = Convert.ToDateTime(rowView[MTR_CPOTable.STARTDATE_FLD]);
+                    var dueDate = Convert.ToDateTime(rowView[MTR_CPOTable.DUEDATE_FLD]);
+                    startDate = startDate.Truncate(TimeSpan.FromSeconds(60));
+                    dueDate = dueDate.Truncate(TimeSpan.FromSeconds(60));
 
-		        var productId = Convert.ToInt32(rowView[MTR_CPOTable.PRODUCTID_FLD]);
-		        var quantity = Convert.ToDecimal(rowView[MTR_CPOTable.QUANTITY_FLD]);
-		        var startDate = Convert.ToDateTime(rowView[MTR_CPOTable.STARTDATE_FLD]);
-		        var dueDate = Convert.ToDateTime(rowView[MTR_CPOTable.DUEDATE_FLD]);
-                startDate = startDate.Truncate(TimeSpan.FromSeconds(60));
-		        dueDate = dueDate.Truncate(TimeSpan.FromSeconds(60));
-
-                boCPODataViewer.UpdateWorkOrderDetail(workOrderId, productId, quantity, startDate, dueDate);
-            }
+                    boCPODataViewer.UpdateWorkOrderDetail(workOrderId, productId, quantity, startDate, dueDate);
+                }
+		    }
 
             PCSMessageBox.Show(ErrorCode.MESSAGE_AFTER_SAVE_DATA);
         }
