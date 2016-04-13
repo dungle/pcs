@@ -137,7 +137,6 @@ namespace DestroySlipsReport
             C1Report rptReport = new C1Report();
 
             rptReport.Load(mReportFolder + "\\" + mLayoutFile, rptReport.GetReportInfo(mReportFolder + "\\" + mLayoutFile)[0]);
-            rptReport.Layout.PaperSize = PaperKind.A3;
             rptReport.Fields["fldFromDate"].Text = dateFrom.ToString("yyyy-MM-dd");
             rptReport.Fields["fldToDate"].Text = dateTo.ToString("yyyy-MM-dd");
 	        if (fromLocId > 0)
@@ -167,8 +166,7 @@ namespace DestroySlipsReport
 	        C1PrintPreviewDialog ppvViewer = new C1PrintPreviewDialog
 	        {
 	            FormTitle = REPORT_NAME,
-	            Report = rptReport,
-                HandlePrintEvent = true
+	            Report = rptReport
 	        };
 	        ppvViewer.ReportViewer.PreviewNavigationPanel.Visible = false;
 	        ppvViewer.ReportViewer.Document = rptReport.Document;

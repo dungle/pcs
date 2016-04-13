@@ -49,10 +49,10 @@ ORDER BY ITM_Category.Code, ITM_Product.Revision, ITM_Product.Code</RecordSource
     </DataSource>
     <Layout>
       <Width>11160</Width>
-      <MarginLeft>432</MarginLeft>
+      <MarginLeft>576</MarginLeft>
       <MarginTop>432</MarginTop>
-      <MarginRight>432</MarginRight>
-      <MarginBottom>432</MarginBottom>
+      <MarginRight>0</MarginRight>
+      <MarginBottom>0</MarginBottom>
       <Orientation>1</Orientation>
       <PaperSize>9</PaperSize>
     </Layout>
