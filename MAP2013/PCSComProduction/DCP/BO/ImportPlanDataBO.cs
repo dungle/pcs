@@ -1,11 +1,12 @@
 using System;
 using System.Data;
 using System.Diagnostics;
+using System.Linq;
 using System.Text;
 using PCSComProduction.DCP.DS;
 using PCSComUtils.Common;
-
-
+using PCSComUtils.DataAccess;
+using PCSComUtils.DataContext;
 
 namespace PCSComProduction.DCP.BO
 {
@@ -90,7 +91,6 @@ namespace PCSComProduction.DCP.BO
 				+ " set DeliveryQuantity=0";
 			dsImport.ExecuteCommand(strSql);
 		}
-	
 		public int GetMainWorkCenter(int productionLineId)
 		{
 			PRO_ProductionLineDS dsProLine = new PRO_ProductionLineDS();
@@ -98,5 +98,27 @@ namespace PCSComProduction.DCP.BO
 			DataRow[] drowMain = dtbWorkCenter.Select(MST_WorkCenterTable.ISMAIN_FLD + "=1");
 			return drowMain.Length > 0 ? Convert.ToInt32(drowMain[0][MST_WorkCenterTable.WORKCENTERID_FLD]) : 0;
 		}
+
+	    /// <summary>
+	    /// Get generated work order id based on cycle option and production line
+	    /// </summary>
+	    /// <param name="cycleOptionId"></param>
+	    /// <param name="productionLineId"></param>
+	    /// <returns></returns>
+	    public int GetGeneratedWorkOrder(int cycleOptionId, int productionLineId)
+	    {
+	        using (var db = new PCSDataContext(Utils.Instance.ConnectionString))
+	        {
+	            var query = (from workOrderMaster in db.PRO_WorkOrderMasters
+	                join workOrderDetail in db.PRO_WorkOrderDetails on workOrderMaster.WorkOrderMasterID equals
+	                    workOrderDetail.WorkOrderMasterID
+	                where
+	                    workOrderMaster.DCOptionMasterID == cycleOptionId &&
+	                    workOrderMaster.ProductionLineID == productionLineId
+	                    && workOrderDetail.Status == 1
+	                select workOrderMaster.WorkOrderMasterID).Distinct();
+	            return query.FirstOrDefault();
+	        }
+	    }
 	}
 }

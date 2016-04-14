@@ -360,9 +360,17 @@ namespace PCSProduction.DCP
 						objExcelReader.Dispose();
 						objExcelReader=null;
 					}
+                    // get generated work order id based on DCP cycle ID and production line ID
+				    int cycleOptionId = Convert.ToInt32(txtCycle.Tag);
+				    int productionLineId = Convert.ToInt32(txtProductionLine.Tag);
+				    var workOrderId = boImport.GetGeneratedWorkOrder(cycleOptionId, productionLineId);
 					DataTable dtbImportData = new DataTable("A1");
 					dtbImportData.Columns.Add(new DataColumn(MTR_CPOTable.PRODUCTID_FLD, typeof(int)));
 					dtbImportData.Columns.Add(new DataColumn(MTR_CPOTable.WOGENERATEDID_FLD, typeof(int)));
+				    if (workOrderId > 0)
+				    {
+                        dtbImportData.Columns[MTR_CPOTable.WOGENERATEDID_FLD].DefaultValue = workOrderId;
+                    }
 				    for (int i = 1; i <= 31; i++)
 				    {
 				        dtbImportData.Columns.Add(new DataColumn("F" + i, typeof(decimal)));
@@ -371,7 +379,6 @@ namespace PCSProduction.DCP
 					{
 						DataRow drowImported = dtbImportData.NewRow();
 						drowImported[MTR_CPOTable.PRODUCTID_FLD] = drowData["F1"];
-						drowImported[MTR_CPOTable.WOGENERATEDID_FLD] = drowData["F33"];
 					    for (int i = 1; i <= 31; i++)
 					    {
 					        var colName = string.Format("F{0}", (i + 1));

@@ -89,20 +89,17 @@ namespace PCSSale.Order
                     //get detail data
                     dstData = _boCsManagement.GetExistedForView(_voInvoiceMaster.InvoiceMasterID, true);
                 }
-                if (dstData != null)
+                if (dstData != null && dstData.Tables.Count > 0 && dstData.Tables[0].Rows.Count > 0)
                 {
-                    if (dstData.Tables.Count > 0)
+                    if (dstData.Tables[0].Rows[0]["BCode"] != DBNull.Value)
                     {
-                        if (dstData.Tables[0].Rows[0]["BCode"] != DBNull.Value)
-                        {
-                            txtBin.Text = dstData.Tables[0].Rows[0]["BCode"].ToString();
-                            txtBin.Tag = dstData.Tables[0].Rows[0]["BinID"];
-                        }
-                        if (dstData.Tables[0].Rows[0]["LCode"] != DBNull.Value)
-                        {
-                            txtLocation.Text = dstData.Tables[0].Rows[0]["LCode"].ToString();
-                            txtLocation.Tag = dstData.Tables[0].Rows[0]["LocationID"];
-                        }
+                        txtBin.Text = dstData.Tables[0].Rows[0]["BCode"].ToString();
+                        txtBin.Tag = dstData.Tables[0].Rows[0]["BinID"];
+                    }
+                    if (dstData.Tables[0].Rows[0]["LCode"] != DBNull.Value)
+                    {
+                        txtLocation.Text = dstData.Tables[0].Rows[0]["LCode"].ToString();
+                        txtLocation.Tag = dstData.Tables[0].Rows[0]["LocationID"];
                     }
                 }
 
