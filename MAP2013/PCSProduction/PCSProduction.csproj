@@ -205,6 +205,9 @@
     <Compile Include="DCP\ImportPlanData.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="DCP\ImportPlanData.Designer.cs">
+      <DependentUpon>ImportPlanData.cs</DependentUpon>
+    </Compile>
     <Compile Include="DCP\InvalidCPO.cs">
       <SubType>Form</SubType>
     </Compile>
