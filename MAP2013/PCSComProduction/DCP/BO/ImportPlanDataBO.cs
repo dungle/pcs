@@ -107,18 +107,8 @@ namespace PCSComProduction.DCP.BO
 	    /// <returns></returns>
 	    public int GetGeneratedWorkOrder(int cycleOptionId, int productionLineId)
 	    {
-	        using (var db = new PCSDataContext(Utils.Instance.ConnectionString))
-	        {
-	            var query = (from workOrderMaster in db.PRO_WorkOrderMasters
-	                join workOrderDetail in db.PRO_WorkOrderDetails on workOrderMaster.WorkOrderMasterID equals
-	                    workOrderDetail.WorkOrderMasterID
-	                where
-	                    workOrderMaster.DCOptionMasterID == cycleOptionId &&
-	                    workOrderMaster.ProductionLineID == productionLineId
-	                    && workOrderDetail.Status == 1
-	                select workOrderMaster.WorkOrderMasterID).Distinct();
-	            return query.FirstOrDefault();
-	        }
+	        var importDs = new ImportPlanDataDS();
+	        return importDs.GetGeneratedWorkOrder(cycleOptionId, productionLineId);
 	    }
 	}
 }
