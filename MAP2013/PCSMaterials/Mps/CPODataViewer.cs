@@ -2972,10 +2972,8 @@ namespace PCSMaterials.Mps
 					intWOExist = 1;
 				}
 				int i =0;
-				bool blnIsMRP = true;
-				if (cboPlanType.Text == lblDCP.Text)
-					blnIsMRP = false;
-				DateTime dtmAsOfDate = boCPODataViewer.GetAsOfDate(Convert.ToInt32(txtCycle.Tag), blnIsMRP);
+			    bool blnIsMRP = cboPlanType.Text != lblDCP.Text;
+			    DateTime dtmAsOfDate = boCPODataViewer.GetAsOfDate(Convert.ToInt32(txtCycle.Tag), blnIsMRP);
 				DataSet dstCalendar = boCPODataViewer.GetWorkDayCalendar();
 				DateTime dtmFirstValidWorkDay = GetFirstValidWorkDay(dtmAsOfDate, dstCalendar);
 				while (i < dtwAllCPOAffterSort.Count)
@@ -3176,7 +3174,7 @@ namespace PCSMaterials.Mps
 					DataTable dtbWeekMonthDelivery = new DataTable();
 					if (drowDelForProduct[0][PO_VendorDeliveryScheduleTable.DELIVERYTYPE_FLD].ToString() == ((int) PODeliveryTypeEnum.Daily).ToString())
 					{
-						#region Nhom theo lich giao hang Daily
+						#region delivery group by Daily
 
 						DataRow[] drvRealDel = dtbDeliverySchedule.Select(ITM_ProductTable.PRODUCTID_FLD + "=" + (int) drowSameItems[0][ITM_ProductTable.PRODUCTID_FLD],
 						                                                  PO_VendorDeliveryScheduleTable.DELHOUR_FLD + " ASC," + PO_VendorDeliveryScheduleTable.DELMIN_FLD + " ASC");
@@ -3186,7 +3184,7 @@ namespace PCSMaterials.Mps
 					} 
 					else if (drowDelForProduct[0][PO_VendorDeliveryScheduleTable.DELIVERYTYPE_FLD].ToString() == ((int) PODeliveryTypeEnum.Weekly).ToString())
 					{
-						#region Nhom theo lich giao hang Weekly
+						#region delivery group by Weekly
 
 						DataRow[] drvRealDel = dtbDeliverySchedule.Select(ITM_ProductTable.PRODUCTID_FLD + "=" + (int) drowSameItems[0][ITM_ProductTable.PRODUCTID_FLD],
 						                                                  "WeeklyDay ASC," + PO_VendorDeliveryScheduleTable.DELHOUR_FLD + " ASC," + PO_VendorDeliveryScheduleTable.DELMIN_FLD + " ASC");
@@ -3196,7 +3194,7 @@ namespace PCSMaterials.Mps
 					}
 					else if (drowDelForProduct[0][PO_VendorDeliveryScheduleTable.DELIVERYTYPE_FLD].ToString() == ((int) PODeliveryTypeEnum.Monthly).ToString())
 					{
-						#region Nhom theo lich giao hang Monthly
+						#region delivery group by Monthly
 
 						DataRow[] drvRealDel = dtbDeliverySchedule.Select(ITM_ProductTable.PRODUCTID_FLD + "=" + (int) drowSameItems[0][ITM_ProductTable.PRODUCTID_FLD],
 						                                                  PO_VendorDeliveryScheduleTable.MONTHLYDATE_FLD + " ASC," + PO_VendorDeliveryScheduleTable.DELHOUR_FLD + " ASC ," + PO_VendorDeliveryScheduleTable.DELMIN_FLD +" ASC");
@@ -3396,306 +3394,307 @@ namespace PCSMaterials.Mps
 		}
 
 		/// <summary>
-		/// Get Start time base on delivery and working day
-		/// </summary>
-		/// <param name="pdtmDate"></param>
-		/// <param name="oStartDate"></param>
-		/// <param name="oEndDate"></param>
-		/// <param name="pType"></param>
-		/// <param name="pdrowDeliverys"></param>
-		private void GetStartEndDate(DateTime pdtmDate, ref DateTime oStartDate, ref DateTime oEndDate, PODeliveryTypeEnum pType, DataRow[] pdrowDeliverys, DataSet pdstCalendar)
-		{
-			oStartDate = new DateTime();
-			oEndDate = new DateTime();
+	    /// Get Start time base on delivery and working day
+	    /// </summary>
+	    /// <param name="pdtmDate"></param>
+	    /// <param name="pType"></param>
+	    /// <param name="pdrowDeliverys"></param>
+	    /// <param name="pdstCalendar"></param>
+	    private DateTime[] GetStartEndDate(DateTime pdtmDate, PODeliveryTypeEnum pType, DataRow[] pdrowDeliverys, DataSet pdstCalendar)
+        {
+            DateTime dtmStartOfSpace = pdtmDate;
 
-			DateTime dtmStartOfSpace = pdtmDate;
-			
-			DateTime dtmEndOfSpace = new DateTime();
+            DateTime dtmEndOfSpace = new DateTime();
 
-			#region Xac dinh vi tri oStartDate, oEndDate
+            #region determine oStartDate, oEndDate
 
-			if (pType == PODeliveryTypeEnum.Weekly)
-			{
-				#region By weekly
-				int intDayOfWeek = Convert.ToInt32(pdrowDeliverys[pdrowDeliverys.Length -1][PO_VendorDeliveryScheduleTable.WEEKLYDAY_FLD]);
-				int intHour = Convert.ToInt32(pdrowDeliverys[pdrowDeliverys.Length -1][PO_VendorDeliveryScheduleTable.DELHOUR_FLD]);
-				int intMin = Convert.ToInt32(pdrowDeliverys[pdrowDeliverys.Length -1][PO_VendorDeliveryScheduleTable.DELMIN_FLD]);
-				int intDayOfWeekDate = (int)pdtmDate.DayOfWeek;
-				
-				if(pdrowDeliverys.Length == 1)
-				{
-					#region // if a week has one time delivery
+            if (pType == PODeliveryTypeEnum.Weekly)
+            {
+                #region By weekly
+                int intDayOfWeek = Convert.ToInt32(pdrowDeliverys[pdrowDeliverys.Length - 1][PO_VendorDeliveryScheduleTable.WEEKLYDAY_FLD]);
+                int intHour = Convert.ToInt32(pdrowDeliverys[pdrowDeliverys.Length - 1][PO_VendorDeliveryScheduleTable.DELHOUR_FLD]);
+                int intMin = Convert.ToInt32(pdrowDeliverys[pdrowDeliverys.Length - 1][PO_VendorDeliveryScheduleTable.DELMIN_FLD]);
+                int intDayOfWeekDate = (int)pdtmDate.DayOfWeek;
 
-					if(intDayOfWeekDate > intDayOfWeek)
-					{
-						dtmStartOfSpace = pdtmDate.AddDays(-(double)((int)pdtmDate.DayOfWeek - intDayOfWeek));
-						dtmStartOfSpace = new DateTime(dtmStartOfSpace.Year, dtmStartOfSpace.Month, dtmStartOfSpace.Day,intHour,intMin,0);
-					}
-					else if(intDayOfWeekDate == intDayOfWeek)
-					{
-						dtmStartOfSpace = pdtmDate;	
-						dtmStartOfSpace = new DateTime(dtmStartOfSpace.Year, dtmStartOfSpace.Month, dtmStartOfSpace.Day,intHour,intMin,0);
-					}
-					else if(intDayOfWeekDate < intDayOfWeek)
-					{
-						dtmStartOfSpace = pdtmDate.AddDays(-(double)((int)pdtmDate.DayOfWeek - intDayOfWeek));
-						dtmStartOfSpace = new DateTime(dtmStartOfSpace.Year, dtmStartOfSpace.Month, dtmStartOfSpace.Day,intHour,intMin,0);
-						// alway -7
-						dtmStartOfSpace = dtmStartOfSpace.AddDays(-7);
-					}
-					// correct start 
-					if(dtmStartOfSpace > pdtmDate)
-					{
-						dtmStartOfSpace = dtmStartOfSpace.AddDays(-7);
-					}
-					// Get EndDate
-					dtmEndOfSpace = dtmStartOfSpace.AddDays(7);
-					dtmStartOfSpace = GetNearestWorkingDay(dtmStartOfSpace, pdstCalendar);
+                if (pdrowDeliverys.Length == 1)
+                {
+                    #region // if a week has one time delivery
 
-					#endregion
-				}
-				else 
-				{
-					#region // if 1 week has more than one time delivery
-					DateTime[] dtmDeliTimes = new DateTime[pdrowDeliverys.Length];
-					bool blnOK = false;
-					// fill data for each element of delivery date time
-					for (int i = 0; i < pdrowDeliverys.Length; i ++)
-					{
-						intDayOfWeek = Convert.ToInt32(pdrowDeliverys[i][PO_VendorDeliveryScheduleTable.WEEKLYDAY_FLD]);
-						intHour = Convert.ToInt32(pdrowDeliverys[i][PO_VendorDeliveryScheduleTable.DELHOUR_FLD]);
-						intMin = Convert.ToInt32(pdrowDeliverys[i][PO_VendorDeliveryScheduleTable.DELMIN_FLD]);
-						dtmDeliTimes[i] = new DateTime(pdtmDate.Year, pdtmDate.Month,pdtmDate.Day, intHour, intMin, 0).AddDays((double)intDayOfWeek - (double)pdtmDate.DayOfWeek);
-					}
-					// check the rule
-					for(int i = pdrowDeliverys.Length-1; i >= 0; i--)
-					{
-						intDayOfWeek = Convert.ToInt32(pdrowDeliverys[i][PO_VendorDeliveryScheduleTable.WEEKLYDAY_FLD]);
-						intHour = Convert.ToInt32(pdrowDeliverys[i][PO_VendorDeliveryScheduleTable.DELHOUR_FLD]);
-						intMin = Convert.ToInt32(pdrowDeliverys[i][PO_VendorDeliveryScheduleTable.DELMIN_FLD]);
-						dtmDeliTimes[i] = new DateTime(pdtmDate.Year, pdtmDate.Month,pdtmDate.Day, intHour, intMin, 0).AddDays((double)intDayOfWeek - (double)pdtmDate.DayOfWeek);
-						if(dtmDeliTimes[i] <= pdtmDate)
-						{
-							dtmStartOfSpace = dtmDeliTimes[i];
-							// Get EndDate
-							if(i + 1 < pdrowDeliverys.Length)
-							{
-								dtmEndOfSpace = dtmDeliTimes[i+1];
-							}
-							else // tien len 1 tuan lay ngay dau tien
-							{
-								dtmEndOfSpace = (dtmDeliTimes[0]).AddDays(7);
-							}
-							blnOK = true;
-							break;
-						}
-					}
-					// If it's not belong to this week then change to prev week
-					if(!blnOK)
-					{
-						dtmStartOfSpace = dtmDeliTimes[pdrowDeliverys.Length-1].AddDays(-7);
-						// Get EndDate
-						dtmEndOfSpace = dtmDeliTimes[0];
-					}
-					dtmStartOfSpace = GetNearestWorkingDay(dtmStartOfSpace, pdstCalendar);
-					#endregion 
-				}
-				#endregion
-			}
-			else if (pType == PODeliveryTypeEnum.Monthly)
-			{
-				#region By monthly
-				int intMonthDate = Convert.ToInt32(pdrowDeliverys[pdrowDeliverys.Length -1][PO_VendorDeliveryScheduleTable.MONTHLYDATE_FLD]);
-				int intHour = Convert.ToInt32(pdrowDeliverys[pdrowDeliverys.Length -1][PO_VendorDeliveryScheduleTable.DELHOUR_FLD]);
-				int intMin = Convert.ToInt32(pdrowDeliverys[pdrowDeliverys.Length -1][PO_VendorDeliveryScheduleTable.DELMIN_FLD]);
-				// if a month has one time delivery
-				if(pdrowDeliverys.Length == 1)
-				{
-					#region // Moi thang co 1 lan giao hang
-					if(intMonthDate > GetMaxDayOfMonth(pdtmDate))
-					{
-						intMonthDate = GetMaxDayOfMonth(pdtmDate);
-					}
-					DateTime dtmDateOfMonth = new DateTime(pdtmDate.Year,pdtmDate.Month,intMonthDate,intHour,intMin,0);
-					// Lui 1 thang
-					if(dtmDateOfMonth > pdtmDate)
-					{
-						dtmDateOfMonth = dtmDateOfMonth.AddMonths(-1);
-						// Get max day of month
-						intMonthDate = GetMaxDayOfMonth(dtmDateOfMonth);
-						if(intMonthDate > Convert.ToInt32(pdrowDeliverys[pdrowDeliverys.Length -1][PO_VendorDeliveryScheduleTable.MONTHLYDATE_FLD]))
-							intMonthDate = Convert.ToInt32(pdrowDeliverys[pdrowDeliverys.Length -1][PO_VendorDeliveryScheduleTable.MONTHLYDATE_FLD]);
-						dtmDateOfMonth = dtmDateOfMonth.AddDays(intMonthDate - dtmDateOfMonth.Day);
-					}
-					dtmEndOfSpace = dtmDateOfMonth.AddMonths(1);
-					dtmStartOfSpace = GetNearestWorkingDay(dtmDateOfMonth, pdstCalendar);
-					#endregion
-				}
-				else 
-				{
-					#region // if a month has more than one time delivery
-					DateTime[] dtmDeliTimes = new DateTime[pdrowDeliverys.Length];
-					bool blnOK = false;
-					// fill data for each element of delivery date time
-					for (int i = 0; i < pdrowDeliverys.Length; i ++)
-					{
-						intMonthDate = Convert.ToInt32(pdrowDeliverys[i][PO_VendorDeliveryScheduleTable.MONTHLYDATE_FLD]);
-						intHour = Convert.ToInt32(pdrowDeliverys[i][PO_VendorDeliveryScheduleTable.DELHOUR_FLD]);
-						intMin = Convert.ToInt32(pdrowDeliverys[i][PO_VendorDeliveryScheduleTable.DELMIN_FLD]);
-						if (intMonthDate > DateTime.DaysInMonth(pdtmDate.Year,  pdtmDate.Month))
-							intMonthDate = DateTime.DaysInMonth(pdtmDate.Year,  pdtmDate.Month);
-						DateTime dtmDate = new DateTime(pdtmDate.Year, pdtmDate.Month,pdtmDate.Day, intHour, intMin, 0).AddDays((double)intMonthDate - (double)pdtmDate.Day);
-						dtmDeliTimes[i] = dtmDate;
-					}
-					// check the rule
-					for(int i = pdrowDeliverys.Length-1; i >= 0; i--)
-					{
-						intMonthDate = Convert.ToInt32(pdrowDeliverys[i][PO_VendorDeliveryScheduleTable.MONTHLYDATE_FLD]);
-						intHour = Convert.ToInt32(pdrowDeliverys[i][PO_VendorDeliveryScheduleTable.DELHOUR_FLD]);
-						intMin = Convert.ToInt32(pdrowDeliverys[i][PO_VendorDeliveryScheduleTable.DELMIN_FLD]);
-						// Day of current month out of range
-						if(intMonthDate > GetMaxDayOfMonth(pdtmDate))
-						{
-							intMonthDate = GetMaxDayOfMonth(pdtmDate);
-						}
-						DateTime dtmDate = new DateTime(pdtmDate.Year, pdtmDate.Month,pdtmDate.Day, intHour, intMin, 0).AddDays((double)intMonthDate - (double)pdtmDate.Day);
-						//dtmDeliTimes[i] = dtmDate;
-						if(dtmDate <= pdtmDate)
-						{
-							dtmStartOfSpace = dtmDate;
-							// Get EndDate
-							if(i + 1 < pdrowDeliverys.Length)
-							{
-								dtmEndOfSpace = dtmDeliTimes[i+1]; // lay ngay ke tiep
-							}
-							else // tien len 1 thang lay ngay dau tien
-							{
-								dtmEndOfSpace = (dtmDeliTimes[0]).AddMonths(1);
-							}
+                    if (intDayOfWeekDate > intDayOfWeek)
+                    {
+                        dtmStartOfSpace = pdtmDate.AddDays(-(double)((int)pdtmDate.DayOfWeek - intDayOfWeek));
+                        dtmStartOfSpace = new DateTime(dtmStartOfSpace.Year, dtmStartOfSpace.Month, dtmStartOfSpace.Day, intHour, intMin, 0);
+                    }
+                    else if (intDayOfWeekDate == intDayOfWeek)
+                    {
+                        dtmStartOfSpace = pdtmDate;
+                        dtmStartOfSpace = new DateTime(dtmStartOfSpace.Year, dtmStartOfSpace.Month, dtmStartOfSpace.Day, intHour, intMin, 0);
+                    }
+                    else if (intDayOfWeekDate < intDayOfWeek)
+                    {
+                        dtmStartOfSpace = pdtmDate.AddDays(-(double)((int)pdtmDate.DayOfWeek - intDayOfWeek));
+                        dtmStartOfSpace = new DateTime(dtmStartOfSpace.Year, dtmStartOfSpace.Month, dtmStartOfSpace.Day, intHour, intMin, 0);
+                        // alway -7
+                        dtmStartOfSpace = dtmStartOfSpace.AddDays(-7);
+                    }
+                    // correct start 
+                    if (dtmStartOfSpace > pdtmDate)
+                    {
+                        dtmStartOfSpace = dtmStartOfSpace.AddDays(-7);
+                    }
+                    // Get EndDate
+                    dtmEndOfSpace = dtmStartOfSpace.AddDays(7);
+                    dtmStartOfSpace = GetNearestWorkingDay(dtmStartOfSpace, pdstCalendar);
 
-							blnOK = true;
-							break;
-						}
-					}
-					// If it's not belong to this week then change to prev month
-					if(!blnOK)
-					{
-						dtmStartOfSpace = dtmDeliTimes[pdrowDeliverys.Length-1].AddMonths(-1);
-						// Get EndDate
-						dtmEndOfSpace = dtmDeliTimes[0]; // lay ngay dau tien cua thang nay
-					}
+                    #endregion
+                }
+                else
+                {
+                    #region // if 1 week has more than one time delivery
+                    DateTime[] dtmDeliTimes = new DateTime[pdrowDeliverys.Length];
+                    bool blnOK = false;
+                    // fill data for each element of delivery date time
+                    for (int i = 0; i < pdrowDeliverys.Length; i++)
+                    {
+                        intDayOfWeek = Convert.ToInt32(pdrowDeliverys[i][PO_VendorDeliveryScheduleTable.WEEKLYDAY_FLD]);
+                        intHour = Convert.ToInt32(pdrowDeliverys[i][PO_VendorDeliveryScheduleTable.DELHOUR_FLD]);
+                        intMin = Convert.ToInt32(pdrowDeliverys[i][PO_VendorDeliveryScheduleTable.DELMIN_FLD]);
+                        dtmDeliTimes[i] = new DateTime(pdtmDate.Year, pdtmDate.Month, pdtmDate.Day, intHour, intMin, 0).AddDays((double)intDayOfWeek - (double)pdtmDate.DayOfWeek);
+                    }
+                    // check the rule
+                    for (int i = pdrowDeliverys.Length - 1; i >= 0; i--)
+                    {
+                        intDayOfWeek = Convert.ToInt32(pdrowDeliverys[i][PO_VendorDeliveryScheduleTable.WEEKLYDAY_FLD]);
+                        intHour = Convert.ToInt32(pdrowDeliverys[i][PO_VendorDeliveryScheduleTable.DELHOUR_FLD]);
+                        intMin = Convert.ToInt32(pdrowDeliverys[i][PO_VendorDeliveryScheduleTable.DELMIN_FLD]);
+                        dtmDeliTimes[i] = new DateTime(pdtmDate.Year, pdtmDate.Month, pdtmDate.Day, intHour, intMin, 0).AddDays((double)intDayOfWeek - (double)pdtmDate.DayOfWeek);
+                        if (dtmDeliTimes[i] <= pdtmDate)
+                        {
+                            dtmStartOfSpace = dtmDeliTimes[i];
+                            // Get EndDate
+                            if (i + 1 < pdrowDeliverys.Length)
+                            {
+                                dtmEndOfSpace = dtmDeliTimes[i + 1];
+                            }
+                            else // move to next week and get first day
+                            {
+                                dtmEndOfSpace = (dtmDeliTimes[0]).AddDays(7);
+                            }
+                            blnOK = true;
+                            break;
+                        }
+                    }
+                    // If it's not belong to this week then change to prev week
+                    if (!blnOK)
+                    {
+                        dtmStartOfSpace = dtmDeliTimes[pdrowDeliverys.Length - 1].AddDays(-7);
+                        // Get EndDate
+                        dtmEndOfSpace = dtmDeliTimes[0];
+                    }
+                    dtmStartOfSpace = GetNearestWorkingDay(dtmStartOfSpace, pdstCalendar);
+                    #endregion
+                }
+                #endregion
+            }
+            else if (pType == PODeliveryTypeEnum.Monthly)
+            {
+                #region By monthly
+                int intMonthDate = Convert.ToInt32(pdrowDeliverys[pdrowDeliverys.Length - 1][PO_VendorDeliveryScheduleTable.MONTHLYDATE_FLD]);
+                int intHour = Convert.ToInt32(pdrowDeliverys[pdrowDeliverys.Length - 1][PO_VendorDeliveryScheduleTable.DELHOUR_FLD]);
+                int intMin = Convert.ToInt32(pdrowDeliverys[pdrowDeliverys.Length - 1][PO_VendorDeliveryScheduleTable.DELMIN_FLD]);
+                // if a month has one time delivery
+                if (pdrowDeliverys.Length == 1)
+                {
+                    #region // one delivery every month
+                    if (intMonthDate > GetMaxDayOfMonth(pdtmDate))
+                    {
+                        intMonthDate = GetMaxDayOfMonth(pdtmDate);
+                    }
+                    DateTime dtmDateOfMonth = new DateTime(pdtmDate.Year, pdtmDate.Month, intMonthDate, intHour, intMin, 0);
+                    // back for 1 month
+                    if (dtmDateOfMonth > pdtmDate)
+                    {
+                        dtmDateOfMonth = dtmDateOfMonth.AddMonths(-1);
+                        // Get max day of month
+                        intMonthDate = GetMaxDayOfMonth(dtmDateOfMonth);
+                        if (intMonthDate > Convert.ToInt32(pdrowDeliverys[pdrowDeliverys.Length - 1][PO_VendorDeliveryScheduleTable.MONTHLYDATE_FLD]))
+                            intMonthDate = Convert.ToInt32(pdrowDeliverys[pdrowDeliverys.Length - 1][PO_VendorDeliveryScheduleTable.MONTHLYDATE_FLD]);
+                        dtmDateOfMonth = dtmDateOfMonth.AddDays(intMonthDate - dtmDateOfMonth.Day);
+                    }
+                    dtmEndOfSpace = dtmDateOfMonth.AddMonths(1);
+                    dtmStartOfSpace = GetNearestWorkingDay(dtmDateOfMonth, pdstCalendar);
+                    #endregion
+                }
+                else
+                {
+                    #region // if a month has more than one delivery time
+                    DateTime[] dtmDeliTimes = new DateTime[pdrowDeliverys.Length];
+                    bool blnOK = false;
+                    // fill data for each element of delivery date time
+                    for (int i = 0; i < pdrowDeliverys.Length; i++)
+                    {
+                        intMonthDate = Convert.ToInt32(pdrowDeliverys[i][PO_VendorDeliveryScheduleTable.MONTHLYDATE_FLD]);
+                        intHour = Convert.ToInt32(pdrowDeliverys[i][PO_VendorDeliveryScheduleTable.DELHOUR_FLD]);
+                        intMin = Convert.ToInt32(pdrowDeliverys[i][PO_VendorDeliveryScheduleTable.DELMIN_FLD]);
+                        if (intMonthDate > DateTime.DaysInMonth(pdtmDate.Year, pdtmDate.Month))
+                            intMonthDate = DateTime.DaysInMonth(pdtmDate.Year, pdtmDate.Month);
+                        DateTime dtmDate = new DateTime(pdtmDate.Year, pdtmDate.Month, pdtmDate.Day, intHour, intMin, 0).AddDays((double)intMonthDate - (double)pdtmDate.Day);
+                        dtmDeliTimes[i] = dtmDate;
+                    }
+                    // check the rule
+                    for (int i = pdrowDeliverys.Length - 1; i >= 0; i--)
+                    {
+                        intMonthDate = Convert.ToInt32(pdrowDeliverys[i][PO_VendorDeliveryScheduleTable.MONTHLYDATE_FLD]);
+                        intHour = Convert.ToInt32(pdrowDeliverys[i][PO_VendorDeliveryScheduleTable.DELHOUR_FLD]);
+                        intMin = Convert.ToInt32(pdrowDeliverys[i][PO_VendorDeliveryScheduleTable.DELMIN_FLD]);
+                        // Day of current month out of range
+                        if (intMonthDate > GetMaxDayOfMonth(pdtmDate))
+                        {
+                            intMonthDate = GetMaxDayOfMonth(pdtmDate);
+                        }
+                        DateTime dtmDate = new DateTime(pdtmDate.Year, pdtmDate.Month, pdtmDate.Day, intHour, intMin, 0).AddDays((double)intMonthDate - (double)pdtmDate.Day);
 
-					dtmStartOfSpace = GetNearestWorkingDay(dtmStartOfSpace, pdstCalendar);
-					#endregion
-				}
-				#endregion
-			}
-			else if (pType == PODeliveryTypeEnum.Daily)
-			{
-				#region By daily
-				int intHour = Convert.ToInt32(pdrowDeliverys[pdrowDeliverys.Length -1][PO_VendorDeliveryScheduleTable.DELHOUR_FLD]);
-				int intMin = Convert.ToInt32(pdrowDeliverys[pdrowDeliverys.Length -1][PO_VendorDeliveryScheduleTable.DELMIN_FLD]);
-				if(pdrowDeliverys.Length == 1)
-				{
-					#region // Moi ngay co 1 gio giao hang
-					DateTime dtmDate = new DateTime(pdtmDate.Year,pdtmDate.Month,pdtmDate.Day,intHour,intMin,0);
-					// Lui 1 ngay
-					if(dtmDate > pdtmDate)
-					{
-						dtmDate = dtmDate.AddDays(-1);
-					}
-					dtmEndOfSpace = dtmDate.AddDays(1);
-					dtmStartOfSpace = GetNearestWorkingDay(dtmDate, pdstCalendar);
-					#endregion
-				}
-				else 
-				{
-					#region // if a day has more than one time delivery
-					DateTime[] dtmDeliTimes = new DateTime[pdrowDeliverys.Length];
-					bool blnOK = false;
-					// fill data for each element of delivery date time
-					for (int i = 0; i < pdrowDeliverys.Length; i ++)
-					{
-						intHour = Convert.ToInt32(pdrowDeliverys[i][PO_VendorDeliveryScheduleTable.DELHOUR_FLD]);
-						intMin = Convert.ToInt32(pdrowDeliverys[i][PO_VendorDeliveryScheduleTable.DELMIN_FLD]);
-						dtmDeliTimes[i] = new DateTime(pdtmDate.Year, pdtmDate.Month,pdtmDate.Day, intHour, intMin, 0);
-					}
-					// check the rule
-					for(int i = pdrowDeliverys.Length-1; i >= 0; i--)
-					{
-						intHour = Convert.ToInt32(pdrowDeliverys[i][PO_VendorDeliveryScheduleTable.DELHOUR_FLD]);
-						intMin = Convert.ToInt32(pdrowDeliverys[i][PO_VendorDeliveryScheduleTable.DELMIN_FLD]);
-						dtmDeliTimes[i] = new DateTime(pdtmDate.Year, pdtmDate.Month,pdtmDate.Day, intHour, intMin, 0);
-						if(dtmDeliTimes[i] <= pdtmDate)
-						{
-							dtmStartOfSpace = dtmDeliTimes[i];
-							blnOK = true;
-							// Get EndDate
-							if(i + 1 < pdrowDeliverys.Length)
-							{
-								dtmEndOfSpace = dtmDeliTimes[i+1]; // lay ngay ke tiep
-							}
-							else // tien len 1 ngay lay lan dau tien
-							{
-								dtmEndOfSpace = (dtmDeliTimes[0]).AddDays(1);
-							}
-							break;
-						}
-					}
-					// If it's not belong to this day then change to prev day
-					if(!blnOK)
-					{
-						dtmStartOfSpace = dtmDeliTimes[pdrowDeliverys.Length-1].AddDays(-1);
-						dtmEndOfSpace = dtmDeliTimes[0];
-					}
+                        if (dtmDate <= pdtmDate)
+                        {
+                            dtmStartOfSpace = dtmDate;
+                            // Get EndDate
+                            if (i + 1 < pdrowDeliverys.Length)
+                            {
+                                dtmEndOfSpace = dtmDeliTimes[i + 1]; // get next day
+                            }
+                            else // move to next month and get first day
+                            {
+                                dtmEndOfSpace = (dtmDeliTimes[0]).AddMonths(1);
+                            }
 
-					dtmStartOfSpace = GetNearestWorkingDay(dtmStartOfSpace, pdstCalendar);
-					#endregion
-				}
-				#endregion
-			}
+                            blnOK = true;
+                            break;
+                        }
+                    }
+                    // If it's not belong to this week then change to prev month
+                    if (!blnOK)
+                    {
+                        dtmStartOfSpace = dtmDeliTimes[pdrowDeliverys.Length - 1].AddMonths(-1);
+                        // Get EndDate
+                        dtmEndOfSpace = dtmDeliTimes[0]; // get first day of this month
+                    }
 
-			#endregion
+                    dtmStartOfSpace = GetNearestWorkingDay(dtmStartOfSpace, pdstCalendar);
+                    #endregion
+                }
+                #endregion
+            }
+            else if (pType == PODeliveryTypeEnum.Daily)
+            {
+                #region By daily
+                int intHour = Convert.ToInt32(pdrowDeliverys[pdrowDeliverys.Length - 1][PO_VendorDeliveryScheduleTable.DELHOUR_FLD]);
+                int intMin = Convert.ToInt32(pdrowDeliverys[pdrowDeliverys.Length - 1][PO_VendorDeliveryScheduleTable.DELMIN_FLD]);
+                if (pdrowDeliverys.Length == 1)
+                {
+                    #region // one delivery every day
+                    DateTime dtmDate = new DateTime(pdtmDate.Year, pdtmDate.Month, pdtmDate.Day, intHour, intMin, 0);
+                    // Back one day
+                    if (dtmDate > pdtmDate)
+                    {
+                        dtmDate = dtmDate.AddDays(-1);
+                    }
+                    dtmEndOfSpace = dtmDate.AddDays(1);
+                    dtmStartOfSpace = GetNearestWorkingDay(dtmDate, pdstCalendar);
+                    #endregion
+                }
+                else
+                {
+                    #region // if a day has more than one time delivery
+                    DateTime[] dtmDeliTimes = new DateTime[pdrowDeliverys.Length];
+                    bool blnOK = false;
+                    // fill data for each element of delivery date time
+                    for (int i = 0; i < pdrowDeliverys.Length; i++)
+                    {
+                        intHour = Convert.ToInt32(pdrowDeliverys[i][PO_VendorDeliveryScheduleTable.DELHOUR_FLD]);
+                        intMin = Convert.ToInt32(pdrowDeliverys[i][PO_VendorDeliveryScheduleTable.DELMIN_FLD]);
+                        dtmDeliTimes[i] = new DateTime(pdtmDate.Year, pdtmDate.Month, pdtmDate.Day, intHour, intMin, 0);
+                    }
+                    // check the rule
+                    for (int i = pdrowDeliverys.Length - 1; i >= 0; i--)
+                    {
+                        intHour = Convert.ToInt32(pdrowDeliverys[i][PO_VendorDeliveryScheduleTable.DELHOUR_FLD]);
+                        intMin = Convert.ToInt32(pdrowDeliverys[i][PO_VendorDeliveryScheduleTable.DELMIN_FLD]);
+                        dtmDeliTimes[i] = new DateTime(pdtmDate.Year, pdtmDate.Month, pdtmDate.Day, intHour, intMin, 0);
+                        if (dtmDeliTimes[i] <= pdtmDate)
+                        {
+                            dtmStartOfSpace = dtmDeliTimes[i];
+                            blnOK = true;
+                            // Get EndDate
+                            if (i + 1 < pdrowDeliverys.Length)
+                            {
+                                dtmEndOfSpace = dtmDeliTimes[i + 1]; // get next day
+                            }
+                            else // move to next day
+                            {
+                                dtmEndOfSpace = (dtmDeliTimes[0]).AddDays(1);
+                            }
+                            break;
+                        }
+                    }
+                    // If it's not belong to this day then change to prev day
+                    if (!blnOK)
+                    {
+                        dtmStartOfSpace = dtmDeliTimes[pdrowDeliverys.Length - 1].AddDays(-1);
+                        dtmEndOfSpace = dtmDeliTimes[0];
+                    }
 
-			oStartDate = dtmStartOfSpace;
-			oEndDate = dtmEndOfSpace;
-		
-		}
+                    dtmStartOfSpace = GetNearestWorkingDay(dtmStartOfSpace, pdstCalendar);
+                    #endregion
+                }
+                #endregion
+            }
 
-		/// <summary>
-		/// Group all PODelivery by Delivery Policy of Vendor
-		/// </summary>
-		/// <param name="pdtbPODelivery"></param>
-		/// <param name="pdrowDeliverys"></param>
-		/// <param name="pType"></param>
-		/// <returns></returns>
-		private DataTable GroupPODeliverys(DataTable pdtbPODelivery, DataRow[] pdrowDeliverys, PODeliveryTypeEnum pType, DateTime pdtmFirstValidWorkDay, DataSet dstCalendar, bool blnIsLocal)
+            #endregion
+
+            return new[] {dtmStartOfSpace, dtmEndOfSpace};
+        }
+
+        /// <summary>
+        /// Group all PODelivery by Delivery Policy of Vendor
+        /// </summary>
+        /// <param name="pdtbPODelivery"></param>
+        /// <param name="pdrowDeliverys"></param>
+        /// <param name="pType"></param>
+        /// <param name="pdtmFirstValidWorkDay"></param>
+        /// <param name="dstCalendar"></param>
+        /// <param name="blnIsLocal"></param>
+        /// <returns></returns>
+        private DataTable GroupPODeliverys(DataTable pdtbPODelivery, DataRow[] pdrowDeliverys, PODeliveryTypeEnum pType, DateTime pdtmFirstValidWorkDay, DataSet dstCalendar, bool blnIsLocal)
 		{
 			DataTable dtbResultAfterGroup = pdtbPODelivery.Clone();
 			
 			pdtbPODelivery.DefaultView.Sort = PO_DeliveryScheduleTable.SCHEDULEDATE_FLD;
 			DateTime dtmStart = new DateTime(), dtmEnd = new DateTime();
-			DateTime dtmOriginSchedule = DateTime.MinValue;
+			DateTime dtmOriginSchedule;
 			if (blnIsLocal)
 				dtmOriginSchedule = (DateTime) pdtbPODelivery.DefaultView[0][PO_DeliveryScheduleTable.SCHEDULEDATE_FLD];
 			else
 				dtmOriginSchedule = (DateTime) pdtbPODelivery.DefaultView[pdtbPODelivery.DefaultView.Count - 1][PO_DeliveryScheduleTable.SCHEDULEDATE_FLD];
-			GetStartEndDate(dtmOriginSchedule, ref dtmStart, ref dtmEnd, pType, pdrowDeliverys, dstCalendar);
+
+			var startEndDates = GetStartEndDate(dtmOriginSchedule, pType, pdrowDeliverys, dstCalendar);
+            dtmStart = startEndDates[0];
+            dtmEnd = startEndDates[1];
 
 			bool okNewSpace = true;
-			if (blnIsLocal)
+			if (blnIsLocal) // domestic
 			{
 				for (int i =0; i <pdtbPODelivery.DefaultView.Count; i++)
 				{
-					if ( (DateTime) pdtbPODelivery.DefaultView[i][PO_DeliveryScheduleTable.SCHEDULEDATE_FLD] >= dtmStart
-						&& (DateTime) pdtbPODelivery.DefaultView[i][PO_DeliveryScheduleTable.SCHEDULEDATE_FLD] < dtmEnd)
+				    var rowScheduleDate = (DateTime) pdtbPODelivery.DefaultView[i][PO_DeliveryScheduleTable.SCHEDULEDATE_FLD];
+
+                    if (rowScheduleDate >= dtmStart && rowScheduleDate < dtmEnd)
 					{
-						#region if SCHEDULEDATE_FLD thuoc [StartDate,EndDate)
+						#region if SCHEDULEDATE_FLD belong [StartDate,EndDate)
 
 						//add to Deleviry line
 						if (okNewSpace)
 						{
-							#region Tao moi delivery line
+							#region new delivery line
 
 							DataRow drowData = dtbResultAfterGroup.NewRow();
 
@@ -3740,7 +3739,7 @@ namespace PCSMaterials.Mps
 						}
 						else
 						{
-							#region Tang quantity cho delivery line
+							#region increase quantity for delivery line
 
 							dtbResultAfterGroup.Rows[dtbResultAfterGroup.Rows.Count -1][PO_DeliveryScheduleTable.DELIVERYQUANTITY_FLD]
 								= (decimal) dtbResultAfterGroup.Rows[dtbResultAfterGroup.Rows.Count -1][PO_DeliveryScheduleTable.DELIVERYQUANTITY_FLD]
@@ -3757,12 +3756,13 @@ namespace PCSMaterials.Mps
 					}
 					else
 					{
-						#region SCHEDULEDATE_FLD khong thuoc [StartDate,EndDate)
+						#region SCHEDULEDATE_FLD not belong to [StartDate,EndDate)
 
-						GetStartEndDate( (DateTime) pdtbPODelivery.DefaultView[i][PO_DeliveryScheduleTable.SCHEDULEDATE_FLD],
-							ref dtmStart, ref dtmEnd, pType, pdrowDeliverys, dstCalendar);
-						//add to Delivery line
-						okNewSpace = false;
+						startEndDates = GetStartEndDate(rowScheduleDate, pType, pdrowDeliverys, dstCalendar);
+                        dtmStart = startEndDates[0];
+                        dtmEnd = startEndDates[1];
+                        //add to Delivery line
+                        okNewSpace = false;
 					
 						#region verify schedule date
 						DateTime dtmScheduleDate = dtmStart;
@@ -3794,7 +3794,7 @@ namespace PCSMaterials.Mps
 						string strFilter = PO_DeliveryScheduleTable.SCHEDULEDATE_FLD + "='" + dtmScheduleDate.ToString("G") + "'";
 						if (dtbResultAfterGroup.Select(strFilter).Length > 0)
 						{
-							#region Tang quantity cho delivery line
+							#region increase quantity for delivery line
 
 							dtbResultAfterGroup.Select(strFilter)[0][PO_DeliveryScheduleTable.DELIVERYQUANTITY_FLD]
 								= (decimal) dtbResultAfterGroup.Select(strFilter)[0][PO_DeliveryScheduleTable.DELIVERYQUANTITY_FLD]
@@ -3830,14 +3830,14 @@ namespace PCSMaterials.Mps
 					}
 				}
 			}
-			else
+			else // export
 			{
-				for (int i =0; i <pdtbPODelivery.DefaultView.Count; i++)
+				for (int i =0; i < pdtbPODelivery.DefaultView.Count; i++)
 				{
 					//add to Deleviry line
-					if (okNewSpace == true)
+					if (okNewSpace)
 					{
-						#region Tao moi delivery line
+						#region new delivery line
 
 						DataRow drowData = dtbResultAfterGroup.NewRow();
 						DateTime dtmScheduleDate = dtmStart.AddMonths(-1);
@@ -3859,7 +3859,7 @@ namespace PCSMaterials.Mps
 					}
 					else
 					{
-						#region Tang quantity cho delivery line
+						#region increase quantity for delivery line
 
 						dtbResultAfterGroup.Rows[dtbResultAfterGroup.Rows.Count -1][PO_DeliveryScheduleTable.DELIVERYQUANTITY_FLD]
 							= (decimal) dtbResultAfterGroup.Rows[dtbResultAfterGroup.Rows.Count -1][PO_DeliveryScheduleTable.DELIVERYQUANTITY_FLD]

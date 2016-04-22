@@ -177,33 +177,42 @@ namespace PCSUtils.Utils
 				@"Extended Properties=" + Convert.ToChar(34).ToString() + 
 				@"Excel 8.0;"+ ExcelConnectionOptions() + Convert.ToChar(34).ToString(); 
 		}
-		#endregion
+        private string ExcelConnection2()
+        {
+            return
+                @"Provider=Microsoft.ACE.OLEDB.12.0;" +
+                @"Data Source=" + _strExcelFilename + ";" +
+                @"Extended Properties=" + Convert.ToChar(34).ToString() +
+                @"Excel 8.0;" + ExcelConnectionOptions() + Convert.ToChar(34).ToString();
+        }
+        #endregion
 
-		#region Open / Close
-		public void Open()
+        #region Open / Close
+        public void Open()
 		{
-			try
-			{
-				if (_oleConn !=null)
-				{
-					if (_oleConn.State==ConnectionState.Open)
-					{
-						_oleConn.Close();
-					}
-					_oleConn=null;
-				}
+            if (_oleConn !=null)
+            {
+                if (_oleConn.State==ConnectionState.Open)
+                {
+                    _oleConn.Close();
+                }
+                _oleConn=null;
+            }
 
-				if (System.IO.File.Exists(_strExcelFilename)==false)
-				{
-					throw new Exception("Excel file " + _strExcelFilename +  "could not be found.");
-				}
-				_oleConn = new OleDbConnection(ExcelConnection());  
-				_oleConn.Open();   				
-			}
-			catch (Exception ex)
-			{
-				throw ex;
-			}
+            if (System.IO.File.Exists(_strExcelFilename)==false)
+            {
+                throw new Exception("Excel file " + _strExcelFilename +  "could not be found.");
+            }
+            _oleConn = new OleDbConnection(ExcelConnection());
+            try
+            {
+                _oleConn.Open();
+            }
+            catch (InvalidOperationException)
+            {
+                _oleConn.ConnectionString = ExcelConnection2();
+                _oleConn.Open();
+            }
 		}
 
 		public void Close()

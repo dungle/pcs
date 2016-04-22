@@ -72,18 +72,12 @@ GO
 
 IF EXISTS(SELECT Name FROM sys.columns  WHERE Name = N'PONumber' AND Object_ID = Object_ID(N'SO_InvoiceMaster'))
 BEGIN
-    EXEC sys.sp_rename 
-    @objname = N'SO_InvoiceMaster.PONumber', 
-    @newname = 'DocumentNumber', 
-    @objtype = 'COLUMN'
+	ALTER TABLE SO_InvoiceMaster DROP COLUMN PONumber
 END
 GO
 IF EXISTS(SELECT Name FROM sys.columns  WHERE Name = N'PONumber' AND Object_ID = Object_ID(N'SO_ConfirmShipMaster'))
 BEGIN
-    EXEC sys.sp_rename 
-    @objname = N'SO_ConfirmShipMaster.PONumber', 
-    @newname = 'DocumentNumber', 
-    @objtype = 'COLUMN'
+    ALTER TABLE SO_ConfirmShipMaster DROP COLUMN PONumber
 END
 GO
 
@@ -107,6 +101,12 @@ GO
 IF NOT EXISTS(SELECT Name FROM sys.columns  WHERE Name = N'PONumber' AND Object_ID = Object_ID(N'SO_InvoiceDetail'))
 BEGIN
     ALTER TABLE SO_InvoiceDetail ADD PONumber VARCHAR(500) NULL
+END
+GO
+
+IF NOT EXISTS(SELECT Name FROM sys.columns  WHERE Name = N'WOGeneratedID' AND Object_ID = Object_ID(N'A1'))
+BEGIN
+    ALTER TABLE A1 ADD WOGeneratedID INT NULL
 END
 GO
 

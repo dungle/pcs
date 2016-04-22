@@ -79,8 +79,9 @@ namespace PCSComProduction.DCP.DS
 				                + " F25, F26, F27, F28, F29, F30, F31 FROM A1";
 
 				oconPCS = new OleDbConnection(Utils.Instance.OleDbConnectionString);
-				odadPCS.SelectCommand = new OleDbCommand(strSql, oconPCS);
-				pData.EnforceConstraints = false;
+			    odadPCS.SelectCommand = new OleDbCommand(strSql, oconPCS);
+                var cmdBuilder = new OleDbCommandBuilder(odadPCS);
+                pData.EnforceConstraints = false;
 				odadPCS.Update(pData, "A1");
 			}
 			catch(OleDbException ex)
