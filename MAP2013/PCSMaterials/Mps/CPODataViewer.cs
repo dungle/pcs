@@ -1958,7 +1958,7 @@ namespace PCSMaterials.Mps
                     startDate = startDate.Truncate(TimeSpan.FromSeconds(60));
                     dueDate = dueDate.Truncate(TimeSpan.FromSeconds(60));
 
-                    boCPODataViewer.UpdateWorkOrderDetail(workOrderId, productId, quantity, startDate, dueDate);
+                    boCPODataViewer.UpdateWorkOrderDetail(workOrderId, productId, quantity, startDate, dueDate, rowView);
                 }
 		    }
 
@@ -4289,18 +4289,18 @@ namespace PCSMaterials.Mps
 				strWorkOrderNo = dtbProductionLine.Rows[0][PRO_ProductionLineTable.CODE_FLD].ToString();
 			}
 			//Get Year, Month and Version of DCOption master
-			PCSComProduction.DCP.BO.DCOptionsBO boDCOptions = new DCOptionsBO();
+			DCOptionsBO boDCOptions = new DCOptionsBO();
 			DataRow drowDCOptionMaster = boDCOptions.GetDCOptionMaster(int.Parse(txtCycle.Tag.ToString()));
 			DateTime dtmPlanningPeriod = (DateTime) drowDCOptionMaster[PRO_DCOptionMasterTable.PLANNINGPERIOD_FLD];
 			strWorkOrderNo += dtmPlanningPeriod.Year.ToString();
 			if (dtmPlanningPeriod.Month >= 10)
 			{
-				strWorkOrderNo += "-" + dtmPlanningPeriod.Month.ToString();
+				strWorkOrderNo += "-" + dtmPlanningPeriod.Month;
 			}
 			else
-				strWorkOrderNo += "-0" + dtmPlanningPeriod.Month.ToString();
+				strWorkOrderNo += "-0" + dtmPlanningPeriod.Month;
 			
-			strWorkOrderNo += "-V" + drowDCOptionMaster[PRO_DCOptionMasterTable.VERSION_FLD].ToString() + "-";
+			strWorkOrderNo += "-V" + drowDCOptionMaster[PRO_DCOptionMasterTable.VERSION_FLD] + "-";
 			//Build query
 			string strSql = String.Empty;
 			strSql =  " SELECT max(" + PRO_WorkOrderMasterTable.WORKORDERNO_FLD + ") WorkOrderNoMax " ;

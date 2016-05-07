@@ -1693,9 +1693,7 @@ namespace PCSProduction.WorkOrder
 					PCSMessageBox.Show(ErrorCode.MESSAGE_AFTER_SAVE_DATA);
 					FormMode = EnumAction.Default;
 
-					// HACK: SonHT 2005-12-08
 					SwitchFormMode();
-					// END: SonHT 2005-12-08
 
 					//reload grid form database
 					dstGridData = boWorkOrder.GetWODetailByMaster(voWorkOrderMaster.WorkOrderMasterID);

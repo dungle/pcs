@@ -128,7 +128,6 @@ namespace PCSComProduction.WorkOrder.BO
             PRO_WorkOrderMasterVO voWOMaster = (PRO_WorkOrderMasterVO)pObjectVO;
 
             dsWorkOrderDetail = new PRO_WorkOrderDetailDS();
-            dsWorkOrderMaster = new PRO_WorkOrderMasterDS();
             //delete detail
             dsWorkOrderDetail.DeleteByWOMasterID(voWOMaster.WorkOrderMasterID);
         }

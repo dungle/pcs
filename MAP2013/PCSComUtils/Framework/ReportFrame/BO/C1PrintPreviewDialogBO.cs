@@ -908,21 +908,6 @@ namespace PCSComUtils.Framework.ReportFrame.BO
 		#region SO Shipping Data - Tuan TQ
 
 		/// <summary>
-		/// Get SO Shipping MasterData for Importing Invoice Report 
-		/// </summary>
-		/// <param name="pintShippingMasterID"></param>
-		/// <returns></returns>
-		/// <author> Tuan TQ</author>
-		/// <Created Date> 01 June, 2006</Created>
-	
-		public DataTable GetSOShippingMasterData4ImportInvoice(int pintShippingMasterID)
-		{
-			C1PrintPreviewDialogDS dsReport = new C1PrintPreviewDialogDS();
-			return dsReport.GetSOShippingMasterData4ImportInvoice(pintShippingMasterID);
-		}
-
-		
-		/// <summary>
 		/// Get SO Shipping Detail for Importing Invoice Report 
 		/// </summary>
 		/// <param name="pintShippingMasterID"></param>

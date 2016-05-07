@@ -7080,89 +7080,6 @@ namespace PCSComUtils.Framework.ReportFrame.DS
 		#region SO Shipping Data - Tuan TQ
 
 		/// <summary>
-		/// Get SO Shipping MasterData for Importing Invoice Report 
-		/// </summary>
-		/// <param name="pintShippingMasterID"></param>
-		/// <returns></returns>
-		/// <author> Tuan TQ</author>
-		/// <Created Date> 01 June, 2006</Created>
-		public DataTable GetSOShippingMasterData4ImportInvoice(int pintShippingMasterID)
-		{
-			DataTable dtbResult = new DataTable();
-			OleDbConnection oconPCS = null;
-			OleDbCommand ocmdPCS = null;
-
-			StringBuilder strSqlBuilder = new StringBuilder();
-			
-			strSqlBuilder.Append("SELECT  SO_ConfirmShipMaster.ConfirmShipMasterID, ");
-			strSqlBuilder.Append(" SO_ConfirmShipMaster.InvoiceNo as ConfirmShipNo,  ");
-			strSqlBuilder.Append(" SO_ConfirmShipMaster.ShippedDate, ");			
-			
-			strSqlBuilder.Append(" SO_ConfirmShipMaster.ReferenceNo as CustomerPurchaseOrderNo, ");
-
-			strSqlBuilder.Append(" MST_Country.Name as LocationCountry, ");
-			strSqlBuilder.Append(" MST_Party.Name AS PartyName, ");
-			strSqlBuilder.Append(" MST_Party.Address AS PartyAddress, ");
-			strSqlBuilder.Append(" partyCountry.Name as PartyCountry, ");
-			strSqlBuilder.Append(" MST_Currency.Code CurrencyCode, ");
-
-			strSqlBuilder.Append(" SO_ConfirmShipMaster.Comment, ");
-			strSqlBuilder.Append(" SO_ConfirmShipMaster.IssuingBank, ");
-			strSqlBuilder.Append(" SO_ConfirmShipMaster.OnBoardDate, ");
-
-			strSqlBuilder.Append(" SO_ConfirmShipMaster.LCNo, ");
-			strSqlBuilder.Append(" SO_ConfirmShipMaster.LCDate, ");
-			strSqlBuilder.Append(" SO_ConfirmShipMaster.Measurement, ");
-			strSqlBuilder.Append(" SO_ConfirmShipMaster.GrossWeight, ");
-			strSqlBuilder.Append(" SO_ConfirmShipMaster.NetWeight,	 ");
-			
-			strSqlBuilder.Append(" SO_ConfirmShipMaster.CNo, ");
-			strSqlBuilder.Append(" SO_ConfirmShipMaster.VesselName, ");
-			strSqlBuilder.Append(" SO_ConfirmShipMaster.FromPort, ");
-			strSqlBuilder.Append(" shippingLoc.Description as ShippingLocationName, ");
-			strSqlBuilder.Append(" MST_PaymentTerm.Description as PaymentTerm,	 ");	
-			strSqlBuilder.Append(" MST_PartyContact.Name as PartyContactName, ");
-			strSqlBuilder.Append(" MST_PartyContact.Phone as PartyContactPhone, ");
-			strSqlBuilder.Append(" MST_PartyContact.Fax as PartyContactFax, ");
-			strSqlBuilder.Append(" MST_Carrier.Name as CarrierName, ");
-
-			strSqlBuilder.Append(" (SELECT SUM(detail.InvoiceQty) ");
-			strSqlBuilder.Append("  FROM SO_ConfirmShipDetail detail");
-			strSqlBuilder.Append("  WHERE detail.ConfirmShipMasterID = SO_ConfirmShipMaster.ConfirmShipMasterID ");
-			strSqlBuilder.Append("  ) as TotalQuantity, ");
-			
-			strSqlBuilder.Append(" (SELECT SUM( detail.Price * detail.InvoiceQty) ");
-			strSqlBuilder.Append("  FROM SO_ConfirmShipDetail detail");
-			strSqlBuilder.Append("  WHERE detail.ConfirmShipMasterID = SO_ConfirmShipMaster.ConfirmShipMasterID ");
-			strSqlBuilder.Append("  ) as TotalAmount ");
-
-			strSqlBuilder.Append(" FROM    SO_ConfirmShipMaster ");
-			strSqlBuilder.Append(" INNER JOIN MST_Currency ON SO_ConfirmShipMaster.CurrencyID = MST_Currency.CurrencyID  ");
-			strSqlBuilder.Append(" INNER JOIN SO_SaleOrderMaster ON SO_ConfirmShipMaster.SaleOrderMasterID = SO_SaleOrderMaster.SaleOrderMasterID  ");
-			strSqlBuilder.Append(" INNER JOIN MST_Party ON SO_SaleOrderMaster.PartyID = MST_Party.PartyID ");
-			strSqlBuilder.Append(" LEFT JOIN MST_PartyContact ON SO_SaleOrderMaster.PartyContactID = MST_PartyContact.PartyContactID ");
-			strSqlBuilder.Append(" LEFT JOIN MST_Country partyCountry ON partyCountry.CountryID = MST_Party.CountryID ");
-			strSqlBuilder.Append(" LEFT JOIN MST_PaymentTerm ON SO_SaleOrderMaster.PaymentTermsID = MST_PaymentTerm.PaymentTermID ");
-			strSqlBuilder.Append(" LEFT JOIN MST_PartyLocation shippingLoc ON shippingLoc.PartyLocationID = SO_SaleOrderMaster.ShipToLocID  ");
-			strSqlBuilder.Append(" LEFT JOIN MST_Country ON shippingLoc.CountryID = MST_Country.CountryID ");
-			strSqlBuilder.Append(" LEFT JOIN MST_Carrier ON MST_Carrier.CarrierID = SO_SaleOrderMaster.CarrierID ");
-
-			strSqlBuilder.Append(" WHERE SO_ConfirmShipMaster.ConfirmShipMasterID = " + pintShippingMasterID.ToString()); 			
-
-			Utils utils = new Utils();
-			oconPCS = new OleDbConnection(Utils.Instance.OleDbConnectionString);
-			ocmdPCS = new OleDbCommand(strSqlBuilder.ToString(), oconPCS);
-			
-			ocmdPCS.Connection.Open();				
-			OleDbDataAdapter odadPCS = new OleDbDataAdapter(ocmdPCS);
-			odadPCS.Fill(dtbResult);
-
-			return dtbResult;
-
-		}
-
-		
-		/// <summary>
 		/// Get SO Shipping Detail for Importing Invoice Report 
 		/// </summary>
 		/// <param name="pintShippingMasterID"></param>
@@ -7180,8 +7097,8 @@ namespace PCSComUtils.Framework.ReportFrame.DS
 			strSqlBuilder.Append(" SELECT  SO_ConfirmShipMaster.ConfirmShipMasterID, ");
 			strSqlBuilder.Append(" SO_ConfirmShipMaster.InvoiceNo as ConfirmShipNo, "); 
 			strSqlBuilder.Append(" SO_ConfirmShipMaster.ShippedDate, ");
-			
-			strSqlBuilder.Append(" SO_ConfirmShipMaster.ReferenceNo as CustomerPurchaseOrderNo, ");			
+            strSqlBuilder.Append(" SO_ConfirmShipDetail.PONumber, ");
+            strSqlBuilder.Append(" SO_ConfirmShipMaster.ReferenceNo as CustomerPurchaseOrderNo, ");			
 			
 			strSqlBuilder.Append(" MST_Country.Name as LocationCountry, ");
 			strSqlBuilder.Append(" MST_Party.Name AS PartyName, ");
@@ -7199,7 +7116,10 @@ namespace PCSComUtils.Framework.ReportFrame.DS
 			strSqlBuilder.Append(" End As MAPBankAccountAddress, ");
 
 			strSqlBuilder.Append(" partyCountry.Name as PartyCountry, ");
-			strSqlBuilder.Append(" MST_Currency.Code CurrencyCode, ");
+            strSqlBuilder.Append(" CASE WHEN MST_Currency.Code = 'USD' THEN '$' ");
+            strSqlBuilder.Append(" ELSE MST_Currency.Code ");
+            strSqlBuilder.Append(" END AS CurrencySymbol, ");
+            strSqlBuilder.Append(" MST_Currency.Code CurrencyCode, ");
 			
 			strSqlBuilder.Append(" ((SELECT SUM( detail.Price * detail.InvoiceQty)");
 			strSqlBuilder.Append(" FROM SO_ConfirmShipDetail detail");
@@ -7338,13 +7258,11 @@ namespace PCSComUtils.Framework.ReportFrame.DS
 			strSqlBuilder.Append(" SELECT  SO_InvoiceMaster.InvoiceMasterID, ");
 			strSqlBuilder.Append(" SO_InvoiceMaster.InvoiceNo as ConfirmShipNo, "); 
 			strSqlBuilder.Append(" SO_InvoiceMaster.ShippedDate, ");
-			
+			strSqlBuilder.Append(" SO_InvoiceDetail.PONumber, ");
 			strSqlBuilder.Append(" SO_InvoiceMaster.ReferenceNo as CustomerPurchaseOrderNo, ");			
-			
 			strSqlBuilder.Append(" MST_Country.Name as LocationCountry, ");
 			strSqlBuilder.Append(" MST_Party.Name AS PartyName, ");
 			strSqlBuilder.Append(" MST_Party.Address AS PartyAddress, ");
-	
 			strSqlBuilder.Append(" MST_Party.MAPBankAccountNo, ");
 			strSqlBuilder.Append(" Case when CharIndex('" + DEMILITER_CHAR + "', MST_Party.MAPBankAccountName) > 0 then ");
 			strSqlBuilder.Append("      Substring(MST_Party.MAPBankAccountName, 1, CharIndex('" + DEMILITER_CHAR + "', MST_Party.MAPBankAccountName) - 1)  ");
@@ -7357,6 +7275,9 @@ namespace PCSComUtils.Framework.ReportFrame.DS
 			strSqlBuilder.Append(" End As MAPBankAccountAddress, ");
 
 			strSqlBuilder.Append(" partyCountry.Name as PartyCountry, ");
+			strSqlBuilder.Append(" CASE WHEN MST_Currency.Code = 'USD' THEN '$' ");
+			strSqlBuilder.Append(" ELSE MST_Currency.Code ");
+			strSqlBuilder.Append(" END AS CurrencySymbol, ");
 			strSqlBuilder.Append(" MST_Currency.Code CurrencyCode, ");
 			
 			strSqlBuilder.Append(" ((SELECT SUM( detail.Price * detail.InvoiceQty)");
@@ -7474,7 +7395,6 @@ namespace PCSComUtils.Framework.ReportFrame.DS
 
 			strSqlBuilder.Append(" ORDER BY ITM_Product.Revision, ITM_Product.Description ");
 
-			Utils utils = new Utils();
 			oconPCS = new OleDbConnection(Utils.Instance.OleDbConnectionString);
 			ocmdPCS = new OleDbCommand(strSqlBuilder.ToString(), oconPCS);
 			

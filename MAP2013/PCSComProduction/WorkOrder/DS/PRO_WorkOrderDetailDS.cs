@@ -487,15 +487,12 @@ namespace PCSComProduction.WorkOrder.DS
             OleDbCommand ocmdPCS = null;
             try
             {
-                Utils utils = new Utils();
                 oconPCS = new OleDbConnection(Utils.Instance.OleDbConnectionString);
                 ocmdPCS = new OleDbCommand(strSql, oconPCS);
 
                 ocmdPCS.CommandTimeout = 1000;
                 ocmdPCS.Connection.Open();
                 ocmdPCS.ExecuteNonQuery();
-                ocmdPCS = null;
-
             }
             catch (OleDbException ex)
             {

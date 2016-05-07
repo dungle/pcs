@@ -115,13 +115,13 @@ namespace PCSComMaterials.Plan.BO
             return dsMaster.GetAsOfDate(pintCycleID, pblnIsMPS);
         }
 
-        public void UpdateWorkOrderDetail(int workOrderMasterId, int productId, decimal quantity, DateTime startDate,
-            DateTime dueDate)
+        public void UpdateWorkOrderDetail(int workOrderMasterId, int productId, decimal quantity, DateTime startDate, DateTime dueDate, DataRowView detailRow)
         {
             using (var trans = new TransactionScope(TransactionScopeOption.Required, TimeSpan.FromHours(1)))
             {
                 using (var db = new PCSDataContext(Utils.Instance.ConnectionString))
                 {
+                    var maxLine = db.PRO_WorkOrderDetails.Max(d => d.Line);
                     var workOrderDetail =
                         db.PRO_WorkOrderDetails.FirstOrDefault(w => w.WorkOrderMasterID == workOrderMasterId
                                                                     && w.ProductID == productId
@@ -130,10 +130,34 @@ namespace PCSComMaterials.Plan.BO
                                                                     && w.Status == 1); // unreleased work order
                     if (workOrderDetail == null)
                     {
-                        return;
+                        // create new work order detail for new CPO
+                        workOrderDetail = new PRO_WorkOrderDetail
+                        {
+                            WorkOrderMasterID = workOrderMasterId,
+                            OrderQuantity = quantity,
+                            ProductID = productId,
+                            StartDate = startDate,
+                            DueDate = dueDate,
+                            Status = (byte?)WOLineStatus.Unreleased,
+                            Line = maxLine + 1,
+                            StockUMID = (int)detailRow[MTR_CPOTable.STOCKUMID_FLD]
+                        };
+                        db.PRO_WorkOrderDetails.InsertOnSubmit(workOrderDetail);
                     }
-                    // update quantity
-                    workOrderDetail.OrderQuantity = quantity;
+                    else
+                    {
+                        // if quantity is equal 0, then we remove work order line
+                        if (quantity == 0)
+                        {
+                            db.PRO_WorkOrderDetails.DeleteOnSubmit(workOrderDetail);
+
+                        }
+                        else
+                        {
+                            // update quantity
+                            workOrderDetail.OrderQuantity = quantity;
+                        }
+                    }
                     db.SubmitChanges();
                 }
                 trans.Complete();
