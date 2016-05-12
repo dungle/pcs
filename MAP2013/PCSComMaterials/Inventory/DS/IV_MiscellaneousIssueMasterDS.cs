@@ -12,36 +12,8 @@ namespace PCSComMaterials.Inventory.DS
 {
 	public class IV_MiscellaneousIssueMasterDS 
 	{
-		public IV_MiscellaneousIssueMasterDS()
-		{
-		}
 		private const string THIS = "PCSComMaterials.Inventory.BO.IV_MiscellaneousIssueMasterDS";
-
-	
-		//**************************************************************************              
-		///    <Description>
-		///       This method uses to add data to IV_MiscellaneousIssueMaster
-		///    </Description>
-		///    <Inputs>
-		///        IV_MiscellaneousIssueMasterVO       
-		///    </Inputs>
-		///    <Outputs>
-		///       newly inserted primarkey value
-		///    </Outputs>
-		///    <Returns>
-		///       void
-		///    </Returns>
-		///    <Authors>
-		///       HungLa
-		///    </Authors>
-		///    <History>
-		///       Monday, December 19, 2005
-		///    </History>
-		///    <Notes>
-		///    </Notes>
-		//**************************************************************************
-
-
+        
 		public void Add(object pobjObjectVO)
 		{
 			const string METHOD_NAME = THIS + ".Add()";
@@ -159,29 +131,6 @@ namespace PCSComMaterials.Inventory.DS
 			}
 		}
 	
-
-		//**************************************************************************              
-		///    <Description>
-		///       This method uses to add data to IV_MiscellaneousIssueMaster
-		///    </Description>
-		///    <Inputs>
-		///        IV_MiscellaneousIssueMasterVO       
-		///    </Inputs>
-		///    <Outputs>
-		///       newly inserted primarkey value
-		///    </Outputs>
-		///    <Returns>
-		///       void
-		///    </Returns>
-		///    <Authors>
-		///       HungLa
-		///    </Authors>
-		///    <History>
-		///       Monday, December 19, 2005
-		///    </History>
-		///    <Notes>
-		///    </Notes>
-		//**************************************************************************
 		public int AddAndReturnID(object pobjObjectVO)
 		{
 			const string METHOD_NAME = THIS + ".AddAndReturnID()";
@@ -325,15 +274,6 @@ namespace PCSComMaterials.Inventory.DS
 		}
 	
 
-		///    <summary>
-		///       This method uses to add data to IV_MiscellaneousMaster by ID
-		///    </summary>
-		///    <Inputs>
-		///    </Inputs>
-		///    <Returns>
-		///    </Returns>
-		///    <History>
-		///    </History>
 		public DataRow GetMiscellaneousMasterInfor(int pintMasterID)
 		{
 			const string METHOD_NAME = THIS + ".GetLocToLocMasterInfor()";
@@ -352,6 +292,7 @@ namespace PCSComMaterials.Inventory.DS
 					+ IV_MiscellaneousIssueMasterTable.CCNID_FLD + ","
 					+ IV_MiscellaneousIssueMasterTable.TRANSNO_FLD + ","
 					+ IV_MiscellaneousIssueMasterTable.ISSUEPURPOSEID_FLD + ","
+					+ " ISNULL(" + IV_MiscellaneousIssueMasterTable.DESTROYAPPROVED_FLD + ",0) AS " + IV_MiscellaneousIssueMasterTable.DESTROYAPPROVED_FLD + ","
 					+ "(SELECT " + MST_MasterLocationTable.CODE_FLD + " FROM " + MST_MasterLocationTable.TABLE_NAME + " WHERE " + MST_MasterLocationTable.MASTERLOCATIONID_FLD + " = " + IV_MiscellaneousIssueMasterTable.TABLE_NAME + "." + IV_MiscellaneousIssueMasterTable.SOURCEMASLOCATIONID_FLD + ") AS " + IV_MiscellaneousIssueMasterTable.SOURCEMASLOCATIONID_FLD + ","
 					+ "(SELECT " + MST_MasterLocationTable.CODE_FLD + " FROM " + MST_MasterLocationTable.TABLE_NAME + " WHERE " + MST_MasterLocationTable.MASTERLOCATIONID_FLD + " = " + IV_MiscellaneousIssueMasterTable.TABLE_NAME + "." + IV_MiscellaneousIssueMasterTable.DESMASLOCATIONID_FLD + ") AS " + IV_MiscellaneousIssueMasterTable.DESMASLOCATIONID_FLD + ","
 					+ "(SELECT " + MST_LocationTable.CODE_FLD + " FROM " + MST_LocationTable.TABLE_NAME + " WHERE " + MST_LocationTable.LOCATIONID_FLD + " = " + IV_MiscellaneousIssueMasterTable.TABLE_NAME + "." + IV_MiscellaneousIssueMasterTable.SOURCELOCATIONID_FLD + ") AS " + IV_MiscellaneousIssueMasterTable.SOURCELOCATIONID_FLD + ","
@@ -363,7 +304,6 @@ namespace PCSComMaterials.Inventory.DS
 					+ "(SELECT " + MST_BINTable.CODE_FLD + " FROM " + MST_BINTable.TABLE_NAME + " WHERE " + MST_BINTable.BINID_FLD + " = " + IV_MiscellaneousIssueMasterTable.TABLE_NAME + "." + IV_MiscellaneousIssueMasterTable.DESBINID_FLD + ") AS " + IV_MiscellaneousIssueMasterTable.DESBINID_FLD 
 					+ " FROM " + IV_MiscellaneousIssueMasterTable.TABLE_NAME
 					+ " WHERE " + IV_MiscellaneousIssueMasterTable.MISCELLANEOUSISSUEMASTERID_FLD + " = " + pintMasterID;
-				Utils utils = new Utils();
 				oconPCS = new OleDbConnection(Utils.Instance.OleDbConnectionString);
 				ocmdPCS = new OleDbCommand(strSql, oconPCS);
 				ocmdPCS.Connection.Open();
@@ -398,31 +338,7 @@ namespace PCSComMaterials.Inventory.DS
 				}
 			}
 		}	
-
-
-		//**************************************************************************              
-		///    <Description>
-		///       This method uses to delete data from IV_MiscellaneousIssueMaster
-		///    </Description>
-		///    <Inputs>
-		///        ID       
-		///    </Inputs>
-		///    <Outputs>
-		///       void
-		///    </Outputs>
-		///    <Returns>
-		///       
-		///    </Returns>
-		///    <Authors>
-		///       HungLa
-		///    </Authors>
-		///    <History>
-		///       09-Dec-2004
-		///    </History>
-		///    <Notes>
-		///    </Notes>
-		//**************************************************************************
-
+        
 		public void Delete(int pintID)
 		{
 			const string METHOD_NAME = THIS + ".Delete()";
@@ -470,31 +386,7 @@ namespace PCSComMaterials.Inventory.DS
 				}
 			}
 		}
-	
-
-		//**************************************************************************              
-		///    <Description>
-		///       This method uses to get data from IV_MiscellaneousIssueMaster
-		///    </Description>
-		///    <Inputs>
-		///        ID       
-		///    </Inputs>
-		///    <Outputs>
-		///       IV_MiscellaneousIssueMasterVO
-		///    </Outputs>
-		///    <Returns>
-		///       IV_MiscellaneousIssueMasterVO
-		///    </Returns>
-		///    <Authors>
-		///       HungLa
-		///    </Authors>
-		///    <History>
-		///       Monday, December 19, 2005
-		///    </History>
-		///    <Notes>
-		///    </Notes>
-		//**************************************************************************
-
+        
 		public object GetObjectVO(int pintID)
 		{
 			const string METHOD_NAME = THIS + ".GetObjectVO()";
@@ -635,31 +527,6 @@ namespace PCSComMaterials.Inventory.DS
 				}
 			}
 		}
-
-
-		//**************************************************************************              
-		///    <Description>
-		///       This method uses to update data to IV_MiscellaneousIssueMaster
-		///    </Description>
-		///    <Inputs>
-		///       IV_MiscellaneousIssueMasterVO       
-		///    </Inputs>
-		///    <Outputs>
-		///       
-		///    </Outputs>
-		///    <Returns>
-		///       
-		///    </Returns>
-		///    <Authors>
-		///       HungLa
-		///    </Authors>
-		///    <History>
-		///       09-Dec-2004
-		///    </History>
-		///    <Notes>
-		///    </Notes>
-		//**************************************************************************
-		
 	
 		public void Update(object pobjObjecVO)
 		{
@@ -782,30 +649,6 @@ namespace PCSComMaterials.Inventory.DS
 
 		}
 
-
-		//**************************************************************************              
-		///    <Description>
-		///       This method uses to get all data from IV_MiscellaneousIssueMaster
-		///    </Description>
-		///    <Inputs>
-		///               
-		///    </Inputs>
-		///    <Outputs>
-		///       DataSet
-		///    </Outputs>
-		///    <Returns>
-		///       DataSet
-		///    </Returns>
-		///    <Authors>
-		///       HungLa
-		///    </Authors>
-		///    <History>
-		///       Monday, December 19, 2005
-		///    </History>
-		///    <Notes>
-		///    </Notes>
-		//**************************************************************************
-
 		public DataSet List()
 		{
 			const string METHOD_NAME = THIS + ".List()";
@@ -866,30 +709,6 @@ namespace PCSComMaterials.Inventory.DS
 
 		}
 
-
-		//**************************************************************************              
-		///    <Description>
-		///       This method uses to update a DataSet
-		///    </Description>
-		///    <Inputs>
-		///        DataSet       
-		///    </Inputs>
-		///    <Outputs>
-		///       
-		///    </Outputs>
-		///    <Returns>
-		///       
-		///    </Returns>
-		///    <Authors>
-		///       HungLa
-		///    </Authors>
-		///    <History>
-		///       Monday, December 19, 2005
-		///    </History>
-		///    <Notes>
-		///    </Notes>
-		//**************************************************************************
-		
 		public void UpdateDataSet(DataSet pData)
 		{
 			const string METHOD_NAME = THIS + ".UpdateDataSet()";

@@ -132,6 +132,7 @@ namespace PCSMaterials.Inventory
             this.PrintButton = new C1.Win.C1Input.C1Button();
             this.HelpButton = new C1.Win.C1Input.C1Button();
             this.CloseButton = new C1.Win.C1Input.C1Button();
+            this.ApproveDestroyButton = new C1.Win.C1Input.C1Button();
             this.grbSource.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.SourceBinText)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.SourceLocText)).BeginInit();
@@ -573,6 +574,15 @@ namespace PCSMaterials.Inventory
             this.CloseButton.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue;
             this.CloseButton.Click += new System.EventHandler(this.Close_Click);
             // 
+            // ApproveDestroyButton
+            // 
+            resources.ApplyResources(this.ApproveDestroyButton, "ApproveDestroyButton");
+            this.ApproveDestroyButton.Name = "ApproveDestroyButton";
+            this.ApproveDestroyButton.UseVisualStyleBackColor = true;
+            this.ApproveDestroyButton.VisualStyle = C1.Win.C1Input.VisualStyle.Office2010Blue;
+            this.ApproveDestroyButton.VisualStyleBaseStyle = C1.Win.C1Input.VisualStyle.Office2010Blue;
+            this.ApproveDestroyButton.Click += new System.EventHandler(this.ApproveDestroyButton_Click);
+            // 
             // IVMiscellaneousIssue
             // 
             resources.ApplyResources(this, "$this");
@@ -581,6 +591,7 @@ namespace PCSMaterials.Inventory
             this.Controls.Add(this.PrintButton);
             this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.HelpButton);
+            this.Controls.Add(this.ApproveDestroyButton);
             this.Controls.Add(this.DeleteButton);
             this.Controls.Add(this.AddButton);
             this.Controls.Add(this.CommentText);
@@ -626,5 +637,7 @@ namespace PCSMaterials.Inventory
         }
 
         #endregion
+
+        private C1Button ApproveDestroyButton;
     }
 }

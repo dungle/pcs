@@ -774,35 +774,6 @@
       <Association Name="ITM_Product_IV_MasLocCache" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.IV_MiscellaneousIssueMaster" Member="IV_MiscellaneousIssueMasters">
-    <Type Name="IV_MiscellaneousIssueMaster">
-      <Column Name="MiscellaneousIssueMasterID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="PostDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="Comment" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
-      <Column Name="TransNo" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
-      <Column Name="UserName" Type="System.String" DbType="NVarChar(40)" CanBeNull="true" />
-      <Column Name="LastChange" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="CCNID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="DesBinID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="SourceBinID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="DesLocationID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="SourceLocationID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="DesMasLocationID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="SourceMasLocationID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="PartyID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="IssuePurposeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="IV_MiscellaneousIssueMaster_IV_MiscellaneousIssueDetail" Member="IV_MiscellaneousIssueDetails" ThisKey="MiscellaneousIssueMasterID" OtherKey="MiscellaneousIssueMasterID" Type="IV_MiscellaneousIssueDetail" />
-      <Association Name="MST_BIN_IV_MiscellaneousIssueMaster" Member="MST_BIN" ThisKey="DesBinID" OtherKey="BinID" Type="MST_BIN" IsForeignKey="true" />
-      <Association Name="MST_BIN_IV_MiscellaneousIssueMaster1" Member="MST_BIN1" ThisKey="SourceBinID" OtherKey="BinID" Type="MST_BIN" IsForeignKey="true" />
-      <Association Name="MST_CCN_IV_MiscellaneousIssueMaster" Member="MST_CCN" ThisKey="CCNID" OtherKey="CCNID" Type="MST_CCN" IsForeignKey="true" />
-      <Association Name="MST_Location_IV_MiscellaneousIssueMaster" Member="MST_Location" ThisKey="DesLocationID" OtherKey="LocationID" Type="MST_Location" IsForeignKey="true" />
-      <Association Name="MST_Location_IV_MiscellaneousIssueMaster1" Member="MST_Location1" ThisKey="SourceLocationID" OtherKey="LocationID" Type="MST_Location" IsForeignKey="true" />
-      <Association Name="MST_MasterLocation_IV_MiscellaneousIssueMaster" Member="MST_MasterLocation" ThisKey="DesMasLocationID" OtherKey="MasterLocationID" Type="MST_MasterLocation" IsForeignKey="true" />
-      <Association Name="MST_MasterLocation_IV_MiscellaneousIssueMaster1" Member="MST_MasterLocation1" ThisKey="SourceMasLocationID" OtherKey="MasterLocationID" Type="MST_MasterLocation" IsForeignKey="true" />
-      <Association Name="MST_Party_IV_MiscellaneousIssueMaster" Member="MST_Party" ThisKey="PartyID" OtherKey="PartyID" Type="MST_Party" IsForeignKey="true" />
-      <Association Name="PRO_IssuePurpose_IV_MiscellaneousIssueMaster" Member="PRO_IssuePurpose" ThisKey="IssuePurposeID" OtherKey="IssuePurposeID" Type="PRO_IssuePurpose" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.IV_OnhandPeriod" Member="IV_OnhandPeriods">
     <Type Name="IV_OnhandPeriod">
       <Column Name="OnhandPeriodID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -928,8 +899,6 @@
       <Association Name="MST_BIN_IV_BalanceBin" Member="IV_BalanceBins" ThisKey="BinID" OtherKey="BinID" Type="IV_BalanceBin" />
       <Association Name="MST_BIN_IV_BinCache" Member="IV_BinCaches" ThisKey="BinID" OtherKey="BinID" Type="IV_BinCache" />
       <Association Name="MST_BIN_IV_DocToStock" Member="IV_DocToStocks" ThisKey="BinID" OtherKey="BinID" Type="IV_DocToStock" />
-      <Association Name="MST_BIN_IV_MiscellaneousIssueMaster" Member="IV_MiscellaneousIssueMasters" ThisKey="BinID" OtherKey="DesBinID" Type="IV_MiscellaneousIssueMaster" />
-      <Association Name="MST_BIN_IV_MiscellaneousIssueMaster1" Member="IV_MiscellaneousIssueMasters1" ThisKey="BinID" OtherKey="SourceBinID" Type="IV_MiscellaneousIssueMaster" />
       <Association Name="MST_BIN_IV_StockTakingDifferent" Member="IV_StockTakingDifferents" ThisKey="BinID" OtherKey="BinID" Type="IV_StockTakingDifferent" />
       <Association Name="MST_BIN_IV_StockTakingMaster" Member="IV_StockTakingMasters" ThisKey="BinID" OtherKey="BinID" Type="IV_StockTakingMaster" />
       <Association Name="MST_BIN_MST_TransactionHistory" Member="MST_TransactionHistories" ThisKey="BinID" OtherKey="BinID" Type="MST_TransactionHistory" />
@@ -945,6 +914,8 @@
       <Association Name="MST_BIN_SO_InvoiceMaster" Member="SO_InvoiceMasters" ThisKey="BinID" OtherKey="BinID" Type="SO_InvoiceMaster" />
       <Association Name="MST_BIN_SO_ConfirmShipMaster" Member="SO_ConfirmShipMasters" ThisKey="BinID" OtherKey="BinID" Type="SO_ConfirmShipMaster" />
       <Association Name="MST_BIN_ITM_Product" Member="ITM_Products" ThisKey="BinID" OtherKey="BinID" Type="ITM_Product" />
+      <Association Name="MST_BIN_IV_MiscellaneousIssueMaster" Member="IV_MiscellaneousIssueMasters" ThisKey="BinID" OtherKey="DesBinID" Type="IV_MiscellaneousIssueMaster" />
+      <Association Name="MST_BIN_IV_MiscellaneousIssueMaster1" Member="IV_MiscellaneousIssueMasters1" ThisKey="BinID" OtherKey="SourceBinID" Type="IV_MiscellaneousIssueMaster" />
       <Association Name="enm_BINType_MST_BIN" Member="enm_BINType" ThisKey="BinTypeID" OtherKey="BINTypeID" Type="enm_BINType" IsForeignKey="true" />
       <Association Name="enm_LocationType_MST_BIN" Member="enm_LocationType" ThisKey="LocationTypeID" OtherKey="LocationTypeID" Type="enm_LocationType" IsForeignKey="true" />
       <Association Name="MST_Location_MST_BIN" Member="MST_Location" ThisKey="LocationID" OtherKey="LocationID" Type="MST_Location" IsForeignKey="true" />
@@ -998,7 +969,6 @@
       <Association Name="MST_CCN_IV_DocToStock" Member="IV_DocToStocks" ThisKey="CCNID" OtherKey="CCNID" Type="IV_DocToStock" />
       <Association Name="MST_CCN_IV_LocationCache" Member="IV_LocationCaches" ThisKey="CCNID" OtherKey="CCNID" Type="IV_LocationCache" />
       <Association Name="MST_CCN_IV_MasLocCache" Member="IV_MasLocCaches" ThisKey="CCNID" OtherKey="CCNID" Type="IV_MasLocCache" />
-      <Association Name="MST_CCN_IV_MiscellaneousIssueMaster" Member="IV_MiscellaneousIssueMasters" ThisKey="CCNID" OtherKey="CCNID" Type="IV_MiscellaneousIssueMaster" />
       <Association Name="MST_CCN_IV_StockTakingPeriod" Member="IV_StockTakingPeriods" ThisKey="CCNID" OtherKey="CCNID" Type="IV_StockTakingPeriod" />
       <Association Name="MST_CCN_MST_AGC" Member="MST_AGCs" ThisKey="CCNID" OtherKey="CCNID" Type="MST_AGC" />
       <Association Name="MST_CCN_MST_ApprovalLevel" Member="MST_ApprovalLevels" ThisKey="CCNID" OtherKey="CCNID" Type="MST_ApprovalLevel" />
@@ -1036,6 +1006,7 @@
       <Association Name="MST_CCN_SO_InvoiceMaster" Member="SO_InvoiceMasters" ThisKey="CCNID" OtherKey="CCNID" Type="SO_InvoiceMaster" />
       <Association Name="MST_CCN_SO_ConfirmShipMaster" Member="SO_ConfirmShipMasters" ThisKey="CCNID" OtherKey="CCNID" Type="SO_ConfirmShipMaster" />
       <Association Name="MST_CCN_ITM_Product" Member="ITM_Products" ThisKey="CCNID" OtherKey="CCNID" Type="ITM_Product" />
+      <Association Name="MST_CCN_IV_MiscellaneousIssueMaster" Member="IV_MiscellaneousIssueMasters" ThisKey="CCNID" OtherKey="CCNID" Type="IV_MiscellaneousIssueMaster" />
       <Association Name="MST_City_MST_CCN" Member="MST_City" ThisKey="CityID" OtherKey="CityID" Type="MST_City" IsForeignKey="true" />
       <Association Name="MST_Country_MST_CCN" Member="MST_Country" ThisKey="CountryID" OtherKey="CountryID" Type="MST_Country" IsForeignKey="true" />
       <Association Name="MST_Currency_MST_CCN" Member="MST_Currency" ThisKey="DefaultCurrencyID" OtherKey="CurrencyID" Type="MST_Currency" IsForeignKey="true" />
@@ -1201,8 +1172,6 @@
       <Association Name="MST_Location_IV_BinCache" Member="IV_BinCaches" ThisKey="LocationID" OtherKey="LocationID" Type="IV_BinCache" />
       <Association Name="MST_Location_IV_DocToStock" Member="IV_DocToStocks" ThisKey="LocationID" OtherKey="LocationID" Type="IV_DocToStock" />
       <Association Name="MST_Location_IV_LocationCache" Member="IV_LocationCaches" ThisKey="LocationID" OtherKey="LocationID" Type="IV_LocationCache" />
-      <Association Name="MST_Location_IV_MiscellaneousIssueMaster" Member="IV_MiscellaneousIssueMasters" ThisKey="LocationID" OtherKey="DesLocationID" Type="IV_MiscellaneousIssueMaster" />
-      <Association Name="MST_Location_IV_MiscellaneousIssueMaster1" Member="IV_MiscellaneousIssueMasters1" ThisKey="LocationID" OtherKey="SourceLocationID" Type="IV_MiscellaneousIssueMaster" />
       <Association Name="MST_Location_IV_StockTakingDifferent" Member="IV_StockTakingDifferents" ThisKey="LocationID" OtherKey="LocationID" Type="IV_StockTakingDifferent" />
       <Association Name="MST_Location_IV_StockTakingMaster" Member="IV_StockTakingMasters" ThisKey="LocationID" OtherKey="LocationID" Type="IV_StockTakingMaster" />
       <Association Name="MST_Location_MST_BIN" Member="MST_BINs" ThisKey="LocationID" OtherKey="LocationID" Type="MST_BIN" />
@@ -1222,6 +1191,8 @@
       <Association Name="MST_Location_SO_InvoiceMaster" Member="SO_InvoiceMasters" ThisKey="LocationID" OtherKey="LocationID" Type="SO_InvoiceMaster" />
       <Association Name="MST_Location_SO_ConfirmShipMaster" Member="SO_ConfirmShipMasters" ThisKey="LocationID" OtherKey="LocationID" Type="SO_ConfirmShipMaster" />
       <Association Name="MST_Location_ITM_Product" Member="ITM_Products" ThisKey="LocationID" OtherKey="LocationID" Type="ITM_Product" />
+      <Association Name="MST_Location_IV_MiscellaneousIssueMaster" Member="IV_MiscellaneousIssueMasters" ThisKey="LocationID" OtherKey="DesLocationID" Type="IV_MiscellaneousIssueMaster" />
+      <Association Name="MST_Location_IV_MiscellaneousIssueMaster1" Member="IV_MiscellaneousIssueMasters1" ThisKey="LocationID" OtherKey="SourceLocationID" Type="IV_MiscellaneousIssueMaster" />
       <Association Name="MST_Department_MST_Location" Member="MST_Department" ThisKey="DepartmentID" OtherKey="DepartmentID" Type="MST_Department" IsForeignKey="true" />
       <Association Name="enm_LocationType_MST_Location" Member="enm_LocationType" ThisKey="LocationTypeID" OtherKey="LocationTypeID" Type="enm_LocationType" IsForeignKey="true" />
       <Association Name="MST_MasterLocation_MST_Location" Member="MST_MasterLocation" ThisKey="MasterLocationID" OtherKey="MasterLocationID" Type="MST_MasterLocation" IsForeignKey="true" />
@@ -1246,8 +1217,6 @@
       <Association Name="MST_MasterLocation_IV_DocToStock" Member="IV_DocToStocks" ThisKey="MasterLocationID" OtherKey="MasterLocationID" Type="IV_DocToStock" />
       <Association Name="MST_MasterLocation_IV_LocationCache" Member="IV_LocationCaches" ThisKey="MasterLocationID" OtherKey="MasterLocationID" Type="IV_LocationCache" />
       <Association Name="MST_MasterLocation_IV_MasLocCache" Member="IV_MasLocCaches" ThisKey="MasterLocationID" OtherKey="MasterLocationID" Type="IV_MasLocCache" />
-      <Association Name="MST_MasterLocation_IV_MiscellaneousIssueMaster" Member="IV_MiscellaneousIssueMasters" ThisKey="MasterLocationID" OtherKey="DesMasLocationID" Type="IV_MiscellaneousIssueMaster" />
-      <Association Name="MST_MasterLocation_IV_MiscellaneousIssueMaster1" Member="IV_MiscellaneousIssueMasters1" ThisKey="MasterLocationID" OtherKey="SourceMasLocationID" Type="IV_MiscellaneousIssueMaster" />
       <Association Name="MST_MasterLocation_MST_Location" Member="MST_Locations" ThisKey="MasterLocationID" OtherKey="MasterLocationID" Type="MST_Location" />
       <Association Name="MST_MasterLocation_MST_TransactionHistory" Member="MST_TransactionHistories" ThisKey="MasterLocationID" OtherKey="MasterLocationID" Type="MST_TransactionHistory" />
       <Association Name="MST_MasterLocation_MTR_CPO" Member="MTR_CPOs" ThisKey="MasterLocationID" OtherKey="MasterLocationID" Type="MTR_CPO" />
@@ -1273,6 +1242,8 @@
       <Association Name="MST_MasterLocation_SO_InvoiceMaster" Member="SO_InvoiceMasters" ThisKey="MasterLocationID" OtherKey="MasterLocationID" Type="SO_InvoiceMaster" />
       <Association Name="MST_MasterLocation_SO_ConfirmShipMaster" Member="SO_ConfirmShipMasters" ThisKey="MasterLocationID" OtherKey="MasterLocationID" Type="SO_ConfirmShipMaster" />
       <Association Name="MST_MasterLocation_ITM_Product" Member="ITM_Products" ThisKey="MasterLocationID" OtherKey="MasterLocationID" Type="ITM_Product" />
+      <Association Name="MST_MasterLocation_IV_MiscellaneousIssueMaster" Member="IV_MiscellaneousIssueMasters" ThisKey="MasterLocationID" OtherKey="DesMasLocationID" Type="IV_MiscellaneousIssueMaster" />
+      <Association Name="MST_MasterLocation_IV_MiscellaneousIssueMaster1" Member="IV_MiscellaneousIssueMasters1" ThisKey="MasterLocationID" OtherKey="SourceMasLocationID" Type="IV_MiscellaneousIssueMaster" />
       <Association Name="MST_CCN_MST_MasterLocation" Member="MST_CCN" ThisKey="CCNID" OtherKey="CCNID" Type="MST_CCN" IsForeignKey="true" />
       <Association Name="MST_City_MST_MasterLocation" Member="MST_City" ThisKey="CityID" OtherKey="CityID" Type="MST_City" IsForeignKey="true" />
       <Association Name="MST_Country_MST_MasterLocation" Member="MST_Country" ThisKey="CountryID" OtherKey="CountryID" Type="MST_Country" IsForeignKey="true" />
@@ -1305,7 +1276,6 @@
       <Association Name="MST_Party_CST_RecoverMaterialDetail" Member="CST_RecoverMaterialDetails" ThisKey="PartyID" OtherKey="PartyID" Type="CST_RecoverMaterialDetail" />
       <Association Name="MST_Party_ITM_Routing" Member="ITM_Routings" ThisKey="PartyID" OtherKey="PartyID" Type="ITM_Routing" />
       <Association Name="MST_Party_IV_CostHistory" Member="IV_CostHistories" ThisKey="PartyID" OtherKey="PartyID" Type="IV_CostHistory" />
-      <Association Name="MST_Party_IV_MiscellaneousIssueMaster" Member="IV_MiscellaneousIssueMasters" ThisKey="PartyID" OtherKey="PartyID" Type="IV_MiscellaneousIssueMaster" />
       <Association Name="MST_Party_MST_PartyContact" Member="MST_PartyContacts" ThisKey="PartyID" OtherKey="PartyID" Type="MST_PartyContact" />
       <Association Name="MST_Party_MST_PartyLocation" Member="MST_PartyLocations" ThisKey="PartyID" OtherKey="PartyID" Type="MST_PartyLocation" />
       <Association Name="MST_Party_MST_TransactionHistory" Member="MST_TransactionHistories" ThisKey="PartyID" OtherKey="PartyID" Type="MST_TransactionHistory" />
@@ -1322,6 +1292,7 @@
       <Association Name="MST_Party_sys_RoleParty" Member="sys_RoleParties" ThisKey="PartyID" OtherKey="PartyID" Type="sys_RoleParty" />
       <Association Name="MST_Party_ITM_Product" Member="ITM_Products" ThisKey="PartyID" OtherKey="InventorID" Type="ITM_Product" />
       <Association Name="MST_Party_ITM_Product1" Member="ITM_Products1" ThisKey="PartyID" OtherKey="PrimaryVendorID" Type="ITM_Product" />
+      <Association Name="MST_Party_IV_MiscellaneousIssueMaster" Member="IV_MiscellaneousIssueMasters" ThisKey="PartyID" OtherKey="PartyID" Type="IV_MiscellaneousIssueMaster" />
       <Association Name="MST_City_MST_Party" Member="MST_City" ThisKey="CityID" OtherKey="CityID" Type="MST_City" IsForeignKey="true" />
       <Association Name="MST_Country_MST_Party" Member="MST_Country" ThisKey="CountryID" OtherKey="CountryID" Type="MST_Country" IsForeignKey="true" />
       <Association Name="MST_Currency_MST_Party" Member="MST_Currency" ThisKey="CurrencyID" OtherKey="CurrencyID" Type="MST_Currency" IsForeignKey="true" />
@@ -2414,7 +2385,6 @@
       <Column Name="TranTypeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="HasDestination" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
       <Column Name="Code" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Association Name="PRO_IssuePurpose_IV_MiscellaneousIssueMaster" Member="IV_MiscellaneousIssueMasters" ThisKey="IssuePurposeID" OtherKey="IssuePurposeID" Type="IV_MiscellaneousIssueMaster" />
       <Association Name="PRO_IssuePurpose_MST_TransactionHistory" Member="MST_TransactionHistories" ThisKey="IssuePurposeID" OtherKey="IssuePurposeID" Type="MST_TransactionHistory" />
       <Association Name="PRO_IssuePurpose_MST_TransactionHistory1" Member="MST_TransactionHistories1" ThisKey="IssuePurposeID" OtherKey="IssuePurposeID" Type="MST_TransactionHistory" />
       <Association Name="PRO_IssuePurpose_MST_TransactionHistory2" Member="MST_TransactionHistories2" ThisKey="IssuePurposeID" OtherKey="IssuePurposeID" Type="MST_TransactionHistory" />
@@ -2430,6 +2400,7 @@
       <Association Name="PRO_IssuePurpose_MST_TransactionHistory12" Member="MST_TransactionHistories12" ThisKey="IssuePurposeID" OtherKey="IssuePurposeID" Type="MST_TransactionHistory" />
       <Association Name="PRO_IssuePurpose_PRO_IssueMaterialMaster" Member="PRO_IssueMaterialMasters" ThisKey="IssuePurposeID" OtherKey="IssuePurposeID" Type="PRO_IssueMaterialMaster" />
       <Association Name="PRO_IssuePurpose_PRO_WorkOrderCompletion" Member="PRO_WorkOrderCompletions" ThisKey="IssuePurposeID" OtherKey="IssuePurposeID" Type="PRO_WorkOrderCompletion" />
+      <Association Name="PRO_IssuePurpose_IV_MiscellaneousIssueMaster" Member="IV_MiscellaneousIssueMasters" ThisKey="IssuePurposeID" OtherKey="IssuePurposeID" Type="IV_MiscellaneousIssueMaster" />
     </Type>
   </Table>
   <Table Name="dbo.PRO_IssueStdCost" Member="PRO_IssueStdCosts">
@@ -6157,11 +6128,11 @@
       <Column Name="AvailableQty" Type="System.Decimal" DbType="Decimal(20,5)" CanBeNull="true" />
       <Column Name="DepartmentID" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="ReasonID" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Association Name="IV_MiscellaneousIssueMaster_IV_MiscellaneousIssueDetail" Member="IV_MiscellaneousIssueMaster" ThisKey="MiscellaneousIssueMasterID" OtherKey="MiscellaneousIssueMasterID" Type="IV_MiscellaneousIssueMaster" IsForeignKey="true" />
       <Association Name="MST_UnitOfMeasure_IV_MiscellaneousIssueDetail" Member="MST_UnitOfMeasure" ThisKey="StockUMID" OtherKey="UnitOfMeasureID" Type="MST_UnitOfMeasure" IsForeignKey="true" />
       <Association Name="MST_Department_IV_MiscellaneousIssueDetail" Member="MST_Department" ThisKey="DepartmentID" OtherKey="DepartmentID" Type="MST_Department" IsForeignKey="true" />
       <Association Name="MST_Reason_IV_MiscellaneousIssueDetail" Member="MST_Reason" ThisKey="ReasonID" OtherKey="ReasonID" Type="MST_Reason" IsForeignKey="true" />
       <Association Name="ITM_Product_IV_MiscellaneousIssueDetail" Member="ITM_Product" ThisKey="ProductID" OtherKey="ProductID" Type="ITM_Product" IsForeignKey="true" />
+      <Association Name="IV_MiscellaneousIssueMaster_IV_MiscellaneousIssueDetail" Member="IV_MiscellaneousIssueMaster" ThisKey="MiscellaneousIssueMasterID" OtherKey="MiscellaneousIssueMasterID" Type="IV_MiscellaneousIssueMaster" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.ITM_Product" Member="ITM_Products">
@@ -6377,6 +6348,36 @@
       <Column Name="Code" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
       <Column Name="Description" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
       <Association Name="ITM_ItemGroup_ITM_Product" Member="ITM_Products" ThisKey="ItemGroupID" OtherKey="ItemGroupID" Type="ITM_Product" />
+    </Type>
+  </Table>
+  <Table Name="dbo.IV_MiscellaneousIssueMaster" Member="IV_MiscellaneousIssueMasters">
+    <Type Name="IV_MiscellaneousIssueMaster">
+      <Column Name="MiscellaneousIssueMasterID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="PostDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Comment" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="TransNo" Type="System.String" DbType="NVarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="NVarChar(40)" CanBeNull="true" />
+      <Column Name="LastChange" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CCNID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DesBinID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SourceBinID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DesLocationID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SourceLocationID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="DesMasLocationID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SourceMasLocationID" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="PartyID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="IssuePurposeID" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DestroyApproved" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Association Name="IV_MiscellaneousIssueMaster_IV_MiscellaneousIssueDetail" Member="IV_MiscellaneousIssueDetails" ThisKey="MiscellaneousIssueMasterID" OtherKey="MiscellaneousIssueMasterID" Type="IV_MiscellaneousIssueDetail" />
+      <Association Name="MST_CCN_IV_MiscellaneousIssueMaster" Member="MST_CCN" ThisKey="CCNID" OtherKey="CCNID" Type="MST_CCN" IsForeignKey="true" />
+      <Association Name="MST_BIN_IV_MiscellaneousIssueMaster" Member="MST_BIN" ThisKey="DesBinID" OtherKey="BinID" Type="MST_BIN" IsForeignKey="true" />
+      <Association Name="MST_Location_IV_MiscellaneousIssueMaster" Member="MST_Location" ThisKey="DesLocationID" OtherKey="LocationID" Type="MST_Location" IsForeignKey="true" />
+      <Association Name="MST_MasterLocation_IV_MiscellaneousIssueMaster" Member="MST_MasterLocation" ThisKey="DesMasLocationID" OtherKey="MasterLocationID" Type="MST_MasterLocation" IsForeignKey="true" />
+      <Association Name="PRO_IssuePurpose_IV_MiscellaneousIssueMaster" Member="PRO_IssuePurpose" ThisKey="IssuePurposeID" OtherKey="IssuePurposeID" Type="PRO_IssuePurpose" IsForeignKey="true" />
+      <Association Name="MST_Party_IV_MiscellaneousIssueMaster" Member="MST_Party" ThisKey="PartyID" OtherKey="PartyID" Type="MST_Party" IsForeignKey="true" />
+      <Association Name="MST_MasterLocation_IV_MiscellaneousIssueMaster1" Member="MST_MasterLocation1" ThisKey="SourceMasLocationID" OtherKey="MasterLocationID" Type="MST_MasterLocation" IsForeignKey="true" />
+      <Association Name="MST_Location_IV_MiscellaneousIssueMaster1" Member="MST_Location1" ThisKey="SourceLocationID" OtherKey="LocationID" Type="MST_Location" IsForeignKey="true" />
+      <Association Name="MST_BIN_IV_MiscellaneousIssueMaster1" Member="MST_BIN1" ThisKey="SourceBinID" OtherKey="BinID" Type="MST_BIN" IsForeignKey="true" />
     </Type>
   </Table>
   <Function Name="dbo.GetAvailableQtyByPostDate" Method="GetAvailableQtyByPostDate">

@@ -1,3 +1,11 @@
+IF NOT EXISTS(SELECT Name FROM sys.columns  WHERE Name = N'DestroyApproved' AND Object_ID = Object_ID(N'IV_MiscellaneousIssueMaster'))
+BEGIN
+    ALTER TABLE IV_MiscellaneousIssueMaster ADD DestroyApproved int NULL
+	-- set Approved for all
+	UPDATE IV_MiscellaneousIssueMaster SET DestroyApproved = 1 WHERE IssuePurposeID = 14
+END
+GO
+
 /****** Object:  Table [dbo].[ITM_ItemGroup]    Script Date: 3/23/2016 9:09:13 AM ******/
 SET ANSI_NULLS ON
 GO

@@ -97,5 +97,7 @@ namespace PCSComMaterials.Inventory.DS
 			set { mIssuePurposeID = value; }
 			get { return mIssuePurposeID; }
 		}
-	}
+
+        public int DestroyApproved { get; set; }
+    }
 }

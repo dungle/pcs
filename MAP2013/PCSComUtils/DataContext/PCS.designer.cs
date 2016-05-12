@@ -201,9 +201,6 @@ namespace PCSComUtils.DataContext
     partial void InsertIV_MasLocCache(IV_MasLocCache instance);
     partial void UpdateIV_MasLocCache(IV_MasLocCache instance);
     partial void DeleteIV_MasLocCache(IV_MasLocCache instance);
-    partial void InsertIV_MiscellaneousIssueMaster(IV_MiscellaneousIssueMaster instance);
-    partial void UpdateIV_MiscellaneousIssueMaster(IV_MiscellaneousIssueMaster instance);
-    partial void DeleteIV_MiscellaneousIssueMaster(IV_MiscellaneousIssueMaster instance);
     partial void InsertIV_OnhandPeriod(IV_OnhandPeriod instance);
     partial void UpdateIV_OnhandPeriod(IV_OnhandPeriod instance);
     partial void DeleteIV_OnhandPeriod(IV_OnhandPeriod instance);
@@ -666,6 +663,9 @@ namespace PCSComUtils.DataContext
     partial void InsertITM_ItemGroup(ITM_ItemGroup instance);
     partial void UpdateITM_ItemGroup(ITM_ItemGroup instance);
     partial void DeleteITM_ItemGroup(ITM_ItemGroup instance);
+    partial void InsertIV_MiscellaneousIssueMaster(IV_MiscellaneousIssueMaster instance);
+    partial void UpdateIV_MiscellaneousIssueMaster(IV_MiscellaneousIssueMaster instance);
+    partial void DeleteIV_MiscellaneousIssueMaster(IV_MiscellaneousIssueMaster instance);
     #endregion
 		
 		public PCSDataContext() : 
@@ -1151,14 +1151,6 @@ namespace PCSComUtils.DataContext
 			get
 			{
 				return this.GetTable<IV_MasLocCache>();
-			}
-		}
-		
-		public System.Data.Linq.Table<IV_MiscellaneousIssueMaster> IV_MiscellaneousIssueMasters
-		{
-			get
-			{
-				return this.GetTable<IV_MiscellaneousIssueMaster>();
 			}
 		}
 		
@@ -3519,6 +3511,14 @@ namespace PCSComUtils.DataContext
 			get
 			{
 				return this.GetTable<ITM_ItemGroup>();
+			}
+		}
+		
+		public System.Data.Linq.Table<IV_MiscellaneousIssueMaster> IV_MiscellaneousIssueMasters
+		{
+			get
+			{
+				return this.GetTable<IV_MiscellaneousIssueMaster>();
 			}
 		}
 		
@@ -12400,7 +12400,7 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Picture", DbType="Image", UpdateCheck=UpdateCheck.Never)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Picture", DbType="Image", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
 		public System.Data.Linq.Binary Picture
 		{
 			get
@@ -13923,7 +13923,7 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PictureImage", DbType="Image", UpdateCheck=UpdateCheck.Never)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PictureImage", DbType="Image", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
 		public System.Data.Linq.Binary PictureImage
 		{
 			get
@@ -20860,801 +20860,6 @@ namespace PCSComUtils.DataContext
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.IV_MiscellaneousIssueMaster")]
-	public partial class IV_MiscellaneousIssueMaster : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _MiscellaneousIssueMasterID;
-		
-		private System.DateTime _PostDate;
-		
-		private string _Comment;
-		
-		private string _TransNo;
-		
-		private string _UserName;
-		
-		private System.Nullable<System.DateTime> _LastChange;
-		
-		private int _CCNID;
-		
-		private System.Nullable<int> _DesBinID;
-		
-		private System.Nullable<int> _SourceBinID;
-		
-		private System.Nullable<int> _DesLocationID;
-		
-		private int _SourceLocationID;
-		
-		private System.Nullable<int> _DesMasLocationID;
-		
-		private int _SourceMasLocationID;
-		
-		private System.Nullable<int> _PartyID;
-		
-		private System.Nullable<int> _IssuePurposeID;
-		
-		private EntitySet<IV_MiscellaneousIssueDetail> _IV_MiscellaneousIssueDetails;
-		
-		private EntityRef<MST_BIN> _MST_BIN;
-		
-		private EntityRef<MST_BIN> _MST_BIN1;
-		
-		private EntityRef<MST_CCN> _MST_CCN;
-		
-		private EntityRef<MST_Location> _MST_Location;
-		
-		private EntityRef<MST_Location> _MST_Location1;
-		
-		private EntityRef<MST_MasterLocation> _MST_MasterLocation;
-		
-		private EntityRef<MST_MasterLocation> _MST_MasterLocation1;
-		
-		private EntityRef<MST_Party> _MST_Party;
-		
-		private EntityRef<PRO_IssuePurpose> _PRO_IssuePurpose;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnMiscellaneousIssueMasterIDChanging(int value);
-    partial void OnMiscellaneousIssueMasterIDChanged();
-    partial void OnPostDateChanging(System.DateTime value);
-    partial void OnPostDateChanged();
-    partial void OnCommentChanging(string value);
-    partial void OnCommentChanged();
-    partial void OnTransNoChanging(string value);
-    partial void OnTransNoChanged();
-    partial void OnUserNameChanging(string value);
-    partial void OnUserNameChanged();
-    partial void OnLastChangeChanging(System.Nullable<System.DateTime> value);
-    partial void OnLastChangeChanged();
-    partial void OnCCNIDChanging(int value);
-    partial void OnCCNIDChanged();
-    partial void OnDesBinIDChanging(System.Nullable<int> value);
-    partial void OnDesBinIDChanged();
-    partial void OnSourceBinIDChanging(System.Nullable<int> value);
-    partial void OnSourceBinIDChanged();
-    partial void OnDesLocationIDChanging(System.Nullable<int> value);
-    partial void OnDesLocationIDChanged();
-    partial void OnSourceLocationIDChanging(int value);
-    partial void OnSourceLocationIDChanged();
-    partial void OnDesMasLocationIDChanging(System.Nullable<int> value);
-    partial void OnDesMasLocationIDChanged();
-    partial void OnSourceMasLocationIDChanging(int value);
-    partial void OnSourceMasLocationIDChanged();
-    partial void OnPartyIDChanging(System.Nullable<int> value);
-    partial void OnPartyIDChanged();
-    partial void OnIssuePurposeIDChanging(System.Nullable<int> value);
-    partial void OnIssuePurposeIDChanged();
-    #endregion
-		
-		public IV_MiscellaneousIssueMaster()
-		{
-			this._IV_MiscellaneousIssueDetails = new EntitySet<IV_MiscellaneousIssueDetail>(new Action<IV_MiscellaneousIssueDetail>(this.attach_IV_MiscellaneousIssueDetails), new Action<IV_MiscellaneousIssueDetail>(this.detach_IV_MiscellaneousIssueDetails));
-			this._MST_BIN = default(EntityRef<MST_BIN>);
-			this._MST_BIN1 = default(EntityRef<MST_BIN>);
-			this._MST_CCN = default(EntityRef<MST_CCN>);
-			this._MST_Location = default(EntityRef<MST_Location>);
-			this._MST_Location1 = default(EntityRef<MST_Location>);
-			this._MST_MasterLocation = default(EntityRef<MST_MasterLocation>);
-			this._MST_MasterLocation1 = default(EntityRef<MST_MasterLocation>);
-			this._MST_Party = default(EntityRef<MST_Party>);
-			this._PRO_IssuePurpose = default(EntityRef<PRO_IssuePurpose>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MiscellaneousIssueMasterID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int MiscellaneousIssueMasterID
-		{
-			get
-			{
-				return this._MiscellaneousIssueMasterID;
-			}
-			set
-			{
-				if ((this._MiscellaneousIssueMasterID != value))
-				{
-					this.OnMiscellaneousIssueMasterIDChanging(value);
-					this.SendPropertyChanging();
-					this._MiscellaneousIssueMasterID = value;
-					this.SendPropertyChanged("MiscellaneousIssueMasterID");
-					this.OnMiscellaneousIssueMasterIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PostDate", DbType="DateTime NOT NULL")]
-		public System.DateTime PostDate
-		{
-			get
-			{
-				return this._PostDate;
-			}
-			set
-			{
-				if ((this._PostDate != value))
-				{
-					this.OnPostDateChanging(value);
-					this.SendPropertyChanging();
-					this._PostDate = value;
-					this.SendPropertyChanged("PostDate");
-					this.OnPostDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Comment", DbType="NVarChar(200)")]
-		public string Comment
-		{
-			get
-			{
-				return this._Comment;
-			}
-			set
-			{
-				if ((this._Comment != value))
-				{
-					this.OnCommentChanging(value);
-					this.SendPropertyChanging();
-					this._Comment = value;
-					this.SendPropertyChanged("Comment");
-					this.OnCommentChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TransNo", DbType="NVarChar(30) NOT NULL", CanBeNull=false)]
-		public string TransNo
-		{
-			get
-			{
-				return this._TransNo;
-			}
-			set
-			{
-				if ((this._TransNo != value))
-				{
-					this.OnTransNoChanging(value);
-					this.SendPropertyChanging();
-					this._TransNo = value;
-					this.SendPropertyChanged("TransNo");
-					this.OnTransNoChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserName", DbType="NVarChar(40)")]
-		public string UserName
-		{
-			get
-			{
-				return this._UserName;
-			}
-			set
-			{
-				if ((this._UserName != value))
-				{
-					this.OnUserNameChanging(value);
-					this.SendPropertyChanging();
-					this._UserName = value;
-					this.SendPropertyChanged("UserName");
-					this.OnUserNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastChange", DbType="DateTime")]
-		public System.Nullable<System.DateTime> LastChange
-		{
-			get
-			{
-				return this._LastChange;
-			}
-			set
-			{
-				if ((this._LastChange != value))
-				{
-					this.OnLastChangeChanging(value);
-					this.SendPropertyChanging();
-					this._LastChange = value;
-					this.SendPropertyChanged("LastChange");
-					this.OnLastChangeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CCNID", DbType="Int NOT NULL")]
-		public int CCNID
-		{
-			get
-			{
-				return this._CCNID;
-			}
-			set
-			{
-				if ((this._CCNID != value))
-				{
-					if (this._MST_CCN.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnCCNIDChanging(value);
-					this.SendPropertyChanging();
-					this._CCNID = value;
-					this.SendPropertyChanged("CCNID");
-					this.OnCCNIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DesBinID", DbType="Int")]
-		public System.Nullable<int> DesBinID
-		{
-			get
-			{
-				return this._DesBinID;
-			}
-			set
-			{
-				if ((this._DesBinID != value))
-				{
-					if (this._MST_BIN.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnDesBinIDChanging(value);
-					this.SendPropertyChanging();
-					this._DesBinID = value;
-					this.SendPropertyChanged("DesBinID");
-					this.OnDesBinIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SourceBinID", DbType="Int")]
-		public System.Nullable<int> SourceBinID
-		{
-			get
-			{
-				return this._SourceBinID;
-			}
-			set
-			{
-				if ((this._SourceBinID != value))
-				{
-					if (this._MST_BIN1.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnSourceBinIDChanging(value);
-					this.SendPropertyChanging();
-					this._SourceBinID = value;
-					this.SendPropertyChanged("SourceBinID");
-					this.OnSourceBinIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DesLocationID", DbType="Int")]
-		public System.Nullable<int> DesLocationID
-		{
-			get
-			{
-				return this._DesLocationID;
-			}
-			set
-			{
-				if ((this._DesLocationID != value))
-				{
-					if (this._MST_Location.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnDesLocationIDChanging(value);
-					this.SendPropertyChanging();
-					this._DesLocationID = value;
-					this.SendPropertyChanged("DesLocationID");
-					this.OnDesLocationIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SourceLocationID", DbType="Int NOT NULL")]
-		public int SourceLocationID
-		{
-			get
-			{
-				return this._SourceLocationID;
-			}
-			set
-			{
-				if ((this._SourceLocationID != value))
-				{
-					if (this._MST_Location1.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnSourceLocationIDChanging(value);
-					this.SendPropertyChanging();
-					this._SourceLocationID = value;
-					this.SendPropertyChanged("SourceLocationID");
-					this.OnSourceLocationIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DesMasLocationID", DbType="Int")]
-		public System.Nullable<int> DesMasLocationID
-		{
-			get
-			{
-				return this._DesMasLocationID;
-			}
-			set
-			{
-				if ((this._DesMasLocationID != value))
-				{
-					if (this._MST_MasterLocation.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnDesMasLocationIDChanging(value);
-					this.SendPropertyChanging();
-					this._DesMasLocationID = value;
-					this.SendPropertyChanged("DesMasLocationID");
-					this.OnDesMasLocationIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SourceMasLocationID", DbType="Int NOT NULL")]
-		public int SourceMasLocationID
-		{
-			get
-			{
-				return this._SourceMasLocationID;
-			}
-			set
-			{
-				if ((this._SourceMasLocationID != value))
-				{
-					if (this._MST_MasterLocation1.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnSourceMasLocationIDChanging(value);
-					this.SendPropertyChanging();
-					this._SourceMasLocationID = value;
-					this.SendPropertyChanged("SourceMasLocationID");
-					this.OnSourceMasLocationIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PartyID", DbType="Int")]
-		public System.Nullable<int> PartyID
-		{
-			get
-			{
-				return this._PartyID;
-			}
-			set
-			{
-				if ((this._PartyID != value))
-				{
-					if (this._MST_Party.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnPartyIDChanging(value);
-					this.SendPropertyChanging();
-					this._PartyID = value;
-					this.SendPropertyChanged("PartyID");
-					this.OnPartyIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IssuePurposeID", DbType="Int")]
-		public System.Nullable<int> IssuePurposeID
-		{
-			get
-			{
-				return this._IssuePurposeID;
-			}
-			set
-			{
-				if ((this._IssuePurposeID != value))
-				{
-					if (this._PRO_IssuePurpose.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnIssuePurposeIDChanging(value);
-					this.SendPropertyChanging();
-					this._IssuePurposeID = value;
-					this.SendPropertyChanged("IssuePurposeID");
-					this.OnIssuePurposeIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="IV_MiscellaneousIssueMaster_IV_MiscellaneousIssueDetail", Storage="_IV_MiscellaneousIssueDetails", ThisKey="MiscellaneousIssueMasterID", OtherKey="MiscellaneousIssueMasterID")]
-		public EntitySet<IV_MiscellaneousIssueDetail> IV_MiscellaneousIssueDetails
-		{
-			get
-			{
-				return this._IV_MiscellaneousIssueDetails;
-			}
-			set
-			{
-				this._IV_MiscellaneousIssueDetails.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_BIN_IV_MiscellaneousIssueMaster", Storage="_MST_BIN", ThisKey="DesBinID", OtherKey="BinID", IsForeignKey=true)]
-		public MST_BIN MST_BIN
-		{
-			get
-			{
-				return this._MST_BIN.Entity;
-			}
-			set
-			{
-				MST_BIN previousValue = this._MST_BIN.Entity;
-				if (((previousValue != value) 
-							|| (this._MST_BIN.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._MST_BIN.Entity = null;
-						previousValue.IV_MiscellaneousIssueMasters.Remove(this);
-					}
-					this._MST_BIN.Entity = value;
-					if ((value != null))
-					{
-						value.IV_MiscellaneousIssueMasters.Add(this);
-						this._DesBinID = value.BinID;
-					}
-					else
-					{
-						this._DesBinID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("MST_BIN");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_BIN_IV_MiscellaneousIssueMaster1", Storage="_MST_BIN1", ThisKey="SourceBinID", OtherKey="BinID", IsForeignKey=true)]
-		public MST_BIN MST_BIN1
-		{
-			get
-			{
-				return this._MST_BIN1.Entity;
-			}
-			set
-			{
-				MST_BIN previousValue = this._MST_BIN1.Entity;
-				if (((previousValue != value) 
-							|| (this._MST_BIN1.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._MST_BIN1.Entity = null;
-						previousValue.IV_MiscellaneousIssueMasters1.Remove(this);
-					}
-					this._MST_BIN1.Entity = value;
-					if ((value != null))
-					{
-						value.IV_MiscellaneousIssueMasters1.Add(this);
-						this._SourceBinID = value.BinID;
-					}
-					else
-					{
-						this._SourceBinID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("MST_BIN1");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_CCN_IV_MiscellaneousIssueMaster", Storage="_MST_CCN", ThisKey="CCNID", OtherKey="CCNID", IsForeignKey=true)]
-		public MST_CCN MST_CCN
-		{
-			get
-			{
-				return this._MST_CCN.Entity;
-			}
-			set
-			{
-				MST_CCN previousValue = this._MST_CCN.Entity;
-				if (((previousValue != value) 
-							|| (this._MST_CCN.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._MST_CCN.Entity = null;
-						previousValue.IV_MiscellaneousIssueMasters.Remove(this);
-					}
-					this._MST_CCN.Entity = value;
-					if ((value != null))
-					{
-						value.IV_MiscellaneousIssueMasters.Add(this);
-						this._CCNID = value.CCNID;
-					}
-					else
-					{
-						this._CCNID = default(int);
-					}
-					this.SendPropertyChanged("MST_CCN");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_Location_IV_MiscellaneousIssueMaster", Storage="_MST_Location", ThisKey="DesLocationID", OtherKey="LocationID", IsForeignKey=true)]
-		public MST_Location MST_Location
-		{
-			get
-			{
-				return this._MST_Location.Entity;
-			}
-			set
-			{
-				MST_Location previousValue = this._MST_Location.Entity;
-				if (((previousValue != value) 
-							|| (this._MST_Location.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._MST_Location.Entity = null;
-						previousValue.IV_MiscellaneousIssueMasters.Remove(this);
-					}
-					this._MST_Location.Entity = value;
-					if ((value != null))
-					{
-						value.IV_MiscellaneousIssueMasters.Add(this);
-						this._DesLocationID = value.LocationID;
-					}
-					else
-					{
-						this._DesLocationID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("MST_Location");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_Location_IV_MiscellaneousIssueMaster1", Storage="_MST_Location1", ThisKey="SourceLocationID", OtherKey="LocationID", IsForeignKey=true)]
-		public MST_Location MST_Location1
-		{
-			get
-			{
-				return this._MST_Location1.Entity;
-			}
-			set
-			{
-				MST_Location previousValue = this._MST_Location1.Entity;
-				if (((previousValue != value) 
-							|| (this._MST_Location1.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._MST_Location1.Entity = null;
-						previousValue.IV_MiscellaneousIssueMasters1.Remove(this);
-					}
-					this._MST_Location1.Entity = value;
-					if ((value != null))
-					{
-						value.IV_MiscellaneousIssueMasters1.Add(this);
-						this._SourceLocationID = value.LocationID;
-					}
-					else
-					{
-						this._SourceLocationID = default(int);
-					}
-					this.SendPropertyChanged("MST_Location1");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_MasterLocation_IV_MiscellaneousIssueMaster", Storage="_MST_MasterLocation", ThisKey="DesMasLocationID", OtherKey="MasterLocationID", IsForeignKey=true)]
-		public MST_MasterLocation MST_MasterLocation
-		{
-			get
-			{
-				return this._MST_MasterLocation.Entity;
-			}
-			set
-			{
-				MST_MasterLocation previousValue = this._MST_MasterLocation.Entity;
-				if (((previousValue != value) 
-							|| (this._MST_MasterLocation.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._MST_MasterLocation.Entity = null;
-						previousValue.IV_MiscellaneousIssueMasters.Remove(this);
-					}
-					this._MST_MasterLocation.Entity = value;
-					if ((value != null))
-					{
-						value.IV_MiscellaneousIssueMasters.Add(this);
-						this._DesMasLocationID = value.MasterLocationID;
-					}
-					else
-					{
-						this._DesMasLocationID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("MST_MasterLocation");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_MasterLocation_IV_MiscellaneousIssueMaster1", Storage="_MST_MasterLocation1", ThisKey="SourceMasLocationID", OtherKey="MasterLocationID", IsForeignKey=true)]
-		public MST_MasterLocation MST_MasterLocation1
-		{
-			get
-			{
-				return this._MST_MasterLocation1.Entity;
-			}
-			set
-			{
-				MST_MasterLocation previousValue = this._MST_MasterLocation1.Entity;
-				if (((previousValue != value) 
-							|| (this._MST_MasterLocation1.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._MST_MasterLocation1.Entity = null;
-						previousValue.IV_MiscellaneousIssueMasters1.Remove(this);
-					}
-					this._MST_MasterLocation1.Entity = value;
-					if ((value != null))
-					{
-						value.IV_MiscellaneousIssueMasters1.Add(this);
-						this._SourceMasLocationID = value.MasterLocationID;
-					}
-					else
-					{
-						this._SourceMasLocationID = default(int);
-					}
-					this.SendPropertyChanged("MST_MasterLocation1");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_Party_IV_MiscellaneousIssueMaster", Storage="_MST_Party", ThisKey="PartyID", OtherKey="PartyID", IsForeignKey=true)]
-		public MST_Party MST_Party
-		{
-			get
-			{
-				return this._MST_Party.Entity;
-			}
-			set
-			{
-				MST_Party previousValue = this._MST_Party.Entity;
-				if (((previousValue != value) 
-							|| (this._MST_Party.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._MST_Party.Entity = null;
-						previousValue.IV_MiscellaneousIssueMasters.Remove(this);
-					}
-					this._MST_Party.Entity = value;
-					if ((value != null))
-					{
-						value.IV_MiscellaneousIssueMasters.Add(this);
-						this._PartyID = value.PartyID;
-					}
-					else
-					{
-						this._PartyID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("MST_Party");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PRO_IssuePurpose_IV_MiscellaneousIssueMaster", Storage="_PRO_IssuePurpose", ThisKey="IssuePurposeID", OtherKey="IssuePurposeID", IsForeignKey=true)]
-		public PRO_IssuePurpose PRO_IssuePurpose
-		{
-			get
-			{
-				return this._PRO_IssuePurpose.Entity;
-			}
-			set
-			{
-				PRO_IssuePurpose previousValue = this._PRO_IssuePurpose.Entity;
-				if (((previousValue != value) 
-							|| (this._PRO_IssuePurpose.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._PRO_IssuePurpose.Entity = null;
-						previousValue.IV_MiscellaneousIssueMasters.Remove(this);
-					}
-					this._PRO_IssuePurpose.Entity = value;
-					if ((value != null))
-					{
-						value.IV_MiscellaneousIssueMasters.Add(this);
-						this._IssuePurposeID = value.IssuePurposeID;
-					}
-					else
-					{
-						this._IssuePurposeID = default(Nullable<int>);
-					}
-					this.SendPropertyChanged("PRO_IssuePurpose");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_IV_MiscellaneousIssueDetails(IV_MiscellaneousIssueDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.IV_MiscellaneousIssueMaster = this;
-		}
-		
-		private void detach_IV_MiscellaneousIssueDetails(IV_MiscellaneousIssueDetail entity)
-		{
-			this.SendPropertyChanging();
-			entity.IV_MiscellaneousIssueMaster = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.IV_OnhandPeriod")]
 	public partial class IV_OnhandPeriod : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -24049,10 +23254,6 @@ namespace PCSComUtils.DataContext
 		
 		private EntitySet<IV_DocToStock> _IV_DocToStocks;
 		
-		private EntitySet<IV_MiscellaneousIssueMaster> _IV_MiscellaneousIssueMasters;
-		
-		private EntitySet<IV_MiscellaneousIssueMaster> _IV_MiscellaneousIssueMasters1;
-		
 		private EntitySet<IV_StockTakingDifferent> _IV_StockTakingDifferents;
 		
 		private EntitySet<IV_StockTakingMaster> _IV_StockTakingMasters;
@@ -24082,6 +23283,10 @@ namespace PCSComUtils.DataContext
 		private EntitySet<SO_ConfirmShipMaster> _SO_ConfirmShipMasters;
 		
 		private EntitySet<ITM_Product> _ITM_Products;
+		
+		private EntitySet<IV_MiscellaneousIssueMaster> _IV_MiscellaneousIssueMasters;
+		
+		private EntitySet<IV_MiscellaneousIssueMaster> _IV_MiscellaneousIssueMasters1;
 		
 		private EntityRef<enm_BINType> _enm_BINType;
 		
@@ -24133,8 +23338,6 @@ namespace PCSComUtils.DataContext
 			this._IV_BalanceBins = new EntitySet<IV_BalanceBin>(new Action<IV_BalanceBin>(this.attach_IV_BalanceBins), new Action<IV_BalanceBin>(this.detach_IV_BalanceBins));
 			this._IV_BinCaches = new EntitySet<IV_BinCache>(new Action<IV_BinCache>(this.attach_IV_BinCaches), new Action<IV_BinCache>(this.detach_IV_BinCaches));
 			this._IV_DocToStocks = new EntitySet<IV_DocToStock>(new Action<IV_DocToStock>(this.attach_IV_DocToStocks), new Action<IV_DocToStock>(this.detach_IV_DocToStocks));
-			this._IV_MiscellaneousIssueMasters = new EntitySet<IV_MiscellaneousIssueMaster>(new Action<IV_MiscellaneousIssueMaster>(this.attach_IV_MiscellaneousIssueMasters), new Action<IV_MiscellaneousIssueMaster>(this.detach_IV_MiscellaneousIssueMasters));
-			this._IV_MiscellaneousIssueMasters1 = new EntitySet<IV_MiscellaneousIssueMaster>(new Action<IV_MiscellaneousIssueMaster>(this.attach_IV_MiscellaneousIssueMasters1), new Action<IV_MiscellaneousIssueMaster>(this.detach_IV_MiscellaneousIssueMasters1));
 			this._IV_StockTakingDifferents = new EntitySet<IV_StockTakingDifferent>(new Action<IV_StockTakingDifferent>(this.attach_IV_StockTakingDifferents), new Action<IV_StockTakingDifferent>(this.detach_IV_StockTakingDifferents));
 			this._IV_StockTakingMasters = new EntitySet<IV_StockTakingMaster>(new Action<IV_StockTakingMaster>(this.attach_IV_StockTakingMasters), new Action<IV_StockTakingMaster>(this.detach_IV_StockTakingMasters));
 			this._MST_TransactionHistories = new EntitySet<MST_TransactionHistory>(new Action<MST_TransactionHistory>(this.attach_MST_TransactionHistories), new Action<MST_TransactionHistory>(this.detach_MST_TransactionHistories));
@@ -24150,6 +23353,8 @@ namespace PCSComUtils.DataContext
 			this._SO_InvoiceMasters = new EntitySet<SO_InvoiceMaster>(new Action<SO_InvoiceMaster>(this.attach_SO_InvoiceMasters), new Action<SO_InvoiceMaster>(this.detach_SO_InvoiceMasters));
 			this._SO_ConfirmShipMasters = new EntitySet<SO_ConfirmShipMaster>(new Action<SO_ConfirmShipMaster>(this.attach_SO_ConfirmShipMasters), new Action<SO_ConfirmShipMaster>(this.detach_SO_ConfirmShipMasters));
 			this._ITM_Products = new EntitySet<ITM_Product>(new Action<ITM_Product>(this.attach_ITM_Products), new Action<ITM_Product>(this.detach_ITM_Products));
+			this._IV_MiscellaneousIssueMasters = new EntitySet<IV_MiscellaneousIssueMaster>(new Action<IV_MiscellaneousIssueMaster>(this.attach_IV_MiscellaneousIssueMasters), new Action<IV_MiscellaneousIssueMaster>(this.detach_IV_MiscellaneousIssueMasters));
+			this._IV_MiscellaneousIssueMasters1 = new EntitySet<IV_MiscellaneousIssueMaster>(new Action<IV_MiscellaneousIssueMaster>(this.attach_IV_MiscellaneousIssueMasters1), new Action<IV_MiscellaneousIssueMaster>(this.detach_IV_MiscellaneousIssueMasters1));
 			this._enm_BINType = default(EntityRef<enm_BINType>);
 			this._enm_LocationType = default(EntityRef<enm_LocationType>);
 			this._MST_Location = default(EntityRef<MST_Location>);
@@ -24501,32 +23706,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_BIN_IV_MiscellaneousIssueMaster", Storage="_IV_MiscellaneousIssueMasters", ThisKey="BinID", OtherKey="DesBinID")]
-		public EntitySet<IV_MiscellaneousIssueMaster> IV_MiscellaneousIssueMasters
-		{
-			get
-			{
-				return this._IV_MiscellaneousIssueMasters;
-			}
-			set
-			{
-				this._IV_MiscellaneousIssueMasters.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_BIN_IV_MiscellaneousIssueMaster1", Storage="_IV_MiscellaneousIssueMasters1", ThisKey="BinID", OtherKey="SourceBinID")]
-		public EntitySet<IV_MiscellaneousIssueMaster> IV_MiscellaneousIssueMasters1
-		{
-			get
-			{
-				return this._IV_MiscellaneousIssueMasters1;
-			}
-			set
-			{
-				this._IV_MiscellaneousIssueMasters1.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_BIN_IV_StockTakingDifferent", Storage="_IV_StockTakingDifferents", ThisKey="BinID", OtherKey="BinID")]
 		public EntitySet<IV_StockTakingDifferent> IV_StockTakingDifferents
 		{
@@ -24719,6 +23898,32 @@ namespace PCSComUtils.DataContext
 			set
 			{
 				this._ITM_Products.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_BIN_IV_MiscellaneousIssueMaster", Storage="_IV_MiscellaneousIssueMasters", ThisKey="BinID", OtherKey="DesBinID")]
+		public EntitySet<IV_MiscellaneousIssueMaster> IV_MiscellaneousIssueMasters
+		{
+			get
+			{
+				return this._IV_MiscellaneousIssueMasters;
+			}
+			set
+			{
+				this._IV_MiscellaneousIssueMasters.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_BIN_IV_MiscellaneousIssueMaster1", Storage="_IV_MiscellaneousIssueMasters1", ThisKey="BinID", OtherKey="SourceBinID")]
+		public EntitySet<IV_MiscellaneousIssueMaster> IV_MiscellaneousIssueMasters1
+		{
+			get
+			{
+				return this._IV_MiscellaneousIssueMasters1;
+			}
+			set
+			{
+				this._IV_MiscellaneousIssueMasters1.Assign(value);
 			}
 		}
 		
@@ -25018,30 +24223,6 @@ namespace PCSComUtils.DataContext
 			entity.MST_BIN = null;
 		}
 		
-		private void attach_IV_MiscellaneousIssueMasters(IV_MiscellaneousIssueMaster entity)
-		{
-			this.SendPropertyChanging();
-			entity.MST_BIN = this;
-		}
-		
-		private void detach_IV_MiscellaneousIssueMasters(IV_MiscellaneousIssueMaster entity)
-		{
-			this.SendPropertyChanging();
-			entity.MST_BIN = null;
-		}
-		
-		private void attach_IV_MiscellaneousIssueMasters1(IV_MiscellaneousIssueMaster entity)
-		{
-			this.SendPropertyChanging();
-			entity.MST_BIN1 = this;
-		}
-		
-		private void detach_IV_MiscellaneousIssueMasters1(IV_MiscellaneousIssueMaster entity)
-		{
-			this.SendPropertyChanging();
-			entity.MST_BIN1 = null;
-		}
-		
 		private void attach_IV_StockTakingDifferents(IV_StockTakingDifferent entity)
 		{
 			this.SendPropertyChanging();
@@ -25220,6 +24401,30 @@ namespace PCSComUtils.DataContext
 		{
 			this.SendPropertyChanging();
 			entity.MST_BIN = null;
+		}
+		
+		private void attach_IV_MiscellaneousIssueMasters(IV_MiscellaneousIssueMaster entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_BIN = this;
+		}
+		
+		private void detach_IV_MiscellaneousIssueMasters(IV_MiscellaneousIssueMaster entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_BIN = null;
+		}
+		
+		private void attach_IV_MiscellaneousIssueMasters1(IV_MiscellaneousIssueMaster entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_BIN1 = this;
+		}
+		
+		private void detach_IV_MiscellaneousIssueMasters1(IV_MiscellaneousIssueMaster entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_BIN1 = null;
 		}
 	}
 	
@@ -25625,8 +24830,6 @@ namespace PCSComUtils.DataContext
 		
 		private EntitySet<IV_MasLocCache> _IV_MasLocCaches;
 		
-		private EntitySet<IV_MiscellaneousIssueMaster> _IV_MiscellaneousIssueMasters;
-		
 		private EntitySet<IV_StockTakingPeriod> _IV_StockTakingPeriods;
 		
 		private EntitySet<MST_AGC> _MST_AGCs;
@@ -25701,6 +24904,8 @@ namespace PCSComUtils.DataContext
 		
 		private EntitySet<ITM_Product> _ITM_Products;
 		
+		private EntitySet<IV_MiscellaneousIssueMaster> _IV_MiscellaneousIssueMasters;
+		
 		private EntityRef<MST_City> _MST_City;
 		
 		private EntityRef<MST_Country> _MST_Country;
@@ -25761,7 +24966,6 @@ namespace PCSComUtils.DataContext
 			this._IV_DocToStocks = new EntitySet<IV_DocToStock>(new Action<IV_DocToStock>(this.attach_IV_DocToStocks), new Action<IV_DocToStock>(this.detach_IV_DocToStocks));
 			this._IV_LocationCaches = new EntitySet<IV_LocationCache>(new Action<IV_LocationCache>(this.attach_IV_LocationCaches), new Action<IV_LocationCache>(this.detach_IV_LocationCaches));
 			this._IV_MasLocCaches = new EntitySet<IV_MasLocCache>(new Action<IV_MasLocCache>(this.attach_IV_MasLocCaches), new Action<IV_MasLocCache>(this.detach_IV_MasLocCaches));
-			this._IV_MiscellaneousIssueMasters = new EntitySet<IV_MiscellaneousIssueMaster>(new Action<IV_MiscellaneousIssueMaster>(this.attach_IV_MiscellaneousIssueMasters), new Action<IV_MiscellaneousIssueMaster>(this.detach_IV_MiscellaneousIssueMasters));
 			this._IV_StockTakingPeriods = new EntitySet<IV_StockTakingPeriod>(new Action<IV_StockTakingPeriod>(this.attach_IV_StockTakingPeriods), new Action<IV_StockTakingPeriod>(this.detach_IV_StockTakingPeriods));
 			this._MST_AGCs = new EntitySet<MST_AGC>(new Action<MST_AGC>(this.attach_MST_AGCs), new Action<MST_AGC>(this.detach_MST_AGCs));
 			this._MST_ApprovalLevels = new EntitySet<MST_ApprovalLevel>(new Action<MST_ApprovalLevel>(this.attach_MST_ApprovalLevels), new Action<MST_ApprovalLevel>(this.detach_MST_ApprovalLevels));
@@ -25799,6 +25003,7 @@ namespace PCSComUtils.DataContext
 			this._SO_InvoiceMasters = new EntitySet<SO_InvoiceMaster>(new Action<SO_InvoiceMaster>(this.attach_SO_InvoiceMasters), new Action<SO_InvoiceMaster>(this.detach_SO_InvoiceMasters));
 			this._SO_ConfirmShipMasters = new EntitySet<SO_ConfirmShipMaster>(new Action<SO_ConfirmShipMaster>(this.attach_SO_ConfirmShipMasters), new Action<SO_ConfirmShipMaster>(this.detach_SO_ConfirmShipMasters));
 			this._ITM_Products = new EntitySet<ITM_Product>(new Action<ITM_Product>(this.attach_ITM_Products), new Action<ITM_Product>(this.detach_ITM_Products));
+			this._IV_MiscellaneousIssueMasters = new EntitySet<IV_MiscellaneousIssueMaster>(new Action<IV_MiscellaneousIssueMaster>(this.attach_IV_MiscellaneousIssueMasters), new Action<IV_MiscellaneousIssueMaster>(this.detach_IV_MiscellaneousIssueMasters));
 			this._MST_City = default(EntityRef<MST_City>);
 			this._MST_Country = default(EntityRef<MST_Country>);
 			this._MST_Currency = default(EntityRef<MST_Currency>);
@@ -26292,19 +25497,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_CCN_IV_MiscellaneousIssueMaster", Storage="_IV_MiscellaneousIssueMasters", ThisKey="CCNID", OtherKey="CCNID")]
-		public EntitySet<IV_MiscellaneousIssueMaster> IV_MiscellaneousIssueMasters
-		{
-			get
-			{
-				return this._IV_MiscellaneousIssueMasters;
-			}
-			set
-			{
-				this._IV_MiscellaneousIssueMasters.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_CCN_IV_StockTakingPeriod", Storage="_IV_StockTakingPeriods", ThisKey="CCNID", OtherKey="CCNID")]
 		public EntitySet<IV_StockTakingPeriod> IV_StockTakingPeriods
 		{
@@ -26786,6 +25978,19 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_CCN_IV_MiscellaneousIssueMaster", Storage="_IV_MiscellaneousIssueMasters", ThisKey="CCNID", OtherKey="CCNID")]
+		public EntitySet<IV_MiscellaneousIssueMaster> IV_MiscellaneousIssueMasters
+		{
+			get
+			{
+				return this._IV_MiscellaneousIssueMasters;
+			}
+			set
+			{
+				this._IV_MiscellaneousIssueMasters.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_City_MST_CCN", Storage="_MST_City", ThisKey="CityID", OtherKey="CityID", IsForeignKey=true)]
 		public MST_City MST_City
 		{
@@ -27057,18 +26262,6 @@ namespace PCSComUtils.DataContext
 		}
 		
 		private void detach_IV_MasLocCaches(IV_MasLocCache entity)
-		{
-			this.SendPropertyChanging();
-			entity.MST_CCN = null;
-		}
-		
-		private void attach_IV_MiscellaneousIssueMasters(IV_MiscellaneousIssueMaster entity)
-		{
-			this.SendPropertyChanging();
-			entity.MST_CCN = this;
-		}
-		
-		private void detach_IV_MiscellaneousIssueMasters(IV_MiscellaneousIssueMaster entity)
 		{
 			this.SendPropertyChanging();
 			entity.MST_CCN = null;
@@ -27513,6 +26706,18 @@ namespace PCSComUtils.DataContext
 		}
 		
 		private void detach_ITM_Products(ITM_Product entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_CCN = null;
+		}
+		
+		private void attach_IV_MiscellaneousIssueMasters(IV_MiscellaneousIssueMaster entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_CCN = this;
+		}
+		
+		private void detach_IV_MiscellaneousIssueMasters(IV_MiscellaneousIssueMaster entity)
 		{
 			this.SendPropertyChanging();
 			entity.MST_CCN = null;
@@ -30607,10 +29812,6 @@ namespace PCSComUtils.DataContext
 		
 		private EntitySet<IV_LocationCache> _IV_LocationCaches;
 		
-		private EntitySet<IV_MiscellaneousIssueMaster> _IV_MiscellaneousIssueMasters;
-		
-		private EntitySet<IV_MiscellaneousIssueMaster> _IV_MiscellaneousIssueMasters1;
-		
 		private EntitySet<IV_StockTakingDifferent> _IV_StockTakingDifferents;
 		
 		private EntitySet<IV_StockTakingMaster> _IV_StockTakingMasters;
@@ -30648,6 +29849,10 @@ namespace PCSComUtils.DataContext
 		private EntitySet<SO_ConfirmShipMaster> _SO_ConfirmShipMasters;
 		
 		private EntitySet<ITM_Product> _ITM_Products;
+		
+		private EntitySet<IV_MiscellaneousIssueMaster> _IV_MiscellaneousIssueMasters;
+		
+		private EntitySet<IV_MiscellaneousIssueMaster> _IV_MiscellaneousIssueMasters1;
 		
 		private EntityRef<MST_Department> _MST_Department;
 		
@@ -30692,8 +29897,6 @@ namespace PCSComUtils.DataContext
 			this._IV_BinCaches = new EntitySet<IV_BinCache>(new Action<IV_BinCache>(this.attach_IV_BinCaches), new Action<IV_BinCache>(this.detach_IV_BinCaches));
 			this._IV_DocToStocks = new EntitySet<IV_DocToStock>(new Action<IV_DocToStock>(this.attach_IV_DocToStocks), new Action<IV_DocToStock>(this.detach_IV_DocToStocks));
 			this._IV_LocationCaches = new EntitySet<IV_LocationCache>(new Action<IV_LocationCache>(this.attach_IV_LocationCaches), new Action<IV_LocationCache>(this.detach_IV_LocationCaches));
-			this._IV_MiscellaneousIssueMasters = new EntitySet<IV_MiscellaneousIssueMaster>(new Action<IV_MiscellaneousIssueMaster>(this.attach_IV_MiscellaneousIssueMasters), new Action<IV_MiscellaneousIssueMaster>(this.detach_IV_MiscellaneousIssueMasters));
-			this._IV_MiscellaneousIssueMasters1 = new EntitySet<IV_MiscellaneousIssueMaster>(new Action<IV_MiscellaneousIssueMaster>(this.attach_IV_MiscellaneousIssueMasters1), new Action<IV_MiscellaneousIssueMaster>(this.detach_IV_MiscellaneousIssueMasters1));
 			this._IV_StockTakingDifferents = new EntitySet<IV_StockTakingDifferent>(new Action<IV_StockTakingDifferent>(this.attach_IV_StockTakingDifferents), new Action<IV_StockTakingDifferent>(this.detach_IV_StockTakingDifferents));
 			this._IV_StockTakingMasters = new EntitySet<IV_StockTakingMaster>(new Action<IV_StockTakingMaster>(this.attach_IV_StockTakingMasters), new Action<IV_StockTakingMaster>(this.detach_IV_StockTakingMasters));
 			this._MST_BINs = new EntitySet<MST_BIN>(new Action<MST_BIN>(this.attach_MST_BINs), new Action<MST_BIN>(this.detach_MST_BINs));
@@ -30713,6 +29916,8 @@ namespace PCSComUtils.DataContext
 			this._SO_InvoiceMasters = new EntitySet<SO_InvoiceMaster>(new Action<SO_InvoiceMaster>(this.attach_SO_InvoiceMasters), new Action<SO_InvoiceMaster>(this.detach_SO_InvoiceMasters));
 			this._SO_ConfirmShipMasters = new EntitySet<SO_ConfirmShipMaster>(new Action<SO_ConfirmShipMaster>(this.attach_SO_ConfirmShipMasters), new Action<SO_ConfirmShipMaster>(this.detach_SO_ConfirmShipMasters));
 			this._ITM_Products = new EntitySet<ITM_Product>(new Action<ITM_Product>(this.attach_ITM_Products), new Action<ITM_Product>(this.detach_ITM_Products));
+			this._IV_MiscellaneousIssueMasters = new EntitySet<IV_MiscellaneousIssueMaster>(new Action<IV_MiscellaneousIssueMaster>(this.attach_IV_MiscellaneousIssueMasters), new Action<IV_MiscellaneousIssueMaster>(this.detach_IV_MiscellaneousIssueMasters));
+			this._IV_MiscellaneousIssueMasters1 = new EntitySet<IV_MiscellaneousIssueMaster>(new Action<IV_MiscellaneousIssueMaster>(this.attach_IV_MiscellaneousIssueMasters1), new Action<IV_MiscellaneousIssueMaster>(this.detach_IV_MiscellaneousIssueMasters1));
 			this._MST_Department = default(EntityRef<MST_Department>);
 			this._enm_LocationType = default(EntityRef<enm_LocationType>);
 			this._MST_MasterLocation = default(EntityRef<MST_MasterLocation>);
@@ -31048,32 +30253,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_Location_IV_MiscellaneousIssueMaster", Storage="_IV_MiscellaneousIssueMasters", ThisKey="LocationID", OtherKey="DesLocationID")]
-		public EntitySet<IV_MiscellaneousIssueMaster> IV_MiscellaneousIssueMasters
-		{
-			get
-			{
-				return this._IV_MiscellaneousIssueMasters;
-			}
-			set
-			{
-				this._IV_MiscellaneousIssueMasters.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_Location_IV_MiscellaneousIssueMaster1", Storage="_IV_MiscellaneousIssueMasters1", ThisKey="LocationID", OtherKey="SourceLocationID")]
-		public EntitySet<IV_MiscellaneousIssueMaster> IV_MiscellaneousIssueMasters1
-		{
-			get
-			{
-				return this._IV_MiscellaneousIssueMasters1;
-			}
-			set
-			{
-				this._IV_MiscellaneousIssueMasters1.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_Location_IV_StockTakingDifferent", Storage="_IV_StockTakingDifferents", ThisKey="LocationID", OtherKey="LocationID")]
 		public EntitySet<IV_StockTakingDifferent> IV_StockTakingDifferents
 		{
@@ -31321,6 +30500,32 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_Location_IV_MiscellaneousIssueMaster", Storage="_IV_MiscellaneousIssueMasters", ThisKey="LocationID", OtherKey="DesLocationID")]
+		public EntitySet<IV_MiscellaneousIssueMaster> IV_MiscellaneousIssueMasters
+		{
+			get
+			{
+				return this._IV_MiscellaneousIssueMasters;
+			}
+			set
+			{
+				this._IV_MiscellaneousIssueMasters.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_Location_IV_MiscellaneousIssueMaster1", Storage="_IV_MiscellaneousIssueMasters1", ThisKey="LocationID", OtherKey="SourceLocationID")]
+		public EntitySet<IV_MiscellaneousIssueMaster> IV_MiscellaneousIssueMasters1
+		{
+			get
+			{
+				return this._IV_MiscellaneousIssueMasters1;
+			}
+			set
+			{
+				this._IV_MiscellaneousIssueMasters1.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_Department_MST_Location", Storage="_MST_Department", ThisKey="DepartmentID", OtherKey="DepartmentID", IsForeignKey=true)]
 		public MST_Department MST_Department
 		{
@@ -31551,30 +30756,6 @@ namespace PCSComUtils.DataContext
 			entity.MST_Location = null;
 		}
 		
-		private void attach_IV_MiscellaneousIssueMasters(IV_MiscellaneousIssueMaster entity)
-		{
-			this.SendPropertyChanging();
-			entity.MST_Location = this;
-		}
-		
-		private void detach_IV_MiscellaneousIssueMasters(IV_MiscellaneousIssueMaster entity)
-		{
-			this.SendPropertyChanging();
-			entity.MST_Location = null;
-		}
-		
-		private void attach_IV_MiscellaneousIssueMasters1(IV_MiscellaneousIssueMaster entity)
-		{
-			this.SendPropertyChanging();
-			entity.MST_Location1 = this;
-		}
-		
-		private void detach_IV_MiscellaneousIssueMasters1(IV_MiscellaneousIssueMaster entity)
-		{
-			this.SendPropertyChanging();
-			entity.MST_Location1 = null;
-		}
-		
 		private void attach_IV_StockTakingDifferents(IV_StockTakingDifferent entity)
 		{
 			this.SendPropertyChanging();
@@ -31802,6 +30983,30 @@ namespace PCSComUtils.DataContext
 			this.SendPropertyChanging();
 			entity.MST_Location = null;
 		}
+		
+		private void attach_IV_MiscellaneousIssueMasters(IV_MiscellaneousIssueMaster entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_Location = this;
+		}
+		
+		private void detach_IV_MiscellaneousIssueMasters(IV_MiscellaneousIssueMaster entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_Location = null;
+		}
+		
+		private void attach_IV_MiscellaneousIssueMasters1(IV_MiscellaneousIssueMaster entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_Location1 = this;
+		}
+		
+		private void detach_IV_MiscellaneousIssueMasters1(IV_MiscellaneousIssueMaster entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_Location1 = null;
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MST_MasterLocation")]
@@ -31843,10 +31048,6 @@ namespace PCSComUtils.DataContext
 		private EntitySet<IV_LocationCache> _IV_LocationCaches;
 		
 		private EntitySet<IV_MasLocCache> _IV_MasLocCaches;
-		
-		private EntitySet<IV_MiscellaneousIssueMaster> _IV_MiscellaneousIssueMasters;
-		
-		private EntitySet<IV_MiscellaneousIssueMaster> _IV_MiscellaneousIssueMasters1;
 		
 		private EntitySet<MST_Location> _MST_Locations;
 		
@@ -31898,6 +31099,10 @@ namespace PCSComUtils.DataContext
 		
 		private EntitySet<ITM_Product> _ITM_Products;
 		
+		private EntitySet<IV_MiscellaneousIssueMaster> _IV_MiscellaneousIssueMasters;
+		
+		private EntitySet<IV_MiscellaneousIssueMaster> _IV_MiscellaneousIssueMasters1;
+		
 		private EntityRef<MST_CCN> _MST_CCN;
 		
 		private EntityRef<MST_City> _MST_City;
@@ -31938,8 +31143,6 @@ namespace PCSComUtils.DataContext
 			this._IV_DocToStocks = new EntitySet<IV_DocToStock>(new Action<IV_DocToStock>(this.attach_IV_DocToStocks), new Action<IV_DocToStock>(this.detach_IV_DocToStocks));
 			this._IV_LocationCaches = new EntitySet<IV_LocationCache>(new Action<IV_LocationCache>(this.attach_IV_LocationCaches), new Action<IV_LocationCache>(this.detach_IV_LocationCaches));
 			this._IV_MasLocCaches = new EntitySet<IV_MasLocCache>(new Action<IV_MasLocCache>(this.attach_IV_MasLocCaches), new Action<IV_MasLocCache>(this.detach_IV_MasLocCaches));
-			this._IV_MiscellaneousIssueMasters = new EntitySet<IV_MiscellaneousIssueMaster>(new Action<IV_MiscellaneousIssueMaster>(this.attach_IV_MiscellaneousIssueMasters), new Action<IV_MiscellaneousIssueMaster>(this.detach_IV_MiscellaneousIssueMasters));
-			this._IV_MiscellaneousIssueMasters1 = new EntitySet<IV_MiscellaneousIssueMaster>(new Action<IV_MiscellaneousIssueMaster>(this.attach_IV_MiscellaneousIssueMasters1), new Action<IV_MiscellaneousIssueMaster>(this.detach_IV_MiscellaneousIssueMasters1));
 			this._MST_Locations = new EntitySet<MST_Location>(new Action<MST_Location>(this.attach_MST_Locations), new Action<MST_Location>(this.detach_MST_Locations));
 			this._MST_TransactionHistories = new EntitySet<MST_TransactionHistory>(new Action<MST_TransactionHistory>(this.attach_MST_TransactionHistories), new Action<MST_TransactionHistory>(this.detach_MST_TransactionHistories));
 			this._MTR_CPOs = new EntitySet<MTR_CPO>(new Action<MTR_CPO>(this.attach_MTR_CPOs), new Action<MTR_CPO>(this.detach_MTR_CPOs));
@@ -31965,6 +31168,8 @@ namespace PCSComUtils.DataContext
 			this._SO_InvoiceMasters = new EntitySet<SO_InvoiceMaster>(new Action<SO_InvoiceMaster>(this.attach_SO_InvoiceMasters), new Action<SO_InvoiceMaster>(this.detach_SO_InvoiceMasters));
 			this._SO_ConfirmShipMasters = new EntitySet<SO_ConfirmShipMaster>(new Action<SO_ConfirmShipMaster>(this.attach_SO_ConfirmShipMasters), new Action<SO_ConfirmShipMaster>(this.detach_SO_ConfirmShipMasters));
 			this._ITM_Products = new EntitySet<ITM_Product>(new Action<ITM_Product>(this.attach_ITM_Products), new Action<ITM_Product>(this.detach_ITM_Products));
+			this._IV_MiscellaneousIssueMasters = new EntitySet<IV_MiscellaneousIssueMaster>(new Action<IV_MiscellaneousIssueMaster>(this.attach_IV_MiscellaneousIssueMasters), new Action<IV_MiscellaneousIssueMaster>(this.detach_IV_MiscellaneousIssueMasters));
+			this._IV_MiscellaneousIssueMasters1 = new EntitySet<IV_MiscellaneousIssueMaster>(new Action<IV_MiscellaneousIssueMaster>(this.attach_IV_MiscellaneousIssueMasters1), new Action<IV_MiscellaneousIssueMaster>(this.detach_IV_MiscellaneousIssueMasters1));
 			this._MST_CCN = default(EntityRef<MST_CCN>);
 			this._MST_City = default(EntityRef<MST_City>);
 			this._MST_Country = default(EntityRef<MST_Country>);
@@ -32264,32 +31469,6 @@ namespace PCSComUtils.DataContext
 			set
 			{
 				this._IV_MasLocCaches.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_MasterLocation_IV_MiscellaneousIssueMaster", Storage="_IV_MiscellaneousIssueMasters", ThisKey="MasterLocationID", OtherKey="DesMasLocationID")]
-		public EntitySet<IV_MiscellaneousIssueMaster> IV_MiscellaneousIssueMasters
-		{
-			get
-			{
-				return this._IV_MiscellaneousIssueMasters;
-			}
-			set
-			{
-				this._IV_MiscellaneousIssueMasters.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_MasterLocation_IV_MiscellaneousIssueMaster1", Storage="_IV_MiscellaneousIssueMasters1", ThisKey="MasterLocationID", OtherKey="SourceMasLocationID")]
-		public EntitySet<IV_MiscellaneousIssueMaster> IV_MiscellaneousIssueMasters1
-		{
-			get
-			{
-				return this._IV_MiscellaneousIssueMasters1;
-			}
-			set
-			{
-				this._IV_MiscellaneousIssueMasters1.Assign(value);
 			}
 		}
 		
@@ -32618,6 +31797,32 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_MasterLocation_IV_MiscellaneousIssueMaster", Storage="_IV_MiscellaneousIssueMasters", ThisKey="MasterLocationID", OtherKey="DesMasLocationID")]
+		public EntitySet<IV_MiscellaneousIssueMaster> IV_MiscellaneousIssueMasters
+		{
+			get
+			{
+				return this._IV_MiscellaneousIssueMasters;
+			}
+			set
+			{
+				this._IV_MiscellaneousIssueMasters.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_MasterLocation_IV_MiscellaneousIssueMaster1", Storage="_IV_MiscellaneousIssueMasters1", ThisKey="MasterLocationID", OtherKey="SourceMasLocationID")]
+		public EntitySet<IV_MiscellaneousIssueMaster> IV_MiscellaneousIssueMasters1
+		{
+			get
+			{
+				return this._IV_MiscellaneousIssueMasters1;
+			}
+			set
+			{
+				this._IV_MiscellaneousIssueMasters1.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_CCN_MST_MasterLocation", Storage="_MST_CCN", ThisKey="CCNID", OtherKey="CCNID", IsForeignKey=true)]
 		public MST_CCN MST_CCN
 		{
@@ -32834,30 +32039,6 @@ namespace PCSComUtils.DataContext
 		{
 			this.SendPropertyChanging();
 			entity.MST_MasterLocation = null;
-		}
-		
-		private void attach_IV_MiscellaneousIssueMasters(IV_MiscellaneousIssueMaster entity)
-		{
-			this.SendPropertyChanging();
-			entity.MST_MasterLocation = this;
-		}
-		
-		private void detach_IV_MiscellaneousIssueMasters(IV_MiscellaneousIssueMaster entity)
-		{
-			this.SendPropertyChanging();
-			entity.MST_MasterLocation = null;
-		}
-		
-		private void attach_IV_MiscellaneousIssueMasters1(IV_MiscellaneousIssueMaster entity)
-		{
-			this.SendPropertyChanging();
-			entity.MST_MasterLocation1 = this;
-		}
-		
-		private void detach_IV_MiscellaneousIssueMasters1(IV_MiscellaneousIssueMaster entity)
-		{
-			this.SendPropertyChanging();
-			entity.MST_MasterLocation1 = null;
 		}
 		
 		private void attach_MST_Locations(MST_Location entity)
@@ -33159,6 +32340,30 @@ namespace PCSComUtils.DataContext
 			this.SendPropertyChanging();
 			entity.MST_MasterLocation = null;
 		}
+		
+		private void attach_IV_MiscellaneousIssueMasters(IV_MiscellaneousIssueMaster entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_MasterLocation = this;
+		}
+		
+		private void detach_IV_MiscellaneousIssueMasters(IV_MiscellaneousIssueMaster entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_MasterLocation = null;
+		}
+		
+		private void attach_IV_MiscellaneousIssueMasters1(IV_MiscellaneousIssueMaster entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_MasterLocation1 = this;
+		}
+		
+		private void detach_IV_MiscellaneousIssueMasters1(IV_MiscellaneousIssueMaster entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_MasterLocation1 = null;
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.MST_Party")]
@@ -33217,8 +32422,6 @@ namespace PCSComUtils.DataContext
 		
 		private EntitySet<IV_CostHistory> _IV_CostHistories;
 		
-		private EntitySet<IV_MiscellaneousIssueMaster> _IV_MiscellaneousIssueMasters;
-		
 		private EntitySet<MST_PartyContact> _MST_PartyContacts;
 		
 		private EntitySet<MST_PartyLocation> _MST_PartyLocations;
@@ -33250,6 +32453,8 @@ namespace PCSComUtils.DataContext
 		private EntitySet<ITM_Product> _ITM_Products;
 		
 		private EntitySet<ITM_Product> _ITM_Products1;
+		
+		private EntitySet<IV_MiscellaneousIssueMaster> _IV_MiscellaneousIssueMasters;
 		
 		private EntityRef<MST_City> _MST_City;
 		
@@ -33311,7 +32516,6 @@ namespace PCSComUtils.DataContext
 			this._CST_RecoverMaterialDetails = new EntitySet<CST_RecoverMaterialDetail>(new Action<CST_RecoverMaterialDetail>(this.attach_CST_RecoverMaterialDetails), new Action<CST_RecoverMaterialDetail>(this.detach_CST_RecoverMaterialDetails));
 			this._ITM_Routings = new EntitySet<ITM_Routing>(new Action<ITM_Routing>(this.attach_ITM_Routings), new Action<ITM_Routing>(this.detach_ITM_Routings));
 			this._IV_CostHistories = new EntitySet<IV_CostHistory>(new Action<IV_CostHistory>(this.attach_IV_CostHistories), new Action<IV_CostHistory>(this.detach_IV_CostHistories));
-			this._IV_MiscellaneousIssueMasters = new EntitySet<IV_MiscellaneousIssueMaster>(new Action<IV_MiscellaneousIssueMaster>(this.attach_IV_MiscellaneousIssueMasters), new Action<IV_MiscellaneousIssueMaster>(this.detach_IV_MiscellaneousIssueMasters));
 			this._MST_PartyContacts = new EntitySet<MST_PartyContact>(new Action<MST_PartyContact>(this.attach_MST_PartyContacts), new Action<MST_PartyContact>(this.detach_MST_PartyContacts));
 			this._MST_PartyLocations = new EntitySet<MST_PartyLocation>(new Action<MST_PartyLocation>(this.attach_MST_PartyLocations), new Action<MST_PartyLocation>(this.detach_MST_PartyLocations));
 			this._MST_TransactionHistories = new EntitySet<MST_TransactionHistory>(new Action<MST_TransactionHistory>(this.attach_MST_TransactionHistories), new Action<MST_TransactionHistory>(this.detach_MST_TransactionHistories));
@@ -33328,6 +32532,7 @@ namespace PCSComUtils.DataContext
 			this._sys_RoleParties = new EntitySet<sys_RoleParty>(new Action<sys_RoleParty>(this.attach_sys_RoleParties), new Action<sys_RoleParty>(this.detach_sys_RoleParties));
 			this._ITM_Products = new EntitySet<ITM_Product>(new Action<ITM_Product>(this.attach_ITM_Products), new Action<ITM_Product>(this.detach_ITM_Products));
 			this._ITM_Products1 = new EntitySet<ITM_Product>(new Action<ITM_Product>(this.attach_ITM_Products1), new Action<ITM_Product>(this.detach_ITM_Products1));
+			this._IV_MiscellaneousIssueMasters = new EntitySet<IV_MiscellaneousIssueMaster>(new Action<IV_MiscellaneousIssueMaster>(this.attach_IV_MiscellaneousIssueMasters), new Action<IV_MiscellaneousIssueMaster>(this.detach_IV_MiscellaneousIssueMasters));
 			this._MST_City = default(EntityRef<MST_City>);
 			this._MST_Country = default(EntityRef<MST_Country>);
 			this._MST_Currency = default(EntityRef<MST_Currency>);
@@ -33809,19 +33014,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_Party_IV_MiscellaneousIssueMaster", Storage="_IV_MiscellaneousIssueMasters", ThisKey="PartyID", OtherKey="PartyID")]
-		public EntitySet<IV_MiscellaneousIssueMaster> IV_MiscellaneousIssueMasters
-		{
-			get
-			{
-				return this._IV_MiscellaneousIssueMasters;
-			}
-			set
-			{
-				this._IV_MiscellaneousIssueMasters.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_Party_MST_PartyContact", Storage="_MST_PartyContacts", ThisKey="PartyID", OtherKey="PartyID")]
 		public EntitySet<MST_PartyContact> MST_PartyContacts
 		{
@@ -34027,6 +33219,19 @@ namespace PCSComUtils.DataContext
 			set
 			{
 				this._ITM_Products1.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_Party_IV_MiscellaneousIssueMaster", Storage="_IV_MiscellaneousIssueMasters", ThisKey="PartyID", OtherKey="PartyID")]
+		public EntitySet<IV_MiscellaneousIssueMaster> IV_MiscellaneousIssueMasters
+		{
+			get
+			{
+				return this._IV_MiscellaneousIssueMasters;
+			}
+			set
+			{
+				this._IV_MiscellaneousIssueMasters.Assign(value);
 			}
 		}
 		
@@ -34258,18 +33463,6 @@ namespace PCSComUtils.DataContext
 			entity.MST_Party = null;
 		}
 		
-		private void attach_IV_MiscellaneousIssueMasters(IV_MiscellaneousIssueMaster entity)
-		{
-			this.SendPropertyChanging();
-			entity.MST_Party = this;
-		}
-		
-		private void detach_IV_MiscellaneousIssueMasters(IV_MiscellaneousIssueMaster entity)
-		{
-			this.SendPropertyChanging();
-			entity.MST_Party = null;
-		}
-		
 		private void attach_MST_PartyContacts(MST_PartyContact entity)
 		{
 			this.SendPropertyChanging();
@@ -34460,6 +33653,18 @@ namespace PCSComUtils.DataContext
 		{
 			this.SendPropertyChanging();
 			entity.MST_Party1 = null;
+		}
+		
+		private void attach_IV_MiscellaneousIssueMasters(IV_MiscellaneousIssueMaster entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_Party = this;
+		}
+		
+		private void detach_IV_MiscellaneousIssueMasters(IV_MiscellaneousIssueMaster entity)
+		{
+			this.SendPropertyChanging();
+			entity.MST_Party = null;
 		}
 	}
 	
@@ -61071,8 +60276,6 @@ namespace PCSComUtils.DataContext
 		
 		private string _Code;
 		
-		private EntitySet<IV_MiscellaneousIssueMaster> _IV_MiscellaneousIssueMasters;
-		
 		private EntitySet<MST_TransactionHistory> _MST_TransactionHistories;
 		
 		private EntitySet<MST_TransactionHistory> _MST_TransactionHistories1;
@@ -61103,6 +60306,8 @@ namespace PCSComUtils.DataContext
 		
 		private EntitySet<PRO_WorkOrderCompletion> _PRO_WorkOrderCompletions;
 		
+		private EntitySet<IV_MiscellaneousIssueMaster> _IV_MiscellaneousIssueMasters;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -61121,7 +60326,6 @@ namespace PCSComUtils.DataContext
 		
 		public PRO_IssuePurpose()
 		{
-			this._IV_MiscellaneousIssueMasters = new EntitySet<IV_MiscellaneousIssueMaster>(new Action<IV_MiscellaneousIssueMaster>(this.attach_IV_MiscellaneousIssueMasters), new Action<IV_MiscellaneousIssueMaster>(this.detach_IV_MiscellaneousIssueMasters));
 			this._MST_TransactionHistories = new EntitySet<MST_TransactionHistory>(new Action<MST_TransactionHistory>(this.attach_MST_TransactionHistories), new Action<MST_TransactionHistory>(this.detach_MST_TransactionHistories));
 			this._MST_TransactionHistories1 = new EntitySet<MST_TransactionHistory>(new Action<MST_TransactionHistory>(this.attach_MST_TransactionHistories1), new Action<MST_TransactionHistory>(this.detach_MST_TransactionHistories1));
 			this._MST_TransactionHistories2 = new EntitySet<MST_TransactionHistory>(new Action<MST_TransactionHistory>(this.attach_MST_TransactionHistories2), new Action<MST_TransactionHistory>(this.detach_MST_TransactionHistories2));
@@ -61137,6 +60341,7 @@ namespace PCSComUtils.DataContext
 			this._MST_TransactionHistories12 = new EntitySet<MST_TransactionHistory>(new Action<MST_TransactionHistory>(this.attach_MST_TransactionHistories12), new Action<MST_TransactionHistory>(this.detach_MST_TransactionHistories12));
 			this._PRO_IssueMaterialMasters = new EntitySet<PRO_IssueMaterialMaster>(new Action<PRO_IssueMaterialMaster>(this.attach_PRO_IssueMaterialMasters), new Action<PRO_IssueMaterialMaster>(this.detach_PRO_IssueMaterialMasters));
 			this._PRO_WorkOrderCompletions = new EntitySet<PRO_WorkOrderCompletion>(new Action<PRO_WorkOrderCompletion>(this.attach_PRO_WorkOrderCompletions), new Action<PRO_WorkOrderCompletion>(this.detach_PRO_WorkOrderCompletions));
+			this._IV_MiscellaneousIssueMasters = new EntitySet<IV_MiscellaneousIssueMaster>(new Action<IV_MiscellaneousIssueMaster>(this.attach_IV_MiscellaneousIssueMasters), new Action<IV_MiscellaneousIssueMaster>(this.detach_IV_MiscellaneousIssueMasters));
 			OnCreated();
 		}
 		
@@ -61237,19 +60442,6 @@ namespace PCSComUtils.DataContext
 					this.SendPropertyChanged("Code");
 					this.OnCodeChanged();
 				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PRO_IssuePurpose_IV_MiscellaneousIssueMaster", Storage="_IV_MiscellaneousIssueMasters", ThisKey="IssuePurposeID", OtherKey="IssuePurposeID")]
-		public EntitySet<IV_MiscellaneousIssueMaster> IV_MiscellaneousIssueMasters
-		{
-			get
-			{
-				return this._IV_MiscellaneousIssueMasters;
-			}
-			set
-			{
-				this._IV_MiscellaneousIssueMasters.Assign(value);
 			}
 		}
 		
@@ -61448,6 +60640,19 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PRO_IssuePurpose_IV_MiscellaneousIssueMaster", Storage="_IV_MiscellaneousIssueMasters", ThisKey="IssuePurposeID", OtherKey="IssuePurposeID")]
+		public EntitySet<IV_MiscellaneousIssueMaster> IV_MiscellaneousIssueMasters
+		{
+			get
+			{
+				return this._IV_MiscellaneousIssueMasters;
+			}
+			set
+			{
+				this._IV_MiscellaneousIssueMasters.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -61466,18 +60671,6 @@ namespace PCSComUtils.DataContext
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
-		}
-		
-		private void attach_IV_MiscellaneousIssueMasters(IV_MiscellaneousIssueMaster entity)
-		{
-			this.SendPropertyChanging();
-			entity.PRO_IssuePurpose = this;
-		}
-		
-		private void detach_IV_MiscellaneousIssueMasters(IV_MiscellaneousIssueMaster entity)
-		{
-			this.SendPropertyChanging();
-			entity.PRO_IssuePurpose = null;
 		}
 		
 		private void attach_MST_TransactionHistories(MST_TransactionHistory entity)
@@ -61655,6 +60848,18 @@ namespace PCSComUtils.DataContext
 		}
 		
 		private void detach_PRO_WorkOrderCompletions(PRO_WorkOrderCompletion entity)
+		{
+			this.SendPropertyChanging();
+			entity.PRO_IssuePurpose = null;
+		}
+		
+		private void attach_IV_MiscellaneousIssueMasters(IV_MiscellaneousIssueMaster entity)
+		{
+			this.SendPropertyChanging();
+			entity.PRO_IssuePurpose = this;
+		}
+		
+		private void detach_IV_MiscellaneousIssueMasters(IV_MiscellaneousIssueMaster entity)
 		{
 			this.SendPropertyChanging();
 			entity.PRO_IssuePurpose = null;
@@ -125804,8 +125009,6 @@ namespace PCSComUtils.DataContext
 		
 		private System.Nullable<int> _ReasonID;
 		
-		private EntityRef<IV_MiscellaneousIssueMaster> _IV_MiscellaneousIssueMaster;
-		
 		private EntityRef<MST_UnitOfMeasure> _MST_UnitOfMeasure;
 		
 		private EntityRef<MST_Department> _MST_Department;
@@ -125813,6 +125016,8 @@ namespace PCSComUtils.DataContext
 		private EntityRef<MST_Reason> _MST_Reason;
 		
 		private EntityRef<ITM_Product> _ITM_Product;
+		
+		private EntityRef<IV_MiscellaneousIssueMaster> _IV_MiscellaneousIssueMaster;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -125840,11 +125045,11 @@ namespace PCSComUtils.DataContext
 		
 		public IV_MiscellaneousIssueDetail()
 		{
-			this._IV_MiscellaneousIssueMaster = default(EntityRef<IV_MiscellaneousIssueMaster>);
 			this._MST_UnitOfMeasure = default(EntityRef<MST_UnitOfMeasure>);
 			this._MST_Department = default(EntityRef<MST_Department>);
 			this._MST_Reason = default(EntityRef<MST_Reason>);
 			this._ITM_Product = default(EntityRef<ITM_Product>);
+			this._IV_MiscellaneousIssueMaster = default(EntityRef<IV_MiscellaneousIssueMaster>);
 			OnCreated();
 		}
 		
@@ -126048,40 +125253,6 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="IV_MiscellaneousIssueMaster_IV_MiscellaneousIssueDetail", Storage="_IV_MiscellaneousIssueMaster", ThisKey="MiscellaneousIssueMasterID", OtherKey="MiscellaneousIssueMasterID", IsForeignKey=true)]
-		public IV_MiscellaneousIssueMaster IV_MiscellaneousIssueMaster
-		{
-			get
-			{
-				return this._IV_MiscellaneousIssueMaster.Entity;
-			}
-			set
-			{
-				IV_MiscellaneousIssueMaster previousValue = this._IV_MiscellaneousIssueMaster.Entity;
-				if (((previousValue != value) 
-							|| (this._IV_MiscellaneousIssueMaster.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._IV_MiscellaneousIssueMaster.Entity = null;
-						previousValue.IV_MiscellaneousIssueDetails.Remove(this);
-					}
-					this._IV_MiscellaneousIssueMaster.Entity = value;
-					if ((value != null))
-					{
-						value.IV_MiscellaneousIssueDetails.Add(this);
-						this._MiscellaneousIssueMasterID = value.MiscellaneousIssueMasterID;
-					}
-					else
-					{
-						this._MiscellaneousIssueMasterID = default(int);
-					}
-					this.SendPropertyChanged("IV_MiscellaneousIssueMaster");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_UnitOfMeasure_IV_MiscellaneousIssueDetail", Storage="_MST_UnitOfMeasure", ThisKey="StockUMID", OtherKey="UnitOfMeasureID", IsForeignKey=true)]
 		public MST_UnitOfMeasure MST_UnitOfMeasure
 		{
@@ -126214,6 +125385,40 @@ namespace PCSComUtils.DataContext
 						this._ProductID = default(int);
 					}
 					this.SendPropertyChanged("ITM_Product");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="IV_MiscellaneousIssueMaster_IV_MiscellaneousIssueDetail", Storage="_IV_MiscellaneousIssueMaster", ThisKey="MiscellaneousIssueMasterID", OtherKey="MiscellaneousIssueMasterID", IsForeignKey=true)]
+		public IV_MiscellaneousIssueMaster IV_MiscellaneousIssueMaster
+		{
+			get
+			{
+				return this._IV_MiscellaneousIssueMaster.Entity;
+			}
+			set
+			{
+				IV_MiscellaneousIssueMaster previousValue = this._IV_MiscellaneousIssueMaster.Entity;
+				if (((previousValue != value) 
+							|| (this._IV_MiscellaneousIssueMaster.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._IV_MiscellaneousIssueMaster.Entity = null;
+						previousValue.IV_MiscellaneousIssueDetails.Remove(this);
+					}
+					this._IV_MiscellaneousIssueMaster.Entity = value;
+					if ((value != null))
+					{
+						value.IV_MiscellaneousIssueDetails.Add(this);
+						this._MiscellaneousIssueMasterID = value.MiscellaneousIssueMasterID;
+					}
+					else
+					{
+						this._MiscellaneousIssueMasterID = default(int);
+					}
+					this.SendPropertyChanged("IV_MiscellaneousIssueMaster");
 				}
 			}
 		}
@@ -128892,7 +128097,7 @@ namespace PCSComUtils.DataContext
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Picture", DbType="Image", UpdateCheck=UpdateCheck.Never)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Picture", DbType="Image", CanBeNull=true, UpdateCheck=UpdateCheck.Never)]
 		public System.Data.Linq.Binary Picture
 		{
 			get
@@ -132053,6 +131258,825 @@ namespace PCSComUtils.DataContext
 		{
 			this.SendPropertyChanging();
 			entity.ITM_ItemGroup = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.IV_MiscellaneousIssueMaster")]
+	public partial class IV_MiscellaneousIssueMaster : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _MiscellaneousIssueMasterID;
+		
+		private System.DateTime _PostDate;
+		
+		private string _Comment;
+		
+		private string _TransNo;
+		
+		private string _UserName;
+		
+		private System.Nullable<System.DateTime> _LastChange;
+		
+		private int _CCNID;
+		
+		private System.Nullable<int> _DesBinID;
+		
+		private System.Nullable<int> _SourceBinID;
+		
+		private System.Nullable<int> _DesLocationID;
+		
+		private int _SourceLocationID;
+		
+		private System.Nullable<int> _DesMasLocationID;
+		
+		private int _SourceMasLocationID;
+		
+		private System.Nullable<int> _PartyID;
+		
+		private System.Nullable<int> _IssuePurposeID;
+		
+		private System.Nullable<int> _DestroyApproved;
+		
+		private EntitySet<IV_MiscellaneousIssueDetail> _IV_MiscellaneousIssueDetails;
+		
+		private EntityRef<MST_CCN> _MST_CCN;
+		
+		private EntityRef<MST_BIN> _MST_BIN;
+		
+		private EntityRef<MST_Location> _MST_Location;
+		
+		private EntityRef<MST_MasterLocation> _MST_MasterLocation;
+		
+		private EntityRef<PRO_IssuePurpose> _PRO_IssuePurpose;
+		
+		private EntityRef<MST_Party> _MST_Party;
+		
+		private EntityRef<MST_MasterLocation> _MST_MasterLocation1;
+		
+		private EntityRef<MST_Location> _MST_Location1;
+		
+		private EntityRef<MST_BIN> _MST_BIN1;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnMiscellaneousIssueMasterIDChanging(int value);
+    partial void OnMiscellaneousIssueMasterIDChanged();
+    partial void OnPostDateChanging(System.DateTime value);
+    partial void OnPostDateChanged();
+    partial void OnCommentChanging(string value);
+    partial void OnCommentChanged();
+    partial void OnTransNoChanging(string value);
+    partial void OnTransNoChanged();
+    partial void OnUserNameChanging(string value);
+    partial void OnUserNameChanged();
+    partial void OnLastChangeChanging(System.Nullable<System.DateTime> value);
+    partial void OnLastChangeChanged();
+    partial void OnCCNIDChanging(int value);
+    partial void OnCCNIDChanged();
+    partial void OnDesBinIDChanging(System.Nullable<int> value);
+    partial void OnDesBinIDChanged();
+    partial void OnSourceBinIDChanging(System.Nullable<int> value);
+    partial void OnSourceBinIDChanged();
+    partial void OnDesLocationIDChanging(System.Nullable<int> value);
+    partial void OnDesLocationIDChanged();
+    partial void OnSourceLocationIDChanging(int value);
+    partial void OnSourceLocationIDChanged();
+    partial void OnDesMasLocationIDChanging(System.Nullable<int> value);
+    partial void OnDesMasLocationIDChanged();
+    partial void OnSourceMasLocationIDChanging(int value);
+    partial void OnSourceMasLocationIDChanged();
+    partial void OnPartyIDChanging(System.Nullable<int> value);
+    partial void OnPartyIDChanged();
+    partial void OnIssuePurposeIDChanging(System.Nullable<int> value);
+    partial void OnIssuePurposeIDChanged();
+    partial void OnDestroyApprovedChanging(System.Nullable<int> value);
+    partial void OnDestroyApprovedChanged();
+    #endregion
+		
+		public IV_MiscellaneousIssueMaster()
+		{
+			this._IV_MiscellaneousIssueDetails = new EntitySet<IV_MiscellaneousIssueDetail>(new Action<IV_MiscellaneousIssueDetail>(this.attach_IV_MiscellaneousIssueDetails), new Action<IV_MiscellaneousIssueDetail>(this.detach_IV_MiscellaneousIssueDetails));
+			this._MST_CCN = default(EntityRef<MST_CCN>);
+			this._MST_BIN = default(EntityRef<MST_BIN>);
+			this._MST_Location = default(EntityRef<MST_Location>);
+			this._MST_MasterLocation = default(EntityRef<MST_MasterLocation>);
+			this._PRO_IssuePurpose = default(EntityRef<PRO_IssuePurpose>);
+			this._MST_Party = default(EntityRef<MST_Party>);
+			this._MST_MasterLocation1 = default(EntityRef<MST_MasterLocation>);
+			this._MST_Location1 = default(EntityRef<MST_Location>);
+			this._MST_BIN1 = default(EntityRef<MST_BIN>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MiscellaneousIssueMasterID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int MiscellaneousIssueMasterID
+		{
+			get
+			{
+				return this._MiscellaneousIssueMasterID;
+			}
+			set
+			{
+				if ((this._MiscellaneousIssueMasterID != value))
+				{
+					this.OnMiscellaneousIssueMasterIDChanging(value);
+					this.SendPropertyChanging();
+					this._MiscellaneousIssueMasterID = value;
+					this.SendPropertyChanged("MiscellaneousIssueMasterID");
+					this.OnMiscellaneousIssueMasterIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PostDate", DbType="DateTime NOT NULL")]
+		public System.DateTime PostDate
+		{
+			get
+			{
+				return this._PostDate;
+			}
+			set
+			{
+				if ((this._PostDate != value))
+				{
+					this.OnPostDateChanging(value);
+					this.SendPropertyChanging();
+					this._PostDate = value;
+					this.SendPropertyChanged("PostDate");
+					this.OnPostDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Comment", DbType="NVarChar(200)")]
+		public string Comment
+		{
+			get
+			{
+				return this._Comment;
+			}
+			set
+			{
+				if ((this._Comment != value))
+				{
+					this.OnCommentChanging(value);
+					this.SendPropertyChanging();
+					this._Comment = value;
+					this.SendPropertyChanged("Comment");
+					this.OnCommentChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TransNo", DbType="NVarChar(30) NOT NULL", CanBeNull=false)]
+		public string TransNo
+		{
+			get
+			{
+				return this._TransNo;
+			}
+			set
+			{
+				if ((this._TransNo != value))
+				{
+					this.OnTransNoChanging(value);
+					this.SendPropertyChanging();
+					this._TransNo = value;
+					this.SendPropertyChanged("TransNo");
+					this.OnTransNoChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserName", DbType="NVarChar(40)")]
+		public string UserName
+		{
+			get
+			{
+				return this._UserName;
+			}
+			set
+			{
+				if ((this._UserName != value))
+				{
+					this.OnUserNameChanging(value);
+					this.SendPropertyChanging();
+					this._UserName = value;
+					this.SendPropertyChanged("UserName");
+					this.OnUserNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastChange", DbType="DateTime")]
+		public System.Nullable<System.DateTime> LastChange
+		{
+			get
+			{
+				return this._LastChange;
+			}
+			set
+			{
+				if ((this._LastChange != value))
+				{
+					this.OnLastChangeChanging(value);
+					this.SendPropertyChanging();
+					this._LastChange = value;
+					this.SendPropertyChanged("LastChange");
+					this.OnLastChangeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CCNID", DbType="Int NOT NULL")]
+		public int CCNID
+		{
+			get
+			{
+				return this._CCNID;
+			}
+			set
+			{
+				if ((this._CCNID != value))
+				{
+					if (this._MST_CCN.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnCCNIDChanging(value);
+					this.SendPropertyChanging();
+					this._CCNID = value;
+					this.SendPropertyChanged("CCNID");
+					this.OnCCNIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DesBinID", DbType="Int")]
+		public System.Nullable<int> DesBinID
+		{
+			get
+			{
+				return this._DesBinID;
+			}
+			set
+			{
+				if ((this._DesBinID != value))
+				{
+					if (this._MST_BIN.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnDesBinIDChanging(value);
+					this.SendPropertyChanging();
+					this._DesBinID = value;
+					this.SendPropertyChanged("DesBinID");
+					this.OnDesBinIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SourceBinID", DbType="Int")]
+		public System.Nullable<int> SourceBinID
+		{
+			get
+			{
+				return this._SourceBinID;
+			}
+			set
+			{
+				if ((this._SourceBinID != value))
+				{
+					if (this._MST_BIN1.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnSourceBinIDChanging(value);
+					this.SendPropertyChanging();
+					this._SourceBinID = value;
+					this.SendPropertyChanged("SourceBinID");
+					this.OnSourceBinIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DesLocationID", DbType="Int")]
+		public System.Nullable<int> DesLocationID
+		{
+			get
+			{
+				return this._DesLocationID;
+			}
+			set
+			{
+				if ((this._DesLocationID != value))
+				{
+					if (this._MST_Location.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnDesLocationIDChanging(value);
+					this.SendPropertyChanging();
+					this._DesLocationID = value;
+					this.SendPropertyChanged("DesLocationID");
+					this.OnDesLocationIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SourceLocationID", DbType="Int NOT NULL")]
+		public int SourceLocationID
+		{
+			get
+			{
+				return this._SourceLocationID;
+			}
+			set
+			{
+				if ((this._SourceLocationID != value))
+				{
+					if (this._MST_Location1.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnSourceLocationIDChanging(value);
+					this.SendPropertyChanging();
+					this._SourceLocationID = value;
+					this.SendPropertyChanged("SourceLocationID");
+					this.OnSourceLocationIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DesMasLocationID", DbType="Int")]
+		public System.Nullable<int> DesMasLocationID
+		{
+			get
+			{
+				return this._DesMasLocationID;
+			}
+			set
+			{
+				if ((this._DesMasLocationID != value))
+				{
+					if (this._MST_MasterLocation.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnDesMasLocationIDChanging(value);
+					this.SendPropertyChanging();
+					this._DesMasLocationID = value;
+					this.SendPropertyChanged("DesMasLocationID");
+					this.OnDesMasLocationIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SourceMasLocationID", DbType="Int NOT NULL")]
+		public int SourceMasLocationID
+		{
+			get
+			{
+				return this._SourceMasLocationID;
+			}
+			set
+			{
+				if ((this._SourceMasLocationID != value))
+				{
+					if (this._MST_MasterLocation1.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnSourceMasLocationIDChanging(value);
+					this.SendPropertyChanging();
+					this._SourceMasLocationID = value;
+					this.SendPropertyChanged("SourceMasLocationID");
+					this.OnSourceMasLocationIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PartyID", DbType="Int")]
+		public System.Nullable<int> PartyID
+		{
+			get
+			{
+				return this._PartyID;
+			}
+			set
+			{
+				if ((this._PartyID != value))
+				{
+					if (this._MST_Party.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnPartyIDChanging(value);
+					this.SendPropertyChanging();
+					this._PartyID = value;
+					this.SendPropertyChanged("PartyID");
+					this.OnPartyIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IssuePurposeID", DbType="Int")]
+		public System.Nullable<int> IssuePurposeID
+		{
+			get
+			{
+				return this._IssuePurposeID;
+			}
+			set
+			{
+				if ((this._IssuePurposeID != value))
+				{
+					if (this._PRO_IssuePurpose.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnIssuePurposeIDChanging(value);
+					this.SendPropertyChanging();
+					this._IssuePurposeID = value;
+					this.SendPropertyChanged("IssuePurposeID");
+					this.OnIssuePurposeIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DestroyApproved", DbType="Int")]
+		public System.Nullable<int> DestroyApproved
+		{
+			get
+			{
+				return this._DestroyApproved;
+			}
+			set
+			{
+				if ((this._DestroyApproved != value))
+				{
+					this.OnDestroyApprovedChanging(value);
+					this.SendPropertyChanging();
+					this._DestroyApproved = value;
+					this.SendPropertyChanged("DestroyApproved");
+					this.OnDestroyApprovedChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="IV_MiscellaneousIssueMaster_IV_MiscellaneousIssueDetail", Storage="_IV_MiscellaneousIssueDetails", ThisKey="MiscellaneousIssueMasterID", OtherKey="MiscellaneousIssueMasterID")]
+		public EntitySet<IV_MiscellaneousIssueDetail> IV_MiscellaneousIssueDetails
+		{
+			get
+			{
+				return this._IV_MiscellaneousIssueDetails;
+			}
+			set
+			{
+				this._IV_MiscellaneousIssueDetails.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_CCN_IV_MiscellaneousIssueMaster", Storage="_MST_CCN", ThisKey="CCNID", OtherKey="CCNID", IsForeignKey=true)]
+		public MST_CCN MST_CCN
+		{
+			get
+			{
+				return this._MST_CCN.Entity;
+			}
+			set
+			{
+				MST_CCN previousValue = this._MST_CCN.Entity;
+				if (((previousValue != value) 
+							|| (this._MST_CCN.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._MST_CCN.Entity = null;
+						previousValue.IV_MiscellaneousIssueMasters.Remove(this);
+					}
+					this._MST_CCN.Entity = value;
+					if ((value != null))
+					{
+						value.IV_MiscellaneousIssueMasters.Add(this);
+						this._CCNID = value.CCNID;
+					}
+					else
+					{
+						this._CCNID = default(int);
+					}
+					this.SendPropertyChanged("MST_CCN");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_BIN_IV_MiscellaneousIssueMaster", Storage="_MST_BIN", ThisKey="DesBinID", OtherKey="BinID", IsForeignKey=true)]
+		public MST_BIN MST_BIN
+		{
+			get
+			{
+				return this._MST_BIN.Entity;
+			}
+			set
+			{
+				MST_BIN previousValue = this._MST_BIN.Entity;
+				if (((previousValue != value) 
+							|| (this._MST_BIN.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._MST_BIN.Entity = null;
+						previousValue.IV_MiscellaneousIssueMasters.Remove(this);
+					}
+					this._MST_BIN.Entity = value;
+					if ((value != null))
+					{
+						value.IV_MiscellaneousIssueMasters.Add(this);
+						this._DesBinID = value.BinID;
+					}
+					else
+					{
+						this._DesBinID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("MST_BIN");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_Location_IV_MiscellaneousIssueMaster", Storage="_MST_Location", ThisKey="DesLocationID", OtherKey="LocationID", IsForeignKey=true)]
+		public MST_Location MST_Location
+		{
+			get
+			{
+				return this._MST_Location.Entity;
+			}
+			set
+			{
+				MST_Location previousValue = this._MST_Location.Entity;
+				if (((previousValue != value) 
+							|| (this._MST_Location.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._MST_Location.Entity = null;
+						previousValue.IV_MiscellaneousIssueMasters.Remove(this);
+					}
+					this._MST_Location.Entity = value;
+					if ((value != null))
+					{
+						value.IV_MiscellaneousIssueMasters.Add(this);
+						this._DesLocationID = value.LocationID;
+					}
+					else
+					{
+						this._DesLocationID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("MST_Location");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_MasterLocation_IV_MiscellaneousIssueMaster", Storage="_MST_MasterLocation", ThisKey="DesMasLocationID", OtherKey="MasterLocationID", IsForeignKey=true)]
+		public MST_MasterLocation MST_MasterLocation
+		{
+			get
+			{
+				return this._MST_MasterLocation.Entity;
+			}
+			set
+			{
+				MST_MasterLocation previousValue = this._MST_MasterLocation.Entity;
+				if (((previousValue != value) 
+							|| (this._MST_MasterLocation.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._MST_MasterLocation.Entity = null;
+						previousValue.IV_MiscellaneousIssueMasters.Remove(this);
+					}
+					this._MST_MasterLocation.Entity = value;
+					if ((value != null))
+					{
+						value.IV_MiscellaneousIssueMasters.Add(this);
+						this._DesMasLocationID = value.MasterLocationID;
+					}
+					else
+					{
+						this._DesMasLocationID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("MST_MasterLocation");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PRO_IssuePurpose_IV_MiscellaneousIssueMaster", Storage="_PRO_IssuePurpose", ThisKey="IssuePurposeID", OtherKey="IssuePurposeID", IsForeignKey=true)]
+		public PRO_IssuePurpose PRO_IssuePurpose
+		{
+			get
+			{
+				return this._PRO_IssuePurpose.Entity;
+			}
+			set
+			{
+				PRO_IssuePurpose previousValue = this._PRO_IssuePurpose.Entity;
+				if (((previousValue != value) 
+							|| (this._PRO_IssuePurpose.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._PRO_IssuePurpose.Entity = null;
+						previousValue.IV_MiscellaneousIssueMasters.Remove(this);
+					}
+					this._PRO_IssuePurpose.Entity = value;
+					if ((value != null))
+					{
+						value.IV_MiscellaneousIssueMasters.Add(this);
+						this._IssuePurposeID = value.IssuePurposeID;
+					}
+					else
+					{
+						this._IssuePurposeID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("PRO_IssuePurpose");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_Party_IV_MiscellaneousIssueMaster", Storage="_MST_Party", ThisKey="PartyID", OtherKey="PartyID", IsForeignKey=true)]
+		public MST_Party MST_Party
+		{
+			get
+			{
+				return this._MST_Party.Entity;
+			}
+			set
+			{
+				MST_Party previousValue = this._MST_Party.Entity;
+				if (((previousValue != value) 
+							|| (this._MST_Party.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._MST_Party.Entity = null;
+						previousValue.IV_MiscellaneousIssueMasters.Remove(this);
+					}
+					this._MST_Party.Entity = value;
+					if ((value != null))
+					{
+						value.IV_MiscellaneousIssueMasters.Add(this);
+						this._PartyID = value.PartyID;
+					}
+					else
+					{
+						this._PartyID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("MST_Party");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_MasterLocation_IV_MiscellaneousIssueMaster1", Storage="_MST_MasterLocation1", ThisKey="SourceMasLocationID", OtherKey="MasterLocationID", IsForeignKey=true)]
+		public MST_MasterLocation MST_MasterLocation1
+		{
+			get
+			{
+				return this._MST_MasterLocation1.Entity;
+			}
+			set
+			{
+				MST_MasterLocation previousValue = this._MST_MasterLocation1.Entity;
+				if (((previousValue != value) 
+							|| (this._MST_MasterLocation1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._MST_MasterLocation1.Entity = null;
+						previousValue.IV_MiscellaneousIssueMasters1.Remove(this);
+					}
+					this._MST_MasterLocation1.Entity = value;
+					if ((value != null))
+					{
+						value.IV_MiscellaneousIssueMasters1.Add(this);
+						this._SourceMasLocationID = value.MasterLocationID;
+					}
+					else
+					{
+						this._SourceMasLocationID = default(int);
+					}
+					this.SendPropertyChanged("MST_MasterLocation1");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_Location_IV_MiscellaneousIssueMaster1", Storage="_MST_Location1", ThisKey="SourceLocationID", OtherKey="LocationID", IsForeignKey=true)]
+		public MST_Location MST_Location1
+		{
+			get
+			{
+				return this._MST_Location1.Entity;
+			}
+			set
+			{
+				MST_Location previousValue = this._MST_Location1.Entity;
+				if (((previousValue != value) 
+							|| (this._MST_Location1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._MST_Location1.Entity = null;
+						previousValue.IV_MiscellaneousIssueMasters1.Remove(this);
+					}
+					this._MST_Location1.Entity = value;
+					if ((value != null))
+					{
+						value.IV_MiscellaneousIssueMasters1.Add(this);
+						this._SourceLocationID = value.LocationID;
+					}
+					else
+					{
+						this._SourceLocationID = default(int);
+					}
+					this.SendPropertyChanged("MST_Location1");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="MST_BIN_IV_MiscellaneousIssueMaster1", Storage="_MST_BIN1", ThisKey="SourceBinID", OtherKey="BinID", IsForeignKey=true)]
+		public MST_BIN MST_BIN1
+		{
+			get
+			{
+				return this._MST_BIN1.Entity;
+			}
+			set
+			{
+				MST_BIN previousValue = this._MST_BIN1.Entity;
+				if (((previousValue != value) 
+							|| (this._MST_BIN1.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._MST_BIN1.Entity = null;
+						previousValue.IV_MiscellaneousIssueMasters1.Remove(this);
+					}
+					this._MST_BIN1.Entity = value;
+					if ((value != null))
+					{
+						value.IV_MiscellaneousIssueMasters1.Add(this);
+						this._SourceBinID = value.BinID;
+					}
+					else
+					{
+						this._SourceBinID = default(Nullable<int>);
+					}
+					this.SendPropertyChanged("MST_BIN1");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_IV_MiscellaneousIssueDetails(IV_MiscellaneousIssueDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.IV_MiscellaneousIssueMaster = this;
+		}
+		
+		private void detach_IV_MiscellaneousIssueDetails(IV_MiscellaneousIssueDetail entity)
+		{
+			this.SendPropertyChanging();
+			entity.IV_MiscellaneousIssueMaster = null;
 		}
 	}
 	

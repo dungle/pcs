@@ -6206,6 +6206,7 @@ namespace PCSComUtils.Common
         public const string TABLE_NAME = "IV_MiscellaneousIssueMaster";
         public const string TRANSNO_FLD = "TransNo";
         public const string USERNAME_FLD = "UserName";
+        public const string DESTROYAPPROVED_FLD = "DestroyApproved";
     }
 
     public sealed class IV_OnhandPeriodTable
