@@ -3840,8 +3840,8 @@ namespace PCSMaterials.Mps
 						#region new delivery line
 
 						DataRow drowData = dtbResultAfterGroup.NewRow();
-                        //DateTime dtmScheduleDate = dtmStart.AddMonths(-1);
-                        DateTime dtmScheduleDate = dtmStart;
+                        DateTime dtmScheduleDate = dtmStart.AddMonths(-1);
+                        //DateTime dtmScheduleDate = dtmStart;
 
                         dtmScheduleDate = GetNearestWorkingDay(dtmScheduleDate, dstCalendar);
 						drowData[PO_DeliveryScheduleTable.SCHEDULEDATE_FLD] = dtmScheduleDate;
