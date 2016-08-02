@@ -12,41 +12,6 @@ namespace PCSComMaterials.Plan.BO
 {
     public class CPODataViewerBO
     {
-        /// <summary>
-        /// Insert a new record into database
-        /// </summary>
-
-        public void Add(object pObjectDetail)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void ConvertToNewWO(object pobjCPO)
-        {
-        }
-
-        /// <summary>
-        /// Delete record by condition
-        /// </summary>
-
-        public void Delete(object pObjectVO)
-        {
-            throw new NotImplementedException();
-        }
-
-        /// <summary>
-        /// Get the object information by ID of VO class
-        /// </summary>
-
-        public object GetObjectVO(int pintID, string VOclass)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void PrepareDataForPO()
-        {
-        }
-
         public DataSet Search(Hashtable phtbCriteria)
         {
             return (new MTR_CPODS()).Search(phtbCriteria);
@@ -58,19 +23,8 @@ namespace PCSComMaterials.Plan.BO
         }
 
         /// <summary>
-        /// Return the DataSet (list of record) by inputing the FieldList and Condition
-        /// </summary>
-
-        public void UpdateDataSet(DataSet dstData)
-        {
-            MTR_CPODS dsCPO = new MTR_CPODS();
-            dsCPO.UpdateDataSet(dstData);
-        }
-
-        /// <summary>
         /// Delete MRP result by list of CPO
         /// </summary>
-
         public void DeleteMRP(string pstrCPOIDs)
         {
             MTR_CPODS dsCPO = new MTR_CPODS();
@@ -83,21 +37,6 @@ namespace PCSComMaterials.Plan.BO
         /// <param name="dstData"></param>
         /// <author>Trada</author>
         /// <date>Monday, April 24 2006</date>
-
-        public void UpdateDataSetForDCP(DataSet dstData)
-        {
-            MTR_CPODS dsCPO = new MTR_CPODS();
-            dsCPO.UpdateDataSetForDCP(dstData);
-        }
-
-        /// <summary>
-        /// Update into Database
-        /// </summary>
-
-        public void Update(object pObjectDetail)
-        {
-            throw new NotImplementedException();
-        }
 
         public DataTable GetVendorDeliveryPolicyByParty(int pintPartyID)
         {
@@ -115,7 +54,8 @@ namespace PCSComMaterials.Plan.BO
             return dsMaster.GetAsOfDate(pintCycleID, pblnIsMPS);
         }
 
-        public void UpdateWorkOrderDetail(int workOrderMasterId, int productId, decimal quantity, DateTime startDate, DateTime dueDate, DataRowView detailRow)
+        public void UpdateWorkOrderDetail(int workOrderMasterId, int productId, decimal quantity, DateTime startDate,
+            DateTime dueDate, DataRowView detailRow)
         {
             using (var trans = new TransactionScope(TransactionScopeOption.Required, TimeSpan.FromHours(1)))
             {
@@ -138,9 +78,9 @@ namespace PCSComMaterials.Plan.BO
                             ProductID = productId,
                             StartDate = startDate,
                             DueDate = dueDate,
-                            Status = (byte?)WOLineStatus.Unreleased,
+                            Status = (byte?) WOLineStatus.Unreleased,
                             Line = maxLine + 1,
-                            StockUMID = (int)detailRow[MTR_CPOTable.STOCKUMID_FLD]
+                            StockUMID = (int) detailRow[MTR_CPOTable.STOCKUMID_FLD]
                         };
                         db.PRO_WorkOrderDetails.InsertOnSubmit(workOrderDetail);
                     }
@@ -162,6 +102,49 @@ namespace PCSComMaterials.Plan.BO
                 }
                 trans.Complete();
             }
+        }
+
+        public MTR_MPSCycleOptionMaster GetMpsCycle(int cycleId)
+        {
+            using (var db = new PCSDataContext(Utils.Instance.ConnectionString))
+            {
+                return db.MTR_MPSCycleOptionMasters.FirstOrDefault(c => c.MPSCycleOptionMasterID == cycleId);
+            }
+        }
+
+        public MTR_MRPCycleOptionMaster GetMrpCycle(int cycleId)
+        {
+            using (var db = new PCSDataContext(Utils.Instance.ConnectionString))
+            {
+                return db.MTR_MRPCycleOptionMasters.FirstOrDefault(c => c.MRPCycleOptionMasterID == cycleId);
+            }
+        }
+
+        public PRO_DCOptionMaster GetDcpOption(int cycleId)
+        {
+            using (var db = new PCSDataContext(Utils.Instance.ConnectionString))
+            {
+                return db.PRO_DCOptionMasters.FirstOrDefault(c => c.DCOptionMasterID == cycleId);
+            }
+        }
+
+        /// <summary>
+        /// Wipe wrong date item for current cycle
+        /// </summary>
+        /// <param name="cycleId"></param>
+        public void WipeWrongItem(int cycleId)
+        {
+            MTR_CPODS dsCPO = new MTR_CPODS();
+            dsCPO.WipeWrongItem(cycleId);
+        }
+        /// <summary>
+        /// Log all item with wrong schedule date to database
+        /// </summary>
+        /// <param name="wrongItemTable"></param>
+        public void LogWrongItem(DataTable wrongItemTable)
+        {
+            MTR_CPODS dsCPO = new MTR_CPODS();
+            dsCPO.LogWrongItem(wrongItemTable);
         }
     }
 }

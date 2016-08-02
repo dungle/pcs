@@ -1,0 +1,25 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/MAP2013/@Output
+/MAP2013/.vs/MAP/v14
+/MAP2013/packages/Microsoft.Office.Interop.Excel.15.0.4795.1000
+/MAP2013/PCSAssemblyLoader/obj/Debug
+/MAP2013/PCSComMaterials/obj/Debug
+/MAP2013/PCSComProcurement/obj/Debug
+/MAP2013/PCSComProduct/obj/Debug
+/MAP2013/PCSComSale/obj/Debug
+/MAP2013/PCSComUtils/obj/Debug
+/MAP2013/PCSMaterials/obj/Debug
+/MAP2013/PCSProcurement/obj/Debug
+/MAP2013/PCSProduct/obj/Debug
+/MAP2013/PCSProduction/obj/Debug
+/MAP2013/PCSTestReport/PCSTestReport/bin/Debug
+/MAP2013/PCSTestReport/PCSTestReport/obj/Debug/TempPE
+/MAP2013/PCSComProduction/obj/Debug
+/MAP2013/PCSMain/obj/Debug
+/MAP2013/PCSReport/obj/Debug
+/MAP2013/PCSTestReport/PCSTestReport
+/MAP2013/PCSSale/obj/Debug
+/MAP2013/PCSUtils/obj/Debug

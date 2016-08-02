@@ -26,6 +26,7 @@ using PCSComProduction.WorkOrder.BO;
 using DCOptionsBO = PCSComProduction.DCP.BO.DCOptionsBO;
 using PCSComUtils.DataContext;
 using System.Linq;
+using PCSComProduction.DCP.DS;
 
 namespace PCSMaterials.Mps
 {
@@ -37,7 +38,6 @@ namespace PCSMaterials.Mps
 		#region Declaration
 
 		#region Constants
-		
 		private const string THIS = "PCSMaterials.Mps.CPODataViewer";
 		private const string ZERO_STRING = "0";		
 		private const string VIEW_PRODUCTINFOR = "V_ProductInWorkCenter";
@@ -55,15 +55,19 @@ namespace PCSMaterials.Mps
 		private DataTable dtbCPODetail;
 		private bool blnDataIsValid = false;
 		MessageBoxFormForItems frmMessageBoxForm;
-		DataTable dtbListErrorItem;
+		DataTable dtbListErrorItem, wrongDateItemList;
 		const string REASON_FLD = "Reason";
 		bool blnConvertPOSuccess = false;
 		bool blnConvertWOSuccess = false;
 		string strMasterIDToUpdate = "0";
 		string strCPOIDToDelete = "0";
-		//string strMasterIDToUpdate = string.Empty;
 		ArrayList arrMasterIDToUpdate = new ArrayList();
 		DataTable dtbVendor = new DataTable(MST_PartyTable.TABLE_NAME);
+
+        MTR_MPSCycleOptionMaster mpsCylceOption = null;
+        MTR_MRPCycleOptionMaster mrpCylceOption = null;
+        PRO_DCOptionMaster dcpCycleOption = null;
+
 		#endregion	
 
 		#endregion Declaration
@@ -584,43 +588,29 @@ namespace PCSMaterials.Mps
 		/// </summary>
 		private void ClearSearchingCondition()
 		{
-			try
-			{
-				txtCategory.Text = string.Empty;
-				txtCategory.Tag = ZERO_STRING;
+            txtCategory.Text = string.Empty;
+            txtCategory.Tag = ZERO_STRING;
 
-				txtCycle.Text = string.Empty;
-				txtCycle.Tag = ZERO_STRING;
+            txtCycle.Text = string.Empty;
+            txtCycle.Tag = ZERO_STRING;
 
-				#region  DEL Trada 22-12-2005
+            txtProductionLine.Text = string.Empty;
+            txtProductionLine.Tag = ZERO_STRING;
 
-				//				txtMasLoc.Text = string.Empty;
-				//				txtMasLoc.Tag = ZERO_STRING;
+            txtPartNumber.Text = string.Empty;
+            txtPartNumber.Tag = ZERO_STRING;
 
-				#endregion 
+            txtPartName.Text = string.Empty;
+            txtRevision.Text = string.Empty;
 
-				txtProductionLine.Text = string.Empty;
-				txtProductionLine.Tag = ZERO_STRING;
-								
-				txtPartNumber.Text = string.Empty;
-				txtPartNumber.Tag = ZERO_STRING;
+            txtVendor.Text = string.Empty;
 
-				txtPartName.Text = string.Empty;
-				txtRevision.Text = string.Empty;
+            dtmFromDueDate.Value = DBNull.Value;
+            dtmToDueDate.Value = DBNull.Value;
 
-				txtVendor.Text = string.Empty;
-
-				dtmFromDueDate.Value = DBNull.Value;
-				dtmToDueDate.Value = DBNull.Value;
-
-				cboPlanType.Focus();				
-				btnSave.Enabled = false;				
-			}			
-			catch (Exception ex)
-			{
-				throw new Exception(ex.Message, ex);
-			}	
-		}
+            cboPlanType.Focus();
+            btnSave.Enabled = false;
+        }
 
 		///<summary>	
 		/// Clear item information on the form
@@ -858,84 +848,82 @@ namespace PCSMaterials.Mps
 		/// <param name="pblnAlwaysShowDialog"></param>
 		private bool SelectCycle(string pstrMethodName, bool pblnAlwaysShowDialog)
 		{
-			try				
-			{
-				Hashtable htbCriteria = new Hashtable();
-				DataRowView drwResult = null;
-				
-				if(cboCCN.SelectedValue != null)
-				{
-					htbCriteria.Add(MST_MasterLocationTable.CCNID_FLD, cboCCN.SelectedValue);
-				}
-				else
-				{
-					htbCriteria.Add(MST_MasterLocationTable.CCNID_FLD, 0);
-				}
-				
-				if(cboPlanType.SelectedIndex == 0)
-				{
-					PCSMessageBox.Show(ErrorCode.MESSAGE_CPODATAVIEWER_PLEASE_SELECT_PLAN_TYPE);
-					cboPlanType.Focus();
-					return false;
-				}
+            Hashtable htbCriteria = new Hashtable();
+            DataRowView drwResult = null;
 
-				if(cboPlanType.Text.ToString() == PlanTypeEnum.MPS.ToString())
-				{
-					//Call OpenSearchForm for selecting MPS planning cycle
-					drwResult = FormControlComponents.OpenSearchForm(MTR_MPSCycleOptionMasterTable.TABLE_NAME, MTR_MPSCycleOptionMasterTable.CYCLE_FLD, txtCycle.Text, htbCriteria, pblnAlwaysShowDialog);
-				}
-				if (cboPlanType.Text.Trim() == PlanTypeEnum.MRP.ToString())
-				{
-					//Call OpenSearchForm for selecting MRP planning cycle
-					drwResult = FormControlComponents.OpenSearchForm(MTR_MRPCycleOptionMasterTable.TABLE_NAME, MTR_MPSCycleOptionMasterTable.CYCLE_FLD, txtCycle.Text, htbCriteria, pblnAlwaysShowDialog);
-				}
-				if (cboPlanType.Text.Trim() == lblDCP.Text.Trim())
-				{
-					//Call OpenSearchForm for selecting MRP planning cycle
-					drwResult = FormControlComponents.OpenSearchForm(PRO_DCOptionMasterTable.TABLE_NAME, PRO_DCOptionMasterTable.CYCLE_FLD, txtCycle.Text, htbCriteria, pblnAlwaysShowDialog);
-				}
-				
-				// If has Master location matched searching condition, fill values to form's controls
-				if (drwResult != null)
-				{
-					if(cboPlanType.Text.ToString() == PlanTypeEnum.MPS.ToString())
-					{
-						txtCycle.Text = drwResult[MTR_MPSCycleOptionMasterTable.CYCLE_FLD].ToString();
-						txtCycle.Tag = drwResult[MTR_MPSCycleOptionMasterTable.MPSCYCLEOPTIONMASTERID_FLD];	
-					}
+            if (cboCCN.SelectedValue != null)
+            {
+                htbCriteria.Add(MST_MasterLocationTable.CCNID_FLD, cboCCN.SelectedValue);
+            }
+            else
+            {
+                htbCriteria.Add(MST_MasterLocationTable.CCNID_FLD, 0);
+            }
 
-					if(cboPlanType.Text.ToString() == PlanTypeEnum.MRP.ToString())
-					{
-						txtCycle.Text = drwResult[MTR_MRPCycleOptionMasterTable.CYCLE_FLD].ToString();
-						txtCycle.Tag = drwResult[MTR_MRPCycleOptionMasterTable.MRPCYCLEOPTIONMASTERID_FLD];
-					}
+            if (cboPlanType.SelectedIndex == 0)
+            {
+                PCSMessageBox.Show(ErrorCode.MESSAGE_CPODATAVIEWER_PLEASE_SELECT_PLAN_TYPE);
+                cboPlanType.Focus();
+                return false;
+            }
 
-					if(cboPlanType.Text.ToString() == lblDCP.Text.Trim())
-					{
-						txtCycle.Text = drwResult[PRO_DCOptionMasterTable.CYCLE_FLD].ToString();
-						txtCycle.Tag = drwResult[PRO_DCOptionMasterTable.DCOPTIONMASTERID_FLD];
-					}
+            var planType = cboPlanType.Text;
 
-					//Reset modify status
-					txtCycle.Modified = false;
-				}
-				else if(!pblnAlwaysShowDialog)
-				{
-					txtCycle.Focus();
-					return false;
-				}
+            if (planType == PlanTypeEnum.MPS.ToString())
+            {
+                //Call OpenSearchForm for selecting MPS planning cycle
+                drwResult = FormControlComponents.OpenSearchForm(MTR_MPSCycleOptionMasterTable.TABLE_NAME, MTR_MPSCycleOptionMasterTable.CYCLE_FLD, txtCycle.Text, htbCriteria, pblnAlwaysShowDialog);
+            }
+            if (planType == PlanTypeEnum.MRP.ToString())
+            {
+                //Call OpenSearchForm for selecting MRP planning cycle
+                drwResult = FormControlComponents.OpenSearchForm(MTR_MRPCycleOptionMasterTable.TABLE_NAME, MTR_MPSCycleOptionMasterTable.CYCLE_FLD, txtCycle.Text, htbCriteria, pblnAlwaysShowDialog);
+            }
+            if (planType == lblDCP.Text.Trim())
+            {
+                //Call OpenSearchForm for selecting DCP planning cycle
+                drwResult = FormControlComponents.OpenSearchForm(PRO_DCOptionMasterTable.TABLE_NAME, PRO_DCOptionMasterTable.CYCLE_FLD, txtCycle.Text, htbCriteria, pblnAlwaysShowDialog);
+            }
 
-				return true;
-			}
-			catch (PCSException ex)
-			{
-				throw new PCSException(ex.mCode, pstrMethodName, ex);
-			}
-			catch (Exception ex)
-			{
-				throw new Exception(ex.Message, ex);
-			}	
-		}
+            // If has Master location matched searching condition, fill values to form's controls
+            if (drwResult != null)
+            {
+                int cycleId;
+                if (planType == PlanTypeEnum.MPS.ToString())
+                {
+                    txtCycle.Text = drwResult[MTR_MPSCycleOptionMasterTable.CYCLE_FLD].ToString();
+                    cycleId = Convert.ToInt32(drwResult[MTR_MPSCycleOptionMasterTable.MPSCYCLEOPTIONMASTERID_FLD].ToString());
+                    txtCycle.Tag = cycleId;
+                    mpsCylceOption = boCPODataViewer.GetMpsCycle(cycleId);
+                }
+
+                if (planType == PlanTypeEnum.MRP.ToString())
+                {
+                    txtCycle.Text = drwResult[MTR_MRPCycleOptionMasterTable.CYCLE_FLD].ToString();
+                    cycleId = Convert.ToInt32(drwResult[MTR_MRPCycleOptionMasterTable.MRPCYCLEOPTIONMASTERID_FLD].ToString());
+                    txtCycle.Tag = cycleId;
+                    mrpCylceOption = boCPODataViewer.GetMrpCycle(cycleId);
+                }
+
+                if (planType == lblDCP.Text.Trim())
+                {
+                    txtCycle.Text = drwResult[PRO_DCOptionMasterTable.CYCLE_FLD].ToString();
+                    cycleId = Convert.ToInt32(drwResult[PRO_DCOptionMasterTable.DCOPTIONMASTERID_FLD].ToString());
+                    txtCycle.Tag = cycleId;
+                    dcpCycleOption = boCPODataViewer.GetDcpOption(cycleId);
+                }
+
+                //Reset modify status
+                txtCycle.Modified = false;
+            }
+            else if (!pblnAlwaysShowDialog)
+            {
+                txtCycle.Focus();
+                return false;
+            }
+
+            return true;
+        }
 		/// <summary>
 		/// Calculate information in the Detail table after saving data
 		/// </summary>
@@ -1729,9 +1717,18 @@ namespace PCSMaterials.Mps
 						PCSMessageBox.Show(ErrorCode.CONVERTED_SUCCESSFULLY, MessageBoxIcon.Information);
 						Cursor = Cursors.Default; return;
 					}
+
+                    // check if we have any wrong schedule date item to show
+				    if (wrongDateItemList.Rows.Count > 0)
+				    {
+                        // delete old data first
+                        boCPODataViewer.WipeWrongItem(mrpCylceOption.MRPCycleOptionMasterID);
+                        // save to database for later use
+                        boCPODataViewer.LogWrongItem(wrongDateItemList);
+				        var frmWrongDateForm = new CpoWrongItemDateForm {DataSource = wrongDateItemList};
+				        frmWrongDateForm.ShowDialog();
+				    }
 				}
-				
-				
 			}
 			catch (PCSException ex)
 			{
@@ -2464,10 +2461,12 @@ namespace PCSMaterials.Mps
 					dgrdData.Splits[0].DisplayColumns["Quantity"].Locked = true;
 					#endregion END: Trada 21-04-2006
 				}
-				//HACK: added by Tuan TQ. 17 Feb, 2006
 				txtVendor.Enabled = (cboPlanType.SelectedItem.ToString() == PlanTypeEnum.MRP.ToString());				
 				btnVendorSearch.Enabled = txtVendor.Enabled;
-				//End hack
+                // reset value
+			    mpsCylceOption = null;
+			    mrpCylceOption = null;
+			    dcpCycleOption = null;
 			}
 			catch (Exception ex)
 			{
@@ -2943,7 +2942,7 @@ namespace PCSMaterials.Mps
 				// Get shema of PO detail
 				DataSet dstPODetailSchema = boPurchaseOrder.ListDetailByMaster(0);
 				DataView dtwAllCPOAffterSort = (dtbCPODetail.Copy()).DefaultView;
-				dtwAllCPOAffterSort.RowFilter = MTR_CPODS.SELECT_COLUMN + Constants.EQUAL + 1.ToString()
+				dtwAllCPOAffterSort.RowFilter = MTR_CPODS.SELECT_COLUMN + Constants.EQUAL + 1
 					+ " AND " + ITM_ProductTable.PRIMARYVENDORID_FLD + " > 0"
 					+ " AND " + ITM_ProductTable.VENDORLOCATIONID_FLD+ " > 0"
 					+ " AND " + ITM_ProductTable.VENDORCURRENCYID_FLD+ " > 0"
@@ -2973,19 +2972,35 @@ namespace PCSMaterials.Mps
 				}
 				int i =0;
 			    bool blnIsMRP = cboPlanType.Text != lblDCP.Text;
-			    DateTime dtmAsOfDate = boCPODataViewer.GetAsOfDate(Convert.ToInt32(txtCycle.Tag), blnIsMRP);
+			    DateTime dtmAsOfDate = blnIsMRP ? mrpCylceOption.AsOfDate : dcpCycleOption.AsOfDate.GetValueOrDefault(DateTime.Now);
 				DataSet dstCalendar = boCPODataViewer.GetWorkDayCalendar();
 				DateTime dtmFirstValidWorkDay = GetFirstValidWorkDay(dtmAsOfDate, dstCalendar);
-				while (i < dtwAllCPOAffterSort.Count)
+
+                wrongDateItemList = new DataTable(ConvertPOImportItemTable.TableName);
+			    wrongDateItemList.Columns.Add(new DataColumn(ConvertPOImportItemTable.CycleId, typeof (int)));
+			    wrongDateItemList.Columns.Add(new DataColumn(ConvertPOImportItemTable.ProductId, typeof (int)));
+			    wrongDateItemList.Columns.Add(new DataColumn(ConvertPOImportItemTable.PartNumber, typeof (string)));
+			    wrongDateItemList.Columns.Add(new DataColumn(ConvertPOImportItemTable.PartName, typeof (string)));
+			    wrongDateItemList.Columns.Add(new DataColumn(ConvertPOImportItemTable.Model, typeof (string)));
+			    wrongDateItemList.Columns.Add(new DataColumn(ConvertPOImportItemTable.MakerId, typeof (int)));
+                wrongDateItemList.Columns.Add(new DataColumn(ConvertPOImportItemTable.MakerCode, typeof(string)));
+                wrongDateItemList.Columns.Add(new DataColumn(ConvertPOImportItemTable.MakerName, typeof(string)));
+                wrongDateItemList.Columns.Add(new DataColumn(ConvertPOImportItemTable.Quantity, typeof (int)));
+			    wrongDateItemList.Columns.Add(new DataColumn(ConvertPOImportItemTable.ScheduleDate, typeof (DateTime)));
+			    wrongDateItemList.Columns[ConvertPOImportItemTable.CycleId].DefaultValue = mrpCylceOption.MRPCycleOptionMasterID;
+
+                while (i < dtwAllCPOAffterSort.Count)
 				{
 					dtbTableOfVendor.Rows.Clear();
 					dtbTableOfVendor.AcceptChanges();
 					DataSet dstPODetail = dstPODetailSchema.Clone();
 					for (int j =i; j < dtwAllCPOAffterSort.Count; j++)
 					{
-						if ((int)dtwAllCPOAffterSort[i][ITM_ProductTable.PRIMARYVENDORID_FLD]
-							==(int)dtwAllCPOAffterSort[j][ITM_ProductTable.PRIMARYVENDORID_FLD])
-							dtbTableOfVendor.ImportRow(dtwAllCPOAffterSort[j].Row);
+					    if ((int) dtwAllCPOAffterSort[i][ITM_ProductTable.PRIMARYVENDORID_FLD] ==
+					        (int) dtwAllCPOAffterSort[j][ITM_ProductTable.PRIMARYVENDORID_FLD])
+					    {
+					        dtbTableOfVendor.ImportRow(dtwAllCPOAffterSort[j].Row);
+					    }
 						else
 						{
 							ConvertCPOToNewPO(dtbTableOfVendor, dstPODetail, dtmFirstValidWorkDay, dstCalendar, blnIsMRP);
@@ -3178,7 +3193,7 @@ namespace PCSMaterials.Mps
 
 						DataRow[] drvRealDel = dtbDeliverySchedule.Select(ITM_ProductTable.PRODUCTID_FLD + "=" + (int) drowSameItems[0][ITM_ProductTable.PRODUCTID_FLD],
 						                                                  PO_VendorDeliveryScheduleTable.DELHOUR_FLD + " ASC," + PO_VendorDeliveryScheduleTable.DELMIN_FLD + " ASC");
-						dtbWeekMonthDelivery = GroupPODeliverys(dstDelTemp.Tables[0], drvRealDel, PODeliveryTypeEnum.Daily, pdtmFirstValidWorkDay, pdstCalendar, blnIsLocal).Copy();
+						dtbWeekMonthDelivery = GroupPODeliverys(dstDelTemp.Tables[0], drvRealDel, PODeliveryTypeEnum.Daily, pdtmFirstValidWorkDay, pdstCalendar, blnIsLocal, intPrimaryVendor).Copy();
 
 						#endregion
 					} 
@@ -3188,7 +3203,7 @@ namespace PCSMaterials.Mps
 
 						DataRow[] drvRealDel = dtbDeliverySchedule.Select(ITM_ProductTable.PRODUCTID_FLD + "=" + (int) drowSameItems[0][ITM_ProductTable.PRODUCTID_FLD],
 						                                                  "WeeklyDay ASC," + PO_VendorDeliveryScheduleTable.DELHOUR_FLD + " ASC," + PO_VendorDeliveryScheduleTable.DELMIN_FLD + " ASC");
-						dtbWeekMonthDelivery = GroupPODeliverys(dstDelTemp.Tables[0], drvRealDel, PODeliveryTypeEnum.Weekly, pdtmFirstValidWorkDay, pdstCalendar, blnIsLocal).Copy();
+						dtbWeekMonthDelivery = GroupPODeliverys(dstDelTemp.Tables[0], drvRealDel, PODeliveryTypeEnum.Weekly, pdtmFirstValidWorkDay, pdstCalendar, blnIsLocal, intPrimaryVendor).Copy();
 
 						#endregion
 					}
@@ -3198,7 +3213,7 @@ namespace PCSMaterials.Mps
 
 						DataRow[] drvRealDel = dtbDeliverySchedule.Select(ITM_ProductTable.PRODUCTID_FLD + "=" + (int) drowSameItems[0][ITM_ProductTable.PRODUCTID_FLD],
 						                                                  PO_VendorDeliveryScheduleTable.MONTHLYDATE_FLD + " ASC," + PO_VendorDeliveryScheduleTable.DELHOUR_FLD + " ASC ," + PO_VendorDeliveryScheduleTable.DELMIN_FLD +" ASC");
-						dtbWeekMonthDelivery = GroupPODeliverys(dstDelTemp.Tables[0], drvRealDel, PODeliveryTypeEnum.Monthly, pdtmFirstValidWorkDay, pdstCalendar, blnIsLocal).Copy();
+						dtbWeekMonthDelivery = GroupPODeliverys(dstDelTemp.Tables[0], drvRealDel, PODeliveryTypeEnum.Monthly, pdtmFirstValidWorkDay, pdstCalendar, blnIsLocal, intPrimaryVendor).Copy();
 
 						#endregion
 					}
@@ -3219,7 +3234,6 @@ namespace PCSMaterials.Mps
 
 			#endregion
 			
-			// Tinh toan lai cac truong trong PO field
 			ReCalculate(pdstPODetail, voMaster);
 
 			while(dstPODelivery.Tables[0].Rows.Count > 0)
@@ -3664,7 +3678,7 @@ namespace PCSMaterials.Mps
         /// <param name="dstCalendar"></param>
         /// <param name="blnIsLocal"></param>
         /// <returns></returns>
-        private DataTable GroupPODeliverys(DataTable pdtbPODelivery, DataRow[] pdrowDeliverys, PODeliveryTypeEnum pType, DateTime pdtmFirstValidWorkDay, DataSet dstCalendar, bool blnIsLocal)
+        private DataTable GroupPODeliverys(DataTable pdtbPODelivery, DataRow[] pdrowDeliverys, PODeliveryTypeEnum pType, DateTime pdtmFirstValidWorkDay, DataSet dstCalendar, bool blnIsLocal, int intPrimaryVendor)
 		{
 			DataTable dtbResultAfterGroup = pdtbPODelivery.Clone();
 			
@@ -3834,19 +3848,40 @@ namespace PCSMaterials.Mps
 			{
 				for (int i =0; i < pdtbPODelivery.DefaultView.Count; i++)
 				{
-					//add to Deleviry line
-					if (okNewSpace)
+				    var productId = pdtbPODelivery.DefaultView[i][PO_PurchaseOrderDetailTable.PRODUCTID_FLD];
+				    var deliveryQuantity = pdtbPODelivery.DefaultView[i][PO_DeliveryScheduleTable.DELIVERYQUANTITY_FLD];
+                    //add to Deleviry line
+                    if (okNewSpace)
 					{
 						#region new delivery line
 
 						DataRow drowData = dtbResultAfterGroup.NewRow();
                         DateTime dtmScheduleDate = dtmStart.AddMonths(-1);
-                        //DateTime dtmScheduleDate = dtmStart;
-
                         dtmScheduleDate = GetNearestWorkingDay(dtmScheduleDate, dstCalendar);
-						drowData[PO_DeliveryScheduleTable.SCHEDULEDATE_FLD] = dtmScheduleDate;
-						drowData[PO_PurchaseOrderDetailTable.PRODUCTID_FLD] = pdtbPODelivery.DefaultView[i][PO_PurchaseOrderDetailTable.PRODUCTID_FLD];
-						drowData[PO_DeliveryScheduleTable.DELIVERYQUANTITY_FLD] = pdtbPODelivery.DefaultView[i][PO_DeliveryScheduleTable.DELIVERYQUANTITY_FLD];
+                        // check if the start date is back for more than 1 month, add to a log table
+					    var cycleStartDate = mrpCylceOption.AsOfDate;
+					    var dayDifferent = (cycleStartDate.Date - dtmScheduleDate.Date).TotalDays;
+					    if (dayDifferent >= 58)
+					    {
+					        var itemInfo = pdrowDeliverys.FirstOrDefault(r => r["ProductID"] == productId);
+					        // log to possibility wrong date table
+					        var wrongDateItem = wrongDateItemList.NewRow();
+					        wrongDateItem[ConvertPOImportItemTable.ProductId] = productId;
+					        wrongDateItem[ConvertPOImportItemTable.PartNumber] = itemInfo[ConvertPOImportItemTable.PartNumber];
+					        wrongDateItem[ConvertPOImportItemTable.PartName] = itemInfo[ConvertPOImportItemTable.PartName];
+					        wrongDateItem[ConvertPOImportItemTable.Model] = itemInfo[ConvertPOImportItemTable.Model];
+					        wrongDateItem[ConvertPOImportItemTable.Quantity] = deliveryQuantity;
+					        wrongDateItem[ConvertPOImportItemTable.ScheduleDate] = dtmScheduleDate;
+					        wrongDateItem[ConvertPOImportItemTable.MakerId] = intPrimaryVendor;
+					        wrongDateItem[ConvertPOImportItemTable.MakerCode] = itemInfo[ConvertPOImportItemTable.MakerCode];
+					        wrongDateItem[ConvertPOImportItemTable.MakerName] = itemInfo[ConvertPOImportItemTable.MakerName];
+                            wrongDateItemList.Rows.Add(drowData);
+					    }
+
+                        // update data
+                        drowData[PO_DeliveryScheduleTable.SCHEDULEDATE_FLD] = dtmScheduleDate;
+						drowData[PO_PurchaseOrderDetailTable.PRODUCTID_FLD] = productId;
+						drowData[PO_DeliveryScheduleTable.DELIVERYQUANTITY_FLD] = deliveryQuantity;
 						
 						drowData["OriginalDELIVERYQUANTITY"] = pdtbPODelivery.DefaultView[i]["OriginalDELIVERYQUANTITY"];
 						drowData["CPOID"] = pdtbPODelivery.DefaultView[i]["CPOID"];
@@ -3864,7 +3899,7 @@ namespace PCSMaterials.Mps
 
 						dtbResultAfterGroup.Rows[dtbResultAfterGroup.Rows.Count -1][PO_DeliveryScheduleTable.DELIVERYQUANTITY_FLD]
 							= (decimal) dtbResultAfterGroup.Rows[dtbResultAfterGroup.Rows.Count -1][PO_DeliveryScheduleTable.DELIVERYQUANTITY_FLD]
-							+ (decimal)	pdtbPODelivery.DefaultView[i][PO_DeliveryScheduleTable.DELIVERYQUANTITY_FLD];
+							+ (decimal)deliveryQuantity;
 
 						dtbResultAfterGroup.Rows[dtbResultAfterGroup.Rows.Count -1]["OriginalDELIVERYQUANTITY"]
 							= (decimal) dtbResultAfterGroup.Rows[dtbResultAfterGroup.Rows.Count -1]["OriginalDELIVERYQUANTITY"]

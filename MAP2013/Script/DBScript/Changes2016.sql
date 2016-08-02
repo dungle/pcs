@@ -1,3 +1,30 @@
+/****** Object:  Table [dbo].[ConvertPOImportItem]    Script Date: 3/23/2016 9:09:13 AM ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[ConvertPOImportItem]') AND type in (N'U'))
+BEGIN
+CREATE TABLE [dbo].[ConvertPOImportItem](
+	[PkIdx] [int] IDENTITY(1,1) NOT NULL,
+	[CycleId] [int] NULL,
+	[ProductId] [int] NULL,
+	[PartNumber] [nvarchar](50) NULL,
+	[PartName] [nvarchar](200) NULL,
+	[Model] [nvarchar](50) NULL,
+	[Quantity] [int] NULL,
+	[MakerId] [int] NULL,
+	[ScheduleDate] [datetime] NULL,
+	[MakerCode] [nvarchar](50) NULL,
+	[MakerName] [nvarchar](200) NULL,
+ CONSTRAINT [PK_ConvertPOImportItem] PRIMARY KEY CLUSTERED 
+(
+	[PkIdx] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+END
+GO
+
 IF NOT EXISTS(SELECT Name FROM sys.columns  WHERE Name = N'DestroyApproved' AND Object_ID = Object_ID(N'IV_MiscellaneousIssueMaster'))
 BEGIN
     ALTER TABLE IV_MiscellaneousIssueMaster ADD DestroyApproved int NULL

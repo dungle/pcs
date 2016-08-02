@@ -13916,5 +13916,21 @@ namespace PCSComUtils.Common
         public const string SALEORDERMASTERID_FLD = "SaleOrderMasterID";
         public const string TABLE_NAME = "SO_Effect_Invoice";
     }
+
+    public sealed class ConvertPOImportItemTable
+    {
+        public const string TableName = "ConvertPOImportItem";
+        public const string Id = "PkIdx";
+        public const string CycleId = "CycleId";
+        public const string ProductId = "ProductId";
+        public const string PartNumber = "PartNumber";
+        public const string PartName = "PartName";
+        public const string Model = "Model";
+        public const string ScheduleDate = "ScheduleDate";
+        public const string Quantity = "Quantity";
+        public const string MakerId = "MakerId";
+        public const string MakerCode = "MakerCode";
+        public const string MakerName = "MakerName";
+    }
     #endregion
 }

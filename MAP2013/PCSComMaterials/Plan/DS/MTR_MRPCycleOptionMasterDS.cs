@@ -793,7 +793,6 @@ namespace PCSComMaterials.Plan.DS
                 else
                     strSql += PRO_DCOptionMasterTable.TABLE_NAME + " WHERE " + PRO_DCOptionMasterTable.DCOPTIONMASTERID_FLD + "=" + pintID;
 
-                Utils utils = new Utils();
                 oconPCS = new OleDbConnection(Utils.Instance.OleDbConnectionString);
                 ocmdPCS = new OleDbCommand(strSql, oconPCS);
 

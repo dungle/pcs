@@ -18,11 +18,6 @@ namespace PCSComMaterials.Plan.DS
 
         public const string SELECT_COLUMN = "Select_Col";
         public const string LINE_NUMBER_COLUMN = "LineNumber";
-
-        public MTR_CPODS()
-        {
-        }
-
         public void Add(object pobjObjectVO)
         {
             const string METHOD_NAME = THIS + ".Add()";
@@ -2316,13 +2311,14 @@ namespace PCSComMaterials.Plan.DS
             OleDbCommand ocmdPCS = null;
             try
             {
-                string strSql = " SELECT PO_VendorDeliverySchedule.*, P.ORDERQUANTITY, P.ORDERQUANTITYMULTIPLE "
+                string strSql = " SELECT PO_VendorDeliverySchedule.*, P.ORDERQUANTITY, P.ORDERQUANTITYMULTIPLE, "
+                            + " P.Code AS PartNumber, P.Description AS PartName, P.Revision AS Model, "
+                            + " PT.Code AS MakerCode, PT.Name AS MakerName "
                             + " FROM " + PO_VendorDeliveryScheduleTable.TABLE_NAME
                             + " INNER JOIN ITM_Product P ON PO_VendorDeliverySchedule.ProductID = P.ProductID"
-                            + " WHERE " + PO_VendorDeliveryScheduleTable.PARTYID_FLD + "=" + pintPartyID;
+                            + " INNER JOIN MST_Party PT ON PO_VendorDeliverySchedule.PartyID = PT.PartyID"
+                            + " WHERE PO_VendorDeliverySchedule.PartyID = " + pintPartyID;
 
-
-                Utils utils = new Utils();
                 oconPCS = new OleDbConnection(Utils.Instance.OleDbConnectionString);
                 ocmdPCS = new OleDbCommand(strSql, oconPCS);
                 ocmdPCS.Connection.Open();
@@ -2498,5 +2494,104 @@ namespace PCSComMaterials.Plan.DS
             }
         }
 
+        public void WipeWrongItem(int cycleId)
+        {
+            const string METHOD_NAME = THIS + ".WipeWrongItem()";
+            OleDbConnection oconPCS = null;
+            OleDbCommand ocmdPCS = null;
+            try
+            {
+                var strSql = string.Format("DELETE {0} WHERE {1} = {2}", ConvertPOImportItemTable.TableName,
+                    ConvertPOImportItemTable.CycleId, cycleId);
+                oconPCS = new OleDbConnection(Utils.Instance.OleDbConnectionString);
+                ocmdPCS = new OleDbCommand(strSql, oconPCS);
+
+                ocmdPCS.Connection.Open();
+                ocmdPCS.CommandTimeout = 1000;
+                ocmdPCS.ExecuteNonQuery();
+                ocmdPCS = null;
+            }
+            catch (OleDbException ex)
+            {
+                if (ex.Errors.Count > 1)
+                {
+                    if (ex.Errors[1].NativeError == ErrorCode.SQLCASCADE_PREVENT_KEYCODE)
+                        throw new PCSDBException(ErrorCode.CASCADE_DELETE_PREVENT, METHOD_NAME, ex);
+                    else
+                        throw new PCSDBException(ErrorCode.ERROR_DB, METHOD_NAME, ex);
+                }
+                else
+                    throw new PCSDBException(ErrorCode.ERROR_DB, METHOD_NAME, ex);
+            }
+
+            catch (Exception ex)
+            {
+                throw new PCSDBException(ErrorCode.OTHER_ERROR, METHOD_NAME, ex);
+            }
+            finally
+            {
+                if (oconPCS != null)
+                {
+                    if (oconPCS.State != ConnectionState.Closed)
+                    {
+                        oconPCS.Close();
+                    }
+                }
+            }
+        }
+        public void LogWrongItem(DataTable wrongItemTable)
+        {
+            const string methodName = THIS + ".LogWrongItem()";
+            OleDbConnection oconPCS = null;
+            OleDbCommandBuilder odcbPCS;
+            OleDbDataAdapter odadPCS = new OleDbDataAdapter();
+            try
+            {
+                var strSql = "SELECT PkIdx, CycleId, ProductId, PartNumber, PartName" +
+                            ", Model, Quantity, MakerId, ScheduleDate, MakerCode, MakerName" +
+                             " FROM ConvertPOImportItem ";
+                DataSet data = new DataSet(ConvertPOImportItemTable.TableName);
+                data.Tables.Add(wrongItemTable);
+                oconPCS = new OleDbConnection(Utils.Instance.OleDbConnectionString);
+                odadPCS.SelectCommand = new OleDbCommand(strSql, oconPCS);
+                odcbPCS = new OleDbCommandBuilder(odadPCS);
+                data.EnforceConstraints = false;
+                odadPCS.Update(data, ConvertPOImportItemTable.TableName);
+
+            }
+            catch (OleDbException ex)
+            {
+                if (ex.Errors[1].NativeError == ErrorCode.SQLDUPLICATE_KEYCODE)
+                {
+                    throw new PCSDBException(ErrorCode.DUPLICATE_KEY, methodName, ex);
+                }
+                else if (ex.Errors[1].NativeError == ErrorCode.SQLCASCADE_PREVENT_KEYCODE)
+                {
+                    throw new PCSDBException(ErrorCode.CASCADE_DELETE_PREVENT, methodName, ex);
+                }
+                else
+                {
+                    throw new PCSDBException(ErrorCode.ERROR_DB, methodName, ex);
+                }
+            }
+            catch (InvalidOperationException ex)
+            {
+                throw new PCSDBException(ErrorCode.ERROR_DB, methodName, ex);
+            }
+            catch (Exception ex)
+            {
+                throw new PCSDBException(ErrorCode.OTHER_ERROR, methodName, ex);
+            }
+            finally
+            {
+                if (oconPCS != null)
+                {
+                    if (oconPCS.State != ConnectionState.Closed)
+                    {
+                        oconPCS.Close();
+                    }
+                }
+            }
+        }
     }
 }

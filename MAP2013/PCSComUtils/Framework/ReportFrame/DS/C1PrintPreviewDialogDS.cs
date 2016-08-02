@@ -2309,6 +2309,7 @@ namespace PCSComUtils.Framework.ReportFrame.DS
 					+ " WHERE SO_DeliverySchedule.DeliveryScheduleID = SO_ConfirmShipDetail.DeliveryScheduleID"
 					+ " )AS SaleType,"
                     + " GA.Code SOGate,"
+                    + " SO_ConfirmShipMaster.ReferenceNo,"
                     + " SO_ConfirmShipMaster.DocumentNumber AS CustomerPurchaseOrderNo,"
                     + " SO_ConfirmShipDetail.ConfirmShipDetailID, MST_PartyLocation.[Description] AS ShipToLocation, ST.Code AS SaleType1"
 
@@ -2465,7 +2466,8 @@ namespace PCSComUtils.Framework.ReportFrame.DS
 					+ " WHERE SO_DeliverySchedule.DeliveryScheduleID = SO_InvoiceDetail.DeliveryScheduleID"
 					+ " )AS SaleType,"
                     + " GA.Code SOGate,"
-					+ " SO_InvoiceMaster.DocumentNumber AS CustomerPurchaseOrderNo,"
+                    + " SO_InvoiceMaster.ReferenceNo,"
+                    + " SO_InvoiceMaster.DocumentNumber AS CustomerPurchaseOrderNo,"
                     + " SO_InvoiceDetail.InvoiceDetailID, MST_PartyLocation.[Description] AS ShipToLocation, ST.Code AS SaleType1"
 
                     + " FROM    SO_InvoiceDetail "
