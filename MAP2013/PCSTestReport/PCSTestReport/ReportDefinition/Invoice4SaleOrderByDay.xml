@@ -644,14 +644,13 @@ ORDER BY ITM_Product.Revision</RecordSource>
         <Tag>100</Tag>
       </Field>
       <Field>
-        <Name>Field14</Name>
+        <Name>fldType</Name>
         <Section>1</Section>
         <Text>Phân loại: </Text>
         <Left>7920</Left>
         <Top>3615</Top>
         <Width>810</Width>
         <Height>270</Height>
-        <Visible>0</Visible>
         <Font>
           <Name>Arial</Name>
           <Size>8.25</Size>
@@ -660,7 +659,7 @@ ORDER BY ITM_Product.Revision</RecordSource>
       <Field>
         <Name>fldSaleType</Name>
         <Section>1</Section>
-        <Text>CustomerPurchaseOrderNo</Text>
+        <Text>SaleType1</Text>
         <Calculated>-1</Calculated>
         <Left>8715</Left>
         <Top>3585</Top>
@@ -1810,6 +1809,23 @@ ORDER BY ITM_Product.Revision</RecordSource>
         <Font>
           <Name>Arial</Name>
           <Size>7.5</Size>
+        </Font>
+        <Tag>100</Tag>
+      </Field>
+      <Field>
+        <Name>fldReferenceNo</Name>
+        <Section>1</Section>
+        <Text>CustomerPurchaseOrderNo</Text>
+        <Calculated>-1</Calculated>
+        <Left>8715</Left>
+        <Top>3585</Top>
+        <Width>2025</Width>
+        <Height>285</Height>
+        <Align>2</Align>
+        <Visible>0</Visible>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
         </Font>
         <Tag>100</Tag>
       </Field>

@@ -691,7 +691,7 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
       <Field>
         <Name>fldCustomerPurchaseOrderNo</Name>
         <Section>1</Section>
-        <Text>CustomerPurchaseOrderNo</Text>
+        <Text>ReferenceNo</Text>
         <Calculated>-1</Calculated>
         <Left>9345</Left>
         <Top>2985</Top>
@@ -838,7 +838,7 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Tag>100</Tag>
       </Field>
       <Field>
-        <Name>Field14</Name>
+        <Name>fldType</Name>
         <Section>1</Section>
         <Text>Phân loại: </Text>
         <Left>7905</Left>
@@ -3186,6 +3186,23 @@ Amount</Text>
         <BorderStyle>1</BorderStyle>
         <Tag>100</Tag>
         <Shape Type="Line" />
+      </Field>
+      <Field>
+        <Name>fldReferenceNo</Name>
+        <Section>1</Section>
+        <Text>CustomerPurchaseOrderNo</Text>
+        <Calculated>-1</Calculated>
+        <Left>8805</Left>
+        <Top>3540</Top>
+        <Width>1845</Width>
+        <Height>285</Height>
+        <Align>8</Align>
+        <Visible>0</Visible>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Tag>100</Tag>
       </Field>
     </Fields>
   </Report>

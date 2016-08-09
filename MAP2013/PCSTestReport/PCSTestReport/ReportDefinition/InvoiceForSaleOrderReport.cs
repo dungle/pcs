@@ -172,6 +172,18 @@ namespace InvoiceForSaleOrderReport
 	        {
 	        }
 
+            // get sale type to show and hide field accordingly
+            var saleType = reportData.Rows[0]["SaleType1"].ToString();
+            try
+            {
+                var isType6 = saleType.ToUpperInvariant().Equals("TYPE6");
+                // change display to PO number instead of sale type
+                rptReport.Fields["fldSaleType"].Visible = !isType6;
+                rptReport.Fields["fldType"].Visible = !isType6;
+                rptReport.Fields["fldReferenceNo"].Visible = isType6;
+            }
+            catch { }
+
             // set datasource object that provides data to report.
             rptReport.DataSource.Recordset = reportData;
             // render report
@@ -223,6 +235,7 @@ namespace InvoiceForSaleOrderReport
                 sqlText.AppendLine("then Substring(MST_Party.BankAccount, CharIndex('#', MST_Party.BankAccount) + 1, Len(MST_Party.BankAccount)) Else '' End As MST_PartyBankName, MST_Party.VATCode AS MST_PartyTaxCode,");
                 sqlText.AppendLine("MST_Party.MAPBankAccountNo as BankAccountNo, Case when CharIndex('#', MST_Party.MAPBankAccountName) > 0 then Substring(MST_Party.MAPBankAccountName, 1,");
                 sqlText.AppendLine("CharIndex('#', MST_Party.MAPBankAccountName) - 1)  else MST_Party.MAPBankAccountName End As BankAccountName, SO_InvoiceMaster.DocumentNumber CustomerPurchaseOrderNo, MST_PartyLocation.[Description] AS ShipToLocation, ST.Code AS SaleType1");
+                sqlText.AppendLine(", SO_InvoiceMaster.ReferenceNo");
                 sqlText.AppendLine("FROM    SO_InvoiceDetail  INNER JOIN SO_InvoiceMaster ON SO_InvoiceDetail.InvoiceMasterID = SO_InvoiceMaster.InvoiceMasterID");
                 sqlText.AppendLine("INNER JOIN SO_SaleOrderMaster ON SO_InvoiceMaster.SaleOrderMasterID = SO_SaleOrderMaster.SaleOrderMasterID  ");
                 sqlText.AppendLine("INNER JOIN MST_Party ON SO_SaleOrderMaster.PartyID = MST_Party.PartyID  ");
@@ -273,7 +286,7 @@ namespace InvoiceForSaleOrderReport
                 }
                 sqlText.AppendLine("GROUP BY SO_InvoiceDetail.Price, CAST(SO_InvoiceMaster.InvoiceDate AS Date),");
                 sqlText.AppendLine("ITM_Product.ProductID, refDetail.CustomerItemCode, ITM_Product.Description, ITM_Product.PartNameVN, MST_UnitOfMeasure.Code,");
-                sqlText.AppendLine("ITM_Product.Revision, SO_InvoiceDetail.VATPercent, SO_InvoiceMaster.InvoiceNo,");
+                sqlText.AppendLine("ITM_Product.Revision, SO_InvoiceDetail.VATPercent, SO_InvoiceMaster.InvoiceNo, SO_InvoiceMaster.ReferenceNo,");
                 sqlText.AppendLine("MST_Party.Name, MST_Party.Address, MST_Party.BankAccount, MST_Party.VATCode, MST_Party.MAPBankAccountNo, MST_Party.MAPBankAccountName, ");
                 sqlText.AppendLine("SO_InvoiceMaster.DocumentNumber, MST_PartyLocation.Description, ST.Code, CAST(E.ScheduleDate as DATE)");
                 sqlText.AppendLine("ORDER BY ITM_Product.Revision");

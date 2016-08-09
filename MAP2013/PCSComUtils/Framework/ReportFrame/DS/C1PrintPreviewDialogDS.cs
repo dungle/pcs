@@ -7288,8 +7288,6 @@ namespace PCSComUtils.Framework.ReportFrame.DS
 			strSqlBuilder.Append(" AND detail.ProductID = ITM_Product.ProductID");
 			strSqlBuilder.Append(" )	");
 			strSqlBuilder.Append(" /");
-			
-			//validate data to avoid division by zero error 
 			strSqlBuilder.Append(" ( ");
 			strSqlBuilder.Append(" Case  ");
 			strSqlBuilder.Append(" When ( ");
@@ -7308,8 +7306,6 @@ namespace PCSComUtils.Framework.ReportFrame.DS
 			strSqlBuilder.Append("    ) ");
 			strSqlBuilder.Append(" end      "); 
 			strSqlBuilder.Append(" ) ");
-			//end validate
-
 			strSqlBuilder.Append(" )	");
 			strSqlBuilder.Append(" as AVGPrice,");
 

@@ -1644,7 +1644,7 @@ namespace PCSSale.Order
                                 ? boDataReport.GetSaleOrderCommitData(_voMaster.ConfirmShipMasterID)
                                 : boDataReport.GetSaleOrderInvoiceData(_voInvoiceMaster.InvoiceMasterID);
                 // we can't preview while we don't have any data
-                if (dtbResult == null)
+                if (dtbResult == null || dtbResult.Rows.Count == 0)
                 {
                     return;
                 }
@@ -1741,6 +1741,18 @@ namespace PCSSale.Order
                 }
 
                 #endregion
+
+                // get sale type to show and hide field accordingly
+                var saleType = dtbResult.Rows[0]["SaleType1"].ToString();
+                try
+                {
+                    var isType6 = saleType.ToUpperInvariant().Equals("TYPE6");
+                    // change display to PO number instead of sale type
+                    rptReport.Fields["fldSaleType"].Visible = !isType6;
+                    rptReport.Fields["fldType"].Visible = !isType6;
+                    rptReport.Fields["fldReferenceNo"].Visible = isType6;
+                }
+                catch { }
 
                 // set datasource object that provides data to report.
                 rptReport.DataSource.Recordset = dtbResult;
