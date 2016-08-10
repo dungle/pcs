@@ -5,104 +5,68 @@
     <Name>Invoice4SaleOrder</Name>
     <ReportInfo />
     <DataSource>
-      <ConnectionString>Provider=SQLOLEDB.1;Password=Niteco@123;Persist Security Info=True;User ID=sa;Initial Catalog=test;Data Source=.</ConnectionString>
-      <RecordSource>SELECT  DISTINCT ITM_Product.ProductID, 
-refDetail.CustomerItemCode AS ITM_ProductCode,
-ITM_Product.Description AS ITM_ProductDescription,
-ITM_Product.PartNameVN AS ITM_ProductDescriptionVN,
-MST_UnitOfMeasure.Code AS MST_UnitOfMeasureCode,
-ITM_Product.Revision AS ITM_ProductRevision,
-SO_InvoiceDetail.InvoiceQty as DeliveryQuantity,
+      <ConnectionString>Provider=SQLOLEDB;Password=khongbiet;Persist Security Info=True;User ID=sa;Initial Catalog=map;Data Source=.</ConnectionString>
+      <RecordSource>
+SELECT  DISTINCT ITM_Product.ProductID,  
+	refDetail.CustomerItemCode AS ITM_ProductCode, 
+	ITM_Product.Description AS ITM_ProductDescription, 
+	MST_UnitOfMeasure.Code AS MST_UnitOfMeasureCode, 
+	ITM_Product.Revision AS ITM_ProductRevision, 
+	SO_ConfirmShipDetail.InvoiceQty as DeliveryQuantity, 
+	((SELECT SUM( detail.Price * detail.InvoiceQty) 
+	  FROM SO_ConfirmShipDetail detail 
+	  WHERE detail.ConfirmShipMasterID = SO_ConfirmShipMaster.ConfirmShipMasterID 
+		AND detail.ProductID = ITM_Product.ProductID )   
+	/ (  
+	Case   When (  SELECT SUM(detail.InvoiceQty)  
+			FROM SO_ConfirmShipDetail detail  
+			WHERE detail.ConfirmShipMasterID = SO_ConfirmShipMaster.ConfirmShipMasterID  
+				AND detail.ProductID = ITM_Product.ProductID     ) = 0   then 1      else    (  SELECT SUM(detail.InvoiceQty)  FROM SO_ConfirmShipDetail detail  WHERE detail.ConfirmShipMasterID = SO_ConfirmShipMaster.ConfirmShipMasterID  AND detail.ProductID = ITM_Product.ProductID     )  end       )  )   as AVGPrice, 
 
-((SELECT SUM( detail.Price * detail.InvoiceQty)
-FROM SO_InvoiceDetail detail
-WHERE detail.InvoiceMasterID = SO_InvoiceMaster.InvoiceMasterID
-AND detail.ProductID = ITM_Product.ProductID
-)	
-/
-( 
-Case  
-When ( 
-SELECT SUM(detail.InvoiceQty) 
-FROM SO_InvoiceDetail detail 
-WHERE detail.InvoiceMasterID = SO_InvoiceMaster.InvoiceMasterID 
-AND detail.ProductID = ITM_Product.ProductID 
-   ) = 0  
-then 1 
-    else    
-( 
-SELECT SUM(detail.InvoiceQty) 
-FROM SO_InvoiceDetail detail 
-WHERE detail.InvoiceMasterID = SO_InvoiceMaster.InvoiceMasterID 
-AND detail.ProductID = ITM_Product.ProductID 
-   ) 
-end       
-) 
+	SO_ConfirmShipDetail.Price as UnitPrice, 
+	(SO_ConfirmShipDetail.InvoiceQty * SO_ConfirmShipDetail.Price) AS NetAmount, 
+	ISNULL(SO_SaleOrderDetail.VATPercent, 0) As VATPercent, 
+	SO_ConfirmShipDetail.VatAmount, 
+	SO_ConfirmShipMaster.InvoiceNo,
+	SO_ConfirmShipMaster.ConfirmShipNo, 
+	SO_ConfirmShipMaster.ShippedDate, 
+	MST_Party.Name AS MST_PartyName, 
+	MST_Party.Address AS MST_PartyAddress, 
 
-)	
-as AVGPrice,
+	Case when CharIndex('#', MST_Party.BankAccount) &gt; 0 then    
+		Substring(MST_Party.BankAccount, 1, CharIndex('#', MST_Party.BankAccount) - 1)  
+	     else MST_Party.BankAccount   
+	End As MST_PartyBankAccount, 
+	
+	Case when CharIndex('#', MST_Party.BankAccount) &gt; 0 then 
+		Substring(MST_Party.BankAccount, CharIndex('#', MST_Party.BankAccount) + 1, Len(MST_Party.BankAccount)) 
+	     Else '' 
+	End As MST_PartyBankName, 
 
-SO_InvoiceDetail.Price as UnitPrice,
-(SO_InvoiceDetail.InvoiceQty * SO_InvoiceDetail.Price) AS NetAmount,					
+	MST_Party.VATCode AS MST_PartyTaxCode, 
+	MST_Party.MAPBankAccountNo as BankAccountNo, 
+	Case when CharIndex('#', MST_Party.MAPBankAccountName) &gt; 0 then 
+	     Substring(MST_Party.MAPBankAccountName, 1, CharIndex('#', MST_Party.MAPBankAccountName) - 1)  
+	     else MST_Party.MAPBankAccountName 
+	End As BankAccountName, 
 
-ISNULL(SO_InvoiceDetail.VATPercent, 0) As VATPercent,
-ISNULL(SO_InvoiceDetail.VatAmount, 0) as VatAmount, 
+	(SELECT TOP 1 enm_GateType.Description FROM SO_DeliverySchedule 
+	 LEFT JOIN SO_Gate ON SO_DeliverySchedule.GateID = SO_Gate.GateID 
+	 LEFT JOIN enm_GateType ON enm_GateType.GateTypeID = SO_Gate.GateTypeID 
+	 WHERE SO_DeliverySchedule.DeliveryScheduleID = SO_ConfirmShipDetail.DeliveryScheduleID )
+	AS SaleType,
+	
+	SO_ConfirmShipMaster.ReferenceNo as CustomerPurchaseOrderNo, 
+	SO_ConfirmShipDetail.ConfirmShipDetailID 
+	
+	FROM    SO_ConfirmShipDetail  
+	INNER JOIN SO_ConfirmShipMaster ON SO_ConfirmShipDetail.ConfirmShipMasterID = SO_ConfirmShipMaster.ConfirmShipMasterID  INNER JOIN SO_SaleOrderMaster ON SO_ConfirmShipMaster.SaleOrderMasterID = SO_SaleOrderMaster.SaleOrderMasterID  INNER JOIN MST_Party ON SO_SaleOrderMaster.PartyID = MST_Party.PartyID  INNER JOIN SO_SaleOrderDetail ON SO_ConfirmShipDetail.SaleOrderDetailID = SO_SaleOrderDetail.SaleOrderDetailID  INNER JOIN ITM_Product ON SO_ConfirmShipDetail.ProductID = ITM_Product.ProductID  LEFT JOIN MST_UnitOfMeasure ON SO_SaleOrderDetail.SellingUMID = MST_UnitOfMeasure.UnitOfMeasureID  LEFT JOIN SO_CustomerItemRefMaster refMaster ON refMaster.PartyID = MST_Party.PartyID LEFT JOIN SO_CustomerItemRefDetail refDetail ON refMaster.CustomerItemRefMasterID = refDetail.CustomerItemRefMasterID AND refDetail.ProductID = ITM_Product.ProductID 
 
-SO_InvoiceMaster.InvoiceNo,
-SO_InvoiceMaster.ConfirmShipNo,
+WHERE 	SO_ConfirmShipMaster.ConfirmShipMasterID = 147 
+	AND SO_ConfirmShipDetail.InvoiceQty &gt; 0 
 
-SO_InvoiceMaster.InvoiceDate as ShippedDate,
-
-MST_Party.Name AS MST_PartyName,
-MST_Party.Address AS MST_PartyAddress,
-Case when CharIndex('#', MST_Party.BankAccount) &gt; 0 then
-   Substring(MST_Party.BankAccount, 1, CharIndex('#', MST_Party.BankAccount) - 1) 
-else MST_Party.BankAccount	
-End As MST_PartyBankAccount,
-
-Case when CharIndex('#', MST_Party.BankAccount) &gt; 0 then
-Substring(MST_Party.BankAccount, CharIndex('#', MST_Party.BankAccount) + 1, Len(MST_Party.BankAccount))
-Else ''
-End As MST_PartyBankName,
-
-MST_Party.VATCode AS MST_PartyTaxCode,
-
-MST_Party.MAPBankAccountNo as BankAccountNo,
-Case when CharIndex('#', MST_Party.MAPBankAccountName) &gt; 0 then
-Substring(MST_Party.MAPBankAccountName, 1, CharIndex('#', MST_Party.MAPBankAccountName) - 1) 
-else MST_Party.MAPBankAccountName
-End As BankAccountName,					
-
-(
-SELECT TOP 1 enm_GateType.Description
-FROM SO_DeliverySchedule
-LEFT JOIN SO_Gate ON SO_DeliverySchedule.GateID = SO_Gate.GateID
-LEFT JOIN enm_GateType ON enm_GateType.GateTypeID = SO_Gate.GateTypeID
-WHERE SO_DeliverySchedule.DeliveryScheduleID = SO_InvoiceDetail.DeliveryScheduleID
-)AS SaleType,
-                    GA.Code SOGate,
-					SO_InvoiceMaster.ReferenceNo,
-SO_InvoiceMaster.DocumentNumber AS CustomerPurchaseOrderNo,
-                    SO_InvoiceDetail.InvoiceDetailID, MST_PartyLocation.[Description] AS ShipToLocation, ST.Code AS SaleType1
-
-                    FROM    SO_InvoiceDetail 
-INNER JOIN SO_InvoiceMaster ON SO_InvoiceDetail.InvoiceMasterID = SO_InvoiceMaster.InvoiceMasterID 
-INNER JOIN SO_SaleOrderMaster ON SO_InvoiceMaster.SaleOrderMasterID = SO_SaleOrderMaster.SaleOrderMasterID 
-INNER JOIN MST_PartyLocation ON SO_SaleOrderMaster.ShipToLocID = MST_PartyLocation.PartyLocationID 
-INNER JOIN MST_Party ON SO_SaleOrderMaster.PartyID = MST_Party.PartyID 
-INNER JOIN SO_SaleOrderDetail ON SO_InvoiceDetail.SaleOrderDetailID = SO_SaleOrderDetail.SaleOrderDetailID 
-INNER JOIN ITM_Product ON SO_InvoiceDetail.ProductID = ITM_Product.ProductID 
-INNER JOIN SO_DeliverySchedule E ON E.DeliveryScheduleID = SO_InvoiceDetail.DeliveryScheduleID
-LEFT JOIN MST_UnitOfMeasure ON SO_SaleOrderDetail.SellingUMID = MST_UnitOfMeasure.UnitOfMeasureID 					
-LEFT JOIN SO_CustomerItemRefMaster refMaster ON refMaster.PartyID = MST_Party.PartyID
-LEFT JOIN SO_CustomerItemRefDetail refDetail ON refMaster.CustomerItemRefMasterID = refDetail.CustomerItemRefMasterID
-AND refDetail.ProductID = ITM_Product.ProductID
-LEFT JOIN SO_Gate GA ON E.GateID = GA.GateID
-LEFT JOIN SO_SaleType ST ON SO_SaleOrderMaster.SaleTypeID = ST.SaleTypeID
-WHERE SO_InvoiceMaster.InvoiceMasterID =  29223
-AND SO_InvoiceDetail.InvoiceQty &gt; 0
-ORDER BY ITM_Product.Revision</RecordSource>
-      <DataProvider>1</DataProvider>
+ORDER BY refDetail.CustomerItemCode</RecordSource>
+      <DataProvider>0</DataProvider>
     </DataSource>
     <Layout>
       <Width>11925</Width>
@@ -133,7 +97,7 @@ ORDER BY ITM_Product.Revision</RecordSource>
       <Section>
         <Name>Header</Name>
         <Type>1</Type>
-        <Height>4650</Height>
+        <Height>4620</Height>
       </Section>
       <Section>
         <Name>Footer</Name>
@@ -142,12 +106,12 @@ ORDER BY ITM_Product.Revision</RecordSource>
       <Section>
         <Name>PageHeader</Name>
         <Type>3</Type>
-        <Height>735</Height>
+        <Height>765</Height>
       </Section>
       <Section>
         <Name>PageFooter</Name>
         <Type>4</Type>
-        <Height>5760</Height>
+        <Height>5460</Height>
       </Section>
       <Section>
         <Name>ProductID Header</Name>
@@ -343,8 +307,8 @@ ORDER BY ITM_Product.Revision</RecordSource>
       <Field>
         <Name>Field84</Name>
         <Section>1</Section>
-        <Left>1290</Left>
-        <Top>2655</Top>
+        <Left>1065</Left>
+        <Top>2565</Top>
         <Width>6435</Width>
         <Height>1635</Height>
         <ZOrder>-18</ZOrder>
@@ -358,10 +322,10 @@ ORDER BY ITM_Product.Revision</RecordSource>
       <Field>
         <Name>Field9</Name>
         <Section>1</Section>
-        <Left>7815</Left>
-        <Top>2655</Top>
-        <Width>2955</Width>
-        <Height>1815</Height>
+        <Left>7740</Left>
+        <Top>2640</Top>
+        <Width>3570</Width>
+        <Height>1830</Height>
         <ZOrder>-16</ZOrder>
         <Picture encoding="base64">iVBORw0KGgoAAAANSUhEUgAAAioAAABiCAYAAAB+pPibAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAADSElEQVR4Xu3d7W0aQRQFUFqgBkpwCfRAAS7CTbgASqAEyqAESqADNn5kUTLJmPgDdq+ic6UjC2l2+fs0dxgvRERERP6rLJfL4e3PxdPTEwBA13VeGD0uNZysVqvh5eVlOB6Pw/l8BgD4kNPpNGy329+Hl/ulXmo4AQDuoYaW9Xo9jA3N11Mv2O/33S8BAPiO2gSptmYcOz6XerAmnt6LAQDu4bq7Mo4fH0tVPb2XAQA8wmaz+diwUnVP7wUAAI/0zxqohpTD4dB9GADg0d7GkfeHldp26T0EADCFugZlHEv+isOzAMDsuj9btpsCACTo7qrsdrvuYgCAKdV52T93VboLAQDmULPJzxHlLX6SDAAkaS6Bc8EbAJCkuQDOQVoAIElzoLY+9BYBAMzh9fXVoAIAZGp2VGpq6S0CAJiD6gcAiKX6AQBi2VEBAGI1g4ozKgBAEtUPABBL9QMAxFL9AACxVD8AQCzVDwAQS/UDAMRS/QAAsVQ/AEAs1Q8AEEv1AwDEUv0AALFUPwBALNUPABBL9QMAxFL9AACxVD8AQCzVDwAQS/UDAMRS/QAAsVQ/AEAs1Q8AEEv1AwDEUv0AALFUPwBALNUPABBL9QMAxFL9AACxVD8AQCzVDwAQS/UDAMRS/QAAsVQ/AEAs1Q8AEEv1AwDEUv0AALFUPwBALNUPABBL9QMAxFL9AACxVD8AQCzVDwAQS/UDAMRS/QAAsVQ/AEAs1Q8AEEv1AwDEUv0AALFUPwBALNUPABBL9QMAxFL9AACxVD8AQCzVDwAQS/UDAMRS/QAAsVQ/AEAs1Q8AEKupfjabTXcRAMAcmh2V9XrdXQQAMIfn5+dfg8pqteouAgCYQ7U945hySXcRAMAcahNlnFEWi+VyORwOh+5CAIApHY/HGlKaHZVFdUG9xQAAU9put+2QUnFOBQBIUE3POJ60cZ8KADCn/X7fH1IqNcH0HgIAmMK7uynXuFMFAJhDc8nbraiAAIApdQ/Q3ophBQCYwm63+9yQco0aCAB4pOaq/C/msh3TezkAwFfULkpz++x3U6dwa2Cp2+J6XwgAcMvpdLrMEncdUDq5/HSo/llQnc4FALilZoZxOHnogCIiIiIyYRaLHxDZsdTV4fK6AAAAAElFTkSuQmCC</Picture>
         <PictureScale>1</PictureScale>
@@ -387,8 +351,8 @@ ORDER BY ITM_Product.Revision</RecordSource>
       <Field>
         <Name>Field91</Name>
         <Section>1</Section>
-        <Left>3375</Left>
-        <Top>2940</Top>
+        <Left>3150</Left>
+        <Top>2925</Top>
         <Width>3615</Width>
         <ZOrder>-2</ZOrder>
         <BorderStyle>3</BorderStyle>
@@ -399,11 +363,28 @@ ORDER BY ITM_Product.Revision</RecordSource>
         <Shape Type="Line" />
       </Field>
       <Field>
+        <Name>fldShippedDate</Name>
+        <Section>1</Section>
+        <Text>ShippedDate</Text>
+        <Calculated>-1</Calculated>
+        <Format>dd-MM-yyyy</Format>
+        <Left>9840</Left>
+        <Top>2655</Top>
+        <Width>1185</Width>
+        <Height>270</Height>
+        <Align>2</Align>
+        <Font>
+          <Name>Arial</Name>
+          <Size>9.5</Size>
+        </Font>
+        <Tag>100</Tag>
+      </Field>
+      <Field>
         <Name>Field11</Name>
         <Section>1</Section>
         <Text>Ngày/ Delivery Date:</Text>
-        <Left>7905</Left>
-        <Top>2760</Top>
+        <Left>7830</Left>
+        <Top>2745</Top>
         <Width>1560</Width>
         <Height>270</Height>
         <Font>
@@ -412,28 +393,11 @@ ORDER BY ITM_Product.Revision</RecordSource>
         </Font>
       </Field>
       <Field>
-        <Name>fldShippedDate</Name>
-        <Section>1</Section>
-        <Text>ShippedDate</Text>
-        <Calculated>-1</Calculated>
-        <Format>dd-MM-yyyy</Format>
-        <Left>9540</Left>
-        <Top>2730</Top>
-        <Width>1185</Width>
-        <Height>270</Height>
-        <Align>2</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
         <Name>Field16</Name>
         <Section>1</Section>
         <Text>Tên/ Name:</Text>
-        <Left>1395</Left>
-        <Top>2775</Top>
+        <Left>1170</Left>
+        <Top>2685</Top>
         <Width>1920</Width>
         <Height>255</Height>
         <Font>
@@ -446,22 +410,38 @@ ORDER BY ITM_Product.Revision</RecordSource>
         <Section>1</Section>
         <Text>MST_PartyName</Text>
         <Calculated>-1</Calculated>
-        <Left>3360</Left>
-        <Top>2760</Top>
-        <Width>4455</Width>
+        <Left>3315</Left>
+        <Top>2670</Top>
+        <Width>4470</Width>
         <Height>270</Height>
         <Align>0</Align>
         <Font>
           <Name>Arial</Name>
-          <Size>8.25</Size>
+          <Size>9.5</Size>
+        </Font>
+        <Tag>100</Tag>
+      </Field>
+      <Field>
+        <Name>fldCustomerPurchaseOrderNo</Name>
+        <Section>1</Section>
+        <Text>CustomerPurchaseOrderNo</Text>
+        <Calculated>-1</Calculated>
+        <Left>9555</Left>
+        <Top>3585</Top>
+        <Width>1455</Width>
+        <Height>270</Height>
+        <Align>2</Align>
+        <Font>
+          <Name>Arial</Name>
+          <Size>9.5</Size>
         </Font>
         <Tag>100</Tag>
       </Field>
       <Field>
         <Name>Field92</Name>
         <Section>1</Section>
-        <Left>3375</Left>
-        <Top>3240</Top>
+        <Left>3150</Left>
+        <Top>3225</Top>
         <Width>3615</Width>
         <ZOrder>-2</ZOrder>
         <BorderStyle>3</BorderStyle>
@@ -472,12 +452,12 @@ ORDER BY ITM_Product.Revision</RecordSource>
         <Shape Type="Line" />
       </Field>
       <Field>
-        <Name>Field17</Name>
+        <Name>Field10</Name>
         <Section>1</Section>
-        <Text>Địa chỉ/ Address:</Text>
-        <Left>1395</Left>
-        <Top>3075</Top>
-        <Width>1920</Width>
+        <Text>Đơn hàng/ PO No:</Text>
+        <Left>7830</Left>
+        <Top>3030</Top>
+        <Width>1365</Width>
         <Height>270</Height>
         <Font>
           <Name>Arial</Name>
@@ -489,24 +469,24 @@ ORDER BY ITM_Product.Revision</RecordSource>
         <Section>1</Section>
         <Text>MST_PartyAddress</Text>
         <Calculated>-1</Calculated>
-        <Left>3360</Left>
-        <Top>2990</Top>
-        <Width>4515</Width>
-        <Height>270</Height>
+        <Left>2760</Left>
+        <Top>2910</Top>
+        <Width>5220</Width>
+        <Height>285</Height>
         <Align>3</Align>
         <Font>
           <Name>Arial</Name>
-          <Size>8.25</Size>
+          <Size>9.5</Size>
         </Font>
         <Tag>100</Tag>
       </Field>
       <Field>
-        <Name>Field10</Name>
+        <Name>Field17</Name>
         <Section>1</Section>
-        <Text>Đơn hàng/ PO No:</Text>
-        <Left>7905</Left>
-        <Top>3045</Top>
-        <Width>1365</Width>
+        <Text>Địa chỉ/ Address:</Text>
+        <Left>1170</Left>
+        <Top>2985</Top>
+        <Width>1920</Width>
         <Height>270</Height>
         <Font>
           <Name>Arial</Name>
@@ -514,26 +494,23 @@ ORDER BY ITM_Product.Revision</RecordSource>
         </Font>
       </Field>
       <Field>
-        <Name>fldCustomerPurchaseOrderNo</Name>
+        <Name>Field13</Name>
         <Section>1</Section>
-        <Text>ReferenceNo</Text>
-        <Calculated>-1</Calculated>
-        <Left>9270</Left>
-        <Top>3015</Top>
-        <Width>1455</Width>
+        <Text>Giờ giao/ Time:</Text>
+        <Left>7830</Left>
+        <Top>3315</Top>
+        <Width>1185</Width>
         <Height>270</Height>
-        <Align>2</Align>
         <Font>
           <Name>Arial</Name>
           <Size>8.25</Size>
         </Font>
-        <Tag>100</Tag>
       </Field>
       <Field>
         <Name>Field93</Name>
         <Section>1</Section>
-        <Left>3375</Left>
-        <Top>3540</Top>
+        <Left>3150</Left>
+        <Top>3525</Top>
         <Width>3615</Width>
         <ZOrder>-2</ZOrder>
         <BorderStyle>3</BorderStyle>
@@ -544,11 +521,27 @@ ORDER BY ITM_Product.Revision</RecordSource>
         <Shape Type="Line" />
       </Field>
       <Field>
+        <Name>fldMST_PartyTaxCode</Name>
+        <Section>1</Section>
+        <Text>MST_PartyTaxCode</Text>
+        <Calculated>-1</Calculated>
+        <Left>3315</Left>
+        <Top>3275</Top>
+        <Width>4275</Width>
+        <Height>270</Height>
+        <Align>3</Align>
+        <Font>
+          <Name>Arial</Name>
+          <Size>9.5</Size>
+        </Font>
+        <Tag>100</Tag>
+      </Field>
+      <Field>
         <Name>Field18</Name>
         <Section>1</Section>
         <Text>Mã số thuế/ Tax Code:</Text>
-        <Left>1395</Left>
-        <Top>3375</Top>
+        <Left>1170</Left>
+        <Top>3285</Top>
         <Width>1920</Width>
         <Height>270</Height>
         <Font>
@@ -557,54 +550,39 @@ ORDER BY ITM_Product.Revision</RecordSource>
         </Font>
       </Field>
       <Field>
-        <Name>fldMST_PartyTaxCode</Name>
+        <Name>fldSaleType</Name>
         <Section>1</Section>
-        <Text>MST_PartyTaxCode</Text>
+        <Text>=IIf(ReferenceNo&lt;&gt;"",ReferenceNo,SaleType1)</Text>
         <Calculated>-1</Calculated>
-        <Left>3360</Left>
-        <Top>3290</Top>
-        <Width>4275</Width>
-        <Height>270</Height>
-        <Align>3</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field13</Name>
-        <Section>1</Section>
-        <Text>Giờ giao/ Time:</Text>
-        <Left>7905</Left>
-        <Top>3330</Top>
-        <Width>1185</Width>
-        <Height>270</Height>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-      </Field>
-      <Field>
-        <Name>fldShippedDate1</Name>
-        <Section>1</Section>
-        <Format>HH:mm</Format>
-        <Left>9165</Left>
-        <Top>3300</Top>
-        <Width>1560</Width>
-        <Height>270</Height>
+        <Left>9870</Left>
+        <Top>3015</Top>
+        <Width>1305</Width>
+        <Height>705</Height>
         <Align>2</Align>
         <Font>
           <Name>Arial</Name>
-          <Size>8.25</Size>
+          <Size>9.5</Size>
         </Font>
         <Tag>100</Tag>
+      </Field>
+      <Field>
+        <Name>Field14</Name>
+        <Section>1</Section>
+        <Text>Phân loại: </Text>
+        <Left>7845</Left>
+        <Top>3600</Top>
+        <Width>810</Width>
+        <Height>270</Height>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
       </Field>
       <Field>
         <Name>Field94</Name>
         <Section>1</Section>
-        <Left>3375</Left>
-        <Top>3840</Top>
+        <Left>3150</Left>
+        <Top>3825</Top>
         <Width>3615</Width>
         <ZOrder>-2</ZOrder>
         <BorderStyle>3</BorderStyle>
@@ -618,8 +596,8 @@ ORDER BY ITM_Product.Revision</RecordSource>
         <Name>Field19</Name>
         <Section>1</Section>
         <Text>Số tài khoản/ Account No: </Text>
-        <Left>1395</Left>
-        <Top>3675</Top>
+        <Left>1170</Left>
+        <Top>3585</Top>
         <Width>1920</Width>
         <Height>270</Height>
         <Font>
@@ -632,51 +610,22 @@ ORDER BY ITM_Product.Revision</RecordSource>
         <Section>1</Section>
         <Text>MST_PartyBankAccount</Text>
         <Calculated>-1</Calculated>
-        <Left>3360</Left>
-        <Top>3590</Top>
+        <Left>3315</Left>
+        <Top>3605</Top>
         <Width>4275</Width>
         <Height>270</Height>
         <Align>3</Align>
         <Font>
           <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>fldType</Name>
-        <Section>1</Section>
-        <Text>Phân loại: </Text>
-        <Left>7920</Left>
-        <Top>3615</Top>
-        <Width>810</Width>
-        <Height>270</Height>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-      </Field>
-      <Field>
-        <Name>fldSaleType</Name>
-        <Section>1</Section>
-        <Text>SaleType1</Text>
-        <Calculated>-1</Calculated>
-        <Left>8715</Left>
-        <Top>3585</Top>
-        <Width>2010</Width>
-        <Height>270</Height>
-        <Align>2</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
+          <Size>9.5</Size>
         </Font>
         <Tag>100</Tag>
       </Field>
       <Field>
         <Name>Field86</Name>
         <Section>1</Section>
-        <Left>3390</Left>
-        <Top>4140</Top>
+        <Left>3165</Left>
+        <Top>3975</Top>
         <Width>3615</Width>
         <ZOrder>-2</ZOrder>
         <BorderStyle>3</BorderStyle>
@@ -690,8 +639,8 @@ ORDER BY ITM_Product.Revision</RecordSource>
         <Name>Field20</Name>
         <Section>1</Section>
         <Text>Ngân hàng/ Bank name:</Text>
-        <Left>1395</Left>
-        <Top>3975</Top>
+        <Left>1170</Left>
+        <Top>3885</Top>
         <Width>1920</Width>
         <Height>270</Height>
         <Font>
@@ -700,43 +649,43 @@ ORDER BY ITM_Product.Revision</RecordSource>
         </Font>
       </Field>
       <Field>
+        <Name>fldConfirmShipNo</Name>
+        <Section>1</Section>
+        <Text>ShipToLocation</Text>
+        <Calculated>-1</Calculated>
+        <Left>7830</Left>
+        <Top>4020</Top>
+        <Width>3420</Width>
+        <Height>525</Height>
+        <Align>2</Align>
+        <Font>
+          <Name>Arial</Name>
+          <Size>9.25</Size>
+        </Font>
+        <Tag>100</Tag>
+      </Field>
+      <Field>
         <Name>fldMST_PartyBankName</Name>
         <Section>1</Section>
         <Text>MST_PartyBankName</Text>
         <Calculated>-1</Calculated>
-        <Left>3360</Left>
-        <Top>3890</Top>
+        <Left>3300</Left>
+        <Top>3945</Top>
         <Width>4470</Width>
         <Height>270</Height>
         <Align>3</Align>
         <Font>
           <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>fldConfirmShipNo</Name>
-        <Section>1</Section>
-        <Text>ShipToLocation</Text>
-        <Calculated>-1</Calculated>
-        <Left>7935</Left>
-        <Top>3870</Top>
-        <Width>2820</Width>
-        <Height>555</Height>
-        <Align>2</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
+          <Size>9.5</Size>
         </Font>
         <Tag>100</Tag>
       </Field>
       <Field>
         <Name>Field21</Name>
         <Section>3</Section>
-        <Left>1260</Left>
-        <Width>9465</Width>
-        <Height>725</Height>
+        <Left>1170</Left>
+        <Width>9915</Width>
+        <Height>765</Height>
         <ZOrder>-22</ZOrder>
         <BorderStyle>1</BorderStyle>
         <Font>
@@ -789,7 +738,7 @@ ORDER BY ITM_Product.Revision</RecordSource>
       <Field>
         <Name>Field24</Name>
         <Section>3</Section>
-        <Left>6655</Left>
+        <Left>6355</Left>
         <Height>720</Height>
         <BorderStyle>1</BorderStyle>
         <Font>
@@ -802,7 +751,7 @@ ORDER BY ITM_Product.Revision</RecordSource>
       <Field>
         <Name>Field25</Name>
         <Section>3</Section>
-        <Left>7260</Left>
+        <Left>7035</Left>
         <Height>720</Height>
         <BorderStyle>1</BorderStyle>
         <Font>
@@ -824,6 +773,21 @@ ORDER BY ITM_Product.Revision</RecordSource>
           <Size>8.25</Size>
         </Font>
         <Shape Type="Line" />
+      </Field>
+      <Field>
+        <Name>Field32</Name>
+        <Section>3</Section>
+        <Text>ĐV</Text>
+        <Left>6465</Left>
+        <Top>15</Top>
+        <Width>495</Width>
+        <Height>260</Height>
+        <Align>7</Align>
+        <Font>
+          <Bold>-1</Bold>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
       </Field>
       <Field>
         <Name>Field51</Name>
@@ -870,25 +834,10 @@ ORDER BY ITM_Product.Revision</RecordSource>
         </Font>
       </Field>
       <Field>
-        <Name>Field32</Name>
-        <Section>3</Section>
-        <Text>ĐV</Text>
-        <Left>6710</Left>
-        <Top>30</Top>
-        <Width>495</Width>
-        <Height>260</Height>
-        <Align>7</Align>
-        <Font>
-          <Bold>-1</Bold>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-      </Field>
-      <Field>
         <Name>Field33</Name>
         <Section>3</Section>
         <Text>Số lượng</Text>
-        <Left>7250</Left>
+        <Left>7035</Left>
         <Top>30</Top>
         <Width>750</Width>
         <Height>255</Height>
@@ -930,12 +879,12 @@ ORDER BY ITM_Product.Revision</RecordSource>
         </Font>
       </Field>
       <Field>
-        <Name>Field37</Name>
+        <Name>Field31</Name>
         <Section>3</Section>
-        <Text>Item Code</Text>
-        <Left>1780</Left>
-        <Top>195</Top>
-        <Width>1635</Width>
+        <Text>Unit</Text>
+        <Left>6480</Left>
+        <Top>180</Top>
+        <Width>450</Width>
         <Height>260</Height>
         <Align>7</Align>
         <Font>
@@ -945,12 +894,12 @@ ORDER BY ITM_Product.Revision</RecordSource>
         </Font>
       </Field>
       <Field>
-        <Name>Field31</Name>
+        <Name>Field37</Name>
         <Section>3</Section>
-        <Text>Unit</Text>
-        <Left>6725</Left>
+        <Text>Item Code</Text>
+        <Left>1780</Left>
         <Top>195</Top>
-        <Width>450</Width>
+        <Width>1635</Width>
         <Height>260</Height>
         <Align>7</Align>
         <Font>
@@ -978,7 +927,7 @@ ORDER BY ITM_Product.Revision</RecordSource>
         <Name>Field34</Name>
         <Section>3</Section>
         <Text>Qty</Text>
-        <Left>7300</Left>
+        <Left>7095</Left>
         <Top>210</Top>
         <Width>660</Width>
         <Height>260</Height>
@@ -1022,9 +971,9 @@ ORDER BY ITM_Product.Revision</RecordSource>
       <Field>
         <Name>Field44</Name>
         <Section>3</Section>
-        <Left>1260</Left>
+        <Left>1170</Left>
         <Top>465</Top>
-        <Width>9465</Width>
+        <Width>9915</Width>
         <BorderStyle>1</BorderStyle>
         <Font>
           <Bold>-1</Bold>
@@ -1083,7 +1032,7 @@ ORDER BY ITM_Product.Revision</RecordSource>
         <Name>Field45</Name>
         <Section>3</Section>
         <Text>4</Text>
-        <Left>6700</Left>
+        <Left>6480</Left>
         <Top>480</Top>
         <Width>450</Width>
         <Height>220</Height>
@@ -1098,7 +1047,7 @@ ORDER BY ITM_Product.Revision</RecordSource>
         <Name>Field46</Name>
         <Section>3</Section>
         <Text>5</Text>
-        <Left>7300</Left>
+        <Left>7095</Left>
         <Top>480</Top>
         <Width>660</Width>
         <Height>220</Height>
@@ -1140,37 +1089,13 @@ ORDER BY ITM_Product.Revision</RecordSource>
         </Font>
       </Field>
       <Field>
-        <Name>Field12</Name>
-        <Section>4</Section>
-        <Left>1650</Left>
-        <Top>495</Top>
-        <Width>4875</Width>
-        <Height>1935</Height>
-        <ZOrder>-15</ZOrder>
-        <Picture encoding="base64">iVBORw0KGgoAAAANSUhEUgAAAioAAABiCAYAAAB+pPibAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAADSElEQVR4Xu3d7W0aQRQFUFqgBkpwCfRAAS7CTbgASqAEyqAESqADNn5kUTLJmPgDdq+ic6UjC2l2+fs0dxgvRERERP6rLJfL4e3PxdPTEwBA13VeGD0uNZysVqvh5eVlOB6Pw/l8BgD4kNPpNGy329+Hl/ulXmo4AQDuoYaW9Xo9jA3N11Mv2O/33S8BAPiO2gSptmYcOz6XerAmnt6LAQDu4bq7Mo4fH0tVPb2XAQA8wmaz+diwUnVP7wUAAI/0zxqohpTD4dB9GADg0d7GkfeHldp26T0EADCFugZlHEv+isOzAMDsuj9btpsCACTo7qrsdrvuYgCAKdV52T93VboLAQDmULPJzxHlLX6SDAAkaS6Bc8EbAJCkuQDOQVoAIElzoLY+9BYBAMzh9fXVoAIAZGp2VGpq6S0CAJiD6gcAiKX6AQBi2VEBAGI1g4ozKgBAEtUPABBL9QMAxFL9AACxVD8AQCzVDwAQS/UDAMRS/QAAsVQ/AEAs1Q8AEEv1AwDEUv0AALFUPwBALNUPABBL9QMAxFL9AACxVD8AQCzVDwAQS/UDAMRS/QAAsVQ/AEAs1Q8AEEv1AwDEUv0AALFUPwBALNUPABBL9QMAxFL9AACxVD8AQCzVDwAQS/UDAMRS/QAAsVQ/AEAs1Q8AEEv1AwDEUv0AALFUPwBALNUPABBL9QMAxFL9AACxVD8AQCzVDwAQS/UDAMRS/QAAsVQ/AEAs1Q8AEEv1AwDEUv0AALFUPwBALNUPABBL9QMAxFL9AACxVD8AQCzVDwAQS/UDAMRS/QAAsVQ/AEAs1Q8AEKupfjabTXcRAMAcmh2V9XrdXQQAMIfn5+dfg8pqteouAgCYQ7U945hySXcRAMAcahNlnFEWi+VyORwOh+5CAIApHY/HGlKaHZVFdUG9xQAAU9put+2QUnFOBQBIUE3POJ60cZ8KADCn/X7fH1IqNcH0HgIAmMK7uynXuFMFAJhDc8nbraiAAIApdQ/Q3ophBQCYwm63+9yQco0aCAB4pOaq/C/msh3TezkAwFfULkpz++x3U6dwa2Cp2+J6XwgAcMvpdLrMEncdUDq5/HSo/llQnc4FALilZoZxOHnogCIiIiIyYRaLHxDZsdTV4fK6AAAAAElFTkSuQmCC</Picture>
-        <PictureScale>1</PictureScale>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-      </Field>
-      <Field>
-        <Name>Field76</Name>
-        <Section>4</Section>
-        <Left>9120</Left>
-        <Top>75</Top>
-        <Width>1590</Width>
-        <Height>1320</Height>
-        <BorderStyle>1</BorderStyle>
-      </Field>
-      <Field>
         <Name>fldSumNetAmount</Name>
         <Section>4</Section>
         <Text>SUM(NetAmount)</Text>
         <Calculated>-1</Calculated>
         <Format>#,##0</Format>
-        <Left>9130</Left>
-        <Top>75</Top>
+        <Left>9465</Left>
+        <Top>1245</Top>
         <Width>1560</Width>
         <Height>270</Height>
         <Align>8</Align>
@@ -1184,8 +1109,8 @@ ORDER BY ITM_Product.Revision</RecordSource>
         <Name>Field80</Name>
         <Section>4</Section>
         <Text>Tiền hàng/ Sub-Total</Text>
-        <Left>7245</Left>
-        <Top>75</Top>
+        <Left>7575</Left>
+        <Top>1380</Top>
         <Width>1680</Width>
         <Height>270</Height>
         <Align>6</Align>
@@ -1195,13 +1120,28 @@ ORDER BY ITM_Product.Revision</RecordSource>
         </Font>
       </Field>
       <Field>
-        <Name>Field77</Name>
+        <Name>Field12</Name>
         <Section>4</Section>
-        <Left>9120</Left>
-        <Top>330</Top>
+        <Left>1635</Left>
+        <Top>1740</Top>
+        <Width>4875</Width>
+        <Height>1935</Height>
+        <ZOrder>-15</ZOrder>
+        <Picture encoding="base64">iVBORw0KGgoAAAANSUhEUgAAAioAAABiCAYAAAB+pPibAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAADSElEQVR4Xu3d7W0aQRQFUFqgBkpwCfRAAS7CTbgASqAEyqAESqADNn5kUTLJmPgDdq+ic6UjC2l2+fs0dxgvRERERP6rLJfL4e3PxdPTEwBA13VeGD0uNZysVqvh5eVlOB6Pw/l8BgD4kNPpNGy329+Hl/ulXmo4AQDuoYaW9Xo9jA3N11Mv2O/33S8BAPiO2gSptmYcOz6XerAmnt6LAQDu4bq7Mo4fH0tVPb2XAQA8wmaz+diwUnVP7wUAAI/0zxqohpTD4dB9GADg0d7GkfeHldp26T0EADCFugZlHEv+isOzAMDsuj9btpsCACTo7qrsdrvuYgCAKdV52T93VboLAQDmULPJzxHlLX6SDAAkaS6Bc8EbAJCkuQDOQVoAIElzoLY+9BYBAMzh9fXVoAIAZGp2VGpq6S0CAJiD6gcAiKX6AQBi2VEBAGI1g4ozKgBAEtUPABBL9QMAxFL9AACxVD8AQCzVDwAQS/UDAMRS/QAAsVQ/AEAs1Q8AEEv1AwDEUv0AALFUPwBALNUPABBL9QMAxFL9AACxVD8AQCzVDwAQS/UDAMRS/QAAsVQ/AEAs1Q8AEEv1AwDEUv0AALFUPwBALNUPABBL9QMAxFL9AACxVD8AQCzVDwAQS/UDAMRS/QAAsVQ/AEAs1Q8AEEv1AwDEUv0AALFUPwBALNUPABBL9QMAxFL9AACxVD8AQCzVDwAQS/UDAMRS/QAAsVQ/AEAs1Q8AEEv1AwDEUv0AALFUPwBALNUPABBL9QMAxFL9AACxVD8AQCzVDwAQS/UDAMRS/QAAsVQ/AEAs1Q8AEKupfjabTXcRAMAcmh2V9XrdXQQAMIfn5+dfg8pqteouAgCYQ7U945hySXcRAMAcahNlnFEWi+VyORwOh+5CAIApHY/HGlKaHZVFdUG9xQAAU9put+2QUnFOBQBIUE3POJ60cZ8KADCn/X7fH1IqNcH0HgIAmMK7uynXuFMFAJhDc8nbraiAAIApdQ/Q3ophBQCYwm63+9yQco0aCAB4pOaq/C/msh3TezkAwFfULkpz++x3U6dwa2Cp2+J6XwgAcMvpdLrMEncdUDq5/HSo/llQnc4FALilZoZxOHnogCIiIiIyYRaLHxDZsdTV4fK6AAAAAElFTkSuQmCC</Picture>
+        <PictureScale>1</PictureScale>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field76</Name>
+        <Section>4</Section>
+        <Left>9450</Left>
+        <Top>1305</Top>
         <Width>1590</Width>
+        <Height>1320</Height>
         <BorderStyle>1</BorderStyle>
-        <Shape Type="Line" />
       </Field>
       <Field>
         <Name>fldVATPercent</Name>
@@ -1209,8 +1149,8 @@ ORDER BY ITM_Product.Revision</RecordSource>
         <Text>VATPercent</Text>
         <Calculated>-1</Calculated>
         <Format>#,###.##</Format>
-        <Left>9270</Left>
-        <Top>360</Top>
+        <Left>9600</Left>
+        <Top>1545</Top>
         <Width>1275</Width>
         <Height>315</Height>
         <Align>5</Align>
@@ -1224,8 +1164,8 @@ ORDER BY ITM_Product.Revision</RecordSource>
         <Name>fldPercent</Name>
         <Section>4</Section>
         <Text>%</Text>
-        <Left>10545</Left>
-        <Top>360</Top>
+        <Left>10875</Left>
+        <Top>1545</Top>
         <Width>180</Width>
         <Height>315</Height>
         <Align>3</Align>
@@ -1237,11 +1177,20 @@ ORDER BY ITM_Product.Revision</RecordSource>
         <Tag>100</Tag>
       </Field>
       <Field>
+        <Name>Field77</Name>
+        <Section>4</Section>
+        <Left>9450</Left>
+        <Top>1635</Top>
+        <Width>1590</Width>
+        <BorderStyle>1</BorderStyle>
+        <Shape Type="Line" />
+      </Field>
+      <Field>
         <Name>Field81</Name>
         <Section>4</Section>
         <Text>Thuế suất/ VAT rate</Text>
-        <Left>7260</Left>
-        <Top>405</Top>
+        <Left>7590</Left>
+        <Top>1710</Top>
         <Width>1680</Width>
         <Height>270</Height>
         <Align>6</Align>
@@ -1253,8 +1202,8 @@ ORDER BY ITM_Product.Revision</RecordSource>
       <Field>
         <Name>Field57</Name>
         <Section>4</Section>
-        <Left>2595</Left>
-        <Top>720</Top>
+        <Left>2580</Left>
+        <Top>1965</Top>
         <Width>195</Width>
         <Height>195</Height>
         <BorderStyle>1</BorderStyle>
@@ -1267,8 +1216,8 @@ ORDER BY ITM_Product.Revision</RecordSource>
         <Name>Field58</Name>
         <Section>4</Section>
         <Text>Tiền mặt/ Cash</Text>
-        <Left>2895</Left>
-        <Top>720</Top>
+        <Left>2880</Left>
+        <Top>1965</Top>
         <Width>1905</Width>
         <Height>220</Height>
         <Align>6</Align>
@@ -1278,22 +1227,13 @@ ORDER BY ITM_Product.Revision</RecordSource>
         </Font>
       </Field>
       <Field>
-        <Name>Field78</Name>
-        <Section>4</Section>
-        <Left>9120</Left>
-        <Top>675</Top>
-        <Width>1590</Width>
-        <BorderStyle>1</BorderStyle>
-        <Shape Type="Line" />
-      </Field>
-      <Field>
         <Name>fldSumVATAmount</Name>
         <Section>4</Section>
         <Text>SUM(NetAmount)*VATPercent/100</Text>
         <Calculated>-1</Calculated>
         <Format>#,##0</Format>
-        <Left>9135</Left>
-        <Top>675</Top>
+        <Left>9465</Left>
+        <Top>1890</Top>
         <Width>1560</Width>
         <Height>360</Height>
         <Align>5</Align>
@@ -1304,11 +1244,20 @@ ORDER BY ITM_Product.Revision</RecordSource>
         <Tag>100</Tag>
       </Field>
       <Field>
+        <Name>Field78</Name>
+        <Section>4</Section>
+        <Left>9450</Left>
+        <Top>1980</Top>
+        <Width>1590</Width>
+        <BorderStyle>1</BorderStyle>
+        <Shape Type="Line" />
+      </Field>
+      <Field>
         <Name>Field82</Name>
         <Section>4</Section>
         <Text>Tiền thuế/ VAT Amount</Text>
-        <Left>7260</Left>
-        <Top>750</Top>
+        <Left>7590</Left>
+        <Top>2055</Top>
         <Width>1830</Width>
         <Height>270</Height>
         <Align>6</Align>
@@ -1320,8 +1269,8 @@ ORDER BY ITM_Product.Revision</RecordSource>
       <Field>
         <Name>Field59</Name>
         <Section>4</Section>
-        <Left>2610</Left>
-        <Top>1005</Top>
+        <Left>2595</Left>
+        <Top>2250</Top>
         <Width>180</Width>
         <Height>195</Height>
         <BorderStyle>1</BorderStyle>
@@ -1334,8 +1283,8 @@ ORDER BY ITM_Product.Revision</RecordSource>
         <Name>Field60</Name>
         <Section>4</Section>
         <Text>Chuyển khoản/ TT</Text>
-        <Left>2910</Left>
-        <Top>1005</Top>
+        <Left>2895</Left>
+        <Top>2250</Top>
         <Width>2430</Width>
         <Height>220</Height>
         <Align>6</Align>
@@ -1345,22 +1294,13 @@ ORDER BY ITM_Product.Revision</RecordSource>
         </Font>
       </Field>
       <Field>
-        <Name>Field79</Name>
-        <Section>4</Section>
-        <Left>9120</Left>
-        <Top>1035</Top>
-        <Width>1590</Width>
-        <BorderStyle>1</BorderStyle>
-        <Shape Type="Line" />
-      </Field>
-      <Field>
         <Name>fldSumTotalNetAmount</Name>
         <Section>4</Section>
         <Text>SUM(NetAmount) + SUM(NetAmount)*VATPercent/100</Text>
         <Calculated>-1</Calculated>
         <Format>#,##0</Format>
-        <Left>9135</Left>
-        <Top>1050</Top>
+        <Left>9465</Left>
+        <Top>2280</Top>
         <Width>1560</Width>
         <Height>345</Height>
         <Align>5</Align>
@@ -1371,11 +1311,20 @@ ORDER BY ITM_Product.Revision</RecordSource>
         <Tag>100</Tag>
       </Field>
       <Field>
+        <Name>Field79</Name>
+        <Section>4</Section>
+        <Left>9450</Left>
+        <Top>2340</Top>
+        <Width>1590</Width>
+        <BorderStyle>1</BorderStyle>
+        <Shape Type="Line" />
+      </Field>
+      <Field>
         <Name>Field83</Name>
         <Section>4</Section>
         <Text>Tổng cộng/ Grand-Total</Text>
-        <Left>7260</Left>
-        <Top>1095</Top>
+        <Left>7590</Left>
+        <Top>2400</Top>
         <Width>1830</Width>
         <Height>270</Height>
         <Align>6</Align>
@@ -1388,8 +1337,8 @@ ORDER BY ITM_Product.Revision</RecordSource>
         <Name>Field61</Name>
         <Section>4</Section>
         <Text>Tài khoản MAP/ Map's Bank A/C No</Text>
-        <Left>1755</Left>
-        <Top>1335</Top>
+        <Left>1740</Left>
+        <Top>2580</Top>
         <Width>2835</Width>
         <Height>270</Height>
         <Align>6</Align>
@@ -1403,22 +1352,36 @@ ORDER BY ITM_Product.Revision</RecordSource>
         <Section>4</Section>
         <Text>BankAccountNo</Text>
         <Calculated>-1</Calculated>
-        <Left>4575</Left>
-        <Top>1335</Top>
-        <Width>1845</Width>
-        <Height>270</Height>
+        <Left>5085</Left>
+        <Top>2580</Top>
+        <Width>1560</Width>
+        <Height>285</Height>
         <Align>0</Align>
         <Font>
           <Name>Arial</Name>
-          <Size>8.25</Size>
+          <Size>9.5</Size>
         </Font>
         <Tag>100</Tag>
       </Field>
       <Field>
+        <Name>Field62</Name>
+        <Section>4</Section>
+        <Text>Tại ngân hàng/ Bank name</Text>
+        <Left>1725</Left>
+        <Top>2970</Top>
+        <Width>2145</Width>
+        <Height>270</Height>
+        <Align>6</Align>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+      </Field>
+      <Field>
         <Name>fldAmountInWord</Name>
         <Section>4</Section>
-        <Left>7335</Left>
-        <Top>1620</Top>
+        <Left>7470</Left>
+        <Top>2940</Top>
         <Width>4020</Width>
         <Height>945</Height>
         <Align>2</Align>
@@ -1433,48 +1396,27 @@ ORDER BY ITM_Product.Revision</RecordSource>
         <Tag>100</Tag>
       </Field>
       <Field>
-        <Name>Field62</Name>
-        <Section>4</Section>
-        <Text>Tại ngân hàng/ Bank name</Text>
-        <Left>1740</Left>
-        <Top>1725</Top>
-        <Width>2145</Width>
-        <Height>270</Height>
-        <Align>6</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>8.25</Size>
-        </Font>
-      </Field>
-      <Field>
         <Name>fldBankName</Name>
         <Section>4</Section>
         <Text>BankAccountName</Text>
         <Calculated>-1</Calculated>
-        <Left>3915</Left>
-        <Top>1725</Top>
+        <Left>3900</Left>
+        <Top>2970</Top>
         <Width>2445</Width>
         <Height>270</Height>
         <CanGrow>-1</CanGrow>
         <Font>
           <Name>Arial</Name>
-          <Size>8.25</Size>
+          <Size>9.5</Size>
         </Font>
         <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>Field85</Name>
-        <Section>4</Section>
-        <Text>Field85</Text>
-        <Left>720</Left>
-        <Top>3510</Top>
       </Field>
       <Field>
         <Name>Field63</Name>
         <Section>4</Section>
         <Text>Khách hàng</Text>
-        <Left>1545</Left>
-        <Top>3045</Top>
+        <Left>1530</Left>
+        <Top>4065</Top>
         <Width>2010</Width>
         <Height>270</Height>
         <Align>7</Align>
@@ -1487,8 +1429,8 @@ ORDER BY ITM_Product.Revision</RecordSource>
         <Name>Field65</Name>
         <Section>4</Section>
         <Text>Người lập</Text>
-        <Left>5250</Left>
-        <Top>3060</Top>
+        <Left>5235</Left>
+        <Top>4080</Top>
         <Width>2010</Width>
         <Height>270</Height>
         <Align>7</Align>
@@ -1501,8 +1443,8 @@ ORDER BY ITM_Product.Revision</RecordSource>
         <Name>Field67</Name>
         <Section>4</Section>
         <Text>Thủ trưởng đơn vị</Text>
-        <Left>8400</Left>
-        <Top>3060</Top>
+        <Left>8385</Left>
+        <Top>4080</Top>
         <Width>2010</Width>
         <Height>270</Height>
         <Align>7</Align>
@@ -1515,8 +1457,8 @@ ORDER BY ITM_Product.Revision</RecordSource>
         <Name>Field64</Name>
         <Section>4</Section>
         <Text>Customer signature</Text>
-        <Left>1545</Left>
-        <Top>3300</Top>
+        <Left>1530</Left>
+        <Top>4320</Top>
         <Width>2010</Width>
         <Height>270</Height>
         <Align>7</Align>
@@ -1529,8 +1471,8 @@ ORDER BY ITM_Product.Revision</RecordSource>
         <Name>Field66</Name>
         <Section>4</Section>
         <Text>Prepared by</Text>
-        <Left>5265</Left>
-        <Top>3315</Top>
+        <Left>5250</Left>
+        <Top>4335</Top>
         <Width>2010</Width>
         <Height>270</Height>
         <Align>7</Align>
@@ -1543,8 +1485,8 @@ ORDER BY ITM_Product.Revision</RecordSource>
         <Name>Field68</Name>
         <Section>4</Section>
         <Text>Approved by</Text>
-        <Left>8415</Left>
-        <Top>3315</Top>
+        <Left>8400</Left>
+        <Top>4335</Top>
         <Width>2010</Width>
         <Height>270</Height>
         <Align>7</Align>
@@ -1554,25 +1496,32 @@ ORDER BY ITM_Product.Revision</RecordSource>
         </Font>
       </Field>
       <Field>
+        <Name>Field85</Name>
+        <Section>4</Section>
+        <Text>Field85</Text>
+        <Left>705</Left>
+        <Top>4485</Top>
+      </Field>
+      <Field>
         <Name>Field87</Name>
         <Section>4</Section>
         <Text>Bán hàng qua ĐT,FAX</Text>
-        <Left>1515</Left>
-        <Top>3885</Top>
+        <Left>1350</Left>
+        <Top>5055</Top>
         <Width>2145</Width>
         <Height>405</Height>
         <Align>7</Align>
         <Font>
           <Name>Arial</Name>
-          <Size>8.25</Size>
+          <Size>9.75</Size>
         </Font>
         <Tag>100</Tag>
       </Field>
       <Field>
         <Name>Field69</Name>
         <Section>4</Section>
-        <Left>1485</Left>
-        <Top>4320</Top>
+        <Left>1470</Left>
+        <Top>5340</Top>
         <Width>2145</Width>
         <BorderStyle>1</BorderStyle>
         <Font>
@@ -1584,8 +1533,8 @@ ORDER BY ITM_Product.Revision</RecordSource>
       <Field>
         <Name>Field70</Name>
         <Section>4</Section>
-        <Left>5265</Left>
-        <Top>4335</Top>
+        <Left>5250</Left>
+        <Top>5355</Top>
         <Width>2145</Width>
         <BorderStyle>1</BorderStyle>
         <Font>
@@ -1597,8 +1546,8 @@ ORDER BY ITM_Product.Revision</RecordSource>
       <Field>
         <Name>Field71</Name>
         <Section>4</Section>
-        <Left>8340</Left>
-        <Top>4335</Top>
+        <Left>8325</Left>
+        <Top>5355</Top>
         <Width>2145</Width>
         <BorderStyle>1</BorderStyle>
         <Font>
@@ -1608,20 +1557,20 @@ ORDER BY ITM_Product.Revision</RecordSource>
         <Shape Type="Line" />
       </Field>
       <Field>
-        <Name>fldUnitPrice</Name>
+        <Name>Field56</Name>
         <Section>5</Section>
-        <Text>AVGPrice</Text>
+        <Text>1</Text>
         <Calculated>-1</Calculated>
-        <Format>#,##0</Format>
-        <Left>7920</Left>
-        <Top>15</Top>
-        <Width>1200</Width>
-        <Height>255</Height>
-        <ZOrder>-23</ZOrder>
-        <Align>8</Align>
+        <Left>1185</Left>
+        <Width>555</Width>
+        <Height>270</Height>
+        <ZOrder>-25</ZOrder>
+        <Align>6</Align>
+        <MarginLeft>5</MarginLeft>
+        <RunningSum>2</RunningSum>
         <Font>
           <Name>Arial</Name>
-          <Size>7.5</Size>
+          <Size>8.5</Size>
         </Font>
         <Tag>100</Tag>
       </Field>
@@ -1629,10 +1578,10 @@ ORDER BY ITM_Product.Revision</RecordSource>
         <Name>Field38</Name>
         <Section>5</Section>
         <Format>#,##0</Format>
-        <Left>1260</Left>
-        <Width>9465</Width>
+        <Left>1155</Left>
+        <Width>9945</Width>
         <Height>285</Height>
-        <ZOrder>-21</ZOrder>
+        <ZOrder>-24</ZOrder>
         <BorderStyle>1</BorderStyle>
         <Font>
           <Name>Arial</Name>
@@ -1640,21 +1589,34 @@ ORDER BY ITM_Product.Revision</RecordSource>
         </Font>
       </Field>
       <Field>
-        <Name>Field56</Name>
+        <Name>fldUnitPrice</Name>
         <Section>5</Section>
-        <Text>1</Text>
+        <Text>AVGPrice</Text>
         <Calculated>-1</Calculated>
-        <Left>1290</Left>
-        <Top>30</Top>
-        <Width>540</Width>
+        <Format>#,##0</Format>
+        <Left>8145</Left>
+        <Width>1200</Width>
         <Height>255</Height>
-        <ZOrder>-20</ZOrder>
-        <Align>6</Align>
-        <MarginLeft>5</MarginLeft>
-        <RunningSum>2</RunningSum>
+        <ZOrder>-23</ZOrder>
+        <Align>8</Align>
         <Font>
           <Name>Arial</Name>
-          <Size>8.25</Size>
+          <Size>8.5</Size>
+        </Font>
+        <Tag>100</Tag>
+      </Field>
+      <Field>
+        <Name>fldITM_ProductCode</Name>
+        <Section>5</Section>
+        <Text>ITM_ProductCode</Text>
+        <Calculated>-1</Calculated>
+        <Left>1675</Left>
+        <Width>1740</Width>
+        <Height>255</Height>
+        <Align>6</Align>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.5</Size>
         </Font>
         <Tag>100</Tag>
       </Field>
@@ -1683,9 +1645,24 @@ ORDER BY ITM_Product.Revision</RecordSource>
         <Shape Type="Line" />
       </Field>
       <Field>
+        <Name>fldITM_ProductDescription</Name>
+        <Section>5</Section>
+        <Text>ITM_ProductDescriptionVN</Text>
+        <Calculated>-1</Calculated>
+        <Left>3745</Left>
+        <Width>2750</Width>
+        <Height>255</Height>
+        <Align>6</Align>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.5</Size>
+        </Font>
+        <Tag>100</Tag>
+      </Field>
+      <Field>
         <Name>Field41</Name>
         <Section>5</Section>
-        <Left>6655</Left>
+        <Left>6345</Left>
         <Height>280</Height>
         <BorderStyle>1</BorderStyle>
         <Font>
@@ -1695,9 +1672,24 @@ ORDER BY ITM_Product.Revision</RecordSource>
         <Shape Type="Line" />
       </Field>
       <Field>
+        <Name>fldMST_UnitOfMeasureCode</Name>
+        <Section>5</Section>
+        <Text>MST_UnitOfMeasureCode</Text>
+        <Calculated>-1</Calculated>
+        <Left>6540</Left>
+        <Width>450</Width>
+        <Height>255</Height>
+        <Align>7</Align>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.5</Size>
+        </Font>
+        <Tag>100</Tag>
+      </Field>
+      <Field>
         <Name>Field42</Name>
         <Section>5</Section>
-        <Left>7260</Left>
+        <Left>7035</Left>
         <Height>280</Height>
         <BorderStyle>1</BorderStyle>
         <Font>
@@ -1705,6 +1697,22 @@ ORDER BY ITM_Product.Revision</RecordSource>
           <Size>8.25</Size>
         </Font>
         <Shape Type="Line" />
+      </Field>
+      <Field>
+        <Name>fldDeliveryQuantity</Name>
+        <Section>5</Section>
+        <Text>Sum(DeliveryQuantity)</Text>
+        <Calculated>-1</Calculated>
+        <Format>#,###.##</Format>
+        <Left>7215</Left>
+        <Width>630</Width>
+        <Height>270</Height>
+        <Align>8</Align>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.5</Size>
+        </Font>
+        <Tag>FORMAT_QUANTITY</Tag>
       </Field>
       <Field>
         <Name>Field43</Name>
@@ -1721,7 +1729,7 @@ ORDER BY ITM_Product.Revision</RecordSource>
       <Field>
         <Name>Field55</Name>
         <Section>5</Section>
-        <Left>9200</Left>
+        <Left>9425</Left>
         <Height>280</Height>
         <BorderStyle>1</BorderStyle>
         <Font>
@@ -1731,101 +1739,33 @@ ORDER BY ITM_Product.Revision</RecordSource>
         <Shape Type="Line" />
       </Field>
       <Field>
-        <Name>fldITM_ProductCode</Name>
-        <Section>5</Section>
-        <Text>ITM_ProductCode</Text>
-        <Calculated>-1</Calculated>
-        <Left>1750</Left>
-        <Top>15</Top>
-        <Width>1740</Width>
-        <Height>255</Height>
-        <Align>6</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>7.5</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>fldITM_ProductDescription</Name>
-        <Section>5</Section>
-        <Text>ITM_ProductDescriptionVN</Text>
-        <Calculated>-1</Calculated>
-        <Left>3670</Left>
-        <Top>15</Top>
-        <Width>2750</Width>
-        <Height>255</Height>
-        <Align>6</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>7.5</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>fldMST_UnitOfMeasureCode</Name>
-        <Section>5</Section>
-        <Text>MST_UnitOfMeasureCode</Text>
-        <Calculated>-1</Calculated>
-        <Left>6670</Left>
-        <Top>15</Top>
-        <Width>450</Width>
-        <Height>255</Height>
-        <Align>7</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>7.5</Size>
-        </Font>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
-        <Name>fldDeliveryQuantity</Name>
-        <Section>5</Section>
-        <Text>Sum(DeliveryQuantity)</Text>
-        <Calculated>-1</Calculated>
-        <Format>#,###.##</Format>
-        <Left>7250</Left>
-        <Top>15</Top>
-        <Width>675</Width>
-        <Height>255</Height>
-        <Align>8</Align>
-        <Font>
-          <Name>Arial</Name>
-          <Size>7.5</Size>
-        </Font>
-        <Tag>FORMAT_QUANTITY</Tag>
-      </Field>
-      <Field>
         <Name>fldNetAmount</Name>
         <Section>5</Section>
         <Text>Sum(NetAmount)</Text>
         <Calculated>-1</Calculated>
         <Format>#,##0</Format>
-        <Left>9180</Left>
-        <Top>15</Top>
-        <Width>1520</Width>
-        <Height>255</Height>
+        <Left>9480</Left>
+        <Width>1535</Width>
+        <Height>270</Height>
         <Align>8</Align>
         <Font>
           <Name>Arial</Name>
-          <Size>7.5</Size>
+          <Size>8.5</Size>
         </Font>
         <Tag>100</Tag>
       </Field>
       <Field>
-        <Name>fldReferenceNo</Name>
-        <Section>1</Section>
-        <Text>CustomerPurchaseOrderNo</Text>
-        <Calculated>-1</Calculated>
-        <Left>8715</Left>
-        <Top>3585</Top>
-        <Width>2025</Width>
-        <Height>285</Height>
-        <Align>2</Align>
-        <Visible>0</Visible>
+        <Name>Field15</Name>
+        <Section>4</Section>
+        <Text>Nguyễn Thị Tâm</Text>
+        <Left>5280</Left>
+        <Top>5040</Top>
+        <Width>2160</Width>
+        <Height>420</Height>
+        <Align>7</Align>
         <Font>
           <Name>Arial</Name>
-          <Size>8.25</Size>
+          <Size>9.75</Size>
         </Font>
         <Tag>100</Tag>
       </Field>

@@ -57,13 +57,22 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
       <Name>Times New Roman</Name>
       <Size>9</Size>
     </Font>
+    <OnOpen>_TotalPages=Report.Page
+_TotalPages=_TotalPages - 1</OnOpen>
     <CompatibilityOptions />
-    <Groups />
+    <Groups>
+      <Group>
+        <Name>New Group</Name>
+      </Group>
+      <Group>
+        <Name>FooterNew</Name>
+      </Group>
+    </Groups>
     <Sections>
       <Section>
         <Name>Detail</Name>
         <Type>0</Type>
-        <Height>315</Height>
+        <Height>244</Height>
       </Section>
       <Section>
         <Name>Header</Name>
@@ -73,18 +82,40 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
       <Section>
         <Name>Footer</Name>
         <Type>2</Type>
-        <Height>5160</Height>
+        <Height>307</Height>
+        <PrintAtPageBottom>-1</PrintAtPageBottom>
       </Section>
       <Section>
         <Name>PageHeader</Name>
         <Type>3</Type>
-        <Height>4845</Height>
+        <Height>4846</Height>
         <KeepTogether>0</KeepTogether>
       </Section>
       <Section>
         <Name>PageFooter</Name>
         <Type>4</Type>
+        <Height>300</Height>
+        <PrintAtPageBottom>-1</PrintAtPageBottom>
+      </Section>
+      <Section>
+        <Name>New Group_Header</Name>
+        <Type>5</Type>
         <Visible>0</Visible>
+      </Section>
+      <Section>
+        <Name>New Group_Footer</Name>
+        <Type>6</Type>
+        <Height>3855</Height>
+      </Section>
+      <Section>
+        <Name>FooterNew_Header</Name>
+        <Type>7</Type>
+        <Visible>0</Visible>
+      </Section>
+      <Section>
+        <Name>FooterNew_Footer</Name>
+        <Type>8</Type>
+        <Height>343</Height>
       </Section>
     </Sections>
     <Fields>
@@ -93,14 +124,14 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Section>0</Section>
         <Text>Seq</Text>
         <Calculated>-1</Calculated>
-        <Left>240</Left>
-        <Width>400</Width>
-        <Height>300</Height>
+        <Left>709</Left>
+        <Width>417</Width>
+        <Height>224</Height>
         <ZOrder>-65</ZOrder>
         <Align>7</Align>
         <Font>
           <Name>Arial</Name>
-          <Size>8.25</Size>
+          <Size>7.25</Size>
         </Font>
       </Field>
       <Field>
@@ -109,15 +140,15 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Text>NetAmount</Text>
         <Calculated>-1</Calculated>
         <Format>#,##0</Format>
-        <Left>9722</Left>
-        <Width>2082</Width>
-        <Height>300</Height>
+        <Left>9990</Left>
+        <Width>1785</Width>
+        <Height>240</Height>
         <ZOrder>-63</ZOrder>
         <Align>8</Align>
         <MarginRight>20</MarginRight>
         <Font>
           <Name>Arial</Name>
-          <Size>8.25</Size>
+          <Size>7.25</Size>
         </Font>
       </Field>
       <Field>
@@ -125,15 +156,15 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Section>0</Section>
         <Text>ITM_ProductDescriptionVN</Text>
         <Calculated>-1</Calculated>
-        <Left>4522</Left>
-        <Width>2800</Width>
-        <Height>300</Height>
+        <Left>5021</Left>
+        <Width>2817</Width>
+        <Height>224</Height>
         <ZOrder>-62</ZOrder>
         <Align>6</Align>
         <MarginLeft>20</MarginLeft>
         <Font>
           <Name>Arial</Name>
-          <Size>8.25</Size>
+          <Size>7.25</Size>
         </Font>
       </Field>
       <Field>
@@ -142,15 +173,15 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Text>AVGPrice</Text>
         <Calculated>-1</Calculated>
         <Format>#,##0</Format>
-        <Left>8872</Left>
-        <Width>850</Width>
-        <Height>300</Height>
+        <Left>9311</Left>
+        <Width>867</Width>
+        <Height>224</Height>
         <ZOrder>-61</ZOrder>
         <Align>8</Align>
         <MarginRight>20</MarginRight>
         <Font>
           <Name>Arial</Name>
-          <Size>8.25</Size>
+          <Size>7.25</Size>
         </Font>
       </Field>
       <Field>
@@ -159,15 +190,15 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Text>DeliveryQuantity</Text>
         <Calculated>-1</Calculated>
         <Format>#,##0</Format>
-        <Left>8022</Left>
-        <Width>850</Width>
-        <Height>300</Height>
+        <Left>8461</Left>
+        <Width>867</Width>
+        <Height>224</Height>
         <ZOrder>-60</ZOrder>
         <Align>8</Align>
         <MarginRight>20</MarginRight>
         <Font>
           <Name>Arial</Name>
-          <Size>8.25</Size>
+          <Size>7.25</Size>
         </Font>
         <Tag>FORMAT_QUANTITY</Tag>
       </Field>
@@ -176,15 +207,15 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Section>0</Section>
         <Text>MST_UnitOfMeasureCode</Text>
         <Calculated>-1</Calculated>
-        <Left>7322</Left>
-        <Width>700</Width>
-        <Height>300</Height>
+        <Left>7806</Left>
+        <Width>717</Width>
+        <Height>224</Height>
         <ZOrder>-59</ZOrder>
         <Align>6</Align>
         <MarginLeft>20</MarginLeft>
         <Font>
           <Name>Arial</Name>
-          <Size>8.25</Size>
+          <Size>7.25</Size>
         </Font>
       </Field>
       <Field>
@@ -192,15 +223,15 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Section>0</Section>
         <Text>ITM_ProductCode</Text>
         <Calculated>-1</Calculated>
-        <Left>2782</Left>
-        <Width>1740</Width>
-        <Height>300</Height>
+        <Left>3281</Left>
+        <Width>1757</Width>
+        <Height>224</Height>
         <ZOrder>-58</ZOrder>
         <Align>6</Align>
         <MarginLeft>20</MarginLeft>
         <Font>
           <Name>Arial</Name>
-          <Size>8.25</Size>
+          <Size>7.25</Size>
         </Font>
       </Field>
       <Field>
@@ -208,21 +239,21 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Section>0</Section>
         <Text>SaleType1</Text>
         <Calculated>-1</Calculated>
-        <Left>1838</Left>
-        <Width>945</Width>
-        <Height>300</Height>
+        <Left>2307</Left>
+        <Width>962</Width>
+        <Height>224</Height>
         <ZOrder>-57</ZOrder>
         <Align>7</Align>
         <Font>
           <Name>Arial</Name>
-          <Size>8.25</Size>
+          <Size>7.25</Size>
         </Font>
       </Field>
       <Field>
         <Name>Field165</Name>
         <Section>0</Section>
-        <Left>240</Left>
-        <Height>300</Height>
+        <Left>716</Left>
+        <Height>208</Height>
         <BorderStyle>1</BorderStyle>
         <Font>
           <Name>Arial</Name>
@@ -235,21 +266,21 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Section>0</Section>
         <Text>ITM_ProductRevision</Text>
         <Calculated>-1</Calculated>
-        <Left>639</Left>
-        <Width>1200</Width>
-        <Height>300</Height>
+        <Left>1138</Left>
+        <Width>1217</Width>
+        <Height>224</Height>
         <Align>6</Align>
         <MarginLeft>20</MarginLeft>
         <Font>
           <Name>Arial</Name>
-          <Size>8.25</Size>
+          <Size>7.25</Size>
         </Font>
       </Field>
       <Field>
         <Name>Field169</Name>
         <Section>0</Section>
-        <Left>640</Left>
-        <Height>300</Height>
+        <Left>1116</Left>
+        <Height>208</Height>
         <BorderStyle>1</BorderStyle>
         <Font>
           <Name>Arial</Name>
@@ -260,8 +291,8 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
       <Field>
         <Name>Field171</Name>
         <Section>0</Section>
-        <Left>1839</Left>
-        <Height>300</Height>
+        <Left>2315</Left>
+        <Height>208</Height>
         <BorderStyle>1</BorderStyle>
         <Font>
           <Name>Arial</Name>
@@ -272,8 +303,8 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
       <Field>
         <Name>Field172</Name>
         <Section>0</Section>
-        <Left>2783</Left>
-        <Height>300</Height>
+        <Left>3259</Left>
+        <Height>208</Height>
         <BorderStyle>1</BorderStyle>
         <Font>
           <Name>Arial</Name>
@@ -284,8 +315,8 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
       <Field>
         <Name>Field175</Name>
         <Section>0</Section>
-        <Left>4522</Left>
-        <Height>300</Height>
+        <Left>4998</Left>
+        <Height>208</Height>
         <BorderStyle>1</BorderStyle>
         <Font>
           <Name>Arial</Name>
@@ -296,8 +327,8 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
       <Field>
         <Name>Field176</Name>
         <Section>0</Section>
-        <Left>7322</Left>
-        <Height>300</Height>
+        <Left>7798</Left>
+        <Height>208</Height>
         <BorderStyle>1</BorderStyle>
         <Font>
           <Name>Arial</Name>
@@ -308,8 +339,8 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
       <Field>
         <Name>Field179</Name>
         <Section>0</Section>
-        <Left>8022</Left>
-        <Height>300</Height>
+        <Left>8498</Left>
+        <Height>208</Height>
         <BorderStyle>1</BorderStyle>
         <Font>
           <Name>Arial</Name>
@@ -320,8 +351,8 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
       <Field>
         <Name>Field181</Name>
         <Section>0</Section>
-        <Left>8872</Left>
-        <Height>300</Height>
+        <Left>9348</Left>
+        <Height>208</Height>
         <BorderStyle>1</BorderStyle>
         <Font>
           <Name>Arial</Name>
@@ -332,8 +363,8 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
       <Field>
         <Name>Field182</Name>
         <Section>0</Section>
-        <Left>9722</Left>
-        <Height>300</Height>
+        <Left>10198</Left>
+        <Height>208</Height>
         <BorderStyle>1</BorderStyle>
         <Font>
           <Name>Arial</Name>
@@ -344,8 +375,8 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
       <Field>
         <Name>Field184</Name>
         <Section>0</Section>
-        <Left>11804</Left>
-        <Height>300</Height>
+        <Left>11818</Left>
+        <Height>208</Height>
         <BorderStyle>1</BorderStyle>
         <Font>
           <Name>Arial</Name>
@@ -354,19 +385,12 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Shape Type="Line" />
       </Field>
       <Field>
-        <Name>Field185</Name>
-        <Section>0</Section>
-        <Text>Field82</Text>
-        <Left>330</Left>
-        <Top>15</Top>
-      </Field>
-      <Field>
         <Name>Field186</Name>
         <Section>0</Section>
-        <Left>240</Left>
-        <Top>300</Top>
-        <Width>11565</Width>
-        <Height>15</Height>
+        <Left>701</Left>
+        <Top>223</Top>
+        <Width>11113</Width>
+        <Height>21</Height>
         <BorderStyle>1</BorderStyle>
         <Tag>100</Tag>
         <Shape Type="Line" />
@@ -573,9 +597,9 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Name>Field9</Name>
         <Section>1</Section>
         <Left>7815</Left>
-        <Top>2655</Top>
-        <Width>2895</Width>
-        <Height>1785</Height>
+        <Top>2580</Top>
+        <Width>3720</Width>
+        <Height>1875</Height>
         <ZOrder>-43</ZOrder>
         <Picture encoding="base64">iVBORw0KGgoAAAANSUhEUgAAAioAAABiCAYAAAB+pPibAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAADSElEQVR4Xu3d7W0aQRQFUFqgBkpwCfRAAS7CTbgASqAEyqAESqADNn5kUTLJmPgDdq+ic6UjC2l2+fs0dxgvRERERP6rLJfL4e3PxdPTEwBA13VeGD0uNZysVqvh5eVlOB6Pw/l8BgD4kNPpNGy329+Hl/ulXmo4AQDuoYaW9Xo9jA3N11Mv2O/33S8BAPiO2gSptmYcOz6XerAmnt6LAQDu4bq7Mo4fH0tVPb2XAQA8wmaz+diwUnVP7wUAAI/0zxqohpTD4dB9GADg0d7GkfeHldp26T0EADCFugZlHEv+isOzAMDsuj9btpsCACTo7qrsdrvuYgCAKdV52T93VboLAQDmULPJzxHlLX6SDAAkaS6Bc8EbAJCkuQDOQVoAIElzoLY+9BYBAMzh9fXVoAIAZGp2VGpq6S0CAJiD6gcAiKX6AQBi2VEBAGI1g4ozKgBAEtUPABBL9QMAxFL9AACxVD8AQCzVDwAQS/UDAMRS/QAAsVQ/AEAs1Q8AEEv1AwDEUv0AALFUPwBALNUPABBL9QMAxFL9AACxVD8AQCzVDwAQS/UDAMRS/QAAsVQ/AEAs1Q8AEEv1AwDEUv0AALFUPwBALNUPABBL9QMAxFL9AACxVD8AQCzVDwAQS/UDAMRS/QAAsVQ/AEAs1Q8AEEv1AwDEUv0AALFUPwBALNUPABBL9QMAxFL9AACxVD8AQCzVDwAQS/UDAMRS/QAAsVQ/AEAs1Q8AEEv1AwDEUv0AALFUPwBALNUPABBL9QMAxFL9AACxVD8AQCzVDwAQS/UDAMRS/QAAsVQ/AEAs1Q8AEKupfjabTXcRAMAcmh2V9XrdXQQAMIfn5+dfg8pqteouAgCYQ7U945hySXcRAMAcahNlnFEWi+VyORwOh+5CAIApHY/HGlKaHZVFdUG9xQAAU9put+2QUnFOBQBIUE3POJ60cZ8KADCn/X7fH1IqNcH0HgIAmMK7uynXuFMFAJhDc8nbraiAAIApdQ/Q3ophBQCYwm63+9yQco0aCAB4pOaq/C/msh3TezkAwFfULkpz++x3U6dwa2Cp2+J6XwgAcMvpdLrMEncdUDq5/HSo/llQnc4FALilZoZxOHnogCIiIiIyYRaLHxDZsdTV4fK6AAAAAElFTkSuQmCC</Picture>
         <PictureScale>1</PictureScale>
@@ -587,10 +611,10 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
       <Field>
         <Name>Field50</Name>
         <Section>1</Section>
-        <Left>1590</Left>
+        <Left>1365</Left>
         <Top>2670</Top>
-        <Width>6165</Width>
-        <Height>1635</Height>
+        <Width>6300</Width>
+        <Height>1650</Height>
         <ZOrder>-15</ZOrder>
         <Picture encoding="base64">iVBORw0KGgoAAAANSUhEUgAAAioAAABiCAYAAAB+pPibAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAADSElEQVR4Xu3d7W0aQRQFUFqgBkpwCfRAAS7CTbgASqAEyqAESqADNn5kUTLJmPgDdq+ic6UjC2l2+fs0dxgvRERERP6rLJfL4e3PxdPTEwBA13VeGD0uNZysVqvh5eVlOB6Pw/l8BgD4kNPpNGy329+Hl/ulXmo4AQDuoYaW9Xo9jA3N11Mv2O/33S8BAPiO2gSptmYcOz6XerAmnt6LAQDu4bq7Mo4fH0tVPb2XAQA8wmaz+diwUnVP7wUAAI/0zxqohpTD4dB9GADg0d7GkfeHldp26T0EADCFugZlHEv+isOzAMDsuj9btpsCACTo7qrsdrvuYgCAKdV52T93VboLAQDmULPJzxHlLX6SDAAkaS6Bc8EbAJCkuQDOQVoAIElzoLY+9BYBAMzh9fXVoAIAZGp2VGpq6S0CAJiD6gcAiKX6AQBi2VEBAGI1g4ozKgBAEtUPABBL9QMAxFL9AACxVD8AQCzVDwAQS/UDAMRS/QAAsVQ/AEAs1Q8AEEv1AwDEUv0AALFUPwBALNUPABBL9QMAxFL9AACxVD8AQCzVDwAQS/UDAMRS/QAAsVQ/AEAs1Q8AEEv1AwDEUv0AALFUPwBALNUPABBL9QMAxFL9AACxVD8AQCzVDwAQS/UDAMRS/QAAsVQ/AEAs1Q8AEEv1AwDEUv0AALFUPwBALNUPABBL9QMAxFL9AACxVD8AQCzVDwAQS/UDAMRS/QAAsVQ/AEAs1Q8AEEv1AwDEUv0AALFUPwBALNUPABBL9QMAxFL9AACxVD8AQCzVDwAQS/UDAMRS/QAAsVQ/AEAs1Q8AEKupfjabTXcRAMAcmh2V9XrdXQQAMIfn5+dfg8pqteouAgCYQ7U945hySXcRAMAcahNlnFEWi+VyORwOh+5CAIApHY/HGlKaHZVFdUG9xQAAU9put+2QUnFOBQBIUE3POJ60cZ8KADCn/X7fH1IqNcH0HgIAmMK7uynXuFMFAJhDc8nbraiAAIApdQ/Q3ophBQCYwm63+9yQco0aCAB4pOaq/C/msh3TezkAwFfULkpz++x3U6dwa2Cp2+J6XwgAcMvpdLrMEncdUDq5/HSo/llQnc4FALilZoZxOHnogCIiIiIyYRaLHxDZsdTV4fK6AAAAAElFTkSuQmCC</Picture>
         <PictureScale>1</PictureScale>
@@ -605,14 +629,14 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Text>ShippedDate</Text>
         <Calculated>-1</Calculated>
         <Format>dd-MM-yyyy</Format>
-        <Left>9540</Left>
-        <Top>2685</Top>
+        <Left>9915</Left>
+        <Top>2670</Top>
         <Width>1095</Width>
         <Height>270</Height>
         <Align>8</Align>
         <Font>
           <Name>Arial</Name>
-          <Size>8.25</Size>
+          <Size>9.5</Size>
         </Font>
         <Tag>100</Tag>
       </Field>
@@ -621,7 +645,7 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Section>1</Section>
         <Text>Ngày/ Delivery Date:</Text>
         <Left>7875</Left>
-        <Top>2700</Top>
+        <Top>2625</Top>
         <Width>1560</Width>
         <Height>270</Height>
         <Align>6</Align>
@@ -633,8 +657,8 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
       <Field>
         <Name>Field215</Name>
         <Section>1</Section>
-        <Left>3600</Left>
-        <Top>3045</Top>
+        <Left>3375</Left>
+        <Top>2970</Top>
         <Width>3615</Width>
         <ZOrder>-2</ZOrder>
         <BorderStyle>3</BorderStyle>
@@ -648,7 +672,7 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Name>Field16</Name>
         <Section>1</Section>
         <Text>Tên/ Name:</Text>
-        <Left>1665</Left>
+        <Left>1440</Left>
         <Top>2790</Top>
         <Width>1920</Width>
         <Height>255</Height>
@@ -663,14 +687,14 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Section>1</Section>
         <Text>MST_PartyName</Text>
         <Calculated>-1</Calculated>
-        <Left>3615</Left>
+        <Left>3315</Left>
         <Top>2790</Top>
         <Width>4350</Width>
         <Height>270</Height>
         <Align>0</Align>
         <Font>
           <Name>Arial</Name>
-          <Size>8.25</Size>
+          <Size>9.5</Size>
         </Font>
         <Tag>100</Tag>
       </Field>
@@ -679,7 +703,7 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Section>1</Section>
         <Text>Đơn hàng/ PO No:</Text>
         <Left>7890</Left>
-        <Top>2985</Top>
+        <Top>2910</Top>
         <Width>1365</Width>
         <Height>270</Height>
         <Align>6</Align>
@@ -691,16 +715,16 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
       <Field>
         <Name>fldCustomerPurchaseOrderNo</Name>
         <Section>1</Section>
-        <Text>ReferenceNo</Text>
+        <Text>CustomerPurchaseOrderNo</Text>
         <Calculated>-1</Calculated>
-        <Left>9345</Left>
-        <Top>2985</Top>
+        <Left>9720</Left>
+        <Top>3555</Top>
         <Width>1290</Width>
         <Height>270</Height>
         <Align>8</Align>
         <Font>
           <Name>Arial</Name>
-          <Size>8.25</Size>
+          <Size>9.5</Size>
         </Font>
         <Tag>100</Tag>
       </Field>
@@ -708,7 +732,7 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Name>Field17</Name>
         <Section>1</Section>
         <Text>Địa chỉ/ Address:</Text>
-        <Left>1665</Left>
+        <Left>1440</Left>
         <Top>3060</Top>
         <Width>1920</Width>
         <Height>270</Height>
@@ -721,8 +745,8 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
       <Field>
         <Name>Field216</Name>
         <Section>1</Section>
-        <Left>3630</Left>
-        <Top>3345</Top>
+        <Left>3405</Left>
+        <Top>3270</Top>
         <Width>3615</Width>
         <ZOrder>-2</ZOrder>
         <BorderStyle>3</BorderStyle>
@@ -737,14 +761,14 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Section>1</Section>
         <Text>MST_PartyAddress</Text>
         <Calculated>-1</Calculated>
-        <Left>3615</Left>
-        <Top>3075</Top>
-        <Width>4365</Width>
-        <Height>270</Height>
+        <Left>2715</Left>
+        <Top>3090</Top>
+        <Width>5460</Width>
+        <Height>300</Height>
         <Align>0</Align>
         <Font>
           <Name>Arial</Name>
-          <Size>8.25</Size>
+          <Size>9.5</Size>
         </Font>
         <Tag>100</Tag>
       </Field>
@@ -752,8 +776,8 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Name>fldShippedDate2</Name>
         <Section>1</Section>
         <Format>HH:mm</Format>
-        <Left>9165</Left>
-        <Top>3255</Top>
+        <Left>8940</Left>
+        <Top>3180</Top>
         <Width>1470</Width>
         <Height>270</Height>
         <Align>5</Align>
@@ -768,7 +792,7 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Section>1</Section>
         <Text>Giờ giao/ Time:</Text>
         <Left>7890</Left>
-        <Top>3270</Top>
+        <Top>3195</Top>
         <Width>1185</Width>
         <Height>270</Height>
         <Align>6</Align>
@@ -781,7 +805,7 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Name>Field18</Name>
         <Section>1</Section>
         <Text>Mã số thuế/ Tax Code:</Text>
-        <Left>1665</Left>
+        <Left>1440</Left>
         <Top>3345</Top>
         <Width>1920</Width>
         <Height>270</Height>
@@ -794,8 +818,8 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
       <Field>
         <Name>Field217</Name>
         <Section>1</Section>
-        <Left>3630</Left>
-        <Top>3630</Top>
+        <Left>3405</Left>
+        <Top>3555</Top>
         <Width>3615</Width>
         <ZOrder>-2</ZOrder>
         <BorderStyle>3</BorderStyle>
@@ -810,14 +834,14 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Section>1</Section>
         <Text>MST_PartyTaxCode</Text>
         <Calculated>-1</Calculated>
-        <Left>3615</Left>
-        <Top>3360</Top>
+        <Left>3315</Left>
+        <Top>3375</Top>
         <Width>4350</Width>
         <Height>270</Height>
         <Align>6</Align>
         <Font>
           <Name>Arial</Name>
-          <Size>8.25</Size>
+          <Size>9.5</Size>
         </Font>
         <Tag>100</Tag>
       </Field>
@@ -826,23 +850,23 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Section>1</Section>
         <Text>SaleType1</Text>
         <Calculated>-1</Calculated>
-        <Left>8805</Left>
-        <Top>3540</Top>
+        <Left>9180</Left>
+        <Top>3015</Top>
         <Width>1830</Width>
         <Height>270</Height>
         <Align>8</Align>
         <Font>
           <Name>Arial</Name>
-          <Size>8.25</Size>
+          <Size>9.5</Size>
         </Font>
         <Tag>100</Tag>
       </Field>
       <Field>
-        <Name>fldType</Name>
+        <Name>Field14</Name>
         <Section>1</Section>
         <Text>Phân loại: </Text>
         <Left>7905</Left>
-        <Top>3555</Top>
+        <Top>3480</Top>
         <Width>810</Width>
         <Height>270</Height>
         <Align>6</Align>
@@ -854,8 +878,8 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
       <Field>
         <Name>Field218</Name>
         <Section>1</Section>
-        <Left>3645</Left>
-        <Top>3900</Top>
+        <Left>3420</Left>
+        <Top>3825</Top>
         <Width>3615</Width>
         <ZOrder>-2</ZOrder>
         <BorderStyle>3</BorderStyle>
@@ -869,7 +893,7 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Name>Field19</Name>
         <Section>1</Section>
         <Text>Số tài khoản/ Account No: </Text>
-        <Left>1665</Left>
+        <Left>1440</Left>
         <Top>3630</Top>
         <Width>1920</Width>
         <Height>270</Height>
@@ -884,22 +908,22 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Section>1</Section>
         <Text>MST_PartyBankAccount</Text>
         <Calculated>-1</Calculated>
-        <Left>3615</Left>
-        <Top>3645</Top>
+        <Left>3315</Left>
+        <Top>3660</Top>
         <Width>3660</Width>
         <Height>270</Height>
         <Align>6</Align>
         <Font>
           <Name>Arial</Name>
-          <Size>8.25</Size>
+          <Size>9.5</Size>
         </Font>
         <Tag>100</Tag>
       </Field>
       <Field>
         <Name>Field168</Name>
         <Section>1</Section>
-        <Left>3630</Left>
-        <Top>4185</Top>
+        <Left>3405</Left>
+        <Top>4110</Top>
         <Width>3615</Width>
         <ZOrder>-2</ZOrder>
         <BorderStyle>3</BorderStyle>
@@ -916,12 +940,12 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Calculated>-1</Calculated>
         <Left>7890</Left>
         <Top>3825</Top>
-        <Width>2820</Width>
-        <Height>540</Height>
+        <Width>3450</Width>
+        <Height>570</Height>
         <Align>8</Align>
         <Font>
           <Name>Arial</Name>
-          <Size>8.25</Size>
+          <Size>9.25</Size>
         </Font>
         <Tag>100</Tag>
       </Field>
@@ -929,7 +953,7 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Name>Field20</Name>
         <Section>1</Section>
         <Text>Ngân hàng/ Bank name</Text>
-        <Left>1665</Left>
+        <Left>1440</Left>
         <Top>3915</Top>
         <Width>1920</Width>
         <Height>270</Height>
@@ -944,14 +968,14 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Section>1</Section>
         <Text>MST_PartyBankName</Text>
         <Calculated>-1</Calculated>
-        <Left>3615</Left>
-        <Top>3915</Top>
+        <Left>3315</Left>
+        <Top>3930</Top>
         <Width>4350</Width>
         <Height>270</Height>
         <Align>3</Align>
         <Font>
           <Name>Arial</Name>
-          <Size>8.25</Size>
+          <Size>9.5</Size>
         </Font>
         <Tag>100</Tag>
       </Field>
@@ -960,8 +984,8 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Section>1</Section>
         <Left>1650</Left>
         <Top>4905</Top>
-        <Width>8760</Width>
-        <Height>5670</Height>
+        <Width>9480</Width>
+        <Height>5685</Height>
         <ZOrder>-11</ZOrder>
         <BorderStyle>1</BorderStyle>
         <Font>
@@ -1255,7 +1279,8 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Section>1</Section>
         <Left>1650</Left>
         <Top>5370</Top>
-        <Width>8760</Width>
+        <Width>9465</Width>
+        <Height>15</Height>
         <BorderStyle>1</BorderStyle>
         <Font>
           <Bold>-1</Bold>
@@ -1373,8 +1398,8 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Name>Field49</Name>
         <Section>1</Section>
         <Left>1650</Left>
-        <Top>5625</Top>
-        <Width>8760</Width>
+        <Top>5640</Top>
+        <Width>9480</Width>
         <BorderStyle>1</BorderStyle>
         <Font>
           <Bold>-1</Bold>
@@ -1394,7 +1419,7 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Align>6</Align>
         <Font>
           <Name>Arial</Name>
-          <Size>9.75</Size>
+          <Size>10</Size>
         </Font>
         <Tag>100</Tag>
       </Field>
@@ -1404,14 +1429,14 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Text>SUM(NetAmount)</Text>
         <Calculated>-1</Calculated>
         <Format>#,##0</Format>
-        <Left>8880</Left>
+        <Left>9480</Left>
         <Top>6135</Top>
         <Width>1470</Width>
         <Height>300</Height>
         <Align>8</Align>
         <Font>
           <Name>Arial Narrow</Name>
-          <Size>9.75</Size>
+          <Size>10</Size>
         </Font>
         <Tag>100</Tag>
       </Field>
@@ -1426,7 +1451,7 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Align>6</Align>
         <Font>
           <Name>Arial</Name>
-          <Size>9.75</Size>
+          <Size>10</Size>
         </Font>
         <Tag>100</Tag>
       </Field>
@@ -1442,7 +1467,7 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Align>6</Align>
         <Font>
           <Name>Arial</Name>
-          <Size>9.75</Size>
+          <Size>10</Size>
         </Font>
         <Tag>100</Tag>
       </Field>
@@ -1457,7 +1482,7 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Align>6</Align>
         <Font>
           <Name>Arial</Name>
-          <Size>9.75</Size>
+          <Size>10</Size>
         </Font>
         <Tag>100</Tag>
       </Field>
@@ -1474,15 +1499,15 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Align>6</Align>
         <Font>
           <Name>Arial</Name>
-          <Size>9.75</Size>
+          <Size>10</Size>
         </Font>
         <Tag>100</Tag>
       </Field>
       <Field>
         <Name>Field66</Name>
         <Section>1</Section>
-        <Left>9225</Left>
-        <Top>11040</Top>
+        <Left>9525</Left>
+        <Top>11295</Top>
         <Width>1485</Width>
         <Height>1470</Height>
         <ZOrder>-46</ZOrder>
@@ -1492,9 +1517,9 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Name>Field141</Name>
         <Section>1</Section>
         <Left>1425</Left>
-        <Top>11205</Top>
-        <Width>5040</Width>
-        <Height>1860</Height>
+        <Top>11430</Top>
+        <Width>5055</Width>
+        <Height>2040</Height>
         <ZOrder>-9</ZOrder>
         <Picture encoding="base64">iVBORw0KGgoAAAANSUhEUgAAAioAAABiCAYAAAB+pPibAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAADSElEQVR4Xu3d7W0aQRQFUFqgBkpwCfRAAS7CTbgASqAEyqAESqADNn5kUTLJmPgDdq+ic6UjC2l2+fs0dxgvRERERP6rLJfL4e3PxdPTEwBA13VeGD0uNZysVqvh5eVlOB6Pw/l8BgD4kNPpNGy329+Hl/ulXmo4AQDuoYaW9Xo9jA3N11Mv2O/33S8BAPiO2gSptmYcOz6XerAmnt6LAQDu4bq7Mo4fH0tVPb2XAQA8wmaz+diwUnVP7wUAAI/0zxqohpTD4dB9GADg0d7GkfeHldp26T0EADCFugZlHEv+isOzAMDsuj9btpsCACTo7qrsdrvuYgCAKdV52T93VboLAQDmULPJzxHlLX6SDAAkaS6Bc8EbAJCkuQDOQVoAIElzoLY+9BYBAMzh9fXVoAIAZGp2VGpq6S0CAJiD6gcAiKX6AQBi2VEBAGI1g4ozKgBAEtUPABBL9QMAxFL9AACxVD8AQCzVDwAQS/UDAMRS/QAAsVQ/AEAs1Q8AEEv1AwDEUv0AALFUPwBALNUPABBL9QMAxFL9AACxVD8AQCzVDwAQS/UDAMRS/QAAsVQ/AEAs1Q8AEEv1AwDEUv0AALFUPwBALNUPABBL9QMAxFL9AACxVD8AQCzVDwAQS/UDAMRS/QAAsVQ/AEAs1Q8AEEv1AwDEUv0AALFUPwBALNUPABBL9QMAxFL9AACxVD8AQCzVDwAQS/UDAMRS/QAAsVQ/AEAs1Q8AEEv1AwDEUv0AALFUPwBALNUPABBL9QMAxFL9AACxVD8AQCzVDwAQS/UDAMRS/QAAsVQ/AEAs1Q8AEKupfjabTXcRAMAcmh2V9XrdXQQAMIfn5+dfg8pqteouAgCYQ7U945hySXcRAMAcahNlnFEWi+VyORwOh+5CAIApHY/HGlKaHZVFdUG9xQAAU9put+2QUnFOBQBIUE3POJ60cZ8KADCn/X7fH1IqNcH0HgIAmMK7uynXuFMFAJhDc8nbraiAAIApdQ/Q3ophBQCYwm63+9yQco0aCAB4pOaq/C/msh3TezkAwFfULkpz++x3U6dwa2Cp2+J6XwgAcMvpdLrMEncdUDq5/HSo/llQnc4FALilZoZxOHnogCIiIiIyYRaLHxDZsdTV4fK6AAAAAElFTkSuQmCC</Picture>
         <PictureScale>1</PictureScale>
@@ -1509,14 +1534,14 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Text>SUM(NetAmount)</Text>
         <Calculated>-1</Calculated>
         <Format>#,##0</Format>
-        <Left>9240</Left>
-        <Top>11100</Top>
+        <Left>9540</Left>
+        <Top>11310</Top>
         <Width>1460</Width>
         <Height>285</Height>
         <Align>8</Align>
         <Font>
           <Name>Arial Narrow</Name>
-          <Size>9.75</Size>
+          <Size>10</Size>
         </Font>
         <Tag>100</Tag>
       </Field>
@@ -1525,7 +1550,7 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Section>1</Section>
         <Text>Tiền hàng/ Sub-Total</Text>
         <Left>7230</Left>
-        <Top>11175</Top>
+        <Top>11430</Top>
         <Width>1680</Width>
         <Height>270</Height>
         <Align>6</Align>
@@ -1537,8 +1562,8 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
       <Field>
         <Name>Field67</Name>
         <Section>1</Section>
-        <Left>9225</Left>
-        <Top>11415</Top>
+        <Left>9525</Left>
+        <Top>11670</Top>
         <Width>1490</Width>
         <BorderStyle>1</BorderStyle>
         <Shape Type="Line" />
@@ -1549,14 +1574,14 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Text>VATPercent</Text>
         <Calculated>-1</Calculated>
         <Format>#,##0</Format>
-        <Left>9285</Left>
-        <Top>11460</Top>
+        <Left>9585</Left>
+        <Top>11685</Top>
         <Width>1200</Width>
         <Height>270</Height>
         <Align>8</Align>
         <Font>
           <Name>Arial Narrow</Name>
-          <Size>9.75</Size>
+          <Size>10</Size>
         </Font>
         <Tag>100</Tag>
       </Field>
@@ -1564,8 +1589,8 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Name>Field166</Name>
         <Section>1</Section>
         <Text>%</Text>
-        <Left>10485</Left>
-        <Top>11460</Top>
+        <Left>10785</Left>
+        <Top>11685</Top>
         <Width>210</Width>
         <Height>270</Height>
         <Align>6</Align>
@@ -1580,7 +1605,7 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Section>1</Section>
         <Text>Thuế suất/ VAT rate</Text>
         <Left>7245</Left>
-        <Top>11520</Top>
+        <Top>11775</Top>
         <Width>1680</Width>
         <Height>270</Height>
         <Align>6</Align>
@@ -1593,7 +1618,7 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Name>Field51</Name>
         <Section>1</Section>
         <Left>2520</Left>
-        <Top>11715</Top>
+        <Top>11940</Top>
         <Width>195</Width>
         <Height>195</Height>
         <BorderStyle>1</BorderStyle>
@@ -1607,7 +1632,7 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Section>1</Section>
         <Text>Tiền mặt/ Cash</Text>
         <Left>2820</Left>
-        <Top>11715</Top>
+        <Top>11940</Top>
         <Width>1905</Width>
         <Height>220</Height>
         <Align>6</Align>
@@ -1619,8 +1644,8 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
       <Field>
         <Name>Field68</Name>
         <Section>1</Section>
-        <Left>9225</Left>
-        <Top>11760</Top>
+        <Left>9525</Left>
+        <Top>12015</Top>
         <Width>1490</Width>
         <BorderStyle>1</BorderStyle>
         <Shape Type="Line" />
@@ -1631,14 +1656,14 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Text>SUM(NetAmount)*VATPercent/100</Text>
         <Calculated>-1</Calculated>
         <Format>#,##0</Format>
-        <Left>9225</Left>
-        <Top>11805</Top>
+        <Left>9525</Left>
+        <Top>12060</Top>
         <Width>1455</Width>
         <Height>285</Height>
         <Align>8</Align>
         <Font>
           <Name>Arial Narrow</Name>
-          <Size>9.75</Size>
+          <Size>10</Size>
         </Font>
         <Tag>100</Tag>
       </Field>
@@ -1647,7 +1672,7 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Section>1</Section>
         <Text>Tiền thuế/ VAT Amount</Text>
         <Left>7245</Left>
-        <Top>11835</Top>
+        <Top>12090</Top>
         <Width>1830</Width>
         <Height>270</Height>
         <Align>6</Align>
@@ -1662,15 +1687,15 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Text>SUM(NetAmount) + SUM(NetAmount)*VATPercent/100</Text>
         <Calculated>-1</Calculated>
         <Format>#,##0</Format>
-        <Left>9240</Left>
-        <Top>12180</Top>
+        <Left>9540</Left>
+        <Top>12510</Top>
         <Width>1460</Width>
         <Height>270</Height>
         <ZOrder>-47</ZOrder>
         <Align>8</Align>
         <Font>
           <Name>Arial Narrow</Name>
-          <Size>9.75</Size>
+          <Size>10</Size>
         </Font>
         <Tag>100</Tag>
       </Field>
@@ -1678,7 +1703,7 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Name>Field53</Name>
         <Section>1</Section>
         <Left>2535</Left>
-        <Top>12000</Top>
+        <Top>12225</Top>
         <Width>180</Width>
         <Height>195</Height>
         <BorderStyle>1</BorderStyle>
@@ -1692,7 +1717,7 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Section>1</Section>
         <Text>Chuyển khoản/ TT</Text>
         <Left>2835</Left>
-        <Top>12000</Top>
+        <Top>12225</Top>
         <Width>2430</Width>
         <Height>220</Height>
         <Align>6</Align>
@@ -1704,8 +1729,8 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
       <Field>
         <Name>Field69</Name>
         <Section>1</Section>
-        <Left>9225</Left>
-        <Top>12165</Top>
+        <Left>9525</Left>
+        <Top>12420</Top>
         <Width>1490</Width>
         <BorderStyle>1</BorderStyle>
         <Shape Type="Line" />
@@ -1715,7 +1740,7 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Section>1</Section>
         <Text>Tổng cộng/ Grand-Total</Text>
         <Left>7245</Left>
-        <Top>12180</Top>
+        <Top>12435</Top>
         <Width>1830</Width>
         <Height>270</Height>
         <Align>6</Align>
@@ -1729,7 +1754,7 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Section>1</Section>
         <Text>Tài khoản SHOWA/ SHOWA's Bank A/C No</Text>
         <Left>1635</Left>
-        <Top>12315</Top>
+        <Top>12540</Top>
         <Width>3300</Width>
         <Height>270</Height>
         <Align>6</Align>
@@ -1744,13 +1769,13 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Text>BankAccountNo</Text>
         <Calculated>-1</Calculated>
         <Left>4560</Left>
-        <Top>12315</Top>
+        <Top>12510</Top>
         <Width>1620</Width>
         <Height>270</Height>
         <Align>7</Align>
         <Font>
           <Name>Arial</Name>
-          <Size>8.25</Size>
+          <Size>10</Size>
         </Font>
         <Tag>100</Tag>
       </Field>
@@ -1759,7 +1784,7 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Section>1</Section>
         <Text>Tại ngân hàng/ Bank name</Text>
         <Left>1545</Left>
-        <Top>12690</Top>
+        <Top>13065</Top>
         <Width>2160</Width>
         <Height>270</Height>
         <Align>6</Align>
@@ -1774,22 +1799,22 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Text>BankAccountName</Text>
         <Calculated>-1</Calculated>
         <Left>3750</Left>
-        <Top>12690</Top>
+        <Top>12990</Top>
         <Width>2445</Width>
         <Height>270</Height>
         <Align>6</Align>
         <CanGrow>-1</CanGrow>
         <Font>
           <Name>Arial</Name>
-          <Size>8.25</Size>
+          <Size>10</Size>
         </Font>
         <Tag>100</Tag>
       </Field>
       <Field>
         <Name>fldAmountInWord</Name>
         <Section>1</Section>
-        <Left>7035</Left>
-        <Top>12705</Top>
+        <Left>7485</Left>
+        <Top>13020</Top>
         <Width>4335</Width>
         <Height>990</Height>
         <Align>2</Align>
@@ -1797,7 +1822,7 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Font>
           <Italic>-1</Italic>
           <Name>Arial</Name>
-          <Size>9.75</Size>
+          <Size>10</Size>
         </Font>
         <Tag>100</Tag>
       </Field>
@@ -1889,14 +1914,14 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Name>Field12</Name>
         <Section>1</Section>
         <Text>Bán hàng qua ĐT,FAX</Text>
-        <Left>1410</Left>
-        <Top>14955</Top>
+        <Left>1260</Left>
+        <Top>15135</Top>
         <Width>2145</Width>
         <Height>405</Height>
         <Align>7</Align>
         <Font>
           <Name>Arial</Name>
-          <Size>8.25</Size>
+          <Size>10</Size>
         </Font>
         <Tag>100</Tag>
       </Field>
@@ -1904,7 +1929,7 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Name>Field63</Name>
         <Section>1</Section>
         <Left>1410</Left>
-        <Top>15390</Top>
+        <Top>15465</Top>
         <Width>2145</Width>
         <BorderStyle>1</BorderStyle>
         <Font>
@@ -1917,7 +1942,7 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Name>Field64</Name>
         <Section>1</Section>
         <Left>4890</Left>
-        <Top>15405</Top>
+        <Top>15480</Top>
         <Width>2145</Width>
         <BorderStyle>1</BorderStyle>
         <Font>
@@ -1930,7 +1955,7 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
         <Name>Field65</Name>
         <Section>1</Section>
         <Left>7965</Left>
-        <Top>15405</Top>
+        <Top>15480</Top>
         <Width>2145</Width>
         <BorderStyle>1</BorderStyle>
         <Font>
@@ -1941,11 +1966,11 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
       </Field>
       <Field>
         <Name>fldVAT1</Name>
-        <Section>2</Section>
+        <Section>6</Section>
         <Text>VATPercent</Text>
         <Calculated>-1</Calculated>
         <Format>#,##0</Format>
-        <Left>9722</Left>
+        <Left>9705</Left>
         <Top>390</Top>
         <Width>1830</Width>
         <Height>375</Height>
@@ -1959,9 +1984,8 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
       </Field>
       <Field>
         <Name>Field82</Name>
-        <Section>2</Section>
-        <Left>9722</Left>
-        <Top>15</Top>
+        <Section>6</Section>
+        <Left>9705</Left>
         <Width>2082</Width>
         <Height>1500</Height>
         <ZOrder>-53</ZOrder>
@@ -1969,14 +1993,14 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
       </Field>
       <Field>
         <Name>fldSumNetAmount2</Name>
-        <Section>2</Section>
+        <Section>6</Section>
         <Text>SUM(NetAmount)</Text>
         <Calculated>-1</Calculated>
         <Format>#,##0</Format>
-        <Left>9722</Left>
+        <Left>9870</Left>
         <Top>15</Top>
-        <Width>2082</Width>
-        <Height>375</Height>
+        <Width>1935</Width>
+        <Height>390</Height>
         <Align>8</Align>
         <MarginRight>50</MarginRight>
         <Font>
@@ -1987,9 +2011,9 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
       </Field>
       <Field>
         <Name>Field92</Name>
-        <Section>2</Section>
+        <Section>6</Section>
         <Text>Tiền hàng/ Sub-Total</Text>
-        <Left>7830</Left>
+        <Left>7815</Left>
         <Top>105</Top>
         <Width>1680</Width>
         <Height>270</Height>
@@ -2001,8 +2025,8 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
       </Field>
       <Field>
         <Name>Field93</Name>
-        <Section>2</Section>
-        <Left>9722</Left>
+        <Section>6</Section>
+        <Left>9705</Left>
         <Top>390</Top>
         <Width>2082</Width>
         <BorderStyle>1</BorderStyle>
@@ -2010,9 +2034,9 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
       </Field>
       <Field>
         <Name>Field94</Name>
-        <Section>2</Section>
+        <Section>6</Section>
         <Text>%</Text>
-        <Left>11595</Left>
+        <Left>11580</Left>
         <Top>390</Top>
         <Width>210</Width>
         <Height>375</Height>
@@ -2025,9 +2049,9 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
       </Field>
       <Field>
         <Name>Field97</Name>
-        <Section>2</Section>
+        <Section>6</Section>
         <Text>Thuế suất/ VAT rate</Text>
-        <Left>7845</Left>
+        <Left>7830</Left>
         <Top>450</Top>
         <Width>1680</Width>
         <Height>270</Height>
@@ -2039,11 +2063,11 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
       </Field>
       <Field>
         <Name>fldVATAmount2</Name>
-        <Section>2</Section>
+        <Section>6</Section>
         <Text>SUM(NetAmount)*VATPercent/100</Text>
         <Calculated>-1</Calculated>
         <Format>#,##0</Format>
-        <Left>9722</Left>
+        <Left>9705</Left>
         <Top>765</Top>
         <Width>2082</Width>
         <Height>375</Height>
@@ -2058,9 +2082,9 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
       </Field>
       <Field>
         <Name>Field100</Name>
-        <Section>2</Section>
+        <Section>6</Section>
         <Text>Tiền thuế/ VAT Amount</Text>
-        <Left>7845</Left>
+        <Left>7830</Left>
         <Top>765</Top>
         <Width>1830</Width>
         <Height>270</Height>
@@ -2072,8 +2096,8 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
       </Field>
       <Field>
         <Name>Field99</Name>
-        <Section>2</Section>
-        <Left>9722</Left>
+        <Section>6</Section>
+        <Left>9705</Left>
         <Top>765</Top>
         <Width>2082</Width>
         <BorderStyle>1</BorderStyle>
@@ -2081,11 +2105,11 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
       </Field>
       <Field>
         <Name>fldSumTotalNetAmount1</Name>
-        <Section>2</Section>
+        <Section>6</Section>
         <Text>SUM(NetAmount) + SUM(NetAmount)*VATPercent/100</Text>
         <Calculated>-1</Calculated>
         <Format>#,##0</Format>
-        <Left>9722</Left>
+        <Left>9705</Left>
         <Top>1140</Top>
         <Width>2082</Width>
         <Height>375</Height>
@@ -2100,9 +2124,9 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
       </Field>
       <Field>
         <Name>Field104</Name>
-        <Section>2</Section>
+        <Section>6</Section>
         <Text>Tổng cộng/ Grand-Total</Text>
-        <Left>7845</Left>
+        <Left>7830</Left>
         <Top>1110</Top>
         <Width>1830</Width>
         <Height>270</Height>
@@ -2114,8 +2138,8 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
       </Field>
       <Field>
         <Name>Field105</Name>
-        <Section>2</Section>
-        <Left>9722</Left>
+        <Section>6</Section>
+        <Left>9705</Left>
         <Top>1140</Top>
         <Width>2082</Width>
         <BorderStyle>1</BorderStyle>
@@ -2123,9 +2147,9 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
       </Field>
       <Field>
         <Name>Field107</Name>
-        <Section>2</Section>
+        <Section>6</Section>
         <Text>Bằng chữ / in words:</Text>
-        <Left>4080</Left>
+        <Left>4065</Left>
         <Top>1545</Top>
         <Width>1830</Width>
         <Height>270</Height>
@@ -2137,8 +2161,8 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
       </Field>
       <Field>
         <Name>fldAmountInWord1</Name>
-        <Section>2</Section>
-        <Left>6105</Left>
+        <Section>6</Section>
+        <Left>6090</Left>
         <Top>1545</Top>
         <Width>5700</Width>
         <Height>1005</Height>
@@ -2153,21 +2177,21 @@ SUM(SO_InvoiceDetail.InvoiceQty) as DeliveryQuantity, SO_InvoiceDetail.Price as 
       </Field>
       <Field>
         <Name>Field130</Name>
-        <Section>2</Section>
-        <Left>1305</Left>
-        <Top>2715</Top>
-        <Width>8760</Width>
-        <Height>2445</Height>
+        <Section>6</Section>
+        <Left>1740</Left>
+        <Top>2190</Top>
+        <Width>8820</Width>
+        <Height>1545</Height>
         <ZOrder>-56</ZOrder>
         <BorderStyle>1</BorderStyle>
       </Field>
       <Field>
         <Name>Field131</Name>
-        <Section>2</Section>
+        <Section>6</Section>
         <Text>Người lập phiếu
 Prepared by</Text>
-        <Left>1305</Left>
-        <Top>2715</Top>
+        <Left>1764</Left>
+        <Top>2190</Top>
         <Width>2910</Width>
         <Height>480</Height>
         <Align>7</Align>
@@ -2179,11 +2203,11 @@ Prepared by</Text>
       </Field>
       <Field>
         <Name>Field132</Name>
-        <Section>2</Section>
+        <Section>6</Section>
         <Text>Ký duyệt
 Approved by</Text>
-        <Left>4320</Left>
-        <Top>2715</Top>
+        <Left>4779</Left>
+        <Top>2190</Top>
         <Width>2910</Width>
         <Height>480</Height>
         <Align>7</Align>
@@ -2195,11 +2219,11 @@ Approved by</Text>
       </Field>
       <Field>
         <Name>Field133</Name>
-        <Section>2</Section>
+        <Section>6</Section>
         <Text>Người nhận hàng
 Received by</Text>
-        <Left>7200</Left>
-        <Top>2715</Top>
+        <Left>7659</Left>
+        <Top>2190</Top>
         <Width>2910</Width>
         <Height>480</Height>
         <Align>7</Align>
@@ -2211,11 +2235,11 @@ Received by</Text>
       </Field>
       <Field>
         <Name>Field134</Name>
-        <Section>2</Section>
-        <Left>4170</Left>
-        <Top>2715</Top>
-        <Width>45</Width>
-        <Height>2445</Height>
+        <Section>6</Section>
+        <Left>4695</Left>
+        <Top>2190</Top>
+        <Width>15</Width>
+        <Height>1545</Height>
         <BorderStyle>1</BorderStyle>
         <CanGrow>-1</CanGrow>
         <Anchor>2</Anchor>
@@ -2227,11 +2251,11 @@ Received by</Text>
       </Field>
       <Field>
         <Name>Field135</Name>
-        <Section>2</Section>
-        <Left>7170</Left>
-        <Top>2715</Top>
-        <Width>60</Width>
-        <Height>2445</Height>
+        <Section>6</Section>
+        <Left>7695</Left>
+        <Top>2190</Top>
+        <Width>30</Width>
+        <Height>1545</Height>
         <BorderStyle>1</BorderStyle>
         <CanGrow>-1</CanGrow>
         <Anchor>2</Anchor>
@@ -2243,9 +2267,9 @@ Received by</Text>
       </Field>
       <Field>
         <Name>Field136</Name>
-        <Section>2</Section>
-        <Left>1305</Left>
-        <Top>3180</Top>
+        <Section>6</Section>
+        <Left>1764</Left>
+        <Top>2655</Top>
         <Width>8760</Width>
         <Height>15</Height>
         <BorderStyle>1</BorderStyle>
@@ -2257,10 +2281,10 @@ Received by</Text>
       </Field>
       <Field>
         <Name>Field137</Name>
-        <Section>2</Section>
+        <Section>6</Section>
         <Text>Nguyễn Thị Tâm</Text>
-        <Left>1305</Left>
-        <Top>4650</Top>
+        <Left>1734</Left>
+        <Top>3315</Top>
         <Width>2940</Width>
         <Height>510</Height>
         <Align>7</Align>
@@ -2272,9 +2296,9 @@ Received by</Text>
       </Field>
       <Field>
         <Name>Field138</Name>
-        <Section>2</Section>
-        <Left>1305</Left>
-        <Top>4650</Top>
+        <Section>6</Section>
+        <Left>1764</Left>
+        <Top>3375</Top>
         <Width>8775</Width>
         <Height>30</Height>
         <BorderStyle>3</BorderStyle>
@@ -2286,10 +2310,10 @@ Received by</Text>
       </Field>
       <Field>
         <Name>Field142</Name>
-        <Section>2</Section>
+        <Section>6</Section>
         <Text>Bán hàng qua ĐT, Fax</Text>
-        <Left>7170</Left>
-        <Top>4665</Top>
+        <Left>7599</Left>
+        <Top>3330</Top>
         <Width>2925</Width>
         <Height>495</Height>
         <Align>7</Align>
@@ -2379,8 +2403,8 @@ Mã số thuế (Tax Code): 0100142907</Text>
         <Name>Field88</Name>
         <Section>3</Section>
         <Text>Đính kèm theo hóa đơn số</Text>
-        <Left>240</Left>
-        <Top>1755</Top>
+        <Left>600</Left>
+        <Top>1770</Top>
         <Width>1995</Width>
         <Height>285</Height>
         <Align>6</Align>
@@ -2396,8 +2420,8 @@ Mã số thuế (Tax Code): 0100142907</Text>
         <Section>3</Section>
         <Text>InvoiceNo</Text>
         <Calculated>-1</Calculated>
-        <Left>2265</Left>
-        <Top>1755</Top>
+        <Left>2565</Left>
+        <Top>1770</Top>
         <Width>800</Width>
         <Height>285</Height>
         <Align>6</Align>
@@ -2412,8 +2436,8 @@ Mã số thuế (Tax Code): 0100142907</Text>
         <Name>Field89</Name>
         <Section>3</Section>
         <Text>ngày</Text>
-        <Left>3060</Left>
-        <Top>1755</Top>
+        <Left>3360</Left>
+        <Top>1770</Top>
         <Width>420</Width>
         <Height>285</Height>
         <Align>6</Align>
@@ -2430,8 +2454,8 @@ Mã số thuế (Tax Code): 0100142907</Text>
         <Text>ShippedDate</Text>
         <Calculated>-1</Calculated>
         <Format>dd</Format>
-        <Left>3455</Left>
-        <Top>1755</Top>
+        <Left>3755</Left>
+        <Top>1770</Top>
         <Width>300</Width>
         <Height>285</Height>
         <Align>6</Align>
@@ -2446,8 +2470,8 @@ Mã số thuế (Tax Code): 0100142907</Text>
         <Name>Field90</Name>
         <Section>3</Section>
         <Text>tháng</Text>
-        <Left>3690</Left>
-        <Top>1755</Top>
+        <Left>3990</Left>
+        <Top>1770</Top>
         <Width>450</Width>
         <Height>285</Height>
         <Align>6</Align>
@@ -2464,8 +2488,8 @@ Mã số thuế (Tax Code): 0100142907</Text>
         <Text>ShippedDate</Text>
         <Calculated>-1</Calculated>
         <Format>MM</Format>
-        <Left>4150</Left>
-        <Top>1755</Top>
+        <Left>4450</Left>
+        <Top>1770</Top>
         <Width>250</Width>
         <Height>285</Height>
         <Align>7</Align>
@@ -2480,8 +2504,8 @@ Mã số thuế (Tax Code): 0100142907</Text>
         <Name>Field91</Name>
         <Section>3</Section>
         <Text>năm</Text>
-        <Left>4425</Left>
-        <Top>1755</Top>
+        <Left>4725</Left>
+        <Top>1770</Top>
         <Width>450</Width>
         <Height>285</Height>
         <Align>6</Align>
@@ -2498,8 +2522,8 @@ Mã số thuế (Tax Code): 0100142907</Text>
         <Text>ShippedDate</Text>
         <Calculated>-1</Calculated>
         <Format>yyyy</Format>
-        <Left>4800</Left>
-        <Top>1755</Top>
+        <Left>5100</Left>
+        <Top>1770</Top>
         <Width>705</Width>
         <Height>300</Height>
         <Align>6</Align>
@@ -2513,7 +2537,7 @@ Mã số thuế (Tax Code): 0100142907</Text>
       <Field>
         <Name>Field15</Name>
         <Section>3</Section>
-        <Text>Mẫu số: 01GTKT3/002, Ký hiệu: AA/11p</Text>
+        <Text>Mẫu số: 01GTKT3/002, Ký hiệu: AA/11P</Text>
         <Left>5550</Left>
         <Top>1755</Top>
         <Width>3090</Width>
@@ -2545,10 +2569,10 @@ Mã số thuế (Tax Code): 0100142907</Text>
       <Field>
         <Name>Field98</Name>
         <Section>3</Section>
-        <Left>8790</Left>
-        <Top>2160</Top>
-        <Width>2925</Width>
-        <Height>1980</Height>
+        <Left>8775</Left>
+        <Top>2070</Top>
+        <Width>2940</Width>
+        <Height>1965</Height>
         <ZOrder>-69</ZOrder>
         <BorderStyle>1</BorderStyle>
         <Tag>100</Tag>
@@ -2556,10 +2580,10 @@ Mã số thuế (Tax Code): 0100142907</Text>
       <Field>
         <Name>Field78</Name>
         <Section>3</Section>
-        <Left>270</Left>
+        <Left>645</Left>
         <Top>2160</Top>
-        <Width>7125</Width>
-        <Height>1770</Height>
+        <Width>7155</Width>
+        <Height>1905</Height>
         <ZOrder>-55</ZOrder>
         <Picture encoding="base64">iVBORw0KGgoAAAANSUhEUgAAAioAAABiCAYAAAB+pPibAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAADSElEQVR4Xu3d7W0aQRQFUFqgBkpwCfRAAS7CTbgASqAEyqAESqADNn5kUTLJmPgDdq+ic6UjC2l2+fs0dxgvRERERP6rLJfL4e3PxdPTEwBA13VeGD0uNZysVqvh5eVlOB6Pw/l8BgD4kNPpNGy329+Hl/ulXmo4AQDuoYaW9Xo9jA3N11Mv2O/33S8BAPiO2gSptmYcOz6XerAmnt6LAQDu4bq7Mo4fH0tVPb2XAQA8wmaz+diwUnVP7wUAAI/0zxqohpTD4dB9GADg0d7GkfeHldp26T0EADCFugZlHEv+isOzAMDsuj9btpsCACTo7qrsdrvuYgCAKdV52T93VboLAQDmULPJzxHlLX6SDAAkaS6Bc8EbAJCkuQDOQVoAIElzoLY+9BYBAMzh9fXVoAIAZGp2VGpq6S0CAJiD6gcAiKX6AQBi2VEBAGI1g4ozKgBAEtUPABBL9QMAxFL9AACxVD8AQCzVDwAQS/UDAMRS/QAAsVQ/AEAs1Q8AEEv1AwDEUv0AALFUPwBALNUPABBL9QMAxFL9AACxVD8AQCzVDwAQS/UDAMRS/QAAsVQ/AEAs1Q8AEEv1AwDEUv0AALFUPwBALNUPABBL9QMAxFL9AACxVD8AQCzVDwAQS/UDAMRS/QAAsVQ/AEAs1Q8AEEv1AwDEUv0AALFUPwBALNUPABBL9QMAxFL9AACxVD8AQCzVDwAQS/UDAMRS/QAAsVQ/AEAs1Q8AEEv1AwDEUv0AALFUPwBALNUPABBL9QMAxFL9AACxVD8AQCzVDwAQS/UDAMRS/QAAsVQ/AEAs1Q8AEKupfjabTXcRAMAcmh2V9XrdXQQAMIfn5+dfg8pqteouAgCYQ7U945hySXcRAMAcahNlnFEWi+VyORwOh+5CAIApHY/HGlKaHZVFdUG9xQAAU9put+2QUnFOBQBIUE3POJ60cZ8KADCn/X7fH1IqNcH0HgIAmMK7uynXuFMFAJhDc8nbraiAAIApdQ/Q3ophBQCYwm63+9yQco0aCAB4pOaq/C/msh3TezkAwFfULkpz++x3U6dwa2Cp2+J6XwgAcMvpdLrMEncdUDq5/HSo/llQnc4FALilZoZxOHnogCIiIiIyYRaLHxDZsdTV4fK6AAAAAElFTkSuQmCC</Picture>
         <PictureScale>1</PictureScale>
@@ -2603,7 +2627,7 @@ Mã số thuế (Tax Code): 0100142907</Text>
         <Name>Field79</Name>
         <Section>3</Section>
         <Text>Khách hàng:</Text>
-        <Left>645</Left>
+        <Left>1020</Left>
         <Top>2280</Top>
         <Width>945</Width>
         <Height>270</Height>
@@ -2619,7 +2643,7 @@ Mã số thuế (Tax Code): 0100142907</Text>
         <Section>3</Section>
         <Text>MST_PartyName</Text>
         <Calculated>-1</Calculated>
-        <Left>1740</Left>
+        <Left>2115</Left>
         <Top>2280</Top>
         <Width>5295</Width>
         <Height>270</Height>
@@ -2662,8 +2686,8 @@ Mã số thuế (Tax Code): 0100142907</Text>
         <Text>Ghi chú: Bảng kê được phát hành 2 liên như nhau, 1 liên SAV giữ, 1 liên khách hàng giữ (Note: there are 02 same copies, SAV keeps one, Customer keeps one)</Text>
         <Left>8790</Left>
         <Top>2805</Top>
-        <Width>2895</Width>
-        <Height>1290</Height>
+        <Width>2910</Width>
+        <Height>1215</Height>
         <ZOrder>-68</ZOrder>
         <Align>7</Align>
         <MarginLeft>100</MarginLeft>
@@ -2709,7 +2733,7 @@ Mã số thuế (Tax Code): 0100142907</Text>
         <Name>Field83</Name>
         <Section>3</Section>
         <Text>Địa chỉ:</Text>
-        <Left>645</Left>
+        <Left>1020</Left>
         <Top>2595</Top>
         <Width>630</Width>
         <Height>270</Height>
@@ -2725,7 +2749,7 @@ Mã số thuế (Tax Code): 0100142907</Text>
         <Section>3</Section>
         <Text>MST_PartyAddress</Text>
         <Calculated>-1</Calculated>
-        <Left>1740</Left>
+        <Left>2115</Left>
         <Top>2595</Top>
         <Width>5295</Width>
         <Height>270</Height>
@@ -2751,7 +2775,7 @@ Mã số thuế (Tax Code): 0100142907</Text>
         <Name>Field84</Name>
         <Section>3</Section>
         <Text>Mã số thuế:</Text>
-        <Left>645</Left>
+        <Left>1020</Left>
         <Top>2910</Top>
         <Width>900</Width>
         <Height>270</Height>
@@ -2767,7 +2791,7 @@ Mã số thuế (Tax Code): 0100142907</Text>
         <Section>3</Section>
         <Text>MST_PartyTaxCode</Text>
         <Calculated>-1</Calculated>
-        <Left>1740</Left>
+        <Left>2115</Left>
         <Top>2910</Top>
         <Width>5295</Width>
         <Height>270</Height>
@@ -2783,7 +2807,7 @@ Mã số thuế (Tax Code): 0100142907</Text>
         <Name>Field86</Name>
         <Section>3</Section>
         <Text>Số tài khoản</Text>
-        <Left>615</Left>
+        <Left>990</Left>
         <Top>3210</Top>
         <Width>1035</Width>
         <Height>270</Height>
@@ -2799,7 +2823,7 @@ Mã số thuế (Tax Code): 0100142907</Text>
         <Section>3</Section>
         <Text>MST_PartyBankAccount</Text>
         <Calculated>-1</Calculated>
-        <Left>1740</Left>
+        <Left>2115</Left>
         <Top>3210</Top>
         <Width>5295</Width>
         <Height>270</Height>
@@ -2814,7 +2838,7 @@ Mã số thuế (Tax Code): 0100142907</Text>
         <Name>Field87</Name>
         <Section>3</Section>
         <Text>Ngân hàng</Text>
-        <Left>615</Left>
+        <Left>990</Left>
         <Top>3525</Top>
         <Width>900</Width>
         <Height>270</Height>
@@ -2830,7 +2854,7 @@ Mã số thuế (Tax Code): 0100142907</Text>
         <Section>3</Section>
         <Text>MST_PartyBankName</Text>
         <Calculated>-1</Calculated>
-        <Left>1740</Left>
+        <Left>2115</Left>
         <Top>3525</Top>
         <Width>5295</Width>
         <Height>270</Height>
@@ -2846,9 +2870,9 @@ Mã số thuế (Tax Code): 0100142907</Text>
         <Section>3</Section>
         <Text>Tên hàng hóa
 Name of Goods</Text>
-        <Left>4522</Left>
+        <Left>5004</Left>
         <Top>4200</Top>
-        <Width>2800</Width>
+        <Width>2875</Width>
         <Height>645</Height>
         <ZOrder>-64</ZOrder>
         <Align>7</Align>
@@ -2862,10 +2886,9 @@ Name of Goods</Text>
       <Field>
         <Name>Field109</Name>
         <Section>3</Section>
-        <Left>240</Left>
-        <Top>4200</Top>
-        <Width>11565</Width>
-        <Height>1</Height>
+        <Left>722</Left>
+        <Top>4207</Top>
+        <Width>11134</Width>
         <BorderStyle>1</BorderStyle>
         <Tag>100</Tag>
         <Shape Type="Line" />
@@ -2875,9 +2898,9 @@ Name of Goods</Text>
         <Section>3</Section>
         <Text>STT
 No</Text>
-        <Left>240</Left>
+        <Left>722</Left>
         <Top>4200</Top>
-        <Width>400</Width>
+        <Width>475</Width>
         <Height>615</Height>
         <Align>7</Align>
         <Font>
@@ -2888,21 +2911,13 @@ No</Text>
         <Tag>100</Tag>
       </Field>
       <Field>
-        <Name>Field128</Name>
-        <Section>3</Section>
-        <Text>Field82</Text>
-        <Left>330</Left>
-        <Top>4200</Top>
-        <Tag>100</Tag>
-      </Field>
-      <Field>
         <Name>Field111</Name>
         <Section>3</Section>
         <Text>Chủng loại
 Model</Text>
-        <Left>639</Left>
+        <Left>1121</Left>
         <Top>4200</Top>
-        <Width>1200</Width>
+        <Width>1275</Width>
         <Height>615</Height>
         <Align>7</Align>
         <Font>
@@ -2917,9 +2932,9 @@ Model</Text>
         <Section>3</Section>
         <Text>Loại đơn
 Order Type</Text>
-        <Left>1838</Left>
+        <Left>2320</Left>
         <Top>4200</Top>
-        <Width>945</Width>
+        <Width>1020</Width>
         <Height>615</Height>
         <Align>7</Align>
         <MarginLeft>20</MarginLeft>
@@ -2936,9 +2951,9 @@ Order Type</Text>
         <Section>3</Section>
         <Text>Mã hiệu hàng hóa
 Customer Code</Text>
-        <Left>2782</Left>
+        <Left>3264</Left>
         <Top>4200</Top>
-        <Width>1740</Width>
+        <Width>1815</Width>
         <Height>615</Height>
         <Align>7</Align>
         <Font>
@@ -2953,9 +2968,9 @@ Customer Code</Text>
         <Section>3</Section>
         <Text>Đơn vị
 tính Unit</Text>
-        <Left>7322</Left>
+        <Left>7804</Left>
         <Top>4200</Top>
-        <Width>700</Width>
+        <Width>775</Width>
         <Height>615</Height>
         <Align>7</Align>
         <Font>
@@ -2970,9 +2985,9 @@ tính Unit</Text>
         <Section>3</Section>
         <Text>Số lượng
 Quantity</Text>
-        <Left>8022</Left>
+        <Left>8504</Left>
         <Top>4200</Top>
-        <Width>850</Width>
+        <Width>925</Width>
         <Height>615</Height>
         <Align>7</Align>
         <Font>
@@ -2987,9 +3002,9 @@ Quantity</Text>
         <Section>3</Section>
         <Text>Đơn giá
 Unit price</Text>
-        <Left>8872</Left>
+        <Left>9354</Left>
         <Top>4200</Top>
-        <Width>850</Width>
+        <Width>925</Width>
         <Height>615</Height>
         <Align>7</Align>
         <Font>
@@ -3004,10 +3019,10 @@ Unit price</Text>
         <Section>3</Section>
         <Text>Thành tiền
 Amount</Text>
-        <Left>9722</Left>
+        <Left>10220</Left>
         <Top>4200</Top>
-        <Width>2082</Width>
-        <Height>615</Height>
+        <Width>1701</Width>
+        <Height>632</Height>
         <Align>7</Align>
         <Font>
           <Bold>-1</Bold>
@@ -3019,8 +3034,9 @@ Amount</Text>
       <Field>
         <Name>Field118</Name>
         <Section>3</Section>
-        <Left>240</Left>
+        <Left>722</Left>
         <Top>4200</Top>
+        <Width>75</Width>
         <Height>615</Height>
         <BorderStyle>1</BorderStyle>
         <CanGrow>-1</CanGrow>
@@ -3035,8 +3051,9 @@ Amount</Text>
       <Field>
         <Name>Field119</Name>
         <Section>3</Section>
-        <Left>639</Left>
+        <Left>1121</Left>
         <Top>4200</Top>
+        <Width>75</Width>
         <Height>615</Height>
         <BorderStyle>1</BorderStyle>
         <CanGrow>-1</CanGrow>
@@ -3051,8 +3068,9 @@ Amount</Text>
       <Field>
         <Name>Field120</Name>
         <Section>3</Section>
-        <Left>1838</Left>
+        <Left>2320</Left>
         <Top>4200</Top>
+        <Width>75</Width>
         <Height>615</Height>
         <BorderStyle>1</BorderStyle>
         <CanGrow>-1</CanGrow>
@@ -3067,8 +3085,9 @@ Amount</Text>
       <Field>
         <Name>Field121</Name>
         <Section>3</Section>
-        <Left>2782</Left>
+        <Left>3264</Left>
         <Top>4200</Top>
+        <Width>75</Width>
         <Height>615</Height>
         <BorderStyle>1</BorderStyle>
         <CanGrow>-1</CanGrow>
@@ -3083,8 +3102,9 @@ Amount</Text>
       <Field>
         <Name>Field122</Name>
         <Section>3</Section>
-        <Left>4522</Left>
+        <Left>5004</Left>
         <Top>4200</Top>
+        <Width>75</Width>
         <Height>615</Height>
         <BorderStyle>1</BorderStyle>
         <CanGrow>-1</CanGrow>
@@ -3099,8 +3119,9 @@ Amount</Text>
       <Field>
         <Name>Field123</Name>
         <Section>3</Section>
-        <Left>7322</Left>
+        <Left>7804</Left>
         <Top>4200</Top>
+        <Width>75</Width>
         <Height>615</Height>
         <BorderStyle>1</BorderStyle>
         <CanGrow>-1</CanGrow>
@@ -3115,8 +3136,9 @@ Amount</Text>
       <Field>
         <Name>Field124</Name>
         <Section>3</Section>
-        <Left>8022</Left>
+        <Left>8504</Left>
         <Top>4200</Top>
+        <Width>75</Width>
         <Height>615</Height>
         <BorderStyle>1</BorderStyle>
         <CanGrow>-1</CanGrow>
@@ -3131,8 +3153,9 @@ Amount</Text>
       <Field>
         <Name>Field125</Name>
         <Section>3</Section>
-        <Left>8872</Left>
+        <Left>9354</Left>
         <Top>4200</Top>
+        <Width>75</Width>
         <Height>615</Height>
         <BorderStyle>1</BorderStyle>
         <CanGrow>-1</CanGrow>
@@ -3147,8 +3170,9 @@ Amount</Text>
       <Field>
         <Name>Field126</Name>
         <Section>3</Section>
-        <Left>9722</Left>
+        <Left>10204</Left>
         <Top>4200</Top>
+        <Width>75</Width>
         <Height>615</Height>
         <BorderStyle>1</BorderStyle>
         <CanGrow>-1</CanGrow>
@@ -3163,8 +3187,9 @@ Amount</Text>
       <Field>
         <Name>Field127</Name>
         <Section>3</Section>
-        <Left>11804</Left>
+        <Left>11824</Left>
         <Top>4200</Top>
+        <Width>75</Width>
         <Height>615</Height>
         <BorderStyle>1</BorderStyle>
         <CanGrow>-1</CanGrow>
@@ -3179,28 +3204,277 @@ Amount</Text>
       <Field>
         <Name>Field129</Name>
         <Section>3</Section>
-        <Left>240</Left>
-        <Top>4844</Top>
-        <Width>11565</Width>
-        <Height>1</Height>
+        <Left>729</Left>
+        <Top>4817</Top>
+        <Width>11106</Width>
+        <Height>7</Height>
         <BorderStyle>1</BorderStyle>
         <Tag>100</Tag>
         <Shape Type="Line" />
       </Field>
       <Field>
-        <Name>fldReferenceNo</Name>
-        <Section>1</Section>
-        <Text>CustomerPurchaseOrderNo</Text>
-        <Calculated>-1</Calculated>
-        <Left>8805</Left>
-        <Top>3540</Top>
-        <Width>1845</Width>
-        <Height>285</Height>
-        <Align>8</Align>
-        <Visible>0</Visible>
+        <Name>Field143</Name>
+        <Section>8</Section>
+        <Left>709</Left>
+        <Height>280</Height>
+        <BorderStyle>1</BorderStyle>
         <Font>
           <Name>Arial</Name>
           <Size>8.25</Size>
+        </Font>
+        <Shape Type="Line" />
+      </Field>
+      <Field>
+        <Name>Field144</Name>
+        <Section>8</Section>
+        <Left>1114</Left>
+        <Height>280</Height>
+        <BorderStyle>1</BorderStyle>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Shape Type="Line" />
+      </Field>
+      <Field>
+        <Name>Field145</Name>
+        <Section>8</Section>
+        <Left>8494</Left>
+        <Height>280</Height>
+        <BorderStyle>1</BorderStyle>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Shape Type="Line" />
+      </Field>
+      <Field>
+        <Name>Field146</Name>
+        <Section>8</Section>
+        <Left>9334</Left>
+        <Height>280</Height>
+        <BorderStyle>1</BorderStyle>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Shape Type="Line" />
+      </Field>
+      <Field>
+        <Name>Field147</Name>
+        <Section>8</Section>
+        <Left>10189</Left>
+        <Height>280</Height>
+        <BorderStyle>1</BorderStyle>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Shape Type="Line" />
+      </Field>
+      <Field>
+        <Name>Field148</Name>
+        <Section>8</Section>
+        <Left>11797</Left>
+        <Height>280</Height>
+        <BorderStyle>1</BorderStyle>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Shape Type="Line" />
+      </Field>
+      <Field>
+        <Name>Field149</Name>
+        <Section>8</Section>
+        <Left>705</Left>
+        <Top>283</Top>
+        <Width>11085</Width>
+        <Height>60</Height>
+        <BorderStyle>1</BorderStyle>
+        <Tag>100</Tag>
+        <Shape Type="Line" />
+      </Field>
+      <Field>
+        <Name>Field150</Name>
+        <Section>8</Section>
+        <Text>Grand Total</Text>
+        <Left>1178</Left>
+        <Width>1243</Width>
+        <Height>217</Height>
+        <Align>7</Align>
+        <Font>
+          <Bold>-1</Bold>
+          <Name>Arial</Name>
+          <Size>7.25</Size>
+        </Font>
+        <Tag>100</Tag>
+      </Field>
+      <Field>
+        <Name>Field151</Name>
+        <Section>8</Section>
+        <Text>SUM(DeliveryQuantity)</Text>
+        <Calculated>-1</Calculated>
+        <Format>#,##0</Format>
+        <Left>8528</Left>
+        <Width>808</Width>
+        <Height>232</Height>
+        <ZOrder>-60</ZOrder>
+        <Align>8</Align>
+        <MarginRight>20</MarginRight>
+        <Font>
+          <Bold>-1</Bold>
+          <Name>Arial</Name>
+          <Size>7.25</Size>
+        </Font>
+        <Tag>FORMAT_QUANTITY</Tag>
+      </Field>
+      <Field>
+        <Name>Field152</Name>
+        <Section>8</Section>
+        <Text>SUM(NetAmount)</Text>
+        <Calculated>-1</Calculated>
+        <Format>#,##0</Format>
+        <Left>9959</Left>
+        <Width>1797</Width>
+        <Height>249</Height>
+        <ZOrder>-63</ZOrder>
+        <Align>8</Align>
+        <MarginRight>20</MarginRight>
+        <Font>
+          <Bold>-1</Bold>
+          <Name>Arial</Name>
+          <Size>7.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>Field153</Name>
+        <Section>4</Section>
+        <Text>Page</Text>
+        <Left>5430</Left>
+        <Width>915</Width>
+        <Height>300</Height>
+        <Font>
+          <Name>Times New Roman</Name>
+          <Size>10</Size>
+        </Font>
+        <Tag>100</Tag>
+      </Field>
+      <Field>
+        <Name>STTFld1</Name>
+        <Section>4</Section>
+        <Text>[Page]-1</Text>
+        <Calculated>-1</Calculated>
+        <Left>5880</Left>
+        <Width>660</Width>
+        <Height>240</Height>
+        <ZOrder>-65</ZOrder>
+        <Align>6</Align>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Tag>100</Tag>
+      </Field>
+      <Field>
+        <Name>Field154</Name>
+        <Section>4</Section>
+        <Text>/</Text>
+        <Left>6030</Left>
+        <Width>630</Width>
+        <Height>240</Height>
+        <Font>
+          <Name>Times New Roman</Name>
+          <Size>10</Size>
+        </Font>
+        <Tag>100</Tag>
+      </Field>
+      <Field>
+        <Name>STTFld2</Name>
+        <Section>4</Section>
+        <Text>_TotalPages</Text>
+        <Calculated>-1</Calculated>
+        <Left>6105</Left>
+        <Width>780</Width>
+        <Height>240</Height>
+        <ZOrder>-65</ZOrder>
+        <Align>6</Align>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Tag>100</Tag>
+      </Field>
+      <Field>
+        <Name>STTFld3</Name>
+        <Section>2</Section>
+        <Text>[Page]-1</Text>
+        <Calculated>-1</Calculated>
+        <Left>5898</Left>
+        <Width>660</Width>
+        <Height>240</Height>
+        <ZOrder>-65</ZOrder>
+        <Align>6</Align>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Tag>100</Tag>
+      </Field>
+      <Field>
+        <Name>Field155</Name>
+        <Section>2</Section>
+        <Text>/</Text>
+        <Left>6054</Left>
+        <Width>630</Width>
+        <Height>240</Height>
+        <Font>
+          <Name>Times New Roman</Name>
+          <Size>10</Size>
+        </Font>
+        <Tag>100</Tag>
+      </Field>
+      <Field>
+        <Name>STTFld4</Name>
+        <Section>2</Section>
+        <Text>_TotalPages</Text>
+        <Calculated>-1</Calculated>
+        <Left>6127</Left>
+        <Width>780</Width>
+        <Height>240</Height>
+        <ZOrder>-65</ZOrder>
+        <Align>6</Align>
+        <Font>
+          <Name>Arial</Name>
+          <Size>8.25</Size>
+        </Font>
+        <Tag>100</Tag>
+      </Field>
+      <Field>
+        <Name>Field156</Name>
+        <Section>2</Section>
+        <Text>Page</Text>
+        <Left>5449</Left>
+        <Width>933</Width>
+        <Height>307</Height>
+        <Font>
+          <Name>Times New Roman</Name>
+          <Size>10</Size>
+        </Font>
+        <Tag>100</Tag>
+      </Field>
+      <Field>
+        <Name>Field128</Name>
+        <Section>1</Section>
+        <Text>Nguyễn Thị Tâm</Text>
+        <Left>4905</Left>
+        <Top>15135</Top>
+        <Width>2145</Width>
+        <Height>405</Height>
+        <Align>7</Align>
+        <Font>
+          <Name>Arial</Name>
+          <Size>10</Size>
         </Font>
         <Tag>100</Tag>
       </Field>
