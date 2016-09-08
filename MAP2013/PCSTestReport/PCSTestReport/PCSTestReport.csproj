@@ -350,6 +350,7 @@
     <Content Include="ReportDefinition\SaleByCustomerBreakDown.xml" />
     <Content Include="ReportDefinition\SaleByLicensor.xml" />
     <Content Include="ReportDefinition\SaleByLicensorBreakDown.xml" />
+    <Content Include="ReportDefinition\SaleInvoiceErrorReport.xml" />
     <Content Include="ReportDefinition\SaleOrderManagementReport.xml" />
     <Content Include="ReportDefinition\SaleOrderReport.xml" />
     <Content Include="ReportDefinition\SaleTransactionHistoryReport.xml" />

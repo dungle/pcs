@@ -15,9 +15,9 @@ namespace InvoiceForSaleOrderReport
 {
 	public class InvoiceForSaleOrderReport : MarshalByRefObject, IDynamicReport
 	{
-        private const string DemiliterChar = "#";
         private const string SO_INVOICE_STANDARD_REPORT = "Invoice4SaleOrderByDay.xml";
         private const string SO_INVOICE_APPENDIX_REPORT = "Invoice4SaleOrderByDay_Appendix.xml";
+        private const string ErrorReportFile = "SaleInvoiceErrorReport.xml";
         private const string REPORT_NAME = "Sale Order Invoice";
         private const string REPORTFLD_AMOUNT_IN_WORD = "fldAmountInWord";
         private const string REPORTFLD_AMOUNT_IN_WORD1 = "fldAmountInWord1";
@@ -148,44 +148,56 @@ namespace InvoiceForSaleOrderReport
                 }
                 if (arlVat.Count > 1)
                 {
-                    continue;
+                    break;
                 }
                 decimal netAmount = Convert.ToDecimal(row[SO_ConfirmShipDetailTable.NETAMOUNT_FLD]);
-                decimal vatPercent = Convert.ToDecimal(row[SO_SaleOrderDetailTable.VATPERCENT_FLD]);
-                totalAmount += netAmount + netAmount * vatPercent / 100;
+                totalAmount += netAmount;
             }
-
-            //Check rows to select valid report lay out
-            mLayoutFile = CountDistinctProduct(reportData) >= 15 ? SO_INVOICE_APPENDIX_REPORT : SO_INVOICE_STANDARD_REPORT;
 
             C1Report rptReport = new C1Report();
 
+            // check if data have conflict vat value, return the wrong report to warning
+            if (arlVat.Count > 1)
+	        {
+	            mLayoutFile = ErrorReportFile;
+	        }
+	        else
+	        {
+                //Check rows to select valid report lay out
+                mLayoutFile = CountDistinctProduct(reportData) >= 15 ? SO_INVOICE_APPENDIX_REPORT : SO_INVOICE_STANDARD_REPORT;
+            }
+
             rptReport.Load(mReportFolder + "\\" + mLayoutFile, rptReport.GetReportInfo(mReportFolder + "\\" + mLayoutFile)[0]);
             rptReport.Layout.PaperSize = PaperKind.Letter;
-            try
-	        {
-                string totalAmountInWord = ConvertNumberToWord.ChuyenSoThanhChu(decimal.Round(totalAmount, 0));
-                rptReport.Fields[REPORTFLD_AMOUNT_IN_WORD].Text = totalAmountInWord;
-                rptReport.Fields[REPORTFLD_AMOUNT_IN_WORD1].Text = totalAmountInWord;
-            }
-	        catch
-	        {
-	        }
 
-            // get sale type to show and hide field accordingly
-            var saleType = reportData.Rows[0]["SaleType1"].ToString();
-            try
-            {
-                var isType6 = saleType.ToUpperInvariant().Equals("TYPE6");
-                // change display to PO number instead of sale type
-                rptReport.Fields["fldSaleType"].Visible = !isType6;
-                rptReport.Fields["fldType"].Visible = !isType6;
-                rptReport.Fields["fldReferenceNo"].Visible = isType6;
-            }
-            catch { }
+	        if (arlVat.Count > 1)
+	        {
+	            totalAmount = totalAmount + totalAmount*Convert.ToDecimal(arlVat[0])/100;
+                try
+                {
+                    string totalAmountInWord = ConvertNumberToWord.ChuyenSoThanhChu(decimal.Round(totalAmount, 0));
+                    rptReport.Fields[REPORTFLD_AMOUNT_IN_WORD].Text = totalAmountInWord;
+                    rptReport.Fields[REPORTFLD_AMOUNT_IN_WORD1].Text = totalAmountInWord;
+                }
+                catch
+                {
+                }
 
-            // set datasource object that provides data to report.
-            rptReport.DataSource.Recordset = reportData;
+                // get sale type to show and hide field accordingly
+                var saleType = reportData.Rows[0]["SaleType1"].ToString();
+                try
+                {
+                    var isType6 = saleType.ToUpperInvariant().Equals("TYPE6");
+                    // change display to PO number instead of sale type
+                    rptReport.Fields["fldSaleType"].Visible = !isType6;
+                    rptReport.Fields["fldType"].Visible = !isType6;
+                    rptReport.Fields["fldReferenceNo"].Visible = isType6;
+                }
+                catch { }
+
+                // set datasource object that provides data to report.
+                rptReport.DataSource.Recordset = reportData;
+            }
             // render report
             rptReport.Render();
 	        var reportDocument = rptReport.Document;
