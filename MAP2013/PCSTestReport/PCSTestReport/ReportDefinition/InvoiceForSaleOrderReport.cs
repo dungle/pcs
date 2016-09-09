@@ -170,12 +170,12 @@ namespace InvoiceForSaleOrderReport
             rptReport.Load(mReportFolder + "\\" + mLayoutFile, rptReport.GetReportInfo(mReportFolder + "\\" + mLayoutFile)[0]);
             rptReport.Layout.PaperSize = PaperKind.Letter;
 
-	        if (arlVat.Count > 1)
+	        if (arlVat.Count <= 1)
 	        {
 	            totalAmount = totalAmount + totalAmount*Convert.ToDecimal(arlVat[0])/100;
                 try
                 {
-                    string totalAmountInWord = ConvertNumberToWord.ChuyenSoThanhChu(decimal.Round(totalAmount, 0));
+                    string totalAmountInWord = ConvertNumberToWord.ChuyenSoThanhChu(decimal.Round(totalAmount, 0, MidpointRounding.AwayFromZero));
                     rptReport.Fields[REPORTFLD_AMOUNT_IN_WORD].Text = totalAmountInWord;
                     rptReport.Fields[REPORTFLD_AMOUNT_IN_WORD1].Text = totalAmountInWord;
                 }
