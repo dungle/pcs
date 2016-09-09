@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<Reports>
+  <!--Report *** SaleInvoiceErrorReport ***-->
+  <Report version="4.6.20131.54624">
+    <Name>SaleInvoiceErrorReport</Name>
+    <ReportInfo>
+      <Author>dung.le</Author>
+    </ReportInfo>
+    <DataSource>
+      <DataProvider>1</DataProvider>
+    </DataSource>
+    <Layout>
+      <Width>9410</Width>
+      <Orientation>1</Orientation>
+    </Layout>
+    <Font>
+      <Name>Calibri</Name>
+      <Size>11</Size>
+    </Font>
+    <CompatibilityOptions />
+    <Groups />
+    <Sections>
+      <Section>
+        <Name>Detail</Name>
+        <Type>0</Type>
+        <Height>800</Height>
+      </Section>
+      <Section>
+        <Name>Header</Name>
+        <Type>1</Type>
+        <Height>800</Height>
+      </Section>
+      <Section>
+        <Name>Footer</Name>
+        <Type>2</Type>
+        <Visible>0</Visible>
+      </Section>
+      <Section>
+        <Name>PageHeader</Name>
+        <Type>3</Type>
+        <Visible>0</Visible>
+      </Section>
+      <Section>
+        <Name>PageFooter</Name>
+        <Type>4</Type>
+        <Visible>0</Visible>
+      </Section>
+    </Sections>
+    <Fields>
+      <Field>
+        <Name>titleLbl</Name>
+        <Section>1</Section>
+        <Text>Lỗi khi in hóa đơn bán hàng</Text>
+        <Left>50</Left>
+        <Top>200</Top>
+        <Width>9360</Width>
+        <Height>600</Height>
+        <Align>7</Align>
+        <ForeColor>0</ForeColor>
+        <Font>
+          <Name>Arial</Name>
+          <Size>20.25</Size>
+        </Font>
+      </Field>
+      <Field>
+        <Name>titleLbl1</Name>
+        <Section>0</Section>
+        <Text>Lỗi xảy ra khi in hóa đơn bán hàng. Kiểm tra lại giá trị VAT</Text>
+        <Left>50</Left>
+        <Top>200</Top>
+        <Width>9360</Width>
+        <Height>600</Height>
+        <Align>7</Align>
+        <Font>
+          <Name>Arial</Name>
+          <Size>14.25</Size>
+        </Font>
+      </Field>
+    </Fields>
+  </Report>
+</Reports>
