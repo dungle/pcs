@@ -50,13 +50,12 @@
       <Field>
         <Name>titleLbl</Name>
         <Section>1</Section>
-        <Text>Lỗi khi in hóa đơn bán hàng</Text>
+        <Text>Hoa don ban hang khong in duoc</Text>
         <Left>50</Left>
         <Top>200</Top>
         <Width>9360</Width>
         <Height>600</Height>
         <Align>7</Align>
-        <ForeColor>0</ForeColor>
         <Font>
           <Name>Arial</Name>
           <Size>20.25</Size>
@@ -65,7 +64,7 @@
       <Field>
         <Name>titleLbl1</Name>
         <Section>0</Section>
-        <Text>Lỗi xảy ra khi in hóa đơn bán hàng. Kiểm tra lại giá trị VAT</Text>
+        <Text>Gia tri VAT trong hoa don ban hang khong giong nhau. Kiem tra lai truoc khi in</Text>
         <Left>50</Left>
         <Top>200</Top>
         <Width>9360</Width>

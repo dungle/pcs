@@ -552,12 +552,12 @@ ORDER BY refDetail.CustomerItemCode</RecordSource>
       <Field>
         <Name>fldSaleType</Name>
         <Section>1</Section>
-        <Text>=IIf(ReferenceNo&lt;&gt;"",ReferenceNo,SaleType1)</Text>
+        <Text>SaleType1</Text>
         <Calculated>-1</Calculated>
         <Left>9870</Left>
         <Top>3015</Top>
-        <Width>1305</Width>
-        <Height>705</Height>
+        <Width>1320</Width>
+        <Height>600</Height>
         <Align>2</Align>
         <Font>
           <Name>Arial</Name>
@@ -683,9 +683,9 @@ ORDER BY refDetail.CustomerItemCode</RecordSource>
       <Field>
         <Name>Field21</Name>
         <Section>3</Section>
-        <Left>1170</Left>
-        <Width>9915</Width>
-        <Height>765</Height>
+        <Left>1260</Left>
+        <Width>9810</Width>
+        <Height>750</Height>
         <ZOrder>-22</ZOrder>
         <BorderStyle>1</BorderStyle>
         <Font>
@@ -971,9 +971,10 @@ ORDER BY refDetail.CustomerItemCode</RecordSource>
       <Field>
         <Name>Field44</Name>
         <Section>3</Section>
-        <Left>1170</Left>
+        <Left>1260</Left>
         <Top>465</Top>
-        <Width>9915</Width>
+        <Width>9480</Width>
+        <Height>15</Height>
         <BorderStyle>1</BorderStyle>
         <Font>
           <Bold>-1</Bold>
@@ -1649,13 +1650,13 @@ ORDER BY refDetail.CustomerItemCode</RecordSource>
         <Section>5</Section>
         <Text>ITM_ProductDescriptionVN</Text>
         <Calculated>-1</Calculated>
-        <Left>3745</Left>
-        <Width>2750</Width>
+        <Left>3675</Left>
+        <Width>3000</Width>
         <Height>255</Height>
         <Align>6</Align>
         <Font>
           <Name>Arial</Name>
-          <Size>8.5</Size>
+          <Size>7.5</Size>
         </Font>
         <Tag>100</Tag>
       </Field>
@@ -1766,6 +1767,23 @@ ORDER BY refDetail.CustomerItemCode</RecordSource>
         <Font>
           <Name>Arial</Name>
           <Size>9.75</Size>
+        </Font>
+        <Tag>100</Tag>
+      </Field>
+      <Field>
+        <Name>fldReferenceNo</Name>
+        <Section>1</Section>
+        <Text>ReferenceNo</Text>
+        <Calculated>-1</Calculated>
+        <Left>9870</Left>
+        <Top>3015</Top>
+        <Width>1335</Width>
+        <Height>555</Height>
+        <Align>2</Align>
+        <Visible>0</Visible>
+        <Font>
+          <Name>Arial</Name>
+          <Size>9.5</Size>
         </Font>
         <Tag>100</Tag>
       </Field>

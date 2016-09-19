@@ -185,13 +185,30 @@ namespace InvoiceForSaleOrderReport
 
                 // get sale type to show and hide field accordingly
                 var saleType = reportData.Rows[0]["SaleType1"].ToString();
+	            var referenceNo = string.Empty;
+	            try
+	            {
+	                referenceNo = reportData.Rows[0]["ReferenceNo"].ToString();
+	            }
+	            catch {}
+
                 try
                 {
                     var isType6 = saleType.ToUpperInvariant().Equals("TYPE6");
-                    // change display to PO number instead of sale type
-                    rptReport.Fields["fldSaleType"].Visible = !isType6;
-                    rptReport.Fields["fldType"].Visible = !isType6;
-                    rptReport.Fields["fldReferenceNo"].Visible = isType6;
+                    if (isType6)
+                    {
+                        // change display to Reference number instead of sale type
+                        if (string.IsNullOrWhiteSpace(referenceNo))
+                        {
+                            rptReport.Fields["fldSaleType"].Visible = true;
+                            rptReport.Fields["fldReferenceNo"].Visible = false;
+                        }
+                        else
+                        {
+                            rptReport.Fields["fldSaleType"].Visible = false;
+                            rptReport.Fields["fldReferenceNo"].Visible = true;
+                        }
+                    }
                 }
                 catch { }
 

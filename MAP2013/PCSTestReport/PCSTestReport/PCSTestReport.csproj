@@ -227,6 +227,8 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Invoice4SaleOrderByDay.xml" />
+    <Content Include="Invoice4SaleOrderByDay_Appendix.xml" />
     <Content Include="ReportDefinition\ActualCostForMakeItem.xml" />
     <Content Include="ReportDefinition\ActualCostForNonMakeItem.xml" />
     <Content Include="ReportDefinition\AllocatedExpenseCosting.xml" />

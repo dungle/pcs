@@ -850,11 +850,11 @@ _TotalPages=_TotalPages - 1</OnOpen>
         <Section>1</Section>
         <Text>SaleType1</Text>
         <Calculated>-1</Calculated>
-        <Left>9180</Left>
+        <Left>9720</Left>
         <Top>3015</Top>
-        <Width>1830</Width>
-        <Height>270</Height>
-        <Align>8</Align>
+        <Width>1350</Width>
+        <Height>585</Height>
+        <Align>2</Align>
         <Font>
           <Name>Arial</Name>
           <Size>9.5</Size>
@@ -1844,7 +1844,7 @@ _TotalPages=_TotalPages - 1</OnOpen>
         <Name>Field59</Name>
         <Section>1</Section>
         <Text>Người lập</Text>
-        <Left>4875</Left>
+        <Left>5025</Left>
         <Top>14055</Top>
         <Width>2010</Width>
         <Height>270</Height>
@@ -1886,7 +1886,7 @@ _TotalPages=_TotalPages - 1</OnOpen>
         <Name>Field60</Name>
         <Section>1</Section>
         <Text>Prepared by</Text>
-        <Left>4890</Left>
+        <Left>5040</Left>
         <Top>14310</Top>
         <Width>2010</Width>
         <Height>270</Height>
@@ -1941,7 +1941,7 @@ _TotalPages=_TotalPages - 1</OnOpen>
       <Field>
         <Name>Field64</Name>
         <Section>1</Section>
-        <Left>4890</Left>
+        <Left>5040</Left>
         <Top>15480</Top>
         <Width>2145</Width>
         <BorderStyle>1</BorderStyle>
@@ -3467,7 +3467,7 @@ Amount</Text>
         <Name>Field128</Name>
         <Section>1</Section>
         <Text>Nguyễn Thị Tâm</Text>
-        <Left>4905</Left>
+        <Left>5055</Left>
         <Top>15135</Top>
         <Width>2145</Width>
         <Height>405</Height>
@@ -3475,6 +3475,23 @@ Amount</Text>
         <Font>
           <Name>Arial</Name>
           <Size>10</Size>
+        </Font>
+        <Tag>100</Tag>
+      </Field>
+      <Field>
+        <Name>fldReferenceNo</Name>
+        <Section>1</Section>
+        <Text>ReferenceNo</Text>
+        <Calculated>-1</Calculated>
+        <Left>9720</Left>
+        <Top>3015</Top>
+        <Width>1365</Width>
+        <Height>600</Height>
+        <Align>2</Align>
+        <Visible>0</Visible>
+        <Font>
+          <Name>Arial</Name>
+          <Size>9.5</Size>
         </Font>
         <Tag>100</Tag>
       </Field>
